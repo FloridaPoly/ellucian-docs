@@ -1,0 +1,2091 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>HESA Banner Student - Use — HESA Data Futures</title><style>body{font-family:-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;line-height:1.55;color:#1a1a1a;max-width:920px;margin:0 auto;padding:24px}header{border-bottom:2px solid #5a16d6;margin-bottom:8px}h1{color:#3a0ca3}h2,h3,h4,h5,h6{margin-top:1.6em}.crumb{color:#666;font-size:13px;margin:0}.meta{color:#888;font-size:12px}nav.toc{background:#f6f4fc;border:1px solid #e3dcf5;border-radius:8px;padding:12px 18px;margin:18px 0}nav.toc h2{margin:.2em 0}nav.toc ul{list-style:none;padding-left:0}nav.toc a{text-decoration:none;color:#5a16d6}section{margin:1.2em 0;padding-top:.4em}img{max-width:100%;height:auto}table{border-collapse:collapse}td,th{border:1px solid #ccc;padding:4px 8px}code,pre{background:#f4f4f4;border-radius:4px}pre{padding:10px;overflow:auto}</style></head><body><header><p class="crumb">Banner Student › HESA Banner Student - Use</p><h1>HESA Banner Student - Use — HESA Data Futures</h1><p class="meta">Source: <a href="https://resources.elluciancloud.com/r/bundle/banner_student_acn_use_hesa">https://resources.elluciancloud.com/r/bundle/banner_student_acn_use_hesa</a> &middot; Retrieved 2026-06-17</p></header><nav class="toc"><h2>Contents</h2><ul><li style="margin-left:0px"><a href="#t-390">HESA Data Futures</a></li><li style="margin-left:16px"><a href="#t-400">Configure and connect HESA Data Futures in Ethos Integration</a></li><li style="margin-left:32px"><a href="#t-410">Create Banner application in Ethos Integration for HESA Data Futures</a></li><li style="margin-left:32px"><a href="#t-420">Create proxy application in Ethos Integration for HESA Data Futures</a></li><li style="margin-left:32px"><a href="#t-430">Create Banner user for proxy API requests</a></li><li style="margin-left:32px"><a href="#t-440">Create crosswalk to map Banner HESA Reference Period</a></li><li style="margin-left:32px"><a href="#t-450">Create crosswalk to map SLC installation</a></li><li style="margin-left:32px"><a href="#t-460">Create crosswalk for ofsRegister</a></li><li style="margin-left:32px"><a href="#t-470">Create crosswalk for moduleOutcomeEngland</a></li><li style="margin-left:32px"><a href="#t-480">Create crosswalk for c24056 session year</a></li><li style="margin-left:16px"><a href="#t-490">Set up automatic processing of applications</a></li><li style="margin-left:32px"><a href="#t-500">Set up the pipeline job to extract JSON data</a></li><li style="margin-left:32px"><a href="#t-510">Set up the pipeline job to extract XML data</a></li><li style="margin-left:16px"><a href="#t-520">Data Futures tables</a></li><li style="margin-left:16px"><a href="#t-530">Data Futures processes</a></li><li style="margin-left:16px"><a href="#t-540">Tasks</a></li><li style="margin-left:32px"><a href="#t-550">Record planned course session years</a></li><li style="margin-left:32px"><a href="#t-560">Maintain HESA course details</a></li><li style="margin-left:48px"><a href="#t-570">Create new courses</a></li><li style="margin-left:48px"><a href="#t-580">Copy data from existing course delivery</a></li><li style="margin-left:48px"><a href="#t-590">Update and view data for existing course deliveries</a></li><li style="margin-left:32px"><a href="#t-600">Maintain HESA Modules through course catalog identifier details</a></li><li style="margin-left:48px"><a href="#t-610">Create course catalog identifier details</a></li><li style="margin-left:48px"><a href="#t-620">Copy data from existing course catalog identifier</a></li><li style="margin-left:32px"><a href="#t-630">Create venue details</a></li><li style="margin-left:32px"><a href="#t-640">Create and maintain Bio-demo information</a></li><li style="margin-left:32px"><a href="#t-650">Record student's language proficiency details</a></li><li style="margin-left:32px"><a href="#t-660">Record HESA course qualification details</a></li><li style="margin-left:32px"><a href="#t-670">Record student engagement details</a></li><li style="margin-left:32px"><a href="#t-680">Record student entry qualification</a></li><li style="margin-left:32px"><a href="#t-690">Create student course session</a></li><li style="margin-left:32px"><a href="#t-700">Record student module instance</a></li></ul></nav><main><section id="t-390"><h2>HESA Data Futures</h2><div class="content-locale-en-US content-locale-en"><div id="c_lnd_hesa_df_return"><div class="body conbody"><p class="shortdesc">The <span class="keyword">Data Futures</span> functionality is built to support <span class="keyword">Banner</span> <span class="keyword">HESA</span>.</p>
+
+    <div class="note"><span class="notetitle">Note:</span> This 9x version corresponds to the <span class="keyword">Banner</span> <span class="keyword">HESA</span> 8.23.1 release version. <p class="p">The term 'course' is used to mean different things in <span class="keyword">Banner</span> and in <span class="keyword">HESA</span>. To distinguish terminology, in this use content, the term 'HESA course' refers to a 'Banner programme record. The term <span class="keyword">HESA</span> module refers to a <span class="keyword">Banner</span> course record. </p>
+</div>
+
+    <div class="p">The <span class="keyword">HESA</span> Student record is a collection that begins from the year 1994/95.   In the year 2022/23, the HESA student model significantly changed and is now known as HESA Data Futures.  The data collected as part of the student record is used extensively by various stakeholders and is fundamental in the formulation of:<ul class="ul">
+      <li class="li">Funding</li>
+
+      <li class="li">Publications (including UNISTATS)</li>
+
+      <li class="li">League tables</li>
+
+      </ul>
+</div>
+
+    <p class="p">The Data Futures programme brings the requirements of two existing data collections: student record and student alternative record (previously known as the Alternative provider student record) into a new student data collection specification. The new data specification has been a product of extensive work with Statutory Customers, HE Providers and sector bodies. The data specification needs to flex and adapt to the future requirements of a dynamic policy environment and therefore will require changes to be made. The collection specification of Data Futures has been structured in a way to ensure that these changes are not fundamental. An iterative schedule of releases will allow for modifications to be made, at regularly periods. </p>
+
+    <p class="p">The Student record is collected in respect of all students registered at the reporting provider who follow courses that lead to the award of a qualification or provider credit. The emphasis of the coverage of the Student record is those who are (or were) actively following a course at some time during the applicable reference period.</p>
+
+    <p class="p">To know about the physical data model, see the <span class="ph filepath">56_Data_Model_f_22_6dfcdb3dc0.pdf</span> file that is available as an attachment in the .zip compressed file.</p>
+
+    <p class="p">Ellucian has converted the HESA DF model to provide a working student records system to enable the production of the new data model. This new functionality uses Data Connect to facilitate the extraction of data from tables to an XML format. </p>
+
+    <p class="p">The following model for HESA data futures is available for institutions (downloaded 19th January 2023) This uses data connect and a suite of new data futures tables.</p>
+
+    <div class="section"><h2 class="title sectiontitle">Process Map - HESA DF Data Connect</h2>
+      
+      <div class="p">
+        <br><img class="image" alt="HESA DF Data Connect flow" data-ft-asset-display-name="flw_process_map_hesa_df_data_connect.png" src="images/02-hesa-data-futures-1.png" data-ft-resource-id="zao0nIl56O0~f4PDOiDfMg-LAN8O7o7OM3x1Gb8ZjmpNQ"><br>
+      </div>
+
+    </div>
+
+    <div class="section"><h2 class="title sectiontitle">Process Map - HESA DF Extraction</h2>
+      
+      <div class="p">
+        <br><img class="image" alt="HESA DF extraction" data-ft-asset-display-name="flw_process_map_hesa_df_extraction.png" src="images/02-hesa-data-futures-2.png" data-ft-resource-id="QCn_c_oUNKOI8xd64oI0mw-LAN8O7o7OM3x1Gb8ZjmpNQ"><br>
+      </div>
+
+    </div>
+
+  </div>
+
+</div></div></section>
+<section id="t-400"><h3>Configure and connect HESA Data Futures in Ethos Integration</h3><div class="content-locale-en-US content-locale-en"><div id="c_config_dfe_ethos_int_for_banner"><div class="body conbody"><p class="shortdesc">Perform the setup that supports communication between Banner and Ethos Integration for the HESA Data Futures extraction.</p>
+
+    <p class="p"><span class="keyword">HESA</span> <span class="ph">Data Futures</span> Extraction process communicates with Banner through Ethos Integration. To support HESA Data Futures Extraction process, you need to connect Banner to Ethos Integration. </p>
+
+    <p class="p">The Banner to Ethos Integration connect includes the following Banner API installation. The HESA Data Futures Extraction process requires Banner Ethos Student API 9.29, Banner Ethos Integration API 9.29 and Banner Business API Student HESA 9.3.29 releases.</p>
+
+    <p class="p">For the procedures, see <span class="xref ft-internal-xlink" data-ft-warning="excluded-from-rendering" data-clusterid="ID_B_REGS_master_2026-03-09/id_b_regs/stu_eu_hesa_cmn_use/c_connect_banner_ethos">Connect Banner to Ethos Integration</span>.</p>
+
+  </div>
+
+</div></div></section>
+<section id="t-410"><h4>Create Banner application in Ethos Integration for HESA Data Futures</h4><div class="content-locale-en-US content-locale-en"><div id="c_create_banner_app_ethos_integration_hesa_hesadatafutures"><div class="body conbody"><p class="shortdesc">You must create Banner Student API, Banner Integration API, and Banner Business API application first, and then, a proxy setup for each API application.</p>
+
+    <p class="p">For the procedures, see <span class="xref ft-internal-xlink" data-ft-warning="excluded-from-rendering" data-clusterid="ID_B_REGS_master_2026-03-09/id_b_regs/stu_eu_hesa_cmn_use/c_set_up_banner_ethos_int">Set up Banner in Ethos Integration</span>.</p>
+
+    <p class="p">The Ethos application that you create for the Banner Student API, Banner Integration API, or Banner Business Process API must own the resources listed in this section. That will be the case if you create that Ethos application from the catalog, or use the <span class="ph uicontrol">Auto-Configure Resources</span> feature in <span class="keyword">Ethos Integration</span> to update the owned resources after installing the required Ethos API version, as described in the <span class="xref ft-internal-xlink" data-ft-warning="excluded-from-rendering" data-clusterid="ID_B_REGS_master_2026-03-09/id_b_regs/stu_eu_hesa_cmn_use/t_update_resources_banner_non_mep">Update Banner's owned resources after an Ethos API upgrade</span>.in the Ellucian Documentation site.</p>
+
+    <p class="p">After you create the application and navigate to the Owned Resources window, you can see a list of all the application owned resources that are configured already. </p>
+
+    <p class="p">However, for HESA Data Futures, as we need only specific list of APIs, use the DELETE ALL RESOURCES option to remove all the unrelated resources for Data Futures. To add only the API related resources, use the ADD RESOURCES option. </p>
+
+    <div class="note"><span class="notetitle">Note:</span> Alternatively, you can also choose to retain the existing list of application owned resources that the system lists.</div>
+
+    <p class="p">This section lists the API names that are available for each application. In the Owned Resources window, when you click ADD RESOURCES, the system allows you to either add the Ellucian Ethos resources or add a custom resource.</p>
+
+    <div class="note"><span class="notetitle">Note:</span> If you do not see the API listed in the Ellucian Ethos Resource, you can add the API as a custom resource. </div>
+
+    <p class="p">In the Owned Resources window, whenever there is an update to the list of APIs after an Ethos API upgrade, ensure that you delete all the existing resources and add the HESA Data Futures related API resources. </p>
+
+    <p class="p">The hesa-df-extract-process is the Banner Student Ethos API that is used for Data Futures Extraction process </p>
+
+    <p class="p">The following are the list of Banner Integration Ethos APIs used for Data Futures Extraction process:</p>
+
+    <ul class="ul">
+      <li class="li">hesa-courses</li>
+
+      <li class="li">hesa-modules</li>
+
+      <li class="li">hesa-sessionyears </li>
+
+      <li class="li">hesa-qualifications</li>
+
+    </ul>
+
+    <div class="p">The following are the list of Banner Business APIs used for Data Futures Extraction process:<ul class="ul"> <li class="li">eu-hesa-venue-details </li>
+ <li class="li">eu-system-parameter-maintenance </li>
+ </ul>
+</div>
+
+  </div>
+
+</div></div></section>
+<section id="t-420"><h4>Create proxy application in Ethos Integration for HESA Data Futures</h4><div class="content-locale-en-US content-locale-en"><div id="t_create_app_dfe_apply_for_banner"><div class="body taskbody"><p class="shortdesc"> The application record contains basic information about HESA Data Futures Extraction process and how it interacts with Banner through Ethos Integration.</p>
+
+    <div class="section prereq p"><div class="tasklabel"><h2 class="sectiontitle tasklabel">Before you begin</h2></div>The Add Application wizard will prompt you for the user name and password for a user account that supports proxy API requests. Before running the wizard, create that user account using the procedure in <span class="xref ft-internal-link" title="Create a user in Banner to support proxy API requests from HESA Data Futures Extraction process." data-ft-warning="excluded-from-rendering" data-mapid="LAN8O7o7OM3x1Gb8ZjmpNQ" data-tocid="_pm_weodcn6mf5IDXKSUqQ">Create Banner user for proxy API requests</span>.</div>
+
+    <div class="section context"><div class="tasklabel"><h2 class="sectiontitle tasklabel">About this task</h2></div>Note that multiple Ethos applications are needed to support HESA Data Futures Extraction process with Banner:<ul class="ul"> <li class="li">Ethos applications for the Banner Business API, Banner Student API, and Banner Integration API, which is part of setting up Banner in <span class="keyword">Ethos Integration</span>.</li>
+ <li class="li">An Ethos application for HESA Data Futures Extraction process, which you will create using the procedure mentioned in the following step-by-step procedure.</li>
+ </ul>
+</div>
+
+    <div class="tasklabel"><h2 class="sectiontitle tasklabel">Procedure</h2></div><ol class="ol steps"><li class="li step">
+        <span class="ph cmd">On the Ethos Integration header bar, click the gear button <img class="image" src="images/02-hesa-data-futures-3.png" alt="gear_button" data-ft-asset-display-name="btn_choose_env.png" data-ft-resource-id="HFflIg3M54S7HmCYMNwIng-LAN8O7o7OM3x1Gb8ZjmpNQ"> and select the Ethos environment where you want to perform this procedure.</span>
+      </li>
+<li class="li step">
+        <span class="ph cmd">On the Ethos Integration header bar, click <span class="ph uicontrol">Applications</span>.</span>
+      </li>
+<li class="li step">
+        <span class="ph cmd">On the <span class="ph uicontrol">Applications</span> page, click <span class="ph uicontrol">Add Application</span>.</span>
+      </li>
+<li class="li step">
+        <span class="ph cmd">In the <span class="ph uicontrol">Add Application</span> dialog box, do the following:</span>
+        <ol type="a" class="ol substeps">
+          <li class="li substep">
+            <span class="ph cmd">Select <span class="ph uicontrol">Manually</span>. </span>
+          </li>
+
+          <li class="li substep">
+            <span class="ph cmd">Select <span class="ph uicontrol">Configure REST API proxy</span>. </span>
+          </li>
+
+          <li class="li substep">
+            <span class="ph cmd">Click <span class="ph uicontrol">Continue</span>. </span>
+          </li>
+
+        </ol>
+
+      </li>
+<li class="li step">
+        <span class="ph cmd">On the <span class="ph uicontrol">Application Details</span> page of the wizard, enter the information described below and click <span class="ph uicontrol">Next</span>.</span>
+        
+<table border="1" frame="hsides" rules="rows" cellpadding="4" cellspacing="0" summary="" class="simpletable choicetable choicetableborder">
+<colgroup><col style="width:50%"><col style="width:50%"></colgroup><thead><tr class="sthead chhead"><th class="stentry choptionhd" style="vertical-align:bottom;text-align:left;" id="d47080e146-option">Field</th>
+<th class="stentry chdeschd" style="vertical-align:bottom;text-align:left;" id="d47080e146-desc">Entry</th></tr></thead>
+<tbody><tr class="strow chrow">
+            <th style="vertical-align:top;" headers="d47080e146-option" id="d47080e159" class="stentry choption">Application name</th>
+
+            <td style="vertical-align:top;" headers="d47080e146-desc d47080e159" class="stentry chdesc">Enter a unique name for this application.<p class="p">Example name: <code class="ph codeph">HESA DF Business API proxy</code> / <code class="ph codeph">HESA DF Integration API proxy/HESA DF Student API Proxy</code></p>
+<p class="p">Ensure that the name uniquely identifies this application.</p>
+<p class="p">When you need to select an application elsewhere in the Ethos Integration user interface, you will use the name to select the correct application.</p>
+</td>
+
+          </tr>
+<tr class="strow chrow">
+            <th style="vertical-align:top;" headers="d47080e146-option" id="d47080e179" class="stentry choption">Description</th>
+
+            <td style="vertical-align:top;" headers="d47080e146-desc d47080e179" class="stentry chdesc">(Optional) Enter a description of this application.</td>
+
+          </tr>
+</tbody></table>
+
+      </li>
+<li class="li step">
+        <span class="ph cmd">In the <span class="ph uicontrol">Add Source Applications</span> page of the wizard, set up proxy API requests: </span>
+        <ol type="a" class="ol substeps">
+          <li class="li substep substepexpand">
+            <span class="ph cmd">Click <span class="ph uicontrol">Add Source Application</span> to open the <span class="ph uicontrol">Add Source Application</span> dialog box. </span>
+          </li>
+
+          <li class="li substep substepexpand">
+            <span class="ph cmd">In the <span class="ph uicontrol">Source Application</span> field, select the Ethos application that you created for Banner.</span>
+            <div class="itemgroup info">For Banner, you created three applications in Ethos Integration: one for the Banner Business API and one for the Banner Integration API, one for the Banner Student API and one for the Banner Integration API. Perform these steps twice, one time for each Banner application. You can enter the same credentials (for the same Banner user) in both cases.</div>
+          </li>
+
+          <li class="li substep substepexpand">
+            <span class="ph cmd">Enter the user name and password for the Banner user account that supports proxy API requests. </span>
+          </li>
+
+          <li class="li substep substepexpand">
+            <span class="ph cmd"> In the <span class="ph uicontrol">Select a resource</span> field, select any Ethos resource to which that user account has permissions in the ERP.</span>
+            <div class="itemgroup info">You can select any resource for which you granted that user account permissions in the ERP. For example, persons. Ethos Integration uses that resource to validate the user credentials by confirming that the user account has access to at least one resource in the ERP. After the credentials are validated, the application will have access to all resources for which the user account has been granted permissions.</div>
+          </li>
+
+          <li class="li substep substepexpand">
+            <span class="ph cmd">Click <span class="ph uicontrol">Add</span>. </span>
+          </li>
+
+          <li class="li substep substepexpand">
+            <span class="ph cmd">Click <span class="ph uicontrol">Next</span>. </span>
+          </li>
+
+        </ol>
+
+      </li>
+<li class="li step">
+        <span class="ph cmd">Click <span class="ph uicontrol">View Application</span> if you are ready to configure app-specific settings, or click <span class="ph uicontrol">Back to Applications</span> if you want to just create the app now and configure settings later.</span>
+      </li>
+</ol>
+
+  </div>
+
+</div></div></section>
+<section id="t-430"><h4>Create Banner user for proxy API requests</h4><div class="content-locale-en-US content-locale-en"><div id="c_dfe_apply_banner_user_proxy_requests"><div class="body conbody"><p class="shortdesc">Create a user in Banner to support proxy API requests from HESA Data Futures Extraction process.</p>
+
+    <p class="p">The HESA Data Futures Extraction process makes API requests to Banner through <span class="keyword">Ethos Integration</span>. Each request includes the credentials for a Banner user with permissions to access the data. You will enter those user credentials in the Add Application wizard when you create the Ethos application for the HESA Data Futures Extraction process.</p>
+
+    <p class="p">Create the user as described in <span class="xref ft-internal-xlink" data-ft-warning="excluded-from-rendering" data-clusterid="ID_B_REGS_master_2026-03-09/id_b_regs/stu_eu_hesa_cmn_use/c_create_authorize_banner_users">Create and Authorize a Banner User to Enable Proxy API calls for Ethos Integration</span>. </p>
+
+    <div class="p">Assign the authorized Banner user to the security objects for the following Ethos Integration APIs:<ul class="ul"> <li class="li">API_HESA_COURSES </li>
+ <li class="li">API_HESA_MODULES </li>
+ <li class="li">API_HESA_SESSIONYEARS</li>
+ <li class="li">API_HESA_QUALIFICATIONS</li>
+ </ul>
+</div>
+
+    <p class="p">Assign the authorized Banner user to the API_HESA_DF_EXTRACT_PROCESS security object for the Ethos Student API. </p>
+
+    <p class="p">To assign users to the security objects for the Banner Business APIs, refer to <span class="xref ft-internal-xlink" data-ft-warning="excluded-from-rendering" data-clusterid="ID_B_REGS_master_2026-03-09/id_b_regs/stu_eu_hesa_cmn_use/t_configure_banner_business_process_apis">Connect Banner Business API</span></p>
+
+  </div>
+
+</div></div></section>
+<section id="t-440"><h4>Create crosswalk to map Banner HESA Reference Period</h4><div class="content-locale-en-US content-locale-en"><div id="t_banner_decisions_crosswalk"><div class="body taskbody"><p class="shortdesc">The <code class="ph codeph">hesaReferencePeriod</code> crosswalk maps the HESA Student Return Number and HESA Reference Period to student course session/session year start date and end date. </p>
+
+    <div class="tasklabel"><h2 class="sectiontitle tasklabel">Procedure</h2></div><ol class="ol steps"><li class="li step stepexpand">
+        <span class="ph cmd">On the Ethos Integration header bar, click the gear button <img class="image" src="images/02-hesa-data-futures-3.png" alt="gear_button" data-ft-asset-display-name="btn_choose_env.png" data-ft-resource-id="HFflIg3M54S7HmCYMNwIng-LAN8O7o7OM3x1Gb8ZjmpNQ"> and select the Ethos environment where you want to perform this procedure.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">On the Ethos Integration header bar, click <span class="ph uicontrol">Packages</span>.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">On the <span class="ph uicontrol">Packages</span> page, click <span class="ph uicontrol">Crosswalks</span>.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Click <span class="ph uicontrol">Add</span> <img class="image" src="images/02-hesa-data-futures-4.png" alt="plus_button" data-ft-asset-display-name="btn_packages_plus.png" data-ft-resource-id="ca0tssvCCum~Z853zW~pVw-LAN8O7o7OM3x1Gb8ZjmpNQ"> to create a new crosswalk.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">In the <span class="keyword wintitle">Add new Crosswalk</span> dialog box, enter <kbd class="ph userinput">hesaReferencePeriod</kbd> and then click <span class="ph uicontrol">Create</span>.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Leave the <span class="ph uicontrol">Default Target Value</span> field blank.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Set up the <code class="ph codeph">offer</code> mapping:</span>
+        
+<table border="1" frame="hsides" rules="rows" cellpadding="4" cellspacing="0" summary="" class="simpletable choicetable choicetableborder">
+<colgroup><col style="width:33.33333333333333%"><col style="width:66.66666666666666%"></colgroup><thead><tr class="sthead chhead"><th class="stentry choptionhd" style="vertical-align:bottom;text-align:left;" id="d20579e123-option">Field</th>
+<th class="stentry chdeschd" style="vertical-align:bottom;text-align:left;" id="d20579e123-desc">Entry</th></tr></thead>
+<tbody><tr class="strow chrow">
+            <th style="vertical-align:top;" headers="d20579e123-option" id="d20579e136" class="stentry choption">Mapping Name</th>
+
+            <td style="vertical-align:top;" headers="d20579e123-desc d20579e136" class="stentry chdesc">(Optional) Enter a descriptive name for this mapping.<p class="p">Example: <kbd class="ph userinput">HESA Reference Period</kbd></p>
+</td>
+
+          </tr>
+<tr class="strow chrow">
+            <th style="vertical-align:top;" headers="d20579e123-option" id="d20579e149" class="stentry choption">Target Value</th>
+
+            <td style="vertical-align:top;" headers="d20579e123-desc d20579e149" class="stentry chdesc">Enter the start date and end date with comma concatenation. Example: <kbd class="ph userinput">2021-10-02,2021-11-06</kbd><div class="note"><span class="notetitle">Note:</span> Ellucian recommends not to have a spaces between the dates as the empty space will generate an execution error when you run the process.</div>
+</td>
+
+          </tr>
+<tr class="strow chrow">
+            <th style="vertical-align:top;" headers="d20579e123-option" id="d20579e162" class="stentry choption">Source Values</th>
+
+            <td style="vertical-align:top;" headers="d20579e123-desc d20579e162" class="stentry chdesc">Enter HESA Student Return Number concatenated with HESA Reference Period using the + sign. For example, <kbd class="ph userinput">C21056+01</kbd>.</td>
+
+          </tr>
+</tbody></table>
+
+        <div class="itemgroup info">Similarly, you can create multiple mappings for each HESA Student Return Number and HESA Reference Period concatenated with the + sign.</div>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Click <span class="ph uicontrol">Save</span>.</span>
+      </li>
+</ol>
+
+  </div>
+
+</div></div></section>
+<section id="t-450"><h4>Create crosswalk to map SLC installation</h4><div class="content-locale-en-US content-locale-en"><div id="t_banner_crosswalk_slc_install_verification"><div class="body taskbody"><p class="shortdesc">The <code class="ph codeph">slcInstalled</code> crosswalk identifies whether the system has the Banner Student Loans Company (SLC) is installed in the system. </p>
+
+    <div class="section context"><div class="tasklabel"><h2 class="sectiontitle tasklabel">About this task</h2></div>This mapping gets the Student Support Number(SSN) from the RKASSLC page. If the mapping value is Y, then system assumes that SLC is installed and fetches the SSN value from the RKASSLC page. If there is no mapping value available, the system, by default, fetches the SSN value from the GOAPSID page. <p class="p">Even when it is Y, first checks the GOAPSID SSN value, if it is not null then the GOAPSID value is considered, if it is null then the RKASSLC value is considered. Also on entering Y, you should mention the SLC finaid year concatenated with comma ex: Y,2023. So that it fetches the SSN value from RKASSLC for that finaid year active record. Plus to provide an override in the GOAPSID if no SSN should be sent but one is valid in RKASSLC page if the client enters X in GOAPSID SSN (no tags) will be displayed in XML.</p>
+</div>
+
+    <div class="tasklabel"><h2 class="sectiontitle tasklabel">Procedure</h2></div><ol class="ol steps"><li class="li step stepexpand">
+        <span class="ph cmd">On the Ethos Integration header bar, click the gear button <img class="image" src="images/02-hesa-data-futures-3.png" alt="gear_button" data-ft-asset-display-name="btn_choose_env.png" data-ft-resource-id="HFflIg3M54S7HmCYMNwIng-LAN8O7o7OM3x1Gb8ZjmpNQ"> and select the Ethos environment where you want to perform this procedure.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">On the Ethos Integration header bar, click <span class="ph uicontrol">Packages</span>.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">On the <span class="ph uicontrol">Packages</span> page, click <span class="ph uicontrol">Crosswalks</span>.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Click <span class="ph uicontrol">Add</span> <img class="image" src="images/02-hesa-data-futures-4.png" alt="plus_button" data-ft-asset-display-name="btn_packages_plus.png" data-ft-resource-id="ca0tssvCCum~Z853zW~pVw-LAN8O7o7OM3x1Gb8ZjmpNQ"> to create a new crosswalk.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">In the <span class="keyword wintitle">Add new Crosswalk</span> dialog box, enter <kbd class="ph userinput">slcInstalled</kbd> and then click <span class="ph uicontrol">Create</span>.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Leave the <span class="ph uicontrol">Default Target Value</span> field blank.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd"></span><br>
+        
+<table border="1" frame="hsides" rules="rows" cellpadding="4" cellspacing="0" summary="" class="simpletable choicetable choicetableborder">
+<colgroup><col style="width:33.33333333333333%"><col style="width:66.66666666666666%"></colgroup><thead><tr class="sthead chhead"><th class="stentry choptionhd" style="vertical-align:bottom;text-align:left;" id="d8468e124-option">Field</th>
+<th class="stentry chdeschd" style="vertical-align:bottom;text-align:left;" id="d8468e124-desc">Entry</th></tr></thead>
+<tbody><tr class="strow chrow">
+            <th style="vertical-align:top;" headers="d8468e124-option" id="d8468e137" class="stentry choption">Mapping Name</th>
+
+            <td style="vertical-align:top;" headers="d8468e124-desc d8468e137" class="stentry chdesc">(Optional) Enter a descriptive name for this mapping.<p class="p">Example: <kbd class="ph userinput">slcInstalled</kbd></p>
+</td>
+
+          </tr>
+<tr class="strow chrow">
+            <th style="vertical-align:top;" headers="d8468e124-option" id="d8468e150" class="stentry choption">Target Value</th>
+
+            <td style="vertical-align:top;" headers="d8468e124-desc d8468e150" class="stentry chdesc">Enter <kbd class="ph userinput">Y,SLCFinaidYear</kbd>, (for example, Y, 2023), if SLC is installed. For any other value, the system considers that SLC is not available.<p class="p">If your SLCFinaidYear is blank in your system, there is no need to add a year.  Enter <kbd class="ph userinput">Y</kbd>.  You can see that the system displays all the matching SSNs.</p>
+</td>
+
+          </tr>
+<tr class="strow chrow">
+            <th style="vertical-align:top;" headers="d8468e124-option" id="d8468e167" class="stentry choption">Source Values</th>
+
+            <td style="vertical-align:top;" headers="d8468e124-desc d8468e167" class="stentry chdesc">Enter <code class="ph codeph">slcInstalled</code></td>
+
+          </tr>
+</tbody></table>
+
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Click <span class="ph uicontrol">Save</span>.</span>
+        <div class="itemgroup info">If you do not enter Y, the SSN will be selected from the GOAPSID page for the HESA_COUNTRY report.</div>
+      </li>
+</ol>
+
+  </div>
+
+</div></div></section>
+<section id="t-460"><h4>Create crosswalk for ofsRegister</h4><div class="content-locale-en-US content-locale-en"><div id="t_banner_crosswalk_ofsRegister"><div class="body taskbody"><p class="shortdesc">The Module and the Module Instance entities are included in the Student record (056) HESA Data Futures Return, based on the ofsRegister value in Ethos Integration Crosswalk. </p>
+
+    <div class="section context"><div class="tasklabel"><h2 class="sectiontitle tasklabel">About this task</h2></div>The Crosswalk is required for providers in England, and optional for others. If you do not create the crosswalk, the default value for ofsRegister is Not Approved.</div>
+
+    <div class="tasklabel"><h2 class="sectiontitle tasklabel">Procedure</h2></div><ol class="ol steps"><li class="li step stepexpand">
+        <span class="ph cmd">On the Ethos Integration header bar, click the gear button <img class="image" src="images/02-hesa-data-futures-3.png" alt="gear_button" data-ft-asset-display-name="btn_choose_env.png" data-ft-resource-id="HFflIg3M54S7HmCYMNwIng-LAN8O7o7OM3x1Gb8ZjmpNQ"> and select the Ethos environment where you want to perform this procedure.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">On the Ethos Integration header bar, click <span class="ph uicontrol">Packages</span>.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">On the <span class="ph uicontrol">Packages</span> page, click <span class="ph uicontrol">Crosswalks</span>.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Click <span class="ph uicontrol">Add</span> <img class="image" src="images/02-hesa-data-futures-4.png" alt="plus_button" data-ft-asset-display-name="btn_packages_plus.png" data-ft-resource-id="ca0tssvCCum~Z853zW~pVw-LAN8O7o7OM3x1Gb8ZjmpNQ"> to create a new crosswalk.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">In the <span class="keyword wintitle">Add new Crosswalk</span> dialog box, enter <kbd class="ph userinput">ofsRegister</kbd> and then click <span class="ph uicontrol">Create</span>.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">In <span class="ph uicontrol">Default Target Value</span> and <span class="ph uicontrol">Target Value</span>, enter the Registration Category value for the provider from the Office for Students (OfS) website.</span>
+        <div class="itemgroup info">The mapping name is an optional entry.</div>
+        
+<table border="1" frame="hsides" rules="rows" cellpadding="4" cellspacing="0" summary="" class="simpletable choicetable choicetableborder">
+<colgroup><col style="width:33.33333333333333%"><col style="width:66.66666666666666%"></colgroup><thead><tr class="sthead chhead"><th class="stentry choptionhd" style="vertical-align:bottom;text-align:left;" id="d46633e120-option">Valid Values</th>
+<th class="stentry chdeschd" style="vertical-align:bottom;text-align:left;" id="d46633e120-desc">Description</th></tr></thead>
+<tbody><tr class="strow chrow">
+            <th style="vertical-align:top;" headers="d46633e120-option" id="d46633e133" class="stentry choption">Approved</th>
+
+            <td style="vertical-align:top;" headers="d46633e120-desc d46633e133" class="stentry chdesc">Providers in England that are registered with the Office for Students in the 'Approved' category are not required to return Module data but can do so optionally.</td>
+
+          </tr>
+<tr class="strow chrow">
+            <th style="vertical-align:top;" headers="d46633e120-option" id="d46633e142" class="stentry choption">Approved (fee cap)</th>
+
+            <td style="vertical-align:top;" headers="d46633e120-desc d46633e142" class="stentry chdesc">Providers in England that are registered with the Office for Students in the 'Approved (fee cap)' category must return Module data.</td>
+
+          </tr>
+<tr class="strow chrow">
+            <th style="vertical-align:top;" headers="d46633e120-option" id="d46633e151" class="stentry choption">Transition Year (fee cap)</th>
+
+            <td style="vertical-align:top;" headers="d46633e120-desc d46633e151" class="stentry chdesc">Provides in England that are registered with the Office for Students in the 'Transition Year (fee cap)' category must not return Module data and must return PARED and CARELEAVER data.<div class="note"><span class="notetitle">Note:</span> This value will be available after 31st of July, 2023.</div>
+</td>
+
+          </tr>
+<tr class="strow chrow">
+            <th style="vertical-align:top;" headers="d46633e120-option" id="d46633e162" class="stentry choption">Not Approved</th>
+
+            <td style="vertical-align:top;" headers="d46633e120-desc d46633e162" class="stentry chdesc">Providers in England that are registered with the Office for Students in the 'Not Approved' category are not required to return Module data but can do so optionally.</td>
+
+          </tr>
+<tr class="strow chrow">
+            <th style="vertical-align:top;" headers="d46633e120-option" id="d46633e172" class="stentry choption">Approved No Module</th>
+
+            <td style="vertical-align:top;" headers="d46633e120-desc d46633e172" class="stentry chdesc">Even if the module instance and student module instance data are available, the system does not return tags for both module instance and student module instance in the XML.</td>
+
+          </tr>
+</tbody></table>
+
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Click <span class="ph uicontrol">Save</span>.</span>
+      </li>
+</ol>
+
+  </div>
+
+</div></div></section>
+<section id="t-470"><h4>Create crosswalk for moduleOutcomeEngland</h4><div class="content-locale-en-US content-locale-en"><div id="t_banner_crosswalk_moduleOutcomeEngland"><div class="body taskbody"><p class="shortdesc">The moduleOutcomeEngland crosswalk provides England providers an option to show or hide the Module Outcome data in XML. </p>
+
+    <div class="section context"><div class="tasklabel"><h2 class="sectiontitle tasklabel">About this task</h2></div>The Crosswalk is required for providers in England and holds the value Y or N. This crosswalk gives the England providers an option to show/hide Module Outcome data in XML. The default value for moduleOutcomeEngland is N.<div class="note"><span class="notetitle">Note:</span> The moduleOutcomeEngland crosswalk will be available after 31st of July, 2023.</div>
+</div>
+
+    <div class="tasklabel"><h2 class="sectiontitle tasklabel">Procedure</h2></div><ol class="ol steps"><li class="li step">
+        <span class="ph cmd">On the Ethos Integration header bar, click the gear button <img class="image" src="images/02-hesa-data-futures-3.png" alt="gear_button" data-ft-asset-display-name="btn_choose_env.png" data-ft-resource-id="HFflIg3M54S7HmCYMNwIng-LAN8O7o7OM3x1Gb8ZjmpNQ"> and select the Ethos environment where you want to perform this procedure.</span>
+      </li>
+<li class="li step">
+        <span class="ph cmd">On the Ethos Integration header bar, click <span class="ph uicontrol">Packages</span>.</span>
+      </li>
+<li class="li step">
+        <span class="ph cmd">On the <span class="ph uicontrol">Packages</span> page, click <span class="ph uicontrol">Crosswalks</span>.</span>
+      </li>
+<li class="li step">
+        <span class="ph cmd">Click <span class="ph uicontrol">Add</span> <img class="image" src="images/02-hesa-data-futures-4.png" alt="plus_button" data-ft-asset-display-name="btn_packages_plus.png" data-ft-resource-id="ca0tssvCCum~Z853zW~pVw-LAN8O7o7OM3x1Gb8ZjmpNQ"> to create a new crosswalk.</span>
+      </li>
+<li class="li step">
+        <span class="ph cmd">In the <span class="keyword wintitle">Add new Crosswalk</span> dialog box, enter <kbd class="ph userinput">moduleOutcomeEngland</kbd> and then click <span class="ph uicontrol">Create</span>.</span>
+      </li>
+<li class="li step">
+        <span class="ph cmd">In <span class="ph uicontrol">Default Target Value</span> and <span class="ph uicontrol">Target Value</span>, enter <kbd class="ph userinput">Y</kbd> or <kbd class="ph userinput">N</kbd>.</span>
+        
+<table border="1" frame="hsides" rules="rows" cellpadding="4" cellspacing="0" summary="" class="simpletable choicetable choicetableborder">
+<colgroup><col style="width:33.33333333333333%"><col style="width:66.66666666666666%"></colgroup><thead><tr class="sthead chhead"><th class="stentry choptionhd" style="vertical-align:bottom;text-align:left;" id="d22016e125-option">Valid Values</th>
+<th class="stentry chdeschd" style="vertical-align:bottom;text-align:left;" id="d22016e125-desc">Description</th></tr></thead>
+<tbody><tr class="strow chrow">
+            <th style="vertical-align:top;" headers="d22016e125-option" id="d22016e138" class="stentry choption">Y</th>
+
+            <td style="vertical-align:top;" headers="d22016e125-desc d22016e138" class="stentry chdesc">Providers in England that are registered with the Office for Students in the Approved (fee cap) category who want to return optional Module Outcome data.</td>
+
+          </tr>
+<tr class="strow chrow">
+            <th style="vertical-align:top;" headers="d22016e125-option" id="d22016e147" class="stentry choption">N</th>
+
+            <td style="vertical-align:top;" headers="d22016e125-desc d22016e147" class="stentry chdesc">Providers in England that are registered with the Office for Students in the Approved (fee cap) category who do not want to return optional Module Outcome data.</td>
+
+          </tr>
+</tbody></table>
+
+      </li>
+<li class="li step">
+        <span class="ph cmd">Click <span class="ph uicontrol">Save</span>.</span>
+      </li>
+</ol>
+
+  </div>
+
+</div></div></section>
+<section id="t-480"><h4>Create crosswalk for c24056 session year</h4><div class="content-locale-en-US content-locale-en"><div id="t_banner_crosswalk_c24056_session_year"><div class="body taskbody"><p class="shortdesc">The c24056Sessionyear crosswalk is available for providers in the E, W, NI, and S regions. This crosswalk allows institutions to determine whether the providers can include Session year entity and Session year ID under the Student Course session fields in the return files for the 2024 return year. </p>
+
+    <div class="section context"><div class="tasklabel"><h2 class="sectiontitle tasklabel">About this task</h2></div>The Crosswalk is required for all the providers, It gives them the option to return Session year entity and Session year ID under SCS in XML only if required for C24056 collection.</div>
+
+    <div class="tasklabel"><h2 class="sectiontitle tasklabel">Procedure</h2></div><ol class="ol steps"><li class="li step stepexpand">
+        <span class="ph cmd">On the Ethos Integration header bar, click the gear button <img class="image" src="images/02-hesa-data-futures-3.png" alt="gear_button" data-ft-asset-display-name="btn_choose_env.png" data-ft-resource-id="HFflIg3M54S7HmCYMNwIng-LAN8O7o7OM3x1Gb8ZjmpNQ"> and select the Ethos environment where you want to perform this procedure.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">On the Ethos Integration header bar, click <span class="ph uicontrol">Packages</span>.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">On the <span class="ph uicontrol">Packages</span> page, click <span class="ph uicontrol">Crosswalks</span>.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Click <span class="ph uicontrol">Add</span> <img class="image" src="images/02-hesa-data-futures-4.png" alt="plus_button" data-ft-asset-display-name="btn_packages_plus.png" data-ft-resource-id="ca0tssvCCum~Z853zW~pVw-LAN8O7o7OM3x1Gb8ZjmpNQ"> to create a new crosswalk.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">In the <span class="keyword wintitle">Add new Crosswalk</span> dialog box, enter <kbd class="ph userinput">c24056Sessionyear</kbd> and then click <span class="ph uicontrol">Create</span>.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">In <span class="ph uicontrol">Default Target Value</span> and <span class="ph uicontrol">Target Value</span>, enter <kbd class="ph userinput">N</kbd>.</span>
+        <div class="itemgroup info">The mapping name is an optional entry.</div>
+        
+<table border="1" frame="hsides" rules="rows" cellpadding="4" cellspacing="0" summary="" class="simpletable choicetable choicetableborder">
+<colgroup><col style="width:33.33333333333333%"><col style="width:66.66666666666666%"></colgroup><thead><tr class="sthead chhead"><th class="stentry choptionhd" style="vertical-align:bottom;text-align:left;" id="d44572e123-option">Valid Values</th>
+<th class="stentry chdeschd" style="vertical-align:bottom;text-align:left;" id="d44572e123-desc">Description</th></tr></thead>
+<tbody><tr class="strow chrow">
+            <th style="vertical-align:top;" headers="d44572e123-option" id="d44572e136" class="stentry choption">Y</th>
+
+            <td style="vertical-align:top;" headers="d44572e123-desc d44572e136" class="stentry chdesc">Providers in any region who want to return Session year entity and Session year ID under SCS for C24056 collection.</td>
+
+          </tr>
+<tr class="strow chrow">
+            <th style="vertical-align:top;" headers="d44572e123-option" id="d44572e145" class="stentry choption">N</th>
+
+            <td style="vertical-align:top;" headers="d44572e123-desc d44572e145" class="stentry chdesc">Providers in any region who do not want to return Session year entity and Session year ID under SCS for C24056 collection.</td>
+
+          </tr>
+</tbody></table>
+
+        <div class="itemgroup info">
+          <div class="note"><span class="notetitle">Note:</span> Use the Y or N values in the Default Target Value Field on the crosswalk and not in the Target Value field.</div>
+
+        </div>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Click <span class="ph uicontrol">Save</span>.</span>
+      </li>
+</ol>
+
+  </div>
+
+</div></div></section>
+<section id="t-490"><h3>Set up automatic processing of applications</h3><div class="content-locale-en-US content-locale-en"><div id="c_set_up_auto_app_processing"><p class="shortdesc">Set up the pipeline jobs in Ethos Integration.</p>
+
+  
+</div></div></section>
+<section id="t-500"><h4>Set up the pipeline job to extract JSON data</h4><div class="content-locale-en-US content-locale-en"><div id="t_setup_pipeline_job_json_data"><div class="body taskbody"><p class="shortdesc">Run <code class="ph codeph">HESADFExtraction</code> job that downloads the raw student data futures data as a JSON file before coverage rules applied for the given job parameters.</p>
+
+    <div class="section context"><div class="tasklabel"><h2 class="sectiontitle tasklabel">About this task</h2></div>You can set up the <code class="ph codeph">HESADFExtraction</code> job to download new JSON file job to run on a schedule to periodically extract raw JSON file.<div class="note"><span class="notetitle">Note:</span> For the procedures for managing pipeline jobs (such as running an existing job, modifying job parameters, and disabling/enabling a job), see <span class="xref ft-internal-xlink" data-ft-warning="excluded-from-rendering" data-clusterid="ID_B_REGS_master_2026-03-09/id_b_regs/stu_eu_hesa_cmn_use/c_manage_ethos_packages">Manage Ethos packages</span>.</div>
+</div>
+
+    <div class="tasklabel"><h2 class="sectiontitle tasklabel">Procedure</h2></div><ol class="ol steps"><li class="li step stepexpand">
+        <span class="ph cmd">On the Ethos Integration header bar, click the gear button <img class="image" src="images/02-hesa-data-futures-3.png" alt="gear_button" data-ft-asset-display-name="btn_choose_env.png" data-ft-resource-id="HFflIg3M54S7HmCYMNwIng-LAN8O7o7OM3x1Gb8ZjmpNQ"> and select the Ethos environment where you want to perform this procedure.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Perform the following steps to copy the API key for the Ethos application for HESA Data Futures Extraction process. You will paste that API key into the job settings later in this procedure. Copy one API key for Student API, and API key for Integration API and another one for the Banner Business API.</span>
+        <ol type="a" class="ol substeps">
+          <li class="li substep">
+            <span class="ph cmd">On the Ethos Integration header bar, click <span class="ph uicontrol">Applications</span>. </span>
+          </li>
+
+          <li class="li substep">
+            <span class="ph cmd">On the <span class="ph uicontrol">Applications</span> page, click the name of the Ethos application that you created for HESA Data Futures Extraction process. </span>
+          </li>
+
+          <li class="li substep">
+            <span class="ph cmd">On the <span class="ph uicontrol">Application Overview</span> page, click the <span class="ph uicontrol">API Keys</span> tab. </span>
+          </li>
+
+          <li class="li substep">
+            <span class="ph cmd">On the <span class="ph uicontrol">API Keys</span> page, click <span class="ph uicontrol">Copy</span> <img class="image" src="images/02-hesa-data-futures-5.png" alt="copy_button" data-ft-asset-display-name="btn_copy.png" data-ft-resource-id="m4S2QxSH~S2lRCmMjVecnw-LAN8O7o7OM3x1Gb8ZjmpNQ">to copy the API key. </span>
+          </li>
+
+        </ol>
+
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">On the Ethos Integration header bar, click <span class="ph uicontrol">Packages</span>.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">On the <span class="ph uicontrol">Packages</span> page, under <span class="ph uicontrol">Integration Packages</span>, click <span class="ph uicontrol">HESA Data Futures Student</span>. </span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">In the <span class="ph uicontrol">Pipelines</span> section of the page, click <span class="ph uicontrol">HESADFExtraction</span>. </span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Click + New Job.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">On the <span class="ph uicontrol">New Job</span> page, enter settings for the following job:</span>
+        <div class="itemgroup info">
+          
+<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" class="table" frame="border" border="1" rules="all"><colgroup><col style="width:50%"><col style="width:50%"></colgroup><thead class="thead" style="text-align:left;">
+                <tr class="row">
+                  <th class="entry nocellnorowborder" style="vertical-align:top;" id="d30358e188">Field</th>
+
+                  <th class="entry cell-norowborder" style="vertical-align:top;" id="d30358e191">Entry</th>
+
+                </tr>
+
+              </thead>
+<tbody class="tbody">
+                <tr class="row">
+                  <td class="entry nocellnorowborder" style="vertical-align:top;" headers="d30358e188 ">Job name</td>
+
+                  <td class="entry cell-norowborder" style="vertical-align:top;" headers="d30358e191 ">Enter a descriptive name for this job. If you create multiple jobs for this pipeline, you can use this name to find this job on the Pipelines page. <p class="p">Example: Extract HESA Data Futures JSON data</p>
+</td>
+
+                </tr>
+
+                <tr class="row">
+                  <td class="entry nocellnorowborder" style="vertical-align:top;" headers="d30358e188 ">Ethos Business API</td>
+
+                  <td class="entry cell-norowborder" style="vertical-align:top;" headers="d30358e191 ">Paste the API key that you copied earlier in this procedure for Banner Business API.</td>
+
+                </tr>
+
+                <tr class="row">
+                  <td class="entry nocellnorowborder" style="vertical-align:top;" headers="d30358e188 ">Ethos Integration API </td>
+
+                  <td class="entry cell-norowborder" style="vertical-align:top;" headers="d30358e191 ">Paste the API key that you copied earlier in this procedure for Integration API.</td>
+
+                </tr>
+
+                <tr class="row">
+                  <td class="entry nocellnorowborder" style="vertical-align:top;" headers="d30358e188 ">Ethos Student API </td>
+
+                  <td class="entry cell-norowborder" style="vertical-align:top;" headers="d30358e191 ">Paste the API key that you copied earlier in this procedure for Student API.</td>
+
+                </tr>
+
+                <tr class="row">
+                  <td class="entry nocellnorowborder" style="vertical-align:top;" headers="d30358e188 ">HESA Student Return Number</td>
+
+                  <td class="entry cell-norowborder" style="vertical-align:top;" headers="d30358e191 ">Enter the HESA Student Return Number. Example: <kbd class="ph userinput">C19052</kbd></td>
+
+                </tr>
+
+                <tr class="row">
+                  <td class="entry nocellnorowborder" style="vertical-align:top;" headers="d30358e188 ">HESA Reference Period</td>
+
+                  <td class="entry cell-norowborder" style="vertical-align:top;" headers="d30358e191 ">Enter the HESA Reference Period. Example: <kbd class="ph userinput">01</kbd></td>
+
+                </tr>
+
+                <tr class="row">
+                  <td class="entry nocellnorowborder" style="vertical-align:top;" headers="d30358e188 ">Cohort Codes</td>
+
+                  <td class="entry cell-norowborder" style="vertical-align:top;" headers="d30358e191 ">Enter the cohort code(s).</td>
+
+                </tr>
+
+                <tr class="row">
+                  <td class="entry row-nocellborder" style="vertical-align:top;" headers="d30358e188 ">Term Codes</td>
+
+                  <td class="entry cellrowborder" style="vertical-align:top;" headers="d30358e191 ">Enter the term code(s).</td>
+
+                </tr>
+
+              </tbody>
+</table>
+</div>
+
+        </div>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">In the <span class="ph uicontrol">Job Run Details</span> section of the page, specify when you want the job to run. See the following examples.</span>
+        <div class="itemgroup info">You can run the job one time or set up a recurring schedule. For example, during testing you might choose to run a job one time. For ongoing processing of applications, you would likely set up a schedule.</div>
+        <div class="itemgroup info">
+          
+<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" class="table" frame="border" border="1" rules="all"><colgroup><col style="width:50%"><col style="width:50%"></colgroup><thead class="thead" style="text-align:left;">
+                <tr class="row">
+                  <th class="entry nocellnorowborder" style="vertical-align:top;" id="d30358e307">Example Job Schedule</th>
+
+                  <th class="entry cell-norowborder" style="vertical-align:top;" id="d30358e310">Steps</th>
+
+                </tr>
+
+              </thead>
+<tbody class="tbody">
+                <tr class="row">
+                  <td class="entry nocellnorowborder" style="vertical-align:top;" headers="d30358e307 ">Run the job immediately</td>
+
+                  <td class="entry cell-norowborder" style="vertical-align:top;" headers="d30358e310 ">Click <span class="ph uicontrol">Run now</span>. <p class="p">You can also run this job later from the Job Runs page for the job.</p>
+</td>
+
+                </tr>
+
+                <tr class="row">
+                  <td class="entry nocellnorowborder" style="vertical-align:top;" headers="d30358e307 ">Run the job daily at noon</td>
+
+                  <td class="entry cell-norowborder" style="vertical-align:top;" headers="d30358e310 ">
+                    <ol class="ol" type="a">
+                      <li class="li">Click <span class="ph uicontrol">Schedule job</span>. </li>
+
+                      <li class="li">In the <span class="ph uicontrol">Repeats</span> field, select <kbd class="ph userinput">Daily</kbd>. </li>
+
+                      <li class="li">In the <span class="ph uicontrol">Hours</span> field, enter <kbd class="ph userinput">12</kbd>. </li>
+
+                      <li class="li">In the <span class="ph uicontrol">Minutes</span> field, enter <kbd class="ph userinput">0</kbd>. </li>
+
+                    </ol>
+
+                  </td>
+
+                </tr>
+
+                <tr class="row">
+                  <td class="entry row-nocellborder" style="vertical-align:top;" headers="d30358e307 ">Run the job every 6 hours</td>
+
+                  <td class="entry cellrowborder" style="vertical-align:top;" headers="d30358e310 ">
+                    <ol class="ol" type="a">
+                      <li class="li">Click <span class="ph uicontrol">Schedule job</span>. </li>
+
+                      <li class="li">In the <span class="ph uicontrol">Repeats</span> field, select <span class="ph uicontrol">Daily</span>. </li>
+
+                      <li class="li">In the <span class="ph uicontrol">Hours</span> field, enter <kbd class="ph userinput">6</kbd> and select <span class="ph uicontrol">Use as Interval</span>. </li>
+
+                      <li class="li">In the <span class="ph uicontrol">Minutes</span> field, enter <kbd class="ph userinput">0</kbd>. </li>
+
+                    </ol>
+
+                  </td>
+
+                </tr>
+
+              </tbody>
+</table>
+</div>
+
+        </div>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">If you set up a schedule for the job, and you want the schedule to end at a certain date and time, do the following:</span>
+        <ol type="a" class="ol substeps">
+          <li class="li substep">
+            <span class="ph cmd">Enable the <span class="ph uicontrol">Setup Job Stop Date/Time?</span> toggle switch. </span>
+          </li>
+
+          <li class="li substep">
+            <span class="ph cmd">Select the desired stop date. </span>
+          </li>
+
+          <li class="li substep">
+            <span class="ph cmd">Enter the desired stop time as HH:MM AM/PM. If you leave this field blank, the stop time defaults to 11:59 PM. </span>
+          </li>
+
+        </ol>
+
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">In the <span class="ph uicontrol">Advanced Options</span> section of the page, in the <span class="ph uicontrol">Maximum Concurrency</span> setting, specify the number of concurrent threads for this job.</span>
+        <div class="itemgroup info">Some pipeline jobs use multiple concurrent threads for processing. Increasing the number of concurrent threads can improve processing time, but too many simultaneous threads might overwhelm the target system for the job. </div>
+        <div class="itemgroup info">You can accept the default of 10 threads unless you are seeing performance issues. If the pipeline job is taking a long time to run, try increasing the number of threads. If you are seeing performance issues in the target system, try decreasing the number of threads. </div>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Click <span class="ph uicontrol">Save</span>.</span>
+        <div class="itemgroup stepresult">The Job Runs page for this job appears. You can view the status in the <span class="ph uicontrol">Status</span> column. A status of <span class="ph uicontrol">Succeeded</span> indicates that the job is finished. Click <span class="ph uicontrol">Refresh Content</span> <img class="image" src="images/02-hesa-data-futures-6.png" alt="refresh_button" data-ft-asset-display-name="btn_packages_refresh.png" data-ft-resource-id="BofapBYU~2vmpth5x6rBmg-LAN8O7o7OM3x1Gb8ZjmpNQ"> to update the status.</div>
+      </li>
+</ol>
+
+  </div>
+
+</div></div></section>
+<section id="t-510"><h4>Set up the pipeline job to extract XML data</h4><div class="content-locale-en-US content-locale-en"><div id="t_setup_pipeline_job_extract_xml_data"><div class="body taskbody"><p class="shortdesc">Run the HESADFReport job that download the final student data futures data as a XML file with coverage rules applied for the given HESADFExtraction job run ID.</p>
+
+    <div class="section context"><div class="tasklabel"><h2 class="sectiontitle tasklabel">About this task</h2></div>You can set up the <code class="ph codeph">HESADFReport</code> job to run on a schedule to periodically extract final XML file.</div>
+
+    <div class="tasklabel"><h2 class="sectiontitle tasklabel">Procedure</h2></div><ol class="ol steps"><li class="li step stepexpand">
+        <span class="ph cmd">On the Ethos Integration header bar, click the gear button <img class="image" src="images/02-hesa-data-futures-3.png" alt="gear_button" data-ft-asset-display-name="btn_choose_env.png" data-ft-resource-id="HFflIg3M54S7HmCYMNwIng-LAN8O7o7OM3x1Gb8ZjmpNQ"> and select the Ethos environment where you want to perform this procedure.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">On the Ethos Integration header bar, click <span class="ph uicontrol">Packages</span>.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">On the <span class="ph uicontrol">Packages</span> page, under <span class="ph uicontrol">Integration Packages</span>, click <span class="ph uicontrol">HESA Data Futures Student</span>. </span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">In the <span class="ph uicontrol">Pipelines</span> section of the page, click <span class="ph uicontrol">HESADFReport</span>.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Click + <span class="ph uicontrol">New Job.</span></span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">On the <span class="ph uicontrol">New Job</span> page, enter settings for the following job:</span>
+        <div class="itemgroup info">
+          
+<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" class="table" frame="border" border="1" rules="all"><colgroup><col style="width:29.49852507374631%"><col style="width:70.50147492625369%"></colgroup><thead class="thead" style="text-align:left;">
+                <tr class="row">
+                  <th class="entry nocellnorowborder" style="vertical-align:top;" id="d41271e124">Field</th>
+
+                  <th class="entry cell-norowborder" style="vertical-align:top;" id="d41271e127">Entry</th>
+
+                </tr>
+
+              </thead>
+<tbody class="tbody">
+                <tr class="row">
+                  <td class="entry nocellnorowborder" style="vertical-align:top;" headers="d41271e124 ">Job name</td>
+
+                  <td class="entry cell-norowborder" style="vertical-align:top;" headers="d41271e127 ">Enter a descriptive name for this job. If you create multiple jobs for this pipeline, you can use this name to find this job on the Pipelines page.<p class="p">Example: Extract HESA Data Futures XML data</p>
+</td>
+
+                </tr>
+
+                <tr class="row">
+                  <td class="entry row-nocellborder" style="vertical-align:top;" headers="d41271e124 ">Extraction Run ID</td>
+
+                  <td class="entry cellrowborder" style="vertical-align:top;" headers="d41271e127 ">Enter the job run ID of the HESADFExtraction job to process the JSON data and to apply coverage rules and format to the XML data.</td>
+
+                </tr>
+
+              </tbody>
+</table>
+</div>
+
+        </div>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">In the <span class="ph uicontrol">Job Run Details</span> section of the page, specify when you want the job to run. See the following examples.</span>
+        <div class="itemgroup info">You can run the job one time or set up a recurring schedule. For example, during testing you might choose to run a job one time. For ongoing processing of applications, you would likely set up a schedule.</div>
+        <div class="itemgroup info">
+          
+<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" class="table" frame="border" border="1" rules="all"><colgroup><col style="width:50%"><col style="width:50%"></colgroup><thead class="thead" style="text-align:left;">
+                <tr class="row">
+                  <th class="entry nocellnorowborder" style="vertical-align:top;" id="d41271e184">Example Job Schedule</th>
+
+                  <th class="entry cell-norowborder" style="vertical-align:top;" id="d41271e187">Steps</th>
+
+                </tr>
+
+              </thead>
+<tbody class="tbody">
+                <tr class="row">
+                  <td class="entry nocellnorowborder" style="vertical-align:top;" headers="d41271e184 ">Run the job immediately</td>
+
+                  <td class="entry cell-norowborder" style="vertical-align:top;" headers="d41271e187 ">Click <span class="ph uicontrol">Run now</span>. <p class="p">You can also run this job later from the Job Runs page for the job.</p>
+</td>
+
+                </tr>
+
+                <tr class="row">
+                  <td class="entry nocellnorowborder" style="vertical-align:top;" headers="d41271e184 ">Run the job daily at noon</td>
+
+                  <td class="entry cell-norowborder" style="vertical-align:top;" headers="d41271e187 ">
+                    <ol class="ol" type="a">
+                      <li class="li">Click <span class="ph uicontrol">Schedule job</span>. </li>
+
+                      <li class="li">In the <span class="ph uicontrol">Repeats</span> field, select <kbd class="ph userinput">Daily</kbd>. </li>
+
+                      <li class="li">In the <span class="ph uicontrol">Hours</span> field, enter <kbd class="ph userinput">12</kbd>. </li>
+
+                      <li class="li">In the <span class="ph uicontrol">Minutes</span> field, enter <kbd class="ph userinput">0</kbd>. </li>
+
+                    </ol>
+
+                  </td>
+
+                </tr>
+
+                <tr class="row">
+                  <td class="entry row-nocellborder" style="vertical-align:top;" headers="d41271e184 ">Run the job every 6 hours</td>
+
+                  <td class="entry cellrowborder" style="vertical-align:top;" headers="d41271e187 ">
+                    <ol class="ol" type="a">
+                      <li class="li">Click <span class="ph uicontrol">Schedule job</span>. </li>
+
+                      <li class="li">In the <span class="ph uicontrol">Repeats</span> field, select <span class="ph uicontrol">Daily</span>. </li>
+
+                      <li class="li">In the <span class="ph uicontrol">Hours</span> field, enter <kbd class="ph userinput">6</kbd> and select <span class="ph uicontrol">Use as Interval</span>. </li>
+
+                      <li class="li">In the <span class="ph uicontrol">Minutes</span> field, enter <kbd class="ph userinput">0</kbd>. </li>
+
+                    </ol>
+
+                  </td>
+
+                </tr>
+
+              </tbody>
+</table>
+</div>
+
+        </div>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">If you set up a schedule for the job, and you want the schedule to end at a certain date and time, do the following:</span>
+        <ol type="a" class="ol substeps">
+          <li class="li substep">
+            <span class="ph cmd">Enable the <span class="ph uicontrol">Setup Job Stop Date/Time?</span> toggle switch. </span>
+          </li>
+
+          <li class="li substep">
+            <span class="ph cmd">Select the desired stop date. </span>
+          </li>
+
+          <li class="li substep">
+            <span class="ph cmd">Enter the desired stop time as HH:MM AM/PM. If you leave this field blank, the stop time defaults to 11:59 PM. </span>
+          </li>
+
+        </ol>
+
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">In the <span class="ph uicontrol">Advanced Options</span> section of the page, in the <span class="ph uicontrol">Maximum Concurrency</span> setting, specify the number of concurrent threads for this job.</span>
+        <div class="itemgroup info">Some pipeline jobs use multiple concurrent threads for processing. Increasing the number of concurrent threads can improve processing time, but too many simultaneous threads might overwhelm the target system for the job. </div>
+        <div class="itemgroup info">You can accept the default of 10 threads unless you are seeing performance issues. If the pipeline job is taking a long time to run, try increasing the number of threads. If you are seeing performance issues in the target system, try decreasing the number of threads. </div>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Click <span class="ph uicontrol">Save</span>.</span>
+        <div class="itemgroup stepresult">The Job Runs page for this job appears. You can view the status in the <span class="ph uicontrol">Status</span> column. A status of <span class="ph uicontrol">Succeeded</span> indicates that the job is finished. Click <span class="ph uicontrol">Refresh Content</span> <img class="image" src="images/02-hesa-data-futures-6.png" alt="refresh_button" data-ft-asset-display-name="btn_packages_refresh.png" data-ft-resource-id="BofapBYU~2vmpth5x6rBmg-LAN8O7o7OM3x1Gb8ZjmpNQ"> to update the status.<div class="note"><span class="notetitle">Note:</span> To know more about importing the *J through UCAS, see <span class="xref ft-internal-xlink" data-ft-warning="excluded-from-rendering" data-clusterid="ID_B_REGS_master_2026-03-09/id_b_regs/stu_eu_hesa_cmn_use/c_hesa_data_futures_impact">HESA Data Futures Impact</span> section available in <cite class="cite">Banner UCAS Use</cite> content.</div>
+</div>
+      </li>
+</ol>
+
+  </div>
+
+</div></div></section>
+<section id="t-520"><h3>Data Futures tables</h3><div class="content-locale-en-US content-locale-en"><div id="r_data_futures_table_list"><div class="body refbody"><p class="shortdesc">List of tables available for the Data Futures feature.</p>
+
+    
+<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" class="table" frame="hsides" border="1" rules="rows"><colgroup><col style="width:28.011204481792717%"><col style="width:71.98879551820728%"></colgroup><thead class="thead" style="text-align:left;vertical-align:bottom;">
+          <tr class="row">
+            <th class="entry row-nocellborder" style="text-align:left;vertical-align:bottom;" id="d19621e49">Table Names</th>
+
+            <th class="entry row-nocellborder" style="text-align:left;vertical-align:bottom;" id="d19621e52">Description</th>
+
+          </tr>
+
+        </thead>
+<tbody class="tbody">
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d19621e49 ">SOBITED </td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d19621e52 ">Initial Teacher Training Data Feature Entry Details table.</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d19621e49 ">SORENPD</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d19621e52 ">Previous Degrees Details For Initial Teacher Training Students table</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d19621e49 ">SORPCIT</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d19621e52 ">Program Course Details For Initial Teacher Training Students table</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d19621e49 ">SORPCDE</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d19621e52 ">HESA course details that the student is engaged with.</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d19621e49 ">SORPCDI</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d19621e52 ">Initiative details associated with a HESA course.</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d19621e49 ">SORPCRI</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d19621e52 ">Course reference information associated with a HESA course.</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d19621e49 ">SORPCDR</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d19621e52 ">Role information that an organization has in the associated HESA course.</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d19621e49 ">SORPCCA</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d19621e52 ">Information about the accreditation that a Professional Statutory or Regulatory Body (PSRB) provides.</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d19621e49 ">SOBCCID</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d19621e52 ">Details of Modules and their association with a Course Catalog.</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d19621e49 ">SORCCDC</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d19621e52 ">Cost centre and its details associated with a module.</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d19621e49 ">SORCCDR</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d19621e52 ">Organisations that are involved in the delivery role of a module.</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d19621e49 ">SORCCMS</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d19621e52 ">Subject(s) associated with modules.</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d19621e49 ">SORQUAL</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d19621e52 ">Information about a formally recognised academic award, such as a degree, diploma or certificate.</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d19621e49 ">SORAWBR</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d19621e52 ">Information about the body whose degree awarding power underpin the Qualification.</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d19621e49 ">SORQUSB</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d19621e52 ">Information about the subject of the Qualification.</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d19621e49 ">SORSSYR</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d19621e52 ">Session year details of a HESA course.</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d19621e49 ">GORPSID</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d19621e52 ">Person Social Economic Identity Details.</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d19621e49 ">SPBPERS</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d19621e52 ">Basic Person Base Table</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d19621e49 ">SPRIDEN</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d19621e52 ">Person Identification/Name Repeating Table</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d19621e49 ">RKRSSLC</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d19621e52 ">SLC SSAR and SSAC repeating table.</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d19621e49 ">GTVSEID</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d19621e52 ">Social Economic Identity Codes.</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d19621e49 ">SORLANP</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d19621e52 ">Language proficiency details of the student.</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d19621e49 ">SOBENGA</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d19621e52 ">A coherent engagement that a student makes with a provider aiming towards the award of qualification(s) or credit.</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d19621e49 ">SOBENCP</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d19621e52 ">Information regarding the Engagements that are part of a collaborative provision arrangement with an overseas provider, or the arrangement of the Engagements that are to provide doctoral research training.</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d19621e49 ">SORENEP</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d19621e52 ">Entry profile details of an Engagement.</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d19621e49 ">SOBRELV</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d19621e52 ">The details of a student leaving an Engagement.</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d19621e49 ">SOBREQA</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d19621e52 ">The information related to a qualification a student has achieved.</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d19621e49 ">SOBRQAA</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d19621e52 ">Accreditations that the student has achieved upon achieving their qualification.</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d19621e49 ">SOBSCAA</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d19621e52 ">The student accreditation aim details of an Engagement.</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d19621e49 ">SOBRESI</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d19621e52 ">The student initiative details associated with the Engagement.</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d19621e49 ">SOBSCFT</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d19621e52 ">The full time equivalence for students for every reference period in a Student Course Session.</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d19621e49 ">SOBSCSS</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d19621e52 ">The details of the status of the Student Course Session.</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d19621e49 ">SOBSCFS</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d19621e52 ">The information in relation to specific receipt of a financial support of a student.</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d19621e49 ">SOBSCSL</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d19621e52 ">Study location details for the Course Session.</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d19621e49 ">SOBSCSA</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d19621e52 ">Data on the supervisor(s) of doctoral research students</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d19621e49 ">SORENTQ</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d19621e52 ">Qualifications held by the student on entry to their Engagement.</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d19621e49 ">SORENTS</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d19621e52 ">Subjects associated with an entry qualification for a student.</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d19621e49 ">SOBSTMI</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d19621e52 ">Specific engagement of a student with a Module and the Module Outcome.</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d19621e49 ">SORVENU</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d19621e52 ">Program delivery venue location details.</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d19621e49 ">SOBSTCS</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d19621e52 ">SOBSTCS Details of Student Course Session for a specific student activity for a HESA course.</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d19621e49 ">SOBSCFM</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d19621e52 ">The key data required by regulatory or funding bodies.</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d19621e49 ">SOBSCFB</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d19621e52 ">SOBSCFB The body or bodies that are responsible for allocating funding for a fundable Student Course Session.</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d19621e49 ">SOBMOVA</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d19621e52 ">The details of an activity of a student not at the venue(s) of provider or partners.</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d19621e49 ">SOBSCFT</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d19621e52 ">The full time equivalence for students for every reference period in a Student Course Session.</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d19621e49 ">SOBSCSS</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d19621e52 ">The details of the status of the Student Course Session.</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d19621e49 ">SOBSCFS</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d19621e52 ">The information in relation to specific receipt of a financial support of a student.</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d19621e49 ">SOBSCSL</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d19621e52 ">Study location details for the Course Session.</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d19621e49 ">SOBSCSA</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d19621e52 ">Data on the supervisor(s) of doctoral research students.</td>
+
+          </tr>
+
+        </tbody>
+</table>
+</div>
+
+    <div class="section"><h2 class="title sectiontitle">List of HESA Entity tables associated to Banner Data Futures table list</h2>
+      
+      
+<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" class="table" frame="hsides" border="1" rules="rows"><colgroup><col style="width:50.495049504950494%"><col style="width:49.504950495049506%"></colgroup><thead class="thead" style="text-align:left;vertical-align:bottom;">
+            <tr class="row">
+              <th class="entry row-nocellborder" style="text-align:left;vertical-align:bottom;" id="d19621e519">HESA Entity</th>
+
+              <th class="entry row-nocellborder" style="text-align:left;vertical-align:bottom;" id="d19621e522">Banner DF Table</th>
+
+            </tr>
+
+          </thead>
+<tbody class="tbody">
+            <tr class="row">
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d19621e519 ">Student Cohort</td>
+
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d19621e522 ">SGACHRT</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d19621e519 ">Session Year</td>
+
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d19621e522 ">SOASSYR</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d19621e519 ">Engagement (includes on entry profile and final qualification awarded)</td>
+
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d19621e522 ">SOAENRE</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d19621e519 ">Engagement On-Entry Qualifications</td>
+
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d19621e522 ">SOAENTQ</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d19621e519 ">Language Proficiency Details</td>
+
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d19621e522 ">SOALANP</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d19621e519 ">Student Course Session</td>
+
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d19621e522 ">SOASTCS</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d19621e519 ">Student Module Instance</td>
+
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d19621e522 ">SOASTMI</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d19621e519 ">HESA Courses</td>
+
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d19621e522 ">SOAPCDE</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d19621e519 ">HESA Modules</td>
+
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d19621e522 ">SOACCID</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d19621e519 ">HESA Qualifications</td>
+
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d19621e522 ">SOAQUAL</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d19621e519 ">HESA Venues</td>
+
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d19621e522 ">SOAVENU</td>
+
+            </tr>
+
+          </tbody>
+</table>
+</div>
+
+    </div>
+
+  </div>
+
+</div></div></section>
+<section id="t-530"><h3>Data Futures processes</h3><div class="content-locale-en-US content-locale-en"><div id="r_data_futures_processes"><div class="body refbody"><p class="shortdesc">Banner HESA Data Futures includes a few processes to populate the HESA related data.</p>
+
+    <div class="section"><h2 class="title sectiontitle">HESA Data Futures record processing</h2>
+      
+      <p class="p">The following chart explains the links between <span class="keyword">HESA</span> reference periods and selecting records.</p>
+
+      <div class="p">
+        <br><img class="image" alt="DF_link_crosswalk_tables" data-ft-asset-display-name="flw_df_link_crosswalk_tables.png" src="images/02-hesa-data-futures-7.png" data-ft-resource-id="qPA5nV2RuAbJXy2ifFElkg-LAN8O7o7OM3x1Gb8ZjmpNQ"><br>
+      </div>
+
+    </div>
+
+    <div class="section"><h2 class="title sectiontitle">Populate Student Identifier (SOPHUDF) process</h2>
+      
+      <p class="p">The SOPHUDF process (HESA Data Futures SIDs) allow institutions to populate the new <span class="keyword">HESA</span> Data Futures student identifier (SID) details into the GORPSID table.</p>
+
+    </div>
+
+    <div class="section"><div class="note"><span class="notetitle">Note:</span> <span class="keyword">Ellucian</span> highly recommends that you copy any HUSIDs that you want to maintain in the GOAPSID page, before running the SOPHUDF process.  Also, HESA Data Futures requires the SOBENGA Start Date to be present to ascertain the entry year.</div>
+The SOPHUDF process accepts the cohort code and term code as input parameters and fetches all the active Student IDs from the SGACHRT page for the cohort and term code. The process also updates the HUSID value in the GORPSID table for the active students only if the value does not exist already. The label on the table displays as HUSID, but the displayed HUSID contains your copied HUSIDs, in addition to the newly generated SIDs.</div>
+
+    <div class="section">The structure of the SID is as follows: <ul class="ul"> <li class="li">First 2 digits: Year of entry into provider (last 2 digits of year) </li>
+ <li class="li">Next 8 digits: Provider's UKPRN </li>
+ <li class="li">Next 6 digits: Internal 6 digits is fetched from SPRIDEN_ID</li>
+ <li class="li">Last digit: Check digit </li>
+ </ul>
+<p class="p">The <span class="ph filepath">.log</span> and <span class="ph filepath">.lis</span> files provide the summary of the successfully processed records. The files also include any errors during the process generation.</p>
+</div>
+
+    
+<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" id="r_data_futures_processes__r_hold_purge_sgphold-utbl1" class="table" frame="hsides" border="1" rules="rows"><colgroup><col style="width:25.24271844660195%"><col style="width:19.417475728155342%"><col style="width:27.96116504854369%"><col style="width:27.378640776699033%"></colgroup><thead class="thead" style="text-align:left;vertical-align:bottom;">
+          <tr class="row">
+            <th class="entry row-nocellborder" style="text-align:left;vertical-align:bottom;" id="d35568e118">Parameter Name</th>
+
+            <th class="entry row-nocellborder" style="text-align:left;vertical-align:bottom;" id="d35568e121">Required?</th>
+
+            <th class="entry row-nocellborder" style="text-align:left;vertical-align:bottom;" id="d35568e124">Description</th>
+
+            <th class="entry row-nocellborder" style="text-align:left;vertical-align:bottom;" id="d35568e127">Values</th>
+
+          </tr>
+
+        </thead>
+<tbody class="tbody">
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d35568e118 ">Cohort Code</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d35568e121 ">Yes</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d35568e124 ">Enter the cohort code to fetch the selected population</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d35568e127 ">Cohort Code Validation (STVCHRT) page</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d35568e118 ">Term Code</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d35568e121 ">Yes</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d35568e124 ">Enter the term code of the Cohort</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d35568e127 ">Term Code Validation (STVTERM) page</td>
+
+          </tr>
+
+        </tbody>
+</table>
+</div>
+
+    <div class="section"><h2 class="title sectiontitle">Populate Engagement Details (SOPSPDF) process</h2>
+      
+      <p class="p">The SOPSPDF process allows institutions to populate the engagement details (Student ID and Study Path) that is available in the SGACHRT page into the SOBENGA table. This process links data connect, crosswalks, cohorts and the HESA Data Futures tables. </p>
+
+      <p class="p">When you create a new study path, the SOKDTFU trigger populates the Engagement number (NUMHUS) in the SOBENGA table for all HESA institutions. Ensure that you run the script into the GURLCIN table to indicate the HESA institution. Only after the generation of NUMHUS, you can access the SOAENRE page from the Key block.</p>
+
+      <p class="p">For existing students:</p>
+
+      <p class="p">When the student gets a new study path, the institution creates the HESA engagement record for the students to maintain the engagement details of students. The SOPSPDF process fetches all the existing Student IDs and the associated Study Path numbers that the SGACHRT page maintains and creates the engagement record if it doesn't exist.</p>
+
+      <p class="p">The SOPSPDF accepts Cohort Code and Term Code as input parameters, and fetches all the Student IDs and the associated Study Path numbers that the SGACHRT page maintains. Institutions should populate the Study path details in the SGACHRT page before running the SOPSPDF process. </p>
+
+      <p class="p">The process then validates the information by checking if the Study Path number is present in the SGRSTSP table for the student. If available, the process inserts the Student ID and Study Path number to the SOBENGA table. </p>
+
+      <p class="p">The <span class="ph filepath">.log</span> and <span class="ph filepath">.lis</span> files provide the summary of the successfully processed records. The files also include any errors during the process generation.</p>
+
+      
+<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" class="table" frame="hsides" border="1" rules="rows"><colgroup><col><col><col><col></colgroup><thead class="thead" style="text-align:left;vertical-align:bottom;">
+            <tr class="row">
+              <th class="entry row-nocellborder" style="text-align:left;vertical-align:bottom;" id="d35568e218">Parameter Name</th>
+
+              <th class="entry row-nocellborder" style="text-align:left;vertical-align:bottom;" id="d35568e221">Required?</th>
+
+              <th class="entry row-nocellborder" style="text-align:left;vertical-align:bottom;" id="d35568e224">Description</th>
+
+              <th class="entry row-nocellborder" style="text-align:left;vertical-align:bottom;" id="d35568e227">Values</th>
+
+            </tr>
+
+          </thead>
+<tbody class="tbody">
+            <tr class="row">
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d35568e218 ">Cohort Code</td>
+
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d35568e221 ">Yes</td>
+
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d35568e224 ">Enter the cohort code to fetch the selected population</td>
+
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d35568e227 ">Cohort Code Validation (STVCHRT) page</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d35568e218 ">Term Code</td>
+
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d35568e221 ">Yes</td>
+
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d35568e224 ">Enter the term code of the Cohort</td>
+
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d35568e227 ">Term Code Validation (STVTERM) page</td>
+
+            </tr>
+
+          </tbody>
+</table>
+</div>
+
+      <div class="note"><span class="notetitle">Note:</span> Ethos HESA Data Futures processing checks the Cohort Active Indicator in the SGRCHRT table while selecting the records to include from the cohort table. However, in the SGACHRT page, the column name displays as Inactive check box, while the database field name is SGRCHRT_ACTIVE_IND (which represents as Active indicator). Be informed that when you select the Inactive indicator in the SGACHRT page, the system will not fetch the inactive records. The system considers the records with SGRCHRT_ACTIVE_IND as NULL as active records and includes the cohort record for processing.</div>
+
+    </div>
+
+    <div class="section"><h2 class="title sectiontitle">Update Return to Regulator (SOURRDF) process</h2>
+      
+      <p class="p">The SOURRDF process allow institutions to populate the Return to Regulator indicator in various <span class="keyword">HESA</span> pages. The indicator controls the data that the system reports through <span class="keyword">HESA</span> Data Futures.</p>
+
+      <div class="note"><span class="notetitle">Note:</span> : <span class="keyword">Ellucian</span> recommends to run this process before the HESA Data Future return. You can clear the Return to Regulator check box if you do not want the data to be reported.</div>
+
+      <p class="p">The SOURRDF process accepts the multiple cohort code, multiple term code, Reference Start Date, and Reference End Date as input parameters and fetches all the active Student IDs from the SGACHRT page for the cohort and term code combination. </p>
+
+      <p class="p">The system updates the Module, Course, Session, Venue, and Qualification Return to Regulator values based on the Course Session details that comes from the SOASTCS page. The SOASTCS page fetches data for a given student and engagement number where the Course ID is present and the data is within the reference period range.</p>
+
+      
+<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" class="table" frame="hsides" border="1" rules="rows"><colgroup><col style="width:25.098039215686274%"><col style="width:19.607843137254903%"><col style="width:30.3921568627451%"><col style="width:24.90196078431373%"></colgroup><thead class="thead" style="text-align:left;vertical-align:bottom;">
+            <tr class="row">
+              <th class="entry row-nocellborder" style="text-align:left;vertical-align:bottom;" id="d35568e315">Parameter Name</th>
+
+              <th class="entry row-nocellborder" style="text-align:left;vertical-align:bottom;" id="d35568e318">Required?</th>
+
+              <th class="entry row-nocellborder" style="text-align:left;vertical-align:bottom;" id="d35568e321">Description</th>
+
+              <th class="entry row-nocellborder" style="text-align:left;vertical-align:bottom;" id="d35568e324">Values</th>
+
+            </tr>
+
+          </thead>
+<tbody class="tbody">
+            <tr class="row">
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d35568e315 ">Cohort Code</td>
+
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d35568e318 ">Yes</td>
+
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d35568e321 ">Enter the cohort code to fetch the selected population.</td>
+
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d35568e324 ">Cohort Code Validation (STVCHRT) page</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d35568e315 ">Term Code</td>
+
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d35568e318 ">Yes</td>
+
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d35568e321 ">Enter the term code of the Cohort.</td>
+
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d35568e324 ">Term Code Validation (STVTERM) page</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d35568e315 ">Reference Start Date</td>
+
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d35568e318 ">Yes</td>
+
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d35568e321 ">Enter reference period start date.</td>
+
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d35568e324 ">Date</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d35568e315 ">Reference End Date</td>
+
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d35568e318 ">Yes</td>
+
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d35568e321 ">Enter reference period end date.</td>
+
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d35568e324 ">Date</td>
+
+            </tr>
+
+          </tbody>
+</table>
+</div>
+
+    </div>
+
+    <div class="section"><h2 class="title sectiontitle">Remove Duplicate SID From XML (SOPMSDF) process</h2>
+      
+      <p class="p">The SOPMSDF process allows you to remove the duplicate SIDs and merges the OWNSTUs from given input. XML file for all records having duplicate SIDs. You can also sort the XML file as per the SID values.</p>
+
+    </div>
+
+    <div class="section">This results in a single entry for that SID with multiple engagements in an output .XML file. To run this process, ensure that you import the input seed data file in .XML first to the input file path directory.</div>
+
+    <div class="section">
+      <p class="p">The process parameters are:</p>
+
+    </div>
+
+    
+<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" id="r_data_futures_processes__r_cohort_load_process_sgrchrt-utbl1" class="table" frame="hsides" border="1" rules="rows"><colgroup><col style="width:25.04930966469428%"><col style="width:20.118343195266274%"><col style="width:35.10848126232741%"><col style="width:19.72386587771203%"></colgroup><thead class="thead" style="text-align:left;vertical-align:bottom;">
+          <tr class="row">
+            <th class="entry row-nocellborder" style="text-align:left;vertical-align:bottom;" id="d35568e430">Parameter Name</th>
+
+            <th class="entry row-nocellborder" style="text-align:left;vertical-align:bottom;" id="d35568e433">Required?</th>
+
+            <th class="entry row-nocellborder" style="text-align:left;vertical-align:bottom;" id="d35568e436">Description</th>
+
+            <th class="entry row-nocellborder" style="text-align:left;vertical-align:bottom;" id="d35568e439">Values</th>
+
+          </tr>
+
+        </thead>
+<tbody class="tbody">
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d35568e430 ">Path of the file</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d35568e433 ">Yes</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d35568e436 ">Enter the Oracle directory name that contains the file</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d35568e439 ">N/A</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d35568e430 ">Input file name</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d35568e433 ">Yes</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d35568e436 ">Name of the .XML file</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d35568e439 ">N/A</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d35568e430 ">Output file name</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d35568e433 ">Yes</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d35568e436 ">File which stores the output at the given Input file path.</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d35568e439 ">N/A</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d35568e430 ">SID sorting (Y/N)</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d35568e433 ">No</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d35568e436 ">To store the Y or N values</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d35568e439 ">Y: Sort the XML as per the SID value<p class="p">N: Do not sort the XML as per the SID value</p>
+</td>
+
+          </tr>
+
+        </tbody>
+</table>
+</div>
+
+    <div class="section">
+      <div class="p"><span class="keyword">Ellucian</span> recommends you ensure the following as prerequisites.<ul class="ul">
+        <li class="li">Import the seed data file to the input file path directory and copy the input file name and file path.</li>
+
+        <li class="li">Create the seed data in the .XML format only. </li>
+
+        </ul>
+For the process to run, ensure the following.<ul class="ul">
+        <li class="li">Enter the Oracle directory name, input file name and output file name attribute. The process parses the data from the .XML file and after performing logic operations the output file will be generated which can be downloaded from the given input file path directory.</li>
+
+        <li class="li">The system generates messages in the .LOG file for you to view.</li>
+
+        <li class="li">Input file and output file should be .XML file type only.</li>
+
+        <li class="li">Input file path directory should have write permissions to generate output file.</li>
+
+        </ul>
+</div>
+
+    </div>
+
+  </div>
+
+</div></div></section>
+<section id="t-540"><h3>Tasks</h3><div class="content-locale-en-US content-locale-en"><div id="c_enhancements"><p class="shortdesc"> This chapter discusses the tasks that you can perform using the pages delivered for the <span class="keyword">Data Futures</span> functionality.</p>
+
+  
+</div></div></section>
+<section id="t-550"><h4>Record planned course session years</h4><div class="content-locale-en-US content-locale-en"><div id="t_record_planned_course_years"><div class="body taskbody"><p class="shortdesc">Steps to record the planned course session years that a provider offers.</p>
+
+    <div class="tasklabel"><h2 class="sectiontitle tasklabel">Procedure</h2></div><ol class="ol steps"><li class="li step">
+        <span class="ph cmd">Access the <span class="keyword wintitle">Session Year Details (SOASSYR)</span> page.</span>
+      </li>
+<li class="li step">
+        <span class="ph cmd">In the main page, enter the session details for the planned course years.</span>
+      </li>
+<li class="li step">
+        <span class="ph cmd">Save your record.</span>
+      </li>
+</ol>
+
+  </div>
+
+</div></div></section>
+<section id="t-560"><h4>Maintain HESA course details</h4><div class="content-locale-en-US content-locale-en"><div id="t_maintain_course_delivery_details"><p class="shortdesc">Steps to create and maintain HESA course details.</p>
+
+  
+</div></div></section>
+<section id="t-570"><h5>Create new courses</h5><div class="content-locale-en-US content-locale-en"><div id="t_create_course_deliveries"><div class="body taskbody"><p class="shortdesc">Steps to create new courses.</p>
+
+    <div class="tasklabel"><h2 class="sectiontitle tasklabel">Procedure</h2></div><ol class="ol steps"><li class="li step stepexpand">
+        <span class="ph cmd">Access the <span class="ph uicontrol">Course Delivery Details (SOAPCDE)</span> page.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">In the Key block, click <span class="ph uicontrol">+</span> to create a new course record.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Click <span class="ph uicontrol">Go</span>.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">In the <span class="ph uicontrol">COURSE</span> section, enter the course attributes for a given course that students engage with.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">In the <span class="keyword wintitle">COURSE ROLE</span> section, enter the organisations (CourseRole.HESAID) that plays a particular role (CourseRole.ROLETYPE) in the associated course.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">In the <span class="keyword wintitle">COURSE INITIATIVE</span> section, enter the specific initiative (s) associated with a course that applies to all students on the course.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">In the <span class="keyword wintitle">COURSE REFERENCE</span> section, enter the identifiers associated with a course.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">In the <span class="keyword wintitle">CURRICULUM ACCREDITATION</span> section, specify the curriculum accreditation details.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Save your changes to the new course record.</span>
+        <div class="itemgroup info">Refer to the <cite class="cite">Banner HESA Reference</cite> content to know more about the field names and descriptions.</div>
+      </li>
+</ol>
+
+  </div>
+
+</div></div></section>
+<section id="t-580"><h5>Copy data from existing course delivery</h5><div class="content-locale-en-US content-locale-en"><div id="t_copy_data_from_existing_course_delivery"><div class="body taskbody"><p class="shortdesc">Use the following steps to create a new Delivery ID by copying data from an existing course delivery.</p>
+
+    <div class="tasklabel"><h2 class="sectiontitle tasklabel">Procedure</h2></div><ol class="ol steps"><li class="li step stepexpand">
+        <span class="ph cmd">Access the <span class="ph uicontrol">Course Delivery Details (SOAPCDE)</span> page.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">In the Key block, click <span class="ph uicontrol">+</span>.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Select the existing Course ID from the <span class="ph uicontrol">Copy from Existing Course</span> field LOV.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Click <span class="ph uicontrol">Copy</span>.</span>
+        <div class="itemgroup info">All the data from the existing Course ID is copied, except for the data in the <span class="ph uicontrol">Course ID</span> field, that you need to enter after the copy.</div>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Click <span class="ph uicontrol">Save</span>.</span>
+      </li>
+</ol>
+
+  </div>
+
+</div></div></section>
+<section id="t-590"><h5>Update and view data for existing course deliveries</h5><div class="content-locale-en-US content-locale-en"><div id="t_view_update_existing_course_deliveries"><div class="body taskbody"><p class="shortdesc">Use the following steps to update and view data for the existing course deliveries.</p>
+
+    <div class="tasklabel"><h2 class="sectiontitle tasklabel">Procedure</h2></div><ol class="ol steps"><li class="li step">
+        <span class="ph cmd">Access the <span class="ph uicontrol">Course Delivery Details (SOAPCDE)</span> page.</span>
+      </li>
+<li class="li step">
+        <span class="ph cmd">In the Key block, select the ID from the <span class="ph uicontrol">Course ID</span> field.</span>
+      </li>
+<li class="li step">
+        <span class="ph cmd">Click <span class="ph uicontrol">Go</span>.</span>
+      </li>
+<li class="li step">
+        <span class="ph cmd">View or update the course details as desired.</span>
+      </li>
+<li class="li step">
+        <span class="ph cmd">If you happen to update any record, click <span class="ph uicontrol">Save</span> to save retain your changes.</span>
+      </li>
+</ol>
+
+  </div>
+
+</div></div></section>
+<section id="t-600"><h4>Maintain HESA Modules through course catalog identifier details</h4><div class="content-locale-en-US content-locale-en"><div id="c_maintain_course_catalog_identifier"><p class="shortdesc">Steps to create and maintain HESA modules through course catalog identifier details for HESA Modules Entity.</p>
+
+  
+</div></div></section>
+<section id="t-610"><h5>Create course catalog identifier details</h5><div class="content-locale-en-US content-locale-en"><div id="t_create_course_catalog_identifier"><div class="body taskbody"><p class="shortdesc">Steps to create a course catalog identifier details for a student.</p>
+
+    <div class="tasklabel"><h2 class="sectiontitle tasklabel">Procedure</h2></div><ol class="ol steps"><li class="li step stepexpand">
+        <span class="ph cmd">Access the <span class="keyword wintitle">Course Catalog Identifier Details (SOACCID)</span> page.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">In the Key block, click <span class="ph uicontrol">+</span> to create a new module ID.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">In the <span class="ph uicontrol">Course</span> field, enter an unique course ID that is not associated with the module ID before.</span>
+        <div class="itemgroup info">If you already know the module ID, enter the module ID in the <span class="ph uicontrol">Module ID</span> LOV field.</div>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Click <span class="ph uicontrol">Go</span>.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">In the Base block, enter the information about the module, module subject, module cost centre, and module delivery role details that the students undertake and assist in aggregation of module deliveries.</span>
+        <div class="itemgroup info">You can save only three module subject at a time.</div>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Save the new course catalog identifier record.</span>
+      </li>
+</ol>
+
+  </div>
+
+</div></div></section>
+<section id="t-620"><h5>Copy data from existing course catalog identifier</h5><div class="content-locale-en-US content-locale-en"><div id="t_copy_data_from_existing_course_catalog"><div class="body taskbody"><p class="shortdesc">Steps to create a new Module ID by copying data from an existing course catalog identifier.</p>
+
+    <div class="tasklabel"><h2 class="sectiontitle tasklabel">Procedure</h2></div><ol class="ol steps"><li class="li step stepexpand">
+        <span class="ph cmd">Access the <span class="ph uicontrol">Course Catalog Identifier Details (SOACCID)</span> page.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">In the Key block, click <span class="ph uicontrol">+</span>.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Select the existing Module ID from the <span class="ph uicontrol">Copy from an existing Module</span> field LOV.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">In the <span class="ph uicontrol">Course</span> field, enter an unique course ID that is not associated with the module ID before.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Click <span class="ph uicontrol">Copy</span>.</span>
+        <div class="itemgroup info">All the data from the existing Module ID will be copied, except the module ID that you must enter after the copy.</div>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Click <span class="ph uicontrol">Save</span>.</span>
+      </li>
+</ol>
+
+  </div>
+
+</div></div></section>
+<section id="t-630"><h4>Create venue details</h4><div class="content-locale-en-US content-locale-en"><div id="t_create_venue_details"><div class="body taskbody"><p class="shortdesc">Use the following step-by-step procedure to create venue details. This information will be used in the Delivery Venue block on the Course Delivery Details (SOAPCDE) page.</p>
+
+    <div class="tasklabel"><h2 class="sectiontitle tasklabel">Procedure</h2></div><ol class="ol steps"><li class="li step stepexpand">
+        <span class="ph cmd">Access the <span class="ph uicontrol">Venue Details (SOAVENU)</span> page.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Enter the venue details.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Save your venue details record.</span>
+        <div class="itemgroup info">
+          <div class="note"><span class="notetitle">Note:</span> The <span class="ph uicontrol">Venue Identifier</span> field is unique (primary key), and you cannot modify this field after you save the record. To update this field, first, delete the old record and then, create a new one.</div>
+
+        </div>
+      </li>
+</ol>
+
+  </div>
+
+</div></div></section>
+<section id="t-640"><h4>Create and maintain Bio-demo information</h4><div class="content-locale-en-US content-locale-en"><div id="r_create_maintain_biodemo_details"><div class="body refbody"><p class="shortdesc">Create and maintain a student's Bio-demo information.</p>
+
+    
+<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" id="r_create_maintain_biodemo_details__r_skbhins-utbl1" class="table" frame="hsides" border="1" rules="rows"><colgroup><col><col></colgroup><thead class="thead" style="text-align:left;vertical-align:bottom;">
+          <tr class="row">
+            <th class="entry row-nocellborder" style="text-align:left;vertical-align:bottom;" id="d50395e49">Page name</th>
+
+            <th class="entry row-nocellborder" style="text-align:left;vertical-align:bottom;" id="d50395e52">Purpose</th>
+
+          </tr>
+
+        </thead>
+<tbody class="tbody">
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d50395e49 ">Social Economic Identity Report (GTVSEIR) page</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d50395e52 ">Defines a social economic identity report code. Use the following report codes to associate the respective identity codes with the respective regions.<ul class="ul"> <li class="li">HESA_ENGLAND</li>
+ <li class="li">HESA_SCOTLAND</li>
+ <li class="li">HESA_NORTHERNIRELAND</li>
+ <li class="li">HESA_WALES</li>
+ </ul>
+</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d50395e49 ">Social Economic Identity Code (GTVSEID) page</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d50395e52 ">Creates social economic identity codes.</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d50395e49 ">Social Economic Identity Rules (GOASEID) page</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d50395e52 ">Defines a list of values and associates them to attributes of a social economic identity code defined on the Social Economic Identity Code (GTVSEID) page.</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d50395e49 ">Social Economic Identity Report Template (GOASETP) page</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d50395e52 ">Maps the social economic identity codes created on the Social Economic Identity Code (GTVSEID) page to a report code on the Social Economic Identity Report (GTVSEIR) page. Also, defines the social economic identity codes that appear on a report.</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d50395e49 ">Person Social Economic Identity Details (GOAPSID) page</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d50395e52 ">Stores and maintains the social economic identity details of a person for a report. Institutions can select their respective report codes depending upon the regions that they are located.</td>
+
+          </tr>
+
+        </tbody>
+</table>
+</div>
+
+    <div class="section">
+      <p class="p">Institutions will receive some Bio-demo information and Entry Qualification through UCAS using the *J file. To know more about importing the *J through UCAS, see <span class="xref ft-internal-xlink" data-ft-warning="excluded-from-rendering" data-clusterid="ID_B_REGS_master_2026-03-09/id_b_regs/stu_eu_hesa_cmn_use/c_hesa_data_futures_impact">HESA Data Futures Impact</span> section available in <cite class="cite">Banner UCAS Use</cite> content.</p>
+
+      <div class="p">The Person Social Economic Identity and Biographical Audit Trail (GORPSAD) table maintains an audit trail for all of the entries from the following:<ul class="ul"> <li class="li">The GOAPSID page</li>
+ <li class="li">Ethnicity, Marital Status, Religion, Gender Designation values from the SPAPERS page</li>
+ <li class="li">Disability Type from the GOAMEDI page</li>
+ </ul>
+</div>
+
+      <p class="p">Refer to the <cite class="cite"><span class="keyword">Banner</span> General Reference</cite> and <cite class="cite"><span class="keyword">Banner</span> General Use</cite> to learn more about the Bio-demo functionality.</p>
+
+    </div>
+
+  </div>
+
+</div></div></section>
+<section id="t-650"><h4>Record student's language proficiency details</h4><div class="content-locale-en-US content-locale-en"><div id="t_soalanp_lang_proficiency_details_hesa"><div class="body taskbody"><p class="shortdesc">Steps to record a student's language proficiency details. The SOALANP page is available as a part of Banner Student release and this information is listed as a part of <span class="keyword">HESA</span> content for reference.</p>
+
+    <div class="tasklabel"><h2 class="sectiontitle tasklabel">Procedure</h2></div><ol class="ol steps"><li class="li step stepexpand">
+        <span class="ph cmd">Access the <span class="keyword wintitle">Language Proficiency Details (SOALANP)</span> page.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">To select the language identifier code, click the <span class="ph uicontrol">Language Identifier</span> LOV field and select the code from the Native Language Validation (STVLANG) page.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">To select the proficiency type, click the <span class="ph uicontrol">Proficiency Type</span> LOV field and select the language proficiency type from the Language Proficiency Type (STVLPTY) page.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">To select the proficiency level, click the <span class="ph uicontrol">Proficiency Level</span> LOV field and select the language proficiency level from the Language Proficiency Level (STVLPLV) page.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Save the student's language proficiency details.</span>
+        <div class="itemgroup info">Surname is a mandatory field entry within Banner.  However,  some occurrences in HESA Data Futures do not require forename as the extraction process covers this.</div>
+      </li>
+</ol>
+
+  </div>
+
+</div></div></section>
+<section id="t-660"><h4>Record HESA course qualification details</h4><div class="content-locale-en-US content-locale-en"><div id="t_qualification_details"><div class="body taskbody"><p class="shortdesc">Use the following step-by-step procedure to enter and record the information about a formally recognized academic award, such as a degree, diploma, or a certificate.</p>
+
+    <div class="section context"><div class="tasklabel"><h2 class="sectiontitle tasklabel">About this task</h2></div>
+      <p class="p">For every Qualification ID entered, you must add at least one qualification subject in this page. You can have zero or more entries in the <span class="ph uicontrol">AWARDING BODY ROLE</span> block. Qualification IDs created in this page will be used in the <span class="ph uicontrol">Course Delivery</span> block of the Course Delivery Details (SOAPCDE) page.</p>
+
+    </div>
+
+    <div class="tasklabel"><h2 class="sectiontitle tasklabel">Procedure</h2></div><ol class="ol steps"><li class="li step stepexpand">
+        <span class="ph cmd">Access the <span class="keyword wintitle">Qualification Details (SOAQUAL)</span> page.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">In the <span class="ph uicontrol">QUALIFICATION DETAILS</span> block, enter the qualification details.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">In the <span class="ph uicontrol">QUALIFICATION SUBJECT</span> block, enter the qualification subject details to associate with the Qualification ID entered in the qualification details section.</span>
+        <div class="itemgroup info">
+          <div class="note"><span class="notetitle">Note:</span> As per <span class="keyword">HESA</span> requirements, you can have only (maximum) five qualification subjects for each Qualification ID. However, the current implementation allows users to enter more than five qualification subjects in the SOAQUAL page. This will be addressed in the March 2019 release.</div>
+
+        </div>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">In the <span class="ph uicontrol">AWARDING BODY ROLE</span> block, enter the awarding body details to associate with the Qualification ID entered in the qualification details section.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Save the record.</span>
+        <div class="itemgroup info">
+          <div class="note"><span class="notetitle">Note:</span> The <span class="ph uicontrol">Qualification Identifier</span>, <span class="ph uicontrol">Qualification Subject</span> and <span class="ph uicontrol">Awarding Body Identifier</span> fields are unique (primary keys), and you cannot modify these fields after the record is saved. To update either of these fields, you must delete the old record and create a new one.<p class="p">If a Qualification Identifier is associated with a Course Delivery, then you cannot delete that Qualification Identifier in this page. You will first need to delete that association of the Qualification ID with the delivery record from the SOAPCDE page and then delete the Qualification ID from the SOAQUAL page.</p>
+</div>
+
+        </div>
+      </li>
+</ol>
+
+  </div>
+
+</div></div></section>
+<section id="t-670"><h4>Record student engagement details</h4><div class="content-locale-en-US content-locale-en"><div id="t_record_engagement_registration_details"><div class="body taskbody"><p class="shortdesc">Steps to maintain a student's engagement details.</p>
+
+    <div class="section prereq p"><div class="tasklabel"><h2 class="sectiontitle tasklabel">Before you begin</h2></div>When a new study path is created, Engagement number (NUMHUS) gets populated in the SOBENGA table. Only after the generation of NUMHUS, you can access the SOAENRE page from the Key block.<p class="p">For new students:</p>
+<p class="p">When you create a new study path, the SOKDTFU trigger populates the Engagement Number (NUMHUS) in the SOBENGA table for all HESA institutions. Ensure that you run the script into the GURLCIN table to indicate the HESA institution. Only after the generation of NUMHUS, you can access the SOAENRE page from the Key block.</p>
+<p class="p">For existing students:</p>
+<p class="p">When the student gets a new study path, the institution creates the HESA engagement record for the students to maintain student's engagement details. The SOPSPDF process fetches all the existing Student IDs and the associated Study Path numbers that the SGACHRT page maintains and creates the engagement record if the engagement record does not exist.</p>
+</div>
+
+    <div class="tasklabel"><h2 class="sectiontitle tasklabel">Procedure</h2></div><ol class="ol steps"><li class="li step">
+        <span class="ph cmd">Access the <span class="ph uicontrol">Engagement and Registration (SOAENRE)</span> page.</span>
+      </li>
+<li class="li step">
+        <span class="ph cmd">In the Key block, specify the Student ID and Engagement ID.</span>
+      </li>
+<li class="li step">
+        <span class="ph cmd">In the <span class="ph uicontrol">Engagement</span> window, enter the engagement details that a student makes with a provider aiming towards the award of qualification(s) or credit.</span>
+      </li>
+<li class="li step">
+        <span class="ph cmd">In the <span class="ph uicontrol">Entry Profile</span> window, record the information that relates to the student as at the start of their engagement.</span>
+      </li>
+<li class="li step">
+        <span class="ph cmd">In the <span class="keyword wintitle">Qualification Awarded</span> window, record the qualification(s) obtained by the student following the completion on the student's engagement. </span>
+      </li>
+<li class="li step">
+        <span class="ph cmd">Save the record.</span>
+      </li>
+</ol>
+
+  </div>
+
+</div></div></section>
+<section id="t-680"><h4>Record student entry qualification</h4><div class="content-locale-en-US content-locale-en"><div id="t_record_student_entry_qualification"><div class="body taskbody"><p class="shortdesc">Steps to record the qualification(s) held by the student on entry to their engagement.</p>
+
+    <div class="tasklabel"><h2 class="sectiontitle tasklabel">Procedure</h2></div><ol class="ol steps"><li class="li step stepexpand">
+        <span class="ph cmd">Access the <span class="keyword wintitle">Entry Qualification (SOAENTQ)</span> page.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">In the Key block, the values present in the <span class="keyword wintitle">Entry Profile</span> window of the SOAENRE page gets loaded in the SOAENTQ page.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">In the <span class="ph uicontrol">ENTRY QUALIFICATION AWARD</span> section, of the Base block, enter the qualification(s) details held by the student on entry to their engagement.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">In the <span class="ph uicontrol">ENTRY QUALIFICATION SUBJECT</span> section, enter the subject(s) details that are associated with the student's entry qualification.</span>
+        <div class="itemgroup info">You cannot record more than five subject at a time.</div>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Save the record.</span>
+      </li>
+</ol>
+
+  </div>
+
+</div></div></section>
+<section id="t-690"><h4>Create student course session</h4><div class="content-locale-en-US content-locale-en"><div id="t_create_student_course_session"><div class="body taskbody"><p class="shortdesc">Steps to create a student's course session.</p>
+
+    <div class="tasklabel"><h2 class="sectiontitle tasklabel">Procedure</h2></div><ol class="ol steps"><li class="li step">
+        <span class="ph cmd">Access the <span class="keyword wintitle">Student Course Session (SOASTCS)</span> page.</span>
+      </li>
+<li class="li step">
+        <span class="ph cmd">In the Key block, enter/select the student ID from the <span class="ph uicontrol">ID</span> field.</span>
+      </li>
+<li class="li step">
+        <span class="ph cmd">Enter/select the engagement number from the <span class="ph uicontrol">Engagement Number</span> field.</span>
+      </li>
+<li class="li step">
+        <span class="ph cmd">In the <span class="ph uicontrol">Student Course Session ID</span> field, either click the <span class="ph uicontrol">+</span> button to create your own student course session IDs or enter/select an existing student course session ID.</span>
+      </li>
+<li class="li step">
+        <span class="ph cmd">In the <span class="ph uicontrol">Base</span> section, enter the following student course session details:</span>
+        <ol type="a" class="ol substeps">
+          <li class="li substep">
+            <span class="ph cmd">Student Course Session</span>
+          </li>
+
+          <li class="li substep">
+            <span class="ph cmd">Funding and Monitoring</span>
+          </li>
+
+          <li class="li substep">
+            <span class="ph cmd">Funding Body</span>
+          </li>
+
+          <li class="li substep">
+            <span class="ph cmd">Off Venue Activity</span>
+          </li>
+
+          <li class="li substep">
+            <span class="ph cmd">Reference Period Student Load</span>
+          </li>
+
+          <li class="li substep">
+            <span class="ph cmd">Session Status</span>
+          </li>
+
+          <li class="li substep">
+            <span class="ph cmd">Student Financial Support</span>
+          </li>
+
+          <li class="li substep">
+            <span class="ph cmd">Study Location</span>
+          </li>
+
+          <li class="li substep">
+            <span class="ph cmd">Supervisor Allocation</span>
+          </li>
+
+        </ol>
+
+      </li>
+<li class="li step">
+        <span class="ph cmd">Save the record.</span>
+      </li>
+</ol>
+
+  </div>
+
+</div></div></section>
+<section id="t-700"><h4>Record student module instance</h4><div class="content-locale-en-US content-locale-en"><div id="t_record_student_module_instance"><div class="body taskbody"><p class="shortdesc">Steps to create and record a student's module instance detail.</p>
+
+    <div class="tasklabel"><h2 class="sectiontitle tasklabel">Procedure</h2></div><ol class="ol steps"><li class="li step">
+        <span class="ph cmd">Access the <span class="keyword wintitle">Student Module Instance (SOASTMI)</span> page.</span>
+      </li>
+<li class="li step">
+        <span class="ph cmd">In the Key block, specify the student details for which you want the module instance to be recorded.</span>
+      </li>
+<li class="li step">
+        <span class="ph cmd">In the Base block, enter the student's module instance details.</span>
+      </li>
+<li class="li step">
+        <span class="ph cmd">Save your record.</span>
+      </li>
+</ol>
+
+  </div>
+
+</div></div></section></main></body></html>

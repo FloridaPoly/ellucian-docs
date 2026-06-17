@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Banner Student - Release Notes — Release 9.3.41.1 and 8.38.1</title><style>body{font-family:-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;line-height:1.55;color:#1a1a1a;max-width:920px;margin:0 auto;padding:24px}header{border-bottom:2px solid #5a16d6;margin-bottom:8px}h1{color:#3a0ca3}h2,h3,h4,h5,h6{margin-top:1.6em}.crumb{color:#666;font-size:13px;margin:0}.meta{color:#888;font-size:12px}nav.toc{background:#f6f4fc;border:1px solid #e3dcf5;border-radius:8px;padding:12px 18px;margin:18px 0}nav.toc h2{margin:.2em 0}nav.toc ul{list-style:none;padding-left:0}nav.toc a{text-decoration:none;color:#5a16d6}section{margin:1.2em 0;padding-top:.4em}img{max-width:100%;height:auto}table{border-collapse:collapse}td,th{border:1px solid #ccc;padding:4px 8px}code,pre{background:#f4f4f4;border-radius:4px}pre{padding:10px;overflow:auto}</style></head><body><header><p class="crumb">Banner Student › Banner Student - Release Notes</p><h1>Banner Student - Release Notes — Release 9.3.41.1 and 8.38.1</h1><p class="meta">Source: <a href="https://resources.elluciancloud.com/r/bundle/banner_student_rel_release_notes">https://resources.elluciancloud.com/r/bundle/banner_student_rel_release_notes</a> &middot; Retrieved 2026-06-17</p></header><nav class="toc"><h2>Contents</h2><ul><li style="margin-left:0px"><a href="#t-50">Release 9.3.41.1 and 8.38.1</a></li></ul></nav><main><section id="t-50"><h2>Release 9.3.41.1 and 8.38.1</h2><div class="content-locale-en-US content-locale-en"><div id="c_release_9.3.41.1_8.38.1"><div class="body conbody"><p class="shortdesc">The <span class="keyword">Banner Student</span> <span class="keyword">9.3.41.1 and 8.38.1</span> release includes quality improvements and technical currency updates.</p>
+
+    <div class="section supportnote"><h2 class="title sectiontitle">Support for Banner 8 Self-Service has ended</h2>
+      
+      <p class="p">As of January 1, 2026, <span class="keyword">Banner</span> 8 <span class="keyword">Self-Service</span> has moved out of Sustaining Support and has entered End of Support.</p>
+
+      <p class="p">For detailed information on support statuses, please review our <a class="xref ft-external-link" href="https://elluciansupport.service-now.com/customer_center?id=kb_article_view&amp;sysparm_article=000038478" target="_blank" rel="noopener">Support Assurance Policy</a>.</p>
+
+    </div>
+
+    <div class="section"><h2 class="title sectiontitle">Enhanced character validation for NSC/NSLDS enrollment reporting</h2>
+      
+      <p class="p">The Clearinghouse Extract Report (SFRNSLC) process is enhanced to accept all ASCII characters, matching the specifications set by the National Student Clearinghouse (NSC). This enhancement resolves data accuracy issues caused by the previous limitation that stripped special characters, including the forward slash (/) commonly found in addresses.</p>
+
+      <p class="p">The field validation logic now permits the following ASCII special characters in addition to alphanumeric characters:</p>
+
+      
+<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" class="table" frame="border" border="1" rules="all"><colgroup><col style="width:25%"><col style="width:75%"></colgroup><thead class="thead" style="text-align:left;">
+            <tr class="row">
+              <th class="entry cellrowborder" style="vertical-align:top;" id="d5325e86">Character Category</th>
+
+              <th class="entry cellrowborder" style="vertical-align:top;" id="d5325e89">Characters</th>
+
+            </tr>
+
+          </thead>
+<tbody class="tbody">
+            <tr class="row">
+              <td class="entry cellrowborder" style="vertical-align:top;" headers="d5325e86 ">Basic punctuation</td>
+
+              <td class="entry cellrowborder" style="vertical-align:top;" headers="d5325e89 "><code class="ph codeph">! " # $ % &amp; ' ( ) * + , - . /</code></td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry cellrowborder" style="vertical-align:top;" headers="d5325e86 ">Comparison and syntax</td>
+
+              <td class="entry cellrowborder" style="vertical-align:top;" headers="d5325e89 "><code class="ph codeph">: ; &lt; = &gt; ? @</code></td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry cellrowborder" style="vertical-align:top;" headers="d5325e86 ">Brackets and underscores</td>
+
+              <td class="entry cellrowborder" style="vertical-align:top;" headers="d5325e89 "><code class="ph codeph">[ \ ] ^ _ `</code></td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry cellrowborder" style="vertical-align:top;" headers="d5325e86 ">Braces and pipes</td>
+
+              <td class="entry cellrowborder" style="vertical-align:top;" headers="d5325e89 "><code class="ph codeph">{ | } ~</code></td>
+
+            </tr>
+
+          </tbody>
+</table>
+</div>
+
+      <p class="p">This enhancement provides the following benefits:</p>
+
+      <ul class="ul">
+        <li class="li">Improved data accuracy - Addresses and other text fields are now transmitted to NSC and NSLDS without character loss, ensuring data integrity</li>
+
+        <li class="li">Compliance with NSC specifications - Banner field validation now matches NSC's character acceptance standards</li>
+
+        <li class="li">Enhanced address handling - Forward slashes and other punctuation marks commonly found in addresses (such as apartment designations like "Apt 1/2") are preserved</li>
+
+        <li class="li">Reduced manual intervention - Eliminates the need for workarounds or manual corrections when special characters are required in reporting data</li>
+
+      </ul>
+
+      <p class="p">This enhancement addresses PE0007870 in the <span class="keyword">Ellucian Customer Center</span>.</p>
+
+    </div>
+
+    <div class="section"><h2 class="title sectiontitle">New Order and Session identification fields in SHARQTC</h2>
+      
+      <p class="p">To improve visibility and troubleshooting for electronic transcript processing, the SHARQTC form now displays additional identifiers:</p>
+
+      <ul class="ul">
+        <li class="li">The SHARQTC Transcript Request section now displays <span class="ph uicontrol">Order ID</span> and <span class="ph uicontrol">Session ID</span> as read-only fields in the <span class="ph uicontrol">Electronic Transcript Status</span> section.</li>
+
+        <li class="li">The transcripts-request Banner ERP API (GET) response now includes <span class="ph uicontrol">Order ID</span> and <span class="ph uicontrol">Session ID</span>.</li>
+
+      </ul>
+
+      <p class="p">These identifiers helps users quickly associate transcript requests with eTranscripts orders and more easily troubleshoot processing issues (including orders that may remain in <span class="ph uicontrol">RG (Ready to Generate)</span> status), reducing the need for backend queries and minimizing unnecessary order cancellations.</p>
+
+      <p class="p">This enhancement addresses PE0007983 in the <span class="keyword">Ellucian Customer Center</span>.</p>
+
+    </div>
+
+    <div class="section"><h2 class="title sectiontitle">Australian TCSI compliance enhancements</h2>
+      
+      <p class="p">Program and curriculum mapping capabilities are enhanced to support Australian Tertiary Collection of Student Information (TCSI) compliance reporting requirements. These enhancements add new data capture fields and improve curriculum mapping accuracy for Australian institutions.</p>
+
+      <p class="p">Program data enhancements:</p>
+
+      <p class="p">The Program and Field of Education Application (SMAPFPA) page is enhanced with the following capabilities:</p>
+
+      <ul class="ul">
+        <li class="li">Program Alias field to store alternate program identifiers (TCSI codes) used for regulatory reporting</li>
+
+        <li class="li">Standard Program Duration field to capture the expected completion timeframe for programs</li>
+
+        <li class="li">Program-level Field of Education data block for capturing TCSI-specific education classification data</li>
+
+        <li class="li">Special Interest Course data block for documenting specialized course details</li>
+
+        <li class="li">Reorganized page layout with Help Type and Indicative Fee information moved to tabbed sections</li>
+
+        <li class="li">Corrected course of study type data sourcing to use SORCRST validation table</li>
+
+        <li class="li">Improved navigation for Application ID, Transaction Date, and Status fields</li>
+
+      </ul>
+
+      <p class="p">Curriculum mapping enhancements:</p>
+
+      <p class="p">The Curriculum Mapping (SOACMAP) page is enhanced with the following fields to improve mapping accuracy:</p>
+
+      <ul class="ul">
+        <li class="li">SITE: Dynamically populated from STVSITE validation table. Auto-fills when one site is defined, provides selection list when multiple sites exist, and displays validation message when no sites are mapped to the campus</li>
+
+        <li class="li">Operation Type: Fixed list of values field for categorizing curriculum operation types</li>
+
+        <li class="li">Course Specialisation: Read-only field automatically populated from the CIPC code associated with the selected major, ensuring consistent specialization data</li>
+
+        <li class="li">TCSI Code: Automatically populated from the Program Alias maintained in SMRPFPA, ensuring consistent regulatory reporting identifiers</li>
+
+      </ul>
+
+      <p class="p">Database changes:</p>
+
+      <p class="p">The following database objects are added or modified to support these enhancements:</p>
+
+      <ul class="ul">
+        <li class="li">SKRPOFR table modified to add SKRPOFR_CIPC_CODE column for storing program specialization codes derived from the CIPC code of the selected major</li>
+
+        <li class="li">SORPFOE table added to store Program Field of Education detail for TCSI reporting</li>
+
+        <li class="li">SORPSPL table added to store Program Special Interest Course detail</li>
+
+        <li class="li">SMRPFPA table modified to add SMRPFPA_PROGRAM_ALIAS and SMRPFPA_PROGRAM_DURATION columns for program alias and standard duration data</li>
+
+      </ul>
+
+      <p class="p">These enhancements address PE0007993 and PE0007998 in the <span class="keyword">Ellucian Customer Center</span>.</p>
+
+    </div>
+
+    <div class="section"><h2 class="title sectiontitle">Section-level attributes support for Degree Works integration</h2>
+      
+      <p class="p">The Banner and Degree Works integration payload is enhanced to include section-level data (attributes &amp; part of term). This enhancement enables Degree Works to perform more accurate prerequisite evaluation by considering section-specific metadata in addition to course-level information. </p>
+
+      <p class="p">This enhancement provides more precise prerequisite validation during student registration, reducing registration errors and the need for manual overrides. The feature was implemented in conjunction with performance improvements to the Banner/DegreeWorks integration (PE0008170). </p>
+
+      <p class="p">This enhancement addresses PE0007316 in the <span class="keyword">Ellucian Customer Center</span>.</p>
+
+    </div>
+
+    <div class="section"><h2 class="title sectiontitle">SMRPFPA UI Layout Enhancement for Australian TCSI Compliance</h2>
+      
+      <p class="p">The Program and Field of Education Application (SMRPFPA) page layout is enhanced to support Australian TCSI compliance reporting requirements. This enhancement adds new data capture fields and reorganizes the page layout for improved usability.</p>
+
+      <p class="p">New fields added: </p>
+
+      <ul class="ul">
+        <li class="li">Standard Program Duration - A mandatory free-text field that captures the expected completion timeframe for programs. This field is located in the Course and Qualification Details area and supports Australian regulatory reporting requirements for program duration data.</li>
+
+        <li class="li">Institution Program Alias - A free-text field that stores alternate program identifiers (TCSI codes) used for regulatory reporting. This allows institutions to maintain separate display names and reporting codes for programs.</li>
+
+      </ul>
+
+      <p class="p">The bottom section of the SMRPFPA page is restructured to clearly separate two data blocks as distinct tabbed sections:</p>
+
+      <ul class="ul">
+        <li class="li">HELP TYPE DATA tab - Contains Higher Education Loan Program type information</li>
+
+        <li class="li">INDICATIVE FEE DATA tab - Contains indicative fee information</li>
+
+      </ul>
+
+      <p class="p">This enhancement addresses PE0007997 in the <span class="keyword">Ellucian Customer Center</span>.</p>
+
+    </div>
+
+    <div class="section"><h2 class="title sectiontitle">Gainful Employment and Financial Value Transparency reporting label enhancement</h2>
+      
+      <p class="p">The Gainful Employment and Financial Value Transparency (FVT/GE) reporting processes are enhanced to improve clarity of the void indicator field display. This enhancement affects the SFAGEFM and SFPGESC processes:</p>
+
+      <p class="p">The decoded display text for the invalidate indicator field when set to <kbd class="ph userinput">Y</kbd> is changed from the generic <kbd class="ph userinput">Y</kbd> to the more descriptive label <samp class="ph msgph">Invalidate existing record</samp>. This provides clearer information about the action that will be performed when this indicator is enabled.</p>
+
+      <p class="p">This enhancement addresses PE0007297 in the <span class="keyword">Ellucian Customer Center</span>.</p>
+
+    </div>
+
+    <div class="section"><h2 class="title sectiontitle">Student type program update correction (SHRTYPE)</h2>
+      
+      <p class="p">A data integrity issue affecting the Student Type Update (SHRTYPE) page is corrected in this release. The issue caused incorrect program assignments to be saved for future terms when updating student type information.</p>
+
+      <p class="p">This correction ensures that program data is accurately maintained across term boundaries when processing student type changes on the SHRTYPE page. The fix applies to both Oracle and PostgreSQL database environments.</p>
+
+      <p class="p">This defect addresses PD0030915 in the <span class="keyword">Ellucian Customer Center</span>.</p>
+
+    </div>
+
+    <div class="section"><h2 class="title sectiontitle">Person Holds Ethos API enhancement</h2>
+      
+      <p class="p">The <span class="keyword apiname">person-holds</span> Ethos API is enhanced to support term‑based registration holds stored in <code class="ph codeph">SPRTHLD</code>, in addition to the existing person‑level holds in <code class="ph codeph">SPRHOLD</code></p>
+
+      <p class="p">The Person Holds Ethos Integration API is enhanced from version 6.1 to version 16.0, adding support for term-based registration holds. This enhancement extends the API capabilities to support more granular hold management at the term level.</p>
+
+      <p class="p">This enhancement requires Common DB Upgrade 9.42.1 and Student API 9.41.1.</p>
+
+      <p class="p">This enhancement addresses PE0007779 in the <span class="keyword">Ellucian Customer Center</span>.</p>
+
+    </div>
+
+    <div class="section"><h2 class="title sectiontitle">Faculty Grade Entry gradebook component grade correction</h2>
+      
+      <p class="p">An Oracle database error that occurred when updating component grades in the Faculty Grade Entry (FGE) Gradebook is corrected. The correction includes admin page modifications to prevent the error condition.</p>
+
+      <p class="p">This correction applies to both <span class="keyword">Banner Student</span> and Banner Faculty Self-Service.</p>
+
+      <p class="p">This enhancement addresses CR-000141263 in the <span class="keyword">Ellucian Customer Center</span>.</p>
+
+    </div>
+
+    <div class="section"><h2 class="title sectiontitle">DegreeWorks integration performance improvement</h2>
+      
+      <p class="p">Performance is improved for the Banner and DegreeWorks integration by removing a fixed 2-second processing delay on integration calls. This change affects the Review Registration Approve Menu (SFRRGAM) page and other DegreeWorks integration points.</p>
+
+      <p class="p">The improvement reduces overall transaction time for DegreeWorks data exchanges, enhancing the user experience during student registration and degree audit processes.</p>
+
+      <p class="p">This enhancement addresses PE0008170 in the <span class="keyword">Ellucian Customer Center</span>.</p>
+
+    </div>
+
+    <div class="section"><h2 class="title sectiontitle">FVT/GE reporting enhancement </h2>
+      
+      <p class="p">The Gainful Employment Student Creation (SFPGESC) process is enhanced so that withdrawn students are included in the FVT/GE Student Level (TA) output when they have any Title IV‑eligible disbursement within the reporting aid year, even if the disbursement is posted after the withdrawal date. </p>
+
+      <p class="p">The enhanced population selection logic now determines withdrawn‑student eligibility based on Title IV‑eligible disbursements within the reporting aid year, regardless of whether the disbursement is posted before or after the withdrawal date. This aligns with Federal Gainful Employment and Financial Value Transparency reporting guidance, which permits institutions to process R2T4 and Post‑Withdrawal Disbursements (PWD) after withdrawal while maintaining student eligibility for FVT/GE reporting.</p>
+
+      <p class="p">This enhancement provides the following benefits:</p>
+
+      <ul class="ul">
+        <li class="li">Improved reporting compliance - Supports complete and accurate FVT/GE reporting in accordance with Department of Education (ED) and NASFAA guidance.</li>
+
+        <li class="li">Comprehensive withdrawn‑student capture – Includes withdrawn students who received Title IV‑eligible aid within the reporting aid year, even when the only qualifying activity is a post‑withdrawal disbursement.</li>
+
+        <li class="li">Accurate post‑withdrawal disbursement handling – Properly recognizes Post‑Withdrawal Disbursements (PWD) and R2T4 adjustments within the reporting aid year, regardless of posting date relative to the withdrawal date.</li>
+
+        <li class="li">Reduced under‑reporting risk – Prevents eligible withdrawn students from being excluded from federal FVT/GE reporting.</li>
+
+      </ul>
+
+      <p class="p">This enhancement applies to withdrawn students only. Graduated student inclusion rules and AA record logic remain unchanged. Student inclusion is based on Title IV‑eligible disbursements attributed to the reporting aid year, and not on a 45‑day post‑withdrawal window.</p>
+
+      <p class="p">This enhancement addresses PE0007299 in the <span class="keyword">Ellucian Customer Center</span>.</p>
+
+    </div>
+
+    <div class="section"><h2 class="title sectiontitle">Business Process API for Admissions Application Rating</h2>
+      
+      <p class="p">A new <span class="keyword apiname">admissions-rating-application-ratings</span> v1.0.0 BPAPI is introduced for the Application Rating section on the <span class="keyword wintitle">Admissions Rating (SAARRAT)</span> page, enabling programmatic management of admissions rating configurations.</p>
+
+      <p class="p">The GET, POST, and PUT request methods are supported.</p>
+
+      <p class="p">The new BPAPI for Application Rating allows institutions to:</p>
+
+      <ul class="ul">
+        <li class="li">GET SARRRAT records with filter support (for example, rating code, effective term, status, institution-defined qualifiers) using search criteria such as PIDM, APPL_NO, TERM_CODE, and AROL_PIDM</li>
+
+        <li class="li">POST new SARRRAT records with full validation (required fields, term validity, code validation, uniqueness rules)</li>
+
+        <li class="li">PUT updates to existing SARRRAT records while enforcing the same constraints and behavior as the Banner UI</li>
+
+      </ul>
+
+      <p class="p">The API follows Banner's existing security model, supports audit tracking, and ensures consistent outcomes across UI and API workflows. All endpoints enforce the same validation, permissions, and business rules that run when the staff performs Application Rating operations manually, preserving audit-ability without bypassing existing integrity checks, effective-dating, or entity/MEP restrictions.</p>
+
+      <p class="p">Key benefits:</p>
+
+      <ul class="ul">
+        <li class="li">Enables faster, less error-prone maintenance of admissions rating tables at scale</li>
+
+        <li class="li">Improves integration capability with admissions platforms and workflow tools</li>
+
+      </ul>
+
+      <p class="p">This enhancement addresses PE0007216 in the <span class="keyword">Ellucian Customer Center</span>.</p>
+
+    </div>
+
+    <div class="section"><h2 class="title sectiontitle">Supporting Documentation</h2>
+      
+      <div class="p"><span class="ph">To download supporting documentation for this release, click the <span class="ph uicontrol">Attachments</span> <span class="ph"><img class="image ell-icon" src="images/05-release-9-3-41-1-and-8-38-1-1.png" alt="" data-ft-asset-display-name="paperclip.png" data-ft-resource-id="U1hxGZ~0RYMIz4qOJhMPjg-z2kSoEHYYdzJPAZFk1gBDw"></span> icon in the navigation on this page and then select the associated compressed file (.zip) from the displayed list. The zip file contains the following files:</span><ul class="ul">
+        <li class="li"><span class="keyword">Banner Student</span> readme 8.38.1</li>
+
+        <li class="li"><span class="keyword">Banner Student</span> Object List 8.38.1</li>
+
+        <li class="li"><span class="keyword">Banner Student</span> Upgrade Guide Template</li>
+
+        <li class="li"><span class="keyword">Banner Student</span> Resolutions Report 8.38.1</li>
+
+        <li class="li"><span class="keyword">Banner Student</span> Resolutions Report 9.3.41.1</li>
+
+        <li class="li"><span class="keyword">Banner Student</span> Release Notes <span class="keyword">9.3.41.1 and 8.38.1</span></li>
+
+        <li class="li"><span class="keyword">Banner Student</span> Reports and Processes <span class="keyword">9.3.41.1 and 8.38.1</span></li>
+
+        </ul>
+</div>
+
+      <p class="p">The content published on the Documentation site for this release and the documentation included in the associated zip file (listed above) also support any associated hot fix releases.</p>
+
+    </div>
+
+  </div>
+
+</div></div></section></main></body></html>

@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>UCAS Banner Student - Use — Integration APIs</title><style>body{font-family:-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;line-height:1.55;color:#1a1a1a;max-width:920px;margin:0 auto;padding:24px}header{border-bottom:2px solid #5a16d6;margin-bottom:8px}h1{color:#3a0ca3}h2,h3,h4,h5,h6{margin-top:1.6em}.crumb{color:#666;font-size:13px;margin:0}.meta{color:#888;font-size:12px}nav.toc{background:#f6f4fc;border:1px solid #e3dcf5;border-radius:8px;padding:12px 18px;margin:18px 0}nav.toc h2{margin:.2em 0}nav.toc ul{list-style:none;padding-left:0}nav.toc a{text-decoration:none;color:#5a16d6}section{margin:1.2em 0;padding-top:.4em}img{max-width:100%;height:auto}table{border-collapse:collapse}td,th{border:1px solid #ccc;padding:4px 8px}code,pre{background:#f4f4f4;border-radius:4px}pre{padding:10px;overflow:auto}</style></head><body><header><p class="crumb">Banner Student › UCAS Banner Student - Use</p><h1>UCAS Banner Student - Use — Integration APIs</h1><p class="meta">Source: <a href="https://resources.elluciancloud.com/r/bundle/banner_student_acn_use_ucas">https://resources.elluciancloud.com/r/bundle/banner_student_acn_use_ucas</a> &middot; Retrieved 2026-06-17</p></header><nav class="toc"><h2>Contents</h2><ul><li style="margin-left:0px"><a href="#t-2700">Integration APIs</a></li></ul></nav><main><section id="t-2700"><h2>Integration APIs</h2><div class="content-locale-en-US content-locale-en"><div id="r_integration_apis"><div class="body refbody"><p class="shortdesc">UCAS Integration APIs to download and upload data from UCAS through Data Connect pipelines.</p>
+
+    
+<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" class="table" frame="hsides" border="1" rules="rows"><colgroup><col style="width:22.573363431151243%"><col style="width:29.119638826185106%"><col style="width:48.30699774266367%"></colgroup><thead class="thead" style="text-align:left;vertical-align:bottom;">
+          <tr class="row">
+            <th class="entry row-nocellborder" style="vertical-align:bottom;" id="d69411e51">HTTP Method</th>
+
+            <th class="entry row-nocellborder" style="vertical-align:bottom;" id="d69411e54">API Name</th>
+
+            <th class="entry row-nocellborder" style="vertical-align:bottom;" id="d69411e57">Description</th>
+
+          </tr>
+
+        </thead>
+<tbody class="tbody">
+          <tr class="row">
+            <td class="entry row-nocellborder" style="vertical-align:top;" headers="d69411e51 ">GET</td>
+
+            <td class="entry row-nocellborder" style="vertical-align:top;" headers="d69411e54 ">ucas-transaction-statuses</td>
+
+            <td class="entry row-nocellborder" style="vertical-align:top;" headers="d69411e57 ">Retrieves records from the SKRUJOB table where the SKRUJOB_JOB_STATUS column is NEW. This GET API calls the SKARDCN.F_FETCH_SKRUJOB function that is used in the Recruit UCAS Transaction Statuses DC pipeline, which sends the UCAS transaction status from Banner UCAS to CRM Recruit.</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="vertical-align:top;" headers="d69411e51 ">GET</td>
+
+            <td class="entry row-nocellborder" style="vertical-align:top;" headers="d69411e54 ">ucas-application-transactions-details</td>
+
+            <td class="entry row-nocellborder" style="vertical-align:top;" headers="d69411e57 ">Retrieve records from the SARSDUS table which has the UCAS transaction details (UCAS data download and upload record count details per end point when data is downloaded and uploaded using the UCAS XML LINK DC pipelines). This API is used in the UCAS-TRANSACTION-DETAILS-API Data Connect pipeline and is called in the UcasTransaction Details Experience page to display the UCAS transaction details.</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="vertical-align:top;" headers="d69411e51 ">POST</td>
+
+            <td class="entry row-nocellborder" style="vertical-align:top;" headers="d69411e54 ">ucasxmlset</td>
+
+            <td class="entry row-nocellborder" style="vertical-align:top;" headers="d69411e57 ">This API is called from the pipelines to load data in to the XIGN and MDUU tables using the functions and procedure from the <span class="keyword">Banner</span> PLSQL packages. The API collects the decision details from for the set methods.</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="vertical-align:top;" headers="d69411e51 ">POST</td>
+
+            <td class="entry row-nocellborder" style="vertical-align:top;" headers="d69411e54 ">ucas-update-job-statuses</td>
+
+            <td class="entry row-nocellborder" style="vertical-align:top;" headers="d69411e57 ">Updates the SKRUJOB table job status and calls the SKARDCN.F_UPDATE_SKRUJOB function. This POST API is used in the Recruit UCAS Transaction Statuses DC pipeline, which sends the UCAS transaction status from Banner UCAS to CRM Recruit.</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="vertical-align:top;" headers="d69411e51 ">POST</td>
+
+            <td class="entry row-nocellborder" style="vertical-align:top;" headers="d69411e54 ">ucaslink-mcds-transactions</td>
+
+            <td class="entry row-nocellborder" style="vertical-align:top;" headers="d69411e57 ">Downloads the MCDS (Modernised Contextual Data Services) information from UCAS to Banner using UCAS-LINK. This API is called internally by UCAS MCDS Pipeline 1 and UCAS MCDS Pipeline 2.<p class="p">This is the pro-code API to CREATE/READ/UPDATE MCDS (Modernised Contextual Data Service) data from and to Banner tables (sarmcmd, sarmcmu, sarmcml, sarmcds).</p>
+<p class="p">In previous UCAS and API releases, supporting tables and API security scripts are provided.</p>
+</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="vertical-align:top;" headers="d69411e51 ">POST</td>
+
+            <td class="entry row-nocellborder" style="vertical-align:top;" headers="d69411e54 ">ucaslink-transactions</td>
+
+            <td class="entry row-nocellborder" style="vertical-align:top;" headers="d69411e57 ">Downloads the Personal Statement information from UCAS to Banner using UCAS-LINK. This API is called internally by UCAS Personal Statement pipeline 1 and UCAS Personal Statement pipeline 2.This is the pro-code API to CREATE/READ/UPDATE Personal Statement data to Banner tables (sarulmd, sarulmu, sarulml, sarulps).</td>
+
+          </tr>
+
+        </tbody>
+</table>
+</div>
+
+  </div>
+
+</div></div></section></main></body></html>

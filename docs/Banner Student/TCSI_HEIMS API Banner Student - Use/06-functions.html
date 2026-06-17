@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>TCSI/HEIMS API Banner Student - Use — Functions</title><style>body{font-family:-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;line-height:1.55;color:#1a1a1a;max-width:920px;margin:0 auto;padding:24px}header{border-bottom:2px solid #5a16d6;margin-bottom:8px}h1{color:#3a0ca3}h2,h3,h4,h5,h6{margin-top:1.6em}.crumb{color:#666;font-size:13px;margin:0}.meta{color:#888;font-size:12px}nav.toc{background:#f6f4fc;border:1px solid #e3dcf5;border-radius:8px;padding:12px 18px;margin:18px 0}nav.toc h2{margin:.2em 0}nav.toc ul{list-style:none;padding-left:0}nav.toc a{text-decoration:none;color:#5a16d6}section{margin:1.2em 0;padding-top:.4em}img{max-width:100%;height:auto}table{border-collapse:collapse}td,th{border:1px solid #ccc;padding:4px 8px}code,pre{background:#f4f4f4;border-radius:4px}pre{padding:10px;overflow:auto}</style></head><body><header><p class="crumb">Banner Student › TCSI/HEIMS API Banner Student - Use</p><h1>TCSI/HEIMS API Banner Student - Use — Functions</h1><p class="meta">Source: <a href="https://resources.elluciancloud.com/r/bundle/banner_student_acn_use_ascgenheimstcsiapi">https://resources.elluciancloud.com/r/bundle/banner_student_acn_use_ascgenheimstcsiapi</a> &middot; Retrieved 2026-06-17</p></header><nav class="toc"><h2>Contents</h2><ul><li style="margin-left:0px"><a href="#t-370">Functions</a></li><li style="margin-left:16px"><a href="#t-380">SKKREPT functions</a></li><li style="margin-left:32px"><a href="#t-390">FN_ADDR_LOC</a></li><li style="margin-left:32px"><a href="#t-400">F_BUSINESS_DATE</a></li><li style="margin-left:32px"><a href="#t-410">FN_CHECK_SYS_PARAM</a></li><li style="margin-left:32px"><a href="#t-420">F_GET_CENSUS_DATE</a></li><li style="margin-left:32px"><a href="#t-430">F_CENSUS_DATE_FOR_SSBSECT</a></li><li style="margin-left:32px"><a href="#t-440">F_GET_END_DATE</a></li><li style="margin-left:32px"><a href="#t-450">F_GET_START_DATE</a></li><li style="margin-left:32px"><a href="#t-460">FN_SD_ADDRESS</a></li><li style="margin-left:32px"><a href="#t-470">F_GET_NOMINAL_CENSUS_DATE</a></li><li style="margin-left:16px"><a href="#t-480">SKKTCSI functions</a></li><li style="margin-left:32px"><a href="#t-490">FN_CHECK_AGGREGATED_ELIGIBLE</a></li><li style="margin-left:32px"><a href="#t-500">FN_CHECK_DEFERRED_EXIST</a></li><li style="margin-left:32px"><a href="#t-510">FN_CHECK_EXCLUDE_INTL_STUDENT</a></li><li style="margin-left:32px"><a href="#t-520">FN_CHECK_TBRACCD_DETAIL</a></li><li style="margin-left:32px"><a href="#t-530">FN_FETCH_CENSUS_DATE</a></li><li style="margin-left:32px"><a href="#t-540">FN_GET_CATALOG_TERM_CODE</a></li><li style="margin-left:32px"><a href="#t-550">FN_GET_PROVIDER_TYPE</a></li></ul></nav><main><section id="t-370"><h2>Functions</h2><div class="content-locale-en-US content-locale-en"><div id="c_all_functions"><p class="shortdesc">Includes the list of all TCSI/HEIMS API functions.</p>
+
+  
+</div></div></section>
+<section id="t-380"><h3>SKKREPT functions</h3><div class="content-locale-en-US content-locale-en"><div id="c_common_functions"><p class="shortdesc">Several Australian products use the same functions, including HEIMS/TCSI, and are in the SKKREPT package.</p>
+
+  
+</div></div></section>
+<section id="t-390"><h4>FN_ADDR_LOC</h4><div class="content-locale-en-US content-locale-en"><div id="c_fn_addr_loc_function"><div class="body conbody"><p class="shortdesc">The <span class="keyword cmdname">FN_ADDR_LOC</span> function returns address details as either a city or a DEEWR-codified location, for either the earliest record or latest record in SPRADDR, as specified in the arguments passed to the function.</p>
+
+    <pre class="pre"><span class="keyword cmdname">fn_addr_loc</span>
+(<span class="keyword parmname">SKBRSYS_PARAM_NAME</span>,
+ <span class="keyword parmname">SPRADDR_PIDM</span>,
+ <span class="keyword parmname">SKBRSYS_ACYR_CODE</span>, 
+ <span class="keyword parmname">p_loc_city</span>,
+ <span class="keyword parmname">p_min_max</span>) 
+(<span class="keyword parmname">SKBRSYS</span>,
+ <span class="keyword parmname">Student_PIDM</span>,
+ <span class="keyword parmname">Academic year</span>,
+ <span class="keyword parmname">Location/City</span>,
+ <span class="keyword parmname">Earliest/Latest record</span>)</pre>
+
+    <p class="p">If the Location/City parameter is left null in the arguments, the function checks for an address record type (using spraddr_atyp_code) passed to the function as the first argument (that is, it checks for matching values for that address type on SKBRSYS).</p>
+
+    <p class="p">If that address type is found on SPRADDR for that student, and if the nation code of the address (spraddr_natn_code) matches the home nation code in SKBRSYS (for the parameter <span class="keyword parmname">HOME-NATN</span>), the function concatenates A and the address postcode (spraddr_zip).</p>
+
+    <p class="p">If the address' nation code is not within the home nation, the function concatenates X and the address' nation code (spraddr_natn_code).</p>
+
+    <p class="p">Specifying MIN in the earliest/latest record parameter causes the function to retrieve the minimum address sequence number (spraddr_seqno), and specifying MAX causes it to retrieve the maximum address sequence number.</p>
+
+    <p class="p">If the Location/City parameter is specified as LOC, the function returns the city of the address (spraddr_city) rather than the postcode. No modification of the city name occurs. It is returned exactly as it is found on spraddr_city.</p>
+
+  </div>
+
+</div></div></section>
+<section id="t-400"><h4>F_BUSINESS_DATE</h4><div class="content-locale-en-US content-locale-en"><div id="c_f_business_date_function"><div class="body conbody"><p class="shortdesc">The <span class="keyword cmdname">F_BUSINESS_DATE</span> function is used when calculating census dates to return a date for a CRN that is not a weekend or public holiday (business date).</p>
+
+    <p class="p">The <span class="keyword cmdname">F_BUSINESS_DATE</span> function is also used when evaluating whether a student who is eligible for a VET FEE-HELP loan has passed the legislated cooling-off period between enrollment and submission of a request for a VET FEE-HELP loan.</p>
+
+    <pre class="pre"><span class="keyword cmdname">F_BUSINESS_DATE</span> 
+(<span class="keyword parmname">p_date_in</span>,
+ <span class="keyword parmname">p_acyr_code</span>,
+ <span class="keyword parmname">p_reg_census_ind</span>)</pre>
+
+    <p class="p">First, the function checks whether the input date (<span class="keyword parmname">p_date_in</span>) is a weekend by using the new WEEKEND system parameter value in SKARSYS for the current academic year (<span class="keyword parmname">p_acyr_code</span>).</p>
+
+    <p class="p">If the <span class="keyword parmname">p_reg_census_ind</span> parameter value is C and if the <span class="keyword parmname">WEEKEND</span> parameter value in SKARSYS is NULL, the WEEKEND check is not performed.</p>
+
+    <p class="p">If the <span class="keyword parmname">p_reg_census_ind</span> parameter value is E and the <span class="keyword parmname">WEEKEND</span> parameter value in SKARSYS is NULL, the WEEKEND check assumes that the <span class="keyword parmname">WEEKEND</span> parameter value is SAT,SUN (Saturday and Sunday).</p>
+
+    <p class="p">If the input date is part of a weekend, the first output date will be the next business day after the weekend.</p>
+
+    <p class="p">The next step is to check whether that first output date is a public holiday.</p>
+
+    <p class="p">For the holiday check, the <span class="keyword parmname">PUBLIC-HOLIDAY-USAGE</span> parameter value in SKARSYS for the academic year (<span class="keyword parmname">p_acyr_code</span> ) is used to determine whether the holiday check is required.</p>
+
+    <p class="p">The <span class="keyword parmname">PUBLIC-HOLIDAY-USAGE</span> parameter check is based on the academic year of the term code selected on the ASC_ECAF_SELECT_PROGRAM page.</p>
+
+    <p class="p">Date checking against rules in SSREXCL is based on the year of the date that is passed to the function. For the enrollment check it is a year of either SFRSTCA_ADD_DATE or TBRACCD_ENTRY_DATE. For the census date check it is the year of the calculated census date.</p>
+
+    <p class="p">When a public holiday is recorded for a year on the Schedule Exclusion Rules form (SSAEXCL), this function recognises the public holiday regardless of the part of term.</p>
+
+    <p class="p">The public holiday check is able to be used when working out census dates and when checking whether a student requesting a VET FEE-HELP loan has been enrolled for sufficient time to be able to make that request.</p>
+
+    <p class="p">If the <span class="keyword parmname">p_reg_census_ind</span> value is C and the PUBLIC-HOLIDAY-USAGE value in SKARSYS is CENSUS, or if the<span class="keyword parmname"> p_reg_census_ind</span> value is E and PUBLIC-HOLIDAYUSAGE value in SKARSYS is ECAF, the holiday check is done and the appropriate business date is returned.</p>
+
+    <p class="p">If the PUBLIC-HOLIDAY-USAGE value in SKARSYS is NULL, the holiday check is not performed.</p>
+
+  </div>
+
+</div></div></section>
+<section id="t-410"><h4>FN_CHECK_SYS_PARAM</h4><div class="content-locale-en-US content-locale-en"><div id="c_fn_check_sys_param_function"><div class="body conbody"><p class="shortdesc">The <span class="keyword cmdname">FN_CHECK_SYS_PARAM</span> function checks values on SKBRSYS for a given academic year and parameter name. If the check value passed in the function matches a value on SKBRSYS for that parameter and year, then the function returns Y. If not, the function returns N.</p>
+
+    <pre class="pre"><span class="keyword cmdname">FN_CHECK_SYS_PARAM</span> 
+(<span class="keyword parmname">SKBRSYS_PARAM_NAME</span>,
+ <span class="keyword parmname">SKBRSYS_VALUE</span>,
+ <span class="keyword parmname">SKBRSYS_VALUE</span>,
+<span class="keyword parmname">SKBRSYS_ACYR_CODE</span>) 
+(<span class="keyword parmname">SKARSYS parameter name</span>,
+ <span class="keyword parmname">SKARSYS parameter value</span>,
+ value to be checked,
+ <span class="keyword parmname">SKARSYS academic year</span>)</pre>
+
+  </div>
+
+</div></div></section>
+<section id="t-420"><h4>F_GET_CENSUS_DATE</h4><div class="content-locale-en-US content-locale-en"><div id="c_f_get_census_date_function"><div class="body conbody"><p class="shortdesc">The <span class="keyword cmdname">F_GET_CENSUS_DATE</span> function returns the census date for the student in the unit of study based on the actual start date and the duration of the unit of study (CRN).</p>
+
+    <pre class="pre"><span class="keyword cmdname">F_GET_CENSUS_DATE</span> 
+(<span class="keyword parmname">p_start_date_in</span>,
+ <span class="keyword parmname">p_end_date_in</span>,
+ <span class="keyword parmname">p_acyr_code_in</span>)</pre>
+
+    <p class="p">For calculating the census date, the <span class="keyword parmname">CENSUS_DATE_PERCENTAGE</span> parameter value for the academic year of the term of the CRN is used to determine what percent of the total duration is considered to be the census date.</p>
+
+    <p class="p">The number of days between the actual start date (<span class="keyword parmname">p_start_date_in</span>) and the actual end date (<span class="keyword parmname">p_end_date_in</span>) is calculated.</p>
+
+    <p class="p">The <span class="keyword parmname">CENSUS_DATE_PERCENTAGE</span> parameter value is used to determine the census days count.</p>
+
+    <p class="p">The census days count is added to the actual start date to determine the actual census date.</p>
+
+    <p class="p">The <span class="keyword cmdname">F_BUSINESS_DATE</span> function is used to determine whether the calculated census date is a holiday or a weekend and the appropriate date is returned.</p>
+
+    <p class="p">If a nominal census date has been retrieved for the student and CRN, but that date goes beyond the end date of the CRN, the calculated census date will be used instead.</p>
+
+  </div>
+
+</div></div></section>
+<section id="t-430"><h4>F_CENSUS_DATE_FOR_SSBSECT</h4><div class="content-locale-en-US content-locale-en"><div id="c_f_census_date_for_ssbsect_function"><div class="body conbody"><p class="shortdesc">The <span class="keyword cmdname">F_CENSUS_DATE_FOR_SSBSECT</span> function returns the census date to be inserted into the <span class="ph uicontrol">Census One Freeze Date</span> (SSBSECT_CENSUS_ENRL_DATE) field for traditional CRNs.</p>
+
+    <pre class="pre"><span class="keyword cmdname">F_CENSUS_DATE_FOR_SSBSECT</span> 
+(<span class="keyword parmname">p_crn_in</span>,
+ <span class="keyword parmname">p_term_code_in</span>)</pre>
+
+    <p class="p">It is used in the ST_SSRMEET_INSERTSKRAREG_AS trigger and is called to get the census date when a student registration does not exist and when changes are made to the SSRMEET (Section Meeting Times Repeating Table) record.</p>
+
+    <p class="p">It gets the correct academic year value for the term code of the CRN, then it calls the <span class="keyword cmdname">F_GET_START_DATE,F_GET_END_DATE</span> and <span class="keyword cmdname">F_GET_CENSUS_DATE</span> functions to determine the actual start date, actual end date, and census date for the traditional CRN and term code, and returns the census date.</p>
+
+  </div>
+
+</div></div></section>
+<section id="t-440"><h4>F_GET_END_DATE</h4><div class="content-locale-en-US content-locale-en"><div id="c_f_get_end_date_function"><div class="body conbody"><p class="shortdesc">The <span class="keyword cmdname">F_GET_END_DATE</span> function returns the actual end date of the unit of study (CRN) based on the CRN and TERM_CODE for both OLR and traditional CRNs.</p>
+
+    <pre class="pre"><span class="keyword cmdname">F_GET_END_DATE</span> 
+(<span class="keyword parmname">p_term_code_in</span>,
+ <span class="keyword parmname">p_crn_in</span>,
+ <span class="keyword parmname">p_end_date_in</span>,
+ <span class="keyword parmname">p_no_units_in</span>)</pre>
+
+    <p class="p">For OLR CRNs, the function returns the completion date value from SFRAREG.</p>
+
+    <div class="p">For traditional CRNs, the following steps are used to determine the actual end date if the value for the CENSUS-USE-SSRMEET system parameter is Y for the academic year of the term of the CRN:<ul class="ul"> <li class="li">The function gets the maximum end date from SSRMEET (MAX(SSRMEET_END_DATE)) for the CRN and term code.</li>
+
+      <li class="li">If the maximum end date from SSRMEET is null, it gets the part of term end date from SSBSECT (SSBSECT_PTRM_END_DATE) for the CRN and term code, and that date is returned as the actual end date.</li>
+ <li class="li">If the maximum end date from SSRMEET is not null, it gets the list of DAYS defined in SSRMEET and determines whether the maximum end date from SSRMEET DAY is in the DAYS list. If so, it returns that date as the actual end date.</li>
+
+      <li class="li">If the maximum end date from SSRMEET DAY is not in the DAYS list, it gets the previous date from SSRMEET that is in the DAYS list and returns that date as the actual end date.</li>
+ </ul>
+</div>
+
+    <p class="p">If the value for the <span class="keyword parmname">CENSUS-USE-SSRMEET</span> system parameter is some other value, including blank or null, or if the <span class="keyword parmname">CENSUS-USE-SSRMEET</span> system parameter does not exist for the academic year of the term of the CRN, the function gets the part of term end date from SSBSECT (SSBSECT_PTRM_END_DATE) for the CRN and term code, and that date is returned as the actual end date.</p>
+
+  </div>
+
+</div></div></section>
+<section id="t-450"><h4>F_GET_START_DATE</h4><div class="content-locale-en-US content-locale-en"><div id="c_f_get_start_date"><div class="body conbody"><p class="shortdesc">The <span class="keyword cmdname">F_GET_START_DATE</span> function returns the actual start date of the unit of study (CRN) based on CRN and TERM_CODE for both OLR and traditional CRNs.</p>
+
+    <pre class="pre"><span class="keyword cmdname">F_GET_START_DATE</span> 
+(<span class="keyword parmname">p_term_code_in</span>,
+ <span class="keyword parmname">p_crn_in</span>,
+ <span class="keyword parmname">p_start_date_in</span>,
+ <span class="keyword parmname">p_no_of_units_in</span>)</pre>
+
+    <p class="p">For OLR CRNs, the function returns the start date value from the baseline Additional Registration (SFRAREG) table.</p>
+
+    <div class="p">For traditional CRNs, the following steps are used to determine the actual start date if the value for the CENSUS-USE-SSRMEET system parameter is Y for the academic year of the term of the CRN.<ul class="ul"> <li class="li">The function gets the minimum start date from SSRMEET (MIN(SSRMEET_START_DATE)) for the CRN and term code.</li>
+
+      <li class="li">If the minimum start date from SSRMEET is null, it gets the part of term start date from SSBSECT (SSBSECT_PTRM_START_DATE) for the CRN and term code, and that date is returned as the actual start date.</li>
+ <li class="li">If the minimum start date from SSRMEET is not null, it gets the list of DAYS defined in SSRMEET and determines whether the minimum start date from SSRMEET DAY is in the DAYS list. If so, it returns that date as the actual start date.</li>
+
+      <li class="li">If the minimum start date from SSRMEET DAY is not in the DAYS list, it gets the next date from SSRMEET that is in the DAYS list and returns that date as the actual start date.</li>
+ </ul>
+</div>
+
+    <p class="p">If the value for the <span class="keyword parmname">CENSUS-USE-SSRMEET</span> system parameter is some other value, including blank or null, or if the <span class="keyword parmname">CENSUS-USE-SSRMEET</span> system parameter does not exist for the academic year of the term of the CRN, the function gets the part of term start date from SSBSECT (SSBSECT_PTRM_START_DATE) for the CRN and term code, and that date is returned as the actual start date.</p>
+
+  </div>
+
+</div></div></section>
+<section id="t-460"><h4>FN_SD_ADDRESS</h4><div class="content-locale-en-US content-locale-en"><div id="c_fn_sd_address_function"><div class="body conbody"><p class="shortdesc">The <span class="keyword cmdname">FN_SD_ADDRESS</span> function checks if the last six characters of <span class="keyword parmname">p_string</span> are POSTAL. If so, it gets the SKBRSYS_VALUE corresponding to the <span class="keyword parmname">SKBRSYS_PARAM_VALUE= 'POSTAL_ADDR_TYPE'</span> and for passed <span class="keyword parmname">SKBRSYS_ACYR_CODE</span>. </p>
+
+    <p class="p">The function also checks if the last three characters of <span class="keyword parmname">p_string</span> are RES. If so, it gets the SKBRSYS_VALUE corresponding to the <span class="keyword parmname">SKBRSYS_PARAM_VALUE='RESIDENTIAL_ADDR_TYPE'</span> and for the passed <span class="keyword parmname">SKBRSYS_ACYR_CODE</span>.</p>
+
+    <pre class="pre"><span class="keyword cmdname">fn_sd_address</span> 
+(<span class="keyword parmname">SPRIDEN_PIDM</span>,
+ <span class="keyword parmname">P_STRING</span>,
+ <span class="keyword parmname">SKBRSYS_ACYR_CODE</span>)
+ (<span class="keyword parmname">Student PIDM</span>,
+ <span class="keyword parmname">address type</span>,
+ <span class="keyword parmname">SKBRSYS academic year</span>)</pre>
+
+    
+<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" class="table" frame="border" border="1" rules="all"><colgroup><col style="width:48.78048780487806%"><col style="width:51.21951219512195%"></colgroup><thead class="thead" style="text-align:left;vertical-align:bottom;">
+          <tr class="row">
+            <th class="entry cellrowborder" style="text-align:left;vertical-align:bottom;" id="d609e100">Condition</th>
+
+            <th class="entry cellrowborder" style="text-align:left;vertical-align:bottom;" id="d609e103">Outcome</th>
+
+          </tr>
+
+        </thead>
+<tbody class="tbody">
+          <tr class="row">
+            <td class="entry cellrowborder" style="text-align:left;vertical-align:top;" headers="d609e100 ">The p_string value is SPRADDR_STREET_LINE1_POSTAL or SPRADDR_STREET_LINE1_RES</td>
+
+            <td class="entry cellrowborder" style="text-align:left;vertical-align:top;" headers="d609e103 ">The function returns a corresponding SPRADDR_STREET_LINE1</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry cellrowborder" style="text-align:left;vertical-align:top;" headers="d609e100 ">The p_string value is SPRADDR_STREET_LINE2_POSTAL or SPRADDR_STREET_LINE2_RES</td>
+
+            <td class="entry cellrowborder" style="text-align:left;vertical-align:top;" headers="d609e103 ">The function returns a corresponding SPRADDR_STREET_LINE2</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry cellrowborder" style="text-align:left;vertical-align:top;" headers="d609e100 ">The p_string value is SPRADDR_CITY_POSTAL or SPRADDR_CITY_RES</td>
+
+            <td class="entry cellrowborder" style="text-align:left;vertical-align:top;" headers="d609e103 ">The function returns the corresponding SPRADDR_CITY</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry cellrowborder" style="text-align:left;vertical-align:top;" headers="d609e100 ">The p_string value is SPRADDR_STAT_CODE_POSTAL or SPRADDR_STAT_CODE_RES</td>
+
+            <td class="entry cellrowborder" style="text-align:left;vertical-align:top;" headers="d609e103 ">The function returns the corresponding SPRADDR_STAT_CODE</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry cellrowborder" style="text-align:left;vertical-align:top;" headers="d609e100 ">The p_string value is SPRADDR_ZIP_POSTAL or SPRADDR_ZIP_RES</td>
+
+            <td class="entry cellrowborder" style="text-align:left;vertical-align:top;" headers="d609e103 ">The function returns the corresponding SPRADDR_ZIP</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry cellrowborder" style="text-align:left;vertical-align:top;" headers="d609e100 ">The p_string value is STVNATN_NATION_POSTAL or STVNATN_NATION_RES and the corresponding SPRADDR_NATN_CODE is not null</td>
+
+            <td class="entry cellrowborder" style="text-align:left;vertical-align:top;" headers="d609e103 ">The function returns a STVNATN_NATION from STVNATN where STVNATN_CODE=SPRADDR_NATN_CODE</td>
+
+          </tr>
+
+        </tbody>
+</table>
+</div>
+
+  </div>
+
+</div></div></section>
+<section id="t-470"><h4>F_GET_NOMINAL_CENSUS_DATE</h4><div class="content-locale-en-US content-locale-en"><div id="c_f_get_nominal_census_date_function"><div class="body conbody"><p class="shortdesc">After the census date is calculated, the <span class="keyword cmdname">F_GET_NOMINAL_CENSUS_DATE</span> function retrieves the first nominal census date that is on or after the calculated census date. Nominal census dates should be recorded on the Report Element Values (SKARVAL) page for the CENSUS-DATE element code.</p>
+
+    <p class="p"><span class="keyword">Ellucian</span> expects that nominal census date values may be different for each institution so no seed data is delivered for SKARVAL. However, the CENSUS-DATE element code is delivered as seed data for the Report Element Validation (SKVRVAL) page.</p>
+
+    <p class="p">If there is not sufficient data in SKARVAL for the function to be able to retrieve a nominal census date, then the calculated census date is used.</p>
+
+    <p class="p">This function is used only if the value of the <span class="keyword parmname">USE-NOMINAL-CENSUS</span> system parameter is Y. If the value of the <span class="keyword parmname">USE-NOMINAL-CENSUS</span> system parameter is any other value, including blank/null, or if the <span class="keyword parmname">USE-NOMINAL-CENSUS</span> system parameter does not exist for the academic year of the term of the CRN, then the calculated census date is used.</p>
+
+    <p class="p">If the <span class="keyword parmname">USE-NOMINAL-CENSUS</span> system parameter is set to Y, the function calculates the nominal census dates for all CRNs in terms for the corresponding academic year, whether the CRNs are Open Learning Registration CRNs or traditional CRNs using parts of term.</p>
+
+  </div>
+
+</div></div></section>
+<section id="t-480"><h3>SKKTCSI functions</h3><div class="content-locale-en-US content-locale-en"><div id="c_skktcsi_functions"><p class="shortdesc">Functions that are only used for TCSI/HEIMS processing are in the SKKTCSI package. </p>
+
+  
+</div></div></section>
+<section id="t-490"><h4>FN_CHECK_AGGREGATED_ELIGIBLE</h4><div class="content-locale-en-US content-locale-en"><div id="c_fn_check_aggregated_eligible"><div class="body conbody"><p class="shortdesc">The <span class="keyword cmdname">FN_CHECK_AGGREGATED_ELIGIBLE</span> function checks whether the student is eligible for Aggregated Award and returns Y or N, based the parameter values that you provide. Value Y implies that the student is eligible for Aggregated Award and N implies that the student is not eligible for Aggregated Award.</p>
+
+    <pre class="pre"><span class="keyword cmdname">FN_CHECK_AGGREGATED_ELIGIBLE</span>
+(<span class="keyword parmname">p_org_pidm</span>,
+ <span class="keyword parmname">p_stud_pidm</span>,
+ <span class="keyword parmname">p_course_code</span>, 
+ <span class="keyword parmname">p_program</span>,
+ <span class="keyword parmname">p_min_max</span> 
+(<span class="keyword parmname">p_acyr</span>,
+ <span class="keyword parmname">p_degc</span>,
+ <span class="keyword parmname">p_key_seq</span>)
+</pre>
+
+    <p class="p">The function checks whether the student record exists in the bulk table and is already reported to TCSI. Also, the function checks if the student’s degree record exists and matches with the Aggregated Award eligibility system parameters.</p>
+
+  </div>
+
+</div></div></section>
+<section id="t-500"><h4>FN_CHECK_DEFERRED_EXIST</h4><div class="content-locale-en-US content-locale-en"><div id="c_fn_check_deferred_exist"><div class="body conbody"><p class="shortdesc">The <span class="keyword cmdname">FN_CHECK_DEFERRED_EXIST</span> function checks whether students have any deferred amount that exists for any unit of study in same census date. </p>
+
+    <pre class="pre"><span class="keyword cmdname">FN_CHECK_DEFERRED_EXIST</span>
+(<span class="keyword parmname">p_org_pidm</span>,
+ <span class="keyword parmname">p_term_code</span>,
+ <span class="keyword parmname">p_seq_no</span>, 
+ <span class="keyword parmname">p_crn</span>,
+ <span class="keyword parmname">p_report_year</span> 
+(<span class="keyword parmname">p_rate_code</span>,
+ <span class="keyword parmname">p_ptrm_code</span>)
+</pre>
+
+    <p class="p">The function returns Y if the deferred amount is greater than zero, N, if the deferred amount is zero, and D, if the fee assessment is not run.</p>
+
+  </div>
+
+</div></div></section>
+<section id="t-510"><h4>FN_CHECK_EXCLUDE_INTL_STUDENT</h4><div class="content-locale-en-US content-locale-en"><div id="c_fn_check_exclude_intl_student"><div class="body conbody"><p class="shortdesc">The <span class="keyword cmdname">FN_CHECK_EXCLUDE_INTL_STUDENT</span> function checks whether an International student or the student’s course details should be excluded from TCSI reporting or not.</p>
+
+    <pre class="pre"><span class="keyword cmdname">FN_CHECK_EXCLUDE_INTL_STUDENT</span>
+(<span class="keyword parmname">p_pidm</span>,
+ <span class="keyword parmname">p_lcur_program</span>,
+ <span class="keyword parmname">p_lcur_term_code</span>, 
+ <span class="keyword parmname">p_crn</span>,
+ <span class="keyword parmname">p_lcur_rate_code</span> 
+(<span class="keyword parmname">p_report_year</span>)
+</pre>
+
+    <p class="p">The function returns Y to exclude and N to not exclude.  The function checks if the student’s rate code belongs to the International category or not. Also, the function checks the for the student’s course TCSI Exclude indicator is set to Y.</p>
+
+  </div>
+
+</div></div></section>
+<section id="t-520"><h4>FN_CHECK_TBRACCD_DETAIL</h4><div class="content-locale-en-US content-locale-en"><div id="c_fn_check_tbraccd_detail_function"><div class="body conbody"><p class="shortdesc">The <span class="keyword cmdname">FN_CHECK_TBRACCD_DETAIL</span> function retrieves detail codes based on system parameters.</p>
+
+    <pre class="pre"><span class="keyword cmdname">FN_CHECK_TBRACCD_DETAIL</span>
+(<span class="keyword parmname">(p_detail_code,</span>,
+ <span class="keyword parmname">p_acyr_code</span>)
+</pre>
+
+    <p class="p">The function checks whether the detail code (p_detail_code) of a transaction on a student’s account is listed for specific system parameters for the academic year (p_acyr_code). It returns Y if the detail code is listed and N if it is not.</p>
+
+    <div class="p">The function checks for the following system parameters for values:<ul class="ul"> <li class="li"><code class="ph codeph">AMOUNT_PD_HECS</code></li>
+ <li class="li"><code class="ph codeph">TOTAL_AMOUNT_HECS</code></li>
+ <li class="li"><code class="ph codeph">FEE_HELP_LOAN_FEE</code></li>
+ <li class="li"><code class="ph codeph">AMOUNT_PD_FEE</code></li>
+ <li class="li"><code class="ph codeph">TOTAL_AMOUNT_FEES</code></li>
+ </ul>
+</div>
+
+  </div>
+
+</div></div></section>
+<section id="t-530"><h4>FN_FETCH_CENSUS_DATE</h4><div class="content-locale-en-US content-locale-en"><div id="c_fn_fetch_census_date"><div class="body conbody"><p class="shortdesc">The <span class="keyword cmdname">FN_FETCH_CENSUS_DATE</span> function gets the census date for a unit of study.</p>
+
+    <pre class="pre"><span class="keyword cmdname">FN_FETCH_CENSUS_DATE</span>
+(<span class="keyword parmname">p_pidm</span>,
+ <span class="keyword parmname">p_term_code</span>,
+ <span class="keyword parmname">p_crn</span>, 
+ <span class="keyword parmname">p_crn</span>,
+ <span class="keyword parmname">p_ptrm_code</span> 
+(<span class="keyword parmname">p_report_year</span>)
+</pre>
+
+    <p class="p">The function returns a DATE value based on the parameters that you provide. If the value for Part of Term (p_ptrm_code) is null, the function returns the skrareg_calc_census_date column value. If Part of Term is not null, and the institution is a Non-University, the function returns the ssbsect_census_enrl_date column value. Otherwise, the function returns the sobptrm_census_date column value as the census date. </p>
+
+  </div>
+
+</div></div></section>
+<section id="t-540"><h4>FN_GET_CATALOG_TERM_CODE</h4><div class="content-locale-en-US content-locale-en"><div id="c_fn_get_catalog_term_function"><div class="body conbody"><p class="shortdesc">Returns the catalog term for the student’s learner curriculum and uses it to extract the correct value for Provider Type and BOTP indicator from the SKADRCO page.</p>
+
+    <pre class="pre"><span class="keyword cmdname">FN_GET_CATALOG_TERM_CODE</span>
+(<span class="keyword parmname">(p_pidm,</span>,
+<span class="keyword parmname">p_report_year,</span>
+<span class="keyword parmname">p_lcur_program,</span>
+<span class="keyword parmname">p_lcur_key_seqno</span>)
+</pre>
+
+    <p class="p">The function returns the catalog term for the student’s latest active, current, learner curriculum associated with their study path where the term code of the curriculum is earlier than or equal to the latest term in the reporting year.</p>
+
+  </div>
+
+</div></div></section>
+<section id="t-550"><h4>FN_GET_PROVIDER_TYPE</h4><div class="content-locale-en-US content-locale-en"><div id="c_fn_get_provider_type_function"><div class="body conbody"><p class="shortdesc">Returns the provider type for the student’s study path.</p>
+
+    <pre class="pre"><span class="keyword cmdname">FN_GET_PROVIDER_TYPE</span>
+(<span class="keyword parmname">p_pidm</span>,
+ <span class="keyword parmname">p_program</span>,
+ <span class="keyword parmname">p_term</span>, 
+ <span class="keyword parmname">p_key_seqno</span>,
+ <span class="keyword parmname">p_rate_code</span> 
+(<span class="keyword parmname">p_stsp_resd_code</span>,
+ <span class="keyword parmname">p_stdn_resd_code</span>)
+</pre>
+
+    <p class="p">If the student’s program is in the SKADRCO page with the provider type of 'HEP', then the system returns the value of 'HEP'. </p>
+
+    <p class="p">If the student’s program is in the SKADRCO page with the provider type of 'VET' </p>
+
+    <p class="p">AND the HELP type for that program is either 'V' (VET FEE-HELP) or 'L' (VET Student Loan) </p>
+
+    <p class="p">AND the student’s citizenship code matches a value for the VFH-CITZ-ELIGIBILITY system parameter for the reporting year </p>
+
+    <p class="p">AND either the student’s residency code on their study path or their residency code on their general learner record matches a value for the ECAF_RESD_ELIGIBLE system parameter for the reporting year </p>
+
+    <p class="p">THEN the system returns the value of 'VET'. </p>
+
+  </div>
+
+</div></div></section></main></body></html>

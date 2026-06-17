@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Banner Ethos API - Release Notes — Ethos API 9.41.2</title><style>body{font-family:-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;line-height:1.55;color:#1a1a1a;max-width:920px;margin:0 auto;padding:24px}header{border-bottom:2px solid #5a16d6;margin-bottom:8px}h1{color:#3a0ca3}h2,h3,h4,h5,h6{margin-top:1.6em}.crumb{color:#666;font-size:13px;margin:0}.meta{color:#888;font-size:12px}nav.toc{background:#f6f4fc;border:1px solid #e3dcf5;border-radius:8px;padding:12px 18px;margin:18px 0}nav.toc h2{margin:.2em 0}nav.toc ul{list-style:none;padding-left:0}nav.toc a{text-decoration:none;color:#5a16d6}section{margin:1.2em 0;padding-top:.4em}img{max-width:100%;height:auto}table{border-collapse:collapse}td,th{border:1px solid #ccc;padding:4px 8px}code,pre{background:#f4f4f4;border-radius:4px}pre{padding:10px;overflow:auto}</style></head><body><header><p class="crumb">Banner Ethos API Administration › Banner Ethos API - Release Notes</p><h1>Banner Ethos API - Release Notes — Ethos API 9.41.2</h1><p class="meta">Source: <a href="https://resources.elluciancloud.com/r/bundle/banner_ethos_api_rel_release_notes">https://resources.elluciancloud.com/r/bundle/banner_ethos_api_rel_release_notes</a> &middot; Retrieved 2026-06-17</p></header><nav class="toc"><h2>Contents</h2><ul><li style="margin-left:0px"><a href="#t-60">Ethos API 9.41.2</a></li><li style="margin-left:16px"><a href="#t-70">Integration API Release 9.41.2</a></li><li style="margin-left:16px"><a href="#t-80">Student API Release 9.41.2</a></li></ul></nav><main><section id="t-60"><h2>Ethos API 9.41.2</h2></section>
+<section id="t-70"><h3>Integration API Release 9.41.2</h3><div class="content-locale-en-US content-locale-en"><div id="c_banner_integration_api_9412"><div class="body conbody"><p class="shortdesc">The <span class="keyword">Banner Integration API</span> 9.41.2 release includes minor fixes for API designer.</p>
+
+    <p class="p"><span class="keyword">Banner Integration API</span> 9.41.2 runs on <span class="keyword">Banner</span> platform version 11.6 and <span class="keyword">Banner Common DB Upgrade</span> 9.42.1.</p>
+
+    <div class="note tip"><span class="tiptitle">Tip:</span> For more information about the following APIs, see the <a class="xref ft-external-link" href="https://resources.elluciancloud.com/p/api_catalog" target="_blank" rel="noopener">Banner API Catalog</a>.</div>
+
+    <div class="section"><h2 class="title sectiontitle">New additional-study-path-data ProCode API for TCSI</h2>
+      
+      <p class="p">A new <span class="keyword apiname">additional-study-path-data</span> ProCode API has been created to manage data in <code class="ph codeph">SKASTSP/SKRSTSP</code> tables, which is required for TCSI (Tertiary Collection of Student Information) reporting in Australia. This API enables clients to capture and manage the "Actual Course Commencement Date" for student study paths, a critical data element for TCSI SA02 reporting requirements.</p>
+
+      <p class="p">The GET and PUT request methods are supported.</p>
+
+      <ul class="ul">
+        <li class="li">For GET requests, filter parameters are optional, and no placeholder path identifier is needed.<p class="p">Example:</p>
+<pre class="pre codeblock"><code>GET /IntegrationApi/api/student-additional-studypaths
+    ?studentId=A00036352
+    &amp;effectiveTerm=602610</code></pre><p class="p">Explanation:</p>
+<p class="p">This GET request retrieves student additional study path records using the provided filters. You can pass <code class="ph codeph">studentId</code>, <code class="ph codeph">studyPathKeySequence</code>, and, or <code class="ph codeph">effectiveTerm</code> in any combination.</p>
+</li>
+
+        <li class="li">For PUT requests, a path identifier is required, even though it serves  no functional purpose. The record to be updated is determined through query parameters.<p class="p">Example:</p>
+<pre class="pre codeblock"><code>PUT /IntegrationApi/api/student-additional-studypaths/id
+    ?studentId=A00036352
+    &amp;studyPathKeySequence=2
+    &amp;effectiveTerm=602610</code></pre><p class="p">Explanation:</p>
+<p class="p"><code class="ph codeph">id</code> is a required dummy value in the path. Any non‑empty value is acceptable. The update is performed based on the query parameters and not the path identifier.</p>
+</li>
+
+      </ul>
+
+      <p class="p">For detailed API specifications and usage examples, refer to the <a class="xref ft-external-link" href="https://resources.elluciancloud.com/p/api_catalog" target="_blank" rel="noopener">Banner API Catalog</a>.</p>
+
+      <p class="p">This enhancement addresses PE0008295 in the <span class="keyword">Ellucian Customer Center</span>.</p>
+
+    </div>
+
+    <div class="section"><h2 class="title sectiontitle">New operators in API Designer for query filtering</h2>
+      
+      <p class="p">The API Designer now supports three additional query operators for more flexible filtering:</p>
+
+      <ul class="ul">
+        <li class="li"><code class="ph codeph">BETWEEN</code> - Filters values within a specified range (For example, dates, numeric values)</li>
+
+        <li class="li"><code class="ph codeph">IN</code> - Returns results matching any value in a provided list.</li>
+
+        <li class="li"><code class="ph codeph">NOT IN</code> - Excludes results matching any value in a provided list.</li>
+
+      </ul>
+
+      <p class="p">All three operators can be used with literal values, database fields, custom fields, and model-as-function implementations.</p>
+
+      <p class="p">This enhancement addresses PE0008301 in the <span class="keyword">Ellucian Customer Center</span>.</p>
+
+    </div>
+
+    <div class="section"><h2 class="title sectiontitle">Parameter support for IN operator in filters</h2>
+      
+      <p class="p">The API Designer now supports parameterized values with the <code class="ph codeph">IN</code> operator when defining filters. Instead of hard coding lists of values, API developers can define reusable parameters that are resolved at query time, enabling more dynamic and maintainable filter definitions.</p>
+
+      <p class="p">This enhancement addresses PE0008303 in the <span class="keyword">Ellucian Customer Center</span>.</p>
+
+    </div>
+
+    <div class="section"><h2 class="title sectiontitle">Enhanced person-external-education API to v1.3.0</h2>
+      
+      <p class="p">The <span class="keyword apiname">person-external-education</span> EEDM API has been enhanced to support the v1.3.0 schema. This enhancement includes a new transcripts array and <code class="ph codeph">graduationDetails</code> property, enabling more comprehensive management of external education data.</p>
+
+      <p class="p">The GET, POST, and PUT request methods are supported.</p>
+
+      <p class="p">Key enhancements include:</p>
+
+      <ul class="ul">
+        <li class="li">BEP Event Updates - Business Event Publisher (BEP) events have been updated to include changes to details in the transcripts array, ensuring more accurate change notifications for external education records.</li>
+
+        <li class="li">New Triggers - New event triggers have been added based on updates to the following database fields: <ul class="ul">
+          <li class="li"><code class="ph codeph">SORHSCH_TRANS_RECV_DATE</code> - High school transcript received date</li>
+
+          <li class="li"><code class="ph codeph">SORPCOL_TRANS_RECV_DATE</code> - Previous college transcript received date</li>
+
+          <li class="li"><code class="ph codeph">SORPCOL_OFFICIAL_TRANS</code> - Official transcript indicator for previous college</li>
+
+          <li class="li"><code class="ph codeph">SHRTRIT_TRANS_DATE_RCVD</code> - Transfer institution transcript date received</li>
+
+          <li class="li"><code class="ph codeph">SHRTRIT_OFFICIAL_TRANS_IND</code> - Transfer institution official transcript indicator</li>
+
+          </ul>
+</li>
+
+      </ul>
+
+      <p class="p">The API now correctly identifies record updates and triggers the appropriate update event.</p>
+
+      <p class="p">For detailed API specifications and usage examples, refer to the <a class="xref ft-external-link" href="https://resources.elluciancloud.com/p/api_catalog" target="_blank" rel="noopener">Banner API Catalog</a>.</p>
+
+      <p class="p">This enhancement addresses PE0007460 in the <span class="keyword">Ellucian Customer Center</span>.</p>
+
+    </div>
+
+    <div class="section"><h2 class="title sectiontitle">Enhanced person-hold-types API to v16.0.0</h2>
+      
+      <p class="p">The <span class="keyword apiname">person-hold-types</span> Ethos GET API has been enhanced from v6.1 to v16.0.0, providing improved capabilities for managing and categorizing person hold types.</p>
+
+      <p class="p">The GET request method is supported.</p>
+
+      <p class="p">Key enhancements include:</p>
+
+      <ul class="ul">
+        <li class="li">Categories Array - A new optional <code class="ph codeph">categories</code> array property allows clients to understand the affected areas of a hold type (for example, registration, transcript, financial, graduation, grade, account receivables, application, compliance, academic, administrative, disciplinary, health).</li>
+
+        <li class="li">Academic Period Status - A new required <code class="ph codeph">academicPeriodStatus</code> property indicates whether a hold type is eligible for term-based (academic period) holds. Values include <code class="ph codeph">academicPeriodEligible</code> and <code class="ph codeph">academicPeriodIneligible</code>.</li>
+
+        <li class="li">Schema Updates - The root-level <code class="ph codeph">category</code> property has been removed, along with <code class="ph codeph">startOn</code> and <code class="ph codeph">endOn</code> fields to align with the v16.0.0 schema.</li>
+
+      </ul>
+
+      <p class="p">For detailed API specifications and usage examples, refer to the <a class="xref ft-external-link" href="https://resources.elluciancloud.com/p/api_catalog" target="_blank" rel="noopener">Banner API Catalog</a>.</p>
+
+      <p class="p">This enhancement addresses PE0008181 in the <span class="keyword">Ellucian Customer Center</span>.</p>
+
+    </div>
+
+    <div class="section"><h2 class="title sectiontitle">New security-class-assignments-adjustment-process API</h2>
+      
+      <p class="p">A new <span class="keyword apiname">security-class-assignments-adjustment-process</span> process API has been created to enable security administrators to add or remove security object assignments from security classes. This API follows the established pattern of the <span class="keyword apiname">security-user-profiles-adjustment-process</span> API, providing a consistent and reliable approach to managing security class configurations.</p>
+
+      <p class="p">The process API supports batch operations, allowing security administrators to make multiple security class assignment adjustments in a single API call, improving operational efficiency and reducing administrative overhead.</p>
+
+      <p class="p">For detailed API specifications and usage examples, refer to the <a class="xref ft-external-link" href="https://resources.elluciancloud.com/p/api_catalog" target="_blank" rel="noopener">Banner API Catalog</a>.</p>
+
+      <p class="p">This enhancement addresses PE0008091 in the <span class="keyword">Ellucian Customer Center</span>.</p>
+
+    </div>
+
+    <div class="section"><h2 class="title sectiontitle">Integration API 9.41.2 release record</h2>
+      
+      <p class="p">For more information about the enhancements and defect resolutions for this release, see the <span class="keyword">Ellucian Customer Center</span> <a class="xref ft-external-link" href="https://elluciansupport.service-now.com/customer_center?id=standard_ticket&amp;table=ellucian_product_release&amp;sys_id=807df4fd8350c71400ff9840ceaad3ef&amp;view=" target="_blank" rel="noopener">Banner Integration API 9.41.2</a> release page <span class="keyword wintitle">Related Enhancements</span> and <span class="keyword wintitle">Related Defects</span>.</p>
+
+    </div>
+
+    <div class="section"><h2 class="title sectiontitle">Supporting documentation</h2>
+      
+      <p class="p">To download supporting documentation for this release, click <span class="ph uicontrol">Attachments</span> <img class="image ell-icon" src="images/04-ethos-api-9-41-2-1.png" alt="" data-ft-asset-display-name="paperclip.png" data-ft-resource-id="U1hxGZ~0RYMIz4qOJhMPjg-uxRb0CDn~o_sqaDxyinjBg"> on this page and then select the associated compressed (<span class="ph filepath">.zip</span>) file.</p>
+
+    </div>
+
+    <div class="section"><h2 class="title sectiontitle">Additional supporting information</h2>
+      
+      <div class="p">The following resources provide information about all of the supported <span class="ph">Banner Ethos APIs</span>:<ul class="ul">
+        <li class="li"><span class="xref ft-internal-xlink" data-ft-warning="excluded-from-rendering" data-clusterid="id_ethos/beapi_release/c_eedm_support_info">Ellucian Ethos support information</span> attachment provides a complete list of all Ethos APIs, the operations supported by each (create, read, update, delete), and the versions of the <span class="keyword">Ellucian Ethos Data Model</span> supported by each API.</li>
+
+        <li class="li">The <a class="xref ft-external-link" href="https://resources.elluciancloud.com/bundle/dev_res_ref_api_catalog/page/c_about_api_catalog.html" target="_blank" rel="noopener">API Catalog</a> provides information about the APIs that are implemented for each version and product. To filter the data-model-based APIs in the documentation, filter the APIs using the API Type in the <span class="ph uicontrol">API Catalog</span>.</li>
+
+        <li class="li"><a class="xref ft-external-link" href="https://resources.elluciancloud.com/search?labelkey=category-api&amp;rpp=50&amp;sort.field=title&amp;sort.value=asc" target="_blank" rel="noopener">API documentation page</a> provides a list of all <span class="ph">Banner Ethos APIs</span> supported by <span class="keyword">Banner</span> and information on the pagination parameters, filters, and named queries supported by the APIs.</li>
+
+        <li class="li"><span class="xref ft-internal-xlink" data-ft-warning="excluded-from-rendering" data-clusterid="id_ethos/beapi_release/c_bnr_da_config">Configure Banner for file bulk loads</span> provides instructions to set up <span class="keyword">Banner</span> to run bulk jobs and to configure the communication with <span class="ph">Ellucian Ethos Data Access</span> through <span class="ph">Ethos Integration</span>.</li>
+
+        <li class="li">For <span class="ph">Banner Ethos API</span> troubleshooting information, file bulk load troubleshooting, and additional API setup information, see <a class="xref ft-external-link" href="https://elluciansupport.service-now.com/customer_center?id=kb_article_view&amp;sys_kb_id=3658308b87d381102f5a0dc4dabb3587" target="_blank" rel="noopener">Banner Ethos API - Additional Resources and Troubleshooting</a> (<cite class="cite">Article 000047659</cite>) in the <span class="ph">Ellucian Customer Center</span>.</li>
+
+        <li class="li">For a comprehensive understanding of GUIDs and information on the GUID generation process, see <span class="xref ft-internal-xlink" data-ft-warning="excluded-from-rendering" data-clusterid="id_ethos/beapi_release/c_generate_banner_guids">Generate Banner GUIDs</span> on the <span class="keyword">Ellucian Documentation site</span> and <cite class="cite">Article Number 000043988 - Understanding Ethos GUIDs in Banner Releases</cite> in the <span class="keyword">Ellucian Customer Center</span>.</li>
+
+        </ul>
+</div>
+
+    </div>
+
+  </div>
+
+</div></div></section>
+<section id="t-80"><h3>Student API Release 9.41.2</h3><div class="content-locale-en-US content-locale-en"><div id="c_banner_student_api_9412"><div class="body conbody"><p class="shortdesc">The <span class="keyword">Banner Student API</span> 9.41.2 release includes changes to improve product quality, upgrade to current releases of third-party software, improve stability, and maintain security standards.</p>
+
+    <p class="p"><span class="keyword">Banner Student API</span> 9.41.2 runs on <span class="keyword">Banner</span> platform version 11.6 and <span class="keyword">Banner Common DB Upgrade</span> 9.42.1.</p>
+
+    <div class="note tip"><span class="tiptitle">Tip:</span> For more information about the following APIs, see the <a class="xref ft-external-link" href="https://resources.elluciancloud.com/p/api_catalog" target="_blank" rel="noopener">Banner API Catalog</a>.</div>
+
+    <div class="section"><h2 class="title sectiontitle">Student API 9.42 release record</h2>
+      
+      <p class="p">For more information about the enhancements and defect resolutions for this release, see the <span class="keyword">Ellucian Customer Center</span> <a class="xref ft-external-link" href="https://elluciansupport.service-now.com/customer_center?id=standard_ticket&amp;table=ellucian_product_release&amp;sys_id=04d1a51c933b7a540ff9ff947aba1061&amp;view=" target="_blank" rel="noopener">Banner Student API 9.41.2</a> release page <span class="keyword wintitle">Related Enhancements</span> and <span class="keyword wintitle">Related Defects</span>.</p>
+
+    </div>
+
+    <div class="section"><h2 class="title sectiontitle">Enhanced proxy-student-memos API</h2>
+      
+      <p class="p">Batch processing capability is added to the <span class="keyword apiname">proxy-student-memos</span> API to significantly improve performance when inserting bulk student memo records. The new batch processing capability reduces processing time from over 8 hours to just a few minutes for large data volumes.</p>
+
+      <p class="p">A new QAPI endpoint has been added: <code class="ph codeph">/api/proxy-student-memos/qapi-create</code></p>
+
+      
+<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" class="table" frame="border" border="1" rules="all"><caption><span class="tablecap"><span class="table--title-label">Table 1. </span>Performance Improvements</span></caption><colgroup><col style="width:33.33333333333333%"><col style="width:66.66666666666666%"></colgroup><thead class="thead" style="text-align:left;">
+            <tr class="row">
+              <th class="entry nocellnorowborder" style="vertical-align:top;" id="d21002e109">Metric</th>
+
+              <th class="entry cell-norowborder" style="vertical-align:top;" id="d21002e112">Details</th>
+
+            </tr>
+
+          </thead>
+<tbody class="tbody">
+            <tr class="row">
+              <td class="entry nocellnorowborder" style="vertical-align:top;" headers="d21002e109 ">Batch Size</td>
+
+              <td class="entry cell-norowborder" style="vertical-align:top;" headers="d21002e112 ">Handles 1,000+ records in a single batch operation</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry nocellnorowborder" style="vertical-align:top;" headers="d21002e109 ">Processing Time</td>
+
+              <td class="entry cell-norowborder" style="vertical-align:top;" headers="d21002e112 ">Reduced from 8+ hours to a couple of minutes for 7,000 students (each with 5-20 memo records)</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry row-nocellborder" style="vertical-align:top;" headers="d21002e109 ">Transaction Model</td>
+
+              <td class="entry cellrowborder" style="vertical-align:top;" headers="d21002e112 ">Synchronous processing with single-transaction commit</td>
+
+            </tr>
+
+          </tbody>
+</table>
+</div>
+
+      <p class="p">This enhancement addresses PE0007774 in the <span class="keyword">Ellucian Customer Center</span>.</p>
+
+    </div>
+
+    <div class="section"><h2 class="title sectiontitle">Enhanced section-additional-details-adjustment-process API</h2>
+      
+      <p class="p">The <span class="keyword apiname">section-additional-details-adjustment-process</span> API has been enhanced with improved array processing capabilities before moving this API to General Availability (GA).</p>
+
+      <p class="p">The array processing logic has been enhanced to perform intelligent comparison and synchronization operations. When processing array submissions, the API now:</p>
+
+      <ul class="ul">
+        <li class="li">Compares the submitted array with existing records</li>
+
+        <li class="li">Updates any existing records that are included in the array</li>
+
+        <li class="li">Deletes records that are not included in the submitted array</li>
+
+        <li class="li">Adds any new records submitted in the array</li>
+
+      </ul>
+
+      <div class="note"><span class="notetitle">Note:</span> API users must still send the full array with each request. The enhancement enables the API to intelligently synchronize the data by comparing what exists versus what is submitted.</div>
+
+      <p class="p">For detailed API specifications and usage examples, refer to the <a class="xref ft-external-link" href="https://resources.elluciancloud.com/p/api_catalog" target="_blank" rel="noopener">Banner API Catalog</a>.</p>
+
+      <p class="p">This enhancement addresses PE0008288 in the <span class="keyword">Ellucian Customer Center</span>.</p>
+
+    </div>
+
+    <div class="section"><h2 class="title sectiontitle">Enhanced section-restrictions-adjustment-process API</h2>
+      
+      <p class="p">The <span class="keyword apiname">section-restrictions-adjustment-process</span> API has been enhanced with improved array processing capabilities before moving this API to General Availability (GA).</p>
+
+      <p class="p">The array processing logic has been enhanced to perform intelligent comparison and synchronization operations. When processing array submissions, the API now:</p>
+
+      <ul class="ul">
+        <li class="li">Compares the submitted array with existing records</li>
+
+        <li class="li">Updates any existing records that are included in the array</li>
+
+        <li class="li">Deletes records that are not included in the submitted array</li>
+
+        <li class="li">Adds any new records submitted in the array</li>
+
+      </ul>
+
+      <div class="note"><span class="notetitle">Note:</span> API users must still send the full array with each request. The enhancement enables the API to intelligently synchronize the data by comparing what exists versus what is submitted.</div>
+
+      <p class="p">For detailed API specifications and usage examples, refer to the <a class="xref ft-external-link" href="https://resources.elluciancloud.com/p/api_catalog" target="_blank" rel="noopener">Banner API Catalog</a>.</p>
+
+      <p class="p">This enhancement addresses PE0008289 in the <span class="keyword">Ellucian Customer Center</span>.</p>
+
+    </div>
+
+    <div class="section"><h2 class="title sectiontitle">Enhanced section-descriptors-adjustment-process API</h2>
+      
+      <p class="p">The <span class="keyword apiname">section-descriptors-adjustment-process</span> API has been enhanced with improved array processing capabilities and a defect fix before moving this API to General Availability (GA).</p>
+
+      <p class="p">The array processing logic has been enhanced to perform intelligent comparison and synchronization operations. When processing array submissions, the API now:</p>
+
+      <ul class="ul">
+        <li class="li">Compares the submitted array with existing records</li>
+
+        <li class="li">Updates any existing records that are included in the array</li>
+
+        <li class="li">Deletes records that are not included in the submitted array</li>
+
+        <li class="li">Adds any new records submitted in the array</li>
+
+      </ul>
+
+      <div class="note"><span class="notetitle">Note:</span> API users must still send the full array with each request. The enhancement enables the API to intelligently synchronize the data by comparing what exists versus what is submitted.</div>
+
+      <p class="p">API users can now successfully send the description property as an empty string to unset an existing description.</p>
+
+      <p class="p">For detailed API specifications and usage examples, refer to the <a class="xref ft-external-link" href="https://resources.elluciancloud.com/p/api_catalog" target="_blank" rel="noopener">Banner API Catalog</a>.</p>
+
+      <p class="p">This enhancement addresses PE0008290 in the <span class="keyword">Ellucian Customer Center</span>.</p>
+
+    </div>
+
+    <div class="section"><h2 class="title sectiontitle">Enhanced section-bases-adjustment-process API</h2>
+      
+      <p class="p">The <span class="keyword apiname">section-bases-adjustment-process</span> API has been enhanced with response schema corrections before moving this API to General Availability (GA).</p>
+
+      <p class="p">The array processing logic has been enhanced to perform intelligent comparison and synchronization operations. When processing array submissions, the API now:</p>
+
+      <ul class="ul" id="c_banner_student_api_9412__ul_q35_pc1_gjc">
+        <li class="li">Compares the submitted array with existing records</li>
+
+        <li class="li">Updates any existing records that are included in the array</li>
+
+        <li class="li">Deletes records that are not included in the submitted array</li>
+
+        <li class="li">Adds any new records submitted in the array</li>
+
+      </ul>
+
+      <p class="p">The following property names have also been corrected to align with API naming conventions:</p>
+
+      <ul class="ul">
+        <li class="li"><code class="ph codeph">gradableIndicator</code> has been renamed to <code class="ph codeph">isGradable</code></li>
+
+        <li class="li"><code class="ph codeph">printableIndicator</code> has been renamed to <code class="ph codeph">isPrintable</code></li>
+
+      </ul>
+
+      <p class="p">The Open API Specification (OAS) has been updated to reflect the correct property names, types, and examples for these fields.</p>
+
+      <p class="p">For detailed API specifications and usage examples, refer to the <a class="xref ft-external-link" href="https://resources.elluciancloud.com/p/api_catalog" target="_blank" rel="noopener">Banner API Catalog</a>.</p>
+
+      <p class="p">This enhancement addresses PE0008291 in the <span class="keyword">Ellucian Customer Center</span>.</p>
+
+    </div>
+
+    <div class="section"><h2 class="title sectiontitle">Supporting documentation</h2>
+      
+      <p class="p">To download supporting documentation for this release, click <span class="ph uicontrol">Attachments</span> <img class="image ell-icon" src="images/04-ethos-api-9-41-2-1.png" alt="" data-ft-asset-display-name="paperclip.png" data-ft-resource-id="U1hxGZ~0RYMIz4qOJhMPjg-uxRb0CDn~o_sqaDxyinjBg"> on this page and then select the associated compressed (<span class="ph filepath">.zip</span>) file.</p>
+
+    </div>
+
+    <div class="section"><h2 class="title sectiontitle">Additional supporting information</h2>
+      
+      <div class="p">The following resources provide information about all of the supported <span class="keyword">Banner Ethos APIs</span>:<ul class="ul">
+        <li class="li"><span class="xref ft-internal-xlink" data-ft-warning="excluded-from-rendering" data-clusterid="id_ethos/beapi_release/c_eedm_support_info">Ellucian Ethos support information</span> attachment provides a complete list of all Ethos APIs, the operations supported by each (create, read, update, delete), and the versions of the <span class="keyword">Ellucian Ethos Data Model</span> supported by each API.</li>
+
+        <li class="li">The <a class="xref ft-external-link" href="https://resources.elluciancloud.com/bundle/dev_res_ref_api_catalog/page/c_about_api_catalog.html" target="_blank" rel="noopener">API Catalog</a> provides information about the APIs that are implemented for each version and product. To filter the data-model-based APIs in the documentation, filter the APIs using the API Type in the <span class="ph uicontrol">API Catalog</span>.</li>
+
+        <li class="li"><a class="xref ft-external-link" href="https://resources.elluciancloud.com/search?labelkey=category-api&amp;rpp=50&amp;sort.field=title&amp;sort.value=asc" target="_blank" rel="noopener">API documentation page</a> provides a list of all <span class="keyword">Banner Ethos APIs</span> supported by <span class="keyword">Banner</span> and information on the pagination parameters, filters, and named queries supported by the APIs.</li>
+
+        <li class="li"><span class="xref ft-internal-xlink" data-ft-warning="excluded-from-rendering" data-clusterid="id_ethos/beapi_release/c_bnr_da_config">Configure Banner for file bulk loads</span> provides instructions to set up <span class="keyword">Banner</span> to run bulk jobs and to configure the communication with <span class="keyword">Ellucian Ethos Data Access</span> through <span class="ph">Ethos Integration</span>.</li>
+
+        <li class="li">For <span class="ph">Banner Ethos API</span> troubleshooting information, file bulk load troubleshooting, and additional API setup information, see <a class="xref ft-external-link" href="https://elluciansupport.service-now.com/customer_center?id=kb_article_view&amp;sys_kb_id=3658308b87d381102f5a0dc4dabb3587" target="_blank" rel="noopener">Banner Ethos API - Additional Resources and Troubleshooting</a> (<cite class="cite">Article 000047659</cite>) in the <span class="ph">Ellucian Customer Center</span>.</li>
+
+        <li class="li">For a comprehensive understanding of GUIDs and for information on the GUID generation process, see <span class="xref ft-internal-xlink" data-ft-warning="excluded-from-rendering" data-clusterid="id_ethos/beapi_release/c_generate_banner_guids">Generate Banner GUIDs</span> on the <span class="keyword">Ellucian Documentation site</span> and <cite class="cite">Article Number 000043988 - Understanding Ethos GUIDs in Banner Releases</cite> in the <span class="keyword">Ellucian Customer Center</span>.</li>
+
+        </ul>
+</div>
+
+    </div>
+
+  </div>
+
+</div></div></section></main></body></html>

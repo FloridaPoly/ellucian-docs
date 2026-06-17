@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Banner Student Reports and Processes — Curriculum Mapping</title><style>body{font-family:-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;line-height:1.55;color:#1a1a1a;max-width:920px;margin:0 auto;padding:24px}header{border-bottom:2px solid #5a16d6;margin-bottom:8px}h1{color:#3a0ca3}h2,h3,h4,h5,h6{margin-top:1.6em}.crumb{color:#666;font-size:13px;margin:0}.meta{color:#888;font-size:12px}nav.toc{background:#f6f4fc;border:1px solid #e3dcf5;border-radius:8px;padding:12px 18px;margin:18px 0}nav.toc h2{margin:.2em 0}nav.toc ul{list-style:none;padding-left:0}nav.toc a{text-decoration:none;color:#5a16d6}section{margin:1.2em 0;padding-top:.4em}img{max-width:100%;height:auto}table{border-collapse:collapse}td,th{border:1px solid #ccc;padding:4px 8px}code,pre{background:#f4f4f4;border-radius:4px}pre{padding:10px;overflow:auto}</style></head><body><header><p class="crumb">Banner Student › Banner Student Reports and Processes</p><h1>Banner Student Reports and Processes — Curriculum Mapping</h1><p class="meta">Source: <a href="https://resources.elluciancloud.com/r/bundle/banner_student_ref_reports">https://resources.elluciancloud.com/r/bundle/banner_student_ref_reports</a> &middot; Retrieved 2026-06-17</p></header><nav class="toc"><h2>Contents</h2><ul><li style="margin-left:0px"><a href="#t-70">Curriculum Mapping</a></li><li style="margin-left:16px"><a href="#t-80">Data migration from Staging tables to Electronic Admissions Application tables (SARSTML) process</a></li><li style="margin-left:16px"><a href="#t-90">Curriculum Map Rules Roll (SOPCROL) process</a></li></ul></nav><main><section id="t-70"><h2>Curriculum Mapping</h2></section>
+<section id="t-80"><h3>Data migration from Staging tables to Electronic Admissions Application tables (SARSTML) process</h3><div class="content-locale-en-US content-locale-en"><div id="r_sarstml_data_staging_ea_tables"><div class="body refbody"><p class="shortdesc">The SARSTML process allows you to push data from the Ethos Staging Tables to the Electronic Admission Tables for admissions processing. You can also load changed biographic and demographic information for existing admission records to the target Banner tables to maintain the latest updates for candidates. </p>
+
+    <div class="section">
+      <div class="p">To proceed with the SARSTML process, ensure the following:<ul class="ul"> <li class="li">To run the SARSTML process, you must first create the curriculum mapping rules in the Curriculum Mapping (SOACMAP) page for the academic year to map the incoming DfE applications curricula to Banner curricula.</li>
+ <li class="li">You must assign each rule to a term within that academic year. </li>
+
+        <li class="li">Any terms that you use in the SOACMAP page should be set up in the SOATERM page before you associate the term with a curriculum mapping rule. </li>
+ <li class="li">As per the program and majors that you assign in the SOACMAP page, the curricula rules and the associated major rules should exist in the SOACURR page.</li>
+ <li class="li">The Provider Code and the Campus fields must have a valid value in the SOAXREF page, for the STVSBGI and STVCAMP labels, respectively.</li>
+
+        </ul>
+The Ethos Staging Tables comprises data coming from Ethos APIs and resides in the following distinct tables:<ul class="ul"> <li class="li">Ethos Admissions Staging (SAREAAS) table</li>
+ <li class="li">Ethos References Staging (SAREARS) table</li>
+ <li class="li">Ethos Work Experience Staging (SAREAES) table</li>
+ <li class="li">Ethos Qualifications Staging (SAREAQS) table</li>
+
+        </ul>
+The SARSTML process pushes the application data from the staging tables to the Electronic Admissions tables, for candidates without any admissions records that exist. The SARSTML process uses the following validations.<ul class="ul"> <li class="li">Validates if there are any entry curriculum for application is established in SOACMAP.</li>
+ <li class="li">Validates if the <span class="ph uicontrol">Name</span> field exists in application.</li>
+
+        <li class="li">Validates if the <span class="ph uicontrol">City</span> field exists in application; if not, passes the dot (.) value.</li>
+ <li class="li">Validates if the application is already loaded to the target admissions tables in Banner by the SARETMT or SAAEAPS processes.</li>
+ </ul>
+The SARSTML process uses the following parameters.</div>
+
+    </div>
+
+    
+<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" class="table" frame="hsides" border="1" rules="rows"><colgroup><col style="width:23.618090452261306%"><col style="width:17.755443886097154%"><col style="width:41.87604690117253%"><col style="width:16.750418760469014%"></colgroup><thead class="thead" style="text-align:left;vertical-align:bottom;">
+          <tr class="row">
+            <th class="entry row-nocellborder" style="text-align:left;vertical-align:bottom;" id="d14357e111">Parameter Name</th>
+
+            <th class="entry row-nocellborder" style="text-align:left;vertical-align:bottom;" id="d14357e114">Required</th>
+
+            <th class="entry row-nocellborder" style="text-align:left;vertical-align:bottom;" id="d14357e117">Description</th>
+
+            <th class="entry row-nocellborder" style="text-align:left;vertical-align:bottom;" id="d14357e120">Values</th>
+
+          </tr>
+
+        </thead>
+<tbody class="tbody">
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d14357e111 ">Run Mode (A=Audit, U=Update)</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d14357e114 ">Yes</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d14357e117 ">Enter A for Audit mode or U for Update mode</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d14357e120 ">&nbsp;</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d14357e111 ">Application ID</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d14357e114 ">No</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d14357e117 ">Enter the Application ID of applicant</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d14357e120 ">&nbsp;</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d14357e111 ">Academic Year</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d14357e114 ">Yes</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d14357e117 ">Enter the year to which applications should be pushed to EA tables</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d14357e120 ">STVACYR</td>
+
+          </tr>
+
+        </tbody>
+</table>
+</div>
+
+    <div class="section">
+      <div class="note"><span class="notetitle">Note:</span> Execute the process in Update Mode (U) for applications that you want to push to EA tables.</div>
+
+      <p class="p">You can leave the Applicant ID as blank. In such cases, all applications pertaining to specified academic year (not already pushed) are loaded to the EA tables.</p>
+
+    </div>
+
+    <div class="section"><h2 class="title sectiontitle">How the SARSTML process functions</h2>
+      
+      <div class="p">When you run SARSTML, the process functions in the following ways.<ul class="ul"> <li class="li">The process loads the maximum sequence application number for all applications to the EA tables. After the process loads an application to the EA tables, the <code class="ph codeph">SAREAAS_PROCESS_IND</code> is set to <kbd class="ph userinput">Y</kbd>.</li>
+
+        <li class="li">For applications already available in the EA tables without admissions records, there can be a new sequence for the application available in staging. The SARSTML process replaces the existing data from EA with the latest application information from staging.</li>
+
+        <li class="li">For applications with the existing admission records, any changed biographic or demographic data (changes to name, telephone number, email address, and other candidate information) for DfE candidates is directly loaded to the target tables in Banner from staging. <div class="note"><span class="notetitle">Note:</span> The <code class="ph codeph">dfe-applications-submission-api</code> handles the changes to the curricula. The SARSTML process does not update the admissions curricula for applications.</div>
+</li>
+
+        <li class="li">After a download of the defer status and updates for applications, the SARSTML process loads the defer attributes for the applications to the SAAQUAN page.</li>
+
+        <li class="li">After institutions reinstate DfE applications, by applying the confirmed deferred offer decision to the current recruitment year, Ellucian recommends that you download the application updates from DfE to staging. On running the SARSTML process after the application updates download for the applied course year, the SARSTML process creates new applications in the EA tables. The new application from the SARSTML process is available for the term code that is mapped to the application's offer course start date and offer curricula.  You can now verify the new applications that the SARSTML process creates in the SAAETBL page.<div class="note"><span class="notetitle">Note:</span> To create the offer start date to term code mappings, use the SOAXREF page for the STVTERM identifier and create mappings. Refer to the Term Codes section under setup Crosswalk Rules for more <p class="p">Ensure that you set up all the DfE courses correctly for all term codes, that you require to create admissions applications.</p>
+<p class="p">If institutions do not download the updates after an confirm deferred offer, the SARSTML process will not create the new application.</p>
+</div>
+</li>
+
+        <li class="li">The SARSTML process loads the phone numbers from Staging to the SARPHON table in the required EA format to avoid truncation of digits in the Common Matching Entry (GOAMTCH) page.</li>
+ <li class="li">The SARSTML process derives the Banner Campus Code from the concatenated campus codes that are set up in the SOAXREF page.  The process creates applications in EA for the appropriate Banner curricula as defined in the SOACMAP page.</li>
+ </ul>
+</div>
+
+    </div>
+
+    <div class="section"><h2 class="title sectiontitle">Telephone/email rules</h2>
+      
+      <div class="p">The following are the rules that the SARSTML process follows to update the target tables with the changed telephone/email information.<ul class="ul"> <li class="li">DFEINACTIVETELE: The DFEINACTIVETELE rule for DFEG rule group determines if the previous telephone numbers for applicants in the SPRTELE table is to be updated as Inactive, when a telephone number update comes for the candidates from DfE. Institutions can set it up as Y or N. <div class="note"><span class="notetitle">Note:</span> If set to Y, the previous telephone number records in the SPRTELE table for candidates are updated to inactive and not primary, while the latest telephone number is inserted as active and primary. <p class="p">Previous SPRTELE record gets updated with <code class="ph codeph">SPRTELE_STATUS_IND</code> ='I' and <code class="ph codeph">SPRTELE_PRIMARY_IND</code> = 'null'. The new telephone record in SPRTELE is inserted with the latest telephone number where <code class="ph codeph">SPRTELE_STATUS_IND</code> = null and the <code class="ph codeph">SPRTELE_PRIMARY_IND</code> = 'Y'.</p>
+<p class="p">If set to N, the old telephone number records in SPRTELE is not updated to inactive, it is just updated as not primary, while the latest telephone number is inserted as active and primary. </p>
+<p class="p">Previous SPRTELE record gets updated with SPRTELE_PRIMARY_IND = 'null', while SPRTELE_STATUS_IND = ‘null’ and the new record in SPRTELE is inserted with latest phone where SPRTELE_STATUS_IND = null and update SPRTELE_PRIMARY_IND = 'Y'.</p>
+</div>
+</li>
+
+        <li class="li">DFEINACTIVEMAIL: The DFEINACTIVEMAIL rule for DFEG rule group determines if the previous email records for candidates in the GOREMAL table is to be updated as Inactive, when an email address update comes for candidates from DfE. Institutions can set it up as Y or N. <div class="note"><span class="notetitle">Note:</span> If set to Y, then the previous email records in GOREMAL for candidates are updated to inactive and not preferred, while the latest email is inserted as active and preferred. <p class="p">Previous record is updated with GOREMAL_STATUS_IND =’I' and GOREMAL_PREFERRED_IND = ‘N’ and the new email record in GOREMAL is inserted with GOREMAL_STATUS_IND =’A’ and GOREMAL_PREFERRED_IND = ‘Y’.</p>
+<p class="p">If set to N, then the old email in GOREMAL is not updated to inactive, it is just updated as not preferred, while the latest email is inserted as active and preferred. </p>
+<p class="p">Previous record is updated with GOREMAL_PREFERRED_IND = ‘N’, while GOREMAL_STATUS_IND remains active (A). The new email record in GOREMAL is inserted with GOREMAL_STATUS_IND =’A’ and GOREMAL_PREFERRED_IND = ‘Y’.</p>
+</div>
+</li>
+
+        </ul>
+</div>
+
+    </div>
+
+    <div class="section"><h2 class="title sectiontitle">SARSTML process output</h2>
+      
+      <p class="p">For the admissions processing, the SARSTML output for applications is loaded to the EA tables. The application information is inherent in the Electronic Admissions Processing, and a Web ID and AIDM gets generated per applicant. For candidates with existing admission records, any changed biographic and demographic data, candidate application information is loaded to the target Banner tables directly. </p>
+
+      <p class="p">Executing the SARSTML process, generates the <span class="ph filepath">sarstml.log</span> <span class="ph filepath">and sarstml.lis</span> files as output files. The <span class="ph filepath">sarstml.log</span> file records the outcome of the SARSTML job run. </p>
+
+      <p class="p">For admissions processing, if the applications are pushed to EA tables successfully on executing the SARSTML process, the <span class="ph filepath">sarstml.log</span> records the AIDM generated for applicants. The <code class="ph codeph">SAREAAS_PROCESS_IND</code> column is updated to ‘Y’ denoting application is loaded to EA successfully. </p>
+
+      <p class="p">If applications are not pushed to EA tables due to validation errors, the errors encountered gets displayed in the <span class="ph filepath">sarstml.log</span> file. The <code class="ph codeph">SAREAAS_PROCESS_IND</code> column is updated to ‘N’ denoting that the application is not pushed.</p>
+
+      <p class="p">Institutions can manually correct the push errors encountered for applications in the <span class="ph filepath">sarstml.log</span> and execute the SARSTML process again.</p>
+
+      <div class="note"><span class="notetitle">Note:</span> If you encounter ORA errors (Oracle errors) for an application (for example, where incoming data type/field length is not matching the EA data type/field length), the SARSTML process aborts the subsequent applications processing. The <span class="ph filepath">sarstml.log</span> file contains the ORA errors.</div>
+
+    </div>
+
+    <div class="section">
+      <div class="p">The SARSTML process calls the existing baseline packages to update the candidate information. Institutions can view the changed information on the SPAIDEN page. The following are the package details:<ul class="ul"> <li class="li"><code class="ph codeph">gb_identification</code>: Name changes to the SPRIDEN table</li>
+ <li class="li"><code class="ph codeph">gb_bio</code>: – DOB change to the SPBPERS table</li>
+ <li class="li"><code class="ph codeph">gb_address</code>: Address changes to the SPRADDR table</li>
+
+        <li class="li"><code class="ph codeph">gb_email</code>: Email changes to the GOREMAL table</li>
+ <li class="li"><code class="ph codeph">gb_telephone</code>: Telephone changes to the SPRTELE table <div class="note"><span class="notetitle">Note:</span> Updates to the SARQUAN table gets loaded directly and are displayed in the SAAQUAN page. The SARSTML process also loads the Nationality, Ethnicity, and Disability Data to the GORPISD table to facilitate HESA reporting.</div>
+</li>
+
+        <li class="li">The SARSTML process creates new applications for the mapped term code and curricula.  These new applications are for the applications that are deferred previously, and are now confirmed in the next recruitment cycle year.</li>
+
+        <li class="li">The SARSTML process will not create applications and validation errors that appears in the <span class="ph filepath">sarstml.log</span> file, if the term code mapping does not exist in the SOAXREF page for STVTERM identifier and curricula mappings that do not exist in SOACMAP.</li>
+ </ul>
+</div>
+
+      <p class="p">The <code class="ph codeph">SAREAAS_PROCESS_IND</code> process indicator field denotes the following: </p>
+
+    </div>
+
+    
+<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" class="table" frame="hsides" border="1" rules="rows"><colgroup><col style="width:39.21568627450981%"><col style="width:60.7843137254902%"></colgroup><thead class="thead" style="text-align:left;vertical-align:bottom;">
+          <tr class="row">
+            <th class="entry row-nocellborder" style="text-align:left;vertical-align:bottom;" id="d14357e394">Name</th>
+
+            <th class="entry row-nocellborder" style="text-align:left;vertical-align:bottom;" id="d14357e397">Description</th>
+
+          </tr>
+
+        </thead>
+<tbody class="tbody">
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d14357e394 ">SAREAAS_PROCESS_IND = ‘N’</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d14357e397 ">Indicates that applications are not pushed to EA tables</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d14357e394 ">SAREAAS_PROCESS_IND = ‘Y’</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d14357e397 ">Indicates that applications are pushed to the EA tables</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d14357e394 ">SAREAAS_PROCESS_IND = ‘O’</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d14357e397 ">Indicates applications status as Offer</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d14357e394 ">SAREAAS_PROCESS_IND = ‘R’</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d14357e397 ">Indicates applications status as Recruited</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d14357e394 ">SAREAAS_PROCESS_IND = ‘J’</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d14357e397 ">Indicates applications status as Rejected</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d14357e394 ">SAREAAS_PROCESS_IND = ‘P’</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d14357e397 ">Indicates applications status as Pending Conditions</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d14357e394 ">SAREAAS_PROCESS_IND = ‘W’</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d14357e397 ">Process indicator to indicate applications status as Withdrawn.</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d14357e394 ">SAREAAS_PROCESS_IND = ‘F’</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d14357e397 ">Process indicator to indicate applications status as Deferred.</td>
+
+          </tr>
+
+        </tbody>
+</table>
+</div>
+
+  </div>
+
+</div></div></section>
+<section id="t-90"><h3>Curriculum Map Rules Roll (SOPCROL) process</h3><div class="content-locale-en-US content-locale-en"><div id="r_sopcrol_curriculum_map_rules_roll_process"><div class="body refbody"><p class="shortdesc">The SOPCROL process allows you to roll curriculum mapping rules from one academic year to another. </p>
+
+    <div class="section">
+      <div class="note"><span class="notetitle">Note:</span> To run the SOPCROL process, you must have first created the curriculum mapping rules in the Curriculum Mapping (SOACMAP) page for the academic year that you want to copy from. Each rule must be assigned to a term within that academic year.</div>
+
+      <p class="p">Any terms used in the SOACMAP page should be set up in the SOATERM page before you associate the term with a curriculum mapping rule. Any curriculum rule should have a program code before you associate the curriculum with a curriculum mapping rule.</p>
+
+      <p class="p">When curriculum mapping rules are rolled from one academic year to another, it is expected that terms are created in the 'To Year' that follow the same pattern as terms that are used for rules in the 'From Year'. For example, if rules exist in the year 2020 for the 202010 term and to be rolled to the year 2021, the process attempts to roll the rules to the 202110 term.</p>
+
+      <p class="p">If the term calculated for the 'To Year' does not exist in the STVTERM page, the corresponding rule(s) will not be rolled to the 'To Year' and the system displays an error message in the report output. </p>
+
+      <p class="p">If the term calculated for the 'To Year' does exist in the STVTERM page, but has not been set up in the SOATERM page, the corresponding rule(s) will only be rolled to the 'To Year', if the value of the 'Roll if no valid term (Y/N)' parameter is <kbd class="ph userinput">Y</kbd>. </p>
+
+      <p class="p">The report output displays messages to indicate that the new term is not in the SOATERM page and whether the rule is copied. If the associated curriculum is OFF for both Recruiting and Admissions, the corresponding rule(s) will only be rolled to the 'To Year' if the value of the 'Roll invalid curriculum (Y/N)' parameter is 'Y'. The report output displays messages to indicate that the curriculum is OFF for those modules and whether the rule has been copied. </p>
+
+      <p class="p">If the rule has a part of term and if that same part of term code is not created for the term calculated for the 'To Year', then corresponding rule(s) will not be rolled to the 'To Year' and the system displays an error message in the report output. If the rule in the 'From Year' is not active, then it will not be rolled to the 'To Year' and the system displays an error message in the report output. </p>
+
+      <p class="p">If the rule in the 'From Year' is already created in the 'To Year', the rule will not be rolled to the 'To Year' and the system displays an information message in the report output. The process is repeatable. Hence, if the process runs in Update mode with some rules being rolled successfully, you can re-run the process to roll more rules after any necessary corrections. </p>
+
+      <p class="p">The output displays information for every rule, whether it has been successfully rolled, rolled with warning, already exists in the 'To Year', or has an error that prevents it from being rolled.</p>
+
+      <p class="p">The process has the following parameters.</p>
+
+    </div>
+
+    
+<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" class="table" frame="hsides" border="1" rules="rows"><colgroup><col style="width:23.665480427046266%"><col style="width:17.793594306049823%"><col style="width:31.672597864768683%"><col style="width:26.868327402135233%"></colgroup><thead class="thead" style="text-align:left;vertical-align:bottom;">
+          <tr class="row">
+            <th class="entry row-nocellborder" style="text-align:left;vertical-align:bottom;" id="d85544e88">Parameter Name</th>
+
+            <th class="entry row-nocellborder" style="text-align:left;vertical-align:bottom;" id="d85544e91">Required</th>
+
+            <th class="entry row-nocellborder" style="text-align:left;vertical-align:bottom;" id="d85544e94">Description</th>
+
+            <th class="entry row-nocellborder" style="text-align:left;vertical-align:bottom;" id="d85544e97">Values</th>
+
+          </tr>
+
+        </thead>
+<tbody class="tbody">
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d85544e88 ">From Year</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d85544e91 ">Yes</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d85544e94 ">Enter the year from which curriculum mapping rules are to be rolled.</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d85544e97 ">Academic Year Validation (STVACYR) page</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d85544e88 ">To Year</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d85544e91 ">Yes</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d85544e94 ">Enter the year to which curriculum mapping rules are to be rolled.</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d85544e97 ">Academic Year Validation (STVACYR) page</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d85544e88 ">Run Mode (A=Audit, U=Update)</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d85544e91 ">Yes</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d85544e94 ">Enter A for Audit mode or U for Update mode</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d85544e97 ">&nbsp;</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d85544e88 ">Roll invalid curriculum (Y/N)</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d85544e91 ">Yes</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d85544e94 ">Should a rule be rolled if the curriculum is no longer valid in Recruiting and Admissions?</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d85544e97 ">&nbsp;</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d85544e88 ">Roll if no valid term (Y/N)</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d85544e91 ">Yes</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d85544e94 ">Should a rule be rolled if the term in the To Year is not valid in the SOATERM page?</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d85544e97 ">&nbsp;</td>
+
+          </tr>
+
+        </tbody>
+</table>
+</div>
+
+  </div>
+
+</div></div></section></main></body></html>

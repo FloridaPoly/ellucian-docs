@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Banner Ethos API - Release Notes — Ethos API 9.41.1</title><style>body{font-family:-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;line-height:1.55;color:#1a1a1a;max-width:920px;margin:0 auto;padding:24px}header{border-bottom:2px solid #5a16d6;margin-bottom:8px}h1{color:#3a0ca3}h2,h3,h4,h5,h6{margin-top:1.6em}.crumb{color:#666;font-size:13px;margin:0}.meta{color:#888;font-size:12px}nav.toc{background:#f6f4fc;border:1px solid #e3dcf5;border-radius:8px;padding:12px 18px;margin:18px 0}nav.toc h2{margin:.2em 0}nav.toc ul{list-style:none;padding-left:0}nav.toc a{text-decoration:none;color:#5a16d6}section{margin:1.2em 0;padding-top:.4em}img{max-width:100%;height:auto}table{border-collapse:collapse}td,th{border:1px solid #ccc;padding:4px 8px}code,pre{background:#f4f4f4;border-radius:4px}pre{padding:10px;overflow:auto}</style></head><body><header><p class="crumb">Banner Ethos API Administration › Banner Ethos API - Release Notes</p><h1>Banner Ethos API - Release Notes — Ethos API 9.41.1</h1><p class="meta">Source: <a href="https://resources.elluciancloud.com/r/bundle/banner_ethos_api_rel_release_notes">https://resources.elluciancloud.com/r/bundle/banner_ethos_api_rel_release_notes</a> &middot; Retrieved 2026-06-17</p></header><nav class="toc"><h2>Contents</h2><ul><li style="margin-left:0px"><a href="#t-90">Ethos API 9.41.1</a></li><li style="margin-left:16px"><a href="#t-100">Integration API Release 9.41.1</a></li><li style="margin-left:16px"><a href="#t-110">Student API Release 9.41.1</a></li></ul></nav><main><section id="t-90"><h2>Ethos API 9.41.1</h2></section>
+<section id="t-100"><h3>Integration API Release 9.41.1</h3><div class="content-locale-en-US content-locale-en"><div id="c_banner_integration_api_9411"><div class="body conbody"><p class="shortdesc">The <span class="keyword">Banner Integration API</span> 9.41.1 release contains enhancements and defect resolutions.</p>
+
+    <p class="p"><span class="keyword">Banner Integration API</span> 9.41.1 runs on <span class="keyword">Banner</span> platform version 11.6 and <span class="keyword">Banner Common DB Upgrade</span> 9.42.1.</p>
+
+    <div class="note tip"><span class="tiptitle">Tip:</span> For more information about the following APIs, see the <a class="xref ft-external-link" href="https://resources.elluciancloud.com/p/api_catalog" target="_blank" rel="noopener">Banner API Catalog</a>.</div>
+
+    <div class="section"><h2 class="title sectiontitle">Spec API Enhancement</h2>
+      
+      <p class="p">Resolved an issue where named parameters and criteria filters did not work correctly when used together in the Spec API. As part of this fix, support for non-standard and unsupported patterns that passed multiple values through named parameters has been removed. As a result of this product correction, implementations that rely on this pattern may no longer behave as expected after this release.</p>
+
+      <p class="p">Customers must update implementations that relied on this unsupported pattern (for example, <code class="ph codeph">pastTerms='202310','202320'</code>) to use criteria-based filtering with the $in operator going forward (for example, <code class="ph codeph">"pastTerms":{"$in":["202310","202320"]}</code>).</p>
+
+      <p class="p">Additionally, updating the API request format alone is not sufficient. Customers must also ensure to update the underlying Spec logic to support criteria-based filtering (for example, mapping $in to an IN-style query).</p>
+
+      <p class="p">For additional details and examples of the IN filter, refer <span class="xref ft-internal-xlink" data-ft-warning="excluded-from-rendering" data-clusterid="id_ethos/beapi_release/c_adv_fltr_support">Advanced filter operator support</span>.</p>
+
+      <p class="p">This update ensures consistent filtering behavior, aligns the API with supported standards, and improves overall reliability, addressing PD0033319 in the <span class="keyword">Ellucian Customer Center</span>.</p>
+
+    </div>
+
+    <div class="section"><h2 class="title sectiontitle">Schema Designer API Enhancement</h2>
+      
+      <p class="p">Enhanced the <span class="keyword apiname">extension-configurations</span> and <span class="keyword apiname">custom-table-configurations</span> APIs to provide consistent handling of PIDM-related columns and resolve issues with ambiguous column definitions during GET operations.</p>
+
+      <p class="p">Columns named pidm or &lt;tableName&gt;_pidm are mapped to xbannerId, while additional _pidm columns are exposed by replacing pidm with bannerId in the JSON property name (for example, xcustom_pidm_other → xcustombannerIdOther). This enhancement enables support for multiple PIDM-related columns without ambiguity in GET and POST operations.</p>
+
+      <p class="p">Validation has also been introduced to ensure that pidm and &lt;tableName&gt;_pidm cannot coexist, as only one column can be mapped to xbannerId per table. The Schema Designer UI has been updated to enforce these rules when creating or modifying extended and custom tables.</p>
+
+      <p class="p">For existing tables, extended table APIs must be regenerated by making a POST call to the /schema-extensibility-specifications API if:</p>
+
+      <ul class="ul">
+        <li class="li">Multiple PIDM columns exist, or</li>
+
+        <li class="li">A PIDM column exists with a name other than pidm or &lt;tableName&gt;_pidm (for example, &lt;tableName&gt;_pidm_col)</li>
+
+      </ul>
+
+      <p class="p">This update resolves issues related to ambiguous column definitions and ensures consistent and reliable API behavior, addressing PD0025164 in the <span class="keyword">Ellucian Customer Center</span>.</p>
+
+    </div>
+
+    <div class="section"><h2 class="title sectiontitle">Schema Designer API Enhancement</h2>
+      
+      <p class="p">Enhanced the <span class="keyword apiname">extension-configurations-revisions</span> and <span class="keyword apiname">custom-table-configurations-revisions</span> APIs to resolve an issue where the <span class="ph uicontrol">Attribute Order</span> field could not be cleared after being set and published in extended or custom table configurations. Previously, when a value was entered and published, users were unable to remove or unset it using the revisions APIs.</p>
+
+      <p class="p">With this fix, users can now clear the <span class="ph uicontrol">Attribute Order</span> field by setting it to null, and update it as needed, providing greater control and consistency when modifying extended and custom tables.</p>
+
+      <p class="p">This update improves usability and configuration flexibility in Schema Designer, addressing PD0032717 in the <span class="keyword">Ellucian Customer Center</span>.</p>
+
+    </div>
+
+    <div class="section"><h2 class="title sectiontitle">New invoice submission option as Incomplete for the accounts-payable-invoices API</h2>
+      
+      <p class="p">The updated <span class="keyword apiname">accounts-payable-invoices</span> EEDM API (v11.1.0 and v16.1.0) has a new submission option with "processState": "inProgress" to accommodate manual review and completion of invoices.</p>
+
+      <p class="p">This enhancement addresses PE0008117 in the <span class="keyword">Ellucian Customer Center</span>.</p>
+
+    </div>
+
+    <div class="section"><h2 class="title sectiontitle">Security group create, update, and delete support</h2>
+      
+      <p class="p">We enhanced the existing <span class="keyword apiname">security-group-details</span> API for <span class="keyword">Banner Integration API</span> to support write operations for security groups. Previously, the API supported only read access.</p>
+
+      <p class="p">Security administrators can now:</p>
+
+      <ul class="ul">
+        <li class="li">Create new security groups using <code class="ph codeph">POST</code>.</li>
+
+        <li class="li">Update existing security groups using <code class="ph codeph">PUT</code>.</li>
+
+        <li class="li">Delete security groups using <code class="ph codeph">DELETE</code>.</li>
+
+      </ul>
+
+      <p class="p">These changes allow institutions to manage Banner security groups programmatically, enabling automated provisioning and maintenance workflows.</p>
+
+      <p class="p">For more information about request and response formats, status codes, and required permissions for these operations, see the <code class="ph codeph">security-group-details</code> API in the API Catalog.</p>
+
+      <p class="p">This enhancement addresses PE0006950 in the <span class="keyword">Ellucian Customer Center</span>.</p>
+
+    </div>
+
+    <div class="section"><h2 class="title sectiontitle">New graduation-types Ethos API</h2>
+      
+      <p class="p">The <span class="keyword apiname">graduation-types</span> Ethos Data Model (EEDM) API supports external education integrations. This GET-only API provides a standardized endpoint for querying graduation types data as part of the person-external-education schema enhancement.</p>
+
+      <p class="p">This parity API returns an empty set, as Banner does not natively store graduation types as a separate entity.</p>
+
+      <p class="p">This enhancement addresses PE0007457 in the <span class="keyword">Ellucian Customer Center</span>.</p>
+
+    </div>
+
+    <div class="section"><h2 class="title sectiontitle">New transcript-types Ethos API</h2>
+      
+      <p class="p">The <span class="keyword apiname">transcript-types</span> Ethos Data Model (EEDM) API supports external education transcript type queries. This GET-only API distinguishes between college and high school transcript sources as part of the person-external-education schema enhancement.</p>
+
+      <p class="p">New GORGUID entries are created to categorize transcript types based on the source table (SORPCOL for college, SORHSCH for high school). The API automatically returns the appropriate transcript type based on the external education record source, enabling accurate transfer credit and admissions processing.</p>
+
+      <p class="p">This enhancement addresses PE0007458 in the <span class="keyword">Ellucian Customer Center</span>.</p>
+
+    </div>
+
+    <div class="section"><h2 class="title sectiontitle">New transcript-statuses Ethos API</h2>
+      
+      <p class="p">The <span class="keyword apiname">transcript-statuses</span> Ethos Data Model (EEDM) supports transcript verification status queries. This GET-only API returns the official/unofficial status of external education transcripts as part of the person-external-education schema enhancement.</p>
+
+      <p class="p">New GORGUID values support three status classifications: official (verified college transcripts from SHRTRIT), unofficial (unverified college transcripts), and undetermined (all high school records). The API automatically determines the appropriate status based on source tables and verification indicators.</p>
+
+      <p class="p">This enhancement addresses PE0007459 in the <span class="keyword">Ellucian Customer Center</span>.</p>
+
+    </div>
+
+    <div class="section"><h2 class="title sectiontitle">Integration API 9.41.1 release record</h2>
+      
+      <p class="p">For more information about the enhancements and defect resolutions for this release, see the <span class="keyword">Ellucian Customer Center</span> <a class="xref ft-external-link" href="https://elluciansupport.service-now.com/customer_center?id=standard_ticket&amp;table=ellucian_product_release&amp;sys_id=66774047835b325c209676226daad393&amp;view=" target="_blank" rel="noopener">Banner Integration API 9.41.1</a> release page <span class="keyword wintitle">Related Enhancements</span> and <span class="keyword wintitle">Related Defects</span>.</p>
+
+    </div>
+
+    <div class="section"><h2 class="title sectiontitle">Supporting documentation</h2>
+      
+      <p class="p">To download supporting documentation for this release, click <span class="ph uicontrol">Attachments</span> <img class="image ell-icon" src="images/05-ethos-api-9-41-1-1.png" alt="" data-ft-asset-display-name="paperclip.png" data-ft-resource-id="U1hxGZ~0RYMIz4qOJhMPjg-uxRb0CDn~o_sqaDxyinjBg"> on this page and then select the associated compressed (<span class="ph filepath">.zip</span>) file.</p>
+
+    </div>
+
+    <div class="section"><h2 class="title sectiontitle">Additional supporting information</h2>
+      
+      <div class="p">The following resources provide information about all of the supported <span class="ph">Banner Ethos APIs</span>:<ul class="ul">
+        <li class="li"><span class="xref ft-internal-xlink" data-ft-warning="excluded-from-rendering" data-clusterid="id_ethos/beapi_release/c_eedm_support_info">Ellucian Ethos support information</span> attachment provides a complete list of all Ethos APIs, the operations supported by each (create, read, update, delete), and the versions of the <span class="keyword">Ellucian Ethos Data Model</span> supported by each API.</li>
+
+        <li class="li">The <a class="xref ft-external-link" href="https://resources.elluciancloud.com/bundle/dev_res_ref_api_catalog/page/c_about_api_catalog.html" target="_blank" rel="noopener">API Catalog</a> provides information about the APIs that are implemented for each version and product. To filter the data-model-based APIs in the documentation, filter the APIs using the API Type in the <span class="ph uicontrol">API Catalog</span>.</li>
+
+        <li class="li"><a class="xref ft-external-link" href="https://resources.elluciancloud.com/search?labelkey=category-api&amp;rpp=50&amp;sort.field=title&amp;sort.value=asc" target="_blank" rel="noopener">API documentation page</a> provides a list of all <span class="ph">Banner Ethos APIs</span> supported by <span class="keyword">Banner</span> and information on the pagination parameters, filters, and named queries supported by the APIs.</li>
+
+        <li class="li"><span class="xref ft-internal-xlink" data-ft-warning="excluded-from-rendering" data-clusterid="id_ethos/beapi_release/c_bnr_da_config">Configure Banner for file bulk loads</span> provides instructions to set up <span class="keyword">Banner</span> to run bulk jobs and to configure the communication with <span class="ph">Ellucian Ethos Data Access</span> through <span class="ph">Ethos Integration</span>.</li>
+
+        <li class="li">For <span class="ph">Banner Ethos API</span> troubleshooting information, file bulk load troubleshooting, and additional API setup information, see <a class="xref ft-external-link" href="https://elluciansupport.service-now.com/customer_center?id=kb_article_view&amp;sys_kb_id=3658308b87d381102f5a0dc4dabb3587" target="_blank" rel="noopener">Banner Ethos API - Additional Resources and Troubleshooting</a> (<cite class="cite">Article 000047659</cite>) in the <span class="ph">Ellucian Customer Center</span>.</li>
+
+        <li class="li">For a comprehensive understanding of GUIDs and information on the GUID generation process, see <span class="xref ft-internal-xlink" data-ft-warning="excluded-from-rendering" data-clusterid="id_ethos/beapi_release/c_generate_banner_guids">Generate Banner GUIDs</span> on the <span class="keyword">Ellucian Documentation site</span> and <cite class="cite">Article Number 000043988 - Understanding Ethos GUIDs in Banner Releases</cite> in the <span class="keyword">Ellucian Customer Center</span>.</li>
+
+        </ul>
+</div>
+
+    </div>
+
+  </div>
+
+</div></div></section>
+<section id="t-110"><h3>Student API Release 9.41.1</h3><div class="content-locale-en-US content-locale-en"><div id="c_banner_student_api_9411"><div class="body conbody"><p class="shortdesc">The <span class="keyword">Banner Student API</span> 9.41.1 release contains enhancements and defect resolutions.</p>
+
+    <p class="p"><span class="keyword">Banner Student API</span> 9.41.1 runs on <span class="keyword">Banner</span> platform version 11.6 and <span class="keyword">Banner Common DB Upgrade</span> 9.42.1.</p>
+
+    <div class="note tip"><span class="tiptitle">Tip:</span> For more information about the following APIs, see the <a class="xref ft-external-link" href="https://resources.elluciancloud.com/p/api_catalog" target="_blank" rel="noopener">Banner API Catalog</a>.</div>
+
+    <div class="section"><h2 class="title sectiontitle">Student API 9.41 release record</h2>
+      
+      <p class="p">For more information about the enhancements and defect resolutions for this release, see the <span class="keyword">Ellucian Customer Center</span> <a class="xref ft-external-link" href="https://elluciansupport.service-now.com/customer_center?id=standard_ticket&amp;table=ellucian_product_release&amp;sys_id=ce3cc4478353765400ff9840ceaad308&amp;view=" target="_blank" rel="noopener">Banner Student API 9.41.1</a> release page <span class="keyword wintitle">Related Enhancements</span> and <span class="keyword wintitle">Related Defects</span>.</p>
+
+    </div>
+
+    <div class="section"><h2 class="title sectiontitle">Enhanced person-holds API</h2>
+      
+      <p class="p">The <span class="keyword apiname">person-holds</span> Ethos API is enhanced to support term‑based registration holds stored in <code class="ph codeph">SPRTHLD</code>, in addition to the existing person‑level holds in <code class="ph codeph">SPRHOLD</code></p>
+
+      <p class="p">This is a breaking schema version (v16.0.0) relative to v6.x. Consumers must explicitly move to v16.0.0 to use term‑based holds.</p>
+
+      <p class="p">The POST, PUT, DELETE, and GET request methods are supported. </p>
+
+      <p class="p">This enhancement addresses PE0007779 in the <span class="keyword">Ellucian Customer Center</span>.</p>
+
+    </div>
+
+    <div class="section"><h2 class="title sectiontitle">Enhanced section-bases API</h2>
+      
+      <p class="p">The <span class="keyword apiname">section-bases</span> QAPI has been enhanced in preparation for general availability. The updates include:</p>
+
+      <ul class="ul">
+        <li class="li">Added courtesy GUID for sections API to improve resource linking and management</li>
+
+        <li class="li">Added <code class="ph codeph">loadOverrideIndicator</code> and <code class="ph codeph">loadOverrideSource</code> properties (both CalBstu regional) </li>
+
+        <li class="li">Added grade scale assignment details object to provide comprehensive grading information</li>
+
+        <li class="li">Added the following optional properties to the <code class="ph codeph">meetingTimesAndInstructorDetails.instructors</code> object to align with the <span class="keyword apiname">section-instructional-assignment-adjustment-process</span> API<ul class="ul" id="c_banner_student_api_9411__ul_dd1_lnm_w3c">
+          <li class="li"><code class="ph codeph">adjustedWorkload</code></li>
+
+          <li class="li"><code class="ph codeph">contractType</code></li>
+
+          <li class="li"><code class="ph codeph">position</code></li>
+
+          <li class="li"><code class="ph codeph">suffix</code></li>
+
+          <li class="li"><code class="ph codeph">assignmentType</code></li>
+
+          </ul>
+</li>
+
+        <li class="li">Added the <code class="ph codeph">sectionMeetingId</code> unique key to the<code class="ph codeph">meetingTimesAndInstructorDetails.meetings</code> object to improve resource linking</li>
+
+      </ul>
+
+    </div>
+
+    <div class="section">
+      <p class="p">The following property name corrections have been implemented to improve API consistency and accuracy:</p>
+
+      
+<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" class="table" frame="border" border="1" rules="all"><colgroup><col style="width:37.5%"><col style="width:37.5%"><col style="width:25%"></colgroup><thead class="thead" style="text-align:left;">
+            <tr class="row">
+              <th class="entry cellrowborder" style="vertical-align:top;" id="d22087e197">Previous property name</th>
+
+              <th class="entry cellrowborder" style="vertical-align:top;" id="d22087e200">Corrected property name</th>
+
+              <th class="entry cellrowborder" style="vertical-align:top;" id="d22087e203">Change type</th>
+
+            </tr>
+
+          </thead>
+<tbody class="tbody">
+            <tr class="row">
+              <td class="entry cellrowborder" style="vertical-align:top;" headers="d22087e197 "><code class="ph codeph">gradableIndicator</code></td>
+
+              <td class="entry cellrowborder" style="vertical-align:top;" headers="d22087e200 "><code class="ph codeph">isGradable</code></td>
+
+              <td class="entry cellrowborder" style="vertical-align:top;" headers="d22087e203 ">Name and type correction to Boolean</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry cellrowborder" style="vertical-align:top;" headers="d22087e197 "><code class="ph codeph">printableIndicator</code></td>
+
+              <td class="entry cellrowborder" style="vertical-align:top;" headers="d22087e200 "><code class="ph codeph">isPrintable</code></td>
+
+              <td class="entry cellrowborder" style="vertical-align:top;" headers="d22087e203 ">Name and type correction to Boolean</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry cellrowborder" style="vertical-align:top;" headers="d22087e197 "><code class="ph codeph">tutionRefundPercentage</code></td>
+
+              <td class="entry cellrowborder" style="vertical-align:top;" headers="d22087e200 "><code class="ph codeph">tuitionRefundPercentage</code></td>
+
+              <td class="entry cellrowborder" style="vertical-align:top;" headers="d22087e203 ">Spelling correction</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry cellrowborder" style="vertical-align:top;" headers="d22087e197 "><code class="ph codeph">scheduleStatusDescription</code></td>
+
+              <td class="entry cellrowborder" style="vertical-align:top;" headers="d22087e200 "><code class="ph codeph">schedulingInterfaceStatusDescription</code></td>
+
+              <td class="entry cellrowborder" style="vertical-align:top;" headers="d22087e203 ">Name clarification</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry cellrowborder" style="vertical-align:top;" headers="d22087e197 "><code class="ph codeph">sectionScheduleDetail.classTypeDetails</code> object included title property</td>
+
+              <td class="entry cellrowborder" style="vertical-align:top;" headers="d22087e200 ">Title property removed from response</td>
+
+              <td class="entry cellrowborder" style="vertical-align:top;" headers="d22087e203 ">Schema correction</td>
+
+            </tr>
+
+          </tbody>
+</table>
+</div>
+
+    </div>
+
+    <div class="section">
+      <p class="p">This enhancement addresses PE0007661 in the <span class="keyword">Ellucian Customer Center</span>.</p>
+
+    </div>
+
+    <div class="section"><h2 class="title sectiontitle">Supporting documentation</h2>
+      
+      <p class="p">To download supporting documentation for this release, click <span class="ph uicontrol">Attachments</span> <img class="image ell-icon" src="images/05-ethos-api-9-41-1-1.png" alt="" data-ft-asset-display-name="paperclip.png" data-ft-resource-id="U1hxGZ~0RYMIz4qOJhMPjg-uxRb0CDn~o_sqaDxyinjBg"> on this page and then select the associated compressed (<span class="ph filepath">.zip</span>) file.</p>
+
+    </div>
+
+    <div class="section"><h2 class="title sectiontitle">Additional supporting information</h2>
+      
+      <div class="p">The following resources provide information about all of the supported <span class="keyword">Banner Ethos APIs</span>:<ul class="ul">
+        <li class="li"><span class="xref ft-internal-xlink" data-ft-warning="excluded-from-rendering" data-clusterid="id_ethos/beapi_release/c_eedm_support_info">Ellucian Ethos support information</span> attachment provides a complete list of all Ethos APIs, the operations supported by each (create, read, update, delete), and the versions of the <span class="keyword">Ellucian Ethos Data Model</span> supported by each API.</li>
+
+        <li class="li">The <a class="xref ft-external-link" href="https://resources.elluciancloud.com/bundle/dev_res_ref_api_catalog/page/c_about_api_catalog.html" target="_blank" rel="noopener">API Catalog</a> provides information about the APIs that are implemented for each version and product. To filter the data-model-based APIs in the documentation, filter the APIs using the API Type in the <span class="ph uicontrol">API Catalog</span>.</li>
+
+        <li class="li"><a class="xref ft-external-link" href="https://resources.elluciancloud.com/search?labelkey=category-api&amp;rpp=50&amp;sort.field=title&amp;sort.value=asc" target="_blank" rel="noopener">API documentation page</a> provides a list of all <span class="keyword">Banner Ethos APIs</span> supported by <span class="keyword">Banner</span> and information on the pagination parameters, filters, and named queries supported by the APIs.</li>
+
+        <li class="li"><span class="xref ft-internal-xlink" data-ft-warning="excluded-from-rendering" data-clusterid="id_ethos/beapi_release/c_bnr_da_config">Configure Banner for file bulk loads</span> provides instructions to set up <span class="keyword">Banner</span> to run bulk jobs and to configure the communication with <span class="keyword">Ellucian Ethos Data Access</span> through <span class="ph">Ethos Integration</span>.</li>
+
+        <li class="li">For <span class="ph">Banner Ethos API</span> troubleshooting information, file bulk load troubleshooting, and additional API setup information, see <a class="xref ft-external-link" href="https://elluciansupport.service-now.com/customer_center?id=kb_article_view&amp;sys_kb_id=3658308b87d381102f5a0dc4dabb3587" target="_blank" rel="noopener">Banner Ethos API - Additional Resources and Troubleshooting</a> (<cite class="cite">Article 000047659</cite>) in the <span class="ph">Ellucian Customer Center</span>.</li>
+
+        <li class="li">For a comprehensive understanding of GUIDs and for information on the GUID generation process, see <span class="xref ft-internal-xlink" data-ft-warning="excluded-from-rendering" data-clusterid="id_ethos/beapi_release/c_generate_banner_guids">Generate Banner GUIDs</span> on the <span class="keyword">Ellucian Documentation site</span> and <cite class="cite">Article Number 000043988 - Understanding Ethos GUIDs in Banner Releases</cite> in the <span class="keyword">Ellucian Customer Center</span>.</li>
+
+        </ul>
+</div>
+
+    </div>
+
+  </div>
+
+</div></div></section></main></body></html>

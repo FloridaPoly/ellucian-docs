@@ -1,0 +1,1805 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Ethos Integration - Developer Resources</title><style>body{font-family:-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;line-height:1.55;color:#1a1a1a;max-width:920px;margin:0 auto;padding:24px}header{border-bottom:2px solid #5a16d6;margin-bottom:8px}h1{color:#3a0ca3}h2,h3,h4,h5,h6{margin-top:1.6em}.crumb{color:#666;font-size:13px;margin:0}.meta{color:#888;font-size:12px}nav.toc{background:#f6f4fc;border:1px solid #e3dcf5;border-radius:8px;padding:12px 18px;margin:18px 0}nav.toc h2{margin:.2em 0}nav.toc ul{list-style:none;padding-left:0}nav.toc a{text-decoration:none;color:#5a16d6}section{margin:1.2em 0;padding-top:.4em}img{max-width:100%;height:auto}table{border-collapse:collapse}td,th{border:1px solid #ccc;padding:4px 8px}code,pre{background:#f4f4f4;border-radius:4px}pre{padding:10px;overflow:auto}</style></head><body><header><p class="crumb">Ethos Integration › Ethos Integration - Developer Resources</p><h1>Ethos Integration - Developer Resources</h1><p class="meta">Source: <a href="https://resources.elluciancloud.com/r/bundle/ethos_integration_acn_devresource">https://resources.elluciancloud.com/r/bundle/ethos_integration_acn_devresource</a> &middot; Retrieved 2026-06-17</p></header><nav class="toc"><h2>Contents</h2><ul><li style="margin-left:0px"><a href="#t-10">Build Ethos Integration</a></li><li style="margin-left:16px"><a href="#t-20">Build Your Integration Requirements</a></li><li style="margin-left:32px"><a href="#t-30">Comparison of EEDM APIs and BPAPIs</a></li><li style="margin-left:32px"><a href="#t-40">Find an API using EEDM data lineage</a></li><li style="margin-left:32px"><a href="#t-50">Find an API using an administrative page</a></li><li style="margin-left:16px"><a href="#t-60">How To</a></li><li style="margin-left:32px"><a href="#t-70">How to determine when and who changed data with Banner BPAPIs</a></li><li style="margin-left:32px"><a href="#t-80">How to identify reference data to be used for Banner BPAPI POST/PUT transactions</a></li><li style="margin-left:32px"><a href="#t-90">How to identify reference data to be used for EEDM API POST/PUT transactions</a></li><li style="margin-left:32px"><a href="#t-100">How to synchronize ERP data to a third-party system using EEDM APIs</a></li><li style="margin-left:0px"><a href="#t-110">Quick Reference</a></li><li style="margin-left:16px"><a href="#t-120">Ethos-Enabled Integration Quick Reference</a></li><li style="margin-left:16px"><a href="#t-130">Developer Resources Frequently Asked Questions</a></li><li style="margin-left:16px"><a href="#t-140">Ellucian Ethos SDK</a></li><li style="margin-left:16px"><a href="#t-150">Ethos Integration Error Handling</a></li><li style="margin-left:32px"><a href="#t-160">About the Ethos Integration Errors Service</a></li><li style="margin-left:32px"><a href="#t-170">Using the Errors Service</a></li><li style="margin-left:32px"><a href="#t-180">Using the Errors Service with the Ethos Integration SDK</a></li><li style="margin-left:32px"><a href="#t-190">Error Logging with Ethos Integration</a></li><li style="margin-left:16px"><a href="#t-200">Banner</a></li><li style="margin-left:32px"><a href="#t-210">Effective Terms and Banner Business Process APIs</a></li><li style="margin-left:48px"><a href="#t-220">Example: series of individual effective term records</a></li><li style="margin-left:48px"><a href="#t-230">Example: sets of effective term records</a></li></ul></nav><main><section id="t-10"><h2>Build Ethos Integration</h2></section>
+<section id="t-20"><h3>Build Your Integration Requirements</h3><div class="content-locale-en-US content-locale-en"><div id="c_lnd_build_int_req"><div class="body conbody">
+    <div class="note"><span class="notetitle">Note:</span> This publication is no longer being updated and may be outdated. Previously, data lineage information for APIs were in supplemental .csv files that were attachments to the APIs and included in the SDK. A bulk conversion effort merged the contents of the .csv files into the APIs that are published and the .csv files have been removed. </div>
+
+    <p class="p">Use this publication as an aid for selecting APIs for your integration project.</p>
+
+    <br><div class="imagecenter"><img class="image imagecenter" alt="api selection flow" data-ft-asset-display-name="flw_api_selection_flow.png" src="images/ethos-integration-developer-resources-1.png" data-ft-resource-id="dvEI~Zorv0gwosuYmjYtmg-Y9b19m4nH~fNCDPf1M2uBQ"></div><br>
+    <div class="section"><h2 class="title sectiontitle">Which type of API suits your integration requirements?</h2>
+      
+      <p class="p"><dfn class="term">EEDM APIs</dfn>: APIs that are built based on the Ethos Data Model and expose functionality and reference data in the Ellucian authoritative source applications (Banner, Colleague and CRM). The EEDM APIs expose data and business rules more aligned to general concepts in the higher education domain instead of representing the data definition and business rules of the specific authoritative source system. Learn more about EEDM by clicking <span class="xref ft-internal-xlink" data-ft-warning="excluded-from-rendering" data-clusterid="devexp/ethos-dev-guide/c_about_eedm">here</span>.</p>
+
+      <p class="p"><dfn class="term">BPAPIs</dfn>: APIs that expose data and operations based on how administrative users execute business processes. These APIs are designed to incorporate data as it is represented in the application and serve a specific business process. The business logic within the source system is the same as that used by the API.</p>
+
+      <div class="p"><dfn class="term">Extensibility Tools</dfn>: Tool sets to extend delivered APIs and to create custom APIs to meet integration requirements. See: <ul class="ul"> <li class="li"><span class="xref ft-internal-xlink" data-ft-warning="excluded-from-rendering" data-clusterid="devexp/ethos-dev-guide/c_ethos_api_extensibility">Banner Ethos API Extensibility</span></li>
+ <li class="li"><span class="xref ft-internal-xlink" data-ft-warning="excluded-from-rendering" data-clusterid="devexp/ethos-dev-guide/c_extensibility">Banner Business Process API Extensibility</span></li>
+ <li class="li"><span class="xref ft-internal-xlink" data-ft-warning="excluded-from-rendering" data-clusterid="devexp/ethos-dev-guide/c_coll_about_extensibility">Colleague Ethos API Extensibility</span></li>
+
+        <li class="li"><span class="xref ft-internal-xlink" data-ft-warning="excluded-from-rendering" data-clusterid="id_ethos/ethos_data_access/c_use_data_model_extensions">Ellucian Data Access data model extensibility for GraphQL integrations</span></li>
+ </ul>
+</div>
+
+    </div>
+
+  </div>
+
+</div></div></section>
+<section id="t-30"><h4>Comparison of EEDM APIs and BPAPIs</h4><div class="content-locale-en-US content-locale-en"><div id="c_eedm_bpapi_comparison"><div class="body conbody">
+    <div class="note"><span class="notetitle">Note:</span> This publication is no longer being updated and may be outdated. Previously, data lineage information for APIs were in supplemental .csv files that were attachments to the APIs and included in the SDK. A bulk conversion effort merged the contents of the .csv files into the APIs that are published and the .csv files have been removed. </div>
+
+    <p class="p">The comparison outlines similarities and differences between EEDM APIs and BPAPIs.</p>
+
+    <p class="p">The key difference between Business Process APIs (BPAPIs) and Ellucian Ethos Data Model (EEDM) APIs is that BPAPIs will not be required to follow a common data model across systems. The table below outlines some of the differences and similarities.</p>
+
+    
+<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" class="table" frame="border" border="1" rules="all"><colgroup><col style="width:50%"><col style="width:50%"></colgroup><thead class="thead" style="text-align:left;">
+          <tr class="row">
+            <th class="entry cellrowborder" style="text-align:left;vertical-align:top;" id="d4306e53">EEDM API</th>
+
+            <th class="entry cellrowborder" style="text-align:left;vertical-align:top;" id="d4306e56">BPAPI</th>
+
+          </tr>
+
+        </thead>
+<tbody class="tbody">
+          <tr class="row">
+            <td class="entry cellrowborder" style="text-align:left;vertical-align:top;" headers="d4306e53 ">API follows a common Ethos Data Model schema.</td>
+
+            <td class="entry cellrowborder" style="text-align:left;vertical-align:top;" headers="d4306e56 ">API does not follow a common data model.</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry cellrowborder" style="text-align:left;vertical-align:top;" headers="d4306e53 ">Full CRUD (GET, POST, PUT, DELETE) is offered on specific APIs.</td>
+
+            <td class="entry cellrowborder" style="text-align:left;vertical-align:top;" headers="d4306e56 ">GET, POST and PUT is supported if administrative page has data maintenance. DELETE is supported for specific use cases.</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry cellrowborder" style="text-align:left;vertical-align:top;" headers="d4306e53 ">Ethos proxy request is supported.</td>
+
+            <td class="entry cellrowborder" style="text-align:left;vertical-align:top;" headers="d4306e56 ">Ethos proxy request is supported.</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry cellrowborder" style="text-align:left;vertical-align:top;" headers="d4306e53 ">API utilizes permissions based on roles assigned to an API user.</td>
+
+            <td class="entry cellrowborder" style="text-align:left;vertical-align:top;" headers="d4306e56 ">A user needs to be set up with access to the administrative page to use the API. Colleague also requires role permissions to be configured for the user.</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry cellrowborder" style="text-align:left;vertical-align:top;" headers="d4306e53 ">Data privacy is supported.</td>
+
+            <td class="entry cellrowborder" style="text-align:left;vertical-align:top;" headers="d4306e56 ">Data privacy is supported.</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry cellrowborder" style="text-align:left;vertical-align:top;" headers="d4306e53 ">Extensibility is supported.</td>
+
+            <td class="entry cellrowborder" style="text-align:left;vertical-align:top;" headers="d4306e56 ">Extended fields exposed using Banner's Supplemental Data Engine (SDE) are supported. Initial release of Banner business process APIs support only GET on SDE fields.<p class="p">Extensibility is not supported by Colleague.</p>
+</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry cellrowborder" style="text-align:left;vertical-align:top;" headers="d4306e53 ">Semantic versioning is supported.</td>
+
+            <td class="entry cellrowborder" style="text-align:left;vertical-align:top;" headers="d4306e56 ">Semantic versioning is supported.</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry cellrowborder" style="text-align:left;vertical-align:top;" headers="d4306e53 ">Filters are supported. Refer to OpenAPI documentation for filters available on specific APIs.</td>
+
+            <td class="entry cellrowborder" style="text-align:left;vertical-align:top;" headers="d4306e56 ">Filters are supported. Refer to OpenAPI documentation for filters available on specific APIs.</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry cellrowborder" style="text-align:left;vertical-align:top;" headers="d4306e53 ">OpenAPI and lineage documents are published to documentation site as separate publications.</td>
+
+            <td class="entry cellrowborder" style="text-align:left;vertical-align:top;" headers="d4306e56 ">OpenAPI document published to documentation site includes the data lineage.</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry cellrowborder" style="text-align:left;vertical-align:top;" headers="d4306e53 ">Bulk loading of data into Data Access available for Banner only. GraphQL queries on the data in Data Access supported by both Banner and Colleague.</td>
+
+            <td class="entry cellrowborder" style="text-align:left;vertical-align:top;" headers="d4306e56 ">Bulk loading of data into Data Access is not supported. Data available from BPAPIs cannot be queried using GraphQL service.</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry cellrowborder" style="text-align:left;vertical-align:top;" headers="d4306e53 ">Resource change notifications are supported.</td>
+
+            <td class="entry cellrowborder" style="text-align:left;vertical-align:top;" headers="d4306e56 ">Business event change notifications are not currently supported.</td>
+
+          </tr>
+
+        </tbody>
+</table>
+</div>
+
+  </div>
+
+</div></div></section>
+<section id="t-40"><h4>Find an API using EEDM data lineage</h4><div class="content-locale-en-US content-locale-en"><div id="t_find_api_eedm_data_lineage"><div class="body taskbody">
+    <div class="section context"><div class="tasklabel"><h2 class="sectiontitle tasklabel">About this task</h2></div>
+      <div class="note"><span class="notetitle">Note:</span> This publication is no longer being updated and may be outdated. Previously, data lineage information for APIs were in supplemental .csv files that were attachments to the APIs and included in the SDK. A bulk conversion effort merged the contents of the .csv files into the APIs that are published and the .csv files have been removed. </div>
+
+    </div>
+
+    <div class="tasklabel"><h2 class="sectiontitle tasklabel">Procedure</h2></div><ol class="ol steps"><li class="li step">
+        <span class="ph cmd">Click the API Catalog tile on the Doc site landing page. </span>
+      </li>
+<li class="li step">
+        <span class="ph cmd">Click the appropriate tile for the needed API.</span>
+      </li>
+<li class="li step">
+        <span class="ph cmd">Using the Search, locate the required API.</span>
+      </li>
+<li class="li step">
+        <span class="ph cmd">Locate Schemas section of the API.</span>
+      </li>
+<li class="li step">
+        <span class="ph cmd">Expand each schema to see the data lineage for each property.</span>
+      </li>
+</ol>
+
+  </div>
+
+</div></div></section>
+<section id="t-50"><h4>Find an API using an administrative page</h4><div class="content-locale-en-US content-locale-en"><div id="t_find_api_admin_page"><div class="body taskbody">
+    <div class="section context"><div class="tasklabel"><h2 class="sectiontitle tasklabel">About this task</h2></div>
+      <p class="p">Use the API Catalog to find business process APIs that support an administrative page.</p>
+
+      <div class="note"><span class="notetitle">Note:</span> This publication is no longer being updated and may be outdated. Previously, data lineage information for APIs were in supplemental .csv files that were attachments to the APIs and included in the SDK. A bulk conversion effort merged the contents of the .csv files into the APIs that are published and the .csv files have been removed. </div>
+
+    </div>
+
+    <div class="tasklabel"><h2 class="sectiontitle tasklabel">Procedure</h2></div><ol class="ol steps"><li class="li step">
+        <span class="ph cmd">Go to the <a class="xref ft-external-link" href="https://resources.elluciancloud.com/search?labelkey=category-api&amp;rpp=50&amp;sort.field=title&amp;sort.value=asc" target="_blank" rel="noopener">API Catalog</a>.</span>
+      </li>
+<li class="li step">
+        <span class="ph cmd">Enter the name of the administrative page in the search box and press enter. The search returns results from across the Documentation site. </span>
+      </li>
+<li class="li step">
+        <span class="ph cmd">Limit the search results to only APIs by clicking a filter in the API Catalog in the left-hand filter panel.</span>
+      </li>
+<li class="li step">
+        <span class="ph cmd">Search for other administrative pages by changing the name of the page in the search box and pressing enter. Leave the Category API Catalog selected to limit results to only APIs. </span>
+      </li>
+</ol>
+
+  </div>
+
+</div></div></section>
+<section id="t-60"><h3>How To</h3></section>
+<section id="t-70"><h4>How to determine when and who changed data with Banner BPAPIs</h4><div class="content-locale-en-US content-locale-en"><div id="c_how_to_get_info_data_changes_banner_bpapi"><div class="body conbody">
+    <div class="note"><span class="notetitle">Note:</span> This publication is no longer being updated and may be outdated. Previously, data lineage information for APIs were in supplemental .csv files that were attachments to the APIs and included in the SDK. A bulk conversion effort merged the contents of the .csv files into the APIs that are published and the .csv files have been removed. </div>
+
+    <p class="p">When available, you can use metadata provided in the GET response of a Banner Business Process API (BPAPI) to identify when the data last changed and the user who made the update.</p>
+
+    <p class="p">Banner BPAPIs align with the Banner user interface page behavior. When the Banner page displays the activity date and user for the data block, the properties are included in the GET response of the Banner BPAPI.</p>
+
+    <div class="p">Metadata properties:<ul class="ul"> <li class="li">Activity Date is the most recent date/time a record was added or changed.</li>
+ <li class="li">User ID is the identifier of the source of the latest create/update. A user may be an administrative user, a process, a page, an API, or a third-party identifier. Consult with your Banner system administrator when additional details beyond the user ID are needed.</li>
+ </ul>
+</div>
+
+    <p class="p">Display of the activity date and user is frequently located in the footer of the Banner page. The footer display changes based on the block of data being accessed. For complex Banner pages, the BPAPI might include data from multiple data blocks, with each block returning its own activity date and user properties. </p>
+
+    <div class="note"><span class="notetitle">Note:</span> Display of activity date and user ID is not available on every Banner page data block. The BPAPIs can only provide this metadata if the page supports its display.</div>
+
+    <div class="p">Example Banner page: <br><div class="imagecenter"><img class="image imagecenter" alt="SPAIDEN page address block" data-ft-asset-display-name="form_spaiden_address.png" src="images/ethos-integration-developer-resources-2.png" data-ft-resource-id="I2F_DJcEe5nwPWd_BsYSRw-Y9b19m4nH~fNCDPf1M2uBQ"></div><br></div>
+
+    <div class="p">Example GET response from general-person-identification-address API: <br><div class="imagecenter"><img class="image imagecenter" alt="general-person-identification-address API GET response" data-ft-asset-display-name="mis_bpapi_activity_user_response.png" src="images/ethos-integration-developer-resources-3.png" data-ft-resource-id="i1jW5JpIziECcj_q8L4N6w-Y9b19m4nH~fNCDPf1M2uBQ"></div><br></div>
+
+  </div>
+
+</div></div></section>
+<section id="t-80"><h4>How to identify reference data to be used for Banner BPAPI POST/PUT transactions</h4><div class="content-locale-en-US content-locale-en"><div id="c_how_to_lookup_reference_data_bpapi"><div class="body conbody">
+    <div class="note"><span class="notetitle">Note:</span> This publication is no longer being updated and may be outdated. Previously, data lineage information for APIs were in supplemental .csv files that were attachments to the APIs and included in the SDK. A bulk conversion effort merged the contents of the .csv files into the APIs that are published and the .csv files have been removed. </div>
+
+    <div class="section">
+      <p class="p">You can use the Banner Business Process API (BPAPI) OpenAPI documentation to identify associated BPAPIs and retrieve information needed for POST/PUT transactions. </p>
+
+      <p class="p">When executing a POST/PUT transaction to a BPAPI, you might need to identify reference data within another BPAPI for use in your transaction. Reference data is data defined in a related object in Banner to provide a list of valid choices for a property. To explain how to identify reference data, a sample use case is used for this demonstration.</p>
+
+    </div>
+
+    <div class="section"><h2 class="title sectiontitle">Use Case</h2>
+      
+      <div class="p">Create  a student hold record using the <code class="ph codeph">hold-information</code> BPAPI when the hold type is not known. The hold type is the reference data that will be identified.<ol class="ol">
+        <li class="li">Navigate to the <code class="ph codeph"><span class="xref ft-internal-xlink" data-ft-warning="excluded-from-rendering" data-clusterid="devexp/ethos-dev-guide/hold-information">hold-information</span></code> BPAPI in the <a class="xref ft-external-link" href="https://resources.elluciancloud.com/search?labelkey=category-api&amp;rpp=50&amp;sort.field=title&amp;sort.value=asc" target="_blank" rel="noopener">API Catalog</a>.</li>
+
+        <li class="li">Navigate to the POST request schema for the <code class="ph codeph">hold-information</code> BPAPI.</li>
+
+        <li class="li">Locate a property that is indicative of a hold type, code, or value. In this example, the field you are looking for is <code class="ph codeph">hlddCode</code> which is the hold type in Banner.</li>
+
+        <li class="li">Note the Lookup lineage reference object for the <code class="ph codeph">hlddCode</code><br><div class="imageleft"><img class="image imageleft" alt="Single reference object" data-ft-asset-display-name="mis_lookup_lineage_single.png" src="images/ethos-integration-developer-resources-4.png" data-ft-resource-id="WVPQu5Xjt85g1xaKSRdB1w-Y9b19m4nH~fNCDPf1M2uBQ"></div><br></li>
+
+        <li class="li">Initiate a search for <code class="ph codeph">stvhldd</code> in the BPAPI Catalog. The <code class="ph codeph">hold-type-codes</code> BPAPI should be returned in the search.</li>
+
+        <li class="li">Access the <code class="ph codeph"><span class="xref ft-internal-xlink" data-ft-warning="excluded-from-rendering" data-clusterid="devexp/ethos-dev-guide/banner_api_hold_type_codes_1.0.0/page/hold-type-codes">hold-type-codes</span></code> OpenAPI documentation.</li>
+
+        <li class="li">Review the GET response schema for the <code class="ph codeph">hold-type-codes</code> Banner BPAPI.</li>
+
+        <li class="li"> Using your preferred API testing tool, initiate a GET request to the <code class="ph codeph">hold-type-codes</code> BPAPI to retrieve a list of the hold type codes contained within the STVHLDD table. Examine the <code class="ph codeph">hold-type-codes</code> GET response to identify the appropriate hold type.</li>
+
+        <li class="li">Perform a POST request to the <code class="ph codeph">hold-information</code> BPAPI using the reference data found in the <code class="ph codeph">hold-type-code</code> BPAPI GET response.</li>
+
+        </ol>
+</div>
+
+    </div>
+
+    <div class="section"><h2 class="title sectiontitle">Tips for Success</h2>
+      
+      <ul class="ul">
+        <li class="li">Use <span class="xref ft-internal-link" data-ft-warning="excluded-from-rendering" data-mapid="Y9b19m4nH~fNCDPf1M2uBQ" data-tocid="oEzApaJOH7DdFTOJpL2sDg">Find an API using an administrative page</span> or for more information about searching for APIs.</li>
+
+        <li class="li">Notice that multiple Lookup lineage reference objects can be listed in the schema. If there is more than one Lookup lineage reference object, a combination of configurations are used to determine the valid values. <br><div class="imageleft"><img class="image imageleft" alt="Multiple reference objects" data-ft-asset-display-name="mis_lookup_lineage_multiple.png" src="images/ethos-integration-developer-resources-5.png" data-ft-resource-id="ewMOj2QbopZxEHuBdVoiWQ-Y9b19m4nH~fNCDPf1M2uBQ"></div><br></li>
+
+      </ul>
+
+      <div class="note"><span class="notetitle">Note:</span> BPAPIs are available for most commonly used reference data. If you are unable to locate a BPAPI for reference data by using Lookup lineage reference objects, refer to Banner product documentation or consult with Banner administrative users.</div>
+
+    </div>
+
+  </div>
+
+</div></div></section>
+<section id="t-90"><h4>How to identify reference data to be used for EEDM API POST/PUT transactions</h4><div class="content-locale-en-US content-locale-en"><div id="c_how_to_look_up_reference_data_eedm"><div class="body conbody">
+    <div class="note"><span class="notetitle">Note:</span> This publication is no longer being updated and may be outdated. Previously, data lineage information for APIs were in supplemental .csv files that were attachments to the APIs and included in the SDK. A bulk conversion effort merged the contents of the .csv files into the APIs that are published and the .csv files have been removed. </div>
+
+    <div class="section">
+      <p class="p">You can use the Ethos Data Model (EEDM) OpenAPI documentation to identify associated EEDM APIs and retrieve information needed for POST/PUT transactions. </p>
+
+      <p class="p">When executing a POST/PUT transaction to an EEDM API, you might need to use other EEDM APIs to look up reference data for use in your transaction. Reference data is data defined in an Ethos Data Model Resource. To illustrate how to look up reference data, two sample use cases are provided. </p>
+
+    </div>
+
+    <div class="section"><h2 class="title sectiontitle">Use Cases</h2>
+      
+    </div>
+
+    <div class="section">
+      <div class="note"><span class="notetitle">Note:</span>  These use cases link to Banner OpenAPI documentation, but similar steps can also be used to access other OpenAPI documentation.</div>
+
+      <strong class="ph b">Use Case 1: Create or update an admission decision using the <code class="ph codeph">admission-decisions</code> API, when the admission application and the admission decision type are not known.</strong>
+    </div>
+
+    <div class="section">
+      <ol class="ol">
+        <li class="li">Navigate to the <a class="xref ft-external-link" href="https://resources.elluciancloud.com/search?labelkey=category-api&amp;rpp=50&amp;sort.field=title&amp;sort.value=asc" target="_blank" rel="noopener">API Catalog</a> and search for the <code class="ph codeph">admission-decisions</code> EEDM API. Use the catalog API Type filter to show only EEDM APIs: <br><img class="image" alt="API type selection" data-ft-asset-display-name="btn_API_type.png" src="images/ethos-integration-developer-resources-6.png" data-ft-resource-id="tmHQKUDSLYcGAVuS~AsDdA-Y9b19m4nH~fNCDPf1M2uBQ"><br></li>
+
+        <li class="li">Select the highest version of the <code class="ph codeph"><span class="xref ft-internal-xlink" data-ft-warning="excluded-from-rendering" data-clusterid="devexp/ethos-dev-guide/admission-decisions">admission-decisions</span></code> API that is supported by Banner from the search results. The API documentation page will be displayed when the link is selected.<br><img class="image" alt="API version selection" data-ft-asset-display-name="mis_api_version_selection.png" src="images/ethos-integration-developer-resources-7.png" data-ft-resource-id="J8g~KLroIzs~i71B9UYfRA-Y9b19m4nH~fNCDPf1M2uBQ"><br></li>
+
+        <li class="li">Scroll to the 'Schemas' section and review the properties needed for a POST/PUT request. Required properties are indicated with a red asterisk.</li>
+
+        <li class="li">In this example, <code class="ph codeph">application</code>, <code class="ph codeph">decisionType</code> and <code class="ph codeph">decidedOn</code> are required. Both <code class="ph codeph">application</code> and <code class="ph codeph">decisionType</code> require a GUID to be used, which must be looked up if it isn't already known.</li>
+
+        <li class="li">To look up reference GUID values, you must identify the EEDM APIs associated with them.</li>
+
+        <li class="li">To determine which EEDM APIs you need to use, expand the schema section of the API and locate the property. The EEDM API will be identified with x-lineageLookupReferenceObject.</li>
+
+        <li class="li">Using your preferred API testing tool, perform a GET request to <code class="ph codeph">admission-applications</code> (utilizing filters) to locate the <code class="ph codeph">admission-application</code> of interest. Note the GUID returned in the <code class="ph codeph">ID</code> property for later use in the POST/PUT request.</li>
+
+        <li class="li">Perform a GET request to <code class="ph codeph">admission-decision-types</code> to retrieve a list of admission decision type codes. Note the GUID returned in the <code class="ph codeph">ID</code> property of the decision type of interest for later use in the POST/PUT request. </li>
+
+        <li class="li">Perform a POST/PUT request to the <code class="ph codeph">admission-decisions</code> API, including the GUIDs identified for <code class="ph codeph">admission-applications</code> and <code class="ph codeph">admission-decision-types</code>, along with any other required properties.</li>
+
+      </ol>
+
+    </div>
+
+    <div class="section">
+      <p class="p">
+        <strong class="ph b">Use Case 2: Create a vendor using the <code class="ph codeph">vendors</code> API, when the person/organization <code class="ph codeph">ID</code> (a required property) is not known. The assumption is that the vendor does not already exist.</strong>
+      </p>
+
+      <ol class="ol">
+        <li class="li">Navigate to the <a class="xref ft-external-link" href="https://resources.elluciancloud.com/search?labelkey=category-api&amp;rpp=50&amp;sort.field=title&amp;sort.value=asc" target="_blank" rel="noopener">API Catalog</a> and search for the <code class="ph codeph">vendors</code> EEDM API. </li>
+
+        <li class="li">Select the highest version of the <code class="ph codeph"><span class="xref ft-internal-xlink" data-ft-warning="excluded-from-rendering" data-clusterid="devexp/ethos-dev-guide/vendors">vendors</span></code> API that is supported by Banner from the search results. The API documentation page will be displayed when the link is selected.</li>
+
+        <li class="li">Scroll to the 'Schemas' section and review the properties. Required properties are indicated with a red asterisk.</li>
+
+        <li class="li">In this example, only <code class="ph codeph">vendorDetail</code>is required. The <code class="ph codeph">oneOf</code> property requires a GUID for either a person or organization to be used, which must be looked up if it isn't already known.</li>
+
+        <li class="li">Using your preferred API testing tool, perform a GET request to <code class="ph codeph">persons</code> or <code class="ph codeph">organizations</code> (utilizing filters) to determine if a person/organization associated with the vendor of interest is present in the database. Multiple searches might be needed to narrow the search results. Note the GUID returned in the <code class="ph codeph">ID</code> property for later use in the POST request.</li>
+
+        <li class="li">If a person/organization is not found after filtering against <code class="ph codeph">persons</code> and <code class="ph codeph">organizations</code>, a new person/organization can be created using a POST request to <code class="ph codeph">persons</code> or <code class="ph codeph">organizations</code>. Note the GUID returned in the <code class="ph codeph">ID</code> property in either API for use in the <code class="ph codeph">vendors</code> POST request.</li>
+
+        <li class="li">To create a new vendor, complete a POST request to <code class="ph codeph">vendors</code> using the <code class="ph codeph">ID</code> GUID noted for either the person or organization as the <code class="ph codeph">vendorDetail.person.id</code> or <code class="ph codeph">vendorDetail.organization.id</code>, along with any other necessary properties.</li>
+
+      </ol>
+
+    </div>
+
+    <div class="section"><h2 class="title sectiontitle">Tip for Success</h2>
+      
+      <p class="p">For complex scenarios that include properties that are effective dated, administrative users responsible for managing those values should be contacted to determine the appropriate values to include (e.g. accounting string values, etc.). This will ensure these values are valid for the transaction date of your POST/PUT request. </p>
+
+    </div>
+
+  </div>
+
+</div></div></section>
+<section id="t-100"><h4>How to synchronize ERP data to a third-party system using EEDM APIs</h4><div class="content-locale-en-US content-locale-en"><div id="c_how_to_synchronize_data"><div class="body conbody">
+    <div class="note"><span class="notetitle">Note:</span> This publication is no longer being updated and may be outdated. Previously, data lineage information for APIs were in supplemental .csv files that were attachments to the APIs and included in the SDK. A bulk conversion effort merged the contents of the .csv files into the APIs that are published and the .csv files have been removed. </div>
+
+    <p class="p">You can use EEDM APIs to synchronize data from Banner or Colleague to a third-party application. </p>
+
+    <br><div class="imagecenter"><img class="image imagecenter" alt="Ethos integration architecture" data-ft-asset-display-name="flw_ethos_integration_architecture.png" src="images/ethos-integration-developer-resources-8.png" data-ft-resource-id="RE30j6VFO_LwsJIqBzbiRg-Y9b19m4nH~fNCDPf1M2uBQ"></div><br>
+    <div class="section">
+      <p class="p">Synchronization keeps data up to date between the application consuming the data and the authoritative source system. One of the main strategies for synchronizing data using Ethos APIs relies on messages. Messages are how applications stay in sync on events that are occurring across campus data points: some sort of event has occurred, and one part of the system is letting another part know. Messaging is a key element of an integration model because the goal is to facilitate data synchronization among applications, as close to real time as possible, so the systems share the same view on the data.</p>
+
+    </div>
+
+    <div class="section"><h2 class="title sectiontitle">Integration method (synchronous vs asynchronous)</h2>
+      
+      <p class="p">Asynchronous message flow is where authoritative systems publish changes to data and interested parties might subscribe to data changes. This is also known as “publish/subscribe.” An application that owns an Ethos resource (the authoritative application) is responsible for publishing change notifications for changes related to that resource to Ethos Integration. </p>
+
+      <p class="p">Synchronous message flow, also known as “request/reply,” is where a non-authoritative system makes a request of a resource. Ethos Integration determines what system is authoritative for that resource and routes the request to that system, which is responsible to reply to Ethos Integration, which then sends back to the requesting system.</p>
+
+    </div>
+
+    <div class="section"><h2 class="title sectiontitle">Integration Examples</h2>
+      
+    </div>
+
+    <div class="section">
+      
+<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" class="table" frame="border" border="1" rules="all"><colgroup><col style="width:16.39344262295082%"><col style="width:22.950819672131146%"><col style="width:18.0327868852459%"><col style="width:22.950819672131146%"><col style="width:19.672131147540984%"></colgroup><thead class="thead" style="text-align:left;">
+            <tr class="row">
+              <th class="entry cellrowborder" style="vertical-align:top;" id="d1153e90">Pattern</th>
+
+              <th class="entry cellrowborder" style="vertical-align:top;" id="d1153e93">Description</th>
+
+              <th class="entry cellrowborder" style="vertical-align:top;" id="d1153e96">Variant</th>
+
+              <th class="entry cellrowborder" style="vertical-align:top;" id="d1153e99">Example</th>
+
+              <th class="entry cellrowborder" style="vertical-align:top;" id="d1153e102">Suggestions for Use</th>
+
+            </tr>
+
+          </thead>
+<tbody class="tbody">
+            <tr class="row">
+              <td class="entry cellrowborder" style="vertical-align:top;" headers="d1153e90 ">Consuming data published by another application </td>
+
+              <td class="entry cellrowborder" style="vertical-align:top;" headers="d1153e93 ">Knowing when data of interest in another system has been created, updated, or deleted (for example, person name, contact or demographic data). </td>
+
+              <td class="entry cellrowborder" style="vertical-align:top;" headers="d1153e96 ">Asynchronous interaction</td>
+
+              <td class="entry cellrowborder" style="vertical-align:top;" headers="d1153e99 ">
+                <ul class="ul">
+                  <li class="li">Publication of person data</li>
+
+                  <li class="li">Publication of account codes</li>
+
+                </ul>
+
+              </td>
+
+              <td class="entry cellrowborder" style="vertical-align:top;" headers="d1153e102 ">When data changes on a periodic basis and an external system needs to be in-sync at all times. </td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry cellrowborder" style="vertical-align:top;" headers="d1153e90 ">On-demand retrieval of data from another application </td>
+
+              <td class="entry cellrowborder" style="vertical-align:top;" headers="d1153e93 ">Being able to query data in another system (for example, getting a list of deposits that are on a student's account, or a list of persons that meet some search criteria). </td>
+
+              <td class="entry cellrowborder" style="vertical-align:top;" headers="d1153e96 ">Synchronous interaction </td>
+
+              <td class="entry cellrowborder" style="vertical-align:top;" headers="d1153e99 ">Get housing applicant eligibility</td>
+
+              <td class="entry cellrowborder" style="vertical-align:top;" headers="d1153e102 ">When data is needed periodically, and the query criteria for the data change each time (i.e., different student). </td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry cellrowborder" style="vertical-align:top;" headers="d1153e90 ">Maintaining data in another application </td>
+
+              <td class="entry cellrowborder" style="vertical-align:top;" headers="d1153e93 ">Being able to create, update, delete data in another system (for example, a charge or a payment on a student's account). </td>
+
+              <td class="entry cellrowborder" style="vertical-align:top;" headers="d1153e96 ">Synchronous interaction </td>
+
+              <td class="entry cellrowborder" style="vertical-align:top;" headers="d1153e99 ">In a synchronous interaction, a client sends a request to a service, and receives an immediate reply.</td>
+
+              <td class="entry cellrowborder" style="vertical-align:top;" headers="d1153e102 ">When data is created, changed or removed in one system, and that change should be applied to other system as soon as possible. </td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry cellrowborder" style="vertical-align:top;" headers="d1153e90 ">Requesting a service of another application </td>
+
+              <td class="entry cellrowborder" style="vertical-align:top;" headers="d1153e93 ">Being able to get an external system to do something that might or might not result in the creation of data in that system (for example, tax calculation). </td>
+
+              <td class="entry cellrowborder" style="vertical-align:top;" headers="d1153e96 ">Synchronous (one of two possible responses) </td>
+
+              <td class="entry cellrowborder" style="vertical-align:top;" headers="d1153e99 ">Before requesting creation of purchase order or requisition, external system requests budget authorization for the purchase document.  Response is either an authorized message or a not authorized message. Calling application must determine next steps based on message received. </td>
+
+              <td class="entry cellrowborder" style="vertical-align:top;" headers="d1153e102 ">When a process in one system is dependent upon the completion of a process in another system. </td>
+
+            </tr>
+
+          </tbody>
+</table>
+</div>
+
+    </div>
+
+    <div class="section"><h2 class="title sectiontitle">Assumptions</h2>
+      
+      <ul class="ul">
+        <li class="li">The appropriate software and software versions must be in place for the messaging enterprise. </li>
+
+        <li class="li">Installation and configuration of Banner/Colleague Ethos APIs has been completed to use Ethos Integration. (<u class="ph u"><span class="xref ft-internal-xlink" data-ft-warning="excluded-from-rendering" data-clusterid="devexp/ethos-dev-guide/c_connect_apps">Connect applications to Ethos Integration</span></u>)</li>
+
+        <li class="li">Ethos Integration has been set up to use Colleague/Banner Integration API as an authoritative source. (<span class="xref ft-internal-xlink" data-ft-warning="excluded-from-rendering" data-clusterid="devexp/ethos-dev-guide/c_set_up_app_ethos_int">General procedures to set up an application in Ethos Integration</span>) </li>
+
+        <li class="li">Standard messaging integration patterns are being used. (<span class="xref ft-internal-xlink" data-ft-warning="excluded-from-rendering" data-clusterid="devexp/ethos-dev-guide/c_standard_integration">Use standard messaging integration patterns</span>)</li>
+
+        <li class="li">Ellucian Ethos API standards related to change notifications are followed. (<span class="xref ft-internal-xlink" data-ft-warning="excluded-from-rendering" data-clusterid="devexp/ethos-dev-guide/c_api_dm_change_notification">Ellucian Ethos change notification</span>)</li>
+
+      </ul>
+
+      <p class="p">Listed below are several of the steps necessary to synchronize data between Banner or Colleague and a third-party system. There are different requirements for each ERP, so ERP-specific listings have been provided. </p>
+
+      <p class="p">Note: Additional configurations not related to messaging might be required for Ethos Integration that are outside the scope of this document.</p>
+
+    </div>
+
+    <div class="section"><h2 class="title sectiontitle">ERP Setup Instructions</h2>
+      
+    </div>
+
+    <div class="section">
+      
+<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" class="table" frame="border" border="1" rules="all"><colgroup><col style="width:20%"><col style="width:60%"><col style="width:20%"></colgroup><thead class="thead" style="text-align:left;">
+            <tr class="row">
+              <th class="entry cellrowborder" style="vertical-align:top;" id="d1153e263">Title</th>
+
+              <th class="entry cellrowborder" style="vertical-align:top;" id="d1153e266">Direction</th>
+
+              <th class="entry cellrowborder" style="vertical-align:top;" id="d1153e269">Link</th>
+
+            </tr>
+
+          </thead>
+<tbody class="tbody">
+            <tr class="row">
+              <td class="entry cellrowborder" style="vertical-align:top;" headers="d1153e263 ">Messaging component considerations</td>
+
+              <td class="entry cellrowborder" style="vertical-align:top;" headers="d1153e266 ">This section provides considerations for deploying the software components that connect Banner or Colleague to Ellucian Ethos Integration.</td>
+
+              <td class="entry cellrowborder" style="vertical-align:top;" headers="d1153e269 ">
+                <ul class="ul">
+                  <li class="li">
+                    <span class="xref ft-internal-xlink" data-ft-warning="excluded-from-rendering" data-clusterid="devexp/ethos-dev-guide/c_ems_prerequisites_banner">Banner</span>
+                  </li>
+
+                  <li class="li">
+                    <span data-ft-link-error-class="xref" data-ft-link-error-href="3a556441de52b791b96fed805f3e048e.xml" data-ft-link-error-data-ft-asset-display-name="c_ems_prerequisites.xml" data-ft-resource-error="[ERR_LINK_UNRESOLVED] link with text &quot;Colleague&quot; targeting &quot;3a556441de52b791b96fed805f3e048e.xml&quot; could not be resolved
+---
+&lt;a class=&quot;xref&quot; href=&quot;3a556441de52b791b96fed805f3e048e.xml&quot; data-ft-asset-display-name=&quot;c_ems_prerequisites.xml&quot;&gt;Colleague&lt;/a&gt;
+---
+maybe the target is not in the archive or the link malformed ?">Colleague</span>
+                  </li>
+
+                </ul>
+
+              </td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry cellrowborder" style="vertical-align:top;" headers="d1153e263 ">Install the Ellucian Messaging Service</td>
+
+              <td class="entry cellrowborder" style="vertical-align:top;" headers="d1153e266 ">The Ellucian Messaging Service is message queuing software that decouples the event generator for Banner or Colleague from the software that processes the business events.</td>
+
+              <td class="entry cellrowborder" style="vertical-align:top;" headers="d1153e269 ">
+                <ul class="ul">
+                  <li class="li">
+                    <span class="xref ft-internal-xlink" data-ft-warning="excluded-from-rendering" data-clusterid="devexp/ethos-dev-guide/c_ems_install_banner">Banner</span>
+                  </li>
+
+                  <li class="li">
+                    <span class="xref ft-internal-xlink" data-ft-warning="excluded-from-rendering" data-clusterid="devexp/ethos-dev-guide/c_ems_install_colleague">Colleague</span>
+                  </li>
+
+                </ul>
+
+              </td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry cellrowborder" style="vertical-align:top;" headers="d1153e263 ">Install the Banner Event Publisher</td>
+
+              <td class="entry cellrowborder" style="vertical-align:top;" headers="d1153e266 ">The Banner Event Publisher (BEP) supports publishing notifications from Banner toEthos Integration.</td>
+
+              <td class="entry cellrowborder" style="vertical-align:top;" headers="d1153e269 ">
+                <span class="xref ft-internal-xlink" data-ft-warning="excluded-from-rendering" data-clusterid="devexp/ethos-dev-guide/c_install_bep">Banner</span>
+              </td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry cellrowborder" style="vertical-align:top;" headers="d1153e263 ">Configure EDX</td>
+
+              <td class="entry cellrowborder" style="vertical-align:top;" headers="d1153e266 ">Colleague notifies Ellucian Ethos Integration about changes to data using Envision Data Exchange (EDX).</td>
+
+              <td class="entry cellrowborder" style="vertical-align:top;" headers="d1153e269 ">
+                <span class="xref ft-internal-xlink" data-ft-warning="excluded-from-rendering" data-clusterid="devexp/ethos-dev-guide/c_configuring_edx">Colleague</span>
+              </td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry cellrowborder" style="vertical-align:top;" headers="d1153e263 ">Configure and deploy the Ellucian Message Adapter</td>
+
+              <td class="entry cellrowborder" style="vertical-align:top;" headers="d1153e266 ">The Ellucian Message Adapter publishes data changes from Banner or Colleague to Ellucian Ethos Integration.</td>
+
+              <td class="entry cellrowborder" style="vertical-align:top;" headers="d1153e269 ">
+                <ul class="ul">
+                  <li class="li">
+                    <span class="xref ft-internal-xlink" data-ft-warning="excluded-from-rendering" data-clusterid="devexp/ethos-dev-guide/c_ema_install_banner">Banner</span>
+                  </li>
+
+                  <li class="li">
+                    <span class="xref ft-internal-xlink" data-ft-warning="excluded-from-rendering" data-clusterid="devexp/ethos-dev-guide/c_ema_install_colleague">Colleague</span>
+                  </li>
+
+                </ul>
+
+              </td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry cellrowborder" style="vertical-align:top;" headers="d1153e263 ">Specify EMS settings</td>
+
+              <td class="entry cellrowborder" style="vertical-align:top;" headers="d1153e266 ">Define settings that the Ellucian Message Adapter uses to link the Ellucian Messaging Service with Banner or Colleague.</td>
+
+              <td class="entry cellrowborder" style="vertical-align:top;" headers="d1153e269 ">
+                <ul class="ul">
+                  <li class="li">
+                    <span class="xref ft-internal-xlink" data-ft-warning="excluded-from-rendering" data-clusterid="devexp/ethos-dev-guide/t_banner_config_api_mgmt_ctr">Banner</span>
+                  </li>
+
+                  <li class="li">
+                    <a class="xref ft-external-link" href="https://resources.elluciancloud.com/bundle/ethos_integration_acn_configure/page/t_colleague_config_1.html" target="_blank" rel="noopener">Colleague</a>
+                  </li>
+
+                </ul>
+
+              </td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry cellrowborder" style="vertical-align:top;" headers="d1153e263 ">Ellucian Ethos change notification</td>
+
+              <td class="entry cellrowborder" style="vertical-align:top;" headers="d1153e266 ">Another essential component of the Ellucian Ethos Integration system is enabling Non Authoritative systems to be notified of changes to Data Model resources. This is enabled by Authoritative systems publishing Change Notification messages when Data Model resources change.</td>
+
+              <td class="entry cellrowborder" style="vertical-align:top;" headers="d1153e269 ">
+                <span class="xref ft-internal-xlink" data-ft-warning="excluded-from-rendering" data-clusterid="devexp/ethos-dev-guide/c_publish_change_notifications">Publish Change Notifications</span>
+              </td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry cellrowborder" style="vertical-align:top;" headers="d1153e263 ">Retrieve change notifications</td>
+
+              <td class="entry cellrowborder" style="vertical-align:top;" headers="d1153e266 ">Applications that are configured as subscribers to resources must request the change notifications that Ellucian Ethos Integration stores for them.</td>
+
+              <td class="entry cellrowborder" style="vertical-align:top;" headers="d1153e269 "> <span class="xref ft-internal-xlink" data-ft-warning="excluded-from-rendering" data-clusterid="devexp/ethos-dev-guide/t_retrieve_example_api_client">Retrieve Change Notifications</span> </td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry cellrowborder" style="vertical-align:top;" headers="d1153e263 ">Set up applications in Ethos Integration (single owner)</td>
+
+              <td class="entry cellrowborder" style="vertical-align:top;" headers="d1153e266 ">Create the Ethos Integration applications, and set up resources, subscriptions, proxy API requests, and GraphQL requests, in an environment where each resource is owned by just one application.</td>
+
+              <td class="entry cellrowborder" style="vertical-align:top;" headers="d1153e269 ">
+                <span class="xref ft-internal-xlink" data-ft-warning="excluded-from-rendering" data-clusterid="devexp/ethos-dev-guide/c_set_up_app_ethos_int_single_owner">Set Up Applications (single owner)</span>
+              </td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry cellrowborder" style="vertical-align:top;" headers="d1153e263 ">Add subscriptions to an application (single owner)</td>
+
+              <td class="entry cellrowborder" style="vertical-align:top;" headers="d1153e266 ">Set up an application to access data in another application by subscribing to published data changes, in an environment where each resource is owned by just one application.</td>
+
+              <td class="entry cellrowborder" style="vertical-align:top;" headers="d1153e269 ">
+                <span class="xref ft-internal-xlink" data-ft-warning="excluded-from-rendering" data-clusterid="devexp/ethos-dev-guide/c_add_subscriptions_single_owner">Add Subscriptions to an Application (single owner)</span>
+              </td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry cellrowborder" style="vertical-align:top;" headers="d1153e263 ">Set up applications in Ethos Integration (multiple owners)</td>
+
+              <td class="entry cellrowborder" style="vertical-align:top;" headers="d1153e266 ">Create the Ethos Integration applications, and set up resources, subscriptions, proxy API requests, and GraphQL requests, in an environment where some resources are owned by multiple applications.</td>
+
+              <td class="entry cellrowborder" style="vertical-align:top;" headers="d1153e269 ">
+                <span class="xref ft-internal-xlink" data-ft-warning="excluded-from-rendering" data-clusterid="devexp/ethos-dev-guide/c_set_up_app_ethos_int_multi_owner">Set Up Applications (multiple owners)</span>
+              </td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry cellrowborder" style="vertical-align:top;" headers="d1153e263 ">Add subscriptions to an application (multiple owners)</td>
+
+              <td class="entry cellrowborder" style="vertical-align:top;" headers="d1153e266 ">Set up an application to access data in another application by subscribing to published data changes, in an environment where some resources are owned by multiple applications.</td>
+
+              <td class="entry cellrowborder" style="vertical-align:top;" headers="d1153e269 ">
+                <span class="xref ft-internal-xlink" data-ft-warning="excluded-from-rendering" data-clusterid="devexp/ethos-dev-guide/c_add_subscriptions_multi_owner">Add Subscriptions to an Application (multiple owners)</span>
+              </td>
+
+            </tr>
+
+          </tbody>
+</table>
+</div>
+
+    </div>
+
+    <div class="section"><h2 class="title sectiontitle">Synchronizing data</h2>
+      
+      <div class="p">The <span class="xref ft-internal-xlink" data-ft-warning="excluded-from-rendering" data-clusterid="devexp/ethos-dev-guide/c_ethos_integration_overview">About Ethos Integration</span> page provides access to multiple APIs that will be necessary for data synchronization and documents how to use these APIs to keep third-party data in sync with ERP data.Note: All APIs that could be related to data synchronization are not listed here. This document highlights only the Message Queue and Publish APIs.<ul class="ul">
+        <li class="li"><span class="xref ft-internal-xlink" data-ft-warning="excluded-from-rendering" data-clusterid="devexp/ethos-dev-guide/r_message_queue_api">Message Queue API</span>: The Message Queue API is a public-facing API that allows subscribing applications to retrieve their change notifications.</li>
+
+        <li class="li"><span class="xref ft-internal-xlink" data-ft-warning="excluded-from-rendering" data-clusterid="devexp/ethos-dev-guide/r_publish_api">Publish API</span>: The Publish API exposes a public-facing API that allows an authoritative system to publish changes to data using an HTTPS (non-RESTful) API. It accepts change notifications.</li>
+
+        </ul>
+</div>
+
+    </div>
+
+    <div class="section"><h2 class="title sectiontitle">Tips for success</h2>
+      
+      <div class="p">
+        <ul class="ul">
+          <li class="li">Subscription filtering allows you to specify conditions in which you get a change notification added to a subscriber’s queue for a particular resource, reducing the size of subscription queues that can impact performance of the consume endpoint. (<span class="xref ft-internal-xlink" data-ft-warning="excluded-from-rendering" data-clusterid="devexp/ethos-dev-guide/r_example_subscription_filters">Example Subscription Filters</span>)</li>
+
+          <li class="li">Third party systems should provide integration documentation for customers. </li>
+
+        </ul>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</div></div></section>
+<section id="t-110"><h2>Quick Reference</h2></section>
+<section id="t-120"><h3>Ethos-Enabled Integration Quick Reference</h3><div class="content-locale-en-US content-locale-en"><div id="r_quick_reference"><div class="body refbody"><p class="shortdesc"></p>
+
+    <div class="section">
+      <div class="note"><span class="notetitle">Note:</span> This publication is no longer being updated and may be outdated. Previously, data lineage information for APIs were in supplemental .csv files that were attachments to the APIs and included in the SDK. A bulk conversion effort merged the contents of the .csv files into the APIs that are published and the .csv files have been removed. </div>
+
+      <p class="p">This Ethos-Enabled Integration Quick Reference provides a list of resources useful to a developer in building an Ethos Integration for an Ellucian application/project.</p>
+
+    </div>
+
+    <div class="section"><h2 class="title sectiontitle">Prepare</h2>
+      
+    </div>
+
+    
+<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" id="r_quick_reference__table_ejk_3gx_nrb" class="table" frame="border" border="1" rules="all"><colgroup><col style="width:33.33333333333333%"><col style="width:33.33333333333333%"><col style="width:33.33333333333333%"></colgroup><thead class="thead" style="text-align:left;">
+          <tr class="row">
+            <th class="entry nocellnorowborder" style="vertical-align:top;" id="d762e63">Type of Content</th>
+
+            <th class="entry nocellnorowborder" style="vertical-align:top;" id="d762e66">Description</th>
+
+            <th class="entry cell-norowborder" style="vertical-align:top;" id="d762e69">Link to Page</th>
+
+          </tr>
+
+        </thead>
+<tbody class="tbody">
+          <tr class="row">
+            <td class="entry nocellnorowborder" style="vertical-align:top;" headers="d762e63 ">Customer Center Ellucian Documentation</td>
+
+            <td class="entry nocellnorowborder" style="vertical-align:top;" headers="d762e66 ">The Customer Center Ellucian Documentation site has a storehouse of information to assist in the development of your integration. If members of your development team do not have a Customer Center account, please request one.</td>
+
+            <td class="entry cell-norowborder" style="vertical-align:top;" headers="d762e69 ">
+              <a class="xref ft-external-link" href="https://www.ellucian.com/customer-center" target="_blank" rel="noopener">Ellucian Customer Center</a>
+            </td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry nocellnorowborder" style="vertical-align:top;" headers="d762e63 ">Ellucian Ethos documentation</td>
+
+            <td class="entry nocellnorowborder" style="vertical-align:top;" headers="d762e66 ">The Ellucian Ethos documentation page is the starting point and main page within the Ellucian Documentation site.</td>
+
+            <td class="entry cell-norowborder" style="vertical-align:top;" headers="d762e69 "> <a class="xref ft-external-link" href="https://resources.elluciancloud.com/bundle/ellucian_saas_platform_lnd/page/c_ellucian_saas_platform_lnd.html" target="_blank" rel="noopener">Ellucian Ethos Documentation</a> </td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="vertical-align:top;" headers="d762e63 ">Banner or Colleague Ethos Integration </td>
+
+            <td class="entry row-nocellborder" style="vertical-align:top;" headers="d762e66 ">Before beginning to develop your Ethos Integration, your application must be connected to Banner or Colleague Ethos Integration. </td>
+
+            <td class="entry cellrowborder" style="vertical-align:top;" headers="d762e69 ">
+              <span class="xref ft-internal-xlink" data-ft-warning="excluded-from-rendering" data-clusterid="devexp/ethos-dev-guide/c_connect_apps">Banner &amp; Colleague Ethos Integration &amp; Ethos API Configurations</span>
+            </td>
+
+          </tr>
+
+        </tbody>
+</table>
+</div>
+
+    <div class="section"><h2 class="title sectiontitle">Design</h2>
+      
+    </div>
+
+    
+<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" id="r_quick_reference__table_sz3_ghx_nrb" class="table" frame="border" border="1" rules="all"><colgroup><col style="width:33.33333333333333%"><col style="width:33.33333333333333%"><col style="width:33.33333333333333%"></colgroup><thead class="thead" style="text-align:left;">
+          <tr class="row">
+            <th class="entry nocellnorowborder" style="vertical-align:top;" id="d762e147">Type of Content</th>
+
+            <th class="entry nocellnorowborder" style="vertical-align:top;" id="d762e150">Description</th>
+
+            <th class="entry cell-norowborder" style="vertical-align:top;" id="d762e153">Link to Page</th>
+
+          </tr>
+
+        </thead>
+<tbody class="tbody">
+          <tr class="row">
+            <td class="entry nocellnorowborder" style="vertical-align:top;" headers="d762e147 ">Intro to Ethos Integration</td>
+
+            <td class="entry nocellnorowborder" style="vertical-align:top;" headers="d762e150 ">These training courses provide an introduction to Ellucian Ethos, such as Integration Programming and Data Model overview. These particular introductions will be crucial within your journey with Ellucian Ethos.</td>
+
+            <td class="entry cell-norowborder" style="vertical-align:top;" headers="d762e153 ">
+              <a class="xref ft-external-link" href="https://training.ellucian.com/learn/external-ecommerce;view=none?ctldoc-catalog-0=category_id-31" target="_blank" rel="noopener">Ellucian Ethos Training</a>
+            </td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="vertical-align:top;" headers="d762e147 ">API Catalog</td>
+
+            <td class="entry row-nocellborder" style="vertical-align:top;" headers="d762e150 ">Explore the API Catalog which includes EEDM, Business, &amp; ERP-Specific API models</td>
+
+            <td class="entry cellrowborder" style="vertical-align:top;" headers="d762e153 "> <a class="xref ft-external-link" href="https://resources.elluciancloud.com/search?labelkey=category-api&amp;rpp=50&amp;sort.field=title&amp;sort.value=asc" target="_blank" rel="noopener">API catalog</a> </td>
+
+          </tr>
+
+        </tbody>
+</table>
+</div>
+
+    <div class="section"><h2 class="title sectiontitle">Develop</h2>
+      
+    </div>
+
+    
+<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" id="r_quick_reference__table_olq_cjx_nrb" class="table" frame="border" border="1" rules="all"><colgroup><col style="width:33.33333333333333%"><col style="width:33.33333333333333%"><col style="width:33.33333333333333%"></colgroup><thead class="thead" style="text-align:left;">
+          <tr class="row">
+            <th class="entry nocellnorowborder" style="vertical-align:top;" id="d762e216">Type of Content</th>
+
+            <th class="entry nocellnorowborder" style="vertical-align:top;" id="d762e219">Description</th>
+
+            <th class="entry cell-norowborder" style="vertical-align:top;" id="d762e222">Link to Page</th>
+
+          </tr>
+
+        </thead>
+<tbody class="tbody">
+          <tr class="row">
+            <td class="entry nocellnorowborder" style="vertical-align:top;" headers="d762e216 ">Ellucian Ethos Resources</td>
+
+            <td class="entry nocellnorowborder" style="vertical-align:top;" headers="d762e219 ">Explore Ellucian Documentation Site for additional content.</td>
+
+            <td class="entry cell-norowborder" style="vertical-align:top;" headers="d762e222 "> <a class="xref ft-external-link" href="https://resources.elluciancloud.com/bundle/ellucian_saas_platform_lnd/page/c_ellucian_saas_platform_lnd.html" target="_blank" rel="noopener">Ellucian Ethos Documentation</a> </td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="vertical-align:top;" headers="d762e216 ">Submit cases or IDEAs</td>
+
+            <td class="entry row-nocellborder" style="vertical-align:top;" headers="d762e219 ">Submit cases or ideas to Customer Support for API assistance or to address requirements gaps.</td>
+
+            <td class="entry cellrowborder" style="vertical-align:top;" headers="d762e222 ">
+              <a class="xref ft-external-link" href="https://www.ellucian.com/customer-center" target="_blank" rel="noopener">Ellucian Customer Center</a>
+            </td>
+
+          </tr>
+
+        </tbody>
+</table>
+</div>
+
+    <div class="section"><h2 class="title sectiontitle">Deploy</h2>
+      
+    </div>
+
+    
+<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" id="r_quick_reference__table_n1f_qmx_nrb" class="table" frame="border" border="1" rules="all"><colgroup><col style="width:33.33333333333333%"><col style="width:33.33333333333333%"><col style="width:33.33333333333333%"></colgroup><thead class="thead" style="text-align:left;">
+          <tr class="row">
+            <th class="entry nocellnorowborder" style="vertical-align:top;" id="d762e284">&nbsp;Type of Content</th>
+
+            <th class="entry nocellnorowborder" style="vertical-align:top;" id="d762e287">Description</th>
+
+            <th class="entry cell-norowborder" style="vertical-align:top;" id="d762e290">Link to Page</th>
+
+          </tr>
+
+        </thead>
+<tbody class="tbody">
+          <tr class="row">
+            <td class="entry row-nocellborder" style="vertical-align:top;" headers="d762e284 ">Ethos FAQ</td>
+
+            <td class="entry row-nocellborder" style="vertical-align:top;" headers="d762e287 ">Data issues, environment issues, or technical queries or issues.</td>
+
+            <td class="entry cellrowborder" style="vertical-align:top;" headers="d762e290 ">
+              <a class="xref ft-external-link" href="https://elluciansupport.service-now.com/$viewer.do?sysparm_stack=no&amp;sysparm_sys_id=025090a887ef81d0e01ccb35dabb35a4" target="_blank" rel="noopener">Ethos FAQ: Customers</a>
+            </td>
+
+          </tr>
+
+        </tbody>
+</table>
+</div>
+
+  </div>
+
+</div></div></section>
+<section id="t-130"><h3>Developer Resources Frequently Asked Questions</h3><div class="content-locale-en-US content-locale-en"><div id="r_faq_dev_resources"><div class="body refbody">
+    <div class="section">
+      <div class="note"><span class="notetitle">Note:</span> This publication is no longer being updated and may be outdated. Previously, data lineage information for APIs were in supplemental .csv files that were attachments to the APIs and included in the SDK. A bulk conversion effort merged the contents of the .csv files into the APIs that are published and the .csv files have been removed. </div>
+
+      <p class="p">This FAQ document provides information around Developer Resources content.</p>
+
+    </div>
+
+    
+<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" class="table interactive" frame="border" border="1" rules="all"><colgroup><col style="width:20%"><col style="width:60%"><col style="width:20%"></colgroup><thead class="thead" style="text-align:left;">
+          <tr class="row">
+            <th class="entry cellrowborder" style="vertical-align:top;" id="d541e55">Question</th>
+
+            <th class="entry cellrowborder" style="vertical-align:top;" id="d541e58">Response</th>
+
+            <th class="entry cellrowborder" style="vertical-align:top;" id="d541e61">Associated Links</th>
+
+          </tr>
+
+        </thead>
+<tbody class="tbody">
+          <tr class="row">
+            <td class="entry cellrowborder" style="vertical-align:top;" headers="d541e55 ">How can I filter entities by Domain in the API Catalog?</td>
+
+            <td class="entry cellrowborder" style="vertical-align:top;" headers="d541e58 ">
+              <ol class="ol">
+                <li class="li">Navigate to the API Catalog </li>
+
+                <li class="li">Limit the search results to a specific domain by clicking the Domain filter in the right hand filter panel.</li>
+
+              </ol>
+
+            </td>
+
+            <td class="entry cellrowborder" style="vertical-align:top;" headers="d541e61 ">
+              <a class="xref ft-external-link" href="https://resources.elluciancloud.com/search?q=apicatall&amp;rpp=50&amp;sort.field=title&amp;sort.value=asc" target="_blank" rel="noopener">API catalog</a>
+            </td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry cellrowborder" style="vertical-align:top;" headers="d541e55 ">How can I find data lineage documents for APIs?</td>
+
+            <td class="entry cellrowborder" style="vertical-align:top;" headers="d541e58 ">The method of locating data lineage documentation depends upon which type of API you are using:<ol class="ol">
+              <li class="li">Navigate to the API catalog.</li>
+
+              <li class="li">Search for the desired API.</li>
+
+              <li class="li">Scroll down to the Schemas section. </li>
+
+              <li class="li">Expand each schema to see the data lineage for each property.</li>
+
+              </ol>
+</td>
+
+            <td class="entry cellrowborder" style="vertical-align:top;" headers="d541e61 ">&nbsp;</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry cellrowborder" style="vertical-align:top;" headers="d541e55 ">How do I search for APIs on the Documentation Site?</td>
+
+            <td class="entry cellrowborder" style="vertical-align:top;" headers="d541e58 ">
+              <ol class="ol">
+                <li class="li">Navigate to the API Catalog. </li>
+
+                <li class="li">Enter the name of the API in the search box and press enter.</li>
+
+                <li class="li">The search returns results from the API Catalog. Use the filters for additional refinement. </li>
+
+              </ol>
+
+            </td>
+
+            <td class="entry cellrowborder" style="vertical-align:top;" headers="d541e61 ">
+              <a class="xref ft-external-link" href="https://resources.elluciancloud.com/search?q=apicatall&amp;rpp=50&amp;sort.field=title&amp;sort.value=asc" target="_blank" rel="noopener">API catalog</a>
+            </td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry cellrowborder" style="vertical-align:top;" headers="d541e55 ">How can I find the data model schemas similar to the old Ethos Data Model reference site?</td>
+
+            <td class="entry cellrowborder" style="vertical-align:top;" headers="d541e58 ">We have moved away from documenting the data models in the API Catalog, and have shifted focus to documenting APIs. EEDM API schemas are available as an attachment to the OpenAPI doc for an individual EEDM API.</td>
+
+            <td class="entry cellrowborder" style="vertical-align:top;" headers="d541e61 ">&nbsp;</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry cellrowborder" style="vertical-align:top;" headers="d541e55 ">How do I view schemas that have multiple levels of nested entities? </td>
+
+            <td class="entry cellrowborder" style="vertical-align:top;" headers="d541e58 ">When schemas have multiple levels of nested entities, readability is improved by collapsing the left navigation bar. Click on the arrow icon in the left navigation pane to minimize it and increase the space available to view the schema.<br><img class="image" alt="contents-pane-image" data-ft-asset-display-name="mis_minimize_sidebar.png" src="images/ethos-integration-developer-resources-9.png" data-ft-resource-id="kB2eAB9JDlpLWypT0XlX7A-Y9b19m4nH~fNCDPf1M2uBQ"><br></td>
+
+            <td class="entry cellrowborder" style="vertical-align:top;" headers="d541e61 ">&nbsp;</td>
+
+          </tr>
+
+        </tbody>
+</table>
+</div>
+
+  </div>
+
+</div></div></section>
+<section id="t-140"><h3>Ellucian Ethos SDK</h3><div class="content-locale-en-US content-locale-en"><div id="r_ellucian_ethos_sdk"><div class="body refbody">
+    <div class="section">
+      <div class="note"><span class="notetitle">Note:</span> This publication is no longer being updated and may be outdated. Previously, data lineage information for APIs were in supplemental .csv files that were attachments to the APIs and included in the SDK. A bulk conversion effort merged the contents of the .csv files into the APIs that are published and the .csv files have been removed. </div>
+
+    </div>
+
+  </div>
+
+</div></div></section>
+<section id="t-150"><h3>Ethos Integration Error Handling</h3></section>
+<section id="t-160"><h4>About the Ethos Integration Errors Service</h4><div class="content-locale-en-US content-locale-en"><div id="c_about_ethos_errors_service"><div class="body conbody">
+    <div class="note"><span class="notetitle">Note:</span> This publication is no longer being updated and may be outdated. Previously, data lineage information for APIs were in supplemental .csv files that were attachments to the APIs and included in the SDK. A bulk conversion effort merged the contents of the .csv files into the APIs that are published and the .csv files have been removed. </div>
+
+    <div class="section"><h2 class="title sectiontitle">What is the Errors Service?</h2>
+      
+      <p class="p">The Errors Service resides within Ethos Integration and provides a centralized location where application errors can be logged for a given tenant. Multiple applications for the same tenant can log errors to this service. Errors can be viewed in the Ethos Integration Administrator User Interface (UI). The service supports retrieving errors, posting new errors, and deleting existing errors. </p>
+
+    </div>
+
+    <div class="section"><h2 class="title sectiontitle">Why use the Errors Service?</h2>
+      
+      <p class="p">The advantage of using the Errors Service is that it consolidates the errors from Ethos Integration applications defined within a given tenant. This provides a single location where errors can be viewed, retrieved, deleted, or added. These errors can come from either the authoritative source application or the non-authoritative source (partner or customer) application which is responsible for producing the error within the given tenant. </p>
+
+    </div>
+
+    <div class="section"><h2 class="title sectiontitle">What can the Errors Service be used for?</h2>
+      
+      <p class="p">The Errors Service enables disparate applications to manage their errors programmatically. It provides the <span class="xref ft-internal-xlink" data-ft-warning="excluded-from-rendering" data-clusterid="devexp/ethos-dev-guide/r_errors_api">Errors API</span> for error retrieval, addition, and deletion. Partner or customer applications can leverage the Errors Service to handle errors that occur at runtime, by catching the error and then posting a new error containing additional information to the Error Service for later review and retrieval by other processes. </p>
+
+      <p class="p">For example, a partner application might catch an error that occurred at runtime, and then handle that error in such a way where a new error is created. In that new error, additional information can be added further describing the request that produced the error. When that new error is built, the partner application can then POST that new error to the Errors Service. That new error is then available for viewing in the Errors Service Administrative UI, or for retrieval by another process later. </p>
+
+      <br><div class="imagecenter"><img class="image imagecenter" alt="errors service process flow" data-ft-asset-display-name="flw_errors_service_process.png" src="images/ethos-integration-developer-resources-10.png" data-ft-resource-id="mcHQeEr1bktMrEYjgzUWiw-Y9b19m4nH~fNCDPf1M2uBQ"></div><br>
+    </div>
+
+  </div>
+
+</div></div></section>
+<section id="t-170"><h4>Using the Errors Service</h4><div class="content-locale-en-US content-locale-en"><div id="r_using_ethos_errors_service"><div class="body refbody">
+    <div class="section">
+      <div class="note"><span class="notetitle">Note:</span> This publication is no longer being updated and may be outdated. Previously, data lineage information for APIs were in supplemental .csv files that were attachments to the APIs and included in the SDK. A bulk conversion effort merged the contents of the .csv files into the APIs that are published and the .csv files have been removed. </div>
+
+      <p class="p">Errors are posted by the authoritative systems to the Ethos Integration Administrator User Interface (UI). Non-authoritative applications can use the Errors Service with the methods listed below. These include the ability to POST, GET, or DELETE errors.</p>
+
+    </div>
+
+    <div class="section"><h2 class="title sectiontitle">Publishing an error: a participating application can send a POST request to publish a new error.</h2>
+      
+      <p class="p">Errors can be published using the Errors API POST method.</p>
+
+    </div>
+
+    
+<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" class="table" frame="border" border="1" rules="all"><colgroup><col style="width:25%"><col style="width:75%"></colgroup><thead class="thead" style="text-align:left;vertical-align:bottom;">
+          <tr class="row">
+            <th class="entry cellrowborder" style="text-align:left;vertical-align:bottom;" id="d3241e62">REST API Specification </th>
+
+            <th class="entry cellrowborder" style="text-align:left;vertical-align:bottom;" id="d3241e65">Value</th>
+
+          </tr>
+
+        </thead>
+<tbody class="tbody">
+          <tr class="row">
+            <td class="entry cellrowborder" style="text-align:left;vertical-align:top;" headers="d3241e62 ">Method</td>
+
+            <td class="entry cellrowborder" style="text-align:left;vertical-align:top;" headers="d3241e65 ">POST </td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry cellrowborder" style="text-align:left;vertical-align:top;" headers="d3241e62 ">Route </td>
+
+            <td class="entry cellrowborder" style="text-align:left;vertical-align:top;" headers="d3241e65 ">https://integrate.elluciancloud.com/errors </td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry cellrowborder" style="text-align:left;vertical-align:top;" headers="d3241e62 ">Headers</td>
+
+            <td class="entry cellrowborder" style="text-align:left;vertical-align:top;" headers="d3241e65 ">Authorization: Bearer &lt;access token&gt;</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry cellrowborder" style="text-align:left;vertical-align:top;" headers="d3241e62 ">Payload </td>
+
+            <td class="entry cellrowborder" style="text-align:left;vertical-align:top;" headers="d3241e65 ">An example of the JSON Error schema can be found <span class="xref ft-internal-xlink" data-ft-warning="excluded-from-rendering" data-clusterid="devexp/ethos-dev-guide/r_errors_api">here</span>. In this example, scroll down to the "Publish an Error-&gt; Error" section.</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry cellrowborder" colspan="2" style="text-align:left;vertical-align:top;" headers="d3241e62 d3241e65 ">
+              <strong class="ph b">Response</strong>
+            </td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry cellrowborder" style="text-align:left;vertical-align:top;" headers="d3241e62 ">Headers</td>
+
+            <td class="entry cellrowborder" style="text-align:left;vertical-align:top;" headers="d3241e65 ">Content-Type - "application/json" </td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry cellrowborder" style="text-align:left;vertical-align:top;" headers="d3241e62 ">Payload</td>
+
+            <td class="entry cellrowborder" style="text-align:left;vertical-align:top;" headers="d3241e65 ">A JSON response with the id of the published error.<p class="p">{ "id": "c68c9931-6665-40f8-8f9a-c5450104f95f" } </p>
+</td>
+
+          </tr>
+
+        </tbody>
+</table>
+</div>
+
+    <div class="section"><h2 class="title sectiontitle">Getting errors: a participating application can send a GET request to retrieve errors reported in their tenant environment. </h2>
+      
+      <p class="p">You can retrieve or view errors using either the Errors Service or the Ethos Integration Administrator UI, where errors raised by authoritative systems are logged. Only authorized users can view the error logs.</p>
+
+      <div class="p">
+        <ul class="ul">
+          <li class="li">Errors can be retrieved using the Errors API GET method.</li>
+
+          <li class="li">A detailed example of getting errors from the Errors endpoint using an API client can be found <span class="xref ft-internal-xlink" data-ft-warning="excluded-from-rendering" data-clusterid="devexp/ethos-dev-guide/t_api_client_example_get_request_to_get_an_array_of_errors">here</span>.</li>
+
+          <li class="li">A detailed example of getting errors from the Errors endpoint using the EISDK can be found <span class="xref ft-internal-link" data-ft-warning="excluded-from-rendering" data-mapid="Y9b19m4nH~fNCDPf1M2uBQ" data-tocid="qB6P5HbcPu1a7SHwvZjxdg">here</span>.</li>
+
+        </ul>
+
+      </div>
+
+    </div>
+
+    <div class="section">
+      
+<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" class="table" frame="border" border="1" rules="all"><colgroup><col style="width:25%"><col style="width:75%"></colgroup><thead class="thead" style="text-align:left;">
+            <tr class="row">
+              <th class="entry cellrowborder" style="vertical-align:top;" id="d3241e191">REST API Specification </th>
+
+              <th class="entry cellrowborder" style="vertical-align:top;" id="d3241e194">Value</th>
+
+            </tr>
+
+          </thead>
+<tbody class="tbody">
+            <tr class="row">
+              <td class="entry cellrowborder" style="vertical-align:top;" headers="d3241e191 ">Method </td>
+
+              <td class="entry cellrowborder" style="vertical-align:top;" headers="d3241e194 ">GET </td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry cellrowborder" style="vertical-align:top;" headers="d3241e191 ">Route </td>
+
+              <td class="entry cellrowborder" style="vertical-align:top;" headers="d3241e194 ">https://integrate.elluciancloud.com/errors/{id?} <p class="p">https://integrate.elluciancloud.com/errors </p>
+</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry cellrowborder" style="vertical-align:top;" headers="d3241e191 ">Headers </td>
+
+              <td class="entry cellrowborder" style="vertical-align:top;" headers="d3241e194 ">Authorization - "Bearer &lt;access token&gt;" <p class="p">Accept -"application/vnd.hedtech.errors.v2+json" </p>
+</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry cellrowborder" colspan="2" style="vertical-align:top;" headers="d3241e191 d3241e194 ">
+                <strong class="ph b">Response</strong>
+              </td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry cellrowborder" style="vertical-align:top;" headers="d3241e191 ">Headers </td>
+
+              <td class="entry cellrowborder" style="vertical-align:top;" headers="d3241e194 ">Content-Type - "application/json" <p class="p">x-total-count - number of errors returned (this is not returned for Get by ID calls) </p>
+</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry cellrowborder" style="vertical-align:top;" headers="d3241e191 ">Payload </td>
+
+              <td class="entry cellrowborder" style="vertical-align:top;" headers="d3241e194 ">A JSON response with the published errors.<p class="p">An example of the JSON response can be found <span class="xref ft-internal-xlink" data-ft-warning="excluded-from-rendering" data-clusterid="devexp/ethos-dev-guide/r_errors_api">here</span>. In this example, scroll down to the "Getting Errors-&gt;Response" section.</p>
+</td>
+
+            </tr>
+
+          </tbody>
+</table>
+</div>
+
+    </div>
+
+    <div class="section"><h2 class="title sectiontitle">Deleting errors: a participating application can send a DELETE request to delete errors reported in their tenant environment. </h2>
+      
+      <div class="p">
+        <ul class="ul">
+          <li class="li">Errors can be deleted using the Errors API DELETE method.</li>
+
+          <li class="li">A detailed example of deleting errors using the Errors endpoint can be found <span class="xref ft-internal-xlink" data-ft-warning="excluded-from-rendering" data-clusterid="devexp/ethos-dev-guide/t_api_client_example_delete_request_to_delete_a_single_error">here</span>.</li>
+
+        </ul>
+
+      </div>
+
+    </div>
+
+    
+<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" class="table" frame="border" border="1" rules="all"><colgroup><col style="width:25%"><col style="width:75%"></colgroup><thead class="thead" style="text-align:left;">
+          <tr class="row">
+            <th class="entry cellrowborder" style="vertical-align:top;" id="d3241e307">REST API Specification</th>
+
+            <th class="entry cellrowborder" style="vertical-align:top;" id="d3241e310">Value</th>
+
+          </tr>
+
+        </thead>
+<tbody class="tbody">
+          <tr class="row">
+            <td class="entry cellrowborder" style="vertical-align:top;" headers="d3241e307 ">Method </td>
+
+            <td class="entry cellrowborder" style="vertical-align:top;" headers="d3241e310 ">DELETE </td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry cellrowborder" style="vertical-align:top;" headers="d3241e307 ">Route </td>
+
+            <td class="entry cellrowborder" style="vertical-align:top;" headers="d3241e310 ">https://integrate.elluciancloud.com/errors/{id?} </td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry cellrowborder" style="vertical-align:top;" headers="d3241e307 ">Headers </td>
+
+            <td class="entry cellrowborder" style="vertical-align:top;" headers="d3241e310 ">Authorization - "Bearer &lt;access token&gt;" </td>
+
+          </tr>
+
+        </tbody>
+</table>
+</div>
+
+  </div>
+
+  <div class="related-links">
+<div class="linklist relinfo" xml:lang="en-US" lang="en-US"><strong>Related information</strong><br>
+<ul class="linklist">
+<li class="linklist"><span class="link ft-internal-xlink" data-ft-warning="excluded-from-rendering" data-clusterid="devexp/ethos-dev-guide/c_use_the_errors_service">Use the Errors Service</span></li>
+<li class="linklist"><span class="link ft-internal-xlink" data-ft-warning="excluded-from-rendering" data-clusterid="devexp/ethos-dev-guide/r_common_ethos_integration_error_responses">Common Ethos Integration Error Responses</span></li></ul></div>
+</div>
+</div></div></section>
+<section id="t-180"><h4>Using the Errors Service with the Ethos Integration SDK</h4><div class="content-locale-en-US content-locale-en"><div id="r_using_ethos_errors_service_sdk"><div class="body refbody">
+    <div class="section">
+      <div class="note"><span class="notetitle">Note:</span> This publication is no longer being updated and may be outdated. Previously, data lineage information for APIs were in supplemental .csv files that were attachments to the APIs and included in the SDK. A bulk conversion effort merged the contents of the .csv files into the APIs that are published and the .csv files have been removed. </div>
+
+      <p class="p">The <span class="xref ft-internal-xlink" title="You can build an Ethos integration between your application and Ellucian products using the Ethos Integration Software Development Kit (EISDK)." data-ft-warning="excluded-from-rendering" data-clusterid="devexp/ethos-dev-guide/c_build_int_ethos_int_sdk">Ellucian Ethos Integration Software Development Kit</span> (EISDK) retrieves and logs errors using the Errors Service. Below are some example code snippets from the EISDK showing how to POST and GET errors. There are two implementations of the EISDK: C# and Java. The examples below show both.</p>
+
+    </div>
+
+    <div class="section"><h2 class="title sectiontitle">Posting an error using the EISDK - C#</h2>
+      
+      <p class="p"></p>
+
+      <pre class="pre codeblock"><code>public static async Task CreateErrorAsync()
+{
+    EthosErrorsClient errorsClient = GetEthosErrorsClient();
+    Console.WriteLine( "******* ethosErrorClient.CreateAsync() *******" );
+    string errorStr = "{" +
+          "       \"id\": \"00000000-0000-0000-0000-000000000000\"," +
+          "       \"dateTime\": \"2022-05-23T03:10:44.827Z\"," +
+          "       \"severity\": \"warning\"," +
+          "       \"responseCode\": 201," +
+          "       \"description\": \"Created Error from SDK T03:10:44.827Z\"," +
+          "       \"details\": \"This is a more info on the info error\"," +
+          "       \"applicationId\": \"00000000-0000-0000-0000-000000000000\"," +
+          "       \"applicationName\": \"Banner\"," +
+          "       \"correlationId\": \"2468UserMade3242134\"," +
+          "       \"resource\": {" +
+          "             \"id\": \"00000000-0000-0000-0000-000000000000\"," +
+          "             \"name\": \"persons\"," +
+          "             \"version\": \"v6\"" +
+          "       }," +
+          "       \"applicationSubtype\": \"EMA\"" +
+               "}";
+     try
+     {
+          EthosError ethosError = ErrorFactory.CreateErrorFromJson( errorStr );
+          Console.WriteLine( "CREATING ETHOS ERROR: " + ethosError.ToString() );
+          EthosResponse errorResponse = await errorsClient.PostAsync( ethosError );
+          Console.WriteLine( $"Created Ethos Error: {errorResponse.Content}" );
+     }
+     catch ( Exception ioe )
+     {
+          Console.WriteLine( ioe.Message );
+     }
+ }</code></pre>
+      <p class="p"></p>
+
+    </div>
+
+    <div class="section"><h2 class="title sectiontitle">POST error using the EISDK - Java</h2>
+      
+      <p class="p"></p>
+
+      <pre class="pre codeblock"><code>public void createError() { 
+     System.out.println( "******* ethosErrorClient.create() *******" ); 
+     String errorStr = "{" + 
+           "        \"id\": \"00000000-0000-0000-0000-000000000000\"," + 
+           "        \"dateTime\": \"2020-10-27T03:10:44.827Z\"," + 
+           "        \"severity\": \"error\"," + 
+           "        \"responseCode\": 500," + 
+           "        \"description\": \"Internal Server Error\"," + 
+           "        \"details\": \"Testing error service from Java Ethos Integration SDK.\"," + 
+           "        \"applicationId\": \"00000000-0000-0000-0000-000000000000\"," + 
+           "        \"applicationName\": \"Banner\"," + 
+           "        \"correlationId\": \"2468UserMade3242134\"," + 
+           "        \"resource\": {" + 
+           "        \"id\": \"00000000-0000-0000-0000-000000000000\"," + 
+           "        \"name\": \"persons\"," + 
+           "        \"version\":\"application/json\"" + 
+           "        }," + 
+           "        \"applicationSubtype\": \"EMA\"" + 
+           "}"; 
+  
+     EthosErrorsClient ethosErrorsClient = getEthosErrorsClient(); 
+     try { 
+        // This prints the total error count before adding a new error. 
+        getTotalErrorCount(); 
+        EthosError ethosError = ErrorFactory.createErrorFromJson( errorStr ); 
+        System.out.println( "CREATING ETHOS ERROR: " +  
+ethosError.toString()); 
+        EthosResponse errorResponse = ethosErrorsClient.post( ethosError ); 
+        System.out.println( String.format("Created Ethos Error: %s",  
+errorResponse.getContent()) ); 
+        // This prints the total error count after adding a new error. 
+        getTotalErrorCount();  
+     } 
+     catch( IOException ioe ) { 
+         ioe.printStackTrace(); 
+     } 
+ } </code></pre>
+      <p class="p"></p>
+
+    </div>
+
+    <div class="section"><h2 class="title sectiontitle">GET by ID error using the EISDK - C#</h2>
+      
+      <p class="p"></p>
+
+      <pre class="pre codeblock"><code>public static async Task GetErrorByIdAsync()
+{
+    Console.WriteLine( "******* ethosErrorClient.GetByIdAsync() *******" );
+    try
+    {
+       EthosErrorsClient errorsClient = GetEthosErrorsClient();
+       string getByIdGUID = "11111111-1111-1111-1111-111111111111";
+ 
+       if ( !string.IsNullOrWhiteSpace( getByIdGUID ) )
+       {
+          EthosResponse ethosResponse = await errorsClient.GetByIdAsync(getByIdGUID);
+          Console.WriteLine( ethosResponse.Content );
+       }
+    }
+    catch ( Exception ioe )
+    {
+       Console.WriteLine( ioe.Message );
+    }
+ }</code></pre>
+      <p class="p"></p>
+
+    </div>
+
+    <div class="section"><h2 class="title sectiontitle">GET by ID error using the EISDK - Java</h2>
+      
+      <p class="p"></p>
+
+      <pre class="pre codeblock"><code>public void getErrorById() { 
+    System.out.println( "******* ethosErrorClient.getById() *******" ); 
+    String getByIdGUID = "11111111-1111-1111-1111-111111111111";
+    EthosErrorsClient ethosErrorsClient = getEthosErrorsClient(); 
+    try { 
+       	EthosResponse ethosResponse = ethosErrorsClient.getById(getByIdGUID ); 
+        System.out.println( ethosResponse.getContent() ); 
+       
+      }        catch( IOException ioe ) { 
+          ioe.printStackTrace(); 
+      } 
+ } </code></pre>
+      <p class="p"></p>
+
+    </div>
+
+    <div class="section"><h2 class="title sectiontitle">Handling errors using the EISDK - C#</h2>
+      
+      <p class="p">Below is an example of how an application using the EISDK - C# might handle errors using the Error Service.</p>
+
+      <pre class="pre codeblock"><code>public async Task&lt;EthosResponse&gt; PostPersonHoldsAsync()
+{
+      EthosProxyClient proxyClient = BuildEthosProxyClient();
+      EthosErrorsClient errorClient = BuildEthosErrorsClient();
+      PersonHolds_V6_0 personHolds = GetPersonHolds();
+      EthosResponse ethosResponse = null;
+      try
+      {
+            // Execute some code here that could throw an exception.
+            // Attempt to add a person hold.
+            ethosResponse = proxyClient.PostAsync&lt;PersonHolds_V6_0&gt;("person-holds", personHolds);
+      }
+      catch (Exception e)
+      {
+            // Caught an exception, so build an EthosError object for the given error.
+            var jsonSerSettings = new JsonSerializerSettings()
+            {
+                  DateFormatString = "yyyy'-'MM'-'dd'T'HH':'mm':'ssK"
+            };
+            var reqBody = JsonConvert.SerializeObject(personHolds, jsonSerSettings);
+            Request request = new Request()
+            {
+                  Uri = null,
+                  Headers = null,
+                  Payload = reqBody
+            };
+            Resource resource = new Resource()
+            {
+                  Id = null,
+                  Name = "person-holds",
+                  Version = "application/json"
+            };
+            EthosError ethosError = new EthosError
+            {
+                  Id = "00000000-0000-0000-0000-000000000000",
+                  ApplicationName = "myApplication",
+                  Request = request,
+                  Resource = resource,
+                  DateTime = DateTime.Now,
+                  Description = e.Message,
+                  Details = e.StackTrace,
+                  Severity = ethosError.ErrorLevel
+            };
+            try
+            {
+                  // Now POST this error to the Errors Service.
+                  EthosResponse errorResponse = await errorClient.PostAsync(ethosError);
+                  Console.WriteLine($"Created Ethos Error: {errorResponse.Content}");
+            }
+            catch (Exception ioe)
+            {
+                  Console.WriteLine(ioe.Message);
+            }
+      }
+      return ethosResponse;
+}</code></pre>
+      <p class="p"></p>
+
+    </div>
+
+    <div class="section"><h2 class="title sectiontitle">Handling errors using the EISDK - Java</h2>
+      
+      <p class="p">Below is an example of how an application using the EISDK - Java might handle errors using the Error Service.</p>
+
+      <pre class="pre codeblock"><code>public EthosResponse postPersonHolds() {
+    EthosProxyClient ethosProxyClient = getEthosProxyClient();
+    EthosErrorsClient ethosErrorsClient = getEthosErrorsClient(); 
+    EthosResponse ethosResponse =  null;
+    EthosRequestConverter ethosRequestConverter = new EthosRequestConverter();
+    PersonHolds personHolds = getPersonHolds();
+    try {
+        // Execute some code here that could throw an exception.        
+         // Attempt to add a person hold.
+        ethosResponse = ethosProxyClient.post("person-holds", personHolds);
+    }
+    catch( IOException ioe ) {
+        // Caught an exception, so build an EthosError object for the given error.
+        String     requestPayload = null;
+        try {
+            requestPayload = ethosRequestConverter.toJsonString(personHolds);
+        }
+        catch( JsonProcessingException jpe ) {
+            jpe.printStackTrace();
+        }
+        Request request = new Request(null, null, requestPayload );
+        Resource resource = new Resource( null, "person-holds", "application/json" );
+        EthosError ethosError = new EthosError();
+        ethosError.setId( "00000000-0000-0000-0000-000000000000" );
+        ethosError.setApplicationName( "myApplication" );
+        ethosError.setRequest( request );
+        ethosError.setResource( resource );
+        ethosError.setDateTime( new Date(Instant.now().toEpochMilli()) );
+        ethosError.setDescription( ioe.getMessage() );
+        ethosError.setDetails( ioe.getStackTrace().toString() );
+        ethosError.setSeverity( EthosError.ERROR );
+       // Now POST this error to the Errors Service.
+       EthosResponse errorResponse = ethosErrorsClient.post( ethosError );
+        System.out.println( String.format("Created Ethos Error: %s", errorResponse.getContent()) );
+    }
+    return ethosResponse;
+}</code></pre>
+      <p class="p"></p>
+
+    </div>
+
+  </div>
+
+  <div class="related-links">
+<div class="linklist relinfo" xml:lang="en-US" lang="en-US"><strong>Related information</strong><br>
+<ul class="linklist">
+<li class="linklist"><span class="link ft-internal-xlink" data-ft-warning="excluded-from-rendering" data-clusterid="devexp/ethos-dev-guide/c_use_the_errors_service">Use the Errors Service</span></li>
+<li class="linklist"><span class="link ft-internal-xlink" data-ft-warning="excluded-from-rendering" data-clusterid="devexp/ethos-dev-guide/r_common_ethos_integration_error_responses">Common Ethos Integration Error Responses</span></li></ul></div>
+</div>
+</div></div></section>
+<section id="t-190"><h4>Error Logging with Ethos Integration</h4><div class="content-locale-en-US content-locale-en"><div id="r_error_logging_ethos_integration"><div class="body refbody">
+    <div class="section">
+      <div class="note"><span class="notetitle">Note:</span> This publication is no longer being updated and may be outdated. Previously, data lineage information for APIs were in supplemental .csv files that were attachments to the APIs and included in the SDK. A bulk conversion effort merged the contents of the .csv files into the APIs that are published and the .csv files have been removed. </div>
+
+    </div>
+
+    <div class="section"><h2 class="title sectiontitle">Message Level Severities</h2>
+      
+      <p class="p">The severity (error level) from the Errors API's response payload can be used to recognize the severity level of the given message. Using the severity level, messages can be logged by your system for later review.</p>
+
+      <p class="p">Errors are categorized into three levels which are represented through the severity property in the error payload or error logs.</p>
+
+      <ol class="ol">
+        <li class="li">Severity Level: info<p class="p">The standard log level indicating that something happened, the application entered a certain state, etc. An info log error is purely informative.</p>
+<p class="p">Example info error payload:</p>
+<pre class="pre codeblock"><code>{ 
+  	"id": "e3010e7a-9a2c-41ab-884e-c56e32f47146", 
+  	"dateTime": "2022-05-24T17:52:01.687Z", 
+  	<strong class="ph b">"severity": "info"</strong>, 
+  	"responseCode": 200, 
+  	"description": "Person Contact was succesfully updated.", 
+  	"applicationId": "bc9d36b1-2da7-4e16-af3a-65b3d5c584b9",
+        "request" : {
+          "URI" : "http://some/url/IntegrationApi/api/person-contacts",
+          "headers" : [
+            "x-forwarded-proto: https",
+            "x-forwarded-port: 443",
+            "host: 21.243.52.1:7001",
+            "x-amzn-trace-id: Root=1-62a8a0bb-0d5b11b541a17bd470f9ae18",
+            "accept: application/vnd.hedtech.integration.v16.1.0+json",
+            "accept-encoding: gzip, deflate,br"
+          ],
+          "payload": "{\"contacts\":[{\"contactAddress\":{\"address\":{\"addressLines\":[\"20789LancasterLane\"],\"place\":{\"country\":{\"code\":\"CA\",\"locality\":\"Clarksville\",\"region\":{\"code\":\"US-PA\",\"title\":\"Pennsylvania\"},\"title\":\"Canada\"}},\"type\":{\"addressType\":\"family\",\"detail\":{\"id\":\"809767e4-807c-4c3d-b6c3-ac7e92f550f3\"}}}},\"name\":{\"firstName\":\"Adamsek\",\"fullName\":\"AdamsekasdmAdams\",\"lastName\":\"Adams\",\"middleName\":\"asdm\"},\"phones\":[{\"number\":\"4123468900\"}],\"priority\":1,\"relationship\":{\"detail\":{\"id\":\"9d176247-bd7b-4730-b44a-b9a860fd3e0d\"},\"type\":\"brother\"},\"types\":[\"emergency\"]}],\"id\":\"3ede0ac0-bc3a-4e7e-ab49-1fb999d26f07\",\"person\":{\"id\":\"488ae70a-6e2c-46ab-b975-97ad5d79c1f3\"}}"
+        }, 
+  	"resource": { 
+      	"name": "person-contacts" 
+  	} 
+} </code></pre></li>
+
+        <li class="li">Severity Level: warning<p class="p">The log level that indicates that something unexpected happened in the application, a problem, or a situation that might disturb one of the processes. A warning does not mean that the application failed.</p>
+<p class="p">Example warning error payload:</p>
+<pre class="pre codeblock"><code>{ 
+    		"id": "ad300a73-a35a-4bc7-85d6-84059c50492b", 
+    		"dateTime": "2022-05-24T19:07:54.150Z", 
+    		<strong class="ph b">"severity": "warning"</strong>, 
+    		"responseCode": 200, 
+    		"description": "Your password expires in 7 days.", 
+    		"applicationId": "bc9d36b1-2da7-4e16-af3a-65b3d5c584b9"
+} </code></pre><p class="p"><strong class="ph b">Possible resolution:</strong> Notify the users about the password expiration notice. </p>
+</li>
+
+        <li class="li">Severity Level: error<p class="p">The log level used when the application hits an issue preventing one or more functions from properly functioning.</p>
+<p class="p">Example error payload:</p>
+<pre class="pre codeblock"><code>{
+        "dateTime": "2022-02-14T14:52:43.560Z",
+        <strong class="ph b">"severity": "error"</strong>,
+        "responseCode": 400,
+        "description": "Error response from proxied request to Banner Integration API. Global.SchemaValidation.Error error message:Errors parsing input JSON.",
+        "details": "default.titles.typeAndValue.required",
+        "applicationId": "0e1d879ed7dc4a27a522f3b479d2e426",
+        "applicationName": "Banner Integration API",
+        "correlationId": "5dc6ba52-3412-4aed-9077-4a84071b4f05",
+        "request": {
+        "URI": "http://some/url/IntegrationApi/api/courses",
+        "headers": [
+        "x-forwarded-proto: https",
+        "x-forwarded-port: 443",
+        "host: 21.243.52.1:7001",
+        "x-amzn-trace-id: Root=1-62a8a0bb-0d5b11b541a17bd470f9ae18",
+        "accept: application/vnd.hedtech.integration.v16.1.0+json",
+        "accept-encoding: gzip, deflate, br"
+        ],
+        "payload": "{\"academicLevels\":[{\"id\":\"3488acd1-49f8-49fe-ac7e-e9c4350c24e8\"}],\"administrativePeriod\":{\"id\":\"ea927b13-937c-41ba-a24b-c34f397f9230\"},\"billing\":{\"maximum\":20,\"minimum\":3},\"credits\":[{\"creditCategory\":{\"creditType\":\"institution\",\"detail\":{\"id\":\"545aeca7-68b2-40c2-a84c-b1d26aeb468a\"}},\"maximum\":20,\"measure\":\"hour\",\"minimum\":3}],\"gradeSchemes\":[{\"gradeScheme\":{\"id\":\"d5bdcfa2-584a-460b-833d-e50a347c801c\"}},{\"gradeScheme\":{\"id\":\"9d07af35-7713-4176-be0b-abed6ce91db7\"},\"usage\":\"default\"}],\"hours\":[{\"administrativeInstructionalMethod\":{\"id\":\"2606734d-a3e1-4bac-8349-fe99c7e02d75\"},\"interval\":\"week\",\"maximum\":20,\"minimum\":3},{\"administrativeInstructionalMethod\":{\"id\":\"026dd7f9-7384-4e3f-93c0-668dde9ccaa7\"},\"interval\":\"week\",\"maximum\":20,\"minimum\":3}],\"id\":\"842b1e7c-f319-4243-b9c1-768d01583737\",\"instructionalMethodDetails\":[{\"instructionalDeliveryMethod\":{\"id\":\"c2e92b9c-a233-4321-a778-a71ae7fc64e4\"},\"instructionalMethod\":{\"id\":\"ee9aee0c-e48a-4cad-b5e4-7acd4491fce1\"}},{\"instructionalDeliveryMethod\":{\"id\":\"5b771662-e27f-4d10-9da3-d4343df1cad4\"},\"instructionalMethod\":{\"id\":\"7f6cb401-7bb0-4b41-bf8c-c21647839cd7\"}},{\"instructionalDeliveryMethod\":{\"id\":\"d564701d-63d7-4483-ae49-64898057c54f\"},\"instructionalMethod\":{\"id\":\"249c6778-10e4-4a95-b5ab-c0d1b43576c5\"}}],\"number\":\"100\",\"owningInstitutionUnits\":[{\"institutionUnit\":{\"id\":\"b23bb183-7d73-4726-af1b-661510324c88\"},\"ownershipPercentage\":100},{\"institutionUnit\":{\"id\":\"6bc7473d-511b-4874-9057-085256327a28\"},\"ownershipPercentage\":100},{\"institutionUnit\":{\"id\":\"0a8f7486-ed41-4eef-a092-44dd9c9ad2af\"},\"ownershipPercentage\":100}],\"status\":{\"id\":\"97ce9575-6ed2-4134-83e8-4bbe2362f35e\"},\"subject\":{\"id\":\"b06c159b-f0c0-4bd8-9b0d-cc1c8cc4e8fe\"},\"titles\":[{\"type\":{\"id\":\"8a43a307-0a30-484a-9d61-49dd49ee02b7\"}}],\"waitlistMultipleSections\":\"notAllowed\"}"
+                  },
+        "resource": {
+        "name": "courses",
+        "version": "application/vnd.hedtech.integration.v16.1.0+json"
+        }
+}</code></pre><p class="p"><strong class="ph b">Possible resolution:</strong> Verify and update the payload used in the request to resolve the 400 - Bad Request error. </p>
+</li>
+
+      </ol>
+
+    </div>
+
+    <div class="section"><h2 class="title sectiontitle">Error Message Schema</h2>
+      
+      <ul class="ul">
+        <li class="li">The error message schema is the data model schema that conveys information about an error caused by, or related to, the request payload, from the recipient system to the requesting system.</li>
+
+        <li class="li">The error message schema can be used to determine the format of error messages received from authoritative source applications. A non-authoritative application can receive errors in one of the Error Response Formats.</li>
+
+        <li class="li">There are two versions of the error response format. Refer to the API documentation on <span class="xref ft-internal-xlink" data-ft-warning="excluded-from-rendering" data-clusterid="devexp/ethos-dev-guide/c_api_dm_error_messages">Error Message Schema</span> for information on which error formats are supported. 
+<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" class="table" frame="border" border="1" rules="all"><colgroup><col style="width:25%"><col style="width:75%"></colgroup><thead class="thead" style="text-align:left;"> <tr class="row"> <th class="entry cellrowborder" style="vertical-align:top;" id="d3818e128">Version</th>
+ <th class="entry cellrowborder" style="vertical-align:top;" id="d3818e131">Description</th>
+ </tr>
+ </thead>
+<tbody class="tbody"> <tr class="row">
+          <td class="entry cellrowborder" style="vertical-align:top;" headers="d3818e128 ">Errors Version 1</td>
+ <td class="entry cellrowborder" style="vertical-align:top;" headers="d3818e131 ">Version 1 returns an array of errors. The X-Media-Type expected with this format is application/vnd.hedtech.integration.errors.v1+json. </td>
+ </tr>
+ <tr class="row"> <td class="entry cellrowborder" style="vertical-align:top;" headers="d3818e128 ">Errors Version 2 (latest)</td>
+
+          <td class="entry cellrowborder" style="vertical-align:top;" headers="d3818e131 ">Version 2 returns an errors array object. This format is the latest and preferred when an authoritative system is starting to develop error responses. The X-Media-Type expected with this format is application/vnd.hedtech.integration.errors.v2+json. </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+</li>
+
+      </ul>
+
+    </div>
+
+    <div class="section"><h2 class="title sectiontitle">Error Response Formats</h2>
+      
+      <p class="p">Ellucian APIs adhere to the following directives when the API returns an error in the response body:</p>
+
+      
+<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" class="table" frame="border" border="1" rules="all"><colgroup><col style="width:14.285714285714285%"><col style="width:14.285714285714285%"><col style="width:42.857142857142854%"><col style="width:28.57142857142857%"></colgroup><thead class="thead" style="text-align:left;">
+            <tr class="row">
+              <th class="entry cellrowborder" style="vertical-align:top;" id="d3818e185">Directive</th>
+
+              <th class="entry cellrowborder" style="vertical-align:top;" id="d3818e188">HTTP Header</th>
+
+              <th class="entry cellrowborder" style="vertical-align:top;" id="d3818e191">Acceptable Values</th>
+
+              <th class="entry cellrowborder" style="vertical-align:top;" id="d3818e194">Value Description</th>
+
+            </tr>
+
+          </thead>
+<tbody class="tbody">
+            <tr class="row">
+              <td class="entry cellrowborder" style="vertical-align:top;" headers="d3818e185 ">Required </td>
+
+              <td class="entry cellrowborder" style="vertical-align:top;" headers="d3818e188 ">X-Media-Type </td>
+
+              <td class="entry cellrowborder" style="vertical-align:top;" headers="d3818e191 ">application/vnd.hedtech.integration.errors.v1+json<p class="p">or</p>
+application/vnd.hedtech.integration.errors.v2+json </td>
+
+              <td class="entry cellrowborder" style="vertical-align:top;" headers="d3818e194 ">The version of the error message format in the response body. </td>
+
+            </tr>
+
+          </tbody>
+</table>
+</div>
+
+    </div>
+
+    <div class="section"><h2 class="title sectiontitle">Error Codes</h2>
+      
+      <p class="p">Business logic related exceptions are associated with HTTP error codes 400 (Bad request) or 409 (Conflict) and always require the payload to be included in the response. </p>
+
+      <p class="p">The table lists other error conditions and codes associated with the error codes: </p>
+
+      
+<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" class="table" frame="border" border="1" rules="all"><colgroup><col style="width:16.666666666666664%"><col style="width:33.33333333333333%"><col style="width:50%"></colgroup><thead class="thead" style="text-align:left;">
+            <tr class="row">
+              <th class="entry cellrowborder" style="vertical-align:top;" id="d3818e249">HTTP Status Code </th>
+
+              <th class="entry cellrowborder" style="vertical-align:top;" id="d3818e252">Ethos Data Model Error Code</th>
+
+              <th class="entry cellrowborder" style="vertical-align:top;" id="d3818e255">Error Description</th>
+
+            </tr>
+
+          </thead>
+<tbody class="tbody">
+            <tr class="row">
+              <td class="entry cellrowborder" style="vertical-align:top;" headers="d3818e249 ">401 </td>
+
+              <td class="entry cellrowborder" style="vertical-align:top;" headers="d3818e252 ">Authentication.Required </td>
+
+              <td class="entry cellrowborder" style="vertical-align:top;" headers="d3818e255 ">Authentication failed or wasn't provided </td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry cellrowborder" style="vertical-align:top;" headers="d3818e249 ">403 </td>
+
+              <td class="entry cellrowborder" style="vertical-align:top;" headers="d3818e252 ">Access.Denied </td>
+
+              <td class="entry cellrowborder" style="vertical-align:top;" headers="d3818e255 ">Server denied access to the resource </td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry cellrowborder" style="vertical-align:top;" headers="d3818e249 ">404 </td>
+
+              <td class="entry cellrowborder" style="vertical-align:top;" headers="d3818e252 ">Not.Found </td>
+
+              <td class="entry cellrowborder" style="vertical-align:top;" headers="d3818e255 ">Requested resource doesn't exist on the server </td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry cellrowborder" style="vertical-align:top;" headers="d3818e249 ">405 </td>
+
+              <td class="entry cellrowborder" style="vertical-align:top;" headers="d3818e252 ">Operation.Not.Permitted </td>
+
+              <td class="entry cellrowborder" style="vertical-align:top;" headers="d3818e255 ">Requested operation not permitted </td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry cellrowborder" style="vertical-align:top;" headers="d3818e249 ">500 </td>
+
+              <td class="entry cellrowborder" style="vertical-align:top;" headers="d3818e252 ">Internal.Error </td>
+
+              <td class="entry cellrowborder" style="vertical-align:top;" headers="d3818e255 ">Unspecified error on the system that prevented execution of the request </td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry cellrowborder" style="vertical-align:top;" headers="d3818e249 ">501 </td>
+
+              <td class="entry cellrowborder" style="vertical-align:top;" headers="d3818e252 ">API.Not.Implemented </td>
+
+              <td class="entry cellrowborder" style="vertical-align:top;" headers="d3818e255 ">Requested API not implemented </td>
+
+            </tr>
+
+          </tbody>
+</table>
+</div>
+
+    </div>
+
+  </div>
+
+</div></div></section>
+<section id="t-200"><h3>Banner</h3></section>
+<section id="t-210"><h4>Effective Terms and Banner Business Process APIs</h4><div class="content-locale-en-US content-locale-en"><div id="c_eff_terms_banner_bpapi"><div class="body conbody">
+    <div class="note"><span class="notetitle">Note:</span> This publication is no longer being updated and may be outdated. Previously, data lineage information for APIs were in supplemental .csv files that were attachments to the APIs and included in the SDK. A bulk conversion effort merged the contents of the .csv files into the APIs that are published and the .csv files have been removed. </div>
+
+    <p class="p">Understanding Banner's implementation of effective terms is essential to the successful use of many Banner Business Process APIs (BPAPIs).</p>
+
+    <p class="p">Banner employs <dfn class="term">effective term</dfn> logic frequently in Banner Student to store data that spans multiple terms. The basic concept of effective term processing is that a <dfn class="term">from term</dfn> is established as a stored data element for a record. The from term is also referred to as <dfn class="term">effective term</dfn>, <dfn class="term">term code effective</dfn>, or <dfn class="term">start term</dfn>.</p>
+
+    <p class="p">The ending term, or <dfn class="term">to term</dfn>, is dynamically calculated and is not stored as a static value. The to term is calculated by querying the system to locate the next effective term that is greater than the from term, and if one is found, then it is displayed as the end term for the current record. On the highest effective term record the system default term of 999999 is displayed as the to term.</p>
+
+    <div class="section"><h2 class="title sectiontitle">Impact on Banner BPAPIs</h2>
+      
+      <div class="p">PUT method:<ul class="ul"> <li class="li">The PUT method is supported for records where the from term (effective term) matches to an existing record.</li>
+ <li class="li">The to term cannot be directly changed as it is a calculated value. To adjust the to term, a POST is used to insert a record for a term code that is greater than the effective term record.</li>
+ </ul>
+</div>
+
+      <div class="p">POST method:<ul class="ul"> <li class="li">The POST method is used to establish the first effective term record or to insert a new effective term record. The to term is not set in the request payload.</li>
+ <li class="li">If the record inserted is the highest effective term record, the to term will calculate to 999999 as the default.</li>
+ </ul>
+</div>
+
+    </div>
+
+  </div>
+
+</div></div></section>
+<section id="t-220"><h5>Example: series of individual effective term records</h5><div class="content-locale-en-US content-locale-en"><div id="c_eff_terms_example_learner_rec"><div class="body conbody">
+    <div class="note"><span class="notetitle">Note:</span> This publication is no longer being updated and may be outdated. Previously, data lineage information for APIs were in supplemental .csv files that were attachments to the APIs and included in the SDK. A bulk conversion effort merged the contents of the .csv files into the APIs that are published and the .csv files have been removed. </div>
+
+    <p class="p">There are complex Banner Student term-based records where the data might remain static for multiple terms. Only one data set is applicable for any given term, but it can be a maintenance burden to create redundant records for each term.</p>
+
+    <p class="p">To reduce the effort to maintain the information, some Banner records are stored with an effective term rather than requiring a record be created for each individual term. A new record is inserted only when there is a need to update information as of a new effective term. Course records and learner records are examples where effective term logic will create a series of independent records.</p>
+
+    <div class="example">Example: Student learner records employ effective term logic. A student has a single learner record in effect for a specified term. Use of effective terms requires a new learner record only when the data changes, rather than creating a record for every term. When term criteria <img class="image" src="images/ethos-integration-developer-resources-11.png" width="24" alt="callout 1" data-ft-asset-display-name="mis_callout_1.png" style="aspect-ratio: 24/24;" data-ft-resize-ratio="0.48979592" data-ft-resource-id="RO2FZ4QpOdWUIMF2lr0DLw-Y9b19m4nH~fNCDPf1M2uBQ"> is entered in the page header, Banner returns the learner record that is in effect for that term. The record returned will have a <dfn class="term">from term</dfn> that is equal to, or earlier than, the term supplied as criteria. Similarly, the Banner Business Process APIs use an effective term criteria filter to return the record in effect for a specified term.</div>
+
+    <div class="example">In this example, the student has two learner records (both shown below): one with a from term of 200810 and a second with a from term of 201010 <img class="image" src="images/ethos-integration-developer-resources-12.png" width="25" alt="callout 2" data-ft-asset-display-name="mis_callout_2.png" style="aspect-ratio: 25/25;" data-ft-resize-ratio="0.49019608" data-ft-resource-id="Brp6~fLFfYfUl2fVJVgS8g-Y9b19m4nH~fNCDPf1M2uBQ"> created to update the student's residency and student type beginning with the 201010 term. The <dfn class="term">to term</dfn> <img class="image" src="images/ethos-integration-developer-resources-13.png" width="25" alt="callout 3" data-ft-asset-display-name="mis_callout_3.png" style="aspect-ratio: 25/25;" data-ft-resize-ratio="0.49019608" data-ft-resource-id="Gx5tmVSRkmOrykKAS6O2Uw-Y9b19m4nH~fNCDPf1M2uBQ"> for each learner record is calculated by Banner.<br><div class="imagecenter"><img class="image imagecenter" alt="SGASTDN 200810 term criteria" data-ft-asset-display-name="form_sgastdn_200810.png" src="images/ethos-integration-developer-resources-14.png" data-ft-resource-id="8pfJDO9QH32HFBm5pTuoZg-Y9b19m4nH~fNCDPf1M2uBQ"></div><br><br><div class="imagecenter"><img class="image imagecenter" alt="SGASTDN 201210 term criteria" data-ft-asset-display-name="form_sgastdn_201210.png" src="images/ethos-integration-developer-resources-15.png" data-ft-resource-id="omoAT77Kw39dil3zNRqLxA-Y9b19m4nH~fNCDPf1M2uBQ"></div><br></div>
+
+    <div class="example">The capture below shows how these two example learner records are stored on the SGBSTDN table. The <code class="ph codeph">SGBSTDN_TERM_CODE_EFF</code> column represents the from term displayed in the user interface. The to term is not stored on the table. <br><div class="imagecenter"><img class="image imagecenter" src="images/ethos-integration-developer-resources-16.png" alt="SGBSTDN sample data" data-ft-asset-display-name="mis_sgbstdn_sample_data.png" data-ft-resource-id="atX_WleSsaiHNPVIOLBKaw-Y9b19m4nH~fNCDPf1M2uBQ"></div><br></div>
+
+    <div class="example">Example PUT/POST BPAPI impacts<ul class="ul"> <li class="li">PUT:<ul class="ul"> <li class="li">Update to the 200810 learner record will impact data returned for terms 200810 up to 201010.</li>
+ <li class="li">Update to the 201010 learner record will impact data returned for terms 201010 up to 999999.</li>
+ </ul>
+</li>
+ <li class="li">POST:<ul class="ul"> <li class="li">Creation of a record effective 200910 will not impact the existing 201010 record, however, the insert will result in calculation of a new to term for the 200180 record.</li>
+
+      <li class="li">Creation of a record effective 201510 will result in the calculation of a new to term for the 201010 record.</li>
+ </ul>
+</li>
+ </ul>
+</div>
+
+  </div>
+
+</div></div></section>
+<section id="t-230"><h5>Example: sets of effective term records</h5><div class="content-locale-en-US content-locale-en"><div id="c_eff_terms_example_stu_cohort_rec"><div class="body conbody">
+    <div class="note"><span class="notetitle">Note:</span> This publication is no longer being updated and may be outdated. Previously, data lineage information for APIs were in supplemental .csv files that were attachments to the APIs and included in the SDK. A bulk conversion effort merged the contents of the .csv files into the APIs that are published and the .csv files have been removed. </div>
+
+    <p class="p">Banner can store a set of term-based records and treat them as a group with a common effective term when the data might remain static for multiple terms. Only one set of records is applicable for any given term, but it can be a maintenance burden to create redundant records for each term.</p>
+
+    <p class="p">To reduce the effort to maintain the information, some Banner records are stored as a set with an effective term rather than requiring a record be created for each individual term. A new set of records is inserted only when there is a need to update information as of a new effective term. Student cohort and student attribute records are examples where effective term logic is used with a set of records.</p>
+
+    <div class="example">Example: Student cohort records employ effective term logic. A student has a single set of cohort records in effect for a specified term. Use of effective terms requires a new set of cohorts only when the data changes, rather than creating a cohort record for every term. When term criteria <img class="image" src="images/ethos-integration-developer-resources-11.png" width="24" alt="callout 1" data-ft-asset-display-name="mis_callout_1.png" style="aspect-ratio: 24/24;" data-ft-resize-ratio="0.48979592" data-ft-resource-id="RO2FZ4QpOdWUIMF2lr0DLw-Y9b19m4nH~fNCDPf1M2uBQ"> is entered in the page header, Banner returns the record set that is in effect for that term. The record set returned will have a <dfn class="term">from term</dfn> that is equal to, or earlier than, the term supplied as criteria. Similarly, the Banner Business Process APIs use an effective term criteria filter to return the record set in effect for a specified term.</div>
+
+    <div class="example">In this example, the student has three sets of cohort records (shown below): an initial set of cohorts with a from term of 200810, a second set with a from term of 201210 revising the set of cohorts, and a third set with a from term of 201230 <img class="image" src="images/ethos-integration-developer-resources-12.png" width="25" alt="callout 2" data-ft-asset-display-name="mis_callout_2.png" style="aspect-ratio: 25/25;" data-ft-resize-ratio="0.49019608" data-ft-resource-id="Brp6~fLFfYfUl2fVJVgS8g-Y9b19m4nH~fNCDPf1M2uBQ"> created to end all of the student's cohorts. The <dfn class="term">to term</dfn> <img class="image" src="images/ethos-integration-developer-resources-13.png" width="25" alt="callout 3" data-ft-asset-display-name="mis_callout_3.png" style="aspect-ratio: 25/25;" data-ft-resize-ratio="0.49019608" data-ft-resource-id="Gx5tmVSRkmOrykKAS6O2Uw-Y9b19m4nH~fNCDPf1M2uBQ"> for each learner record is calculated by Banner.<br><div class="imagecenter"><img class="image imagecenter" alt="SGASADD 200810 term criteria" data-ft-asset-display-name="form_sgasadd_200810.png" src="images/ethos-integration-developer-resources-17.png" data-ft-resource-id="LE0igBCIQU0LXK7sLFGmXA-Y9b19m4nH~fNCDPf1M2uBQ"></div><br><br><div class="imagecenter"><img class="image imagecenter" alt="SGASADD 201210 term criteria" data-ft-asset-display-name="form_sgasadd_201210.png" src="images/ethos-integration-developer-resources-18.png" data-ft-resource-id="NgrKXTxx9UIQ2rpbcKBo_A-Y9b19m4nH~fNCDPf1M2uBQ"></div><br><br><div class="imagecenter"><img class="image imagecenter" alt="SGASADD 201230 term criteria" data-ft-asset-display-name="form_sgasadd_201230.png" src="images/ethos-integration-developer-resources-19.png" data-ft-resource-id="d5TubC3mL~TdJc6puaGmGA-Y9b19m4nH~fNCDPf1M2uBQ"></div><br></div>
+
+    <div class="example">The capture below shows how these example cohort records are stored on the SGRCHRT table. The <code class="ph codeph">SGRCHRT_TERM_CODE_EFF</code> column represents the from term displayed in the user interface. The to term is not stored on the table. Notice a new effective term record was entered with no cohort codes attached when the cohorts were ended as of term 201230.<br><div class="imagecenter"><img class="image imagecenter" alt="SGRCHRT sample data" data-ft-asset-display-name="mis_sgrchrt_sample_data.png" src="images/ethos-integration-developer-resources-20.png" data-ft-resource-id="ECNJlZw5REt_0wylU0KQoQ-Y9b19m4nH~fNCDPf1M2uBQ"></div><br></div>
+
+    <div class="example">Example PUT/POST BPAPI impacts<ul class="ul"> <li class="li">PUT:<ul class="ul"> <li class="li">Updates to the 200810 cohort record set will impact data returned for terms 200810 up to 201210.</li>
+ <li class="li">Updates to the 201210 cohort record set will impact data returned for terms 201210 up to 201230.</li>
+ </ul>
+</li>
+ <li class="li">POST:<ul class="ul"> <li class="li">Creation of a cohort record effective 200910 will not impact the existing 201210 records, however, the insert will result in calculation of a new to term for all 200180 records.</li>
+
+      <li class="li">Creation of a cohort record effective 201510 will result in the calculation of a new to term for the 201230 record.</li>
+ </ul>
+</li>
+ </ul>
+</div>
+
+  </div>
+
+</div></div></section></main></body></html>

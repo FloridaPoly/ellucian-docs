@@ -1,0 +1,425 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Ethos Data Connect — Data Connect overview</title><style>body{font-family:-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;line-height:1.55;color:#1a1a1a;max-width:920px;margin:0 auto;padding:24px}header{border-bottom:2px solid #5a16d6;margin-bottom:8px}h1{color:#3a0ca3}h2,h3,h4,h5,h6{margin-top:1.6em}.crumb{color:#666;font-size:13px;margin:0}.meta{color:#888;font-size:12px}nav.toc{background:#f6f4fc;border:1px solid #e3dcf5;border-radius:8px;padding:12px 18px;margin:18px 0}nav.toc h2{margin:.2em 0}nav.toc ul{list-style:none;padding-left:0}nav.toc a{text-decoration:none;color:#5a16d6}section{margin:1.2em 0;padding-top:.4em}img{max-width:100%;height:auto}table{border-collapse:collapse}td,th{border:1px solid #ccc;padding:4px 8px}code,pre{background:#f4f4f4;border-radius:4px}pre{padding:10px;overflow:auto}</style></head><body><header><p class="crumb">Data Connect › Ethos Data Connect</p><h1>Ethos Data Connect — Data Connect overview</h1><p class="meta">Source: <a href="https://resources.elluciancloud.com/r/bundle/ethos_data_connect">https://resources.elluciancloud.com/r/bundle/ethos_data_connect</a> &middot; Retrieved 2026-06-17</p></header><nav class="toc"><h2>Contents</h2><ul><li style="margin-left:0px"><a href="#t-10">Data Connect overview</a></li><li style="margin-left:16px"><a href="#t-20">High-level procedure for implementing Data Connect</a></li><li style="margin-left:16px"><a href="#t-30">Terminology for Ellucian-delivered integrations</a></li><li style="margin-left:16px"><a href="#t-40">FAQs</a></li></ul></nav><main><section id="t-10"><h2>Data Connect overview</h2><div class="content-locale-en-US content-locale-en"><div id="c_about_data_connect"><div class="body conbody"><p class="shortdesc"><span class="keyword">Ethos Data Connect</span> is a data transformation framework that provides the ability to connect to different data sources and data formats using <span class="keyword">Ellucian Ethos</span>. <span class="keyword">Data Connect</span> provides the ability to define data workflows that include data transformations and mappings to third-party sources and formats.</p>
+
+    <div class="section"><h2 class="title sectiontitle">Delivered Data Connect integrations</h2>
+      
+      <div class="p"><span class="keyword">Ellucian</span> delivers some integrations that are built on <span class="keyword">Data Connect</span>. These include, for example:<ul class="ul">
+        <li class="li">An integration with the National Student Clearinghouse Postsecondary Data Partnership (NSC-PDP) initiative in the U.S. This integration extracts data from Banner or Colleague, creates PDP data files in the data file format specified by the NSC, and transmits those files to the NSC.</li>
+
+        <li class="li">An integration that supports the processing of teacher training applications submitted to institutions through the <dfn class="term">Apply for teacher training</dfn> service of the Department for Education (DfE) Apply service in England. This integration retrieves applications using the DfE's API, sends them to Banner, Quercus, or CRM Recruit for processing, and posts the decisions back to the DfE.</li>
+
+        </ul>
+</div>
+
+    </div>
+
+    <div class="section"><h2 class="title sectiontitle"><span class="keyword">Data Connect Integration Designer</span></h2>
+      
+      <p class="p">You can build your own integrations using the <span class="keyword">Data Connect Integration Designer</span>, which is available with <span class="keyword">Experience Premium</span>.</p>
+
+      <p class="p">The <span class="keyword">Data Connect Integration Designer</span> enables users to create custom integrations with <span class="keyword">Data Connect</span>'s low-code solution. Users can use the designer to bi-directionally integrate with data from <span class="keyword">Ellucian</span> solutions and third parties through APIs and flat files, transform and map data, and send to target destinations.</p>
+
+    </div>
+
+    <div class="section"><h2 class="title sectiontitle">Access to <span class="keyword">Data Connect</span> through <span class="keyword">Ellucian Experience</span></h2>
+      
+      <p class="p">Users access <span class="keyword">Data Connect</span> through <span class="keyword">Ellucian Experience</span>. Before setting up <span class="keyword">Data Connect</span>, you will need to <span class="xref ft-internal-xlink" data-ft-warning="excluded-from-rendering" data-clusterid="id_ethos/ethos_data_connect/c_about_experience">set up Ellucian Experience</span>.</p>
+
+    </div>
+
+    <div class="section"><h2 class="title sectiontitle">Where to find the documentation</h2>
+      
+      <p class="p">This <span class="keyword">Data Connect</span> documentation provides general procedures for setting up user access to <span class="keyword">Data Connect</span>, using the <span class="keyword">Data Connect Integration Designer</span> to create your integrations, and creating and managing pipeline jobs.</p>
+
+      <p class="p">Documentation specific to each <span class="keyword">Data Connect</span> integration delivered by Ellucian is with the related product documentation.</p>
+
+    </div>
+
+  </div>
+
+</div></div></section>
+<section id="t-20"><h3>High-level procedure for implementing Data Connect</h3><div class="content-locale-en-US content-locale-en"><div id="c_high_level_procedure_data_connect"><div class="body conbody"><p class="shortdesc">These are the high-level steps for a basic implementation of <span class="keyword">Data Connect</span>.</p>
+
+    
+<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" class="table" frame="border" border="1" rules="all"><colgroup><col style="width:33.33333333333333%"><col style="width:33.33333333333333%"><col style="width:33.33333333333333%"></colgroup><thead class="thead" style="text-align:left;">
+          <tr class="row">
+            <th class="entry nocellnorowborder" style="vertical-align:top;" id="d34201e50">Step</th>
+
+            <th class="entry nocellnorowborder" style="vertical-align:top;" id="d34201e53">Comments</th>
+
+            <th class="entry cell-norowborder" style="vertical-align:top;" id="d34201e56">Reference</th>
+
+          </tr>
+
+        </thead>
+<tbody class="tbody">
+          <tr class="row">
+            <td class="entry nocellnorowborder" style="vertical-align:top;" headers="d34201e50 ">Implement <span class="keyword">Ellucian Experience</span>.</td>
+
+            <td class="entry nocellnorowborder" style="vertical-align:top;" headers="d34201e53 ">Users access <span class="keyword">Data Connect</span> through the <span class="keyword">Data Connect</span> cards in <span class="keyword">Ellucian Experience</span>.</td>
+
+            <td class="entry cell-norowborder" style="vertical-align:top;" headers="d34201e56 "><span class="xref ft-internal-xlink" data-ft-warning="excluded-from-rendering" data-clusterid="id_ethos/ethos_data_connect/c_about_experience"><span class="keyword">Ellucian Experience</span> documentation</span></td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry nocellnorowborder" style="vertical-align:top;" headers="d34201e50 ">(Optional) Give developers at your institution access to the <span class="keyword">Data Connect Integration Designer</span>.</td>
+
+            <td class="entry nocellnorowborder" style="vertical-align:top;" headers="d34201e53 ">&nbsp;</td>
+
+            <td class="entry cell-norowborder" style="vertical-align:top;" headers="d34201e56 "><span class="xref ft-internal-link" title="Users access the Data Connect Integration Designer through Ellucian Experience, from either the Application menu or the Data Connect Designer card." data-ft-warning="excluded-from-rendering" data-mapid="iMQvaoYt73FYcvYoiKcTHA" data-tocid="DBJgvu~_DawT07QD6oNhiw">Set up user access to the Data Connect Integration Designer</span></td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry nocellnorowborder" style="vertical-align:top;" headers="d34201e50 ">Give users at your institution access to manage <span class="keyword">Data Connect</span> integrations.</td>
+
+            <td class="entry nocellnorowborder" style="vertical-align:top;" headers="d34201e53 ">Users will need this access to manage both integrations delivered by Ellucian and integrations that you create with the <span class="keyword">Integration Designer</span>.</td>
+
+            <td class="entry cell-norowborder" style="vertical-align:top;" headers="d34201e56 "><span class="xref ft-internal-link" title="Users manage Data Connect integrations through Ellucian Experience, from either the Application menu or the Data Connect Packages card." data-ft-warning="excluded-from-rendering" data-mapid="iMQvaoYt73FYcvYoiKcTHA" data-tocid="XzNL4H3D7ZRfwdQy8ssHvg">Set up user access to Data Connect integrations</span></td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry nocellnorowborder" style="vertical-align:top;" headers="d34201e50 ">Use the <span class="keyword">Data Connect Integration Designer</span> to create your own integrations.</td>
+
+            <td class="entry nocellnorowborder" style="vertical-align:top;" headers="d34201e53 ">Developers can use the <span class="keyword">Integration Designer</span> to build custom Data Connect integrations for your institution.<p class="p">The <span class="keyword">Integration Designer</span> is available with <span class="keyword">Experience Premium</span>.</p>
+</td>
+
+            <td class="entry cell-norowborder" style="vertical-align:top;" headers="d34201e56 "><span class="xref ft-internal-link" title="The Integration Designer provides the ability to define data workflows in a low code way." data-ft-warning="excluded-from-rendering" data-mapid="iMQvaoYt73FYcvYoiKcTHA" data-tocid="qSLqVQPNTAafOi~Eazek0Q">Integration Designer overview</span></td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="vertical-align:top;" headers="d34201e50 ">Create pipeline jobs, and then run and monitor those pipeline jobs.</td>
+
+            <td class="entry row-nocellborder" style="vertical-align:top;" headers="d34201e53 ">Use these procedures to create and manage pipeline jobs for both integrations delivered by Ellucian and integrations that you create with the <span class="keyword">Integration Designer</span>.</td>
+
+            <td class="entry cellrowborder" style="vertical-align:top;" headers="d34201e56 "><span class="xref ft-internal-link" title="Create, run, and manage pipeline jobs for Data Connect integrations." data-ft-warning="excluded-from-rendering" data-mapid="iMQvaoYt73FYcvYoiKcTHA" data-tocid="4xt0G4vK_~UeRZbICA~ITQ">Manage pipeline jobs</span></td>
+
+          </tr>
+
+        </tbody>
+</table>
+</div>
+
+  </div>
+
+</div></div></section>
+<section id="t-30"><h3>Terminology for Ellucian-delivered integrations</h3><div class="content-locale-en-US content-locale-en"><div id="r_data_connect_terminology"><div class="body refbody"><p class="shortdesc">The table below defines terms used in configuring and using <span class="keyword">Data Connect</span> integrations delivered by Ellucian. To help clarify the terms, the table includes examples for the NSC-PDP integration.</p>
+
+    
+<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" class="table" frame="border" border="1" rules="all"><colgroup><col style="width:16.666666666666664%"><col style="width:33.33333333333333%"><col style="width:16.666666666666664%"><col style="width:33.33333333333333%"></colgroup><thead class="thead" style="text-align:left;">
+          <tr class="row">
+            <th class="entry cellrowborder" style="vertical-align:top;" id="d49854e52">Term</th>
+
+            <th class="entry cellrowborder" style="vertical-align:top;" id="d49854e55">Definition</th>
+
+            <th class="entry cellrowborder" style="vertical-align:top;" id="d49854e58">Created by</th>
+
+            <th class="entry cellrowborder" style="vertical-align:top;" id="d49854e61">Example for NSC-PDP integration</th>
+
+          </tr>
+
+        </thead>
+<tbody class="tbody">
+          <tr class="row">
+            <td class="entry cellrowborder" style="vertical-align:top;" headers="d49854e52 ">Integration package</td>
+
+            <td class="entry cellrowborder" style="vertical-align:top;" headers="d49854e55 ">The complete set of pipelines and other components that support an integration.</td>
+
+            <td class="entry cellrowborder" style="vertical-align:top;" headers="d49854e58 ">Ellucian<span class="xref ft-internal-link" data-ft-warning="excluded-from-rendering" data-mapid="iMQvaoYt73FYcvYoiKcTHA" data-tocid="NpSxgxLPC5hKdXNPzEuPqw" data-section="r_data_connect_terminology__qj1_4vv_3tb"><sup><sup class="ph sup">1</sup></sup></span></td>
+
+            <td class="entry cellrowborder" style="vertical-align:top;" headers="d49854e61 ">Ellucian delivers an integration package for NSC-PDP.</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry cellrowborder" style="vertical-align:top;" headers="d49854e52 ">Pipeline</td>
+
+            <td class="entry cellrowborder" style="vertical-align:top;" headers="d49854e55 ">A component that performs a specific piece of an integration.</td>
+
+            <td class="entry cellrowborder" style="vertical-align:top;" headers="d49854e58 ">Ellucian<span class="xref ft-internal-link" data-ft-warning="excluded-from-rendering" data-mapid="iMQvaoYt73FYcvYoiKcTHA" data-tocid="NpSxgxLPC5hKdXNPzEuPqw" data-section="r_data_connect_terminology__qj1_4vv_3tb"><sup><sup class="ph sup">1</sup></sup></span></td>
+
+            <td class="entry cellrowborder" style="vertical-align:top;" headers="d49854e61 ">The NSC-PDP integration is comprised of multiple pipelines including, for example, a <dfn class="term">PDPCoursesReport</dfn> pipeline that creates a course report data file from data extracted from Banner or Colleague.</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry cellrowborder" style="vertical-align:top;" headers="d49854e52 ">Pipeline job</td>
+
+            <td class="entry cellrowborder" style="vertical-align:top;" headers="d49854e55 ">An instance of a pipeline with settings unique to your implementation.</td>
+
+            <td class="entry cellrowborder" style="vertical-align:top;" headers="d49854e58 ">You</td>
+
+            <td class="entry cellrowborder" style="vertical-align:top;" headers="d49854e61 ">You would create a pipeline job for the <dfn class="term">PDPCoursesReport</dfn> pipeline, specifying settings such as academic year.</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry cellrowborder" style="vertical-align:top;" headers="d49854e52 ">Pipeline job run</td>
+
+            <td class="entry cellrowborder" style="vertical-align:top;" headers="d49854e55 ">An instance of a pipeline job.</td>
+
+            <td class="entry cellrowborder" style="vertical-align:top;" headers="d49854e58 ">You</td>
+
+            <td class="entry cellrowborder" style="vertical-align:top;" headers="d49854e61 ">You would periodically run your <dfn class="term">PDPCoursesReport</dfn> pipeline job to pick up changes for course sections that you had created or updated in Banner or Colleague.</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry cellrowborder" style="vertical-align:top;" headers="d49854e52 ">Crosswalk</td>
+
+            <td class="entry cellrowborder" style="vertical-align:top;" headers="d49854e55 ">A mapping of values in one application to another application.</td>
+
+            <td class="entry cellrowborder" style="vertical-align:top;" headers="d49854e58 ">You</td>
+
+            <td class="entry cellrowborder" style="vertical-align:top;" headers="d49854e61 ">To support the NSC-PDP integration, you would create crosswalks that map your institution-specific Banner or Colleague codes to NSC-defined PDP codes.</td>
+
+          </tr>
+
+        </tbody>
+</table>
+</div>
+
+  </div>
+
+<div class="fn"><a id="r_data_connect_terminology__qj1_4vv_3tb"><sup>1</sup></a>  For integrations that you create using the <span class="keyword">Data Connect Integration Designer</span>, you would create these artifacts.</div></div></div></section>
+<section id="t-40"><h3>FAQs</h3><div class="content-locale-en-US content-locale-en"><div id="c_dc_designer_faqs"><div class="body conbody"><p class="shortdesc">Common questions associated with <span class="keyword">Data Connect</span>.</p>
+
+    
+<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" class="table" frame="hsides" border="1" rules="rows"><colgroup><col><col></colgroup><thead class="thead" style="text-align:left;">
+          <tr class="row">
+            <th class="entry row-nocellborder" style="vertical-align:top;" id="d3213e48">Question</th>
+
+            <th class="entry row-nocellborder" style="vertical-align:top;" id="d3213e51">Answer</th>
+
+          </tr>
+
+        </thead>
+<tbody class="tbody">
+          <tr class="row">
+            <td class="entry row-nocellborder" style="vertical-align:top;" headers="d3213e48 ">What can I use <span class="keyword">Data Connect</span> for?</td>
+
+            <td class="entry row-nocellborder" style="vertical-align:top;" headers="d3213e51 ">
+              <div class="p">You can use <span class="keyword">Data Connect</span> for:<ul class="ul">
+                <li class="li">Flat file integrations</li>
+
+                <li class="li">Data transformations</li>
+
+                <li class="li">Replacing AWS Lambda functions and integrating with custom cards</li>
+
+                <li class="li">Integrating custom data with <span class="keyword">Ellucian Insights</span></li>
+
+                </ul>
+</div>
+
+            </td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="vertical-align:top;" headers="d3213e48 ">Where do I create and edit <span class="keyword">Data Connect</span> pipelines?</td>
+
+            <td class="entry row-nocellborder" style="vertical-align:top;" headers="d3213e51 ">You can create and edit <span class="keyword">Data Connect</span> pipelines using the <span class="ph uicontrol">Integration Designer</span> card in <span class="keyword">Experience</span>.</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="vertical-align:top;" headers="d3213e48 ">Where do I run and schedule <span class="keyword">Data Connect</span> jobs?</td>
+
+            <td class="entry row-nocellborder" style="vertical-align:top;" headers="d3213e51 ">You can run and schedule job runs for <span class="keyword">Data Connect</span> in the <span class="ph uicontrol">Integration Packages</span> card in <span class="keyword">Experience</span>.</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="vertical-align:top;" headers="d3213e48 ">Can I share my pipeline from my test to prod environment?</td>
+
+            <td class="entry row-nocellborder" style="vertical-align:top;" headers="d3213e51 ">Yes, you can use the <span class="xref ft-internal-link" title="Pipelines and transform functions can be shared with another tenant, if required." data-ft-warning="excluded-from-rendering" data-mapid="iMQvaoYt73FYcvYoiKcTHA" data-tocid="Hkgb8aD97Yw~cvIG~Mt2_Q">Sharing integration pipelines and transform functions</span> documentation. This is the recommended approach for promoting pipelines to higher environments. However, if you want to move a pipeline to another environment and edit it, pipelines can also be exported and imported as .json files. See the pipeline actions section in <span class="xref ft-internal-link" title="You can share a single pipeline." data-ft-warning="excluded-from-rendering" data-mapid="iMQvaoYt73FYcvYoiKcTHA" data-tocid="823NprgAJysRunl8ZVHxWQ">Share individual pipelines</span>.</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="vertical-align:top;" headers="d3213e48 ">Can a multi-institution customer share between their parent and children tenants? Child to child?</td>
+
+            <td class="entry row-nocellborder" style="vertical-align:top;" headers="d3213e51 ">Yes, Multi-institution customers can use the <span class="xref ft-internal-link" title="Pipelines and transform functions can be shared with another tenant, if required." data-ft-warning="excluded-from-rendering" data-mapid="iMQvaoYt73FYcvYoiKcTHA" data-tocid="Hkgb8aD97Yw~cvIG~Mt2_Q">Sharing integration pipelines and transform functions </span>. This is the recommended approach for sharing pipelines. However, pipelines can also be exported and imported as .json files. See the pipeline actions section in <span class="xref ft-internal-link" title="You can share a single pipeline." data-ft-warning="excluded-from-rendering" data-mapid="iMQvaoYt73FYcvYoiKcTHA" data-tocid="823NprgAJysRunl8ZVHxWQ">Share individual pipelines</span>.</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="vertical-align:top;" headers="d3213e48 ">What is the retention period for files that are generated by <span class="keyword">Data Connect</span>?</td>
+
+            <td class="entry row-nocellborder" style="vertical-align:top;" headers="d3213e51 ">By default, files generated by <span class="keyword">Data Connect</span> are retained for six months.</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="vertical-align:top;" headers="d3213e48 ">Can I change the retention period for files generated by <span class="keyword">Data Connect</span>?</td>
+
+            <td class="entry row-nocellborder" style="vertical-align:top;" headers="d3213e51 ">Yes, users with permission can change the retention period for files generated by <span class="keyword">Data Connect</span> by following the steps in <span class="xref ft-internal-link" title="Specify the time after which files created by pipeline jobs are deleted." data-ft-warning="excluded-from-rendering" data-mapid="iMQvaoYt73FYcvYoiKcTHA" data-tocid="bU5aKY_BW6ZYCQjNw1lvYA">Specify the file retention period</span>.</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="vertical-align:top;" headers="d3213e48 ">Can I modify a pipeline that is delivered by <span class="keyword">Ellucian</span>?</td>
+
+            <td class="entry row-nocellborder" style="vertical-align:top;" headers="d3213e51 ">At this time, no. We hope to provide this capability in the future.</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="vertical-align:top;" headers="d3213e48 ">Do I need to have an <span class="keyword">Experience</span> license to run delivered packages from <span class="keyword">Ellucian</span>?</td>
+
+            <td class="entry row-nocellborder" style="vertical-align:top;" headers="d3213e51 ">No. All <span class="keyword">Experience Foundation</span> customers have access to the Integration Packages card in <span class="keyword">Experience</span>. Customers who are licensed for products that use <span class="keyword">Data Connect</span> can see the packages that are available to them.</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="vertical-align:top;" headers="d3213e48 ">Where does the documentation live for <span class="keyword">Ellucian</span> delivered Integration Packages?</td>
+
+            <td class="entry row-nocellborder" style="vertical-align:top;" headers="d3213e51 ">Documentation for delivered packages can be found under the product the integration package is a part of. For example, integration packages for Apply can be found under the Apply product.</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="vertical-align:top;" headers="d3213e48 ">Can I use <span class="keyword">Data Connect</span> to send data from my <span class="keyword">Ellucian</span> systems to a third party?</td>
+
+            <td class="entry row-nocellborder" style="vertical-align:top;" headers="d3213e51 ">Yes, as long as the third party provides APIs, <span class="keyword">Data Connect</span> can be used to create SaaS-safe integrations to send Data to and from third parties, using the <span class="keyword">Ellucian</span>-delivered APIs and the HTTP fittings to call the APIs provided by the third party.</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="vertical-align:top;" headers="d3213e48 ">Why can't I see the Integration Designer card?</td>
+
+            <td class="entry row-nocellborder" style="vertical-align:top;" headers="d3213e51 ">
+              <div class="p">In order to see the Integration Designer card, you need to have an <span class="keyword">Experience</span> license. If you have an <span class="keyword">Experience</span> license, please work with your <span class="keyword">Experience</span> administrator to ensure that:<ul class="ul">
+                <li class="li">The card is enabled</li>
+
+                <li class="li">The card is assigned to your role</li>
+
+                </ul>
+</div>
+
+              <p class="p">You can then search for the card in <span class="ph uicontrol">Discover</span> and bookmark it on your home page.</p>
+
+            </td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="vertical-align:top;" headers="d3213e48 ">Why can't I see the Integration Packages card?</td>
+
+            <td class="entry row-nocellborder" style="vertical-align:top;" headers="d3213e51 ">
+              <div class="p">Please work with your <span class="keyword">Experience</span> administrator to ensure that:<ul class="ul">
+                <li class="li">The card is enabled</li>
+
+                <li class="li">The card is assigned to your role</li>
+
+                </ul>
+</div>
+
+            </td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="vertical-align:top;" headers="d3213e48 ">How can I call BPAPIs in <span class="keyword">Data Connect</span> pipelines?</td>
+
+            <td class="entry row-nocellborder" style="vertical-align:top;" headers="d3213e51 ">You can call BPAPIs using any of the <span class="keyword">Ethos</span> fittings under the <span class="ph uicontrol">Source</span> category.</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="vertical-align:top;" headers="d3213e48 ">Is there a way to have a pipeline kick off another pipeline?</td>
+
+            <td class="entry row-nocellborder" style="vertical-align:top;" headers="d3213e51 ">That functionality is currently not available.</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="vertical-align:top;" headers="d3213e48 ">How can I test my pipeline?</td>
+
+            <td class="entry row-nocellborder" style="vertical-align:top;" headers="d3213e51 ">You can test your pipeline using the <span class="ph uicontrol">Test</span> button in the Integration Designer. </td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="vertical-align:top;" headers="d3213e48 ">What programming languages does <span class="keyword">Data Connect</span> use?</td>
+
+            <td class="entry row-nocellborder" style="vertical-align:top;" headers="d3213e51 "><span class="keyword">Data Connect</span> uses Javascript. The Insights Fittings available through the Insights Enterprise Pro license use SQL.</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="vertical-align:top;" headers="d3213e48 ">Can I query my ERP using SQL from <span class="keyword">Data Connect</span>?</td>
+
+            <td class="entry row-nocellborder" style="vertical-align:top;" headers="d3213e51 ">No. <span class="keyword">Data Connect</span> is meant to create SaaS safe integrations and relies upon using APIs to interact with source systems.</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="vertical-align:top;" headers="d3213e48 ">How many recipients can I add on the Send Notification fitting?</td>
+
+            <td class="entry row-nocellborder" style="vertical-align:top;" headers="d3213e51 ">50 recipients total across to/cc/bcc.</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="vertical-align:top;" headers="d3213e48 ">What are some resources I can use to get more comfortable with general programming concepts and APIs so that I can be more confident when building <span class="keyword">Data Connect</span> pipelines? </td>
+
+            <td class="entry row-nocellborder" style="vertical-align:top;" headers="d3213e51 ">
+              <div class="p">Some basic knowledge on HTTP, JavaScript, and general programming concepts will help in creating pipelines in <span class="keyword">Data Connect</span>. Some suggested resources include but are not limited to:<ol class="ol">
+                <li class="li"><a class="xref ft-external-link" href="https://www.linkedin.com/learning/learning-the-javascript-language-22309208" target="_blank" rel="noopener">https://www.linkedin.com/learning/learning-the-javascript-language-22309208</a></li>
+
+                <li class="li"><a class="xref ft-external-link" href="https://www.linkedin.com/learning/http-essential-training" target="_blank" rel="noopener">https://www.linkedin.com/learning/http-essential-training</a></li>
+
+                <li class="li">Loops (how to iterate various arrays or data sets)</li>
+
+                <li class="li">Control structures (if/then else) with various data types (if values are undefined, comparing strings, numbers, and other data structures)</li>
+
+                <li class="li">Data types in JavaScript (strings, array, objects) and how to deal with them</li>
+
+                </ol>
+</div>
+
+            </td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="vertical-align:top;" headers="d3213e48 ">What file formats are supported by <span class="keyword">Data Connect</span>?</td>
+
+            <td class="entry row-nocellborder" style="vertical-align:top;" headers="d3213e51 ">
+              <p class="p"><span class="keyword">Data Connect</span> can parse and export delimited files with the delimited formatter (csv being the most commonly known format), but other types of format are also be supported.</p>
+
+              <p class="p"><span class="keyword">Data Connect</span> can parse and generate JSON files.</p>
+
+              <p class="p"><span class="keyword">Data Connect</span> can parse and format XML files.</p>
+
+              <p class="p"><span class="keyword">Data Connect</span> can generate txt files. Using custom code with JavaScript transform, many more complex formats can be parsed or exported.</p>
+
+            </td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="vertical-align:top;" headers="d3213e48 ">Is there a recommended limit on how much data can be extracted from Insights through the Extract Data fitting?</td>
+
+            <td class="entry row-nocellborder" style="vertical-align:top;" headers="d3213e51 "><span class="keyword">Ellucian</span> recommends not extracting more than 6GB of data from <span class="keyword">Insights</span>.</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="vertical-align:top;" headers="d3213e48 ">How often does <span class="keyword">Data Connect</span> release updates?</td>
+
+            <td class="entry row-nocellborder" style="vertical-align:top;" headers="d3213e51 "><span class="keyword">Ellucian</span> typically releases a <span class="keyword">Data Connect</span> update every three weeks.</td>
+
+          </tr>
+
+        </tbody>
+</table>
+</div>
+
+  </div>
+
+</div></div></section></main></body></html>

@@ -1,0 +1,1301 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Degree Works - Configure — Transfer Equivalency Admin Administration</title><style>body{font-family:-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;line-height:1.55;color:#1a1a1a;max-width:920px;margin:0 auto;padding:24px}header{border-bottom:2px solid #5a16d6;margin-bottom:8px}h1{color:#3a0ca3}h2,h3,h4,h5,h6{margin-top:1.6em}.crumb{color:#666;font-size:13px;margin:0}.meta{color:#888;font-size:12px}nav.toc{background:#f6f4fc;border:1px solid #e3dcf5;border-radius:8px;padding:12px 18px;margin:18px 0}nav.toc h2{margin:.2em 0}nav.toc ul{list-style:none;padding-left:0}nav.toc a{text-decoration:none;color:#5a16d6}section{margin:1.2em 0;padding-top:.4em}img{max-width:100%;height:auto}table{border-collapse:collapse}td,th{border:1px solid #ccc;padding:4px 8px}code,pre{background:#f4f4f4;border-radius:4px}pre{padding:10px;overflow:auto}</style></head><body><header><p class="crumb">Ellucian Degree Works › Degree Works - Configure</p><h1>Degree Works - Configure — Transfer Equivalency Admin Administration</h1><p class="meta">Source: <a href="https://resources.elluciancloud.com/r/bundle/dgrwrks_acn_configure">https://resources.elluciancloud.com/r/bundle/dgrwrks_acn_configure</a> &middot; Retrieved 2026-06-17</p></header><nav class="toc"><h2>Contents</h2><ul><li style="margin-left:0px"><a href="#t-2150">Transfer Equivalency Admin Administration</a></li><li style="margin-left:16px"><a href="#t-2160">Initial Transfer Equivalency Admin setup and configuration</a></li><li style="margin-left:32px"><a href="#t-2170">Authentication</a></li><li style="margin-left:32px"><a href="#t-2180">Transfer Equivalency Admin user access</a></li><li style="margin-left:32px"><a href="#t-2190">Shepherd settings</a></li><li style="margin-left:32px"><a href="#t-2200">UCX tables</a></li><li style="margin-left:32px"><a href="#t-2210">Database table structure</a></li><li style="margin-left:32px"><a href="#t-2220">Localizations</a></li><li style="margin-left:32px"><a href="#t-2230">Transfer Equivalency Admin deployment</a></li><li style="margin-left:48px"><a href="#t-2240">Transfer Equivalency Admin environment settings</a></li><li style="margin-left:48px"><a href="#t-2250">Classic server requirements</a></li><li style="margin-left:16px"><a href="#t-2260">Navigation</a></li><li style="margin-left:16px"><a href="#t-2270">Student search</a></li><li style="margin-left:16px"><a href="#t-2280">Admin Mappings</a></li><li style="margin-left:32px"><a href="#t-2290">Transfer institution selection</a></li><li style="margin-left:32px"><a href="#t-2300">School mappings</a></li><li style="margin-left:32px"><a href="#t-2310">Mapping details</a></li><li style="margin-left:48px"><a href="#t-2320">Add a mapping in Transfer Equivalency Admin</a></li><li style="margin-left:48px"><a href="#t-2330">Modify an existing mapping in Transfer Equivalency Admin</a></li><li style="margin-left:32px"><a href="#t-2340">Test mappings</a></li><li style="margin-left:48px"><a href="#t-2350">Add a test mapping in Transfer Equivalency Admin</a></li><li style="margin-left:48px"><a href="#t-2360">Modify a test mapping in Transfer Equivalency Admin</a></li><li style="margin-left:48px"><a href="#t-2370">Define transfer conditions in Transfer Equivalency Admin</a></li><li style="margin-left:16px"><a href="#t-2380">Transcript</a></li><li style="margin-left:32px"><a href="#t-2390">Edit student information</a></li><li style="margin-left:32px"><a href="#t-2400">Manage test scores</a></li><li style="margin-left:32px"><a href="#t-2410">Manage transcripts</a></li><li style="margin-left:32px"><a href="#t-2420">Add school transcripts</a></li><li style="margin-left:16px"><a href="#t-2430">Articulation</a></li><li style="margin-left:32px"><a href="#t-2440">Articulation summary</a></li><li style="margin-left:32px"><a href="#t-2450">Articulated classes</a></li><li style="margin-left:16px"><a href="#t-2460">Audit</a></li><li style="margin-left:16px"><a href="#t-2470">Roll</a></li><li style="margin-left:32px"><a href="#t-2480">Roll process</a></li><li style="margin-left:32px"><a href="#t-2490">Roll results to Banner</a></li><li style="margin-left:16px"><a href="#t-2500">Debug</a></li><li style="margin-left:32px"><a href="#t-2510">Enable debug</a></li><li style="margin-left:32px"><a href="#t-2520">Access debug files</a></li></ul></nav><main><section id="t-2150"><h2>Transfer Equivalency Admin Administration</h2><div class="content-locale-en-US content-locale-en"><div id="c_tfer_equiv_admin_admin_intro"><div class="body conbody"><p class="shortdesc">Transfer Equivalency Admin is the data entry interface for managing Transfer Equivalency coursework articulation.</p>
+
+    <p class="p">With this tool, you can perform the following functions:</p>
+
+    <ul class="ul">
+      <li class="li">Create mappings of course equivalents from transfer institutions.</li>
+
+      <li class="li">Create transcript information for specific students, including courses and test scores.</li>
+
+      <li class="li">Perform an articulation of processed classes.</li>
+
+      <li class="li">Perform a degree audit on articulation results, audit classes in the student system, and view a degree audit report.</li>
+
+    </ul>
+
+    <p class="p">Transfer Equivalency Admin contains both the frontend (browser-based) application and the backend API used by the client code. It is deployed as a jar on any supported Unix server and is independent of the classic software. It includes an embedded container; a separate Java container like Tomcat is not required. It also is dependent on the classic server for performing the roll to Banner and running an audit.</p>
+
+  </div>
+
+</div></div></section>
+<section id="t-2160"><h3>Initial Transfer Equivalency Admin setup and configuration</h3></section>
+<section id="t-2170"><h4>Authentication</h4><div class="content-locale-en-US content-locale-en"><div id="c_tfer_equiv_admin_admin_authentication"><p class="shortdesc">The Transfer Equivalency Admin user interface supports SHP, CAS, and SAML authentication methods in addition to external access managers such as Oracle Access Manager.</p>
+
+  
+</div></div></section>
+<section id="t-2180"><h4>Transfer Equivalency Admin user access</h4><div class="content-locale-en-US content-locale-en"><div id="c_tfer_equiv_admin_user_access"><div class="body conbody"><p class="shortdesc">The TEAADMIN Shepherd key grants access to the Transfer Equivalency Admin application, and additional keys grant access to specific functionality.</p>
+
+    <p class="p">The TEAREG Shepherd group can be used to assign job access to users. The Users function of Controller or the core.security.rules.shpcfg Shepherd setting can be used to assign keys or groups to users. The list of all Transfer Equivalency Admin keys and groups is available in the <span class="xref ft-internal-xlink" title="Each user has a keyring with one or more keys." data-ft-warning="excluded-from-rendering" data-clusterid="id_crm/dgrwrks/c_keys_keyrings">Keys and keyrings</span> topic.</p>
+
+  </div>
+
+</div></div></section>
+<section id="t-2190"><h4>Shepherd settings</h4><div class="content-locale-en-US content-locale-en"><div id="c_tfer_equiv_admin_shepherd_settings_"><div class="body conbody"><p class="shortdesc">Most configurations to manage the behavior of Transfer Equivalency Admin can be maintained using the Configuration tab of Controller.</p>
+
+    <div class="p">Review the following Shepherd settings to ensure they are configured correctly for your Transfer Equivalency Admin environment:<ul class="ul"> <li class="li">core.security.cas.callbackUrl spec =treqadmin (if you use CAS authentication)</li>
+ <li class="li">treq.applicant.default.treqStatus</li>
+ <li class="li">treq.goal.catalogYear.defaultValue</li>
+ <li class="li">treq.goal.degree.defaultValue</li>
+ <li class="li">treq.goal.school.defaultValue</li>
+ <li class="li">treq.goal.scr004.codesToShow</li>
+ <li class="li">treq.treqadmin.applicant.show.articulationConditions</li>
+
+      <li class="li">treq.treqadmin.audit.report</li>
+ <li class="li">treq.treqadmin.default.gradeAssignMode</li>
+ <li class="li">treq.treqadmin.default.manyPassGrade</li>
+ <li class="li">treq.treqadmin.testscores.default.gradeType</li>
+ <li class="li">treq.treqadmin.testscores.default.schoolId</li>
+ </ul>
+</div>
+
+  </div>
+
+</div></div></section>
+<section id="t-2200"><h4>UCX tables</h4><div class="content-locale-en-US content-locale-en"><div id="c_tfer_equiv_admin_ucx_tables"><div class="body conbody"><p class="shortdesc">Several existing UCX tables are used by Transfer Equivalency Admin. These should be reviewed to ensure they contain the necessary entries and the descriptions are clear and accurate.</p>
+
+    <p class="p">Review the following UCX tables to ensure they are configured correctly for your Transfer Equivalency Admin environment:</p>
+
+    <ul class="ul">
+      <li class="li">STU016</li>
+
+      <li class="li">STU023</li>
+
+      <li class="li">STU035</li>
+
+      <li class="li">STU307</li>
+
+      <li class="li">STU314</li>
+
+      <li class="li">STU346</li>
+
+      <li class="li">STU350</li>
+
+      <li class="li">STU351</li>
+
+      <li class="li">STU355</li>
+
+      <li class="li">STU356</li>
+
+      <li class="li">STU362</li>
+
+      <li class="li">STU379</li>
+
+      <li class="li">STU380</li>
+
+      <li class="li">STU382</li>
+
+      <li class="li">STU385</li>
+
+      <li class="li">STU398</li>
+
+      <li class="li">STU560</li>
+
+      <li class="li">STU564</li>
+
+      <li class="li">SYS998</li>
+
+      <li class="li">TRQ060</li>
+
+      <li class="li">TRQ061</li>
+
+      <li class="li">TRQ062</li>
+
+      <li class="li">TRQ063</li>
+
+    </ul>
+
+  </div>
+
+</div></div></section>
+<section id="t-2210"><h4>Database table structure</h4><div class="content-locale-en-US content-locale-en"><div id="c_database_table_structure_tfer_equiv_admin"><div class="body conbody"><p class="shortdesc">Familiarize yourself with the tables used in Transfer Equivalency Admin.</p>
+
+    <div class="section"><h2 class="title sectiontitle">DAP_APPLICNT_MST</h2>
+      
+      <p class="p">Each student has a dap_applicnt_mst record that stores their catalog year, school and degree goals in the dap_catalog_yr, dap_school and dap_degree fields.</p>
+
+    </div>
+
+    <div class="section"><h2 class="title sectiontitle">DAP_APPDATA_DTL</h2>
+      
+      <p class="p">A dap_appdata_dtl record is created for each goal item for the student. The goal type is stored in dap_goal_code. Valid values are CAMPUS, COLLEGE, CONC, MAJOR, MINOR, and PROGRAM. The selected goal value code is stored in dap_goal_value.</p>
+
+    </div>
+
+    <div class="section"><h2 class="title sectiontitle">DAP_TRANSFER_DTL</h2>
+      
+      <p class="p">A dap_transfer_dtl record is created for each transcript class or exam created for a student.</p>
+
+      <p class="p">For classes, the dap_school_id is the rad_ets_code for the selected school while the dap_tr_disc, dap_tr_crse_num, dap_tr_title, dap_tr_credits, dap_tr_cr_method, and dap_tr_grade should be the values provided for the selected class.</p>
+
+      <p class="p">For exams, the dap_school_id will be TESTS while the dap_tr_disc is the test code, the dap_tr_title is the the test description, dap_tr_start is the test date (if entered) and dap_tr_grade is the score provided for the exam.</p>
+
+    </div>
+
+  </div>
+
+</div></div></section>
+<section id="t-2220"><h4>Localizations</h4><div class="content-locale-en-US content-locale-en"><div id="c_tfer_equiv_admin_localizations"><p class="shortdesc">The text, labels, and messages for Transfer Equivalency Admin can be localized for your institution and are defined in TransferEquivalencyAdminMessages.properties.</p>
+
+  
+</div></div></section>
+<section id="t-2230"><h4>Transfer Equivalency Admin deployment</h4><div class="content-locale-en-US content-locale-en"><div id="c_tfer_equiv_admin_deployment"><div class="body conbody"><p class="shortdesc">Transfer Equivalency Admin is designed to deploy equally well in on-premise and cloud-hosted scenarios on all supported platforms. It provides a mobile-ready, responsive user interface communicating with the servers using lightweight, stateless, restful API over HTTP SSL.</p>
+
+    <p class="p">The Transfer Equivalency Admin deployment artifact is a JAR file that is executable using java and includes an embedded container.</p>
+
+    <div class="section"><h2 class="title sectiontitle">Prerequisites</h2>
+      
+      <p class="p">Transfer Equivalency Admin requires prerequisites in its setup.</p>
+
+      <ul class="ul">
+        <li class="li">Java: <p class="p">Java version 17 is the only third-party dependency required to run this application. Oracle Java and OpenJDK are supported.</p>
+</li>
+
+        <li class="li">SSL: <p class="p"><span class="keyword">Ellucian</span> recommends SSL, because the security implementation uses stateless tokens. Using signed certificates is recommended for all deployment scenarios, including test or development environments. Self-signed certificates, even for internal test deployments, can be problematic because of browser requirements and warnings. The SSL certificate needs to be configured in a keystore, and that keystore needs to be accessible in the deployment environment. There are various options for how to do this, for example using Java's keytool command.</p>
+</li>
+
+      </ul>
+
+    </div>
+
+    <div class="section"><h2 class="title sectiontitle">Deployment examples</h2>
+      
+      <p class="p">After the prerequisites and configuration are in place, start the application using a java -jar command.</p>
+
+      <pre class="pre codeblock"><code>java $JAVA_OPTIONS -jar TransferEquivalencyAdmin.jar</code></pre>
+      
+<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" class="table" frame="hsides" border="1" rules="rows"><colgroup><col style="width:50%"><col style="width:50%"></colgroup><thead class="thead" style="text-align:left;">
+            <tr class="row">
+              <th class="entry row-nocellborder" style="vertical-align:top;" id="d52004e85">Example</th>
+
+              <th class="entry row-nocellborder" style="vertical-align:top;" id="d52004e88">Description</th>
+
+            </tr>
+
+          </thead>
+<tbody class="tbody">
+            <tr class="row">
+              <td class="entry row-nocellborder" style="vertical-align:top;" headers="d52004e85 ">Transfer Equivalency Admin example startup script</td>
+
+              <td class="entry row-nocellborder" style="vertical-align:top;" headers="d52004e88 ">You can employ a shell script to start the application.<p class="p">The <var class="keyword varname">TransferEquivalencyAdmin.jar</var> file must be staged at the DEPLOY_LOCATION.</p>
+<pre class="pre codeblock"><code>#!/bin/ksh
+export
+DW_DATASOURCE_URL="jdbc:oracle:thin:@MyServer:1521/service_name"
+export DW_DATASOURCE_USERNAME="my-dw-user"
+export DW_DATASOURCE_PASSWORD="my-dw-password"
+export SERVER_PORT="8531"
+export SERVER_SERVLET_CONTEXT_PATH=""
+export SERVER_SSL_KEY_STORE="/usr/local/my-keystore.jks"
+export SERVER_SSL_KEY_STORE_PASSWORD="my-key-password"
+export SERVER_SSL_KEYSTORETYPE="jks"
+export SERVER_SSL_KEY_ALIAS="my-keystore-alias"
+export DW_DATAPOOL_INITIAL_SIZE=10
+export DW_DATAPOOL_MIN_IDLE=10
+export DW_DATAPOOL_MAX_IDLE=10
+export DW_DATAPOOL_MAX_TOTAL=300
+export DEPLOY_LOCATION="/path/to/jarfile"
+export JAVA_OPTIONS="-Xms1536m -Xmx1536m";
+export DEBUG="false"
+# To enable full-time debug log output, remove the # from the line below
+#export LOG_DEFAULT_THRESHOLD=DEBUG
+java -jar $JAVA_OPTIONS DEPLOY_LOCATION/TransferEquivalencyAdmin.jar &gt; startup-
+log- file.log &amp;</code></pre></td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry row-nocellborder" style="vertical-align:top;" headers="d52004e85 ">Transfer Equivalency Admin example stop script</td>
+
+              <td class="entry row-nocellborder" style="vertical-align:top;" headers="d52004e88 ">If you use a start script, you must use a corresponding stop script.<pre class="pre codeblock"><code>#!/bin/ksh
+pkill -f TransferEquivalencyAdmin</code></pre></td>
+
+            </tr>
+
+          </tbody>
+</table>
+</div>
+
+    </div>
+
+  </div>
+
+</div></div></section>
+<section id="t-2240"><h5>Transfer Equivalency Admin environment settings</h5><div class="content-locale-en-US content-locale-en"><div id="c_tfer_equiv_admin_environment_settings"><div class="body conbody"><p class="shortdesc">Several environment variables are required to be configured before running the application.</p>
+
+    <p class="p">Depending on the desired deployment platform there are many options for how these environment variables can be configured. The only requirement is that they are available in the environment where the product's JAR file will be executed. For example, it may be desirable to configure them in a shell script, in a specific user's profile, a startup instruction like init.d, or in a continuous deployment tool like Jenkins.</p>
+
+    <p class="p">The minimum required variables are documented here. But many optional variables are provided in the Spring Boot platform, for example tuning the embedded container. Please refer to Spring documentation for those: <a class="xref ft-external-link" href="http://docs.spring.io/spring-boot/appendix/application-properties/index.html" target="_blank" rel="noopener">http://docs.spring.io/spring-boot/appendix/application-properties/index.html</a>.</p>
+
+    <p class="p">Environment Variables are the recommended method to configure these properties. But there are various other ways these can be configured. Please refer to this documentation for more information: <a class="xref ft-external-link" href="https://docs.spring.io/spring-boot/reference/features/external-config.html" target="_blank" rel="noopener">https://docs.spring.io/spring-boot/reference/features/external-config.html</a>.</p>
+
+    <div class="section"><h2 class="title sectiontitle">Required environment variables for Transfer Equivalency Admin</h2>
+      
+      <div class="p">
+        <ul class="ul">
+          <li class="li">DW_DATASOURCE_URL: A JDBC connection string for the Degree Works database. For example: <code class="ph codeph">jdbc:oracle:thin:@{SERVER}:{PORT}/{SERVICE_NAME}</code>where <code class="ph codeph">{SERVER}</code>is the address, <code class="ph codeph">{PORT}</code>is the port of the listener, and <code class="ph codeph">{SERVICE_NAME}</code>is the service name of the database. This is the same database and schema used by the classic Degree Works software.</li>
+
+          <li class="li">DW_DATASOURCE_USERNAME:The Degree Works database username.</li>
+
+          <li class="li">DW_DATASOURCE_PASSWORD:The Degree Works database password. This can be encoded. To get the encoded value, use the <code class="ph codeph">showdbpasswords-- password</code> command in the classic environment. It will display the encoded value to place here (e.g. <code class="ph codeph">ENC(skdfjldjs)</code>).</li>
+
+          <li class="li">SERVER_PORT: The desired port for the Transfer Equivalency Admin. This must be different from the ports used by other applications on this server.</li>
+
+          <li class="li">SERVER_SERVLET_CONTEXT_PATH: An optional context path. If this is blank, the application will be deployed at the root URL like https://myserver.edu:NNNN (where NNNN is the SERVER_PORT). If a value is specified like /my-context-path, the application would be accessible at a URL like https://myserver.edu:NNNN/my-context-path (where NNNN is the SERVER_PORT).</li>
+
+          <li class="li">SERVER_SSL_KEY_STORE:The path to a keystore file you created to contain your SSL certificate.</li>
+
+          <li class="li">SERVER_SSL_KEY_STORE_PASSWORD:The password for your keystore file.</li>
+
+          <li class="li">SERVER_SSL_KEYSTORETYPE:The type of your keystore. JKS is the default.</li>
+
+          <li class="li">SERVER_SSL_KEY_ALIAS:The alias of the key you created.</li>
+
+        </ul>
+
+      </div>
+
+    </div>
+
+    <div class="section"><h2 class="title sectiontitle">Optional environment variables</h2>
+      
+      <ul class="ul">
+        <li class="li">JAVA_OPTIONS: The memory allocation for the application can be defined using this variable, and is recommended. The value defines the initial heap size and max heap size and is in the following format: <code class="ph codeph">-Xms1536m -Xmx1536m</code>. The heap size values should be adjusted as appropriate for your server.</li>
+
+        <li class="li">SERVER_MAX_HTTP_HEADER_SIZE: This setting allows you to set the maximum size of the HTTP message header. By default, this is 8KB, and for some users with a large number of Shepherd access keys, this can be too small. It’s recommended to use this variable and set it to at least 12KB. For example: <code class="ph codeph">export SERVER_MAX_HTTP_HEADER_SIZE=12288</code></li>
+
+        <li class="li">SERVER_TOMCAT_REDIRECT_CONTEXT_ROOT: Embedded Tomcat for Spring Boot has a default behavior to redirect a request without a trailing slash to one with a trailing slash. However, that redirect happens without evaluating forward headers like X-Forwarded-Proto. So, when SSL offloading is in place, the redirect happens to http instead of https. This can be an issue especially for load balanced environments. To disable the default behavior, set this variable to false.<div class="note warning"><span class="warningtitle">Warning:</span> You should do this only if the default behavior is not working. If you are offloading SSL at a proxy or load balancer, make sure to follow the instructions in the <span class="xref ft-internal-xlink" title="Load balancing is the technique of creating multiple physical or virtual servers that run the same application. Reverse proxies are used for many reasons, including caching content and offloading SSL encryption. Both load balancers and proxies involve intercepting traffic going to and from the Degree Works server." data-ft-warning="excluded-from-rendering" data-clusterid="id_crm/dgrwrks/c_load_balancing">Load balancing and proxies</span> topic. Then, if you have problems accessing the application in the browser when you do not include a trailing slash at the end of the request, try setting this variable to false.</div>
+</li>
+
+        <li class="li">DEBUG: A boolean true or false which will enable or disable debug logging. The log file is by default named transferEquivalency.log. But, the location and name of that file can be customized by setting the LOGGING_PATH and LOGGING_FILE environment variables.</li>
+
+        <li class="li">DEPLOY_LOCATION: The location of the TransferEquivalencyAdmin.jar file. This location should be set then referenced in the java -jar command that starts the application.</li>
+
+        <li class="li">LOGGING_FILE: The name of the file including the path location. If this is specified, the LOG_PATH variable should not be used.</li>
+
+        <li class="li">LOG_PATH: The location of the log file. The default PATH location is the Java temporary java folder from the Java property <code class="ph codeph">java.io.tmpdir</code>. This is usually <code class="ph codeph">/tmp</code>. The file name will be transferEquivalency.log for Transfer Equivalency Admin.</li>
+
+        <li class="li">LOG_DEFAULT_THRESHOLD: If set to DEBUG, the application will output more verbose logging. Debug output will be sent to the log during the startup process and for all requests thereafter. Warning: this will result in very large log files. If not set, the debug threshold is INFO.</li>
+
+        <li class="li">DW_ENABLE_MONITOR - This environment variable can be set to enable /health, /metrics, /prometheus, and /status endpoints for health and monitoring metrics. By default, this monitoring functionality is not enabled. Adding this variable to an application's startup script and setting it to true would enable these endpoints for the application. See individual API documentation in the API Catalog for additional information.</li>
+
+        <li class="li">DW_RABBITMQ_SSLALGORITHM: Specify the SSL algorithm to use when connecting to the RabbitMQ broker using SSL. If not specified, it uses the current RabbitMQ driver's default (at least TLSv1.2). This is only considered if the Shepherd setting core.amqp.useSsl is set to true.</li>
+
+      </ul>
+
+    </div>
+
+    <div class="section"><h2 class="title sectiontitle">Database pooling configuration</h2>
+      
+      <p class="p">For production deployments, you can configure the size of the database connection pool through the following environment variables:</p>
+
+      <div class="p">
+        <ul class="ul">
+          <li class="li">DW_DATAPOOL_INITIAL_SIZE: The initial number of connections that are created when the pool is started.</li>
+
+          <li class="li">DW_DATAPOOL_MIN_IDLE: The minimum number of active connections that can remain idle in the pool, without extra ones being created.</li>
+
+          <li class="li">DW_DATAPOOL_MAX_IDLE: The maximum number of connections that can remain idle in the pool, without extra ones being released.</li>
+
+          <li class="li">DW_DATAPOOL_MAX_TOTAL: The maximum number of active connections that can be allocated from this pool at the same time.</li>
+
+        </ul>
+
+      </div>
+
+      <p class="p">For more information, see the <span class="xref ft-internal-xlink" title="Java programs obtain a database connection from a pool of open connections." data-ft-warning="excluded-from-rendering" data-clusterid="id_crm/dgrwrks/c_java_database_pooling_configuration">Java database pooling configuration</span> topic.</p>
+
+    </div>
+
+    <div class="section"><h2 class="title sectiontitle">SSL offloading</h2>
+      
+      <p class="p">When SSL offloading is in use (SSL is terminated before reaching the application) with a load balancer, proxy server, and so on, some additional configuration needs to be done to make sure Degree Works applications behave as expected. For more information, see <span class="xref ft-internal-xlink" title="Load balancing is the technique of creating multiple physical or virtual servers that run the same application. Reverse proxies are used for many reasons, including caching content and offloading SSL encryption. Both load balancers and proxies involve intercepting traffic going to and from the Degree Works server." data-ft-warning="excluded-from-rendering" data-clusterid="id_crm/dgrwrks/c_load_balancing">Load balancing and proxies</span>.</p>
+
+    </div>
+
+  </div>
+
+</div></div></section>
+<section id="t-2250"><h5>Classic server requirements</h5><div class="content-locale-en-US content-locale-en"><div id="c_tfer_equiv_admin_requirements_classic_server"><div class="body conbody"><p class="shortdesc">On the classic server you must have web07 running.</p>
+
+    <p class="p">Run webrestart to start up the web07 daemons. You mainly need this up and running while performing a roll to banner or while running an audit. View the $ADMIN_HOME/logdebug/web.log for issues web07 may encounter while either starting up or processing these requests.</p>
+
+  </div>
+
+</div></div></section>
+<section id="t-2260"><h3>Navigation</h3><div class="content-locale-en-US content-locale-en"><div id="c_tfer_equiv_admin_nav"><div class="body conbody"><p class="shortdesc">The header bar at the top of Transfer Equivalency Admin helps users navigate through the application.</p>
+
+    <p class="p">The user can access the functionality to which they have been given access by clicking the link for that item in the Transfer Equivalency Admin menu.</p>
+
+    <div class="section"><h2 class="title sectiontitle">Configuration</h2>
+      
+      <div class="p">Access is granted to the following if the user has the specified Shepherd key:<ul class="ul"> <li class="li">Mappings - TEAMAP</li>
+ <li class="li">Transcript - TEATRANS</li>
+ <li class="li">Articulate - TEAARTIC</li>
+ <li class="li">Audit - TEAAUDIT</li>
+ <li class="li">Roll - TEAROLL</li>
+ <li class="li">Debug - DEBUG</li>
+ </ul>
+</div>
+
+    </div>
+
+    <div class="section"><h2 class="title sectiontitle">Mega Menu</h2>
+      
+      <p class="p">Users can also navigate throughout the application using the Mega Menu on the right of the header bar. Note that for users on a mobile device, only the mega menu will be available for navigation.</p>
+
+    </div>
+
+    <div class="section"><h2 class="title sectiontitle">Help</h2>
+      
+      <p class="p">To open help in Transfer Equivalency Admin, select Help from the persona drop-down button on the right of the header bar.</p>
+
+    </div>
+
+    <div class="section"><h2 class="title sectiontitle">Logout</h2>
+      
+      <p class="p">To log out of Transfer Equivalency Admin, select Sign Out from the persona drop-down button on the right of the header bar.</p>
+
+    </div>
+
+  </div>
+
+</div></div></section>
+<section id="t-2270"><h3>Student search</h3><div class="content-locale-en-US content-locale-en"><div id="c_tfer_equiv_admin_student_search"><div class="body conbody"><p class="shortdesc">Persistent on all pages that focus on a student (that is, Transcript, Articulation, Audit, and Roll) is the student search component. Existing student records can be searched for by student ID, name, status, or email address.</p>
+
+    <p class="p">To search for student records, first select a category then type a keyword string and hit Enter. A paginated list of matching records will be returned. The list is initially sorted alphabetically ascending by the name, but the grid can be sorted by any column by clicking on the column header. An arrow will appear next to the column header to indicate that it is being used for the sort, and the direction of the arrow indicates whether it is ascending or descending.</p>
+
+    <p class="p">Search criterion can be entered one time per category. Every search criterion entered will created as a chicklet under the search bar. To clear a search criteria, click the x in the chicklet.</p>
+
+    <p class="p">For example, if the name category is selected and the string “Sam” is entered, a chicklet will appear with “Name: Sam” inside of it. Another category can be selected to refine the search. If the status category is selected and the string “Transcript Entry” is entered, then another chicklet will appear as “Status: Transcript Entry”. A paginated list of matching students will be returned who have “Sam” in their names and who also have a “Transcript Entry” status.</p>
+
+    <p class="p">The pagination details at the bottom of the search results grid allow the user to page to additional matching records, control how many records per page should display and how many total matching records were found.</p>
+
+    <p class="p">Note that only students with a valid status for the function will be selectable. For example, you cannot select students in the Audit tab if their status is not “Articulated – Resolved”. To select a student, click on the Student ID link.</p>
+
+  </div>
+
+</div></div></section>
+<section id="t-2280"><h3>Admin Mappings</h3><div class="content-locale-en-US content-locale-en"><div id="c_tfer_equiv_admin_mappings"><div class="body conbody"><p class="shortdesc">Mappings allows you to view how course equivalents from transfer institutions are equated to your institution’s courses.</p>
+
+    <p class="p">Mapping data is typically bridged into the Degree Works database from the student system but can be created or modified in Mappings. The following are examples of course mappings:</p>
+
+    <ul class="ul">
+      <li class="li">Your institution has a basic accounting course titled “Accounting Elective.” You can map all equivalent basic accounting courses from various transfer institutes to the “Accounting Elective” course.</li>
+
+      <li class="li">You can map different specialized anthropology electives offered by different transfer institutes to one anthropology elective course that your institution offers.</li>
+
+    </ul>
+
+    <div class="section"><h2 class="title sectiontitle">Configuration</h2>
+      
+      <ul class="ul">
+        <li class="li">Review TRQ060 to define the transfer institutions for which mappings are most frequently maintained, and from which many transcripts are received by your institution.</li>
+
+        <li class="li">Access to manage mappings is granted if the user has the <code class="ph codeph">TEAMAP</code> Shepherd key.</li>
+
+      </ul>
+
+    </div>
+
+  </div>
+
+</div></div></section>
+<section id="t-2290"><h4>Transfer institution selection</h4><div class="content-locale-en-US content-locale-en"><div id="c_tfer_equiv_admin_transfer_institution_selection"><div class="body conbody"><p class="shortdesc">You can select a transfer institution from a list schools to add or maintain course mappings.</p>
+
+    <p class="p">The default view will be a list of your favorite schools. Unselect the check box <span class="ph uicontrol">Show favorite schools only</span> to display full list of schools from RAD_EST_MST.</p>
+
+    <p class="p">Transfer institutions can be filtered by School ID, name, city, and state. To search for transfer institutions, select a category and (for example, Name) type a keyword string and hit Enter. A paginated list of matching records will be returned. The list is initially sorted alphabetically ascending by the name, but the grid can be sorted by any column by clicking on the column header. An arrow will appear next to the column header to indicate that it is being used for the sort, and the direction of the arrow indicates whether it is ascending or descending.</p>
+
+    <p class="p">Transfer institutions may also be searched by selecting a category and then entering a few characters allowing a suggestive set of records to display below the search bar. Clicking a particular student will populate the respective details into the search results grid.</p>
+
+    <p class="p">Search criteria can be entered one time per category. For every search criteria entered a chicklet is created under the search bar. To clear a search criteria, click the x on the chicklet.</p>
+
+    <p class="p">For example, If category name is selected and the string High is entered, a chicklet will appear with Name: High inside of it. Another category can be selected to refine the search. If the category state selected and the string entered is NY, then another chicklet will appear State: NY. A paginated list of matching institutions will be returned who have High in their names and who are in the State NY.</p>
+
+    <p class="p">The pagination details at the bottom of the search results grid allow the user to page to additional matching records, control how many records per page should display and how many total matching records were found.</p>
+
+  </div>
+
+</div></div></section>
+<section id="t-2300"><h4>School mappings</h4><div class="content-locale-en-US content-locale-en"><div id="c_tfer_equiv_admin_school_mappings"><div class="body conbody"><p class="shortdesc">Course equivalents, or mappings, that have been defined for a school are displayed on the Select a Mappings page.</p>
+
+    <p class="p">This page also includes the transfer institution's name, and the list of courses from the transfer institution with equivalent courses from your curricular offerings. It also allows you to view edit or add new transfer conditions.</p>
+
+    <p class="p">To view or print a report of the mappings, click <span class="ph uicontrol">View Report</span>.</p>
+
+    <p class="p">You can filter the list of mappings using Search, using the transfer, local discipline, and course boxes. If you filter this list and then generate a mappings report, the report will only include that subset of mappings.</p>
+
+    <div class="note"><span class="notetitle">Note:</span> Currently only 1000 records can be printed at one once.</div>
+
+  </div>
+
+</div></div></section>
+<section id="t-2310"><h4>Mapping details</h4><div class="content-locale-en-US content-locale-en"><div id="c_tfer_equiv_admin_mapping_details"><div class="body conbody"><p class="shortdesc">The Mapping page displays the details of a particular course that has been mapped from the transfer institute to a course that exists in your school's curriculum.</p>
+
+    <p class="p">If there is more than one transfer course or more than one equivalent course in a mapping, the credits for each equivalent course at your institution must be specified. If the Credits field is left blank on a one-to-one mapping, Transfer Equivalency Admin will calculate the credits earned for a transfer class based on the credits transferred and based on whether the transfer school follows a quarter or semester system.</p>
+
+    <p class="p">The page has the following sections:</p>
+
+    <div class="section"><h2 class="title sectiontitle">Transfer course(s)</h2>
+      
+      <p class="p">The Transfer course(s) grid displays the following details about the course from the transfer institute that you want to map to an equivalent course that your institution offers:</p>
+
+      
+<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" class="table" frame="hsides" border="1" rules="all"><colgroup><col style="width:50%"><col style="width:50%"></colgroup><thead class="thead" style="text-align:left;">
+            <tr class="row">
+              <th class="entry cellrowborder" style="text-align:left;vertical-align:top;" id="d10155e54">Transfer course field</th>
+
+              <th class="entry row-nocellborder" style="text-align:left;vertical-align:top;" id="d10155e57">Description</th>
+
+            </tr>
+
+          </thead>
+<tbody class="tbody">
+            <tr class="row">
+              <td class="entry cellrowborder" style="text-align:left;vertical-align:top;" headers="d10155e54 ">Transfer discipline</td>
+
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d10155e57 ">Enter the course category. For example, Chemistry or Chem.</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry cellrowborder" style="text-align:left;vertical-align:top;" headers="d10155e54 ">Transfer course#</td>
+
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d10155e57 ">Enter transfer school’s course catalog number.</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry cellrowborder" style="text-align:left;vertical-align:top;" headers="d10155e54 ">Title</td>
+
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d10155e57 ">Enter the full name of the course.</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry cellrowborder" style="text-align:left;vertical-align:top;" headers="d10155e54 ">Min grade</td>
+
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d10155e57 ">Enter the minimum grade for the course.</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry cellrowborder" style="text-align:left;vertical-align:top;" headers="d10155e54 ">Max grade</td>
+
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d10155e57 ">Enter the maximum grade for the course.</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry cellrowborder" style="text-align:left;vertical-align:top;" headers="d10155e54 ">Min credits</td>
+
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d10155e57 ">Enter the minimum required credits to take the course.</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry cellrowborder" style="text-align:left;vertical-align:top;" headers="d10155e54 ">Max credits</td>
+
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d10155e57 ">Enter the maximum accepted credits to take the course.</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry cellrowborder" style="text-align:left;vertical-align:top;" headers="d10155e54 ">Years ago</td>
+
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d10155e57 ">Enter the maximum number of valid years for the grade after the class is complete</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry cellrowborder" style="text-align:left;vertical-align:top;" headers="d10155e54 ">When taken between catalog</td>
+
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d10155e57 ">The catalog year range within which a student must have completed a course for this mapping to be valid.</td>
+
+            </tr>
+
+          </tbody>
+</table>
+</div>
+
+    </div>
+
+    <div class="section"><h2 class="title sectiontitle">Mapping to local course(s)</h2>
+      
+      <p class="p"> The Mapping to local course(s) grid displays details of the equivalent course from your institution to which the transfer course or courses are mapped. The following course details are displayed: Local Discipline, Local Course num, Title, and the Credits for which that course can be taken. If there is more than one transfer course or more than one equivalent course in a mapping, the credits for each equivalent course at your institution must be specified. If the Credits field is left blank on a one-to-one mapping, Transfer Equivalency Admin will calculate the credits earned for a transfer class based on the credits transferred and based on whether the transfer school follows a quarter or semester system.</p>
+
+      
+<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" class="table" frame="hsides" border="1" rules="all"><colgroup><col style="width:35.46099290780141%"><col style="width:64.53900709219857%"></colgroup><thead class="thead" style="text-align:left;">
+            <tr class="row">
+              <th class="entry cellrowborder" style="text-align:left;vertical-align:top;" id="d10155e170">Local course</th>
+
+              <th class="entry row-nocellborder" style="text-align:left;vertical-align:top;" id="d10155e173">Description</th>
+
+            </tr>
+
+          </thead>
+<tbody class="tbody">
+            <tr class="row">
+              <td class="entry cellrowborder" style="text-align:left;vertical-align:top;" headers="d10155e170 ">Local discipline</td>
+
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d10155e173 ">Select the course category. For example, Chemistry or Chem.</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry cellrowborder" style="text-align:left;vertical-align:top;" headers="d10155e170 ">Local course#</td>
+
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d10155e173 ">Select the local school’s course catalog number.</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry cellrowborder" style="text-align:left;vertical-align:top;" headers="d10155e170 ">Title</td>
+
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d10155e173 ">Full title will be auto-populated from the course number selected.</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry cellrowborder" style="text-align:left;vertical-align:top;" headers="d10155e170 ">Valid for Catalog Years</td>
+
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d10155e173 ">The catalog year range within which a student must have completed a course for this mapping to be valid.</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry cellrowborder" style="text-align:left;vertical-align:top;" headers="d10155e170 ">Credits</td>
+
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d10155e173 ">Enter the credits for the course selected.</td>
+
+            </tr>
+
+          </tbody>
+</table>
+</div>
+
+      <div class="note"><span class="notetitle">Note:</span> The catalog year associated with the local courses grid has a relationship with the catalog year on the applicant detail of the Transcript function.</div>
+
+    </div>
+
+    <div class="section"><h2 class="title sectiontitle">Transfer Conditions</h2>
+      
+      <p class="p">The transfer conditions for a particular mapping are special conditions that can exist for that mapping to be valid for a student. For example, if a mapping is valid only if a student’s major is Chemistry, you can specify Major=Chemistry as a transfer condition.</p>
+
+    </div>
+
+    <div class="section"><h2 class="title sectiontitle">History</h2>
+      
+      <p class="p">Click on the <span class="ph uicontrol">History</span> icon to display the login ID of the user who last accessed or modified the mapping record, the date the mapping was created, and the date the mapping details were last modified.</p>
+
+    </div>
+
+  </div>
+
+</div></div></section>
+<section id="t-2320"><h5>Add a mapping in Transfer Equivalency Admin</h5><div class="content-locale-en-US content-locale-en"><div id="t_tfer_equiv_admin_mapping_add"><div class="body taskbody"><p class="shortdesc">You can add a course mapping in Transfer Equivalency Admin.</p>
+
+    <div class="section context"><div class="tasklabel"><h2 class="sectiontitle tasklabel">About this task</h2></div>
+      <p class="p">New mappings will be saved in the Degree Works database. </p>
+
+    </div>
+
+    <div class="tasklabel"><h2 class="sectiontitle tasklabel">Procedure</h2></div><ol class="ol steps"><li class="li step stepexpand">
+        <span class="ph cmd">Click <span class="ph uicontrol">Create new school mapping</span> on the School Mappings page.</span>
+        <div class="itemgroup info">The New Mapping page is displayed. This page has two sections, the Transfer course(s) grid, where you can enter details of the course to be mapped, and the Mapping to local course(s) grid, where you can enter details of the equivalent course in your curriculum.</div>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Click + in the Transfer course(s)grid.</span>
+        <div class="itemgroup info">A new row is added.</div>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Enter the discipline and number of the course, and the title in the <span class="ph uicontrol">Transfer course</span> fields.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Specify the minimum and maximum grade for the course.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Specify the minimum and maximum credits for which the class can be taken.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Specify the maximum number of years that can have passed from when the student completed the class.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Specify the Catalog Years during which a student must have completed a course for this mapping to be valid.</span>
+        <div class="itemgroup info">
+          <div class="note"><span class="notetitle">Note:</span> If you want the course to be valid indefinitely, select the earliest term and the latest term from the drop-down lists. These values are usually associated with term codes such as “000000” and “999999”.</div>
+
+        </div>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Click + in the Mapping to local course(s) grid.</span>
+        <div class="itemgroup info">A new row is added.</div>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Select the discipline from the <span class="ph uicontrol">Local Discipline</span> drop-down list.</span>
+        <div class="itemgroup info">Transfer Equivalency Admin attempts to find the courses in its database of existing courses for that discipline. The matching courses are displayed, and you can select the required course.</div>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Specify the credits for the equivalent course at your institution.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Specify the catalog years under which this mapping is valid.</span>
+        <div class="itemgroup info">
+          <div class="note"><span class="notetitle">Note:</span> If you want the course to be valid indefinitely, select the earliest term and the latest term from the drop-down lists. These values are usually associated with term codes such as “000000” and “999999”.</div>
+
+        </div>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Both “Authorized by” and “Comment” sections are optional.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Click <span class="ph uicontrol">Save</span>.</span>
+      </li>
+</ol>
+
+  </div>
+
+</div></div></section>
+<section id="t-2330"><h5>Modify an existing mapping in Transfer Equivalency Admin</h5><div class="content-locale-en-US content-locale-en"><div id="t_tfer_equiv_admin_mapping_modify_existing"><div class="body taskbody"><p class="shortdesc">You can modify an existing course mapping in Transfer Equivalency Admin.</p>
+
+    <div class="section context"><div class="tasklabel"><h2 class="sectiontitle tasklabel">About this task</h2></div>The course mapping details are updated in the Degree Works database.</div>
+
+    <div class="tasklabel"><h2 class="sectiontitle tasklabel">Procedure</h2></div><ol class="ol steps"><li class="li step stepexpand">
+        <span class="ph cmd">On the School Mappings page that displays the list of mappings for that school, click the edit icon alongside the mapping want to modify.</span>
+        <div class="itemgroup info">The mapping record is displayed on the Mapping &lt;mapping number&gt; page, with the details of the equivalent course mapping.</div>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Add, edit, or delete a transfer or local course.</span>
+        <div class="itemgroup info">
+          <ul class="ul">
+            <li class="li">To add a course mapping, click and Save.</li>
+
+            <li class="li">To edit a course mapping, click and Save after the modifications are done.</li>
+
+            <li class="li">To delete a course mapping, select one or more rows. Click Remove and Save.</li>
+
+          </ul>
+
+          <div class="note"><span class="notetitle">Note:</span> 
+            <ul class="ul">
+              <li class="li">You need to have at least one transfer course and one local course.</li>
+
+              <li class="li">Access information can be found by clicking the <span class="ph uicontrol">History</span> icon. The details of who has created, when it was created, when it was last modified, and who has modified it will be displayed.</li>
+
+              <li class="li">Refer to the <cite class="cite">Transfer Equivalency Admin Mapping details</cite> section for more information about the details of the equivalent course mappings.</li>
+
+            </ul>
+
+          </div>
+
+        </div>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Click <span class="ph uicontrol">Save</span>.</span>
+      </li>
+</ol>
+
+  </div>
+
+</div></div></section>
+<section id="t-2340"><h4>Test mappings</h4><div class="content-locale-en-US content-locale-en"><div id="c_tfer_equiv_admin_test_score_mappings"><div class="body conbody"><p class="shortdesc">Test score mappings are handled by creating mappings for a transfer school with an ID of TESTS. Tests can be added under the section of Test Mappings.</p>
+
+    
+<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" class="table" frame="hsides" border="1" rules="all"><colgroup><col style="width:50%"><col style="width:50%"></colgroup><thead class="thead" style="text-align:left;">
+          <tr class="row">
+            <th class="entry cellrowborder" style="text-align:left;vertical-align:top;" id="d1651e45">Test score</th>
+
+            <th class="entry row-nocellborder" style="text-align:left;vertical-align:top;" id="d1651e48">Description</th>
+
+          </tr>
+
+        </thead>
+<tbody class="tbody">
+          <tr class="row">
+            <td class="entry cellrowborder" style="text-align:left;vertical-align:top;" headers="d1651e45 ">Test</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d1651e48 ">Enter the test score ID.</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry cellrowborder" style="text-align:left;vertical-align:top;" headers="d1651e45 ">Title</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d1651e48 ">Enter the title of the test.</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry cellrowborder" style="text-align:left;vertical-align:top;" headers="d1651e45 ">Min score</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d1651e48 ">Enter the minimum grade for the test. </td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry cellrowborder" style="text-align:left;vertical-align:top;" headers="d1651e45 ">Max score</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d1651e48 ">Enter the maximum grade for the test.</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry cellrowborder" style="text-align:left;vertical-align:top;" headers="d1651e45 ">Years ago</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d1651e48 ">Enter the maximum number of valid years for the grade after the test has been completed.</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry cellrowborder" style="text-align:left;vertical-align:top;" headers="d1651e45 ">When taken between catalog years</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d1651e48 ">Make the Beginning of Time and End of Time selections.</td>
+
+          </tr>
+
+        </tbody>
+</table>
+</div>
+
+    
+<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" class="table" frame="hsides" border="1" rules="all"><colgroup><col style="width:50%"><col style="width:50%"></colgroup><thead class="thead" style="text-align:left;">
+          <tr class="row">
+            <th class="entry cellrowborder" style="text-align:left;vertical-align:top;" id="d1651e125">Mapping to local course</th>
+
+            <th class="entry row-nocellborder" style="text-align:left;vertical-align:top;" id="d1651e128">Description</th>
+
+          </tr>
+
+        </thead>
+<tbody class="tbody">
+          <tr class="row">
+            <td class="entry cellrowborder" style="text-align:left;vertical-align:top;" headers="d1651e125 ">Local discipline</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d1651e128 ">Select the course category. For example, Chemistry or Chem. </td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry cellrowborder" style="text-align:left;vertical-align:top;" headers="d1651e125 ">Local course#</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d1651e128 ">Select the local school’s course catalog number.</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry cellrowborder" style="text-align:left;vertical-align:top;" headers="d1651e125 ">Title</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d1651e128 ">Full title will be auto populated from the course number selected.</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry cellrowborder" style="text-align:left;vertical-align:top;" headers="d1651e125 ">Valid for Catalog Years</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d1651e128 ">The catalog year range within which a student must have completed a course for this mapping to be valid.</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry cellrowborder" style="text-align:left;vertical-align:top;" headers="d1651e125 ">Credits</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d1651e128 ">Enter the credits for the course selected.</td>
+
+          </tr>
+
+        </tbody>
+</table>
+</div>
+
+  </div>
+
+</div></div></section>
+<section id="t-2350"><h5>Add a test mapping in Transfer Equivalency Admin</h5><div class="content-locale-en-US content-locale-en"><div id="t_tfer_equiv_admin_test_mapping_add"><div class="body taskbody"><p class="shortdesc">You can add a test mapping in Transfer Equivalency Admin.</p>
+
+    <div class="section context"><div class="tasklabel"><h2 class="sectiontitle tasklabel">About this task</h2></div>
+      <p class="p">New mappings will be saved in the Degree Works database.</p>
+
+    </div>
+
+    <div class="tasklabel"><h2 class="sectiontitle tasklabel">Procedure</h2></div><ol class="ol steps"><li class="li step stepexpand">
+        <span class="ph cmd">Click Create new test mapping on the Test Mappings page.</span>
+        <div class="itemgroup info">The New Mapping page is displayed. This page has two sections, the Test Score grid, where you can enter details of the course to be mapped, and the Mapping to local course(s) grid where you can enter details of the equivalent course in your curriculum.</div>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Click + in the Tests score grid.</span>
+        <div class="itemgroup info">A new row is added.</div>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Enter the Test ID, Title.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Specify the minimum and maximum Score for the test.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Specify the maximum number of years that can have passed from when the student completed the class.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Specify the Catalog Years during which a student must have completed this Test for this mapping to be valid.</span>
+        <div class="itemgroup info">If you want the course to be valid indefinitely, select the earliest term and the latest term from the drop-down lists. These values are usually associated with term codes such as “000000” and “999999”.</div>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Click + in the Mapping to local course(s) grid.</span>
+        <div class="itemgroup info">A new row is added.</div>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Select the discipline from the Local Discipline drop-down list.</span>
+        <div class="itemgroup info">Transfer Equivalency Admin attempts to find the courses in its database of existing courses for that discipline. The matching courses are displayed, and you can select the required course.</div>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Specify the credits for the equivalent course at your institution.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Specify the catalog years under which this mapping is valid.</span>
+        <div class="itemgroup info">
+          <div class="note"><span class="notetitle">Note:</span> If you want the course to be valid indefinitely, select the earliest term and the latest term from the drop-down lists. These values are usually associated with term codes such as “000000” and “999999”.</div>
+
+        </div>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Both “Authorized by” and “Comment” sections are optional.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Click <span class="ph uicontrol">Save</span>.</span>
+      </li>
+</ol>
+
+  </div>
+
+</div></div></section>
+<section id="t-2360"><h5>Modify a test mapping in Transfer Equivalency Admin</h5><div class="content-locale-en-US content-locale-en"><div id="t_tfer_equiv_admin_test_mapping_modify"><div class="body taskbody"><p class="shortdesc">You can modify an existing test mapping in Transfer Equivalency Admin.</p>
+
+    <div class="section context"><div class="tasklabel"><h2 class="sectiontitle tasklabel">About this task</h2></div>
+      <p class="p">The course mapping details are updated in the Degree Works database.</p>
+
+    </div>
+
+    <div class="tasklabel"><h2 class="sectiontitle tasklabel">Procedure</h2></div><ol class="ol steps"><li class="li step stepexpand">
+        <span class="ph cmd">On the Test Mappings page that displays the list of mappings for that school, click the edit icon alongside the mapping want to modify.</span>
+        <div class="itemgroup info">The mapping record is displayed on the Mapping &lt;mapping number&gt; page, with the details of the equivalent course mapping.</div>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Modify the details as required.</span>
+        <div class="itemgroup info">Add, edit, or delete Test score:<ul class="ul"> <li class="li">To add a Test mapping, click and Save.</li>
+ <li class="li">To edit a Test mapping, click and Save after the modifications are done.</li>
+ <li class="li">To delete a Test mapping, select one or more rows. Click Remove and Save.</li>
+ </ul>
+</div>
+        <div class="itemgroup info">Add, edit, or delete Local Course:<ul class="ul"> <li class="li">To add a course mapping, click and Save.</li>
+ <li class="li">To edit a course mapping, click and Save after the modifications are done.</li>
+ <li class="li">To delete a course mapping, select one or more rows. Click Remove and Save.</li>
+ </ul>
+<div class="note"><span class="notetitle">Note:</span>  <ul class="ul"> <li class="li">You need to have at least one transfer course and one local course.</li>
+
+          <li class="li">Access information can be found by clicking the <span class="ph uicontrol">History</span> icon. The details of who has created, when it was created, when it was last modified, and who has modified it will be displayed.</li>
+ <li class="li">Refer to the <cite class="cite">Transfer Equivalency Admin Mapping details</cite> section for more information about the details of the equivalent course mappings.</li>
+ </ul>
+ </div>
+</div>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Click <span class="ph uicontrol">Save</span>.</span>
+      </li>
+</ol>
+
+  </div>
+
+</div></div></section>
+<section id="t-2370"><h5>Define transfer conditions in Transfer Equivalency Admin</h5><div class="content-locale-en-US content-locale-en"><div id="t_tfer_equiv_admin_transfer_conditions_define"><div class="body taskbody"><p class="shortdesc">The transfer conditions for a particular mapping are special conditions that must exist for that mapping or a test score mapping to be valid for a student.</p>
+
+    <div class="section context"><div class="tasklabel"><h2 class="sectiontitle tasklabel">About this task</h2></div>
+      <p class="p">For example, if a mapping is valid only if a student’s major is Chemistry, you can specify <em class="ph i">Major=Chemistry</em>as a transfer condition. You can add, modify, or delete a transfer conditions from the transfer condition section on the <em class="ph i">Mappings</em> page for a particular mapping.</p>
+
+      <p class="p">Transfer conditions can be added either from the home page of either School Mappings/Test mappings or inside an individual mapping ID.</p>
+
+    </div>
+
+    <div class="tasklabel"><h2 class="sectiontitle tasklabel">Procedure</h2></div><ol class="ol steps"><li class="li step stepexpand">
+        <span class="ph cmd">Click <span class="ph uicontrol">Add</span> under the conditions column on any mapping.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Select the condition from the <span class="ph uicontrol">Condition</span> drop-down list. For example, select Major.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Select the condition operator from the <span class="ph uicontrol">Operator</span> drop-down list. For example, select Is Equal To.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Enter the values for the mapping condition. For example, type Chemistry.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Click <span class="ph uicontrol">Save</span>.</span>
+        <div class="itemgroup info">The new condition is added.</div>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">To modify an existing mapping condition, select the condition in the Edit section and click the edit icon.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">To delete an existing transfer condition, select the check box next to the condition and click the delete icon.</span>
+      </li>
+</ol>
+
+  </div>
+
+</div></div></section>
+<section id="t-2380"><h3>Transcript</h3><div class="content-locale-en-US content-locale-en"><div id="c_tfer_equiv_admin_transcript"><div class="body conbody"><p class="shortdesc">Use the Transcript module to enter transcript information for students.</p>
+
+    <p class="p">You can add transcripts from multiple schools and maintain test scores for each student. You can also update student records to add details like a student’s major in each school that they attended and can set the articulation conditions for courses that the student has completed in those schools.</p>
+
+    <p class="p">Transcript details for a student are maintained through the following tabs.</p>
+
+    <p class="p">Student Information - The student details page displays basic student information such as student ID and degree. You can also add additional student details and specify articulation conditions from this page.</p>
+
+    <p class="p">Test Scores - The tests page displays the list of tests that a student has completed. You can add test scores for articulation to course credit at your institution from this page.</p>
+
+    <p class="p">Transcripts - You can view transcripts from different schools that the student has attended using this page. After adding a transcript, school name is added on to the drop down and the respective transcript is displayed upon selection.</p>
+
+    <p class="p">Add School Transcripts - You can add transcripts from different schools that the student has attended using this page.</p>
+
+    <div class="section"><h2 class="title sectiontitle">Configuration</h2>
+      
+      <ul class="ul">
+        <li class="li">Review the following Shepherd settings to ensure they are configured correctly: <code class="ph codeph">treq.treqadmin.applicant.show.articulationConditions treq.goal.scr004.codesToShow</code></li>
+
+        <li class="li">Access to manage transcript data is granted if the user has the <code class="ph codeph">TEATRANS </code> Shepherd key.</li>
+
+      </ul>
+
+    </div>
+
+  </div>
+
+</div></div></section>
+<section id="t-2390"><h4>Edit student information</h4><div class="content-locale-en-US content-locale-en"><div id="t_tfer_equiv_admin_student_information"><div class="body taskbody"><p class="shortdesc">The student information page displays basic student information such as student ID and degree.</p>
+
+    <div class="section context"><div class="tasklabel"><h2 class="sectiontitle tasklabel">About this task</h2></div>
+      <p class="p">You can also add additional student details and specify articulation conditions from this page.</p>
+
+      <p class="p">Click the “Edit student detail” icon to edit the student’s Degree, Level and Catalog Year. The Student ID and Status are read only information and cannot be edited.</p>
+
+      <p class="p">Click the “Add student goal” icon to add additional student goal data. The options in the Goal type dropdown are defined by the <code class="ph codeph">treq.goal.scr004.codesToShow</code>setting.</p>
+
+      <p class="p">Student goals can be deleted by selecting the check box to the left of the item and clicking “Remove”.</p>
+
+      <p class="p">Click “Save” to save your changes. Click “Cancel” to discard your changes.</p>
+
+    </div>
+
+  </div>
+
+</div></div></section>
+<section id="t-2400"><h4>Manage test scores</h4><div class="content-locale-en-US content-locale-en"><div id="c_tfer_equiv_admin_test_scores_manage"><div class="body conbody"><p class="shortdesc">The test scores page displays the list of placement tests that a student has completed.</p>
+
+    <p class="p">You can create mappings to articulate placement tests for course credit at your institution.</p>
+
+    <p class="p">To add a placement test, select the Test name from the dropdown. The Test name dropdown is populated with all values from STU314. The Test title will default from the test code description. Enter the Score, Test date and any specific conditions for this placement test.</p>
+
+    <p class="p">Click the “Add test score” icon to add additional placement test data.</p>
+
+    <p class="p">To edit details of a placement test that has already been entered, select the record and click the “Edit test score” icon.</p>
+
+    <p class="p">Placement test scores can be deleted by selecting the check box to the left of the item and clicking “Remove”.</p>
+
+    <p class="p">Click “Save” to save your changes. Click “Cancel” to discard your changes.</p>
+
+  </div>
+
+</div></div></section>
+<section id="t-2410"><h4>Manage transcripts</h4><div class="content-locale-en-US content-locale-en"><div id="t_tfer_equiv_admin_transcripts_manage"><div class="body taskbody"><p class="shortdesc">You can add, edit, or delete class details from each school transcript for a student.</p>
+
+    <div class="section context"><div class="tasklabel"><h2 class="sectiontitle tasklabel">About this task</h2></div>
+      <p class="p">First a transfer school must be added – see the <cite class="cite">Add school transcripts in Transfer Equivalency Admin</cite> section.</p>
+
+      <p class="p">Select the school transcript that you want to modify. Existing transcript classes for that school will be displayed.</p>
+
+      <p class="p">Click the “Add Transcript Class” button to add a class. Enter the Discipline, Course number, Title, Grade, Credits, Credit type, Term, Calendar and any applicable Conditions. Click Save.</p>
+
+      <p class="p">To edit a class that has already been entered, select the record and click the “Edit Transcript Class” icon.</p>
+
+      <p class="p">Transcript classes can be deleted by selecting the check box to the left of the item and clicking “Remove”.</p>
+
+      <p class="p">Click “Save” to save your changes. Click “Cancel” to discard your changes.</p>
+
+    </div>
+
+  </div>
+
+</div></div></section>
+<section id="t-2420"><h4>Add school transcripts</h4><div class="content-locale-en-US content-locale-en"><div id="t_tfer_equiv_admin_school_transcript_add"><div class="body taskbody"><p class="shortdesc">Before entering transcript classes, you must first select the transfer institution.</p>
+
+    <div class="section context"><div class="tasklabel"><h2 class="sectiontitle tasklabel">About this task</h2></div>
+      <p class="p">On the Add School Transcripts tab, select the school for which the student has attended. By default, schools designated as a favorite school will display. To view other schools, clear the Show favorite schools only check box.</p>
+
+      <p class="p">The list of schools can be filtered by selecting a category, typing a keyword string and hitting Enter. A paginated list of matching records will be returned. The list is initially sorted alphabetically ascending by the name, but the grid can be sorted by any column by clicking on the column header. An arrow will appear next to the column header to indicate that it is being used for the sort, and the direction of the arrow indicates whether it is ascending or descending.</p>
+
+      <p class="p">Search criterion can be entered one time per category. Every search criterion entered will created as a chicklet under the search bar. To clear a search criteria, click the x in the chicklet.</p>
+
+      <p class="p">For example, if the state category is selected and the string “WA” is entered, a chicklet will appear with “State: WA” inside of it. Another category can be selected to refine the search. If the name category is selected and the string “University” is entered, then another chicklet will appear as “Name: University”. A paginated list of matching schools will be returned who have “WA” as the state and who also have “University” in their name.</p>
+
+      <p class="p">Click “Add transcript” for the school for which you want to add transcript details. The school transcript is added to the Transcript classes dropdown list in the Transcripts Tab. Select the required school from the dropdown to add details of transcript classes for that school to the student’s record.</p>
+
+    </div>
+
+  </div>
+
+</div></div></section>
+<section id="t-2430"><h3>Articulation</h3><div class="content-locale-en-US content-locale-en"><div id="c_tfer_equivalency_admin_articulation"><div class="body conbody"><p class="shortdesc">Use the Articulate module to view and edit articulated transfer classes for students.</p>
+
+    <p class="p">You can process the student's transcript against defined articulation rules and resolve classes with multiple, duplicate, or missing mappings.</p>
+
+    <div class="section"><h2 class="title sectiontitle">Configuration</h2>
+      
+      <ul class="ul">
+        <li class="li">Review the following Shepherd settings to ensure they are configured correctly:<pre class="pre codeblock"><code>treq.treqadmin.applicant.show.articulationConditions
+treq.treqadmin.default.gradeAssignMode
+treq.treqadmin.default.manyPassGrade
+treq.treqadmin.testscores.default.gradeType
+treq.treqadmin.testscores.default.schoolId</code></pre></li>
+
+        <li class="li">Access to articulate mappings is granted if the user has the <code class="ph codeph">TEAARTIC</code> Shepherd key.</li>
+
+      </ul>
+
+    </div>
+
+  </div>
+
+</div></div></section>
+<section id="t-2440"><h4>Articulation summary</h4><div class="content-locale-en-US content-locale-en"><div id="c_tfer_equiv_admin_articulation_summary"><div class="body conbody"><p class="shortdesc">When you select a student, the results of the last articulation for that student are displayed.</p>
+
+    <p class="p">An articulation will be performed if it was not done previously for that student.</p>
+
+    <p class="p">The date and time of the last articulation are displayed. The articulated classes are listed with the class details.</p>
+
+    <p class="p">The Summary section shows a numeric representation of the articulated, undecided, leftover, and duplicate classes expressed as a percentage of the total number of transfer classes for the student. When all the mappings are resolved, the articulated section will indicate 100%.</p>
+
+    <ul class="ul">
+      <li class="li">Undecided classes are those transfer classes for which multiple mappings were found.</li>
+
+      <li class="li">Leftover classes are classes for which no mappings were found.</li>
+
+      <li class="li">Duplicate classes are classes where more than one transfer course maps to the same class at the receiving institution.</li>
+
+    </ul>
+
+    <div class="section"><h2 class="title sectiontitle">Re-articulate</h2>
+      
+      <p class="p">You can perform a new articulation, for example, if you alter mappings for a particular institution and want to re-articulate. When a student is re-articulated, changes made to a previous articulation are lost and the articulation results will be based on the mapping rules that are in effect at the time the re-articulation is performed.</p>
+
+      <p class="p">Click the <span class="ph uicontrol">Re-articulate</span> button to perform a re-articulation. The new articulation is performed, and the articulation summary is displayed along with the classes.</p>
+
+    </div>
+
+  </div>
+
+</div></div></section>
+<section id="t-2450"><h4>Articulated classes</h4><div class="content-locale-en-US content-locale-en"><div id="c_tfer_equiv_admin_articulated_classes"><div class="body conbody"><p class="shortdesc">You can edit already articulated classes to change the local course to which the transfer course is mapped.</p>
+
+    <p class="p">Click the “Edit articulate class” button to enter edit mode. In the Local Course section, select the course at your institution to which you want to map the transfer course, from the Course drop-down lists. The title of the course is filled in based on your selection. Specify the equivalent credits for the course at your school, in the Credits field. Specify the equivalent Grade and the Grade Points. Click “Save” to save your changes.</p>
+
+    <div class="section"><h2 class="title sectiontitle">Resolve undecided classes</h2>
+      
+      <p class="p">Undecided classes are those transfer classes for which multiple mappings were found. For example, there could be a transfer class, MATH 1A from another institution that can map to either MATH 101 or MATH 1001 at your institution.</p>
+
+      <p class="p">To resolve undecided classes from the Unresolved classes section, either select Undecided in the dropdown if there are multiple types of unresolved classes or click “Resolve” for the class which has status as Undecided. The transfer classes are displayed to the left of the arrow and the local classes, to which each transfer class maps to, are displayed to the right of the arrow.</p>
+
+      <p class="p">To resolve a class for the student, select the box next to the class that you would like to use in this student's articulation.</p>
+
+      <p class="p">For example, if you want to map transfer class MATH 1A to MATH 101 at your institution, select the check box next to MATH 1A &gt; MATH 101.</p>
+
+      <p class="p">Click “Save” to save your changes.</p>
+
+    </div>
+
+    <div class="section"><h2 class="title sectiontitle">Resolve undecided classes for Many to One and Many to Many mappings</h2><p class="p">There is a special case when there are two or more mappings for a school that are not the same but have a transfer class in common. For example, a student has taken MATH1A, MATH1B and MATH1C at a transfer institution and your institution has the following mappings for that institution:</p>
+<p class="p">MATH1A, MATH1B &gt; CALC101 MATH1A, MATH1C &gt; CALC102</p>
+<p class="p">Because MATH1A is in both mappings this is an Undecided case, and you have to be careful to choose the option that best fits your transfer policies. You cannot choose the same class more than one time – the system will prevent you from doing so by showing an error message. You must be sure to clear the mapping option that you do not want to select.</p>
+In the example above, because MATH1A is in both options you can articulate MATH1A and MATH1B OR MATH1A and MATH1C. The class(es) not chosen will be articulated as “Zero Credits” which means that they will be in the articulated list, but the transfer credits and grades will not be counted. In the example above, if we choose the first mapping – MATH1A and MATH1B– then CALC101 will be articulated for your school, but the CALC102 will not, and in the articulated list the transfer class MATH1C will be pointing to nothing.</div>
+
+    <div class="section"><h2 class="title sectiontitle">Resolve leftover classes</h2>
+      
+      <p class="p">Leftover classes are those transfer classes for which no mappings were found. You can resolve these classes in either of the following ways:</p>
+
+      <ul class="ul">
+        <li class="li">By articulating them as zero credits<p class="p">In this case, the class is articulated and transferred to your institution without a credit or grade value.</p>
+</li>
+
+        <li class="li">By articulating them through a special mapping<p class="p">Using this option, you can define special or advanced mappings to articulate the class to your institution.</p>
+<ul class="ul"> <li class="li">Simple mapping - one-to-one mappings that articulate the transfer course to a single course at your institution. For example, you can define a mapping where a transfer class, English 100, articulates to a single class, Eng 101 at your institution.</li>
+
+          <li class="li">Advanced mapping - one-to-many mappings that articulate the transfer course to more than one course at your institution. For example, the ENGLISH 200 class articulates to two classes, ENG 101 and ENG 102 at your institution, with credits and grades transferred to each class.</li>
+ </ul>
+</li>
+
+      </ul>
+
+      <p class="p">You can also apply a special mapping to all future articulations by selecting Global mapping or use it for a particular student articulation alone by selecting Student mapping.</p>
+
+    </div>
+
+    <div class="section"><h2 class="title sectiontitle">Resolve leftover classes through zero credits</h2>
+      
+      <p class="p">You can resolve leftover classes and transfer them to your institution without a credit value. To resolve leftover classes from the unresolved classes section, either select Leftover in the dropdown if there are multiple types of unresolved classes or click “Resolve” for the class which has status as Leftover. Click “Articulate as Zero Credits”. The class will be moved to the Articulated classes grid with Zero Credits.</p>
+
+    </div>
+
+    <div class="section"><h2 class="title sectiontitle">Resolve leftover classes through special mappings</h2>
+      
+      <p class="p">You can resolve leftover classes and transfer them to your institution through special mappings. To resolve leftover classes from the unresolved classes section, either select Leftover in the dropdown, if there are multiple types of unresolved classes or click “Resolve” for the class which has status as Leftover. Select the class and click “Special Mapping”.</p>
+
+      <p class="p">To make this mapping applicable for all future articulations, select the Global Mapping option, and specify the applicable period. This will be selected by default.</p>
+
+      <p class="p">To make this mapping applicable this student alone, select the Student Mapping option.</p>
+
+      <p class="p">Enter the local course information that this transfer class is equivalent to.</p>
+
+      <p class="p"> Click “Save” to save your changes.</p>
+
+    </div>
+
+    <div class="section"><h2 class="title sectiontitle">Resolve duplicate classes</h2>
+      
+      <p class="p">Duplicate classes are classes where more than one transfer course maps to the same class at your institution.</p>
+
+      <p class="p">For example, there may be two separate transfer classes, MATH 1A and MATH 1B that map to the same class, MATH 101, at your institution. To resolve duplicate classes from the unresolved classes section, either select Duplicate in the dropdown if there are multiple types of unresolved classes or click “Resolve” for the class which has status as Duplicate. The transfer classes are displayed to the left of the arrow, and the local classes to which each transfer class maps to, are displayed to the right of the arrow.</p>
+
+      <p class="p">To resolve a class for the student, select the check box next to the class at your institution to which you would like the transfer class to be mapped.</p>
+
+      <p class="p">For example, to map transfer class MATH 1A to MATH 101 at your institution, select the check box next to MATH 1A &gt; MATH 101.</p>
+
+      <div class="note"><span class="notetitle">Note:</span> The courses that you do not select will articulate to zero credits.</div>
+
+      <p class="p">To give the student duplicate credit for the coursework, select more than one check box.</p>
+
+      <p class="p">For example, to give the student transfer credit from two transfer classes, MATH 1A and MATH 1B, select the check boxes next to MATH 1A &gt; MATH 101 and next to MATH 1B &gt; MATH 101.</p>
+
+      <p class="p">Click “Save” to save your changes.</p>
+
+    </div>
+
+  </div>
+
+</div></div></section>
+<section id="t-2460"><h3>Audit</h3><div class="content-locale-en-US content-locale-en"><div id="c_tfer_equiv_admin_audit"><div class="body conbody"><p class="shortdesc">You can run a degree audit on the results of a student's articulation.</p>
+
+    <p class="p">The audit report displays the transfer classes for that student, how they equate to courses at your institute, and the extent to which they satisfy the requirements for a particular degree.</p>
+
+    <p class="p">Degree audits can be run only after a student's classes have been successfully articulated. If the student's data has been articulated successfully but has not yet been rolled to the student system, Transfer Equivalency Admin allows a degree audit to be performed on the results of the last articulation. You cannot run audits for students with unresolved classes.</p>
+
+    <p class="p">Before running the transfer audit, review the student’s details and goal data. See the Student Information section for information on editing this data.</p>
+
+    <p class="p">Click the “Process new audit” button to generate the transfer audit.</p>
+
+    <div class="section"><h2 class="title sectiontitle">Configuration</h2>
+      
+      <ul class="ul">
+        <li class="li">Review the following Shepherd settings to ensure they are configured correctly:<p class="p"><code class="ph codeph">treq.treqadmin.audit.report</code></p>
+</li>
+
+        <li class="li">Access to generate transfer audits is granted if the user has the <code class="ph codeph">TEAAUDIT</code> Shepherd key.</li>
+
+      </ul>
+
+    </div>
+
+  </div>
+
+</div></div></section>
+<section id="t-2470"><h3>Roll</h3><div class="content-locale-en-US content-locale-en"><div id="c_tfer_equiv_admin_roll"><div class="body conbody"><p class="shortdesc">Use the Roll function to update the Banner student system with articulated student data from Transfer Equivalency Admin.</p>
+
+    <p class="p">If the student's data has been articulated successfully but has not yet been rolled to the student system, Transfer Equivalency Admin allows the roll of only the articulated transfer classes and not the test scores.</p>
+
+    <p class="p">All the classes for all schools attended by a student are rolled when using this process. When the transcript classes are rolled, they will be deleted from Transfer Equivalency Admin.</p>
+
+    <p class="p">To roll a student to Banner, select the student and click “Roll”.</p>
+
+    <div class="section"><h2 class="title sectiontitle">Configuration</h2>
+      
+      <p class="p">Access to roll student data to Banner is granted if the user has the <code class="ph codeph">TEAROLL</code> Shepherd key.</p>
+
+    </div>
+
+  </div>
+
+</div></div></section>
+<section id="t-2480"><h4>Roll process</h4><div class="content-locale-en-US content-locale-en"><div id="p_tfer_equiv_admin_roll_process"><div class="body conbody"><p class="shortdesc"></p>
+
+    <ol class="ol">
+      <li class="li">Load ETS data for Transfer Equivalency (bannerextract ets).</li>
+
+      <li class="li">Transfer mappings must exist in Transfer Equivalency Admin:<ol class="ol" type="a"> <li class="li">Import Banner Mappings to Transfer Equivalency Admin (bannerextract mappings).</li>
+ <li class="li">Create transfer class mappings in Transfer Equivalency Admin.</li>
+ </ol>
+</li>
+
+      <li class="li">Configure the UCX CFG020 BANNER flag, “Write Transfers to Banner”, to “Y”.</li>
+
+      <li class="li">Allow the Degree Works users write access to the SHRTRIT, SHRTRAM, and SHRTRTK Banner database tables.</li>
+
+      <li class="li">Enter transfer classes in Transfer Equivalency Admin. Articulate, and Roll.</li>
+
+      <li class="li">Articulate and Roll the data.</li>
+
+      <li class="li">The SHRTRIT, SHRTRAM, and SHRTRTK tables are updated in Banner. Transfer records are deleted from Transfer Equivalency Admin.</li>
+
+      <li class="li">The user must use the SHATAEQ screen to roll classes to academic history, creating SHRTRCE and SHRTRCR records.</li>
+
+      <li class="li">New transfer classes will be included when the student is re-bridged in Degree Works.</li>
+
+    </ol>
+
+  </div>
+
+</div></div></section>
+<section id="t-2490"><h4>Roll results to Banner</h4><div class="content-locale-en-US content-locale-en"><div id="p_tfer_equiv_admin_roll_results_banner"><div class="body conbody"><p class="shortdesc">The Transfer Equivalency Admin to Banner feature rolls a student’s dap_transfer_dtl records to Banner’s SHRTRTK table, which is used in Banner’s transfer articulation process.</p>
+
+    <p class="p">In Banner, a user must roll the SHRTRTK records to “academic history” to create the transfer class records SHRTRCE and SHRTRCR, which are pulled into Degree Works by the bannerextract process. After the Banner user rolls SHRTRTK (with SHATAEQ) to academic history, SHRTRTK is emptied.</p>
+
+    <p class="p">Before Transfer Equivalency Admin writes records to SHRTRTK, certain configurations are required on the Banner side. The SHRTRTK table contains a link to a required table SHRTRAM, which in turn requires a link to SHRTRIT.</p>
+
+    <p class="p">Transfer Equivalency Admin looks for the required SHRTRIT and SHRTRAM tables and creates them if required. Degree Works has the basic information, student’s level and transfer term, required to create these records. So, if the transfer college tables do not exist, SHRTRIT and SHRTRAM will be created in Banner by Transfer Equivalency Admin.</p>
+
+    <div class="note"><span class="notetitle">Note:</span> This activity will not have to be done using the SHATRNS screen. Transfer Equivalency Admin will NOT write to the Banner transfer class tables SHRTRCE and SHRTRCR, which exist in Banner’s academic history. Instead, Transfer Equivalency Admin will roll to the Banner “Transfer Institution Transfer Course Taken” table (SHRTRTK) which temporarily holds transfer classes before they are rolled to academic history in Banner.</div>
+
+    <p class="p">Banner’s internal logic prevents a class from existing in both SHRTRTK and SHRTRCE, so Transfer Equivalency Admin must check both tables first. Transfer Equivalency Admin will check Academic History before rolling. If ANY classes from any school being rolled exist in SHRTRCE, Transfer Equivalency will not roll any classes. Transfer Equivalency Admin will check SHRTRTK for each class being rolled. If the same class exists, it will not be overwritten.</p>
+
+  </div>
+
+</div></div></section>
+<section id="t-2500"><h3>Debug</h3><div class="content-locale-en-US content-locale-en"><div id="c_tfer_equiv_admin_debug"><div class="body conbody"><p class="shortdesc">Transfer Equivalency Admin allows users to enable debugging to troubleshoot issues in the application for their session.</p>
+
+    <p class="p">Users with access to this functionality will be able to enable and disable debug from the Debug page, which is located under the person dropdown menu. All debugging output for the application is aggregated into one file, even if multiple applications or APIs are involved. Access to the application server is not needed to enable debugging. However, access to the server is required to access the generated log files. Debug files for the user interface can be found in the logs directory of the application server, while debug files for functionality like generating audits can be found in the logdebug directory of the classic server.</p>
+
+  </div>
+
+</div></div></section>
+<section id="t-2510"><h4>Enable debug</h4><div class="content-locale-en-US content-locale-en"><div id="c_tfer_equiv_admin_debug_enable"><div class="body conbody"><p class="shortdesc">On the Debug page, toggle the Enable Debug switch to turn debugging on for the application.</p>
+
+    <p class="p">A random Debug Tag will be generated, and the user can copy this to their clipboard by clicking on the page icon. This Debug Tag will be appended to each line of debug in the log file so that the user can easily identify which lines are from their session, as opposed to other users using the application at the same time.</p>
+
+    <p class="p">After enabling debug, the user can then resume using Transfer Equivalency Admin and execute the steps to duplicate the issue they are experiencing. Debug should be turned off by going back to the Debug page and toggling the Enable Debug switch after the issue has been duplicated. Debug for this user’s session will also be turned off when they log out of the application.</p>
+
+  </div>
+
+</div></div></section>
+<section id="t-2520"><h4>Access debug files</h4><div class="content-locale-en-US content-locale-en"><div id="c_tfer_equiv_admin_access_debug_files"><div class="body conbody"><p class="shortdesc">Debug will appear in the Transfer Equivalency Admin log file on the application server. This is typically defined by the $LOGGING_FILE environment variable.</p>
+
+    <p class="p">Searching for the user’s Debug Tag will isolate the lines of debug specific to their actions. For example:</p>
+
+    <pre class="pre codeblock"><code>2017-10-24 16:22:23,144 68b4e19d-3fb4-4975-9815-83eea01266ff DEBUG [41-exec-17]
+h.d.s.s.	elessPreAuthenticatedFilter : Checking secure context token: null
+</code></pre>
+    <p class="p">The packdebug script can be used to collect the log files generated for a user session’s Debug Tag. For more information, on using this script, see the <span class="xref ft-internal-xlink" title="The packdebug script can be used to collect debug files from the server when a user has enabled debugging from the Java applications running on the Java Application Servers." data-ft-warning="excluded-from-rendering" data-clusterid="id_crm/dgrwrks/c_packdebug_script">packdebug script</span> topic.</p>
+
+    <div class="section"><h2 class="title sectiontitle">Configuration</h2>
+      
+      <p class="p">Access to Debug is granted if the user has the <code class="ph codeph">DEBUG</code> Shepherd key.</p>
+
+    </div>
+
+  </div>
+
+</div></div></section></main></body></html>

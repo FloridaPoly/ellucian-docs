@@ -1,0 +1,654 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>CLSC Banner Student - Use</title><style>body{font-family:-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;line-height:1.55;color:#1a1a1a;max-width:920px;margin:0 auto;padding:24px}header{border-bottom:2px solid #5a16d6;margin-bottom:8px}h1{color:#3a0ca3}h2,h3,h4,h5,h6{margin-top:1.6em}.crumb{color:#666;font-size:13px;margin:0}.meta{color:#888;font-size:12px}nav.toc{background:#f6f4fc;border:1px solid #e3dcf5;border-radius:8px;padding:12px 18px;margin:18px 0}nav.toc h2{margin:.2em 0}nav.toc ul{list-style:none;padding-left:0}nav.toc a{text-decoration:none;color:#5a16d6}section{margin:1.2em 0;padding-top:.4em}img{max-width:100%;height:auto}table{border-collapse:collapse}td,th{border:1px solid #ccc;padding:4px 8px}code,pre{background:#f4f4f4;border-radius:4px}pre{padding:10px;overflow:auto}</style></head><body><header><p class="crumb">Banner Student › CLSC Banner Student - Use</p><h1>CLSC Banner Student - Use</h1><p class="meta">Source: <a href="https://resources.elluciancloud.com/r/bundle/banner_student_acn_use_clsc">https://resources.elluciancloud.com/r/bundle/banner_student_acn_use_clsc</a> &middot; Retrieved 2026-06-17</p></header><nav class="toc"><h2>Contents</h2><ul><li style="margin-left:0px"><a href="#t-10">CLSC Overview</a></li><li style="margin-left:16px"><a href="#t-20">Functions and features</a></li><li style="margin-left:16px"><a href="#t-30">System parameters</a></li><li style="margin-left:16px"><a href="#t-40">CLSC data collection</a></li><li style="margin-left:32px"><a href="#t-50">Snapshot processing</a></li><li style="margin-left:32px"><a href="#t-60">Extract processing</a></li><li style="margin-left:32px"><a href="#t-70">Export processing</a></li><li style="margin-left:16px"><a href="#t-80">Centrelink CART reporting</a></li><li style="margin-left:16px"><a href="#t-90">File details</a></li><li style="margin-left:32px"><a href="#t-100">CLSC request file</a></li><li style="margin-left:32px"><a href="#t-110">CLSC response file</a></li><li style="margin-left:48px"><a href="#t-120">CLSC common matching</a></li><li style="margin-left:48px"><a href="#t-130">Build data for CLSC response file</a></li><li style="margin-left:16px"><a href="#t-140">Data submission</a></li><li style="margin-left:16px"><a href="#t-150">Prerequisites</a></li><li style="margin-left:0px"><a href="#t-160">Procedures</a></li><li style="margin-left:16px"><a href="#t-170">Define system parameters</a></li><li style="margin-left:16px"><a href="#t-180">Import CLSC request file</a></li><li style="margin-left:16px"><a href="#t-190">Process CLSC returns</a></li><li style="margin-left:32px"><a href="#t-200">ASC_CENTRELINK_REPORTING</a></li><li style="margin-left:16px"><a href="#t-210">Create XML file returns</a></li><li style="margin-left:16px"><a href="#t-220">View CLSC data</a></li><li style="margin-left:0px"><a href="#t-230">System Parameters</a></li><li style="margin-left:16px"><a href="#t-240">Report System Parameters (SKARSYS) page</a></li></ul></nav><main><section id="t-10"><h2>CLSC Overview</h2><div class="content-locale-en-US content-locale-en"><div id="c_overview"><div class="body conbody"><p class="shortdesc">Centrelink, the Australian Federal social security agency, provides a number of support options for people undertaking tertiary (Higher Education (HE) and Vocational Education and Training (VET)) studies.</p>
+
+    <p class="p">To verify the claims of people receiving this support and track discontinued students, Centrelink requires reports from Australian HE and VET providers setting out the enrolment and load details of students at their institutions. The <span class="keyword">Banner</span> Centrelink Student Collection (<span class="keyword">CLSC</span>) Reporting module supports this requirement.</p>
+
+  </div>
+
+</div></div></section>
+<section id="t-20"><h3>Functions and features</h3><div class="content-locale-en-US content-locale-en"><div id="c_functions_features"><div class="body conbody"><p class="shortdesc">The <span class="keyword">CLSC</span> module draws information from the <span class="keyword">Banner</span> <span class="keyword">CLSC</span> tables and pages, in addition to the tables added specifically for the <span class="keyword">CLSC</span> functionality.</p>
+
+    <p class="p"><span class="keyword">CLSC</span> is made up of various steps and processes. These are organised as follows.</p>
+
+    <ul class="ul">
+      <li class="li">Set up the <span class="keyword">CLSC</span> module: Procedures and forms are used to define elements, values, and processes that are required to produce the <span class="keyword">CLSC</span> extract.</li>
+
+      <li class="li">Collect and record data: Supplemental procedures and pages are used to enter and review any data required for the reporting compliance that might not have already been entered elsewhere in <span class="keyword">Banner</span>.</li>
+
+      <li class="li">Create the return: Extract and Report Generation procedures are used to create and view the data snapshot and extract. This step has three stages: snapshot process, extract process, and export process.</li>
+
+      <li class="li">View data: The Process Rules Engine Universal Viewer is used to view the data produced by the snapshot and extract processes.</li>
+
+      <li class="li">Save the final file: The data produced by the processes are saved as the final file.</li>
+
+    </ul>
+
+    <p class="p">Although the <span class="keyword">CLSC</span> reporting software is delivered with defaulted configuration, many of the functions and processes can be tailored to your institution. For example, if the institution records the nominal hours for a TAFE unit as contact hours rather than credit hours, this can be remapped so that the <span class="keyword">CLSC</span> extract will refer to the SSBSECT_CONTACT_HR process rather than the SSBSECT_CREDIT_HR process.</p>
+
+    <div class="note"><span class="notetitle">Note:</span> Configuring the <span class="keyword">CLSC</span> module requires knowledge of the underlying database tables and is usually carried out with the assistance of technical staff within the institution or Professional Services.</div>
+
+  </div>
+
+</div></div></section>
+<section id="t-30"><h3>System parameters</h3><div class="content-locale-en-US content-locale-en"><div id="c_overview_system_parameters"><div class="body conbody"><p class="shortdesc">A set of default system parameters is delivered with the <span class="keyword">CLSC</span> module. These parameters are used to configure the <span class="keyword">CLSC</span> system.</p>
+
+    <p class="p">Use the Report System Parameters (SKARSYS) page to configure this data to the specifics of your implementation. Appropriate permissions are required to modify these forms. Refer to the <cite class="cite">System Parameters</cite> section for details on these parameters.</p>
+
+  </div>
+
+</div></div></section>
+<section id="t-40"><h3>CLSC data collection</h3><div class="content-locale-en-US content-locale-en"><div id="c_processing_data_collection"><div class="body conbody"><p class="shortdesc">You must process <span class="keyword">CLSC</span> data collection using the data reporting and extract functionality to meet requirements for <span class="keyword">CLSC</span> Reporting.</p>
+
+    <p class="p">The <span class="keyword">CLSC</span> module uses rule sets in the <span class="keyword">Banner</span> Mass Data Update Utility (MDUU) to generate the snapshot, extract, and export files for the return. We have delivered seed data to enable you to begin designing your return process.</p>
+
+    <p class="p">To understand how the returns are built, you must understand the process, task, and activity elements of MDUU. Refer to the <cite class="cite"><span class="keyword">Banner</span> Mass Data Update Utility Use</cite> for a complete explanation of tasks and activities, and how these elements work to support <span class="keyword">CLSC</span> reporting requirements.</p>
+
+    <p class="p">This document uses the following key terms.</p>
+
+    <ul class="ul">
+      <li class="li">Process: This represents a set of tasks sharing a common business area. The MDUU security allows you to associate users and user classes to a given process. If this functionality is activated, only users assigned to a given process will be able to execute this process.</li>
+
+      <li class="li">Task: This is a set of activities that is carried out as part of a process, such as taking a snapshot of data from the original data sources and gathering them in more synthetic (eventually generated) tables.</li>
+
+      <li class="li">Activity: This is a processing element that is carried out as part of a task, such as a data copy, or a data transformation. An activity updates a single table and can be reused in several tasks.</li>
+
+    </ul>
+
+    <p class="p">The typical top-level process flow for <span class="keyword">CLSC</span> reporting is shown in <span class="xref ft-internal-link" data-ft-warning="excluded-from-rendering" data-mapid="Ielwu5cjhBGyDxeHJdfnSw" data-tocid="Fpi2I4w76a_OK7sITbZKig" data-section="c_processing_data_collection__c_processing_data_collection-fig1">Figure 1</span>.</p>
+
+    <div class="fig fignone" id="c_processing_data_collection__c_processing_data_collection-fig1"><span class="figcap"><span class="fig--title-label">Figure 1. </span>1</span>
+      
+      <br><img class="image" alt="Typical Process Flow for CLSC Reporting" data-ft-asset-display-name="CLSCprocessflowdiagram.JPG" src="images/clsc-banner-student-use-1.jpeg" data-ft-resource-id="q3KLPKNrvLU3_8xISSwigA-Ielwu5cjhBGyDxeHJdfnSw"><br>
+    </div>
+
+  </div>
+
+</div></div></section>
+<section id="t-50"><h4>Snapshot processing</h4><div class="content-locale-en-US content-locale-en"><div id="c_snapshot_processing"><div class="body conbody"><p class="shortdesc">This process populates snapshot data from baseline tables, but could also be configured to use ASC tables, locally developed tables, and tables from third-party applications.</p>
+
+    <p class="p">The process allows selected target tables in the snapshot data structure to be populated. It has the capability to refresh (remove and insert) or update (add new rows and update existing rows) the snapshot.</p>
+
+    <p class="p">The structure of the snapshot tables is maintained by the MDUU under a schema called MDUUREP. (Refer to the <cite class="cite"><span class="keyword">Banner</span> Mass Data Update Utility Use</cite> for more information.)</p>
+
+    <p class="p">When running the snapshot, you can select which snapshot tables to populate. You can also purge the selected snapshot tables before re-inserting rows.</p>
+
+    <div class="p">This process allows you to do the following:<ul class="ul"> <li class="li">Create snapshot data</li>
+ <li class="li">Define the column mappings for the snapshot</li>
+ <li class="li">Define the rules to generate the snapshot population</li>
+ <li class="li">Initialise the snapshot</li>
+ <li class="li">Populate the snapshot</li>
+ <li class="li">Increment the snapshot (add or remove records without refreshing the snapshot from scratch).</li>
+ </ul>
+</div>
+
+  </div>
+
+</div></div></section>
+<section id="t-60"><h4>Extract processing</h4><div class="content-locale-en-US content-locale-en"><div id="c_extract_processing"><div class="body conbody"><p class="shortdesc">This process populates the extract based on snapshot data and, where necessary, it transforms the snapshot data into the format needed for the extract.</p>
+
+    <p class="p">The process allows selected target tables in the extract data structure to be populated. It has the capability to refresh (remove and insert) or update (add new rows and update existing rows) the extract.</p>
+
+    <div class="p">This process allows you to do the following:<ul class="ul"> <li class="li">Create extract data</li>
+ <li class="li">Define the column mappings for the extract</li>
+ <li class="li">Define the rules to generate the extract population</li>
+ <li class="li">Use expressions, functions or both to derive values based on the contents of the snapshot</li>
+ <li class="li">Initialise the extract</li>
+ <li class="li">Populate the extract</li>
+ <li class="li">Increment the extract (add or remove records without refreshing the cohort from scratch).</li>
+ </ul>
+</div>
+
+  </div>
+
+</div></div></section>
+<section id="t-70"><h4>Export processing</h4><div class="content-locale-en-US content-locale-en"><div id="c_export_processing"><div class="body conbody"><p class="shortdesc">This process populates the export based on extract data. The process allows selected target tables in the export data structure to be populated. It has the capability to refresh (remove and insert) or update (add new rows and update existing rows) the export.</p>
+
+    <div class="p">This process allows you to do the following:<ul class="ul"> <li class="li">Create export data</li>
+ <li class="li">Define the mappings for the CLOB export column</li>
+ <li class="li">Define the rules to generate the export population</li>
+ <li class="li">Initialise the export</li>
+ <li class="li">Populate the export</li>
+ <li class="li">Increment the export (add and remove records without refreshing the cohort from scratch)</li>
+ <li class="li">View the export</li>
+ <li class="li">Create an XML file from the export data.</li>
+ </ul>
+</div>
+
+  </div>
+
+</div></div></section>
+<section id="t-80"><h3>Centrelink CART reporting</h3><div class="content-locale-en-US content-locale-en"><div id="c_centrelink_cart_reporting"><div class="body conbody"><p class="shortdesc">Centrelink requires education institutions, regardless of whether they are TAFE or Higher Education to supply current enrolment details of particular students upon request. The institution returns information such as the student’s current enrolment load, student’s contact details, and the date the students are expected to complete their course.</p>
+
+    <p class="p">Centrelink Academic Reassessment Transformation (CART) operates by means of an incoming request file (which lists students who Centrelink would want to know about) and an outgoing response file (which contains corresponding enrolment details). For reporting purposes, an institution must take the request file, match it to students on their systems, and provide a single XML response file.</p>
+
+    <p class="p">Refer to the <cite class="cite">File Details</cite> section for details on these <span class="keyword">CLSC</span> CART reporting file details.</p>
+
+  </div>
+
+</div></div></section>
+<section id="t-90"><h3>File details</h3><div class="content-locale-en-US content-locale-en"><div id="c_file_details"><div class="body conbody"><p class="shortdesc">This section provides information about the following files generated and processed in the <span class="keyword">CLSC</span> system.</p>
+
+    <p class="p"><span class="keyword">CLSC</span> is designed to process a single incoming request file and produce a single XML file in response. The response file contains all the required information for both TAFE and HE students. The following discussion describes the activities taken to produce the XML response file.</p>
+
+  </div>
+
+</div></div></section>
+<section id="t-100"><h4>CLSC request file</h4><div class="content-locale-en-US content-locale-en"><div id="r_clsc_request_file"><div class="body refbody"><p class="shortdesc">A CART response file is produced, containing information on each student listed in the request file. The response file indicates whether the students have been matched, whether they are still studying, their enrolment details, optionally, a mobile phone number or e-mail address.</p>
+
+    <div class="section">
+      <p class="p">The response file is produced on a per CART user ID basis. Therefore, if an institution has more than one CART user ID (such as if the institution submits TAFE reports separately to HE reports) a response file may be produced for each user ID as required.</p>
+
+      <p class="p">Refer to the <cite class="cite">View <span class="keyword">CLSC</span> data</cite> section for more information on CLSC Request File activities.</p>
+
+      <p class="p">The following table describes the XML process for this file.</p>
+
+      
+<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" id="r_clsc_request_file__r_clsc_request_file-tbl1.1" class="table" frame="hsides" border="1" rules="rows"><colgroup><col><col><col></colgroup><thead class="thead" style="text-align:left;vertical-align:bottom;">
+            <tr class="row">
+              <th class="entry row-nocellborder" style="text-align:left;vertical-align:bottom;" id="d321e63">Process Type</th>
+
+              <th class="entry row-nocellborder" style="text-align:left;vertical-align:bottom;" id="d321e66">Process Name</th>
+
+              <th class="entry row-nocellborder" style="text-align:left;vertical-align:bottom;" id="d321e69">Process Description</th>
+
+            </tr>
+
+          </thead>
+<tbody class="tbody">
+            <tr class="row">
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d321e63 ">Centre Link (CART) XML Import</td>
+
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d321e66 ">
+                <code class="ph codeph">ASC_CENTRELINK_IMPORT</code>
+              </td>
+
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d321e69 ">This process imports the CART request file details into the Centrelink CART Request Import Table (SKRICAR).</td>
+
+            </tr>
+
+          </tbody>
+</table>
+</div>
+
+    </div>
+
+  </div>
+
+</div></div></section>
+<section id="t-110"><h4>CLSC response file</h4><div class="content-locale-en-US content-locale-en"><div id="c_clsc_response_file"><p class="shortdesc">You can generate processes for the <span class="keyword">CLSC</span> Response file.</p>
+
+</div></div></section>
+<section id="t-120"><h5>CLSC common matching</h5><div class="content-locale-en-US content-locale-en"><div id="r_clsc_common_matching"><div class="body refbody"><p class="shortdesc">The <span class="keyword">CLSC</span> Common Matching snapshot activity is included in this release. With this solution, the students listed in the Centrelink Request File are matched (or not) with the students in <span class="keyword">Banner</span>.</p>
+
+    <div class="section">The activity uses the SKRICAR import table as input for a matching routine. The output of the matching routine is written to the Matching (SKRMCAR) table. This output is used by the Common Matching snapshot activity.</div>
+
+    <div class="section">
+      <div class="p">The following tasks are performed by the Common Matching snapshot activity:<ul class="ul"> <li class="li">Common matching rules and source rules which describe the type of matches required are set up in <span class="keyword">Banner</span> Common Matching (see below for rules)</li>
+ <li class="li">A MDUU activity passes data from the import table (the matching data input) to a PL/SQL package (SKKCART)</li>
+
+        <li class="li">The SKKCART package runs the matching process using the input data against the matching rules with pre-defined exit points (see attached algorithm). The common matching source rule codes will be stored on SKBRSYS with an assumed element code of ‘CLSC-MATCH’</li>
+ <li class="li">When complete, the SKKCART package updates the import table to indicate that the process has been run and writes match (or non-match) data to the match table.</li>
+
+        </ul>
+The following table describes the activities for this file.</div>
+
+      
+<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" id="r_clsc_common_matching__r_clsc_common_matching-tbl1.2" class="table" frame="hsides" border="1" rules="rows"><caption><span class="tablecap"><span class="table--title-label">Table 1. </span></span></caption><colgroup><col><col><col></colgroup><thead class="thead" style="text-align:left;vertical-align:bottom;">
+            <tr class="row">
+              <th class="entry row-nocellborder" style="text-align:left;vertical-align:bottom;" id="d1545e78">Activity Type</th>
+
+              <th class="entry row-nocellborder" style="text-align:left;vertical-align:bottom;" id="d1545e81">Activity Name</th>
+
+              <th class="entry row-nocellborder" style="text-align:left;vertical-align:bottom;" id="d1545e84">Description</th>
+
+            </tr>
+
+          </thead>
+<tbody class="tbody">
+            <tr class="row">
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d1545e78 "><span class="keyword">CLSC</span> Common Matching (Snapshot)</td>
+
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d1545e81 ">
+                <code class="ph codeph">ASC_CLSC_SNA_CMN_MATCH</code>
+              </td>
+
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d1545e84 ">This activity pulls data from the Centrelink CART Request Import (SKRICAR) table to populate the Centrelink CART Request Import (SKRICAR) table. The activity uses RRN as the populate key.</td>
+
+            </tr>
+
+          </tbody>
+</table>
+</div>
+
+    </div>
+
+  </div>
+
+</div></div></section>
+<section id="t-130"><h5>Build data for CLSC response file</h5><div class="content-locale-en-US content-locale-en"><div id="r_build_data_clsc_response_file"><div class="body refbody"><p class="shortdesc">There are activities included to process the <span class="keyword">CLSC</span> response file.</p>
+
+    
+<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" id="r_build_data_clsc_response_file__r_build_data_clsc_response_file-tbl1.3" class="table" frame="hsides" border="1" rules="rows"><caption><span class="tablecap"><span class="table--title-label">Table 1. </span></span></caption><colgroup><col><col><col></colgroup><thead class="thead" style="text-align:left;vertical-align:bottom;">
+          <tr class="row">
+            <th class="entry row-nocellborder" style="text-align:left;vertical-align:bottom;" id="d2554e52">Activity Type</th>
+
+            <th class="entry row-nocellborder" style="text-align:left;vertical-align:bottom;" id="d2554e55">Activity Name</th>
+
+            <th class="entry row-nocellborder" style="text-align:left;vertical-align:bottom;" id="d2554e58">Description</th>
+
+          </tr>
+
+        </thead>
+<tbody class="tbody">
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d2554e52 "><span class="keyword">CLSC</span> Match Response (Snapshot)</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d2554e55 ">
+              <code class="ph codeph">ASC_CLSC_SNA_MATCH_RESP</code>
+            </td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d2554e58 ">This activity uses the Centrelink CART Matching (SKRMCAR) table to populate the Centrelink CART Response Snapshot (SKRSCAR) table.</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d2554e52 "><span class="keyword">CLSC</span> Ceased Enrolment Check (Snapshot)</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d2554e55 ">
+              <code class="ph codeph">ASC_CLSC_SNA_MATCH_RESP</code>
+            </td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d2554e58 ">This activity uses the Centrelink CART Matching (SKRMCAR) table, the Student Course Registration Repeating (SFRSTCR) table, the Student General Learner (SGBSTDN) table, and the Centrelink CART Response Snapshot (SKRSCAR) table to populate the Centrelink CART Response Snapshot (SKRSCAR) table. The activity uses RRN and record type as populate keys.</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d2554e52 ">Higher Ed Students Enrolment (Snapshot)</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d2554e55 ">
+              <code class="ph codeph">ASC_CLSC_SNA_HE</code>
+            </td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d2554e58 ">This activity uses the Centrelink CART Response Snapshot (SKRSCAR) table, the Learner Curriculum (SORLCUR) table, the Student Course Registration Repeating (SFRSTCR) table, and the Student General Learner (SGBSTDN) table to populate the Centrelink CART Response Snapshot (SKRSCAR) table. The activity uses RRN, record type, course type, and request type as populate keys.</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d2554e52 ">Higher Ed Students Withdrawal (Snapshot)</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d2554e55 ">
+              <code class="ph codeph">ASC_CLSC_SNA_WD</code>
+            </td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d2554e58 ">This activity uses the Centrelink CART Response Snapshot Table (SKRSCAR), Section General Information Base (SSBSECT) table, Student Course Registration Repeating (SFRSTCR) table, the Learner Curriculum (SORLCUR) table, and the Student General Learner (SGBSTDN) table to populate the Centrelink CART Response Snapshot (SKRSCAR) table. The activity uses the RRN, record type, withdrawn CRN, and course code as populate keys.</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d2554e52 ">VET Students Enrolment (Snapshot)</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d2554e55 ">
+              <code class="ph codeph">ASC_CLSC_SNA_VET</code>
+            </td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d2554e58 ">This activity uses the Centrelink CART Response Snapshot (SKRSCAR) table, Student Course Registration Repeating (SFRSTCR) table, the Learner Curriculum (SORLCUR) table, and the Student General Learner (SGBSTDN) table to populate the Centrelink CART Response Snapshot (SKRSCAR) table. The activity uses RRN, record type, course code, and PIDM as populate keys.</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d2554e52 "><span class="keyword">CLSC</span> Student Contact (Snapshot)</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d2554e55 ">
+              <code class="ph codeph">ASC_CLSC_SNA_CONTACT</code>
+            </td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d2554e58 ">This activity uses the Centrelink CART Response Snapshot (SKRSCAR) table, the Telephone (SPRTELE) table, and the Person Email Repeating (GOREMAL) table to populate the Centrelink CART Response Snapshot (SKRSCAR) table. The activity uses RRN, record type, PIDM, and request time as populate keys.</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d2554e52 ">Extract</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d2554e55 ">
+              <code class="ph codeph">ASC_CLSC_CART_EXTRACT</code>
+            </td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d2554e58 ">This activity uses the Centrelink CART Response Snapshot (SKRSCAR)table to populate the Centrelink CART Response Extract (SKRECAR) table. The activity uses RRN and record type as populate keys.</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d2554e52 ">Export</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d2554e55 ">
+              <code class="ph codeph">ASC_CLSC_CART_EXPORT</code>
+            </td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d2554e58 ">This activity uses the skkcart.f_create_response_xml function to generate a correctly formatted response file. The function uses collection code, organisation ID, and request date to generate the response XML and uses organisation ID as populate key.</td>
+
+          </tr>
+
+        </tbody>
+</table>
+</div>
+
+  </div>
+
+</div></div></section>
+<section id="t-140"><h3>Data submission</h3><div class="content-locale-en-US content-locale-en"><div id="c_data_submission"><p class="shortdesc">As the response file is produced as XML, no external validation of the file takes place. The file might be uploaded to the CART Web site using the user ID and password details supplied by Centrelink.</p>
+
+</div></div></section>
+<section id="t-150"><h3>Prerequisites</h3><div class="content-locale-en-US content-locale-en"><div id="c_prerequisites"><div class="body conbody"><p class="shortdesc">The minimum required releases for <span class="keyword">CLSC</span> 8.1 are as follows.</p>
+
+    <ul class="ul">
+      <li class="li"><span class="keyword">Banner</span> General 8.3 or later</li>
+
+      <li class="li"><span class="keyword">Banner</span> <span class="keyword">CLSC</span> 8.3 or later</li>
+
+      <li class="li"><span class="keyword">Banner</span> MDUU 8.0 or later</li>
+
+      <li class="li">ASCGEN 8.1.1</li>
+
+      <li class="li">XIGN 8.0<div class="note"><span class="notetitle">Note:</span> The <span class="keyword">CLSC</span> 8.0 version is not a dependency for <span class="keyword">CLSC</span> 8.1.</div>
+</li>
+
+    </ul>
+
+  </div>
+
+</div></div></section>
+<section id="t-160"><h2>Procedures</h2><div class="content-locale-en-US content-locale-en"><div id="c_procedures"><p class="shortdesc">You can use few tasks and procedures to work with <span class="keyword">CLSC</span> reporting.</p>
+
+</div></div></section>
+<section id="t-170"><h3>Define system parameters</h3><div class="content-locale-en-US content-locale-en"><div id="t_define_system_parameters"><div class="body taskbody"><p class="shortdesc">There are several reporting elements where the selection of the correct data is dependent on specific <span class="keyword">Banner</span> codes.</p>
+
+    <div class="section context"><div class="tasklabel"><h2 class="sectiontitle tasklabel">About this task</h2></div>
+      <p class="p">For example, to report a student’s mobile phone number, you must specify a telephone type code from the Telephone Type Code Validation (STVTELE) page. If you have defined <kbd class="ph userinput">MOBL</kbd> as the telephone type code to signify ‘mobile phone,’ you would assign <kbd class="ph userinput">MOBL</kbd> as the value for the <span class="keyword parmname">MOBILE_PHONE_TYPE</span> system parameter. When this system parameter is used in reporting, it will return data for telephone types of MOBL. If a student does not have a MOBL telephone, then no mobile phone data will be reported for that student in activities using the <span class="keyword parmname">MOBILE_PHONE_TYPE</span> parameter.</p>
+
+      <p class="p">To support inter connectivity between baseline codes and <span class="keyword">CLSC</span> reporting elements, a predefined set of system parameters is delivered with <span class="keyword">CLSC</span> Reporting, and you must configure these parameters for use. You can modify the delivered parameters to meet your needs, or you can create new ones. Those that are required by the system are noted as such in the <cite class="cite">System Parameters</cite> section.</p>
+
+      <div class="note"><span class="notetitle">Note:</span> Only users with appropriate permissions can define or modify system parameters.</div>
+
+    </div>
+
+    <div class="tasklabel"><h2 class="sectiontitle tasklabel">Procedure</h2></div><ol class="ol steps"><li class="li step stepexpand">
+        <span class="ph cmd">Access the <span class="keyword wintitle">Report System Parameters (SKARSYS)</span> page.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Enter the academic year code in the <span class="ph uicontrol">Academic Year</span> field, then go to the next block.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Enter the parameter for which you want to enter valid values in the <span class="ph uicontrol">Parameter</span> field.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Enter the valid value(s) for the parameter in the <span class="ph uicontrol">Value</span> field.</span>
+        <div class="itemgroup info">
+          <p class="p">You can enter multiple values for each parameter, separated by a comma, up to 2,000 characters.</p>
+
+        </div>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">If desired, enter information in the <span class="ph uicontrol">Description</span> and <span class="ph uicontrol">Notes</span> fields.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Save your changes.</span>
+      </li>
+</ol>
+
+  </div>
+
+</div></div></section>
+<section id="t-180"><h3>Import CLSC request file</h3><div class="content-locale-en-US content-locale-en"><div id="t_import_clsc_request_file"><div class="body taskbody"><p class="shortdesc">Use this procedure to import the <span class="keyword">CLSC</span> request file.</p>
+
+    <div class="tasklabel"><h2 class="sectiontitle tasklabel">Procedure</h2></div><ol class="ol steps"><li class="li step stepexpand">
+        <span class="ph cmd">Access the <span class="keyword wintitle">XML Process Execution (GKAXPEX)</span> page.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Select the <span class="ph uicontrol">Process Indicator</span> check box to indicate whether the XML Process (<code class="ph codeph">ASC_CENTRELINK_IMPORT</code>) to be run.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Specify the Oracle directory, where the Centrelink Academic Reassessment Transformation (CART) request XML file is placed.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Click <span class="ph uicontrol">Process</span>.</span>
+        <div class="itemgroup info">
+          <p class="p">If there XML process is imported successfully, a message <samp class="ph msgph">PROCESSED</samp> is displayed in the <span class="ph uicontrol">Process Summary</span> field. In case of errors in the XMP process import, the error message is displayed in the <span class="ph uicontrol">Process Summary</span> field. Click <span class="ph uicontrol">View Log</span> to view the diagnostic log for the process.</p>
+
+        </div>
+      </li>
+</ol>
+
+  </div>
+
+</div></div></section>
+<section id="t-190"><h3>Process CLSC returns</h3><div class="content-locale-en-US content-locale-en"><div id="c_process_clsc_returns"><div class="body conbody"><p class="shortdesc">Use this procedure to produce the XML response file for Centrelink reporting.</p>
+
+    <p class="p">The ASC_CENTRELINK_REPORTING process is used for the <span class="keyword">CLSC</span> submission. This process contains snapshot, extract, and export activities for <span class="keyword">CLSC</span> files.</p>
+
+    <p class="p">You can control the execution of the process to run specific activities or tasks separately, or to run all tasks and activities together. However, we advise you to run each task separately, evaluating the data each time. This results in better processing times and allows you to do any data cleaning before the final files are ready to be loaded into the <span class="keyword">CLSC</span> software.</p>
+
+    <p class="p">Refer to the <cite class="cite"><span class="keyword">Banner</span> Mass Data Update Utility Use</cite> for more information about the pages.</p>
+
+  </div>
+
+</div></div></section>
+<section id="t-200"><h4>ASC_CENTRELINK_REPORTING</h4><div class="content-locale-en-US content-locale-en"><div id="t_asc_centrelink_reporting"><div class="body taskbody"><p class="shortdesc">You can generate the <span class="keyword">CLSC</span> report using the process available for <span class="keyword">CLSC</span> </p>
+
+    <div class="tasklabel"><h2 class="sectiontitle tasklabel">Procedure</h2></div><ol class="ol steps"><li class="li step stepexpand">
+        <span class="ph cmd">Access the <span class="keyword wintitle">Execution Tree Set-up (GKAPEXS)</span> page.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Enter <kbd class="ph userinput">ASC_CENTRELINK_REPORTING</kbd> in the <span class="ph uicontrol">Process Code</span> field.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Select Next Block.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Customise the execution tree to meet your local requirements, for example, by changing the status of tree nodes.</span>
+        <div class="itemgroup info">
+          <p class="p">If desired, you can customise the activities and add these to the execution tree, or you can create your own execution tree. If you customise the activities, you need to create local copies of the baseline activities first.</p>
+
+        </div>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Access the <span class="keyword wintitle">Process Tree Execution (GKAPEXE)</span> page.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Enter <kbd class="ph userinput">ASC_CENTRELINK_REPORTING</kbd> in the <span class="ph uicontrol">Process Code</span> field.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Select Next Block.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Select the required stages on the <span class="keyword wintitle">Execution Tree Set-up</span> window.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Go to the <span class="keyword wintitle">Execution</span> window.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Enter values for the parameters, if necessary.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Change the value in the <span class="ph uicontrol">Execution Mode</span> field to <kbd class="ph userinput">Update</kbd>.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Click either <span class="ph uicontrol">Run for Jobsub</span> or <span class="ph uicontrol">Run Now</span>, as desired, to execute the process.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Review the results by selecting the View SQL log.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Access the <span class="keyword wintitle">Universal Viewer (GKAPUNV)</span> page to review the data generated by the process.</span>
+      </li>
+</ol>
+
+  </div>
+
+</div></div></section>
+<section id="t-210"><h3>Create XML file returns</h3><div class="content-locale-en-US content-locale-en"><div id="t_create_xml_file_returns"><div class="body taskbody"><p class="shortdesc">The <span class="keyword">CLSC</span> submission files are XML files and are made up of various parts.</p>
+
+    <div class="section context"><div class="tasklabel"><h2 class="sectiontitle tasklabel">About this task</h2></div>The available parts are:<ul class="ul"> <li class="li">Header files: Gives information about the institution</li>
+ <li class="li">Main data files: Gives information about student enrolments</li>
+ <li class="li">Trailer files: Counts the data records (in a single row) contained in the file </li>
+ <li class="li">The header also identifies which institution is being reported and relates to the data being reported. The students contained in the file must belong to the organisation described in the header.</li>
+
+      </ul>
+<p class="p">Data for each of these three components is put together to create one single file in the final extract activity.</p>
+<div class="note"><span class="notetitle">Note:</span> In Australia, for Centrelink Reporting purposes, an organisation might function as more than one type of institution. For example, if the organisation is both a TAFE and University, then the organisation must submit both TAFE and HE student data to Centrelink. Correct setting of the TAFE student system parameter will ensure that TAFE students are correctly identified and not reported as HE students. Correct set up of the Organisation Definition Form (SKATORG) will ensure that students are correctly reported for the organisation to which they belong.</div>
+<div class="p">The setting of the header, trailer, and alignment of student data to headers takes place in the final export activity. The following process flow takes place when the recording happens is the correct order to produce a valid file:<ul class="ul">
+      <li class="li">Run the common matching activity</li>
+ <li class="li">Run the match results snapshot activity</li>
+ <li class="li">Run the student enrolment and contact details snapshot activities</li>
+ <li class="li">Run the extract activity</li>
+ <li class="li">Run the export activity.</li>
+ </ul>
+</div>
+<p class="p">The final stage of <span class="keyword">CLSC</span> reporting is to export the data to an external document. This process allows you to export the extract data to a XML file.</p>
+</div>
+
+    <div class="tasklabel"><h2 class="sectiontitle tasklabel">Procedure</h2></div><ol class="ol steps"><li class="li step">
+        <span class="ph cmd">Access the <span class="keyword wintitle">Universal Viewer (GKAPUNV)</span> page.</span>
+      </li>
+<li class="li step">
+        <span class="ph cmd">Enter the seven-character name of the export table (for example, <kbd class="ph userinput">SKRXCAR</kbd>) in the <span class="ph uicontrol">Table Name</span> field.</span>
+      </li>
+<li class="li step">
+        <span class="ph cmd">Use the <span class="ph uicontrol">Filter Column</span> and <span class="ph uicontrol">Filter Value</span> fields to filter the data (for example, you can filter for a particular academic year or term).</span>
+      </li>
+<li class="li step">
+        <span class="ph cmd">Select Next Block.</span>
+      </li>
+<li class="li step">
+        <span class="ph cmd">Double-click in any cell of the CLOB column.</span>
+      </li>
+<li class="li step">
+        <span class="ph cmd">In the <span class="keyword wintitle">Export Data (GKPUNV)</span> page, specify the organisation ID in the <span class="ph uicontrol">Filter</span> field.</span>
+      </li>
+<li class="li step">
+        <span class="ph cmd">Enter the name of the directory in the <span class="ph uicontrol">Directory Name</span> field to which the file will be exported.</span>
+      </li>
+<li class="li step">
+        <span class="ph cmd">Enter the name of the exported XML file in the <span class="ph uicontrol">Filename</span> field, ensuring that the file extension is .xml.</span>
+      </li>
+<li class="li step">
+        <span class="ph cmd">Click <span class="ph uicontrol">Export Column Data</span>.</span>
+      </li>
+</ol>
+
+  </div>
+
+</div></div></section>
+<section id="t-220"><h3>View CLSC data</h3><div class="content-locale-en-US content-locale-en"><div id="c_view_clsc_data"><p class="shortdesc">You can view the <span class="keyword">CLSC</span> extract and snapshot data using a SQL tool such as SQL*Plus or a reporting tool like Oracle Discoverer. The MDUU includes a Universal Viewer to allow this data to be viewed and maintained.</p>
+
+</div></div></section>
+<section id="t-230"><h2>System Parameters</h2><div class="content-locale-en-US content-locale-en"><div id="c_appendix_system_parameters"><p class="shortdesc">This section lists the system parameters delivered for this release.</p>
+
+</div></div></section>
+<section id="t-240"><h3>Report System Parameters (SKARSYS) page</h3><div class="content-locale-en-US content-locale-en"><div id="r_appendix_report_system_parameters_form_skarsys"><div class="body refbody"><p class="shortdesc">The following table details the system parameters that are available from the SKARSYS page for all <span class="keyword">CLSC</span> parameters.</p>
+
+    <div class="section">
+      <div class="note"><span class="notetitle">Note:</span> The date format specified for setting the date of birth format must match with the format of the date of birth in the XML file. If not, the matching activity will not be execute successfully.</div>
+
+      
+<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" id="r_appendix_report_system_parameters_form_skarsys__r_appendix_report_system_parameters_form_skarsys-tbl1" class="table" frame="hsides" border="1" rules="rows"><colgroup><col><col><col></colgroup><thead class="thead" style="text-align:left;vertical-align:bottom;">
+            <tr class="row">
+              <th class="entry row-nocellborder" style="text-align:left;vertical-align:bottom;" id="d2035e52">Name</th>
+
+              <th class="entry row-nocellborder" style="text-align:left;vertical-align:bottom;" id="d2035e55">Default Value</th>
+
+              <th class="entry row-nocellborder" style="text-align:left;vertical-align:bottom;" id="d2035e58">Description</th>
+
+            </tr>
+
+          </thead>
+<tbody class="tbody">
+            <tr class="row">
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d2035e52 ">
+                <code class="ph codeph">TAFE-STUDENT</code>
+              </td>
+
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d2035e55 ">
+                <kbd class="ph userinput">CE,VE</kbd>
+              </td>
+
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d2035e58 ">Used by <span class="keyword">CLSC</span> activities to determine whether a student is a TAFE or HE student.</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d2035e52 ">
+                <code class="ph codeph">STUDENT_EMAIL_TYPE</code>
+              </td>
+
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d2035e55 ">
+                <kbd class="ph userinput">CAMP,HOME</kbd>
+              </td>
+
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d2035e58 ">Used to record the e-mail type code used to identify the e-mail address for students.</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d2035e52 ">
+                <code class="ph codeph">CROSS_INST_CODE</code>
+              </td>
+
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d2035e55 ">CROSS-INST</td>
+
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d2035e58 ">Element code used to identify programs that need to be reported as cross-institutional for <span class="keyword">CLSC</span> reporting.</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d2035e52 ">
+                <code class="ph codeph">HDEG_STATUS_CLSC</code>
+              </td>
+
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d2035e55 ">AC</td>
+
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d2035e58 ">Indicates active and valid records on SGRASSI. Used to identify Masters and Ph.D students for <span class="keyword">CLSC</span> reporting.</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d2035e52 ">
+                <code class="ph codeph">MOBILE_PHONE_TYPE</code>
+              </td>
+
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d2035e55 ">MOB, MOBL</td>
+
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d2035e58 ">Used to record the telephone type code used to identify the mobile phone number for students.</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d2035e52 ">
+                <code class="ph codeph">CLSC_DATE_FORMAT</code>
+              </td>
+
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d2035e55 ">YYYY-MM-DD</td>
+
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d2035e58 ">Specifies the format in which dates are reported in Centrelink reporting.</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d2035e52 ">
+                <code class="ph codeph">CLSC-MATCH</code>
+              </td>
+
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d2035e55 ">CL1,CL2</td>
+
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d2035e58 ">Lists the common matching match source rule codes. Used to perform request file matching according to <span class="keyword">CLSC</span> rules.</td>
+
+            </tr>
+
+          </tbody>
+</table>
+</div>
+
+    </div>
+
+  </div>
+
+</div></div></section></main></body></html>

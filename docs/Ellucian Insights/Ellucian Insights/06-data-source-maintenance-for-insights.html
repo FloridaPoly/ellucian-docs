@@ -1,0 +1,850 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Ellucian Insights — Data source maintenance for Insights</title><style>body{font-family:-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;line-height:1.55;color:#1a1a1a;max-width:920px;margin:0 auto;padding:24px}header{border-bottom:2px solid #5a16d6;margin-bottom:8px}h1{color:#3a0ca3}h2,h3,h4,h5,h6{margin-top:1.6em}.crumb{color:#666;font-size:13px;margin:0}.meta{color:#888;font-size:12px}nav.toc{background:#f6f4fc;border:1px solid #e3dcf5;border-radius:8px;padding:12px 18px;margin:18px 0}nav.toc h2{margin:.2em 0}nav.toc ul{list-style:none;padding-left:0}nav.toc a{text-decoration:none;color:#5a16d6}section{margin:1.2em 0;padding-top:.4em}img{max-width:100%;height:auto}table{border-collapse:collapse}td,th{border:1px solid #ccc;padding:4px 8px}code,pre{background:#f4f4f4;border-radius:4px}pre{padding:10px;overflow:auto}</style></head><body><header><p class="crumb">Ellucian Insights › Ellucian Insights</p><h1>Ellucian Insights — Data source maintenance for Insights</h1><p class="meta">Source: <a href="https://resources.elluciancloud.com/r/bundle/ellucian_insights">https://resources.elluciancloud.com/r/bundle/ellucian_insights</a> &middot; Retrieved 2026-06-17</p></header><nav class="toc"><h2>Contents</h2><ul><li style="margin-left:0px"><a href="#t-1930">Data source maintenance for Insights</a></li><li style="margin-left:16px"><a href="#t-1940">Update Insights data sources when cloning a database</a></li><li style="margin-left:16px"><a href="#t-1950">Maintain Insights when applying source patches or upgrades</a></li><li style="margin-left:16px"><a href="#t-1960">Update Insights when switching your data source</a></li><li style="margin-left:16px"><a href="#t-1970">Update Insights data sources for database credentials changes</a></li><li style="margin-left:16px"><a href="#t-1980">Maintain Insights when updating the data source operating system</a></li></ul></nav><main><section id="t-1930"><h2>Data source maintenance for Insights</h2></section>
+<section id="t-1940"><h3>Update Insights data sources when cloning a database</h3><div class="content-locale-en-US content-locale-en"><div id="t_maint_source_db_clone"><div class="body taskbody"><p class="shortdesc">If you need to clone a database in your data source, you must take specific actions in <span class="keyword">Insights</span> before and after the process so that the newly cloned database successfully connects to <span class="keyword">Insights</span>. </p>
+
+        <div class="section context"><div class="tasklabel"><h2 class="sectiontitle tasklabel">About this task</h2></div>
+            <ul class="ul">
+        <li class="li" id="t_maint_source_db_clone__d163e335">These steps are only applicable to on-premise implementations. </li>
+
+        <li class="li" id="t_maint_source_db_clone__d163e338">For <span class="keyword">Ellucian</span> SaaS or Managed Cloud source systems, <span class="keyword">Ellucian</span> will perform these maintenance steps for you.</li>
+
+      </ul>
+
+            <div class="note"><span class="notetitle">Note:</span> This topic refers to actions to take before and after cloning your source database. However, these steps are applicable to several situations, including: <ul class="ul">
+                <li class="li">cloning your source database.</li>
+
+                <li class="li">restoring a database to a previous snapshot.</li>
+
+                </ul>
+</div>
+
+        </div>
+
+    </div>
+
+    <div class="topic task nested1" aria-labelledby="ariaid-title2" id="rh1_jdl_p1c">
+        <h2 class="title topictitle2" id="ariaid-title2">Task 1: Pause data source ingestion before cloning the database</h2>
+
+        
+        <div class="body taskbody"><p class="shortdesc">Before you begin the cloning process on your source database, you must pause <span class="keyword">Data Lake</span> ingestion for all affected data sources. </p>
+
+            <div class="tasklabel"><h3 class="sectiontitle tasklabel">Procedure</h3></div><ol class="ol steps"><li class="li step stepexpand">
+                    <span class="ph cmd">In <span class="ph uicontrol">Insights Administration</span>, go to <span class="ph menucascade"><span class="ph uicontrol">Ingestion</span><abbr title="and then"> &gt; </abbr><span class="ph uicontrol">Data Sources</span></span>.</span>
+                </li>
+<li class="li step stepexpand">
+                    <span class="ph cmd">Click <span class="ph menucascade"><span class="ph uicontrol">Actions <img class="image" src="images/06-data-source-maintenance-for-insights-1.png" alt="Actions" data-ft-asset-display-name="btn_insights_more.png" data-ft-resource-id="R_vyVkDFRCu6A0npJ5kdqA-rbEOZGKJGXHGODqu~~Iz7g"></span><abbr title="and then"> &gt; </abbr><span class="ph uicontrol">Pause</span></span> for each data source associated with the database to be replaced by the newly cloned database.</span>
+                    <div class="itemgroup info">If the <span class="ph uicontrol">Pause</span> option is unavailable (such as when the data source is currently refreshing), wait until the <span class="ph uicontrol">Pause</span> option is available again. If the data source is in <samp class="ph systemoutput">ERROR</samp> state and cannot be paused, contact <span class="keyword">Ellucian Action Line</span>.</div>
+                </li>
+<li class="li step stepexpand" id="rh1_jdl_p1c__step_ufp_52z_t1c"><strong>Optional: </strong>
+                    <span class="ph cmd">If you have recurring point-in-time jobs that capture data from the paused data source, consider pausing those jobs.</span>
+                    <div class="itemgroup info">If a point-in-time job is scheduled to occur while data source is paused, the job will successfully capture the data. However, the capture may not be accurate because any data changes on the data source will not be in the <span class="keyword">Insights</span> <span class="keyword">Data Warehouse</span> until the last step of this procedure (<span class="xref ft-internal-link" title="After all affected data sources and datasets have been ingested to the Data Lake, you can begin to repopulate the Insights Data Warehouse." data-ft-warning="excluded-from-rendering" data-mapid="rbEOZGKJGXHGODqu~~Iz7g" data-tocid="V0HpvmF7QTjDX0A_ORP3nA" data-section="xsj_msm_p1c">Task 4: Repopulate the Data Warehouse</span>).<p class="p">See <span class="xref ft-internal-link" title="Insights administrators can pause and resume upcoming recurring jobs, or delete a recurring job series from the Recurring Schedules tab." data-ft-warning="excluded-from-rendering" data-mapid="rbEOZGKJGXHGODqu~~Iz7g" data-tocid="J5tTB1r1CXOHjkjm5JGi5Q">Pause or delete recurring jobs</span> for instructions. </p>
+</div>
+                </li>
+<li class="li step stepexpand">
+                    <span class="ph cmd">Verify that ingestion for all affected data sources is paused.</span>
+                    <div class="itemgroup info">On the <span class="ph menucascade"><span class="ph uicontrol">Ingestion</span><abbr title="and then"> &gt; </abbr><span class="ph uicontrol">Data Sources</span></span> tab, the status for the affected data sources must be <samp class="ph systemoutput">PAUSED</samp> before you clone your source database.</div>
+                </li>
+</ol>
+
+            <div class="section postreq"><div class="tasklabel"><h3 class="sectiontitle tasklabel">What to do next</h3></div>You can clone your source database now that you have paused the <span class="keyword">Data Lake</span> ingestion processes.</div>
+
+        </div>
+
+    </div>
+
+    <div class="topic task nested1" aria-labelledby="ariaid-title3" id="d2j_4dl_p1c">
+        <h2 class="title topictitle2" id="ariaid-title3">Task 2: Post-clone data ingestion preparation</h2>
+
+        
+        <div class="body taskbody"><p class="shortdesc">After you have cloned your source database, you may need to take actions on your source database to ensure it is properly prepared for <span class="keyword">Data Lake</span> ingestion.</p>
+
+            <div class="section context"><div class="tasklabel"><h3 class="sectiontitle tasklabel">About this task</h3></div>
+                <div class="note"><span class="notetitle">Note:</span> The data preparation process is only applicable to on-premise implementations. It is not applicable to <span class="keyword">Ellucian</span> SaaS or Managed Cloud source systems.<p class="p">If you have an <span class="keyword">Ellucian</span> SaaS or Managed Cloud system, you can proceed directly to <span class="xref ft-internal-link" title="After verifying your data source connection to the newly cloned database, you can continue data ingestion to the Data Lake." data-ft-warning="excluded-from-rendering" data-mapid="rbEOZGKJGXHGODqu~~Iz7g" data-tocid="V0HpvmF7QTjDX0A_ORP3nA" data-section="isb_jtl_p1c">Task 3: Ingest data to the Data Lake</span>.</p>
+</div>
+
+            </div>
+
+            <div class="tasklabel"><h3 class="sectiontitle tasklabel">Procedure</h3></div><ol class="ol steps"><li class="li step stepexpand">
+                    <span class="ph cmd"><span class="keyword">Banner</span> and <span class="keyword">Degree Works</span> only: Enable supplemental logging and archive logging. </span>
+                    <div class="itemgroup info">
+                        <p class="p">See <span class="xref ft-internal-link" title="As part of the data preparation process, Banner and Degree Works customers with on-premise Oracle source systems must enable Oracle's supplemental logging and archive logging at the database and table levels. These logging features track the changes being replicated in the Data Lake during the ingestion process." data-ft-warning="excluded-from-rendering" data-mapid="rbEOZGKJGXHGODqu~~Iz7g" data-tocid="jmlkfZu56ftcFoN5WnSMnw">Supplemental logging and archive logging for Oracle source systems</span> for more information. </p>
+
+                        <p class="p">If you have any custom datasets, you must also re-enable supplemental logging for the source system tables in the custom dataset. This is because table-level supplemental logging settings are not retained during a clone restore. See <span class="xref ft-internal-link" data-ft-warning="excluded-from-rendering" data-mapid="rbEOZGKJGXHGODqu~~Iz7g" data-tocid="jmlkfZu56ftcFoN5WnSMnw" data-section="c_insights_oracle_logging__zxc_5cp_zdc">How to enable supplemental logging for individual tables in custom datasets</span> for more information.</p>
+
+                    </div>
+                </li>
+<li class="li step stepexpand">
+                    <span class="ph cmd">Download and install the latest version of the <span class="keyword">Insights</span> prerequisite scripts. </span>
+                    <div class="itemgroup info">Refer to the instructions for your source system: <ul class="ul">
+                        <li class="li"><span class="xref ft-internal-link" title="To prepare your Banner Oracle source for ingestion to the Data Lake, you must run a series of Ellucian-provided scripts to grant the necessary access into the database. These scripts also enable the ongoing replication that keep the Data Lake updated with the latest information in your Banner source." data-ft-warning="excluded-from-rendering" data-mapid="rbEOZGKJGXHGODqu~~Iz7g" data-tocid="R~f3D1Wws44ElzLyoinGaQ">Prepare your Banner source data</span></li>
+
+                        <li class="li"><span class="xref ft-internal-link" title="To prepare for ingestion to the Data Lake, you must grant the necessary access to your on-premise Colleague source data. You must also configure your SQL Server to ensure communication with the Data Lake. This ensures ongoing replication to keep the Data Lake updated with the latest information in your Colleague source." data-ft-warning="excluded-from-rendering" data-mapid="rbEOZGKJGXHGODqu~~Iz7g" data-tocid="FMOYEHSczrfMMKPJCB1RyA">Prepare your Colleague source data and SQL Server</span></li>
+
+                        <li class="li"><span class="xref ft-internal-link" title="To prepare your Degree Works Oracle source for ingestion to the Data Lake, you must run a series of Ellucian-provided scripts to grant the necessary access into the database. These scripts also enable the ongoing replication that keeps the Data Lake updated with the latest information in your Degree Works source." data-ft-warning="excluded-from-rendering" data-mapid="rbEOZGKJGXHGODqu~~Iz7g" data-tocid="pzGprbhQnKGV7RCffH9PRQ">Prepare your Degree Works source data</span></li>
+
+                        </ul>
+</div>
+                </li>
+<li class="li step stepexpand">
+                    <span class="ph cmd">In <span class="keyword">Insights</span> Administration, update any necessary data source connection details (such as endpoint or port changes) and verify the connection. </span>
+                    <div class="itemgroup info">During a typical database clone process, the database connection information does not change. Therefore, this step may not be needed. However if the database name or server has changed, you must update these in <span class="keyword">Insights</span> <p class="p">Refer to <span class="xref ft-internal-link" title="You may want to edit a data source if any of the connection properties change; for example, the user's password or the data source name." data-ft-warning="excluded-from-rendering" data-mapid="rbEOZGKJGXHGODqu~~Iz7g" data-tocid="pZRJTj7M8P1o~jSp_Ze11g">Edit a data source</span> for specific instructions. </p>
+</div>
+                </li>
+</ol>
+
+        </div>
+
+    </div>
+
+    <div class="topic task nested1" aria-labelledby="ariaid-title4" id="isb_jtl_p1c">
+        <h2 class="title topictitle2" id="ariaid-title4">Task 3: Ingest data to the Data Lake</h2>
+
+        
+        <div class="body taskbody"><p class="shortdesc">After verifying your data source connection to the newly cloned database, you can continue data ingestion to the <span class="keyword">Data Lake</span>.</p>
+
+            <div class="tasklabel"><h3 class="sectiontitle tasklabel">Procedure</h3></div><ol class="ol steps"><li class="li step stepexpand">
+                    <span class="ph cmd">In <span class="ph uicontrol">Insights Administration</span>, go to <span class="ph menucascade"><span class="ph uicontrol">Ingestion</span><abbr title="and then"> &gt; </abbr><span class="ph uicontrol">Data Sources</span></span>.</span>
+                </li>
+<li class="li step stepexpand">
+                    <span class="ph cmd">Click <span class="ph menucascade"><span class="ph uicontrol">Actions <img class="image" src="images/06-data-source-maintenance-for-insights-1.png" alt="Actions" data-ft-asset-display-name="btn_insights_more.png" data-ft-resource-id="R_vyVkDFRCu6A0npJ5kdqA-rbEOZGKJGXHGODqu~~Iz7g"></span><abbr title="and then"> &gt; </abbr><span class="ph uicontrol">Restart</span></span> for each data source that was paused in <span class="xref ft-internal-link" title="Before you begin the cloning process on your source database, you must pause Data Lake ingestion for all affected data sources." data-ft-warning="excluded-from-rendering" data-mapid="rbEOZGKJGXHGODqu~~Iz7g" data-tocid="V0HpvmF7QTjDX0A_ORP3nA" data-section="rh1_jdl_p1c">Task 1: Pause data source ingestion before cloning the database</span>.</span>
+                    <div class="itemgroup stepresult">All replicating datasets associated with each data source are reingested to the <span class="keyword">Data Lake</span>.</div>
+                </li>
+<li class="li step stepexpand">
+                    <span class="ph cmd">On the <span class="ph uicontrol">Recent Activity</span> tab, verify that all data sources and datasets have successfully been ingested to the <span class="keyword">Data Lake</span>.</span>
+                    <div class="itemgroup info">Depending on the volume of data, you may need to wait for the ingestion processes to complete. <ul class="ul">
+                        <li class="li">Load-only datasets display <samp class="ph systemoutput">Loaded</samp> status when they successfully complete.</li>
+
+                        <li class="li">Replicating datasets display <samp class="ph systemoutput">Active</samp> status when they successfully complete.</li>
+
+                        </ul>
+</div>
+                </li>
+</ol>
+
+        </div>
+
+    </div>
+
+    <div class="topic task nested1" aria-labelledby="ariaid-title5" id="xsj_msm_p1c">
+        <h2 class="title topictitle2" id="ariaid-title5">Task 4: Repopulate the Data Warehouse</h2>
+
+        
+        <div class="body taskbody"><p class="shortdesc">After all affected data sources and datasets have been ingested to the <span class="keyword">Data Lake</span>, you can begin to repopulate the <span class="keyword">Insights</span> <span class="keyword">Data Warehouse</span>.</p>
+
+            <div class="tasklabel"><h3 class="sectiontitle tasklabel">Procedure</h3></div><ol class="ol steps"><li class="li step stepexpand">
+                    <span class="ph cmd">Schedule a Load All job for your source system, using the specified job template.</span>
+                    <ul class="ul choices">
+                        <li class="li choice"><span class="keyword">Banner</span> systems: Load All <span class="keyword">Banner</span> <span class="keyword">Insights</span> Product</li>
+
+                        <li class="li choice"><span class="keyword">Colleague</span>: Load All <span class="keyword">Colleague</span> <span class="keyword">Insights</span> Product</li>
+
+                        <li class="li choice"><span class="keyword">Degree Works</span>: Load <span class="keyword">Degree Works</span></li>
+
+                    </ul>
+
+                    <div class="itemgroup info">Refer to <span class="xref ft-internal-link" title="Insights administrators can schedule load and refresh jobs so that the Insights data remains in sync after the initial data ingestion to the Data Warehouse. You can schedule these jobs to run one time or on a recurring schedule." data-ft-warning="excluded-from-rendering" data-mapid="rbEOZGKJGXHGODqu~~Iz7g" data-tocid="tvWm5zHY~DFCGMVt1uBLVw">Schedule a job</span> for instructions.<div class="note"><span class="notetitle">Note:</span> You may be able to use a Load All job that you previously created for your source system if the job details align with the details for the newly cloned database. </div>
+</div>
+                </li>
+<li class="li step stepexpand">
+                    <span class="ph cmd">If you have custom datasets that were associated with the old data source, you must schedule a load job for these.</span>
+                    <div class="itemgroup info">Refer to <span class="xref ft-internal-link" title="After loading a custom dataset to the Data Lake you can schedule load and refresh jobs so that your custom dataset remains synchronized with the Data Warehouse. The job templates for loading custom datasets vary slightly from a typical job template. Therefore, you should follow these instructions when scheduling jobs for custom datasets." data-ft-warning="excluded-from-rendering" data-mapid="rbEOZGKJGXHGODqu~~Iz7g" data-tocid="yZUpwmKblzINbrwacGcGag">Schedule a job - custom datasets</span> for instructions.</div>
+                </li>
+<li class="li step stepexpand">
+                    <span class="ph cmd">If desired, create <span class="keyword">Data Warehouse</span> refresh jobs for your source system, using the specified job template.</span>
+                    <ul class="ul choices">
+                        <li class="li choice"><span class="keyword">Banner</span> systems: Refresh All <span class="keyword">Banner</span> <span class="keyword">Insights</span> Product</li>
+
+                        <li class="li choice"><span class="keyword">Colleague</span> systems: Refresh All <span class="keyword">Colleague</span> <span class="keyword">Insights</span> Product</li>
+
+                        <li class="li choice"><span class="keyword">Degree Works</span>: Refresh <span class="keyword">Degree Works</span></li>
+
+                    </ul>
+
+                    <div class="itemgroup info">Refer to <span class="xref ft-internal-link" title="Insights administrators can schedule load and refresh jobs so that the Insights data remains in sync after the initial data ingestion to the Data Warehouse. You can schedule these jobs to run one time or on a recurring schedule." data-ft-warning="excluded-from-rendering" data-mapid="rbEOZGKJGXHGODqu~~Iz7g" data-tocid="tvWm5zHY~DFCGMVt1uBLVw">Schedule a job</span> for instructions.<div class="note"><span class="notetitle">Note:</span> You may be able to use a previously created recurring Refresh All job for your source system if the job details align with the details for the newly cloned database. </div>
+</div>
+                </li>
+<li class="li step stepexpand"><strong>Optional: </strong>
+                    <span class="ph cmd">If you paused point-in-time jobs in <span class="xref ft-internal-link" title="Before you begin the cloning process on your source database, you must pause Data Lake ingestion for all affected data sources." data-ft-warning="excluded-from-rendering" data-mapid="rbEOZGKJGXHGODqu~~Iz7g" data-tocid="V0HpvmF7QTjDX0A_ORP3nA" data-section="rh1_jdl_p1c">Task 1: Pause data source ingestion before cloning the database</span>, you can now resume those jobs.</span>
+                </li>
+</ol>
+
+            <div class="section result"><div class="tasklabel"><h3 class="sectiontitle tasklabel">Results</h3></div>After your initial <span class="keyword">Data Warehouse</span> population successfully completes, you have completed the steps for updating <span class="keyword">Insights</span> after cloning your source database.</div>
+
+        </div>
+
+    </div>
+
+</div></div></section>
+<section id="t-1950"><h3>Maintain Insights when applying source patches or upgrades</h3><div class="content-locale-en-US content-locale-en"><div id="t_maint_source_app_upgrades"><div class="body taskbody"><p class="shortdesc">If you need to apply upgrades or patches to your source system (<span class="keyword">Banner</span>, <span class="keyword">Degree Works</span>, or <span class="keyword">Colleague</span>), perform these steps to keep your <span class="keyword">Insights</span> <span class="keyword">Data Warehouse</span> in alignment with your database.</p>
+
+        <div class="section context"><div class="tasklabel"><h2 class="sectiontitle tasklabel">About this task</h2></div>
+            <ul class="ul">
+        <li class="li" id="t_maint_source_app_upgrades__d163e335">These steps are only applicable to on-premise implementations. </li>
+
+        <li class="li" id="t_maint_source_app_upgrades__d163e338">For <span class="keyword">Ellucian</span> SaaS or Managed Cloud source systems, <span class="keyword">Ellucian</span> will perform these maintenance steps for you.</li>
+
+      </ul>
+
+            <div class="note"><span class="notetitle">Note:</span> In this topic, the term <dfn class="term">source system</dfn> refers to the <span class="keyword">Ellucian</span> application that is the data source for <span class="keyword">Insights</span>: <span class="keyword">Banner</span>, <span class="keyword">Degree Works</span>, or <span class="keyword">Colleague</span>.</div>
+
+        </div>
+
+    </div>
+
+    <div class="topic task nested1" aria-labelledby="ariaid-title2" id="ogm_p53_q1c">
+        <h2 class="title topictitle2" id="ariaid-title2">Task 1: Pause data source ingestion before applying source system patches or upgrades</h2>
+
+        
+        <div class="body taskbody"><p class="shortdesc">Before you apply the patches or upgrades to your source application, you must pause <span class="keyword">Data Lake</span> ingestion for all affected data sources. </p>
+
+            <div class="tasklabel"><h3 class="sectiontitle tasklabel">Procedure</h3></div><ol class="ol steps"><li class="li step stepexpand">
+                    <span class="ph cmd">In <span class="ph uicontrol">Insights Administration</span>, go to <span class="ph menucascade"><span class="ph uicontrol">Ingestion</span><abbr title="and then"> &gt; </abbr><span class="ph uicontrol">Data Sources</span></span>.</span>
+                </li>
+<li class="li step stepexpand">
+                    <span class="ph cmd">Click <span class="ph menucascade"><span class="ph uicontrol">Actions <img class="image" src="images/06-data-source-maintenance-for-insights-1.png" alt="Actions" data-ft-asset-display-name="btn_insights_more.png" data-ft-resource-id="R_vyVkDFRCu6A0npJ5kdqA-rbEOZGKJGXHGODqu~~Iz7g"></span><abbr title="and then"> &gt; </abbr><span class="ph uicontrol">Pause</span></span> for each associated data source. </span>
+                    <div class="itemgroup info">If the <span class="ph uicontrol">Pause</span> option is unavailable (such as when the data source is currently refreshing), wait until the <span class="ph uicontrol">Pause</span> option is available again. If the data source is in <samp class="ph systemoutput">ERROR</samp> state and cannot be paused, contact <span class="keyword">Ellucian Action Line</span>.</div>
+                </li>
+<li class="li step stepexpand" id="ogm_p53_q1c__step_uhp_c2z_t1c"><strong>Optional: </strong>
+                    <span class="ph cmd">If you have recurring point-in-time jobs that capture data from the paused data source, consider pausing those jobs.</span>
+                    <div class="itemgroup info">
+                        <p class="p">If a point-in-time job is scheduled to occur while data source is paused, the job will successfully capture the data. However, the capture may not be accurate because any data changes on the data source will not be in the <span class="keyword">Insights</span> <span class="keyword">Data Warehouse</span> until the last step of this procedure (Step <span class="xref ft-internal-link" data-ft-warning="excluded-from-rendering" data-mapid="rbEOZGKJGXHGODqu~~Iz7g" data-tocid="tEvHOFGAGvVWeAhIyfB_Bw" data-section="g31_p53_q1c__step_bpz_3fz_t1c">5</span>).</p>
+
+                        <p class="p">See <span class="xref ft-internal-link" title="Insights administrators can pause and resume upcoming recurring jobs, or delete a recurring job series from the Recurring Schedules tab." data-ft-warning="excluded-from-rendering" data-mapid="rbEOZGKJGXHGODqu~~Iz7g" data-tocid="J5tTB1r1CXOHjkjm5JGi5Q">Pause or delete recurring jobs</span> for instructions on pausing upcoming point-in-time jobs. </p>
+
+                    </div>
+                </li>
+</ol>
+
+        </div>
+
+    </div>
+
+    <div class="topic task nested1" aria-labelledby="ariaid-title3" id="g31_p53_q1c">
+        <h2 class="title topictitle2" id="ariaid-title3">Task 2: Actions after source system upgrades and patches</h2>
+
+        
+        <div class="body taskbody"><p class="shortdesc">After applying upgrades or patches to your source system, you can continue ingestion to the <span class="keyword">Data Lake</span>. You must also reingest the Data Catalog, and any dataset templates containing data structure changes. </p>
+
+            <div class="tasklabel"><h3 class="sectiontitle tasklabel">Procedure</h3></div><ol class="ol steps"><li class="li step stepexpand">
+                    <span class="ph cmd">Resume ingestion for each data source that was paused in <span class="xref ft-internal-link" title="Before you apply the patches or upgrades to your source application, you must pause Data Lake ingestion for all affected data sources." data-ft-warning="excluded-from-rendering" data-mapid="rbEOZGKJGXHGODqu~~Iz7g" data-tocid="tEvHOFGAGvVWeAhIyfB_Bw" data-section="ogm_p53_q1c">Task 1: Pause data source ingestion before applying source system patches or upgrades</span>.</span>
+                    <div class="itemgroup info">
+                        <div class="note"><span class="notetitle">Note:</span> Be sure to select <span class="ph uicontrol">Resume</span>, not <span class="ph uicontrol">Restart</span>, for each paused data source. Selecting <span class="ph uicontrol">Resume</span> continues CDC processing from the point where ingestion was paused. Selecting <span class="ph uicontrol">Restart</span> starts the ingestion process from the beginning, and also requires a reload to the <span class="keyword">Data Warehouse</span>. Restarting the ingestion can take a long time, depending on the size of your database.</div>
+
+                    </div>
+                    <ol type="a" class="ol substeps">
+                        <li class="li substep">
+                            <span class="ph cmd">In <span class="ph uicontrol">Insights Administration</span>, go to <span class="ph menucascade"><span class="ph uicontrol">Ingestion</span><abbr title="and then"> &gt; </abbr><span class="ph uicontrol">Data Sources</span></span>.</span>
+                        </li>
+
+                        <li class="li substep">
+                            <span class="ph cmd">Click <span class="ph menucascade"><span class="ph uicontrol">Actions <img class="image" src="images/06-data-source-maintenance-for-insights-1.png" alt="Actions" data-ft-asset-display-name="btn_insights_more.png" data-ft-resource-id="R_vyVkDFRCu6A0npJ5kdqA-rbEOZGKJGXHGODqu~~Iz7g"></span><abbr title="and then"> &gt; </abbr><span class="ph uicontrol">Resume</span></span> for each affected data source.</span>
+                        </li>
+
+                    </ol>
+
+                    <div class="itemgroup stepresult">The resumed ingestion is complete when the data source status on the <span class="ph menucascade"><span class="ph uicontrol">Ingestion</span><abbr title="and then"> &gt; </abbr><span class="ph uicontrol">Data Sources</span></span> tab is <samp class="ph systemoutput">Active</samp>.</div>
+                </li>
+<li class="li step stepexpand">
+                    <span class="ph cmd">Reingest the data catalog for your source system to ensure it reflects any data structure changes made in the source. </span>
+                    <div class="itemgroup info">
+                        <ul class="ul">
+                            <li class="li"><span class="keyword">Banner</span> Data Catalog</li>
+
+                            <li class="li"><span class="keyword">Degree Works</span> Data Catalog</li>
+
+                            <li class="li"><span class="keyword">Colleague</span> Data Catalog</li>
+
+                        </ul>
+
+                        <p class="p">See <span class="xref ft-internal-link" title="Although most Insights datasets automatically refresh their data as often as licensing allows, Insights administrators may need to manually reload (ingest) datasets that do not automatically refresh their data. Administrators may also need to reload a dataset if an error occurred on its last ingestion attempt." data-ft-warning="excluded-from-rendering" data-mapid="rbEOZGKJGXHGODqu~~Iz7g" data-tocid="3BNWbFidmwOlRRNvxin45Q">Reload source data into the Data Lake</span> for specific instructions.</p>
+
+                        
+                    </div>
+                </li>
+<li class="li step stepexpand">
+                    <span class="ph cmd">After the data catalog ingestion completes, reingest any datasets, including custom datasets, for any modules containing data structure changes, such as <span class="keyword">Banner Student</span> or <span class="keyword">Colleague Student</span>. </span>
+                    <div class="itemgroup info">
+                        <p class="p">Reloading the affected datasets ensures that the <span class="keyword">Data Lake</span> reflects any data structure changes on your source system.</p>
+
+                        <p class="p">See <span class="xref ft-internal-link" title="Insights administrators can reload a specific dataset to the Data Warehouse rather than the entire Data Lake." data-ft-warning="excluded-from-rendering" data-mapid="rbEOZGKJGXHGODqu~~Iz7g" data-tocid="I6LcIEYQB6YppNVVaTFxqw">Reload a dataset</span> for specific instructions.</p>
+
+                        <p class="p">To determine which modules contain the structure changes, refer to your source system's release notes.</p>
+
+                    </div>
+                </li>
+<li class="li step stepexpand">
+                    <span class="ph cmd">Schedule a population job to repopulate the <span class="keyword">Data Warehouse</span> for the affected modules, such as <span class="ph uicontrol">Load <span class="keyword">Banner Student</span></span> or <span class="ph uicontrol">Load <span class="keyword">Colleague Student</span></span>.</span>
+                    <div class="itemgroup info">
+                        <p class="p">Running the population job ensures that the <span class="keyword">Data Warehouse</span> reflects any data structure changes on your source system.</p>
+
+                        <p class="p">See <span class="xref ft-internal-link" title="Insights administrators can schedule load and refresh jobs so that the Insights data remains in sync after the initial data ingestion to the Data Warehouse. You can schedule these jobs to run one time or on a recurring schedule." data-ft-warning="excluded-from-rendering" data-mapid="rbEOZGKJGXHGODqu~~Iz7g" data-tocid="tvWm5zHY~DFCGMVt1uBLVw">Schedule a job</span> and <span class="xref ft-internal-link" title="After loading a custom dataset to the Data Lake you can schedule load and refresh jobs so that your custom dataset remains synchronized with the Data Warehouse. The job templates for loading custom datasets vary slightly from a typical job template. Therefore, you should follow these instructions when scheduling jobs for custom datasets." data-ft-warning="excluded-from-rendering" data-mapid="rbEOZGKJGXHGODqu~~Iz7g" data-tocid="yZUpwmKblzINbrwacGcGag">Schedule a job - custom datasets</span> for specific instructions.</p>
+
+                    </div>
+                </li>
+<li class="li step stepexpand" id="g31_p53_q1c__step_bpz_3fz_t1c"><strong>Optional: </strong>
+                    <span class="ph cmd">If you paused point-in-time jobs in <span class="xref ft-internal-link" title="Before you apply the patches or upgrades to your source application, you must pause Data Lake ingestion for all affected data sources." data-ft-warning="excluded-from-rendering" data-mapid="rbEOZGKJGXHGODqu~~Iz7g" data-tocid="tEvHOFGAGvVWeAhIyfB_Bw" data-section="ogm_p53_q1c">Task 1: Pause data source ingestion before applying source system patches or upgrades</span>, you can now resume those jobs.</span>
+                </li>
+</ol>
+
+        </div>
+
+    </div>
+
+</div></div></section>
+<section id="t-1960"><h3>Update Insights when switching your data source</h3><div class="content-locale-en-US content-locale-en"><div id="t_maint_change_data_source"><div class="body taskbody"><p class="shortdesc">Switching or changing the <span class="keyword">Insights</span> data source requires <span class="keyword">Insights</span> administrators to remove configurations, job schedules, and datasets associated with the old data source and recreate those on the new data source. This ensures that the <span class="keyword">Data Lake</span> and <span class="keyword">Insights</span> <span class="keyword">Data Warehouse</span> synchronize with the new data source. </p>
+
+        <div class="section context"><div class="tasklabel"><h2 class="sectiontitle tasklabel">About this task</h2></div>
+            <div class="p">This procedure only applies to: <ul class="ul">
+                <li class="li">On-premise implementations.</li>
+
+                <li class="li">On-premise implementations migrating to a <span class="keyword">SaaS</span> or Managed Cloud implementation.</li>
+
+                </ul>
+</div>
+
+            <div class="note"><span class="notetitle">Note:</span> This procedure does not include all necessary instructions for migrating from on-premise to a <span class="keyword">SaaS</span> or Managed Cloud implementation. You should work closely with your <span class="keyword">Ellucian</span> representatives for all guidance and directions in this scenario.</div>
+
+            <div class="p">Follow this procedure if you are switching your data source, such as: <ul class="ul">
+                <li class="li">Moving from a non-Production (Test) data source to a Production data source.</li>
+
+                <li class="li">The data source's server IP address changes.</li>
+
+                <li class="li">The data source's service name or database name changes.</li>
+
+                </ul>
+</div>
+
+            <div class="note"><span class="notetitle">Note:</span> In this topic, the term <dfn class="term">source system</dfn> refers to the <span class="keyword">Ellucian</span> application that is the data source for <span class="keyword">Insights</span>: <span class="keyword">Banner</span>, <span class="keyword">Colleague</span>, or <span class="keyword">Degree Works</span>.<p class="p">The term <dfn class="term">old data source</dfn> refers to the data source system you are moving from, and <dfn class="term">new data source</dfn> is the data source you are moving to. </p>
+</div>
+
+        </div>
+
+    </div>
+
+    <div class="topic task nested1" aria-labelledby="ariaid-title2" id="xj1_5hd_w1c">
+        <h2 class="title topictitle2" id="ariaid-title2">Task 1: Complete networking requirements</h2>
+
+        
+        <div class="body taskbody"><p class="shortdesc">If you are switching your data source to a new server, complete these networking requirements. </p>
+
+            <div class="section context"><div class="tasklabel"><h3 class="sectiontitle tasklabel">About this task</h3></div>
+                <div class="p">Do not perform this task if: <ul class="ul">
+                    <li class="li">Your new data source is on the same server as the old data source.</li>
+
+                    <li class="li">You are migrating from an on-premise data source to a <span class="keyword">SaaS</span> or Managed Cloud implementation. <span class="keyword">Ellucian</span> will perform these maintenance steps for you.</li>
+
+                    </ul>
+</div>
+
+                <p class="p">If you do not need to complete this task, proceed to <span class="xref ft-internal-link" title="Later in this process, you will remove datasets, population jobs, and custom configurations associated to the old data source and recreate them for the new data source. To minimize the work needed to recreate them, record your current administration settings in advance of switching your data source." data-ft-warning="excluded-from-rendering" data-mapid="rbEOZGKJGXHGODqu~~Iz7g" data-tocid="641OkuF9YE1xqTksvnVJYw" data-section="b5d_xhd_w1c">Task 2: Review associated population jobs, custom datasets, and custom configurations</span>.</p>
+
+            </div>
+
+            <div class="tasklabel"><h3 class="sectiontitle tasklabel">Procedure</h3></div><ol class="ol steps"><li class="li step">
+                    <span class="ph cmd">Ensure your network protocols and permissions allow access to the new source database from traffic originating from the <span class="keyword">Ellucian</span> VPN. </span>
+                </li>
+<li class="li step">
+                    <span class="ph cmd">Contact <span class="keyword">Ellucian Action Line</span> to share the IP address of the new source database server. <span class="keyword">Ellucian</span> needs this IP address to configure the NAT address in the VPN for the new data source. </span>
+                </li>
+</ol>
+
+            <div class="section postreq"><div class="tasklabel"><h3 class="sectiontitle tasklabel">What to do next</h3></div><span class="keyword">Ellucian Action Line</span> will confirm when the VPN for the new data source has been created.</div>
+
+        </div>
+
+    </div>
+
+    <div class="topic task nested1" aria-labelledby="ariaid-title3" id="b5d_xhd_w1c">
+        <h2 class="title topictitle2" id="ariaid-title3">Task 2: Review associated population jobs, custom datasets, and custom configurations</h2>
+
+        
+        <div class="body taskbody"><p class="shortdesc">Later in this process, you will remove datasets, population jobs, and custom configurations associated to the old data source and recreate them for the new data source. To minimize the work needed to recreate them, record your current administration settings in advance of switching your data source. </p>
+
+            <div class="tasklabel"><h3 class="sectiontitle tasklabel">Procedure</h3></div><ol class="ol steps"><li class="li step stepexpand">
+                    <span class="ph cmd">Review any recurring population schedules to be recreated with the new data source.</span>
+                    <ol type="a" class="ol substeps">
+                        <li class="li substep">
+                            <span class="ph cmd">In <span class="ph uicontrol">Insights Administration</span>, go to <span class="ph menucascade"><span class="ph uicontrol">Population</span><abbr title="and then"> &gt; </abbr><span class="ph uicontrol">Recurring Schedules</span></span>.</span>
+                        </li>
+
+                        <li class="li substep">
+                            <span class="ph cmd">Click the job name to see its details.</span>
+                        </li>
+
+                        <li class="li substep">
+                            <span class="ph cmd">Make note of the job details so that you can recreate it when the new data source is configured. </span>
+                        </li>
+
+                    </ol>
+
+                </li>
+<li class="li step stepexpand">
+                    <span class="ph cmd">Review any custom datasets associated with the old data source and download the template definitions.</span>
+                    <ol type="a" class="ol substeps">
+                        <li class="li substep substepexpand">
+                            <span class="ph cmd">Go to <span class="ph menucascade"><span class="ph uicontrol">Configuration</span><abbr title="and then"> &gt; </abbr><span class="ph uicontrol">Custom Datasets</span></span>.</span>
+                        </li>
+
+                        <li class="li substep substepexpand">
+                            <span class="ph cmd">For all custom dataset templates associated with the old data source, click the dataset template name to view its details.</span>
+                        </li>
+
+                        <li class="li substep substepexpand">
+                            <span class="ph cmd">If you want to recreate the custom dataset template to use it with the new data source, click <span class="ph uicontrol">Download</span> <span class="ph"><img class="image ell-icon" src="images/06-data-source-maintenance-for-insights-2.png" alt="" data-ft-asset-display-name="download.png" data-ft-resource-id="F53xNFMgdvD8BYb6ej1dUw-rbEOZGKJGXHGODqu~~Iz7g"></span> to download a CSV file containing the template definition.</span>
+                            <div class="itemgroup info">Downloading the CSV files with the definitions will greatly assist you when you recreate the custom datasets for the new data source.</div>
+                        </li>
+
+                        <li class="li substep substepexpand">
+                            <span class="ph cmd">Review the CSV definition of the custom dataset and adjust as needed. </span>
+                            <div class="itemgroup stepxmp">For example, you may need to remove tables that are no longer applicable in the new data source.</div>
+                        </li>
+
+                    </ol>
+
+                </li>
+<li class="li step stepexpand" id="b5d_xhd_w1c__step_j3d_lxk_y1c">
+                    <span class="ph cmd">If there are recurring point-in-time data capture jobs that include tables associated with the original data source, review the job details and evaluate whether the tables in the list should be captured on the new data source.</span>
+                    <ol type="a" class="ol substeps">
+                        <li class="li substep substepexpand">
+                            <span class="ph cmd">Go to <span class="ph menucascade"><span class="ph uicontrol">Configuration</span><abbr title="and then"> &gt; </abbr><span class="ph uicontrol">Point-in-time Lists</span></span> to review all lists.</span>
+                        </li>
+
+                        <li class="li substep substepexpand">
+                            <span class="ph cmd">Click a point-in-time list name to review its details.</span>
+                        </li>
+
+                        <li class="li substep substepexpand">
+                            <span class="ph cmd">For each point-in-time list, review the details and take action as needed. </span>
+                            <div class="itemgroup info">
+                                <ul class="ul">
+                                    <li class="li">If you do not want to keep the list for the new data source, delete the list. This also deletes any capture jobs associated with the list.</li>
+
+                                    <li class="li">To keep the list and capture data using the new data source, and there are no changes to the tables in the list, you do not need to take any action. The list will be available for use with the new data source after you complete all steps in this procedure. </li>
+
+                                    <li class="li">To keep the list and capture data using the new data source, but the list needs modifications (such as adding or removing tables), you do not need to take any action until after the <span class="keyword">Data Warehouse</span> has been populated with the new data source. That can be done after <span class="xref ft-internal-link" title="Perform the setup steps as you would for any new data source. You can refer to any records you kept in Task 2: Review associated population jobs, custom datasets, and custom configurations to streamline the process." data-ft-warning="excluded-from-rendering" data-mapid="rbEOZGKJGXHGODqu~~Iz7g" data-tocid="641OkuF9YE1xqTksvnVJYw" data-section="usy_3jd_w1c">Task 6: Populate the Data Warehouse and recreate jobs and custom configurations</span>.</li>
+
+                                </ul>
+
+                            </div>
+                        </li>
+
+                        <li class="li substep substepexpand">
+                            <span class="ph cmd">For each point-in-time capture you want to keep for the new data source, go to <span class="ph menucascade"><span class="ph uicontrol">Population</span><abbr title="and then"> &gt; </abbr><span class="ph uicontrol">Recurring Schedules</span></span> to review the schedules and update as needed. </span>
+                            <div class="itemgroup info">The recurring scheduled jobs for point-in-time lists are retained in <span class="keyword">Insights</span> Administration unless you remove them. This allows you to retain the same data capture schedule for your point-in-time list after you switch to the new data source.</div>
+                        </li>
+
+                    </ol>
+
+                </li>
+<li class="li step stepexpand">
+                    <span class="ph cmd">Take note of any customizations you made to parameters. </span>
+                    <div class="itemgroup info">If you want to use these customizations with your new data source, you can reapply them later in this procedure (Step <span class="xref ft-internal-link" data-ft-warning="excluded-from-rendering" data-mapid="rbEOZGKJGXHGODqu~~Iz7g" data-tocid="641OkuF9YE1xqTksvnVJYw" data-section="usy_3jd_w1c__step_m5t_zzk_y1c">1</span> of <span class="xref ft-internal-link" title="Perform the setup steps as you would for any new data source. You can refer to any records you kept in Task 2: Review associated population jobs, custom datasets, and custom configurations to streamline the process." data-ft-warning="excluded-from-rendering" data-mapid="rbEOZGKJGXHGODqu~~Iz7g" data-tocid="641OkuF9YE1xqTksvnVJYw" data-section="usy_3jd_w1c">Task 6: Populate the Data Warehouse and recreate jobs and custom configurations</span>).</div>
+                </li>
+<li class="li step stepexpand">
+                    <span class="ph cmd">Take note of any customizations you made to display rules in <span class="keyword">Insights</span>.</span>
+                    <div class="itemgroup info">If you want to use these customizations with your new data source, you can reapply them later in this procedure (Step <span class="xref ft-internal-link" data-ft-warning="excluded-from-rendering" data-mapid="rbEOZGKJGXHGODqu~~Iz7g" data-tocid="641OkuF9YE1xqTksvnVJYw" data-section="usy_3jd_w1c__step_m5t_zzk_y1c">1</span> of <span class="xref ft-internal-link" title="Perform the setup steps as you would for any new data source. You can refer to any records you kept in Task 2: Review associated population jobs, custom datasets, and custom configurations to streamline the process." data-ft-warning="excluded-from-rendering" data-mapid="rbEOZGKJGXHGODqu~~Iz7g" data-tocid="641OkuF9YE1xqTksvnVJYw" data-section="usy_3jd_w1c">Task 6: Populate the Data Warehouse and recreate jobs and custom configurations</span>).</div>
+                </li>
+</ol>
+
+        </div>
+
+    </div>
+
+    <div class="topic task nested1" aria-labelledby="ariaid-title4" id="f4z_xhd_w1c">
+        <h2 class="title topictitle2" id="ariaid-title4">Task 3: Remove the old data source and associated dependencies</h2>
+
+        
+        <div class="body taskbody"><p class="shortdesc">After reviewing all items associated with the old data source and recording any details you want to recreate on the new data source, you can remove them from <span class="keyword">Insights</span> Administration. Then you need to delete the old data source from <span class="keyword">Insights</span>.</p>
+
+            <div class="tasklabel"><h3 class="sectiontitle tasklabel">Procedure</h3></div><ol class="ol steps"><li class="li step stepexpand" id="f4z_xhd_w1c__step_dgv_wxp_q1c">
+                    <span class="ph cmd">In <span class="keyword">Insights</span> Administration, delete all ingested datasets (including custom datasets) associated with the old data source.</span>
+                    <ol type="a" class="ol substeps">
+                        <li class="li substep">
+                            <span class="ph cmd">In <span class="ph uicontrol">Insights Administration</span>, go to <span class="ph menucascade"><span class="ph uicontrol">Ingestion</span><abbr title="and then"> &gt; </abbr><span class="ph uicontrol">Datasets</span></span>.</span>
+                        </li>
+
+                        <li class="li substep">
+                            <span class="ph cmd">Click <span class="ph uicontrol">Filter</span> <span class="ph"><img class="image ell-icon" src="images/06-data-source-maintenance-for-insights-3.png" alt="" data-ft-asset-display-name="filter.png" data-ft-resource-id="S~RcW1VUgtiVZGuLvEegnQ-rbEOZGKJGXHGODqu~~Iz7g"></span> to narrow the display list.</span>
+                        </li>
+
+                        <li class="li substep">
+                            <span class="ph cmd">Select the old data source and click <span class="ph uicontrol">Apply</span>.</span>
+                        </li>
+
+                        <li class="li substep">
+                            <span class="ph cmd">For each dataset, click <span class="ph menucascade"><span class="ph uicontrol">Actions <img class="image" src="images/06-data-source-maintenance-for-insights-1.png" alt="Actions" data-ft-asset-display-name="btn_insights_more.png" data-ft-resource-id="R_vyVkDFRCu6A0npJ5kdqA-rbEOZGKJGXHGODqu~~Iz7g"></span><abbr title="and then"> &gt; </abbr><span class="ph uicontrol"> Delete</span></span>.</span>
+                        </li>
+
+                    </ol>
+
+                    <div class="itemgroup info">See <span class="xref ft-internal-link" title="A dataset is a collection of tables that loads from the data source into the Data Lake. When you delete a dataset, the data is removed from the Data Lake." data-ft-warning="excluded-from-rendering" data-mapid="rbEOZGKJGXHGODqu~~Iz7g" data-tocid="jipg2b8o0Kprh2SIb4Kbzg">Delete a dataset</span> for additional information.</div>
+                </li>
+<li class="li step stepexpand">
+                    <span class="ph cmd">If you have custom datasets associated with the old data source and downloaded them in <span class="xref ft-internal-link" title="Later in this process, you will remove datasets, population jobs, and custom configurations associated to the old data source and recreate them for the new data source. To minimize the work needed to recreate them, record your current administration settings in advance of switching your data source." data-ft-warning="excluded-from-rendering" data-mapid="rbEOZGKJGXHGODqu~~Iz7g" data-tocid="641OkuF9YE1xqTksvnVJYw" data-section="b5d_xhd_w1c">Task 2: Review associated population jobs, custom datasets, and custom configurations</span>, delete the custom dataset templates.</span>
+                    <div class="itemgroup info">
+                        <p class="p">See <span class="xref ft-internal-link" title="If you determine that you no longer need a custom dataset, you can delete an unused or unnecessary custom dataset template from Insights Administration." data-ft-warning="excluded-from-rendering" data-mapid="rbEOZGKJGXHGODqu~~Iz7g" data-tocid="lHZbwdl9_zz7_eX80F8AIw">Delete a custom dataset</span> for instructions.</p>
+
+                    </div>
+                </li>
+<li class="li step stepexpand">
+                    <span class="ph cmd">Delete all recurring population jobs that are associated with the old data source. </span>
+                    <div class="itemgroup info">
+                        <p class="p">See <span class="xref ft-internal-link" title="Insights administrators can pause and resume upcoming recurring jobs, or delete a recurring job series from the Recurring Schedules tab." data-ft-warning="excluded-from-rendering" data-mapid="rbEOZGKJGXHGODqu~~Iz7g" data-tocid="J5tTB1r1CXOHjkjm5JGi5Q">Pause or delete recurring jobs</span> for instructions.</p>
+
+                        <div class="note"><span class="notetitle">Note:</span> You can retain recurring point-in-time jobs for the point-in-time lists you want to use with the new data source. Any unwanted point-in-time jobs should have been removed in Step <span class="xref ft-internal-link" data-ft-warning="excluded-from-rendering" data-mapid="rbEOZGKJGXHGODqu~~Iz7g" data-tocid="641OkuF9YE1xqTksvnVJYw" data-section="b5d_xhd_w1c__step_j3d_lxk_y1c">3</span> of <span class="xref ft-internal-link" title="Later in this process, you will remove datasets, population jobs, and custom configurations associated to the old data source and recreate them for the new data source. To minimize the work needed to recreate them, record your current administration settings in advance of switching your data source." data-ft-warning="excluded-from-rendering" data-mapid="rbEOZGKJGXHGODqu~~Iz7g" data-tocid="641OkuF9YE1xqTksvnVJYw" data-section="b5d_xhd_w1c">Task 2: Review associated population jobs, custom datasets, and custom configurations</span>. </div>
+
+                    </div>
+                </li>
+<li class="li step stepexpand">
+                    <span class="ph cmd">After removing all items associated with the old data source, you can delete the old data source from <span class="keyword">Insights</span> Administration.</span>
+                    <div class="itemgroup info">See <span class="xref ft-internal-link" title="After data has been ingested from the data source, Insights administrators can delete a data source to maintain accuracy in the set of available data sources." data-ft-warning="excluded-from-rendering" data-mapid="rbEOZGKJGXHGODqu~~Iz7g" data-tocid="BfsEefZ~goY5fvADhSifqQ">Delete a data source</span> for instructions.</div>
+                </li>
+</ol>
+
+        </div>
+
+    </div>
+
+    <div class="topic task nested1" aria-labelledby="ariaid-title5" id="dnh_tnz_y1c">
+        <h2 class="title topictitle2" id="ariaid-title5">Task 4: Create the new data source and ingest the data</h2>
+
+        
+        <div class="body taskbody"><p class="shortdesc">After safely removing all items associated with the old data source, you are ready to create the new data source in <span class="keyword">Insights</span> Administration and ingest its data into the <span class="keyword">Data Lake</span>.</p>
+
+            <div class="section prereq p"><div class="tasklabel"><h3 class="sectiontitle tasklabel">Before you begin</h3></div>
+                <ol class="ol">
+                    <li class="li">Ensure that <span class="keyword">Ellucian</span> has created the VPN tunnel and provided you with the NAT IP address for your new data source. This should have been configured using the information you provided in <span class="xref ft-internal-link" title="If you are switching your data source to a new server, complete these networking requirements." data-ft-warning="excluded-from-rendering" data-mapid="rbEOZGKJGXHGODqu~~Iz7g" data-tocid="641OkuF9YE1xqTksvnVJYw" data-section="xj1_5hd_w1c">Task 1: Complete networking requirements</span>.<p class="p">Contact <span class="keyword">Ellucian Action Line</span> if necessary. </p>
+</li>
+
+                    <li class="li"><span class="keyword">Banner</span> and <span class="keyword">Degree Works</span> source systems: If you have custom dataset templates, ensure supplemental logging is enabled for all tables in your custom dataset templates. See <span class="xref ft-internal-link" title="As part of the data preparation process, Banner and Degree Works customers with on-premise Oracle source systems must enable Oracle's supplemental logging and archive logging at the database and table levels. These logging features track the changes being replicated in the Data Lake during the ingestion process." data-ft-warning="excluded-from-rendering" data-mapid="rbEOZGKJGXHGODqu~~Iz7g" data-tocid="jmlkfZu56ftcFoN5WnSMnw">Supplemental logging and archive logging for Oracle source systems</span> for instructions.</li>
+
+                </ol>
+
+            </div>
+
+            <div class="section context"><div class="tasklabel"><h3 class="sectiontitle tasklabel">About this task</h3></div>If migrating from on-premise to a <span class="keyword">SaaS</span> or Managed Cloud implementation, do not perform Steps <span class="xref ft-internal-link" data-ft-warning="excluded-from-rendering" data-mapid="rbEOZGKJGXHGODqu~~Iz7g" data-tocid="641OkuF9YE1xqTksvnVJYw" data-section="dnh_tnz_y1c__step_trd_hwq_1bc">1</span> and <span class="xref ft-internal-link" data-ft-warning="excluded-from-rendering" data-mapid="rbEOZGKJGXHGODqu~~Iz7g" data-tocid="641OkuF9YE1xqTksvnVJYw" data-section="dnh_tnz_y1c__step_bgl_hwq_1bc">2</span>. <span class="keyword">Ellucian</span> will perform these steps for you.</div>
+
+            <div class="tasklabel"><h3 class="sectiontitle tasklabel">Procedure</h3></div><ol class="ol steps"><li class="li step stepexpand" id="dnh_tnz_y1c__step_trd_hwq_1bc">
+                    <span class="ph cmd">Perform all data ingestion prerequisites on the new data source.</span>
+                    <div class="itemgroup info">
+                        <div class="note"><span class="notetitle">Note:</span> If migrating from on-premise to a <span class="keyword">SaaS</span> or Managed Cloud implementation, do not perform this step. <span class="keyword">Ellucian</span> will perform this step for you.</div>
+
+                        <div class="p">Follow the instructions in the data preparation section for your <span class="keyword">Ellucian</span> source system:<ul class="ul">
+                            <li class="li"><span class="xref ft-internal-link" title="To prepare your Banner Oracle source for ingestion to the Data Lake, you must run a series of Ellucian-provided scripts to grant the necessary access into the database. These scripts also enable the ongoing replication that keep the Data Lake updated with the latest information in your Banner source." data-ft-warning="excluded-from-rendering" data-mapid="rbEOZGKJGXHGODqu~~Iz7g" data-tocid="R~f3D1Wws44ElzLyoinGaQ">Prepare your Banner source data</span></li>
+
+                            <li class="li"><span class="xref ft-internal-link" title="To prepare your Degree Works Oracle source for ingestion to the Data Lake, you must run a series of Ellucian-provided scripts to grant the necessary access into the database. These scripts also enable the ongoing replication that keeps the Data Lake updated with the latest information in your Degree Works source." data-ft-warning="excluded-from-rendering" data-mapid="rbEOZGKJGXHGODqu~~Iz7g" data-tocid="pzGprbhQnKGV7RCffH9PRQ">Prepare your Degree Works source data</span></li>
+
+                            <li class="li"><span class="xref ft-internal-link" title="To prepare for ingestion to the Data Lake, you must grant the necessary access to your on-premise Colleague source data. You must also configure your SQL Server to ensure communication with the Data Lake. This ensures ongoing replication to keep the Data Lake updated with the latest information in your Colleague source." data-ft-warning="excluded-from-rendering" data-mapid="rbEOZGKJGXHGODqu~~Iz7g" data-tocid="FMOYEHSczrfMMKPJCB1RyA">Prepare your Colleague source data and SQL Server</span></li>
+
+                            </ul>
+</div>
+
+                    </div>
+                </li>
+<li class="li step stepexpand" id="dnh_tnz_y1c__step_bgl_hwq_1bc">
+                    <span class="ph cmd">In <span class="keyword">Insights</span> Administration, create the new data source.</span>
+                    <div class="itemgroup info">
+                        <div class="note"><span class="notetitle">Note:</span> If migrating from on-premise to a <span class="keyword">SaaS</span> or Managed Cloud implementation, do not perform this step. <span class="keyword">Ellucian</span> will perform this step for you.</div>
+
+                        <p class="p">See <span class="xref ft-internal-link" title="For your data to become available from Ellucian Insights, you first need to load it into the Data Lake using the data ingestion tool in Insights Administration." data-ft-warning="excluded-from-rendering" data-mapid="rbEOZGKJGXHGODqu~~Iz7g" data-tocid="2L9ysRoOnz2420~AuOcv2A">Ingest your source data into the Data Lake</span> for instructions. Be sure to test the connection to the new data source.</p>
+
+                    </div>
+                </li>
+<li class="li step stepexpand" id="dnh_tnz_y1c__step_im4_zvq_1bc">
+                    <span class="ph cmd">Ingest the data from your new source to the <span class="keyword">Data Lake</span>.</span>
+                    <div class="itemgroup info">
+                        <div class="note"><span class="notetitle">Note:</span> If you have any custom datasets, do not ingest them now. You will ingest them later in this procedure.</div>
+
+                        <p class="p">For instructions, see <span class="xref ft-internal-link" title="For your data to become available from Ellucian Insights, you first need to load it into the Data Lake using the data ingestion tool in Insights Administration." data-ft-warning="excluded-from-rendering" data-mapid="rbEOZGKJGXHGODqu~~Iz7g" data-tocid="2L9ysRoOnz2420~AuOcv2A">Ingest your source data into the Data Lake</span>. </p>
+
+                    </div>
+                </li>
+<li class="li step stepexpand">
+                    <span class="ph cmd">On the <span class="ph uicontrol">Recent Activity</span> tab, verify that all data sources and datasets have successfully been ingested to the <span class="keyword">Data Lake</span>.</span>
+                    <div class="itemgroup info">Depending on the volume of data, you may need to wait for the ingestion processes to complete. <ul class="ul">
+                        <li class="li">Load-only datasets display <samp class="ph systemoutput">Loaded</samp> status when they successfully complete.</li>
+
+                        <li class="li">Replicating datasets display <samp class="ph systemoutput">Active</samp> status when they successfully complete.</li>
+
+                        </ul>
+</div>
+                </li>
+</ol>
+
+            <div class="section postreq"><div class="tasklabel"><h3 class="sectiontitle tasklabel">What to do next</h3></div>
+                <div class="note warning"><span class="warningtitle">Warning:</span> Do not proceed to <span class="xref ft-internal-link" title="To ensure proper Data Warehouse population for the new data source, Ellucian must perform several key tasks for you." data-ft-warning="excluded-from-rendering" data-mapid="rbEOZGKJGXHGODqu~~Iz7g" data-tocid="641OkuF9YE1xqTksvnVJYw" data-section="dyg_w3d_w1c">Task 5 (Required): Contact Ellucian Action Line</span> until you have completed all steps to this point in this procedure. </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <div class="topic task nested1" aria-labelledby="ariaid-title6" id="dyg_w3d_w1c">
+        <h2 class="title topictitle2" id="ariaid-title6">Task 5 (Required): Contact <span class="keyword">Ellucian Action Line</span></h2>
+
+        
+        <div class="body taskbody"><p class="shortdesc">To ensure proper <span class="keyword">Data Warehouse</span> population for the new data source, <span class="keyword">Ellucian</span> must perform several key tasks for you.</p>
+
+            <div class="section prereq p"><div class="tasklabel"><h3 class="sectiontitle tasklabel">Before you begin</h3></div>Complete all previous steps in this procedure before contacting <span class="keyword">Ellucian Action Line</span>.<ul class="ul">
+                <li class="li"><span class="xref ft-internal-link" title="If you are switching your data source to a new server, complete these networking requirements." data-ft-warning="excluded-from-rendering" data-mapid="rbEOZGKJGXHGODqu~~Iz7g" data-tocid="641OkuF9YE1xqTksvnVJYw" data-section="xj1_5hd_w1c">Task 1: Complete networking requirements</span></li>
+
+                <li class="li"><span class="xref ft-internal-link" title="Later in this process, you will remove datasets, population jobs, and custom configurations associated to the old data source and recreate them for the new data source. To minimize the work needed to recreate them, record your current administration settings in advance of switching your data source." data-ft-warning="excluded-from-rendering" data-mapid="rbEOZGKJGXHGODqu~~Iz7g" data-tocid="641OkuF9YE1xqTksvnVJYw" data-section="b5d_xhd_w1c">Task 2: Review associated population jobs, custom datasets, and custom configurations</span></li>
+
+                <li class="li"><span class="xref ft-internal-link" title="After reviewing all items associated with the old data source and recording any details you want to recreate on the new data source, you can remove them from Insights Administration. Then you need to delete the old data source from Insights." data-ft-warning="excluded-from-rendering" data-mapid="rbEOZGKJGXHGODqu~~Iz7g" data-tocid="641OkuF9YE1xqTksvnVJYw" data-section="f4z_xhd_w1c">Task 3: Remove the old data source and associated dependencies</span></li>
+
+                <li class="li"><span class="xref ft-internal-link" title="After safely removing all items associated with the old data source, you are ready to create the new data source in Insights Administration and ingest its data into the Data Lake." data-ft-warning="excluded-from-rendering" data-mapid="rbEOZGKJGXHGODqu~~Iz7g" data-tocid="641OkuF9YE1xqTksvnVJYw" data-section="dnh_tnz_y1c">Task 4: Create the new data source and ingest the data</span></li>
+
+                </ul>
+<div class="note warning"><span class="warningtitle">Warning:</span> If you are migrating from an on-premise configuration to a <span class="keyword">SaaS</span> or Managed Cloud implementation, notify your <span class="keyword">Ellucian</span> representative that you have completed all previous steps. Your <span class="keyword">Ellucian</span> representative will advise you when you can continue to <span class="xref ft-internal-link" title="Perform the setup steps as you would for any new data source. You can refer to any records you kept in Task 2: Review associated population jobs, custom datasets, and custom configurations to streamline the process." data-ft-warning="excluded-from-rendering" data-mapid="rbEOZGKJGXHGODqu~~Iz7g" data-tocid="641OkuF9YE1xqTksvnVJYw" data-section="usy_3jd_w1c">Task 6: Populate the Data Warehouse and recreate jobs and custom configurations</span>.</div>
+</div>
+
+            <div class="tasklabel"><h3 class="sectiontitle tasklabel">Procedure</h3></div><ol class="ol steps"><li class="li step stepexpand"><strong>Required: </strong>
+                    <span class="ph cmd">Contact <span class="keyword">Ellucian Action Line</span> to notify them of your data source switch. </span>
+                    <div class="itemgroup info">
+                        <div class="p">Be prepared to provide these details of your new data source: <ul class="ul">
+                            <li class="li">The name of the new data source created, as defined on <span class="ph menucascade"><span class="ph uicontrol">Ingestion</span><abbr title="and then"> &gt; </abbr><span class="ph uicontrol">Data Sources</span></span>.</li>
+
+                            <li class="li">The environment where the change will happen, such as Production, non-Production, Test.</li>
+
+                            </ul>
+</div>
+
+                    </div>
+                    <div class="itemgroup stepresult"><span class="keyword">Ellucian Action Line</span> will perform the necessary actions on your environment to prepare it for the new data source.</div>
+                </li>
+<li class="li step stepexpand"><strong>Required: </strong>
+                    <span class="ph cmd">When <span class="keyword">Ellucian Action Line</span> notifies you that you can begin to populate the <span class="keyword">Data Warehouse</span>, <span class="keyword">Insights</span>, you can proceed to <span class="xref ft-internal-link" title="Perform the setup steps as you would for any new data source. You can refer to any records you kept in Task 2: Review associated population jobs, custom datasets, and custom configurations to streamline the process." data-ft-warning="excluded-from-rendering" data-mapid="rbEOZGKJGXHGODqu~~Iz7g" data-tocid="641OkuF9YE1xqTksvnVJYw" data-section="usy_3jd_w1c">Task 6: Populate the Data Warehouse and recreate jobs and custom configurations</span>.</span>
+                </li>
+</ol>
+
+        </div>
+
+    </div>
+
+    <div class="topic task nested1" aria-labelledby="ariaid-title7" id="usy_3jd_w1c">
+        <h2 class="title topictitle2" id="ariaid-title7">Task 6: Populate the Data Warehouse and recreate jobs and custom configurations</h2>
+
+        
+        <div class="body taskbody"><p class="shortdesc">Perform the setup steps as you would for any new data source. You can refer to any records you kept in <span class="xref ft-internal-link" title="Later in this process, you will remove datasets, population jobs, and custom configurations associated to the old data source and recreate them for the new data source. To minimize the work needed to recreate them, record your current administration settings in advance of switching your data source." data-ft-warning="excluded-from-rendering" data-mapid="rbEOZGKJGXHGODqu~~Iz7g" data-tocid="641OkuF9YE1xqTksvnVJYw" data-section="b5d_xhd_w1c">Task 2: Review associated population jobs, custom datasets, and custom configurations</span> to streamline the process. </p>
+
+            <div class="section prereq p"><div class="tasklabel"><h3 class="sectiontitle tasklabel">Before you begin</h3></div>
+                <div class="note warning"><span class="warningtitle">Warning:</span> Do not proceed with these steps until you have received clearance from <span class="keyword">Ellucian Action Line</span> to continue.</div>
+
+            </div>
+
+            <div class="section context"><div class="tasklabel"><h3 class="sectiontitle tasklabel">About this task</h3></div>This process is nearly identical to the steps outlined in the <span class="keyword">Insights</span> administrator section of the <span class="xref ft-internal-link" title="To configure Insights, follow this checklist to properly set up your administrators so they can manage the Insights environment and users." data-ft-warning="excluded-from-rendering" data-mapid="rbEOZGKJGXHGODqu~~Iz7g" data-tocid="18dZZlIS8Y~yk5TnWK4OaA">Ellucian Insights setup checklist</span>. Refer to that topic or the linked topics for more information.</div>
+
+            <div class="tasklabel"><h3 class="sectiontitle tasklabel">Procedure</h3></div><ol class="ol steps"><li class="li step stepexpand" id="usy_3jd_w1c__step_m5t_zzk_y1c">
+                    <span class="ph cmd">Review parameter records and update any customizations you applied to your old data source.</span>
+                    <div class="itemgroup info">See <span class="xref ft-internal-link" title="Ellucian strongly recommends you make any adjustments to the predefined parameters and the default records before you perform the first Data Warehouse population job." data-ft-warning="excluded-from-rendering" data-mapid="rbEOZGKJGXHGODqu~~Iz7g" data-tocid="~wqaWPJatHUgHhlbKBJqRg">Review and update parameters before initial Data Warehouse population</span> for instructions.</div>
+                </li>
+<li class="li step stepexpand" id="usy_3jd_w1c__step_mxg_5dh_51c">
+                    <span class="ph cmd">Schedule a Load All job for your new data source, using the specified job template.</span>
+                    <ul class="ul choices">
+                        <li class="li choice"><span class="keyword">Banner</span> systems: Load All <span class="keyword">Banner</span> <span class="keyword">Insights</span> Product</li>
+
+                        <li class="li choice"><span class="keyword">Colleague</span>: Load All <span class="keyword">Colleague</span> <span class="keyword">Insights</span> Product</li>
+
+                        <li class="li choice"><span class="keyword">Degree Works</span>: Load <span class="keyword">Degree Works</span></li>
+
+                    </ul>
+
+                    <div class="itemgroup info">Refer to <span class="xref ft-internal-link" title="Insights administrators can schedule load and refresh jobs so that the Insights data remains in sync after the initial data ingestion to the Data Warehouse. You can schedule these jobs to run one time or on a recurring schedule." data-ft-warning="excluded-from-rendering" data-mapid="rbEOZGKJGXHGODqu~~Iz7g" data-tocid="tvWm5zHY~DFCGMVt1uBLVw">Schedule a job</span> for instructions. <p class="p">To check the progress of your population jobs, see <span class="xref ft-internal-link" title="Insights administrators can view job statuses from the Activity tab." data-ft-warning="excluded-from-rendering" data-mapid="rbEOZGKJGXHGODqu~~Iz7g" data-tocid="kisFQnPmY0YDvQ9cZvH9vA">Monitor Population job statuses</span> for more information.</p>
+</div>
+                </li>
+<li class="li step stepexpand">
+                    <span class="ph cmd">If you deleted custom dataset template definitions in <span class="xref ft-internal-link" title="After reviewing all items associated with the old data source and recording any details you want to recreate on the new data source, you can remove them from Insights Administration. Then you need to delete the old data source from Insights." data-ft-warning="excluded-from-rendering" data-mapid="rbEOZGKJGXHGODqu~~Iz7g" data-tocid="641OkuF9YE1xqTksvnVJYw" data-section="f4z_xhd_w1c">Task 3: Remove the old data source and associated dependencies</span>, recreate and reingest the custom datasets.</span>
+                    <div class="itemgroup info">
+                        <div class="note"><span class="notetitle">Note:</span> Ensure that all population jobs have completed before attempting to ingest the custom datasets. The data catalog must be in the <span class="keyword">Data Warehouse</span> before you can ingest a custom dataset.</div>
+
+                        <p class="p">See <span class="xref ft-internal-link" title="When you have prepared your CSV file containing the custom dataset configuration, you can create the custom dataset in Insights Administration and upload the file." data-ft-warning="excluded-from-rendering" data-mapid="rbEOZGKJGXHGODqu~~Iz7g" data-tocid="~jpXu9qrtB4l8N1Pw48U4w">Create a custom dataset</span> and <span class="xref ft-internal-link" title="Just as with any source data you want to bring into the Insights Data Warehouse, you must first ingest the custom dataset to the Data Lake before you can load it to the Data Warehouse." data-ft-warning="excluded-from-rendering" data-mapid="rbEOZGKJGXHGODqu~~Iz7g" data-tocid="BOvE5NDwfIHmaaIXw_FXEg">Ingest a custom dataset to the Data Lake</span> for instructions.</p>
+
+                        <p class="p">If you intend to upload the saved custom dataset definitions from <span class="xref ft-internal-link" title="After reviewing all items associated with the old data source and recording any details you want to recreate on the new data source, you can remove them from Insights Administration. Then you need to delete the old data source from Insights." data-ft-warning="excluded-from-rendering" data-mapid="rbEOZGKJGXHGODqu~~Iz7g" data-tocid="641OkuF9YE1xqTksvnVJYw" data-section="f4z_xhd_w1c">Task 3: Remove the old data source and associated dependencies</span>, review the data source information in those definitions to confirm the definitions are still valid for the new data source. </p>
+
+                    </div>
+                </li>
+<li class="li step stepexpand">
+                    <span class="ph cmd">If there are recurring point-in-time data capture jobs that include tables associated with the original data source, review the job details and make any necessary changes.</span>
+                    <ol type="a" class="ol substeps">
+                        <li class="li substep substepexpand">
+                            <span class="ph cmd">Go to <span class="ph menucascade"><span class="ph uicontrol">Configuration</span><abbr title="and then"> &gt; </abbr><span class="ph uicontrol">Point-in-time Lists</span></span> and evaluate whether the tables in the list should still be captured, considering the data source changes.</span>
+                        </li>
+
+                        <li class="li substep substepexpand">
+                            <span class="ph cmd">If necessary, make any changes to the list. </span>
+                            <div class="itemgroup info">See <span class="xref ft-internal-link" title="You may need to update your point-in-time list after it was created. For example, at the start of a new semester, you need to change the filter to reflect the current academic period. Or you may need to add a table or view to your existing point-in-time list." data-ft-warning="excluded-from-rendering" data-mapid="rbEOZGKJGXHGODqu~~Iz7g" data-tocid="~7uve3vTtjflNu3Tkj6XDQ">Edit a point-in-time list</span> for instructions. </div>
+                        </li>
+
+                        <li class="li substep substepexpand">
+                            <span class="ph cmd">If the entire list is no longer valid, delete the point-in-time list, which also deletes any recurring jobs associated with it. </span>
+                            <div class="itemgroup info">See <span class="xref ft-internal-link" title="You can delete a point-in-time list if you no longer need to capture the data for that list." data-ft-warning="excluded-from-rendering" data-mapid="rbEOZGKJGXHGODqu~~Iz7g" data-tocid="J0zEgc6PsDK_jOB~144gPA">Delete a point-in-time list</span> for instructions.</div>
+                        </li>
+
+                        <li class="li substep substepexpand">
+                            <span class="ph cmd">If desired, create a new point-in-time list and new recurring point-in-time jobs for the updated data source. </span>
+                            <div class="itemgroup info">See <span class="xref ft-internal-link" title="Build your point-in-time list to specify the tables or views which contain the data you want to create a snapshot for." data-ft-warning="excluded-from-rendering" data-mapid="rbEOZGKJGXHGODqu~~Iz7g" data-tocid="23pbg7fkxmlnIswJ5p4zrg">Create a point-in-time list</span> and <span class="xref ft-internal-link" title="Create and schedule a point-in-time job so that Insights can capture the data you need." data-ft-warning="excluded-from-rendering" data-mapid="rbEOZGKJGXHGODqu~~Iz7g" data-tocid="8aHzOWIivygDZ0Yd9z_XGg">Create a point-in-time job</span>.</div>
+                        </li>
+
+                    </ol>
+
+                </li>
+<li class="li step stepexpand">
+                    <span class="ph cmd">Recreate any recurring population jobs that you deleted in <span class="xref ft-internal-link" title="After reviewing all items associated with the old data source and recording any details you want to recreate on the new data source, you can remove them from Insights Administration. Then you need to delete the old data source from Insights." data-ft-warning="excluded-from-rendering" data-mapid="rbEOZGKJGXHGODqu~~Iz7g" data-tocid="641OkuF9YE1xqTksvnVJYw" data-section="f4z_xhd_w1c">Task 3: Remove the old data source and associated dependencies</span>. </span>
+                    <div class="itemgroup info">See <span class="xref ft-internal-link" title="Insights administrators can schedule load and refresh jobs so that the Insights data remains in sync after the initial data ingestion to the Data Warehouse. You can schedule these jobs to run one time or on a recurring schedule." data-ft-warning="excluded-from-rendering" data-mapid="rbEOZGKJGXHGODqu~~Iz7g" data-tocid="tvWm5zHY~DFCGMVt1uBLVw">Schedule a job</span> for instructions.</div>
+                </li>
+</ol>
+
+            <div class="section result"><div class="tasklabel"><h3 class="sectiontitle tasklabel">Results</h3></div>Your new data source setup is complete.</div>
+
+            <div class="section postreq"><div class="tasklabel"><h3 class="sectiontitle tasklabel">What to do next</h3></div>
+                <p class="p">If your site uses <span class="keyword">Insights Custom Transformations</span> with pipelines that refer to tables in the old data source, verify the same tables exist in the new data source.</p>
+
+                <p class="p">If they do not exist on the new data source, make any necessary adjustments to the pipelines so that the pipelines do not fail. Alternatively, you may choose to delete pipelines that are no longer applicable.</p>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div></div></section>
+<section id="t-1970"><h3>Update Insights data sources for database credentials changes</h3><div class="content-locale-en-US content-locale-en"><div id="t_maint_source_credntl_change"><div class="body taskbody"><p class="shortdesc">If the password or other connection credentials have changed on your source system, you must update the data source connection information in <span class="keyword">Insights</span> Administration.</p>
+
+        <div class="section context"><div class="tasklabel"><h2 class="sectiontitle tasklabel">About this task</h2></div>
+            <ul class="ul">
+                <li class="li">These steps are only applicable to on-premise implementations. </li>
+
+                <li class="li">For <span class="keyword">Ellucian</span> SaaS or Managed Cloud source systems, <span class="keyword">Ellucian</span> will manage the password change. If an error occurs because of an incorrect username or password, contact <span class="keyword">Ellucian Action Line</span>.</li>
+
+            </ul>
+
+            <p class="p">See <span class="xref ft-internal-link" title="You may want to edit a data source if any of the connection properties change; for example, the user's password or the data source name." data-ft-warning="excluded-from-rendering" data-mapid="rbEOZGKJGXHGODqu~~Iz7g" data-tocid="pZRJTj7M8P1o~jSp_Ze11g">Edit a data source</span> for more information.</p>
+
+        </div>
+
+        <div class="tasklabel"><h2 class="sectiontitle tasklabel">Procedure</h2></div><ol class="ol steps"><li class="li step stepexpand">
+                <span class="ph cmd">In <span class="ph uicontrol">Insights Administration</span>, go to <span class="ph menucascade"><span class="ph uicontrol">Ingestion</span><abbr title="and then"> &gt; </abbr><span class="ph uicontrol">Data Sources</span></span>.</span>
+            </li>
+<li class="li step stepexpand">
+                <span class="ph cmd">For the affected data source, click <span class="ph menucascade"><span class="ph uicontrol">Actions <img class="image" src="images/06-data-source-maintenance-for-insights-1.png" alt="Actions" data-ft-asset-display-name="btn_insights_more.png" data-ft-resource-id="R_vyVkDFRCu6A0npJ5kdqA-rbEOZGKJGXHGODqu~~Iz7g"></span><abbr title="and then"> &gt; </abbr><span class="ph uicontrol">Pause</span></span>. </span>
+                <div class="itemgroup info">
+                    <p class="p">If the <span class="ph uicontrol">Pause</span> option is unavailable (such as when the data source is currently refreshing), wait until the <span class="ph uicontrol">Pause</span> option is available again. </p>
+
+                    <p class="p">If an affected data source has an <samp class="ph systemoutput">ERROR</samp> status, click the error message and review the status. If the error is due to a connection or credentials error, you do not need to pause the data source ingestion. </p>
+
+                </div>
+            </li>
+<li class="li step stepexpand">
+                <span class="ph cmd">Click <span class="ph menucascade"><span class="ph uicontrol">Actions <img class="image" src="images/06-data-source-maintenance-for-insights-1.png" alt="Actions" data-ft-asset-display-name="btn_insights_more.png" data-ft-resource-id="R_vyVkDFRCu6A0npJ5kdqA-rbEOZGKJGXHGODqu~~Iz7g"></span><abbr title="and then"> &gt; </abbr><span class="ph uicontrol">Edit</span></span>. </span>
+            </li>
+<li class="li step stepexpand">
+                <span class="ph cmd">Enter the new password for the data source.</span>
+            </li>
+<li class="li step stepexpand">
+                <span class="ph cmd">Click <span class="ph uicontrol">Verify</span> to confirm the connection using the new password.</span>
+            </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Click <span class="ph uicontrol">Save</span>.</span>
+      </li>
+<li class="li step stepexpand">
+                <span class="ph cmd">Click <span class="ph menucascade"><span class="ph uicontrol">Actions <img class="image" src="images/06-data-source-maintenance-for-insights-1.png" alt="Actions" data-ft-asset-display-name="btn_insights_more.png" data-ft-resource-id="R_vyVkDFRCu6A0npJ5kdqA-rbEOZGKJGXHGODqu~~Iz7g"></span><abbr title="and then"> &gt; </abbr><span class="ph uicontrol">Resume</span></span> to resume data ingestion for this data source.</span>
+                <div class="itemgroup info">
+                    <div class="note"><span class="notetitle">Note:</span> Be sure to select <span class="ph uicontrol">Resume</span>, not <span class="ph uicontrol">Restart</span> for the paused data source. Selecting <span class="ph uicontrol">Resume</span> continues CDC processing from the point where ingestion was paused. Selecting <span class="ph uicontrol">Restart</span> starts the ingestion process from the beginning, and also requires a reload to the <span class="keyword">Data Warehouse</span>. Restarting the ingestion can take a long time, depending on the size of your database.</div>
+
+                    
+                </div>
+            </li>
+</ol>
+
+    </div>
+
+</div></div></section>
+<section id="t-1980"><h3>Maintain Insights when updating the data source operating system</h3><div class="content-locale-en-US content-locale-en"><div id="t_maint_source_os_updates"><div class="body taskbody"><p class="shortdesc">If your source system will shut down during an operating system update, perform these steps to keep your <span class="keyword">Insights</span> <span class="keyword">Data Warehouse</span> in alignment with your data source when it returns online.</p>
+
+        <div class="section context"><div class="tasklabel"><h2 class="sectiontitle tasklabel">About this task</h2></div>
+            <ul class="ul">
+                <li class="li">These steps are only necessary if you have to take your data source databases offline when applying updates to the source system's operating system. </li>
+
+                <li class="li">These steps are only applicable to on-premise implementations. </li>
+
+                <li class="li">For <span class="keyword">Ellucian</span> SaaS or Managed Cloud source systems, <span class="keyword">Ellucian</span> will perform these maintenance steps for you.</li>
+
+            </ul>
+
+        </div>
+
+    </div>
+
+    <div class="topic task nested1" aria-labelledby="ariaid-title2" id="hkj_wp3_q1c">
+        <h2 class="title topictitle2" id="ariaid-title2">Task 1: Actions before the operating system updates</h2>
+
+        
+        <div class="body taskbody"><p class="shortdesc">You need to ensure logging is enabled and then pause all affected data ingestion processes before you begin applying any operating system updates.</p>
+
+            <div class="tasklabel"><h3 class="sectiontitle tasklabel">Procedure</h3></div><ol class="ol steps"><li class="li step stepexpand">
+                    <span class="ph cmd"><span class="keyword">Banner</span> and <span class="keyword">Degree Works</span> only: Enable supplemental logging and archive logging, if not already enabled. </span>
+                    <div class="itemgroup info">
+                        <p class="p">Because you will be pausing ingestion during the operating system updates, enabling supplemental logging ensures that the required archive logs are retained until the CDC process is complete after ingestion is unpaused.</p>
+
+                        <p class="p">See <span class="xref ft-internal-link" title="As part of the data preparation process, Banner and Degree Works customers with on-premise Oracle source systems must enable Oracle's supplemental logging and archive logging at the database and table levels. These logging features track the changes being replicated in the Data Lake during the ingestion process." data-ft-warning="excluded-from-rendering" data-mapid="rbEOZGKJGXHGODqu~~Iz7g" data-tocid="jmlkfZu56ftcFoN5WnSMnw">Supplemental logging and archive logging for Oracle source systems</span> for more information. </p>
+
+                    </div>
+                </li>
+<li class="li step stepexpand">
+                    <span class="ph cmd">Pause ingestion for the affected data sources.</span>
+                    <div class="itemgroup info">See <span class="xref ft-internal-link" title="Use the pause, restart, and resume actions to manage the connection between the Data Lake and your data sources. For example, you may need to pause a data source to perform a maintenance upgrade or apply a fix to the source." data-ft-warning="excluded-from-rendering" data-mapid="rbEOZGKJGXHGODqu~~Iz7g" data-tocid="4FECPO4dABApU8XEMie_DA">Pause, resume, or restart a data source</span>.</div>
+                    <ol type="a" class="ol substeps">
+                        <li class="li substep substepexpand">
+                            <span class="ph cmd">In <span class="ph uicontrol">Insights Administration</span>, go to <span class="ph menucascade"><span class="ph uicontrol">Ingestion</span><abbr title="and then"> &gt; </abbr><span class="ph uicontrol">Data Sources</span></span>.</span>
+                        </li>
+
+                        <li class="li substep substepexpand">
+                            <span class="ph cmd">Click <span class="ph menucascade"><span class="ph uicontrol">Actions <img class="image" src="images/06-data-source-maintenance-for-insights-1.png" alt="Actions" data-ft-asset-display-name="btn_insights_more.png" data-ft-resource-id="R_vyVkDFRCu6A0npJ5kdqA-rbEOZGKJGXHGODqu~~Iz7g"></span><abbr title="and then"> &gt; </abbr><span class="ph uicontrol">Pause</span></span> for each associated data source. </span>
+                            <div class="itemgroup info">If the <span class="ph uicontrol">Pause</span> option is unavailable (such as when the data source is currently refreshing), wait until the <span class="ph uicontrol">Pause</span> option is available again. If the data source is in <samp class="ph systemoutput">ERROR</samp> state and cannot be paused, contact <span class="keyword">Ellucian Action Line</span>.</div>
+                        </li>
+
+                    </ol>
+
+                </li>
+<li class="li step stepexpand"><strong>Optional: </strong>
+                    <span class="ph cmd">If you have recurring point-in-time jobs that capture data from the paused data source, consider pausing those jobs.</span>
+                    <div class="itemgroup info">
+                        <p class="p">If a point-in-time job is scheduled to occur while data source is paused, the job will successfully capture the data. However the capture may not be accurate because any data changes on the data source will not be in the <span class="keyword">Insights</span> <span class="keyword">Data Warehouse</span> until the last step of this procedure (Step <span class="xref ft-internal-link" data-ft-warning="excluded-from-rendering" data-mapid="rbEOZGKJGXHGODqu~~Iz7g" data-tocid="WbNNac6Tiv3oUvNAkFsujg" data-section="ey3_ts3_q1c__step_z3f_pjz_t1c">3</span>).</p>
+
+                        <p class="p">See <span class="xref ft-internal-link" title="Insights administrators can pause and resume upcoming recurring jobs, or delete a recurring job series from the Recurring Schedules tab." data-ft-warning="excluded-from-rendering" data-mapid="rbEOZGKJGXHGODqu~~Iz7g" data-tocid="J5tTB1r1CXOHjkjm5JGi5Q">Pause or delete recurring jobs</span> for instructions on pausing upcoming point-in-time jobs. </p>
+
+                    </div>
+                </li>
+</ol>
+
+        </div>
+
+    </div>
+
+    <div class="topic task nested1" aria-labelledby="ariaid-title3" id="ey3_ts3_q1c">
+        <h2 class="title topictitle2" id="ariaid-title3">Task 2: Continue ingestion after operating system updates</h2>
+
+        
+        <div class="body taskbody"><p class="shortdesc">After all operating system updates on your source system are complete, you can continue data ingestion.</p>
+
+            <div class="tasklabel"><h3 class="sectiontitle tasklabel">Procedure</h3></div><ol class="ol steps"><li class="li step stepexpand">
+                    <span class="ph cmd">In <span class="ph uicontrol">Insights Administration</span>, go to <span class="ph menucascade"><span class="ph uicontrol">Ingestion</span><abbr title="and then"> &gt; </abbr><span class="ph uicontrol">Data Sources</span></span>.</span>
+                </li>
+<li class="li step stepexpand">
+                    <span class="ph cmd">Click <span class="ph menucascade"><span class="ph uicontrol">Actions <img class="image" src="images/06-data-source-maintenance-for-insights-1.png" alt="Actions" data-ft-asset-display-name="btn_insights_more.png" data-ft-resource-id="R_vyVkDFRCu6A0npJ5kdqA-rbEOZGKJGXHGODqu~~Iz7g"></span><abbr title="and then"> &gt; </abbr><span class="ph uicontrol">Resume</span></span> for each data source that was paused in <span class="xref ft-internal-link" title="You need to ensure logging is enabled and then pause all affected data ingestion processes before you begin applying any operating system updates." data-ft-warning="excluded-from-rendering" data-mapid="rbEOZGKJGXHGODqu~~Iz7g" data-tocid="WbNNac6Tiv3oUvNAkFsujg" data-section="hkj_wp3_q1c">Task 1: Actions before the operating system updates</span>.</span>
+                    <div class="itemgroup info">
+                        <div class="note"><span class="notetitle">Note:</span> Be sure to select <span class="ph uicontrol">Resume</span>, not <span class="ph uicontrol">Restart</span> for the paused data source. Selecting <span class="ph uicontrol">Resume</span> continues CDC processing from the point where ingestion was paused. Selecting <span class="ph uicontrol">Restart</span> starts the ingestion process from the beginning, and also requires a reload to the <span class="keyword">Data Warehouse</span>. Restarting the ingestion can take a long time, depending on the size of your database.</div>
+
+                    </div>
+                </li>
+<li class="li step stepexpand" id="ey3_ts3_q1c__step_z3f_pjz_t1c"><strong>Optional: </strong>
+                    <span class="ph cmd">If you paused point-in-time jobs in <span class="xref ft-internal-link" title="You need to ensure logging is enabled and then pause all affected data ingestion processes before you begin applying any operating system updates." data-ft-warning="excluded-from-rendering" data-mapid="rbEOZGKJGXHGODqu~~Iz7g" data-tocid="WbNNac6Tiv3oUvNAkFsujg" data-section="hkj_wp3_q1c">Task 1: Actions before the operating system updates</span>, you can now resume those jobs.</span>
+                </li>
+</ol>
+
+        </div>
+
+    </div>
+
+</div></div></section></main></body></html>

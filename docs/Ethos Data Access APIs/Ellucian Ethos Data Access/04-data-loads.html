@@ -1,0 +1,1991 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Ellucian Ethos Data Access — Data loads</title><style>body{font-family:-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;line-height:1.55;color:#1a1a1a;max-width:920px;margin:0 auto;padding:24px}header{border-bottom:2px solid #5a16d6;margin-bottom:8px}h1{color:#3a0ca3}h2,h3,h4,h5,h6{margin-top:1.6em}.crumb{color:#666;font-size:13px;margin:0}.meta{color:#888;font-size:12px}nav.toc{background:#f6f4fc;border:1px solid #e3dcf5;border-radius:8px;padding:12px 18px;margin:18px 0}nav.toc h2{margin:.2em 0}nav.toc ul{list-style:none;padding-left:0}nav.toc a{text-decoration:none;color:#5a16d6}section{margin:1.2em 0;padding-top:.4em}img{max-width:100%;height:auto}table{border-collapse:collapse}td,th{border:1px solid #ccc;padding:4px 8px}code,pre{background:#f4f4f4;border-radius:4px}pre{padding:10px;overflow:auto}</style></head><body><header><p class="crumb">Ethos Data Access APIs › Ellucian Ethos Data Access</p><h1>Ellucian Ethos Data Access — Data loads</h1><p class="meta">Source: <a href="https://resources.elluciancloud.com/r/bundle/ethos_data_access">https://resources.elluciancloud.com/r/bundle/ethos_data_access</a> &middot; Retrieved 2026-06-17</p></header><nav class="toc"><h2>Contents</h2><ul><li style="margin-left:0px"><a href="#t-420">Data loads</a></li><li style="margin-left:16px"><a href="#t-430">The data load process</a></li><li style="margin-left:32px"><a href="#t-440">Data model extensibility</a></li><li style="margin-left:48px"><a href="#t-450">Example - Use case</a></li><li style="margin-left:48px"><a href="#t-460">Add properties to a data model</a></li><li style="margin-left:48px"><a href="#t-470">Edit properties of a data model</a></li><li style="margin-left:48px"><a href="#t-480">Delete properties for a data model</a></li><li style="margin-left:48px"><a href="#t-490">Filter for a data model</a></li><li style="margin-left:48px"><a href="#t-500">Rearrange the properties for a data model</a></li><li style="margin-left:48px"><a href="#t-510">Assign and reassign child properties to an object</a></li><li style="margin-left:48px"><a href="#t-520">Add and modify a custom data model</a></li><li style="margin-left:32px"><a href="#t-530">Populate the cloud storage with the initial data load</a></li><li style="margin-left:48px"><a href="#t-540">Example Shared Technology Platform data load for a shared application</a></li><li style="margin-left:32px"><a href="#t-550">Reload the cloud storage</a></li><li style="margin-left:32px"><a href="#t-560">Manual Optimization</a></li><li style="margin-left:32px"><a href="#t-570">S3 file bulk load status property</a></li><li style="margin-left:32px"><a href="#t-580">Data Loads tab</a></li><li style="margin-left:48px"><a href="#t-590">Review data load error messages</a></li><li style="margin-left:32px"><a href="#t-600">Change Notifications tab</a></li><li style="margin-left:16px"><a href="#t-610">Data load troubleshooting</a></li><li style="margin-left:32px"><a href="#t-620">Cancel a data load</a></li><li style="margin-left:32px"><a href="#t-630">Throttle data loads</a></li><li style="margin-left:32px"><a href="#t-640">Troubleshooting Data Access bulk load errors</a></li><li style="margin-left:48px"><a href="#t-650">Troubleshooting with an API client</a></li></ul></nav><main><section id="t-420"><h2>Data loads</h2></section>
+<section id="t-430"><h3>The data load process</h3><div class="content-locale-en-US content-locale-en"><div id="c_import_tool_ui"><div class="body conbody"><p class="shortdesc"><span class="keyword">Ellucian Ethos Data Access</span> gathers data from authoritative sources, and stores the data to the <span class="ph">cloud data storage</span>, whether they are deployed on premises or in the cloud.</p>
+
+    <p class="p">The <span class="ph uicontrol">Current Data</span> tab lists the configured resources for a selected <span class="ph">authoritative source</span> application and the current number of records in <span class="keyword">Ellucian Ethos Data Access</span> for each resource. Use this tab to start the data load of resources from the <span class="ph">authoritative source</span> to <span class="keyword">Ellucian Ethos Data Access</span> and also to monitor the live count of resource records as the <span class="ph">change notifications</span> come in. </p>
+
+    <p class="p">The <span class="ph uicontrol">Data Loads</span> tab provides more information about completed loads and the <span class="ph uicontrol">Change Notifications</span> tab provides more information about updates to data that was loaded. These tabs also include any error messages related to loads and updates respectively.</p>
+
+  </div>
+
+</div></div></section>
+<section id="t-440"><h4>Data model extensibility</h4><div class="content-locale-en-US content-locale-en"><div id="c_use_data_model_extensions"><div class="body conbody"><p class="shortdesc"><span class="ph">Ellucian Ethos Data Access</span> enables data model extensibility. Data model extensibility allows <span class="ph">Ethos Integration</span> to support the variable and dynamic nature of application integration, without modifying enterprise level systems.</p>
+
+    <p class="p">Data model extensibility can be accomplished in the following ways:</p>
+
+    <div class="p">
+      <ul class="ul">
+        <li class="li">By creating new institutional data models.</li>
+
+        <li class="li">By extending existing <span class="ph">Ellucian Ethos Data Models</span>.</li>
+
+      </ul>
+
+    </div>
+
+  </div>
+
+</div></div></section>
+<section id="t-450"><h5>Example - Use case</h5><div class="content-locale-en-US content-locale-en"><div id="c_use_case"><div class="body conbody"><p class="shortdesc"><span class="keyword">Ellucian Ethos Data Access</span> enables an institution or a partner to extend <span class="ph">Ellucian Ethos Data Models</span> and access the extended data models through GraphQL.</p>
+
+    <p class="p">The following scenario depicts a use case where it would be appropriate and beneficial to extend an <span class="ph">Ellucian Ethos Data Model</span>.</p>
+
+    <p class="p">For this scenario, consider the <span class="ph">Ellucian Ethos Data Model</span> resource <code class="ph codeph">Buildings</code>. The <code class="ph codeph">Buildings</code> resource in the higher education domain is defined as physical structures with rooms located in specified physical locations. For this scenario, we will focus only on a small subset of the published schema. The following is an example of the <code class="ph codeph">Buildings</code> resource schema in JSON format.</p>
+
+    <pre class="pre codeblock"><code>"id": {
+            "title": "ID",
+            "description": "A global identifier of a building for use in all external references to the building.",
+            "type": "string",
+            "format": "guid",
+            "pattern": "^[a-f0-9]{8}(?:-[a-f0-9]{4}){3}-[a-f0-9]{12}$"
+        },
+        "code": {
+            "title": "Code",
+            "description": "A code that identifies the building.",
+            "type": "string"
+        },
+        "title": {
+            "title": "Title",
+            "description": "The full name of the building.",
+            "type": "string",
+            "minLength": 1
+        }</code></pre>
+    <p class="p">At your institution, this schema will generally represent buildings found on your campus. However, assume we have a requirement that a downstream system needs the building capacity exposed within the resource. In our authoritative source system, Building capacity information is available, but this property is not supported by default in the <code class="ph codeph">Buildings</code> <span class="ph">Data Model</span>. In such case, we can extend the  <code class="ph codeph">Buildings</code> data model with an additional property.</p>
+
+    <p class="p">After extending the <code class="ph codeph">Buildings</code> data model in <span class="ph">Data Access</span> to include the building capacity, the extended <code class="ph codeph">Buildings</code> data model schema would appear as follows:</p>
+
+    <pre class="pre codeblock"><code>"maxCapacity": {
+            "title": "Max Capacity",
+            "description": "testing",
+            "userEdited": true,
+            "type": "number",
+            "minimum": 10,
+            "maximum": 500,
+            "formatNumberType": "none",
+            "isFormat": true,
+            "elementIndex": 0
+        },
+        "id": {
+            "title": "ID",
+            "description": "A global identifier of a building for use in all external references to the building.",
+            "type": "string",
+            "format": "guid",
+            "pattern": "^[a-f0-9]{8}(?:-[a-f0-9]{4}){3}-[a-f0-9]{12}$"
+        },
+        "code": {
+            "title": "Code",
+            "description": "A code that identifies the building.",
+            "type": "string"
+        },
+        "title": {
+            "title": "Title",
+            "description": "The full name of the building.",
+            "type": "string",
+            "minLength": 1
+        }</code></pre>
+    <p class="p">This simple example demonstrates how to extend an <span class="ph">Data Model</span> schema with numeric data. However,  <span class="keyword">Ellucian Ethos Data Access</span> supports more complex data types and use cases.</p>
+
+  </div>
+
+</div></div></section>
+<section id="t-460"><h5>Add properties to a data model</h5><div class="content-locale-en-US content-locale-en"><div id="t_add_property_data_model"><div class="body taskbody"><p class="shortdesc">You can add properties to the existing properties of an <span class="ph">Ellucian Ethos Data Model</span> or institutional data model.</p>
+
+    <div class="section context"><div class="tasklabel"><h2 class="sectiontitle tasklabel">About this task</h2></div>
+      <p class="p">When you have an existing <span class="ph">Ellucian Ethos Data Model</span> you can add properties to it (extend it). This is primarily used so that GraphQL users can extend their queries.</p>
+
+      <p class="p">You can extend one data model at a time.</p>
+
+    </div>
+
+    <div class="tasklabel"><h2 class="sectiontitle tasklabel">Procedure</h2></div><ol class="ol steps"><li class="li step stepexpand">
+        <span class="ph cmd">Log in to <span class="ph">Ellucian Ethos Data Access</span>.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">On the <span class="keyword wintitle">Current Data</span> pane, select a data model from the list to access a desired data model.</span>
+        <div class="itemgroup info">If you are unable to find the specific data model in the data models list, click <span class="ph uicontrol">Filter</span> <span class="ph"><img class="image ell-icon" src="images/04-data-loads-1.png" alt="" data-ft-asset-display-name="filter.png" data-ft-resource-id="S~RcW1VUgtiVZGuLvEegnQ-biIeTpD~s2DMD68cUGZtOw"></span> to locate it. See <span class="xref ft-internal-link" title="You can use the filter option to locate a data model in the data models list." data-ft-warning="excluded-from-rendering" data-mapid="biIeTpD~s2DMD68cUGZtOw" data-tocid="T~RxmwVjuxQYofUdiHb_Zg">Filter for a data model</span>.</div>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Click <span class="ph uicontrol">Extend</span> <span class="ph"><img class="image" src="images/04-data-loads-2.png" alt="" data-ft-asset-display-name="extend_blue.png" data-ft-resource-id="B1fpfpq2Qe39Rk9UlFvxFg-biIeTpD~s2DMD68cUGZtOw"></span>.</span>
+        <div class="itemgroup stepresult">The data model page for the resource displays.<div class="note"><span class="notetitle">Note:</span> The latest version is selected for the <span class="ph">Ellucian Ethos Data Model</span> by default. However, when you add or edit a property to a data model version that is not the latest version, you will see the last selected version on the data model page after you save the changes.</div>
+</div>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Select another version of the data model, if required.</span>
+        <div class="itemgroup info">Version is not applicable for an institutional data model.</div>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">In the data model window, click the plus icon <span class="ph"><img class="image ell-icon" src="images/04-data-loads-3.png" alt="" data-ft-asset-display-name="add.png" data-ft-resource-id="Ts7yiXU6QYd0oI51WmD2Jg-biIeTpD~s2DMD68cUGZtOw"></span> to add a property.</span>
+      </li>
+<li class="li step stepexpand" id="t_add_property_data_model__u3j_5mw_chb">
+        <span class="ph cmd" id="t_add_property_data_model__w3j_5mw_chb">On the <span class="keyword wintitle">Add Property</span> page, enter the details as follows:</span>
+        <div class="itemgroup info">
+          
+<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" class="table" frame="border" border="1" rules="all"><colgroup><col style="width:35.3356890459364%"><col style="width:64.66431095406361%"></colgroup><thead class="thead" style="text-align:left;">
+                <tr class="row">
+                  <th class="entry cellrowborder" style="vertical-align:top;" id="d10009e154">Label</th>
+
+                  <th class="entry cellrowborder" style="vertical-align:top;" id="d10009e157">Description</th>
+
+                </tr>
+
+              </thead>
+<tbody class="tbody">
+                <tr class="row">
+                  <td class="entry cellrowborder" style="vertical-align:top;" headers="d10009e154 "><span class="ph uicontrol">Title</span>*</td>
+
+                  <td class="entry cellrowborder" style="vertical-align:top;" headers="d10009e157 ">
+                    <div class="p">Enter a unique title.<ul class="ul">
+                      <li class="li">The data model title is case insensitive. <p class="p">Example: Consider ABC and abc are same, and not allowed to repeat it.</p>
+</li>
+
+                      <li class="li">Special character and number are not allowed.</li>
+
+                      <li class="li">Spaces can be used.</li>
+
+                      </ul>
+</div>
+
+                    <p class="p">Example value: ABC XYZ</p>
+
+                  </td>
+
+                </tr>
+
+                <tr class="row">
+                  <td class="entry cellrowborder" style="vertical-align:top;" headers="d10009e154 "> <span class="ph uicontrol">Name</span> </td>
+
+                  <td class="entry cellrowborder" style="vertical-align:top;" headers="d10009e157 ">This field auto fills content as you type the title in the <span class="ph uicontrol">Title</span> field. The first word of the title will convert to lowercase and subsequent words will be converted to camel case and spaces between words will be removed. You are prohibited to edit the <span class="ph uicontrol">Name</span> field.<p class="p">Example value: abcXyz</p>
+</td>
+
+                </tr>
+
+                <tr class="row">
+                  <td class="entry cellrowborder" style="vertical-align:top;" headers="d10009e154 "> <span class="ph uicontrol">Description</span> </td>
+
+                  <td class="entry cellrowborder" style="vertical-align:top;" headers="d10009e157 ">Enter the description for the property. This is an optional field.</td>
+
+                </tr>
+
+                <tr class="row">
+                  <td class="entry cellrowborder" style="vertical-align:top;" headers="d10009e154 "> <span class="ph uicontrol">Nullable property</span> </td>
+
+                  <td class="entry cellrowborder" style="vertical-align:top;" headers="d10009e157 ">If you want to make the property value optional, select the check box.</td>
+
+                </tr>
+
+                <tr class="row">
+                  <td class="entry cellrowborder" style="vertical-align:top;" headers="d10009e154 "> <span class="ph uicontrol">Type</span> </td>
+
+                  <td class="entry cellrowborder" style="vertical-align:top;" headers="d10009e157 ">Set the property type. Options include string, number, or object.</td>
+
+                </tr>
+
+                <tr class="row">
+                  <td class="entry cellrowborder" style="vertical-align:top;" headers="d10009e154 "> <span class="ph uicontrol">Add another property</span> </td>
+
+                  <td class="entry cellrowborder" style="vertical-align:top;" headers="d10009e157 ">If you want to add another property, select the check box.</td>
+
+                </tr>
+
+              </tbody>
+</table>
+</div>
+
+          <p class="p">* indicates a required field.</p>
+
+        </div>
+      </li>
+<li class="li step stepexpand" id="t_add_property_data_model__hjh_wmw_chb">
+        <span class="ph cmd" id="t_add_property_data_model__jjh_wmw_chb">Set the property <span class="ph uicontrol" id="t_add_property_data_model__kjh_wmw_chb">Type</span>. The property <span class="ph uicontrol" id="t_add_property_data_model__ljh_wmw_chb">Type</span> supports <span class="ph uicontrol" id="t_add_property_data_model__mjh_wmw_chb">string</span>, <span class="ph uicontrol" id="t_add_property_data_model__njh_wmw_chb">number</span>, and <span class="ph uicontrol" id="t_add_property_data_model__ojh_wmw_chb">object</span> types.</span>
+        <div class="itemgroup info">
+          <ul class="ul">
+            <li class="li"><span class="ph uicontrol" id="t_add_property_data_model__pjh_wmw_chb">string</span>: Default property type.<p class="p">Select one of the values from <span class="ph uicontrol">String Type</span> drop-down list.</p>
+<ul class="ul">
+              <li class="li"><span class="ph uicontrol" id="t_add_property_data_model__sjh_wmw_chb">none</span>: Default string type. The <span class="ph uicontrol" id="t_add_property_data_model__tjh_wmw_chb">Minimum Length</span> and <span class="ph uicontrol" id="t_add_property_data_model__ujh_wmw_chb">Maximum Length</span> are optional.<div class="note" id="t_add_property_data_model__vjh_wmw_chb"><span class="notetitle">Note:</span> If <span class="ph uicontrol">Minimum Length</span> is specified, <span class="ph uicontrol" id="t_add_property_data_model__wjh_wmw_chb">Maximum Length</span> value must be greater than or equal to <span class="ph uicontrol" id="t_add_property_data_model__xjh_wmw_chb">Minimum Length</span>.</div>
+</li>
+
+              <li class="li">Select <span class="ph uicontrol" id="t_add_property_data_model__yjh_wmw_chb">date</span> if the string type is date.</li>
+
+              <li class="li">Select <span class="ph uicontrol" id="t_add_property_data_model__zjh_wmw_chb">utcDateTime</span> if the string type is utcDateTime.</li>
+
+              </ul>
+</li>
+
+            <li class="li"><span class="ph uicontrol" id="t_add_property_data_model__akh_wmw_chb">number</span>: Enter the value in <span class="ph uicontrol" id="t_add_property_data_model__bkh_wmw_chb">Minimum</span> and <span class="ph uicontrol" id="t_add_property_data_model__ckh_wmw_chb">Maximum</span> field as needed.<div class="note"><span class="notetitle">Note:</span> If Minimum value is specified, <span class="ph uicontrol">Maximum</span> value must be greater than or equal to <span class="ph uicontrol">Minimum</span>.</div>
+</li>
+
+            <li class="li"> <span class="ph uicontrol" id="t_add_property_data_model__dkh_wmw_chb">object</span>: Choose <span class="ph uicontrol">Object</span> as data type, if you intend to hold child properties within a parent property. Child properties can be heterogeneous; that is, any combination of data types can be used.</li>
+
+          </ul>
+
+        </div>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Click <span class="ph uicontrol">Add</span>.</span>
+        <div class="itemgroup stepresult">The <samp class="ph msgph">Added property successfully</samp> message briefly displays. If you selected the check box to <span class="ph uicontrol">Add another property</span>, a new <span class="keyword wintitle">Add Property</span> page displays.</div>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Repeat the process on the <span class="keyword wintitle">Add Property</span> page for each property that you want to add.</span>
+        <div class="itemgroup stepresult">The newly added property displays at the bottom of the properties list. See <span class="xref ft-internal-link" title="You can rearrange the extended properties of an Ellucian Ethos Data Model or institutional data model." data-ft-warning="excluded-from-rendering" data-mapid="biIeTpD~s2DMD68cUGZtOw" data-tocid="EOplIeh6~lJHHgozfaXeQg">Rearrange the properties for a data model</span> for details on how to reorder the sequence of a property.</div>
+      </li>
+<li class="li step stepexpand"><strong>Optional: </strong>
+        <span class="ph cmd">Add child properties to an Object type property.</span>
+        <ol type="a" class="ol substeps">
+          <li class="li substep substepexpand">
+            <span class="ph cmd">Click the <span class="ph uicontrol">More options</span> <span class="ph"><img class="image ell-icon" src="images/04-data-loads-4.png" alt="" data-ft-asset-display-name="more_vertical.png" data-ft-resource-id="JREl982P_3CF9HLcM47toQ-biIeTpD~s2DMD68cUGZtOw"></span> icon next to the <span class="ph uicontrol">object</span> property and select <span class="ph uicontrol">Add</span>.</span>
+          </li>
+
+          <li class="li substep substepexpand">
+            <span class="ph cmd">Add a <span class="ph uicontrol">Title</span> for the child property.</span>
+          </li>
+
+          <li class="li substep substepexpand">
+            <span class="ph cmd">In the <span class="ph uicontrol">Type</span> field, enter string, number or object child properties.</span>
+          </li>
+
+          <li class="li substep substepexpand">
+            <span class="ph cmd">Click <span class="ph uicontrol">Add</span>.</span>
+          </li>
+
+          <li class="li substep substepexpand"><strong>Optional: </strong>
+            <span class="ph cmd">If you want to add another child property to that object, select the <span class="ph uicontrol">Add another property</span> check box.</span>
+            <div class="itemgroup stepresult">A new <span class="keyword wintitle">Add Property</span> page displays.</div>
+          </li>
+
+          <li class="li substep substepexpand">
+            <span class="ph cmd">Repeat the process on the <span class="keyword wintitle">Add Property</span> page for each property that you want to add.</span>
+            <div class="itemgroup stepresult">The newly added child property or (properties) displays under the Object property.</div>
+          </li>
+
+        </ol>
+
+        <div class="itemgroup info">You can add a maximum of four levels of nested objects.</div>
+      </li>
+<li class="li step stepexpand"><strong>Required: </strong>
+        <span class="ph cmd">Click <span class="ph uicontrol">Optimize</span> on the resource after extending it if you have already loaded it.</span>
+      </li>
+</ol>
+
+  </div>
+
+</div></div></section>
+<section id="t-470"><h5>Edit properties of a data model</h5><div class="content-locale-en-US content-locale-en"><div id="t_edit_property_data_model"><div class="body taskbody"><p class="shortdesc">You can edit the extended properties of an <span class="ph">Ellucian Ethos Data Model</span> or institutional data model.</p>
+
+    <div class="section context"><div class="tasklabel"><h2 class="sectiontitle tasklabel">About this task</h2></div>
+      <ul class="ul">
+        <li class="li">You cannot edit default properties of <span class="ph">Ellucian Ethos Data Models</span> with a lock icon.</li>
+
+        <li class="li">You cannot edit the ID and Title properties of institutional data model with a lock icon.</li>
+
+      </ul>
+
+    </div>
+
+    <div class="tasklabel"><h2 class="sectiontitle tasklabel">Procedure</h2></div><ol class="ol steps"><li class="li step stepexpand">
+        <span class="ph cmd">Log in to <span class="ph">Ellucian Ethos Data Access</span>.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">On the <span class="keyword wintitle">Current Data</span> page, select a data model from the list to access a desired data model.</span>
+        <div class="itemgroup info">If you are unable to find the specific data model in the data models list, click <span class="ph uicontrol">Filter</span> <span class="ph"><img class="image ell-icon" src="images/04-data-loads-1.png" alt="" data-ft-asset-display-name="filter.png" data-ft-resource-id="S~RcW1VUgtiVZGuLvEegnQ-biIeTpD~s2DMD68cUGZtOw"></span> to locate it.</div>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Click <span class="ph uicontrol">Extend</span> <span class="ph"><img class="image" src="images/04-data-loads-2.png" alt="" data-ft-asset-display-name="extend_blue.png" data-ft-resource-id="B1fpfpq2Qe39Rk9UlFvxFg-biIeTpD~s2DMD68cUGZtOw"></span>.</span>
+        <div class="itemgroup stepresult">The data model page for the resource displays. The latest version is selected for <span class="ph">Data Model</span> by default.</div>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">On the data model page, click the <span class="ph uicontrol">More options</span> <span class="ph"><img class="image ell-icon" src="images/04-data-loads-4.png" alt="" data-ft-asset-display-name="more_vertical.png" data-ft-resource-id="JREl982P_3CF9HLcM47toQ-biIeTpD~s2DMD68cUGZtOw"></span> icon next to the property that you want to edit and then click <span class="ph uicontrol">Edit</span>.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">In the <span class="keyword wintitle">Edit Property</span> dialog box, edit the following details as required:</span>
+        <div class="itemgroup info">
+          
+<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" class="table" frame="border" border="1" rules="all"><colgroup><col style="width:20.576131687242803%"><col style="width:79.42386831275721%"></colgroup><thead class="thead" style="text-align:left;">
+                <tr class="row">
+                  <th class="entry cellrowborder" style="vertical-align:top;" id="d8758e144">Label</th>
+
+                  <th class="entry cellrowborder" style="vertical-align:top;" id="d8758e147">Description</th>
+
+                </tr>
+
+              </thead>
+<tbody class="tbody">
+                <tr class="row">
+                  <td class="entry cellrowborder" style="vertical-align:top;" headers="d8758e144 "><span class="ph uicontrol">Title</span>*</td>
+
+                  <td class="entry cellrowborder" style="vertical-align:top;" headers="d8758e147 ">
+                    <p class="p">Enter a unique title.</p>
+
+                    <ul class="ul">
+                      <li class="li">The data model title is case insensitive. <p class="p">Example: Consider ABC and abc are same, and not allowed to repeat it.</p>
+</li>
+
+                      <li class="li">Special character and number are not allowed.</li>
+
+                      <li class="li">Spaces can be used.</li>
+
+                    </ul>
+
+                    <p class="p">Example value: ABC XYZ</p>
+
+                  </td>
+
+                </tr>
+
+                <tr class="row">
+                  <td class="entry cellrowborder" style="vertical-align:top;" headers="d8758e144 "> <span class="ph uicontrol">Name</span> </td>
+
+                  <td class="entry cellrowborder" style="vertical-align:top;" headers="d8758e147 ">This field auto fills content as you type the title in the <span class="ph uicontrol">Title</span> field. The first word of the title will convert to lowercase and subsequent words will be converted to camel case and spaces between words will be removed. You are prohibited to edit the <span class="ph uicontrol">Name</span> field. <p class="p">Example value: abcXyz</p>
+</td>
+
+                </tr>
+
+                <tr class="row">
+                  <td class="entry cellrowborder" style="vertical-align:top;" headers="d8758e144 "> <span class="ph uicontrol">Description</span> </td>
+
+                  <td class="entry cellrowborder" style="vertical-align:top;" headers="d8758e147 ">Enter the description for the property. This is an optional field.</td>
+
+                </tr>
+
+                <tr class="row">
+                  <td class="entry cellrowborder" style="vertical-align:top;" headers="d8758e144 "> <span class="ph uicontrol">Nullable property</span> </td>
+
+                  <td class="entry cellrowborder" style="vertical-align:top;" headers="d8758e147 ">If you want to make the property value optional, select the check box.</td>
+
+                </tr>
+
+                <tr class="row">
+                  <td class="entry cellrowborder" style="vertical-align:top;" headers="d8758e144 "> <span class="ph uicontrol">Type</span> </td>
+
+                  <td class="entry cellrowborder" style="vertical-align:top;" headers="d8758e147 ">
+                    <p class="p">Change the property type as needed. For more information about set property type, see <span class="xref ft-internal-link" data-ft-warning="excluded-from-rendering" data-mapid="biIeTpD~s2DMD68cUGZtOw" data-tocid="PWf9ZShRjLb_E6FSk3x_Sw" data-section="t_add_property_data_model__hjh_wmw_chb">Property type</span>.</p>
+
+                  </td>
+
+                </tr>
+
+              </tbody>
+</table>
+</div>
+
+          <p class="p">* indicates a required field.</p>
+
+        </div>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Click <span class="ph uicontrol">Update</span>.</span>
+        <div class="itemgroup stepresult">The <samp class="ph msgph">Updated property successfully</samp> message briefly displays.</div>
+      </li>
+</ol>
+
+  </div>
+
+</div></div></section>
+<section id="t-480"><h5>Delete properties for a data model</h5><div class="content-locale-en-US content-locale-en"><div id="t_delete_property_data_model"><div class="body taskbody"><p class="shortdesc">You can delete the extended properties of an <span class="ph">Ellucian Ethos Data Model</span> or institutional data model.</p>
+
+    <div class="section context"><div class="tasklabel"><h2 class="sectiontitle tasklabel">About this task</h2></div>
+      <ul class="ul">
+        <li class="li">You cannot delete default properties of an <span class="ph">Data Model</span> with a lock icon.</li>
+
+        <li class="li">You can not delete the ID and Title properties of institutional data model with a lock icon.</li>
+
+      </ul>
+
+    </div>
+
+    <div class="tasklabel"><h2 class="sectiontitle tasklabel">Procedure</h2></div><ol class="ol steps"><li class="li step stepexpand">
+        <span class="ph cmd">Log in to <span class="ph">Ellucian Ethos Data Access</span>.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">On the <span class="keyword wintitle">Current Data</span> page, select a data model from the list to access a desired data model.</span>
+        <div class="itemgroup info">If you are unable to find the specific data model in the data models list, click <span class="ph uicontrol">Filter</span> <span class="ph"><img class="image ell-icon" src="images/04-data-loads-1.png" alt="" data-ft-asset-display-name="filter.png" data-ft-resource-id="S~RcW1VUgtiVZGuLvEegnQ-biIeTpD~s2DMD68cUGZtOw"></span> to locate it.</div>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Click <span class="ph uicontrol">Extend</span> <span class="ph"><img class="image" src="images/04-data-loads-2.png" alt="" data-ft-asset-display-name="extend_blue.png" data-ft-resource-id="B1fpfpq2Qe39Rk9UlFvxFg-biIeTpD~s2DMD68cUGZtOw"></span>.</span>
+        <div class="itemgroup stepresult">The data model page for the resource displays. The latest version is selected for <span class="ph">Data Model</span> by default.</div>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">On the data model page, click the <span class="ph uicontrol">More options</span> <span class="ph"><img class="image ell-icon" src="images/04-data-loads-4.png" alt="" data-ft-asset-display-name="more_vertical.png" data-ft-resource-id="JREl982P_3CF9HLcM47toQ-biIeTpD~s2DMD68cUGZtOw"></span> icon next to the property that you want to delete and then click <span class="ph uicontrol">Delete</span>.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">In the <span class="keyword wintitle">Delete Property</span> confirmation dialog box, click <span class="ph uicontrol">Delete</span>.</span>
+      </li>
+</ol>
+
+    <div class="section result"><div class="tasklabel"><h2 class="sectiontitle tasklabel">Results</h2></div>
+      <ul class="ul">
+        <li class="li">The extended property is permanently deleted.</li>
+
+        <li class="li">If the deleted property has child properties, child properties are deleted with it.</li>
+
+        <li class="li">The <samp class="ph msgph">Deleted property successfully</samp> message briefly displays.</li>
+
+      </ul>
+
+    </div>
+
+  </div>
+
+</div></div></section>
+<section id="t-490"><h5>Filter for a data model</h5><div class="content-locale-en-US content-locale-en"><div id="t_filter_for_data_model"><div class="body taskbody"><p class="shortdesc">You can use the filter option to locate a data model in the data models list.</p>
+
+    <div class="section context"><div class="tasklabel"><h2 class="sectiontitle tasklabel">About this task</h2></div>If the data model that you want to view does not appear in the list, perform the following steps to locate it:</div>
+
+    <div class="tasklabel"><h2 class="sectiontitle tasklabel">Procedure</h2></div><ol class="ol steps"><li class="li step stepexpand">
+        <span class="ph cmd">Log in to <span class="ph">Ellucian Ethos Data Access</span>.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Click <span class="ph uicontrol">Filter</span> <span class="ph"><img class="image ell-icon" src="images/04-data-loads-1.png" alt="" data-ft-asset-display-name="filter.png" data-ft-resource-id="S~RcW1VUgtiVZGuLvEegnQ-biIeTpD~s2DMD68cUGZtOw"></span>.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Filter the list by resource name, number of current records in Data Access, or load status.</span>
+        <div class="itemgroup info">
+          
+<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" class="table" frame="border" border="1" rules="all"><colgroup><col style="width:20.576131687242803%"><col style="width:79.42386831275721%"></colgroup><thead class="thead" style="text-align:left;">
+                <tr class="row">
+                  <th class="entry cellrowborder" style="vertical-align:top;" id="d1861e81">Filter</th>
+
+                  <th class="entry cellrowborder" style="vertical-align:top;" id="d1861e84">Description</th>
+
+                </tr>
+
+              </thead>
+<tbody class="tbody">
+                <tr class="row">
+                  <td class="entry cellrowborder" style="vertical-align:top;" headers="d1861e81 "><span class="ph uicontrol">Resource</span></td>
+
+                  <td class="entry cellrowborder" style="vertical-align:top;" headers="d1861e84 ">Enter a resource name.</td>
+
+                </tr>
+
+                <tr class="row">
+                  <td class="entry cellrowborder" style="vertical-align:top;" headers="d1861e81 "> <span class="ph uicontrol">Current Records</span> </td>
+
+                  <td class="entry cellrowborder" style="vertical-align:top;" headers="d1861e84 ">Enter the number of current records and specify one of the following: <ul class="ul">
+                    <li class="li">exactly</li>
+
+                    <li class="li">between</li>
+
+                    <li class="li">less than</li>
+
+                    <li class="li">greater than</li>
+
+                    </ul>
+</td>
+
+                </tr>
+
+                <tr class="row">
+                  <td class="entry cellrowborder" style="vertical-align:top;" headers="d1861e81 "> <span class="ph uicontrol">Status</span> </td>
+
+                  <td class="entry cellrowborder" style="vertical-align:top;" headers="d1861e84 ">
+                    <p class="p">Select the load status you want to filter:</p>
+
+                    <ul class="ul">
+                      <li class="li">All</li>
+
+                      <li class="li">Loaded</li>
+
+                      <li class="li">Load in progress</li>
+
+                      <li class="li">Not loaded</li>
+
+                      <li class="li">Reload recommended</li>
+
+                    </ul>
+
+                  </td>
+
+                </tr>
+
+              </tbody>
+</table>
+</div>
+
+        </div>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Click <span class="ph uicontrol">Filter</span>.</span>
+        <div class="itemgroup stepresult">
+          <ul class="ul">
+            <li class="li">If the keyword is contained in the title of a data model, the filter result shows the list of data models containing the key word. This list will include <span class="ph">Ellucian Ethos Data Model</span> or institutional data models.</li>
+
+            <li class="li">If the keyword is not contained in the title of a data model, the <samp class="ph msgph">No records found</samp> message displays on the <span class="keyword wintitle">Current Data</span> page.</li>
+
+          </ul>
+
+        </div>
+      </li>
+<li class="li step stepexpand"><strong>Optional: </strong>
+        <span class="ph cmd">Click <span class="ph uicontrol">Clear Filters</span> to disable the filter option.</span>
+      </li>
+</ol>
+
+  </div>
+
+</div></div></section>
+<section id="t-500"><h5>Rearrange the properties for a data model</h5><div class="content-locale-en-US content-locale-en"><div id="t_rearrange_properties_data_model"><div class="body taskbody"><p class="shortdesc">You can rearrange the extended properties of an <span class="ph">Ellucian Ethos Data Model</span> or institutional data model.</p>
+
+    <div class="section context"><div class="tasklabel"><h2 class="sectiontitle tasklabel">About this task</h2></div>
+      <p class="p">Some considerations to keep in mind when you rearrange properties are:</p>
+
+      <ul class="ul">
+        <li class="li">You cannot move the properties of a data model with a lock icon up or down.</li>
+
+        <li class="li">Properties of a data model with a lock icon can be rearranged indirectly by moving other properties around them up or down.</li>
+
+      </ul>
+
+    </div>
+
+    <div class="tasklabel"><h2 class="sectiontitle tasklabel">Procedure</h2></div><ol class="ol steps"><li class="li step stepexpand">
+        <span class="ph cmd">Log in to <span class="ph">Ellucian Ethos Data Access</span>.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">On the <span class="keyword wintitle">Current Data</span> pane, select a data model from the list to access a desired data model.</span>
+        <div class="itemgroup info">If you are unable to find the specific data model in the data models list, click <span class="ph uicontrol">Filter</span> <span class="ph"><img class="image ell-icon" src="images/04-data-loads-1.png" alt="" data-ft-asset-display-name="filter.png" data-ft-resource-id="S~RcW1VUgtiVZGuLvEegnQ-biIeTpD~s2DMD68cUGZtOw"></span> to locate it.</div>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Click <span class="ph uicontrol">Extend</span> <span class="ph"><img class="image" src="images/04-data-loads-2.png" alt="" data-ft-asset-display-name="extend_blue.png" data-ft-resource-id="B1fpfpq2Qe39Rk9UlFvxFg-biIeTpD~s2DMD68cUGZtOw"></span>.</span>
+        <div class="itemgroup stepresult">The data model page for the resource displays. The latest version is selected for <span class="ph">Data Model</span> by default.</div>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Select another version of the data model, if required.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">To reorder the sequence of a property, click the <span class="ph uicontrol">More options</span> <span class="ph"><img class="image ell-icon" src="images/04-data-loads-4.png" alt="" data-ft-asset-display-name="more_vertical.png" data-ft-resource-id="JREl982P_3CF9HLcM47toQ-biIeTpD~s2DMD68cUGZtOw"></span> icon next to the property that you want to move.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">To place the property in the order that you want, select <span class="ph uicontrol">Move Up</span> or <span class="ph uicontrol">Move Down</span> to move it into the order that you want.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Click <span class="ph uicontrol">Save Order</span> <span class="ph"><img class="image ell-icon" src="images/04-data-loads-5.png" alt="" data-ft-asset-display-name="save.png" data-ft-resource-id="r6AVcfTT9DYkyoV_aetiog-biIeTpD~s2DMD68cUGZtOw"></span> to save the order.</span>
+        <div class="itemgroup stepresult">The <samp class="ph msgph">Updated ordering changes successfully</samp> message briefly displays.</div>
+      </li>
+</ol>
+
+  </div>
+
+</div></div></section>
+<section id="t-510"><h5>Assign and reassign child properties to an object</h5><div class="content-locale-en-US content-locale-en"><div id="t_assign_reassign_child_props"><div class="body taskbody"><p class="shortdesc">You can assign or reassign child properties of an <span class="ph">Ellucian Ethos Data Model</span> or institutional data model to an object.</p>
+
+    <div class="section context"><div class="tasklabel"><h2 class="sectiontitle tasklabel">About this task</h2></div>
+      <p class="p">You can move the child properties of an <span class="ph">Ellucian Ethos Data Model</span> or institutional data model to assign it under some object or reassign and bring it back to the root (main schema) level.</p>
+
+    </div>
+
+    <div class="tasklabel"><h2 class="sectiontitle tasklabel">Procedure</h2></div><ol class="ol steps"><li class="li step stepexpand">
+        <span class="ph cmd">Log in to <span class="ph">Ellucian Ethos Data Access</span>.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">On the <span class="keyword wintitle">Current Data</span> pane, select a data model from the list to access a desired data model.</span>
+        <div class="itemgroup info">If you are unable to find the specific data model in the data models list, click <span class="ph uicontrol">Filter</span> <span class="ph"><img class="image ell-icon" src="images/04-data-loads-1.png" alt="" data-ft-asset-display-name="filter.png" data-ft-resource-id="S~RcW1VUgtiVZGuLvEegnQ-biIeTpD~s2DMD68cUGZtOw"></span> to locate it.</div>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Click <span class="ph uicontrol">Extend</span> <span class="ph"><img class="image" src="images/04-data-loads-2.png" alt="" data-ft-asset-display-name="extend_blue.png" data-ft-resource-id="B1fpfpq2Qe39Rk9UlFvxFg-biIeTpD~s2DMD68cUGZtOw"></span>.</span>
+        <div class="itemgroup stepresult">The data model page for the resource displays. The latest version is selected for <span class="ph">Data Model</span> by default.</div>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Select another version of the data model, if required.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">To assign or reasssign child properties to an object, click the <span class="ph uicontrol">More options</span> <span class="ph"><img class="image ell-icon" src="images/04-data-loads-4.png" alt="" data-ft-asset-display-name="more_vertical.png" data-ft-resource-id="JREl982P_3CF9HLcM47toQ-biIeTpD~s2DMD68cUGZtOw"></span> icon next to the property that you want to move and click <span class="ph uicontrol">Move To</span>.</span>
+        <div class="itemgroup stepresult">The <span class="ph uicontrol">Source Location</span> and <span class="ph uicontrol">Target Location</span> display on the  <span class="keyword wintitle">Move To</span> page.</div>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Assign or reassign the property.</span>
+        <ol type="a" class="ol substeps">
+          <li class="li substep">
+            <span class="ph cmd">To move the property to appropriate parent object, click the object name from the <span class="ph uicontrol">Target Location</span> drop-down list and click <span class="ph uicontrol">Move</span>.</span>
+          </li>
+
+          <li class="li substep">
+            <span class="ph cmd">To move the property to the root (main schema) level, click <span class="ph uicontrol">ROOT</span> from the <span class="ph uicontrol">Target Location</span> drop-down list and click <span class="ph uicontrol">Move</span>.</span>
+          </li>
+
+        </ol>
+
+        <div class="itemgroup stepresult">The <samp class="ph msgph">Successfully moved property</samp> message briefly displays, showing the <span class="ph uicontrol">From</span> and <span class="ph uicontrol">To</span> move location details.</div>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Click <span class="ph uicontrol">OK</span>.</span>
+      </li>
+</ol>
+
+  </div>
+
+</div></div></section>
+<section id="t-520"><h5>Add and modify a custom data model</h5><div class="content-locale-en-US content-locale-en"><div id="t_modify_custom_data_model"><div class="body taskbody"><p class="shortdesc">After an institutional custom API is created in  <span class="keyword">Ethos Integration</span>, you can add more data model options to the existing baseline <span class="ph">Ellucian Ethos Data Models</span> in <span class="keyword">Data Access</span>.</p>
+
+    <div class="section prereq p"><div class="tasklabel"><h2 class="sectiontitle tasklabel">Before you begin</h2></div>
+      <p class="p">Create a custom API in <span class="keyword">Ethos Integration</span>. After you create the new resource and click <span class="ph uicontrol">Extend</span> for the new resource, the data model displays in <span class="keyword">Data Access</span> with the basic properties, ID, title, and description.</p>
+
+      <p class="p">You can change the description and save it and you can then add any additional properties to your base properties in <span class="keyword">Data Access</span>, in the same way that you do with baseline data model.</p>
+
+    </div>
+
+    <div class="section context"><div class="tasklabel"><h2 class="sectiontitle tasklabel">About this task</h2></div></div>
+
+    <div class="tasklabel"><h2 class="sectiontitle tasklabel">Procedure</h2></div><ol class="ol steps"><li class="li step stepexpand">
+        <span class="ph cmd">Log in to <span class="ph">Ellucian Ethos Data Access</span>.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">On the <span class="keyword wintitle">Current Data</span> page, select a custom data model.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Select a resource and click <span class="ph uicontrol">Extend</span> <span class="ph"><img class="image" src="images/04-data-loads-2.png" alt="" data-ft-asset-display-name="extend_blue.png" data-ft-resource-id="B1fpfpq2Qe39Rk9UlFvxFg-biIeTpD~s2DMD68cUGZtOw"></span>.</span>
+        <div class="itemgroup info">The custom data model contains the following information:
+<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" class="table" frame="border" border="1" rules="all"><colgroup><col style="width:35.3356890459364%"><col style="width:64.66431095406361%"></colgroup><thead class="thead" style="text-align:left;">
+              <tr class="row">
+                <th class="entry cellrowborder" style="vertical-align:top;" id="d12338e113">Property</th>
+
+                <th class="entry cellrowborder" style="vertical-align:top;" id="d12338e116">Description</th>
+
+              </tr>
+
+            </thead>
+<tbody class="tbody">
+              <tr class="row">
+                <td class="entry cellrowborder" style="vertical-align:top;" headers="d12338e113 "><span class="ph uicontrol">ID</span> <span class="ph"><img class="image ell-icon" src="images/04-data-loads-6.png" alt="" data-ft-asset-display-name="lock.png" data-ft-resource-id="UAl4sJVKWX5wV_eWgB7zmA-biIeTpD~s2DMD68cUGZtOw"></span> </td>
+
+                <td class="entry cellrowborder" style="vertical-align:top;" headers="d12338e116 ">A global identifier of a resource instance for use in all external references.</td>
+
+              </tr>
+
+              <tr class="row">
+                <td class="entry cellrowborder" style="vertical-align:top;" headers="d12338e113 "><span class="ph uicontrol">Title</span> <span class="ph"><img class="image ell-icon" src="images/04-data-loads-6.png" alt="" data-ft-asset-display-name="lock.png" data-ft-resource-id="UAl4sJVKWX5wV_eWgB7zmA-biIeTpD~s2DMD68cUGZtOw"></span></td>
+
+                <td class="entry cellrowborder" style="vertical-align:top;" headers="d12338e116 ">The unique name of the data model.</td>
+
+              </tr>
+
+              <tr class="row">
+                <td class="entry cellrowborder" style="vertical-align:top;" headers="d12338e113 "><span class="ph uicontrol">Description</span></td>
+
+                <td class="entry cellrowborder" style="vertical-align:top;" headers="d12338e116 ">A description of the data model.</td>
+
+              </tr>
+
+            </tbody>
+</table>
+</div>
+</div>
+      </li>
+<li class="li step stepexpand"><strong>Optional: </strong>
+        <span class="ph cmd">To change the Data Model Description:</span>
+        <ol type="a" class="ol substeps">
+          <li class="li substep">
+            <span class="ph cmd">Click <span class="ph uicontrol">Edit</span> <span class="ph"><img class="image ell-icon" src="images/04-data-loads-7.png" alt="" data-ft-asset-display-name="edit.png" data-ft-resource-id="HxbfGGGOANEZlPK7ONuVhw-biIeTpD~s2DMD68cUGZtOw"></span> for the <span class="ph uicontrol">Data Model Description</span>.</span>
+          </li>
+
+          <li class="li substep">
+            <span class="ph cmd">Type a useful description and click <span class="ph uicontrol">Save</span> <span class="ph"><img class="image ell-icon" src="images/04-data-loads-5.png" alt="" data-ft-asset-display-name="save.png" data-ft-resource-id="r6AVcfTT9DYkyoV_aetiog-biIeTpD~s2DMD68cUGZtOw"></span>.</span>
+          </li>
+
+        </ol>
+
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">In the data model window, click the plus icon <span class="ph"><img class="image ell-icon" src="images/04-data-loads-3.png" alt="" data-ft-asset-display-name="add.png" data-ft-resource-id="Ts7yiXU6QYd0oI51WmD2Jg-biIeTpD~s2DMD68cUGZtOw"></span> to add a property or multiple properties.</span>
+        <div class="itemgroup info">See <span class="xref ft-internal-link" title="You can add properties to the existing properties of an Ellucian Ethos Data Model or institutional data model." data-ft-warning="excluded-from-rendering" data-mapid="biIeTpD~s2DMD68cUGZtOw" data-tocid="PWf9ZShRjLb_E6FSk3x_Sw">Add properties to a data model</span>.</div>
+      </li>
+</ol>
+
+  </div>
+
+</div></div></section>
+<section id="t-530"><h4>Populate the cloud storage with the initial data load</h4><div class="content-locale-en-US content-locale-en"><div id="t_initial_bulk_load"><div class="body taskbody"><p class="shortdesc">The initial data load populates the cloud storage.</p>
+
+    <div class="section prereq p"><div class="tasklabel"><h2 class="sectiontitle tasklabel">Before you begin</h2></div>
+      <p class="p">If you have made change to a data model extension, be sure the change is published before you load it in <span class="keyword">Data Access</span>. For details, refer to <span class="xref ft-internal-link" data-ft-warning="excluded-from-rendering" data-mapid="biIeTpD~s2DMD68cUGZtOw" data-tocid="q5kZC98yV0VckVoa2W9b7w">Data model extensibility</span> and <span class="xref ft-internal-link" title="After the initial data load, you might need to reload the cloud storage in certain conditions." data-ft-warning="excluded-from-rendering" data-mapid="biIeTpD~s2DMD68cUGZtOw" data-tocid="EnFsuahAWbQqIH_WJZkYYQ">Reload the cloud storage</span>.</p>
+
+      
+      
+    
+      
+    </div>
+
+    <div class="tasklabel"><h2 class="sectiontitle tasklabel">Procedure</h2></div><ol class="ol steps"><li class="li step stepexpand">
+        <span class="ph cmd">From the <span class="keyword">Ellucian Customer Center</span>, click <span class="ph uicontrol">Tools</span>.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd" id="t_initial_bulk_load__d64e106">In the <span class="keyword">Ethos</span> menu, click the <span class="keyword">Data Access</span> link for your region.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Select the desired environment and tenant (if applicable).</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">On the <span class="ph uicontrol">Current Data</span> tab, select your <span class="keyword">authoritative source</span> from the drop-down field at the top of the page. </span>
+        <div class="itemgroup stepresult">
+          <p class="p">The page displays the list of resources as defined in the <span class="keyword">authoritative source</span> in <span class="keyword">Ellucian Ethos Integration</span>.</p>
+
+          <p class="p">Notice that the Record Count for all resources is 0. This indicates that no records for these resources have been loaded to the cloud storage.</p>
+
+        </div>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Select the check box next to the resources you want to load into the cloud storage.</span>
+        <div class="itemgroup info">You only need to load data from the resources your data consumer applications will be accessing.</div>
+        <ol type="a" class="ol substeps">
+          <li class="li substep substepexpand"><strong>Optional: </strong>
+            <span class="ph cmd">For a paginated load only (where <span class="keyword">Data Access</span> makes Ethos API calls to load data from). If you are loading a resource that requires a load filter, such as ledger-activities, select the filter value in the Load Filter column.</span>
+            <div class="itemgroup stepxmp">For example, find the ledger-activities resource and select <span class="ph uicontrol">Fiscal Year: 2018</span>.</div>
+            <div class="itemgroup info"><span class="keyword">Data Access</span> requires you to use load filters for resources with an extremely large number of data records. These load filters restrict the number of incoming data records and allow the data load to complete in a timely manner. If you do not select a value, <span class="keyword">Data Access</span> loads the records for the first value of the drop-down list.</div>
+            <div class="itemgroup info">This does not work for a file bulk load. There is a separate process to provide load filters for file bulk loads. See <span class="xref ft-internal-link" data-ft-warning="excluded-from-rendering" data-mapid="biIeTpD~s2DMD68cUGZtOw" data-tocid="p2b8OydMTRDvLLZcMyUgzA">Filter bulk load</span>.</div>
+          </li>
+
+        </ol>
+
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Click <span class="ph uicontrol">Load</span> to load the data for these resources.</span>
+        <div class="itemgroup info">Monitor the load progress (%) indicator. Load time can vary for each resource, depending on the number of records being loaded.</div>
+        <div class="itemgroup stepresult">To see the details of the loading data, go to the <span class="ph uicontrol"><span class="keyword">Data Loads</span></span> tab, then click <span class="ph uicontrol">Refresh</span> to refresh the data display.</div>
+      </li>
+<li class="li step stepexpand"><strong>Optional: </strong>
+        <span class="ph cmd">If this is a <span class="keyword">Shared Technology Platform (STP)</span> tenant, some resources might be listed under more than one application owner. You might want to load the data from each application owner of the resource. Do note that shared resources, identified with an asterisk on their name, can be loaded only from the application that has been configured as the Designated Owner of Shared Data.</span>
+        <div class="itemgroup info">
+          <p class="p">To see an example of a <span class="keyword">Shared Technology Platform (STP)</span> data load for a shared application, refer to <span class="xref ft-internal-link" title="In a Shared Technology Platform configuration, multiple authoritative sources can share or own the same resource." data-ft-warning="excluded-from-rendering" data-mapid="biIeTpD~s2DMD68cUGZtOw" data-tocid="jLLeMxu4xxVos0KawlDF3w">Example Shared Technology Platform data load for a shared application</span>.</p>
+
+        </div>
+      </li>
+<li class="li step stepexpand"><strong>Optional: </strong>
+        <span class="ph cmd">If necessary, you can <span class="xref ft-internal-link" title="You may want to cancel an in-progress data load or reload. This might happen when you discover authoritative source data inconsistencies at the time of load, so you should cancel the data load and reload." data-ft-warning="excluded-from-rendering" data-mapid="biIeTpD~s2DMD68cUGZtOw" data-tocid="L6J1peHAElzOO231zgJFPg">Cancel a data load</span>.</span>
+        <div class="itemgroup info">You can cancel the data load only while the <span class="ph uicontrol">Cancel</span> button appears. When the <span class="ph uicontrol">finalizing</span> status appears, <span class="keyword">Data Access</span> is completing the necessary actions to make the records available to applications.</div>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Repeat these steps any time new resources are defined for your <span class="keyword">authoritative source</span>.</span>
+        <div class="itemgroup info">
+          <div class="note"><span class="notetitle">Note:</span> <span class="keyword">Data Access</span> turns on <span class="ph">change notifications</span> for a resource after its initial load.</div>
+
+        </div>
+      </li>
+</ol>
+
+    <div class="section postreq"><div class="tasklabel"><h2 class="sectiontitle tasklabel">What to do next</h2></div>After you have successfully loaded your data: <p class="p">If you are configuring <span class="keyword">Data Access</span> for GraphQL, refer to <span class="xref ft-internal-xlink" data-ft-warning="excluded-from-rendering" data-clusterid="id_ethos/ethos_data_access/c_graphql_requests">GraphQL requests</span> or <span class="xref ft-internal-xlink" data-ft-warning="excluded-from-rendering" data-clusterid="id_ethos/ethos_data_access/c_make_graphql_request">Make GraphQL requests to Data Access</span>.</p>
+</div>
+
+  </div>
+
+<div class="related-links">
+<div class="linklist relinfo reltasks" xml:lang="en-US" lang="en-US"><strong>Related tasks</strong><br>
+<ul class="linklist">
+<li class="linklist"><span class="link ft-internal-link" title="You may want to cancel an in-progress data load or reload. This might happen when you discover authoritative source data inconsistencies at the time of load, so you should cancel the data load and reload." data-ft-warning="excluded-from-rendering" data-mapid="biIeTpD~s2DMD68cUGZtOw" data-tocid="L6J1peHAElzOO231zgJFPg">Cancel a data load</span></li></ul></div>
+</div></div></div></section>
+<section id="t-540"><h5>Example Shared Technology Platform data load for a shared application</h5><div class="content-locale-en-US content-locale-en"><div id="c_ex_stp_data_load_sharedapp"><div class="body conbody"><p class="shortdesc">In a Shared Technology Platform configuration, multiple authoritative sources can share or own the same resource. </p>
+
+    <p class="p">For example, the Campus Card System needs access to building information that is in the housing-assignments data model, so that it can control access to campus housing. The North Campus and the Main Campus are authoritative for the housing-assignments data model, and this information resides in a single Banner application. On the other hand, all of the information from the students data model, also in Banner, is shared between the two campuses.</p>
+
+    <br><img class="image" alt="moving data through data access" data-ft-asset-display-name="da_application_diagram.png" src="images/04-data-loads-8.png" data-ft-resource-id="kMO6t6~k55gNjm2HQ~o7xg-biIeTpD~s2DMD68cUGZtOw"><br>
+    <p class="p">For the Campus Card System to be able to request the data it needs from Data Access, the resources need to be bulk loaded into Data Access. For the housing-assignments resource, because it has two independent authoritative sources, each needs to be bulk loaded separately, following the steps as indicated on <span class="xref ft-internal-link" title="The initial data load populates the cloud storage." data-ft-warning="excluded-from-rendering" data-mapid="biIeTpD~s2DMD68cUGZtOw" data-tocid="u_G8U6upiKxHw2SdGqwIPQ">Populate the cloud storage with the initial data load</span>. These steps should be performed twice: a first time, selecting the North Campus authoritative source; and the second time, selecting the Main Campus authoritative source.</p>
+
+    <p class="p">Because housing-assignments from North Campus is handled separately from Main Campus, you will see a different count of records loaded into Data Access for the resource, depending on which authoritative source owns it. In a similar fashion, <span class="ph">change notification</span> updates coming into the resource will be received from both sources, independently from each other.</p>
+
+    <p class="p">For the students data, North Campus and Main Campus have access to the full list of students in the institution, so the information is considered shared. For these cases, a third authoritative source, Shared, is defined in Ethos Integration as the shared data owner for the students resource. In Data Access, students are identified as a shared resource (its name is followed by an asterisk). As a result, it only needs to be loaded one time when selecting the Shared application as defined in <span class="ph">Ethos Integration</span> and following the steps as indicated on <span class="xref ft-internal-link" title="The initial data load populates the cloud storage." data-ft-warning="excluded-from-rendering" data-mapid="biIeTpD~s2DMD68cUGZtOw" data-tocid="u_G8U6upiKxHw2SdGqwIPQ">Populate the cloud storage with the initial data load</span>.</p>
+
+    <p class="p">For additional information, refer to <span class="xref ft-internal-xlink" data-ft-warning="excluded-from-rendering" data-clusterid="id_ethos/ethos_integration/t_create_apps_banner_mep">Create the applications in Ethos Integration for Banner (MEP), </span><span class="xref ft-internal-xlink" data-ft-warning="excluded-from-rendering" data-clusterid="id_ethos/ethos_integration/c_support_multi_owner">Support for multiple ownership of resources</span>, and <span class="xref ft-internal-xlink" data-ft-warning="excluded-from-rendering" data-clusterid="id_ethos/ethos_integration/t_add_subscriptions_banner_mep">Set up an application to subscribe to changes published by Banner (MEP)</span>.</p>
+
+  </div>
+
+</div></div></section>
+<section id="t-550"><h4>Reload the cloud storage</h4><div class="content-locale-en-US content-locale-en"><div id="t_reload_data"><div class="body taskbody"><p class="shortdesc">After the initial data load, you might need to reload the cloud storage in certain conditions.</p>
+
+    <div class="section context"><div class="tasklabel"><h2 class="sectiontitle tasklabel">About this task</h2></div><span class="keyword">Ellucian</span> recommends reloading the cloud storage after changes to:<ul class="ul">
+      <li class="li">A resource's privacy settings</li>
+
+      <li class="li">The <span class="ph">authoritative source</span> version </li>
+
+      <li class="li">The <span class="ph">authoritative source</span> application</li>
+
+      </ul>
+When <span class="keyword">Data Access</span> detects changes in privacy settings, the <span class="ph">authoritative source</span> application, or the <span class="ph">authoritative source</span> version, it displays an <span class="keyword wintitle">outdated</span> status tag next to the affected resource on the <span class="ph uicontrol">Current Data</span> tab. To see the reason for the suggested data reload, point to the <span class="keyword wintitle">outdated</span> status tag for that resource.<div class="note warning"><span class="warningtitle">Warning:</span> <span class="keyword">Ellucian</span> recommends you do not rely on the <span class="keyword wintitle">outdated</span> status tag as the only indication to reload resource data. You should reload the resource data as appropriate for your institution.</div>
+</div>
+
+    <div class="tasklabel"><h2 class="sectiontitle tasklabel">Procedure</h2></div><ol class="ol steps"><li class="li step stepexpand">
+        <span class="ph cmd">Select the <span class="keyword">Data Access</span> environment where you want to perform this procedure.</span>
+        <ol type="a" class="ol substeps">
+          <li class="li substep substepexpand">
+            <span class="ph cmd">In <span class="keyword">Data Access</span>, click the settings <span class="ph"><img class="image ell-icon" src="images/04-data-loads-9.png" alt="" data-ft-asset-display-name="settings.png" data-ft-resource-id="KsJ_tFvssYsBxdGEzPL0cQ-biIeTpD~s2DMD68cUGZtOw"></span> icon.</span>
+          </li>
+
+          <li class="li substep substepexpand">
+            <span class="ph cmd">Select the <span class="ph uicontrol">Environment</span> where you want to perform this procedure. </span>
+            <div class="itemgroup info">If you have access to multiple tenants, select both the tenant and environment.</div>
+          </li>
+
+        </ol>
+
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Click the <span class="ph uicontrol">Current Data</span> tab.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Select your <span class="keyword">authoritative source</span> from the drop-down field at the top of the page. </span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Select the resources to reload. </span>
+        <div class="itemgroup info">Use the filter <span class="ph"><img class="image ell-icon" src="images/04-data-loads-1.png" alt="" data-ft-asset-display-name="filter.png" data-ft-resource-id="S~RcW1VUgtiVZGuLvEegnQ-biIeTpD~s2DMD68cUGZtOw"></span> icon to narrow the list of resources. You can filter the list by resource name, number of current records in <span class="keyword">Data Access</span>, or load status.</div>
+        <ol type="a" class="ol substeps">
+          <li class="li substep substepexpand"><strong>Optional: </strong>
+            <span class="ph cmd">If you are reloading a resource which requires you to filter the incoming records, select the filter value in the Load Filter column.</span>
+            <div class="itemgroup info">
+              <ul class="ul">
+                <li class="li">Selecting a Load Filter value that you previously loaded will replace the data for that filter.</li>
+
+                <li class="li">Selecting a Load Filter value that you have not previously loaded will add new data to the cloud storage. Previously loaded data for a different Load Filter value will not be overwritten.</li>
+
+              </ul>
+
+            </div>
+            <div class="itemgroup info">To determine which filtered data was previously loaded for that resource, click the <span class="ph uicontrol">Current Records (Data Access)</span> value for that resource on the <span class="ph uicontrol">Current Data</span> tab. Alternately, go to the <span class="ph">Data Loads</span> tab and click the <span class="ph uicontrol">Records Loaded</span> value for the specified resource.</div>
+          </li>
+
+        </ol>
+
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Click <span class="ph uicontrol">Reload</span> to reload the selected resources. </span>
+        <div class="itemgroup info">Monitor the load progress (%) indicator. Load time can vary for each resource, depending on the number of records being loaded.</div>
+        <div class="itemgroup info">To see the details of the loading data, go to the <span class="ph uicontrol"><span class="keyword">Data Loads</span></span> tab. Click <span class="ph uicontrol">Refresh</span> to refresh the data display.</div>
+      </li>
+<li class="li step stepexpand"><strong>Optional: </strong>
+        <span class="ph cmd">If this is a Shared Technology Platform (STP) tenant, some resources might be listed under more than one application owner. You might want to reload the data from each application owner of the resource. Please note that shared resources, identified with an asterisk on their name, can be loaded only from the application that has been configured as its Designated Owner of Shared Data.</span>
+        <div class="itemgroup info">
+          <p class="p">To see an example of a Shared Technology Platform data load for a shared application, refer to <span class="xref ft-internal-link" title="In a Shared Technology Platform configuration, multiple authoritative sources can share or own the same resource." data-ft-warning="excluded-from-rendering" data-mapid="biIeTpD~s2DMD68cUGZtOw" data-tocid="jLLeMxu4xxVos0KawlDF3w">Example Shared Technology Platform data load for a shared application</span>.</p>
+
+        </div>
+      </li>
+<li class="li step stepexpand"><strong>Optional: </strong>
+        <span class="ph cmd">If necessary, you can <span class="xref ft-internal-link" title="You may want to cancel an in-progress data load or reload. This might happen when you discover authoritative source data inconsistencies at the time of load, so you should cancel the data load and reload." data-ft-warning="excluded-from-rendering" data-mapid="biIeTpD~s2DMD68cUGZtOw" data-tocid="L6J1peHAElzOO231zgJFPg">Cancel a data load</span>.</span>
+        <div class="itemgroup info">You can cancel the data load only while the <span class="ph uicontrol">Cancel</span> button appears. When the <span class="ph uicontrol">finalizing</span> status appears, <span class="keyword">Data Access</span> is completing the necessary actions to make the records available to applications.</div>
+      </li>
+</ol>
+
+  </div>
+
+<div class="related-links">
+<div class="linklist relinfo reltasks" xml:lang="en-US" lang="en-US"><strong>Related tasks</strong><br>
+<ul class="linklist">
+<li class="linklist"><span class="link ft-internal-link" title="You may want to cancel an in-progress data load or reload. This might happen when you discover authoritative source data inconsistencies at the time of load, so you should cancel the data load and reload." data-ft-warning="excluded-from-rendering" data-mapid="biIeTpD~s2DMD68cUGZtOw" data-tocid="L6J1peHAElzOO231zgJFPg">Cancel a data load</span></li></ul></div>
+</div></div></div></section>
+<section id="t-560"><h4>Manual Optimization</h4><div class="content-locale-en-US content-locale-en"><div id="t_manual_optimization"><div class="body taskbody"><p class="shortdesc">After data is loaded, in some cases, administrators need to request the manual optimization of a resource.</p>
+
+    <div class="section context"><div class="tasklabel"><h2 class="sectiontitle tasklabel">About this task</h2></div>
+      <p class="p">Optimization allows indexes to be created so GraphQL data requests by data consumers can perform better. Additionally, metadata is created from array properties so these can also be available for querying.</p>
+
+      <p class="p">After resources are bulk loaded, optimization is automatically performed on them, to prepare them for GraphQL requests by data consumers. Refer to <span class="xref ft-internal-xlink" data-ft-warning="excluded-from-rendering" data-clusterid="id_ethos/ethos_data_access/c_graphql_requests">GraphQL requests</span>.</p>
+
+      <div class="p">Use the procedure below to manually optimize resources in these situations:<ul class="ul"> <li class="li">There were errors reported in the initial optimization attempt.</li>
+ <li class="li">You loaded data in the test environment before December 18, 2019. Data before that date was not automatically optimized.</li>
+ <li class="li">You loaded data in the production environment before January 15, 2020. Data before that date was not automatically optimized.</li>
+ </ul>
+</div>
+
+    </div>
+
+    <div class="tasklabel"><h2 class="sectiontitle tasklabel">Procedure</h2></div><ol class="ol steps"><li class="li step stepexpand">
+        <span class="ph cmd">From the <span class="keyword">Ellucian Customer Center</span>, click <span class="ph uicontrol">Tools</span>.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd" id="t_manual_optimization__d64e106">In the <span class="keyword">Ethos</span> menu, click the <span class="keyword">Data Access</span> link for your region.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Select the desired environment and tenant (if applicable).</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">On the <span class="ph uicontrol">Current Data</span> tab, select your <span class="keyword">authoritative source</span> from the drop-down field at the top of the page.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Select the check box next to the resources you want to optimize.</span>
+        <div class="itemgroup info">
+          <div class="note"><span class="notetitle">Note:</span> Only loaded resources can be optimized. If the resource has not been loaded, or has been flagged as outdated and needs to be reloaded, then follow the load or reload steps. This will automatically perform the optimization at the end of the process.</div>
+
+        </div>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Click <span class="ph uicontrol">Optimize</span> for the selected resources.</span>
+        <div class="itemgroup info">The optimizing tag displays while the optimization process is taking place. Optimizing time can vary per resources, depending on the number of records.</div>
+        <div class="itemgroup info">The Optimize button displays as disabled if one or more of the selected resources cannot be optimized, for example, if it is not loaded or if it is flagged as outdated.</div>
+        <div class="itemgroup info">You cannot cancel this process after it has started.</div>
+        <div class="itemgroup info">
+          
+        </div>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Repeat these steps for additional sources and resources.</span>
+      </li>
+</ol>
+
+  </div>
+
+</div></div></section>
+<section id="t-570"><h4>S3 file bulk load status property</h4><div class="content-locale-en-US content-locale-en"><div id="c_s3_file_bulk_load_status_property"><div class="body conbody"><p class="shortdesc">When you initiate a S3 file bulk load, the <span class="ph uicontrol">Current Data</span> tab displays the status of <samp class="ph msgph">S3 Bulkload initiated</samp> as a badge in the last column, until all files are written to S3.</p>
+
+    <p class="p">Clicking the <span class="ph uicontrol">Refresh status</span> button makes an API request to the source system to check the status of the S3 file bulk load. This polls the source system for the status of the load for five minutes, in five second intervals. When the five minutes are complete, the <span class="ph uicontrol">Refresh status</span> button is available again. Status and progress information display as steps.</p>
+
+    <p class="p">When the bulk load is in the <samp class="ph msgph">inProgress</samp> phase, the status column shows the progress of the steps as they complete. The <samp class="ph msgph">inProgress</samp> status means that the source system is going through the process of extracting, transforming, and loading data and writing one or more files to a predefined S3 bucket.</p>
+
+    <p class="p">The extracting, transforming, and loading process that happens at the source can take anywhere from seconds to days, depending on the number of records being loaded. After files are written to S3, data is loaded into <span class="keyword">Data Access</span>. <span class="keyword">Data Access</span> takes over to ingest files and persist data into the database. A <span class="ph uicontrol">Cancel</span> badge becomes available at this time.</p>
+
+    <div class="note"><span class="notetitle">Note:</span> If a source system does not support this standard yet, <span class="keyword">Data Access</span> is backwards-compatible to the old style API response.<p class="p">When <span class="keyword">Data Access</span> encounters the old style API response after you click the <span class="ph uicontrol">Refresh status</span> button, the status displays as <samp class="ph msgph">Preparing</samp> during the process of extracting, transforming, and loading data and writing one or more files to a predefined S3 bucket.</p>
+</div>
+
+    <p class="p">The new display of loading progress phases applies only to <span class="keyword">Banner</span> customers using API version 9.22 or higher.</p>
+
+  </div>
+
+</div></div></section>
+<section id="t-580"><h4>Data Loads tab</h4><div class="content-locale-en-US content-locale-en"><div id="r_data_load_status"><div class="body refbody"><p class="shortdesc">The <span class="ph uicontrol"><span class="keyword">Data Loads</span></span> tab displays details for recent data loads to the <span class="keyword">cloud data storage</span>. Sort the table on any column by clicking on the column header, or use the filter to narrow the data loads list.</p>
+
+    
+<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" class="table" frame="hsides" border="1" rules="rows"><colgroup><col><col></colgroup><thead class="thead" style="text-align:left;vertical-align:bottom;">
+          <tr class="row">
+            <th class="entry row-nocellborder" style="text-align:left;vertical-align:bottom;" id="d1456e49">Column</th>
+
+            <th class="entry row-nocellborder" style="text-align:left;vertical-align:bottom;" id="d1456e52">Description</th>
+
+          </tr>
+
+        </thead>
+<tbody class="tbody">
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d1456e49 ">Date</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d1456e52 ">Timestamp of the start of the data load for this resource.</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d1456e49 ">Source</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d1456e52 "><span class="ph">authoritative source</span> of the resource.<p class="p">In STP cases, each load of an authoritative source displays separately from the others. For example, loads for housing-assignments from AppNorth and AppSouth need to be performed separately, and therefore the events will be listed separately in this tab.</p>
+</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d1456e49 ">Resource</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d1456e52 ">Resource name.</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d1456e49 ">Version</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d1456e52 "><span class="keyword">Ellucian Ethos Data Model</span> version.</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d1456e49 ">Operation</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d1456e52 ">Identifies whether the record was created from an initial load, reload, or optimization.</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d1456e49 ">Records Per Page</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d1456e52 ">Number of records per page for this resource.</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d1456e49 ">Duration</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d1456e52 ">Duration for the data load or reload. Hover over the duration for start and end times.</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d1456e49 ">Records (source)</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d1456e52 ">Number of records for this resource on the <span class="keyword">authoritative source</span>.</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d1456e49 ">Records Loaded</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d1456e52 ">Number of records successfully loaded to <span class="keyword">Data Access</span>. <p class="p">For resources with load filters, hover over the underlined value to identify which filtered value was included in this data load or reload. </p>
+<p class="p">To see all loaded values for this resource, locate the resource on the <span class="ph uicontrol">Current Data</span> tab and click the <span class="ph uicontrol">Current Records (Data Access)</span> value.</p>
+<p class="p">If the Records Loaded count differs from the Records (source), refer to the <cite class="cite">Potential causes of record count differences</cite> section below.</p>
+</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d1456e49 ">Errors</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d1456e52 ">Number of errors during the data load, reload, or optimization.</td>
+
+          </tr>
+
+        </tbody>
+</table>
+</div>
+
+    <div class="section"><h2 class="title sectiontitle">Potential causes of record count differences</h2><p class="p">If the Records (source) count and Records Loaded count differ, consider these causes.</p>
+<ul class="ul"> <li class="li">Was the data at the <span class="keyword">authoritative source</span> updated in any way while the load was in progress? If so, then you should expect a difference in these record counts. <p class="p">For example, a data load lasted 15 minutes. If there were any updates, deletes, or creates that could have been submitted at the <span class="keyword">authoritative source</span> during those 15 minutes, some of these changes may have been sent to <span class="keyword">Data Access</span> during the ingestion process, but after the initial record count. </p>
+<p class="p">The full set of updates will be processed when the bulk load process completes and the queued <span class="keyword">change notifications</span> are processed as usual. </p>
+</li>
+ <li class="li">Did <span class="keyword">Data Access</span> report errors during a resource load? If so, the number of records affected by these errors can be compared against the difference between the counts reported for Records (source) and Records Loaded. <p class="p">Depending on the nature of the error, it might mean records are missing from the <span class="keyword">cloud data storage</span>.</p>
+</li>
+ </ul>
+For concerns about potentially missing data records, contact Action Line to further investigate.</div>
+
+  </div>
+
+</div></div></section>
+<section id="t-590"><h5>Review data load error messages</h5><div class="content-locale-en-US content-locale-en"><div id="t_data_load_error_messages"><div class="body taskbody"><p class="shortdesc">If the data load contains errors, <span class="keyword">Data Access</span> provides additional information to help you troubleshoot the cause of the error.</p>
+
+    <div class="tasklabel"><h2 class="sectiontitle tasklabel">Procedure</h2></div><ol class="ol steps"><li class="li step stepexpand">
+        <span class="ph cmd">Select the <span class="keyword">Data Access</span> environment where you want to perform this procedure.</span>
+        <ol type="a" class="ol substeps">
+          <li class="li substep substepexpand">
+            <span class="ph cmd">In <span class="keyword">Data Access</span>, click the settings <span class="ph"><img class="image ell-icon" src="images/04-data-loads-9.png" alt="" data-ft-asset-display-name="settings.png" data-ft-resource-id="KsJ_tFvssYsBxdGEzPL0cQ-biIeTpD~s2DMD68cUGZtOw"></span> icon.</span>
+          </li>
+
+          <li class="li substep substepexpand">
+            <span class="ph cmd">Select the <span class="ph uicontrol">Environment</span> where you want to perform this procedure. </span>
+            <div class="itemgroup info">If you have access to multiple tenants, select both the tenant and environment.</div>
+          </li>
+
+        </ol>
+
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">On the <span class="ph">Data Loads</span> tab, click the arrow or error count to expand the section to display the error messages.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Click <span class="ph uicontrol">More</span> to view additional details provided by the source of the error, either <span class="keyword">Ellucian Ethos Integration</span> or the <span class="ph">authoritative source</span>.</span>
+        <div class="itemgroup info">
+          <div class="p">The error details include <dfn class="term">Offset</dfn> and <dfn class="term">Limit</dfn>. These help you to locate the error at the <span class="ph">authoritative source</span>.<ul class="ul"> <li class="li"><dfn class="term">Offset</dfn> indicates which page contains the error.</li>
+ <li class="li"><dfn class="term">Limit</dfn> is the page size.</li>
+ </ul>
+</div>
+
+          <p class="p">For example, a data load ingested 10,000 records and the error message states <code class="ph codeph">Offset: 50 Limit: 10</code>. This means that the error record is somewhere between record 51 and 60. </p>
+
+        </div>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Click <img class="image" src="images/04-data-loads-10.png" alt="Export the ingestion error messages." data-ft-asset-display-name="btn_export.png" data-ft-resource-id="7GbAqrRU2S9J8YROkdGi8g-biIeTpD~s2DMD68cUGZtOw"> to download all ingestion error messages on the displayed page to a text file.</span>
+      </li>
+</ol>
+
+  </div>
+
+</div></div></section>
+<section id="t-600"><h4>Change Notifications tab</h4><div class="content-locale-en-US content-locale-en"><div id="r_change_notif_status"><div class="body refbody"><p class="shortdesc">The <span class="ph uicontrol">Change Notifications</span> tab presents statistics for the <span class="keyword">cloud data storage</span> updates made by <span class="keyword">change notifications</span>. Sort the table on any column by clicking on the column header, or use the filter to narrow the <span class="keyword">change notification</span> list. </p>
+
+    
+<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" class="table" frame="hsides" border="1" rules="rows"><colgroup><col><col></colgroup><thead class="thead" style="text-align:left;vertical-align:bottom;">
+          <tr class="row">
+            <th class="entry row-nocellborder" style="text-align:left;vertical-align:bottom;" id="d8066e54">Column</th>
+
+            <th class="entry row-nocellborder" style="text-align:left;vertical-align:bottom;" id="d8066e57">Description</th>
+
+          </tr>
+
+        </thead>
+<tbody class="tbody">
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d8066e54 ">Source </td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d8066e57 "><span class="ph">authoritative source</span> of the resource.<p class="p">For a resource in an STP environment, change notifications coming from the different sources are reported separately, associated to the corresponding source that issued it.</p>
+</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d8066e54 ">Resource</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d8066e57 ">Resource name.</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d8066e54 ">Count (since last load)</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d8066e57 ">Number of <span class="keyword">change notifications</span> consumed by <span class="keyword">Ellucian Ethos Integration</span> for this resource after the last load.</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d8066e54 ">Last Update (<span class="keyword">Data Access</span>)</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d8066e57 ">Timestamp of the last <span class="keyword">change notification</span> consumed by <span class="keyword">Ellucian Ethos Data Access</span> for this resource.</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d8066e54 ">Errors</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d8066e57 ">Number of errors when consuming <span class="keyword">change notification</span> for this resource. <p class="p">If errors exist, click the arrow to display the error record details. </p>
+<p class="p">Contact <span class="keyword">Ellucian Action Line</span> if you are unable to resolve <span class="keyword">change notification</span> errors. </p>
+</td>
+
+          </tr>
+
+        </tbody>
+</table>
+</div>
+
+  </div>
+
+</div></div></section>
+<section id="t-610"><h3>Data load troubleshooting</h3><div class="content-locale-en-US content-locale-en"><div id="c_troubleshooting"><div class="body conbody"><p class="shortdesc">If you encounter issues during data loads, such as slow processing, you may be able to resolve them using <span class="keyword">Ellucian</span>-recommended procedures.</p>
+
+    <p class="p">See also <span class="xref ft-internal-link" title="Below are the most common configuration troubleshooting issues and solutions. Many of the errors below indicate that you can use your preferred Rest API client to further troubleshoot the scenario." data-ft-warning="excluded-from-rendering" data-mapid="biIeTpD~s2DMD68cUGZtOw" data-tocid="NIiP0SaEYs2zvSfRZjRjng">Troubleshooting Data Access bulk load errors</span>.</p>
+
+  </div>
+
+</div></div></section>
+<section id="t-620"><h4>Cancel a data load</h4><div class="content-locale-en-US content-locale-en"><div id="t_cancel_load"><div class="body taskbody"><p class="shortdesc">You may want to cancel an in-progress data load or reload. This might happen when you discover <span class="ph">authoritative source</span> data inconsistencies at the time of load, so you should cancel the data load and reload.</p>
+
+    <div class="section context"><div class="tasklabel"><h2 class="sectiontitle tasklabel">About this task</h2></div>When you cancel a resource's reload or initial data load, that resource's data reverts to its previous state. <ul class="ul">
+      <li class="li">If you cancel a data reload, the records return to the previous set of data before the reload began.</li>
+
+      <li class="li">If you cancel an initial data load for a resource, <span class="keyword">Data Access</span> removes all records for that resource.</li>
+
+      </ul>
+You can only cancel a data load or reload while the <span class="ph uicontrol">Cancel</span> button appears. When the <span class="ph uicontrol">finalizing</span> status appears, <span class="keyword">Data Access</span> is completing the necessary actions to make the records available to applications.</div>
+
+    <div class="tasklabel"><h2 class="sectiontitle tasklabel">Procedure</h2></div><ol class="ol steps"><li class="li step stepexpand">
+        <span class="ph cmd">Select the <span class="keyword">Data Access</span> environment where you want to perform this procedure.</span>
+        <ol type="a" class="ol substeps">
+          <li class="li substep substepexpand">
+            <span class="ph cmd">In <span class="keyword">Data Access</span>, click the settings <span class="ph"><img class="image ell-icon" src="images/04-data-loads-9.png" alt="" data-ft-asset-display-name="settings.png" data-ft-resource-id="KsJ_tFvssYsBxdGEzPL0cQ-biIeTpD~s2DMD68cUGZtOw"></span> icon.</span>
+          </li>
+
+          <li class="li substep substepexpand">
+            <span class="ph cmd">Select the <span class="ph uicontrol">Environment</span> where you want to perform this procedure. </span>
+            <div class="itemgroup info">If you have access to multiple tenants, select both the tenant and environment.</div>
+          </li>
+
+        </ol>
+
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Go to the <span class="ph uicontrol">Current Data</span> tab. </span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Scroll to find the resource you want to stop the data loading process for.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Click <span class="ph uicontrol">Cancel</span> for the specified resource. </span>
+        <div class="itemgroup info">This only cancels the data load for the specified resource. Other resources continue to load data.</div>
+      </li>
+</ol>
+
+    <div class="section result"><div class="tasklabel"><h2 class="sectiontitle tasklabel">Results</h2></div>
+      <ul class="ul">
+        <li class="li">If you canceled a resource's initial data load, the resource has 0 records.</li>
+
+        <li class="li">If you canceled a resource's data reload, the data returns to the previous set of data before the reload began.</li>
+
+        <li class="li">If you canceled a resource's data reload that has multiple authoritative sources, as in the case of STP, this resets the status of the resource data for the corresponding authoritative source, without affecting the state of the data coming from other authoritative administrator sources.<p class="p">For example, housing-assignments is owned by AppNorth and AppSouth. It has already been loaded in AppNorth, with 123 records, and it is loading for the first time in AppSouth. If the load from AppSouth gets canceled, AppSouth returns back to 0 records, but the count from AppNorth is left with its 123 records intact.</p>
+</li>
+
+      </ul>
+
+    </div>
+
+  </div>
+
+<div class="related-links">
+<div class="linklist relinfo reltasks" xml:lang="en-US" lang="en-US"><strong>Related tasks</strong><br>
+<ul class="linklist">
+<li class="linklist"><span class="link ft-internal-link" title="The initial data load populates the cloud storage." data-ft-warning="excluded-from-rendering" data-mapid="biIeTpD~s2DMD68cUGZtOw" data-tocid="u_G8U6upiKxHw2SdGqwIPQ">Populate the cloud storage with the initial data load</span></li>
+<li class="linklist"><span class="link ft-internal-link" title="After the initial data load, you might need to reload the cloud storage in certain conditions." data-ft-warning="excluded-from-rendering" data-mapid="biIeTpD~s2DMD68cUGZtOw" data-tocid="EnFsuahAWbQqIH_WJZkYYQ">Reload the cloud storage</span></li></ul></div>
+</div></div></div></section>
+<section id="t-630"><h4>Throttle data loads</h4><div class="content-locale-en-US content-locale-en"><div id="t_page_size"><div class="body taskbody"><p class="shortdesc">If you experience slow data loads or failures due to <span class="keyword">authoritative source</span> timeouts, you may need to throttle the data loads by adjusting how many records are fetched from your <span class="keyword">authoritative source</span>.</p>
+
+    <div class="section context"><div class="tasklabel"><h2 class="sectiontitle tasklabel">About this task</h2></div>If <span class="keyword">Data Access</span> is retrieving more records than your <span class="ph">authoritative source</span> can handle, adjusting the page settings can improve data load performance.<ul class="ul">
+      <li class="li"><dfn class="term">Page Size</dfn> determines how many records are retrieved per page of data. Page Size is defined for each resource.</li>
+
+      <li class="li"><dfn class="term">Max Concurrent Pages</dfn> determines how many pages are retrieved in parallel from <span class="keyword">authoritative source</span> at the same time. Max Concurrent Pages are defined for each resource and at the global level for all resources.</li>
+
+      </ul>
+<div class="note"><span class="notetitle">Note:</span> The page settings use recommended values from the authoritative sources and <span class="keyword">Data Access</span> as defaults. Do not specify custom values unless it is required. </div>
+</div>
+
+    <div class="tasklabel"><h2 class="sectiontitle tasklabel">Procedure</h2></div><ol><li class="li step">
+        <span class="ph cmd">Select the <span class="keyword">Data Access</span> environment where you want to perform this procedure.</span>
+        <ol type="a" class="ol substeps">
+          <li class="li substep substepexpand">
+            <span class="ph cmd">In <span class="keyword">Data Access</span>, click the settings <span class="ph"><img class="image ell-icon" src="images/04-data-loads-9.png" alt="" data-ft-asset-display-name="settings.png" data-ft-resource-id="KsJ_tFvssYsBxdGEzPL0cQ-biIeTpD~s2DMD68cUGZtOw"></span> icon.</span>
+          </li>
+
+          <li class="li substep substepexpand">
+            <span class="ph cmd">Select the <span class="ph uicontrol">Environment</span> where you want to perform this procedure. </span>
+            <div class="itemgroup info">If you have access to multiple tenants, select both the tenant and environment.</div>
+          </li>
+
+        </ol>
+
+      </li>
+<li class="li step">
+        <span class="ph cmd">Go to the <span class="ph uicontrol">Current Data</span> tab.</span>
+      </li>
+<li class="li step">
+        <span class="ph cmd">Select the resource for which you want to adjust the page settings. </span>
+      </li>
+<li class="li step">
+        <span class="ph cmd">For the specified resource, click <img class="image" src="images/04-data-loads-11.png" alt="Click the Settings button to adjust the number of records retrieved." data-ft-asset-display-name="btn_settings.png" data-ft-resource-id="pA445vFgp~zEo7s0uWXJRA-biIeTpD~s2DMD68cUGZtOw"> in the table row of the resource.</span>
+      </li>
+<li class="li step">
+        <span class="ph cmd">Reduce the <span class="ph uicontrol">Page Size</span> value as needed. </span>
+      </li>
+<li class="li step">
+        <span class="ph cmd">Reduce the <span class="ph uicontrol">Max Concurrent Pages</span> setting for the resource as needed.</span>
+      </li>
+</ol><p class="li stepsection">When you reload the resource, you should see an improvement in performance.</p><ol start="7"><li class="li step">
+        <span class="ph cmd">You may still need to adjust the maximum number of pages that <span class="keyword">Data Access</span> can process for all resources.</span>
+        <ol type="a" class="ol substeps">
+          <li class="li substep substepexpand">
+            <span class="ph cmd">Click <img class="image" src="images/04-data-loads-11.png" alt="Settings" data-ft-asset-display-name="btn_settings.png" data-ft-resource-id="pA445vFgp~zEo7s0uWXJRA-biIeTpD~s2DMD68cUGZtOw"> <span class="ph uicontrol">Settings</span> at the top of the <span class="keyword">Ellucian Ethos Data Access</span> page.</span>
+          </li>
+
+          <li class="li substep substepexpand">
+            <span class="ph cmd">Reduce the <span class="ph uicontrol">Max Concurrent Pages</span> to reduce the number of pages that can be processed at the same time.</span>
+            <div class="itemgroup info">
+              <div class="note"><span class="notetitle">Note:</span> The total number of pages being loaded across all resources cannot exceed the global Max Concurrent Pages setting. </div>
+
+            </div>
+            <div class="itemgroup stepxmp">A data load for 4 resources is triggered. Each resource has a Max Concurrent Pages setting of 5, so the load would retrieve 20 pages. However, the global Max Concurrent Pages is set to 15. Therefore, only 15 pages can load at one time. The remaining 5 pages will be queued.</div>
+          </li>
+
+        </ol>
+
+      </li>
+</ol>
+  </div>
+
+</div></div></section>
+<section id="t-640"><h4>Troubleshooting Data Access bulk load errors</h4><div class="content-locale-en-US content-locale-en"><div id="r_troubleshooting_da_bulk_load_errors"><div class="body refbody"><p class="shortdesc">Below are the most common configuration troubleshooting issues and solutions. Many of the errors below indicate that you can use your preferred Rest API client to further troubleshoot the scenario.</p>
+
+    <div class="section">
+      <p class="p">Refer to <span class="xref ft-internal-link" title="See the example below for steps to perform in your Rest API client of choice to troubleshoot errors found during a Data Access load." data-ft-warning="excluded-from-rendering" data-mapid="biIeTpD~s2DMD68cUGZtOw" data-tocid="y4HKwBLiGXqSsSlpoVZ6NQ">Troubleshooting with an API client</span>.</p>
+
+    </div>
+
+    
+<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" class="table" frame="hsides" border="1" rules="rows"><colgroup><col style="width:28.011204481792717%"><col style="width:71.98879551820728%"></colgroup><thead class="thead" style="text-align:left;vertical-align:bottom;">
+          <tr class="row">
+            <th class="entry row-nocellborder" style="text-align:left;vertical-align:bottom;" id="d5234e59">Error/Issue</th>
+
+            <th class="entry row-nocellborder" style="text-align:left;vertical-align:bottom;" id="d5234e62">Description</th>
+
+          </tr>
+
+        </thead>
+<tbody class="tbody">
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d5234e59 ">"statusCode": 400</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d5234e62 ">
+              <p class="p">This code is returned if there are syntax or validation errors detected when processing the request.</p>
+
+              <p class="p">Click the <span class="ph uicontrol">more</span> link on the error for additional information on what caused the error message.</p>
+
+              <p class="p">If the error details indicate the maximum number of sessions was reached, refer to <span class="xref ft-internal-link" title="If you experience slow data loads or failures due to authoritative source timeouts, you may need to throttle the data loads by adjusting how many records are fetched from your authoritative source." data-ft-warning="excluded-from-rendering" data-mapid="biIeTpD~s2DMD68cUGZtOw" data-tocid="Ir0IAuE_PudxBdAs6yqb1Q">Throttle data loads</span> on how to set the connection pool size parameter to a smaller value.</p>
+
+            </td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d5234e59 ">"statusCode": 401</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d5234e62 ">
+              <p class="p">This error is generated when the user credentials used to extract the data from the source do not have VIEW privileges for the data on that resource.</p>
+
+              <p class="p">This needs to be addressed by granting VIEW privileges to the user credentials <span class="keyword">Data Access</span> is using to connect to the source. Or, if the resource has been added to the configuration by mistake, remove it from the proxy setup.</p>
+
+            </td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d5234e59 ">"statusCode": 403,"error" "Missing or invalid credentials"</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d5234e62 ">
+              <p class="p">This error code is commonly associated with Access Denied scenarios.</p>
+
+              <p class="p">Check that credentials are correctly defined in <span class="ph">Integration</span> for accessing the authoritative source. Refer to <span class="xref ft-internal-link" data-ft-warning="excluded-from-rendering" data-mapid="biIeTpD~s2DMD68cUGZtOw" data-tocid="sZH5LLZHZGYg1SPRd7jp~A">Set up Data Access in Ethos Integration</span>.</p>
+
+              <p class="p"><span class="ph">Additionally, you can check the <span class="ph uicontrol">more</span> link on the error for information on what caused the error message.</span></p>
+
+            </td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d5234e59 ">"statusCode": 404</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d5234e62 "><p class="p">This error code is used when the requested resource does not exist in the source, or the API for the resource is not supported.</p>
+<p class="p">Check if the resource is owned and supported by the authoritative source. If the resource should not be owned by the source, adjust the <span class="ph">Integration</span> configuration of the authoritative source application accordingly.</p>
+<span class="ph">Additionally, you can check the <span class="ph uicontrol">more</span> link on the error for information on what caused the error message.</span></td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d5234e59 ">"statusCode": 405</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d5234e62 ">
+              <p class="p">This error code is returned when the requested resource does not exist in the source, or the not supported by the resource.</p>
+
+              <p class="p"><span class="ph">Click the <span class="ph uicontrol">more</span> link on the error for additional information on what caused the error message.</span> This is likely an issue that needs to be reviewed at the source.</p>
+
+              <p class="p">To test connectivity, you can use an API client to call <span class="ph">Ethos Integration</span> with the request, to determine if the API provides a response. Refer to <span class="xref ft-internal-link" title="See the example below for steps to perform in your Rest API client of choice to troubleshoot errors found during a Data Access load." data-ft-warning="excluded-from-rendering" data-mapid="biIeTpD~s2DMD68cUGZtOw" data-tocid="y4HKwBLiGXqSsSlpoVZ6NQ">Troubleshooting with an API client</span>.</p>
+
+            </td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d5234e59 ">"statusCode": 500</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d5234e62 ">
+              <p class="p">This is an error at the source that prevented the execution of the request.</p>
+
+              <p class="p"><span class="ph">Click the <span class="ph uicontrol">more</span> link on the error for additional information on what caused the error message.</span></p>
+
+              <p class="p">To test connectivity, you can use an API client to call <span class="ph">Ethos Integration</span> with the request, to determine if the API provides a response. Refer to <span class="xref ft-internal-link" title="See the example below for steps to perform in your Rest API client of choice to troubleshoot errors found during a Data Access load." data-ft-warning="excluded-from-rendering" data-mapid="biIeTpD~s2DMD68cUGZtOw" data-tocid="y4HKwBLiGXqSsSlpoVZ6NQ">Troubleshooting with an API client</span>.</p>
+
+            </td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d5234e59 ">"statusCode": 502</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d5234e62 ">
+              <p class="p">The request was submitted, but <span class="ph">Ethos Integration</span> is unable to get a response from the authoritative source.</p>
+
+              <p class="p">This error might also be issued if too many requests were submitted at the same time. Try loading or reloading one resource at a time, or adjusting the connection pool size parameter explained at <span class="xref ft-internal-link" title="If you experience slow data loads or failures due to authoritative source timeouts, you may need to throttle the data loads by adjusting how many records are fetched from your authoritative source." data-ft-warning="excluded-from-rendering" data-mapid="biIeTpD~s2DMD68cUGZtOw" data-tocid="Ir0IAuE_PudxBdAs6yqb1Q">Throttle data loads</span>.</p>
+
+              <p class="p"><span class="ph">Click the <span class="ph uicontrol">more</span> link on the error for additional information on what caused the error message.</span></p>
+
+              <p class="p">If applicable, check for networking issues such as IP whitelisting, or other factors that could make the source unresponsive.</p>
+
+              <p class="p">To test connectivity, you can use an API client to call <span class="ph">Ethos Integration</span> with the request, to determine if the API provides a response. Refer to <span class="xref ft-internal-link" title="See the example below for steps to perform in your Rest API client of choice to troubleshoot errors found during a Data Access load." data-ft-warning="excluded-from-rendering" data-mapid="biIeTpD~s2DMD68cUGZtOw" data-tocid="y4HKwBLiGXqSsSlpoVZ6NQ">Troubleshooting with an API client</span>.</p>
+
+            </td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d5234e59 ">"statusCode": 504</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d5234e62 ">
+              <p class="p">This means the source was not able to respond to the initial <span class="keyword">Data Access</span> call with total number of records before the call timed out. This is typically five minutes. The source of this issue could be issues in the configuration to access the source, or a slow performing API. Try loading one resource at a time, or using a smaller number of pages. Refer to <span class="xref ft-internal-link" title="If you experience slow data loads or failures due to authoritative source timeouts, you may need to throttle the data loads by adjusting how many records are fetched from your authoritative source." data-ft-warning="excluded-from-rendering" data-mapid="biIeTpD~s2DMD68cUGZtOw" data-tocid="Ir0IAuE_PudxBdAs6yqb1Q">Throttle data loads</span>.</p>
+
+              <p class="p">If connectivity issues or slow performing APIs are suspected, test the API client call first, to determine if the API will be responding to <span class="keyword">Data Access</span> requests as supported. Refer to <span class="xref ft-internal-link" title="See the example below for steps to perform in your Rest API client of choice to troubleshoot errors found during a Data Access load." data-ft-warning="excluded-from-rendering" data-mapid="biIeTpD~s2DMD68cUGZtOw" data-tocid="y4HKwBLiGXqSsSlpoVZ6NQ">Troubleshooting with an API client</span>.</p>
+
+            </td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d5234e59 ">"error":"No records retrieved"</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d5234e62 ">
+              <p class="p">If the resource has data at the source, verify it is correctly configured in the GORICCR/CDIP/Source system.</p>
+
+            </td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d5234e59 ">"error":"x-total-count header not provided"</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d5234e62 ">
+              <p class="p">Before the resource is loaded, an initial API call is made to determine how many records need to be retrieved. If the API does not return the x-total-count header with the response, <span class="keyword">Data Access</span> is not able to schedule the jobs needed to receive the information.</p>
+
+              <p class="p">Contact <span class="ph">Ellucian Action Line</span> to request assistance with this issue. Provide the API version, resource name, and whether page size was adjusted before the bulk load.</p>
+
+            </td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d5234e59 ">"error":"Record not loaded due to GUID '00000'"</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d5234e62 ">
+              <p class="p">The source has not properly created GUIDs for these records. They might exist defined as such at the source database.</p>
+
+              <p class="p">Review source application documentation on how to address these scenarios.</p>
+
+            </td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d5234e59 ">"error":"Record already exists, was processed in another page"</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d5234e62 ">
+              <p class="p">This is a warning message about a duplicate record that was received in the indicated page.</p>
+
+              <p class="p">This typically does not represent an issue unless after the bulk load has been completed, the number of records available at the source are higher than the number of records loaded by <span class="keyword">Data Access</span>. If this is the case, and missing information is suspected, contact the <span class="ph">Ellucian Action Line</span> for assistance.</p>
+
+            </td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d5234e59 ">"error":"Resource abc returned X records (expecting Y)"</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d5234e62 ">
+              <p class="p">This error means that the <span class="keyword">Data Access</span> request was expecting a number of records, with a limit set to a value, but the API call itself returned less records than expected.</p>
+
+              <p class="p">This typically does not represent an issue unless after the bulk load has been completed, the number of records available at the source are higher than the number of records loaded by <span class="keyword">Data Access</span>. If this is the case, and missing information is suspected, contact the <span class="ph">Ellucian Action Line</span> for assistance.</p>
+
+            </td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d5234e59 ">"Resource seems stuck during the bulk load"</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d5234e62 ">
+              <p class="p">If the resource is taking too much time in the preparing stage, or the progress of the load is not moving, the API might be experiencing slow performance during the bulk load process.</p>
+
+              <p class="p">Use an API client to call <span class="ph">Ethos Integration</span> with a similar API call. If the source does not respond to the API client call within five minutes, or returns a timeout error, try loading one resource at a time, or using a smaller number of pages. Refer to <span class="xref ft-internal-link" title="If you experience slow data loads or failures due to authoritative source timeouts, you may need to throttle the data loads by adjusting how many records are fetched from your authoritative source." data-ft-warning="excluded-from-rendering" data-mapid="biIeTpD~s2DMD68cUGZtOw" data-tocid="Ir0IAuE_PudxBdAs6yqb1Q">Throttle data loads</span>.</p>
+
+              <p class="p">If the resource remains stuck, or you cannot cancel the current load, contact the <span class="ph">Ellucian Action Line</span> for assistance.</p>
+
+            </td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" colspan="2" style="text-align:left;vertical-align:top;" headers="d5234e59 d5234e62 ">API Not Eligible for Bulk Load</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d5234e59 ">
+              <pre class="pre codeblock"><code>value too long for type character varying(50)
+
+OR
+
+RecordID 100 must be a valid GUID.
+Record found on page 1, offset 0.
+
+OR
+
+The method is not supported by the resource.</code></pre>
+            </td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d5234e62 ">Data Access only supports <span class="ph uicontrol">SPEC APIs</span> and <span class="ph uicontrol">EEDM APIs </span>— not BPAPIs or ERP APIs. A resource must meet all three of the following criteria to be loadable in Data Access.<ol class="ol">
+              <li class="li">Must support a GET ALL operation.<p class="p">The resource must return data without specifying a GUID in the request. If it does not, Data Access will report: <samp class="ph msgph">The method is not supported by the resource.</samp></p>
+<p class="p">The GET ALL operation is different from the GET BY ID operation:</p>
+<pre class="pre codeblock"><code>-- GET BY ID (uses a GUID to return one specific record):
+GET https://integrate.elluciancloud.com/api/persons/de56342b-24f0-4f5e-b01e-000ca8c0d3ed
+
+-- GET ALL (returns data without specifying a GUID):
+GET https://integrate.elluciancloud.com/api/persons</code></pre><p class="p">Example of a resource that does not support GET ALL:</p>
+<pre class="pre codeblock"><code>GET https://integrate.elluciancloud.com/api/account-funds-available-transactions
+-- Response: "The method is not supported by the resource."</code></pre><p class="p">This resource only exposes a POST method, confirmed in its <span class="ph filepath">/api/resources</span> metadata:</p>
+<pre class="pre codeblock"><code>"name": "account-funds-available-transactions",
+"representations": [
+  {
+    "X-Media-Type": "application/vnd.hedtech.integration.v11+json",
+    "methods": [ "post" ]
+  }
+]</code></pre></li>
+
+              <li class="li">Must support paging / paginated responses (<code class="ph codeph">limit</code> and <code class="ph codeph">offset</code>)<p class="p">The resource must accept <code class="ph codeph">limit</code> and <code class="ph codeph">offset</code> parameters on a GET ALL request.</p>
+<ul class="ul">
+                <li class="li">limit=1 &amp; offset=0 — returns the first record on the first page</li>
+
+                <li class="li">limit=2 &amp; offset=0 — returns the first two records on the first page</li>
+
+                <li class="li">limit=2 &amp; offset=1 — returns the third and fourth records on the second page</li>
+
+                </ul>
+<p class="p">Test the resource in Bruno to confirm paging works:</p>
+<pre class="pre codeblock"><code>GET https://integrate.elluciancloud.com/api/persons?offset=700&amp;limit=100</code></pre></li>
+
+              <li class="li">Must expose a 128-bit GUID as its root identifier<p class="p">Each record in the response payload must have a valid 128-bit GUID as the value of the id field. If it does not, bulk load will fail.</p>
+<p class="p">Real-world example of a failing resource:</p>
+<pre class="pre codeblock"><code>Resource Name : registration-terms-allowed
+Activity time : 9/8/2025 2:56:28 PM CDT
+Offset        : N/A
+Limit         : 1
+Error         : terms-2b25-2ffa must be a valid GUID</code></pre><p class="p">This resource has an LDM.GUID record in Colleague, but it is not a valid 128-bit GUID and cannot be loaded in Data Access.</p>
+<p class="p"><span class="ph uicontrol">What is a GUID?</span> A GUID (Globally Unique Identifier) is a 128-bit number virtually guaranteed to be unique across all time and space, used to uniquely identify entities such as software components, database records, or files. It must be the value of the <code class="ph codeph">id</code> property in each node of the response output.</p>
+<p class="p">Example — valid GUID identifier in a persons response:</p>
+<pre class="pre codeblock"><code>GET https://integrate.elluciancloud.com/api/persons/1805ffaf-8a2b-48c7-8f6e-fcd07026ac73
+
+{
+  "names": [
+    {
+      "type": {
+        "category": "legal",
+        "detail": { "id": "be4d8700-d84d-4dc7-b5e3-1733aab46854" }
+      },
+      "fullName": "LAST NAME",
+      "lastNamePrefix": "LAST",
+      "lastName": "LAST NAME",
+      "preference": "preferred"
+    }
+  ],
+  "credentials": [
+    { "type": "colleaguePersonId", "value": "0000000" }
+  ],
+  "id": "1805ffaf-8a2b-48c7-8f6e-fcd07026ac73"
+}</code></pre><p class="p">How to verify resource capabilities:</p>
+<p class="p">Call the <span class="ph filepath">/api/resources</span> endpoint and inspect the metadata for your resource. It must show <span class="keyword apiname">getAllPatterns</span> with <code class="ph codeph">method: get</code> and <code class="ph codeph">name: paging</code>. Example from persons v12.6.0:</p>
+<pre class="pre codeblock"><code>GET https://integrate.elluciancloud.com/api/resources
+
+-- persons v12.6.0 — confirms GET ALL + paging are supported:
+"getAllPatterns": [
+  {
+    "name": "paging",
+    "method": "get",
+    "X-Media-Type": "application/vnd.hedtech.integration.v12.6.0+json"
+  }
+]</code></pre><p class="p">A resource must satisfy all three requirements — GET ALL, paging, and a valid GUID <code class="ph codeph">id</code> to be loaded in Data Access.</p>
+<div class="note"><span class="notetitle">Note:</span> To identify the API type (SPEC, EEDM, BPAPI, ERP), check the API Catalog, the type is listed directly below the API name.</div>
+</li>
+
+              </ol>
+</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d5234e59 "><span class="ph uicontrol">Addresses Resource — Bulk Load Errors</span></td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d5234e62 ">&nbsp;</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d5234e59 ">ERROR 1<pre class="pre codeblock"><code>Message:GUID:64ce45b9-af68-4d5e-a867-0f7c98c57923
+ID=10172510 ADDR_TYPE=PR SEQ=1
+==&gt;[Possible Banner Pages:SPAIDEN, %IDEN]
+==&gt; instance failed to match -&gt;
+exactly one schema (matched 0 out of 2)</code></pre></td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d5234e62 "><span class="ph uicontrol">Cause</span>: Address data does not meet the required schema due to missing, invalid, or inconsistent values.<p class="p">First, review the address data in <span class="keyword wintitle">SPRADDR</span> or on <span class="keyword wintitle">SPAIDEN</span> specific to the address type and sequence number referenced in the error and validate those values. This issue can be one or all of the following:</p>
+<ol class="ol">
+              <li class="li">Nation code does not match what you have in GORICCR. Use the queries below to make sure you consistently have the same codes for those values:<pre class="pre codeblock"><code>select gubinst_natn_code from gubinst;
+select stvnatn_code from stvnatn where stvnatn_nation like 'United States%';
+select GORICCR_VALUE, GORICCR_TRANSLATION_VALUE from goriccr
+  where goriccr_icsn_code = 'NATION.ISOCODE';
+select GORICCR_VALUE, GORICCR_TRANSLATION_VALUE from GORICCR
+  where GORICCR_ICSN_CODE like 'ADDRESS.COUNTRY.DEFAULT';</code></pre></li>
+
+              <li class="li">The state or zip is incorrect for the address. </li>
+
+              <li class="li">Missing required data on address. </li>
+
+              <li class="li">State is not a state defined in STVSTAT. </li>
+
+              <li class="li">Run the following query in the database to see if it returns errors on the data (replace the GUID with the one in your error):<pre class="pre codeblock"><code>select * from SVQ_BULK_ADDRESSES
+WHERE ADDRESS_GUID = '64ce45b9-af68-4d5e-a867-0f7c98c57923';</code></pre><p class="p">For other APIs, refer to the <span class="xref ft-internal-xlink" data-ft-warning="excluded-from-rendering" data-clusterid="id_ethos/ethos_data_access/c_banner_ethos_api_ref">Banner Ethos API reference</span> views documentation to identify the equivalent view.</p>
+</li>
+
+              <li class="li">The address type is not defined in <span class="keyword wintitle">GORICCR</span> or in Ethos Integration configuration for address mapping. Please check and review.</li>
+
+              <li class="li">There is a carrier route that is incorrect or does not match the standards (see Defect <a class="xref ft-external-link" href="https://elluciansupport.service-now.com/customer_center?id=standard_ticket&amp;table=ellucian_product_defect&amp;sys_id=03637fd587570d1025d9cbb6dabb351e&amp;view=" target="_blank" rel="noopener">CR-000183675</a>).</li>
+
+              <li class="li">Check the schema in the addresses API documentation for the required fields (marked with red asterisks) to see if there is a missing item on the address of this person. Refer to the <a class="xref ft-external-link" href="https://resources.elluciancloud.com/r/bundle/banner_api_ethos_api_addresses_11.3.0/page/addresses.html?tocId=r~zoGkqxvzUU2Btv1ZkRCQ" rel="noopener">Banner Ethos API addresses V11 schema</a>documentation.</li>
+
+              <li class="li">Check GTVSCOD for the state and confirm it matches the state on the data. For more information on ISO codes refer to the <span class="xref ft-internal-xlink" data-ft-warning="excluded-from-rendering" data-clusterid="id_ethos/ethos_data_access/c_iso_cod_map">ISO Code mapping enhancement</span>.</li>
+
+              <li class="li">If you are familiar with schema validation, you can use the GURAPSP table. This table contains the schema against which data is validated. Detailed steps:<ol class="ol" type="a">
+                <li class="li">Extract the schema validation JSON from GURAPSP:<pre class="pre codeblock"><code>SELECT * FROM gurapsp WHERE gurapsp_resource = 'addresses';
+-- Replace 'addresses' with 'persons' or other API name as needed.</code></pre></li>
+
+                <li class="li">Load the extracted JSON into an online JSON Schema validator such as https://www.jsonschemavalidator.net and paste it on the left side.</li>
+
+                <li class="li">Extract the generated JSON file from the job submission server. Files follow the naming pattern: <span class="ph filepath">&lt;resource&gt;_&lt;user&gt;_&lt;one_up_no&gt;.json</span></li>
+
+                <li class="li">Locate the GUID from your error in the JSON file (<span class="ph filepath">guaeblt_&lt;one_up_no&gt;.lis</span>) and copy that record's JSON to the right side of the validator. This will give you a more specific location of the issue.</li>
+
+                </ol>
+</li>
+
+              </ol>
+</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d5234e59 ">ERROR 2<pre class="pre codeblock"><code>Caused by: org.springframework.jdbc.BadSqlGrammarException:
+Executing query; bad SQL grammar
+[SELECT * FROM BAN_ETHOS_BULK.BULK0001_ADDRESSES];
+nested exception is java.sql.SQLException:
+ORA-01427: single-row subquery returns more than one row</code></pre></td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d5234e62 ">This error means that for an address you have more than one address type defined. It usually means you have a GORICCR or Ethos Integration setup that is incorrect for address mapping. Please check and review.<p class="p">You should be able to run the following select without errors if addresses are set up correctly:</p>
+<pre class="pre codeblock"><code>SELECT * FROM BAN_ETHOS_BULK.BULK0001_ADDRESSES;</code></pre></td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d5234e59 "><span class="ph uicontrol">Persons Resource — Bulk Load Errors</span></td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d5234e62 ">&nbsp;</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d5234e59 ">ERROR 3<pre class="pre codeblock"><code>Message:GUID:e9a040d4-a53d-4b76-8c78-470d02172082
+ID=L00552379 SPRIDEN PIDM==552456
+SPRIDEN SURROGATE ID=15432
+==&gt;[Possible Banner Pages:SPAIDEN, %IDEN]
+-&gt; ECMA 262 regex
+"^[a-zA-Z0-9_!#$%&amp;'*+/=?`{|}~^.-]+@[a-zA-Z0-9.-]+$"
+does not match input string "jrsad89Ayahoo.com"
+-&gt; is not a valid email address</code></pre></td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d5234e62 ">Find and correct all invalid email addresses. Run the appropriate query for your database to identify all bad email addresses in the system:<p class="p">Oracle:</p>
+<pre class="pre codeblock"><code>SELECT SPRIDEN_ID, GOREMAL_PIDM, GOREMAL_EMAL_CODE,
+       GOREMAL_EMAIL_ADDRESS, GOREMAL_VPDI_CODE
+FROM   GOREMAL, GORICCR, SPRIDEN, GTVEMAL
+WHERE  GORICCR_ICSN_CODE   = 'EMAILS.EMAILTYPE'
+AND    GORICCR_VALUE        = GOREMAL_EMAL_CODE
+AND    GTVEMAL_CODE         = GOREMAL_EMAL_CODE
+AND    GTVEMAL_URL_IND      = 'N'
+AND    GOREMAL_STATUS_IND   = 'A'
+AND    SPRIDEN_PIDM         = GOREMAL_PIDM
+AND    SPRIDEN_CHANGE_IND IS NULL
+AND    NOT regexp_like(
+         GOREMAL_EMAIL_ADDRESS,
+         '^[a-zA-Z0-9_!#$%&amp;''*+/=?`{|}~^.-]+@[a-zA-Z0-9.-]+$'
+       )
+ORDER BY GOREMAL_PIDM, GOREMAL_EMAL_CODE, GOREMAL_EMAIL_ADDRESS;</code></pre><p class="p">PostgreSQL:</p>
+<pre class="pre codeblock"><code>SELECT spriden_id,
+       goremal_pidm,
+       goremal_emal_code,
+       goremal_email_address,
+       goremal_vpdi_code
+FROM   goremal
+JOIN   goriccr ON goriccr_value     = goremal_emal_code
+JOIN   gtvemal ON gtvemal_code       = goremal_emal_code
+JOIN   spriden ON spriden_pidm       = goremal_pidm
+WHERE  goriccr_icsn_code             = 'EMAILS.EMAILTYPE'
+AND    gtvemal_url_ind               = 'N'
+AND    goremal_status_ind            = 'A'
+AND    spriden_change_ind IS NULL
+AND    goremal_email_address !~
+       '^[a-zA-Z0-9_!#$%&amp;''*+/=?`{|}~^.-]+@[a-zA-Z0-9.-]+$'
+ORDER BY goremal_pidm, goremal_emal_code, goremal_email_address;</code></pre><div class="note"><span class="notetitle">Note:</span> The email validation logic is the same for Oracle and PostgreSQL, but the regex operator differs (<code class="ph codeph">regexp_like</code> vs <code class="ph codeph">!~</code>).</div>
+<p class="p">Correct all identified email addresses in the source system before re-running the bulk load.</p>
+</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d5234e59 "><span class="ph uicontrol">Instructors Resource — Bulk Load Errors</span></td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d5234e62 ">&nbsp;</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d5234e59 ">ERROR 4 <pre class="pre codeblock"><code>Instructor bulk load fails — instructor PIDMs
+exist in SIBINST but have no valid
+corresponding records in SPRIDEN
+(merged or obsolete identities)</code></pre></td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d5234e62 ">Instructor PIDMs exist in SIBINST but do not have valid corresponding records in SPRIDEN, often due to merged or obsolete identities.<ol class="ol">
+              <li class="li">Run the following query to identify affected instructors:<pre class="pre codeblock"><code>-- Oracle &amp; PostgreSQL (same query)
+SELECT sibinst_pidm
+FROM   sibinst
+WHERE  sibinst_pidm NOT IN (
+  SELECT spriden_pidm
+  FROM   spriden
+  WHERE  spriden_change_ind IS NULL
+);</code></pre></li>
+
+              <li class="li">Run GUAORPH to correct orphaned identity records.</li>
+
+              <li class="li">Remove or correct the invalid instructor records identified by the query above.</li>
+
+              <li class="li">Re-run the Instructors bulk load.<div class="note important"><span class="importanttitle">Important:</span> Instructor records without valid SPRIDEN entries should not be published as part of bulk load processing.</div>
+<p class="p"><span class="ph uicontrol">Customer Case</span>: <cite class="cite">We had several old SPRIDEN records that were merged by the Registrar's Office but still existed in SIBINST. After removing those records, instructor bulk load completed successfully</cite>.</p>
+</li>
+
+              </ol>
+</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d5234e59 "><span class="ph uicontrol">Configuration &amp; Authorization Errors</span></td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d5234e62 ">&nbsp;</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d5234e59 ">ERROR 5 — 401 Unauthorized<p class="p"><a class="xref ft-external-link" href="https://elluciansupport.service-now.com/customer_center?sys_kb_id=85198db383f83e5000ff9840ceaad330&amp;id=kb_article_view" target="_blank" rel="noopener">KB000505510</a></p>
+<pre class="pre codeblock"><code>ERROR occurred getting authorization token.
+HTTP response code: 401,
+HTTP reason: Unauthorized
+
+ERROR(s) occurred, which may have prevented
+file packaging and/or uploading
+
+Error occurred retrieving presigned URLs
+from subscriber</code></pre></td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d5234e62 ">Caused by invalid or mismatched API keys, or incorrect GTVSDAX / GUBOPT configuration.<ol class="ol">
+              <li class="li">Validate API key configuration using the appropriate database script:<ol class="ol" type="a">
+                <li class="li">Oracle: <span class="ph filepath">Ethos API Key validation-Oracle.sql </span></li>
+
+                <li class="li">PostgreSQL: <span class="ph filepath">Ethos API Key validation-pg.sql</span></li>
+
+                </ol>
+</li>
+
+              <li class="li">Ensure API keys exist in <span class="keyword wintitle">GTVSDAX</span> and application information has been added for Bulk Load processing.</li>
+
+              <li class="li">Use a REST client (Postman, Bruno, or Insomnia) to test the API directly and confirm no HTTP 401 or 403 errors are returned.</li>
+
+              <li class="li">Resolve any API configuration issue before proceeding with Bulk Load troubleshooting.</li>
+
+              </ol>
+</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d5234e59 ">ERROR 6 — Empty Class <p class="p"><a class="xref ft-external-link" href="https://elluciansupport.service-now.com/customer_center?sys_kb_id=85198db383f83e5000ff9840ceaad330&amp;id=kb_article_view" target="_blank" rel="noopener">KB000505510</a></p>
+<pre class="pre codeblock"><code>*ERROR* Empty Class
+
+Finished validation of set up for Data Access
+(DA_BULK_API_USER) for bulk processing
+with 1 error(s)</code></pre></td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d5234e62 ">The user running the bulk job is missing required classes or objects. Work through the following checklist:<ol class="ol">
+              <li class="li">Step 1 — Verify Proxy Access: Ensure the API user has:<ol class="ol" type="a">
+                <li class="li"><code class="ph codeph">banproxy</code></li>
+
+                <li class="li"><code class="ph codeph">banjsproxy</code></li>
+
+                </ol>
+</li>
+
+              <li class="li">Step 2 — Verify Required Classes and Objects: The user running the bulk job must have:<ol class="ol" type="a">
+                <li class="li"><code class="ph codeph">BAN_ETHOS_C</code> class </li>
+
+                <li class="li"><code class="ph codeph">DA_BULK_API_USER</code> object</li>
+
+                </ol>
+</li>
+
+              <li class="li">Step 3 — Verify Data Access Permissions: Ensure the same user is enabled for Data Access integration in <span class="ph menucascade"><span class="ph uicontrol">Ethos Integration</span><abbr title="and then"> &gt; </abbr><span class="ph uicontrol">Platform Components</span><abbr title="and then"> &gt; </abbr><span class="ph uicontrol">Data Access</span></span>.</li>
+
+              </ol>
+</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d5234e59 ">CONFIGURATION NOTE — QAPI URI Case Sensitivity<pre class="pre codeblock"><code>Integration issues caused by
+incorrect casing in the QAPI URI</code></pre></td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d5234e62 ">The <span class="ph filepath">qapi</span> portion of the URI is case-sensitive and must be lowercase. This requirement is not always clearly documented but failure to use lowercase will result in integration issues.<p class="p">Correct format:</p>
+<pre class="pre codeblock"><code>https://your.apiserver.edu:port/IntegrationApi/qapi</code></pre><div class="note"><span class="notetitle">Note:</span> Ensure the qapi path is always lowercase in all API server and Ethos Integration configurations.</div>
+</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" colspan="2" style="text-align:left;vertical-align:top;" headers="d5234e59 d5234e62 "><span class="ph uicontrol">Monitoring &amp; Viewing Bulk Job Output</span></td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d5234e59 ">Viewing Bulk Job Status &amp; Output <p class="p"><a class="xref ft-external-link" href="https://elluciansupport.service-now.com/customer_center?sys_kb_id=85198db383f83e5000ff9840ceaad330&amp;id=kb_article_view" target="_blank" rel="noopener">KB000505510</a></p>
+<pre class="pre codeblock"><code>Bulk job output not visible in GJAJLIS
+or unable to review job errors</code></pre></td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d5234e62 ">
+              <ol class="ol">
+                <li class="li">View Job Status through REST API.<p class="p">Use a REST client (for example, Postman) to retrieve bulk job status. Set both headers:</p>
+<pre class="pre codeblock"><code>Content-Type: application/vnd.hedtech.integration.bulk-requests.v1+json
+Accept:       application/vnd.hedtech.integration.bulk-requests.v1+json</code></pre><p class="p">Example endpoint:</p>
+<pre class="pre codeblock"><code>http://&lt;IP&gt;:&lt;port&gt;/StudentApi/MAIN/api/student-academic-periods</code></pre><p class="p">The response returns job status, error information, and report metadata.</p>
+</li>
+
+                <li class="li">Enable Required Objects on GJAJBMO.<p class="p">Ensure the following objects are enabled:</p>
+<ul class="ul">
+                  <li class="li">GUAEBLK</li>
+
+                  <li class="li">GUAEBLT</li>
+
+                  <li class="li">GUAEBLL</li>
+
+                  </ul>
+<div class="note"><span class="notetitle">Note:</span> If GJRRPTS is not enabled on GJAJBMO, no output will be available in GJAJLIS.</div>
+</li>
+
+                <li class="li">Grant Access through GSASECR.<p class="p">Grant <code class="ph codeph">BAN_DEFAULT_M</code> access to one of the following on GSASECR:</p>
+<ul class="ul">
+                  <li class="li"><code class="ph codeph">GJAJLIS_JOBS</code> — view output only for jobs the user has access to (recommended)</li>
+
+                  <li class="li"><code class="ph codeph">GJAJLIS_USER</code> — view output for any job and any user (less restrictive)</li>
+
+                  </ul>
+</li>
+
+                <li class="li">Identify Recent Bulk Jobs (Oracle)<pre class="pre codeblock"><code>SELECT *
+FROM   guboutp
+WHERE  guboutp_job IN ('GUAEBLK')
+ORDER BY guboutp_one_up_no DESC;</code></pre></li>
+
+                <li class="li">View Job Output Lines (Oracle)<pre class="pre codeblock"><code>SELECT REPLACE(guroutp_line, CHR(10), '') guroutp_line
+FROM   guroutp
+WHERE  guroutp_one_up_no = &lt;ONE_UP_NO&gt;
+ORDER BY guroutp_file_number, guroutp_seq_no;</code></pre><p class="p">Review output for authorization, configuration, or packaging errors.</p>
+</li>
+
+              </ol>
+
+            </td>
+
+          </tr>
+
+        </tbody>
+</table>
+</div>
+
+  </div>
+
+</div></div></section>
+<section id="t-650"><h5>Troubleshooting with an API client</h5><div class="content-locale-en-US content-locale-en"><div id="r_troubleshooting_with_api_client"><div class="body taskbody"><p class="shortdesc">See the example below for steps to perform in your Rest API client of choice to troubleshoot errors found during a <span class="keyword">Data Access</span> load.</p>
+
+    <div class="tasklabel"><h2 class="sectiontitle tasklabel">Procedure</h2></div><ol class="ol steps"><li class="li step stepexpand">
+        <span class="ph cmd">On the <span class="ph">Ethos Integration</span> header bar, click the gear button <img class="image" src="images/04-data-loads-12.png" alt="Environment selection button" data-ft-asset-display-name="btn_choose_env.png" data-ft-resource-id="xjVXQQpfnPS4NgfdxsO2zw-biIeTpD~s2DMD68cUGZtOw">, and then select the environment where troubleshooting needs to be performed (for example, Test).</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">On the <span class="ph">Ethos Integration</span> header bar, click <span class="ph uicontrol">Applications</span>.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">In the <span class="keyword wintitle">Create New App</span> area, click <span class="ph uicontrol">Manually</span>.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">On the <span class="keyword wintitle">Add Application</span> page:</span>
+        <ol type="a" class="ol substeps">
+          <li class="li substep">
+            <span class="ph cmd">Select <span class="ph uicontrol">Configure REST API proxy</span>.</span>
+          </li>
+
+          <li class="li substep">
+            <span class="ph cmd">Click <span class="ph uicontrol">Continue</span>.</span>
+          </li>
+
+        </ol>
+
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">On the <span class="keyword wintitle">Application Details</span> page, enter a name for this application (for example, API client Troubleshooting), and then click  <span class="ph uicontrol">Next</span>.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">On the <span class="keyword wintitle">Add Source Applications</span> page:</span>
+        <ol type="a" class="ol substeps">
+          <li class="li substep substepexpand">
+            <span class="ph cmd">Click <span class="ph uicontrol">Add Source Application</span> to open the <span class="keyword wintitle">Add Source Application</span> page.</span>
+          </li>
+
+          <li class="li substep substepexpand">
+            <span class="ph cmd">In the <span class="ph uicontrol">Source application</span> field, select the application.</span>
+          </li>
+
+          <li class="li substep substepexpand">
+            <span class="ph cmd">Enter the username and password that will allow this application to connect to your ERP system (CRM, <span class="keyword">Banner</span>, or <span class="keyword">Colleague</span>). </span>
+            <div class="itemgroup info">
+              <div class="note"><span class="notetitle">Note:</span> <span class="keyword">Ellucian</span> highly recommends that you enter the same credentials that were configured for the <span class="keyword">Data Access</span> application. This ensures the API client has the same authorization access as the application you are troubleshooting.</div>
+
+            </div>
+          </li>
+
+          <li class="li substep substepexpand">
+            <span class="ph cmd">In the <span class="ph uicontrol">Select a resource</span> field, select any <span class="keyword">Ethos</span> resource to which that user account has permissions in the ERP. For example, <code class="ph codeph">persons</code>.</span>
+            <div class="itemgroup info">Ethos Integration uses that resource to validate the user credentials by confirming that the user account has access to at least one resource in the ERP. After the credentials are validated, the application will have access to all resources for which the user account has been granted permissions.</div>
+          </li>
+
+          <li class="li substep substepexpand">
+            <span class="ph cmd">Click <span class="ph uicontrol">Add</span>.</span>
+          </li>
+
+        </ol>
+
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">On the <span class="ph uicontrol">Add Subscriptions</span> page of the wizard, click <span class="ph uicontrol">Skip</span>. </span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Go to the <span class="ph uicontrol">Applications</span> page and select your new application.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">On the  <span class="ph uicontrol">API Keys</span> tab,  copy into the clipboard the default API Key created for your application. You will need this to create an authentication token when connecting from an API client.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">In the API client, create a request with the following information:</span>
+        <div class="itemgroup info"> <span class="ph uicontrol">POST</span> <kbd class="ph userinput">https://integrate.elluciancloud.com/auth</kbd> </div>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Click the <span class="ph uicontrol">Headers</span> tab and enter the following key:</span>
+        
+<table border="1" frame="hsides" rules="rows" cellpadding="4" cellspacing="0" summary="" class="simpletable choicetable choicetableborder">
+<colgroup><col style="width:33.33333333333333%"><col style="width:66.66666666666666%"></colgroup><thead><tr class="sthead chhead"><th class="stentry choptionhd" style="vertical-align:bottom;text-align:left;" id="d7321e258-option">Key</th>
+<th class="stentry chdeschd" style="vertical-align:bottom;text-align:left;" id="d7321e258-desc">Value</th></tr></thead>
+<tbody><tr class="strow chrow">
+            <th style="vertical-align:top;" headers="d7321e258-option" id="d7321e271" class="stentry choption">Authorization</th>
+
+            <td style="vertical-align:top;" headers="d7321e258-desc d7321e271" class="stentry chdesc">Bearer<p class="p">The API Key that was created in Integration for your API client Troubleshooting application</p>
+</td>
+
+          </tr>
+</tbody></table>
+
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Click <span class="ph uicontrol">Send</span>.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Copy the token code that was sent as a response to the clipboard.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Create a new request with the following information, indicating the resource you want to troubleshoot. For example if you are troubleshooting fiscal-periods:</span>
+        <div class="itemgroup info">
+          <p class="p"> <span class="ph uicontrol">GET</span> <kbd class="ph userinput">https://integrate.elluciancloud.com/api/fiscal-periods</kbd> </p>
+
+        </div>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Click the <span class="ph uicontrol">Headers</span> tab and enter the following key:</span>
+        
+<table border="1" frame="hsides" rules="rows" cellpadding="4" cellspacing="0" summary="" class="simpletable choicetable choicetableborder">
+<colgroup><col style="width:33.33333333333333%"><col style="width:66.66666666666666%"></colgroup><thead><tr class="sthead chhead"><th class="stentry choptionhd" style="vertical-align:bottom;text-align:left;" id="d7321e324-option">Key</th>
+<th class="stentry chdeschd" style="vertical-align:bottom;text-align:left;" id="d7321e324-desc">Value</th></tr></thead>
+<tbody><tr class="strow chrow">
+            <th style="vertical-align:top;" headers="d7321e324-option" id="d7321e337" class="stentry choption">Authorization</th>
+
+            <td style="vertical-align:top;" headers="d7321e324-desc d7321e337" class="stentry chdesc">Bearer {authorization token}<p class="p">Insert the authorization token returned from the previous call here.</p>
+</td>
+
+          </tr>
+</tbody></table>
+
+        <div class="itemgroup info">
+          <div class="note"><span class="notetitle">Note:</span> If the page size was adjusted, provide the limit argument in your request with the custom value. For example, <span class="ph uicontrol">GET</span> <kbd class="ph userinput">https://integrate.elluciancloud.com/api/fiscal-periods?limit=50</kbd></div>
+
+        </div>
+      </li>
+</ol>
+
+  </div>
+
+</div></div></section></main></body></html>

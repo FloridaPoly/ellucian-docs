@@ -1,0 +1,905 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Ethos Identity - Configure — Configure Ethos Identity for specific products</title><style>body{font-family:-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;line-height:1.55;color:#1a1a1a;max-width:920px;margin:0 auto;padding:24px}header{border-bottom:2px solid #5a16d6;margin-bottom:8px}h1{color:#3a0ca3}h2,h3,h4,h5,h6{margin-top:1.6em}.crumb{color:#666;font-size:13px;margin:0}.meta{color:#888;font-size:12px}nav.toc{background:#f6f4fc;border:1px solid #e3dcf5;border-radius:8px;padding:12px 18px;margin:18px 0}nav.toc h2{margin:.2em 0}nav.toc ul{list-style:none;padding-left:0}nav.toc a{text-decoration:none;color:#5a16d6}section{margin:1.2em 0;padding-top:.4em}img{max-width:100%;height:auto}table{border-collapse:collapse}td,th{border:1px solid #ccc;padding:4px 8px}code,pre{background:#f4f4f4;border-radius:4px}pre{padding:10px;overflow:auto}</style></head><body><header><p class="crumb">Ethos Identity › Ethos Identity - Configure</p><h1>Ethos Identity - Configure — Configure Ethos Identity for specific products</h1><p class="meta">Source: <a href="https://resources.elluciancloud.com/r/bundle/ethos_identity_acn_configure">https://resources.elluciancloud.com/r/bundle/ethos_identity_acn_configure</a> &middot; Retrieved 2026-06-17</p></header><nav class="toc"><h2>Contents</h2><ul><li style="margin-left:0px"><a href="#t-660">Configure Ethos Identity for specific products</a></li><li style="margin-left:16px"><a href="#t-670">Ellucian CRM Products</a></li><li style="margin-left:32px"><a href="#t-680">Define the required claims</a></li><li style="margin-left:32px"><a href="#t-690">Create the service providers</a></li><li style="margin-left:32px"><a href="#t-700">Apply a security policy to allow Ellucian CRM users to authenticate using Ellucian Ethos Identity</a></li><li style="margin-left:32px"><a href="#t-710">Make the SAML metadata accessible to CRM applications</a></li><li style="margin-left:16px"><a href="#t-720">Office 365</a></li><li style="margin-left:32px"><a href="#t-730">Prerequisites</a></li><li style="margin-left:32px"><a href="#t-740">Modify Identity settings</a></li><li style="margin-left:32px"><a href="#t-750">Add global claim mapping</a></li><li style="margin-left:32px"><a href="#t-760">Add service provider claim mapping</a></li><li style="margin-left:32px"><a href="#t-770">Apply a security policy to allow Office 365 users to authenticate using Ellucian Ethos Identity</a></li><li style="margin-left:32px"><a href="#t-780">Office 365 configuration</a></li><li style="margin-left:16px"><a href="#t-790">Outlook Web App</a></li><li style="margin-left:32px"><a href="#t-800">Configure OWA for federation</a></li><li style="margin-left:32px"><a href="#t-810">Configure OWA as a service provider</a></li><li style="margin-left:16px"><a href="#t-820">Other Ellucian products</a></li></ul></nav><main><section id="t-660"><h2>Configure Ethos Identity for specific products</h2><div class="content-locale-en-US content-locale-en"><div id="c_landing_pg_ethos_identity_config_products"><p class="shortdesc">Configure <span class="keyword">Ellucian Ethos Identity</span> to work with other <span class="ph">Ellucian</span> products and third-party products.</p>
+
+</div></div></section>
+<section id="t-670"><h3>Ellucian CRM Products</h3><div class="content-locale-en-US content-locale-en"><div id="c_eeid_crm"><div class="body conbody"><p class="shortdesc">Configure <span class="keyword">Ellucian Ethos Identity</span> with <span class="keyword">Ellucian CRM</span> products which support claims.</p>
+
+    <p class="p">The <span class="keyword">Ellucian CRM</span> products (<span class="keyword">Ellucian CRM</span> Recruit, <span class="keyword">Ellucian CRM</span> Advise, and <span class="keyword">Ellucian CRM</span> Advance) support claims based on a set of WS-* standards.</p>
+
+    <p class="p">The SAML token is either:</p>
+
+    <ul class="ul">
+      <li class="li">Passive mode (WS-Federation), for <span class="keyword">Ellucian CRM</span> web-based applications </li>
+
+      <li class="li">Active mode (WS-Trust), for SDK Connections, Outlook Client, toolkit/installer, web front ends</li>
+
+    </ul>
+
+  </div>
+
+</div></div></section>
+<section id="t-680"><h4>Define the required claims</h4><div class="content-locale-en-US content-locale-en"><div id="t_crm_eeid_claims"><div class="body taskbody"><p class="shortdesc">Integration of <span class="keyword">Ellucian CRM</span> products with <span class="keyword">Ellucian Ethos Identity</span> requires claims for logon name and UPN.</p>
+
+    <div class="tasklabel"><h2 class="sectiontitle tasklabel">Procedure</h2></div><ol class="ol steps"><li class="li step">
+        <span class="ph cmd">In the Management Console, click the <span class="ph uicontrol">Main</span> tab.</span>
+      </li>
+<li class="li step">
+        <span class="ph cmd">Create a claim for logon name:</span>
+        <ol type="a" class="ol substeps">
+          <li class="li substep">
+            <span class="ph cmd">Under <span class="ph uicontrol">Claims</span>, click <span class="ph uicontrol">Add</span>.</span>
+          </li>
+
+          <li class="li substep">
+            <span class="ph cmd">On the <span class="keyword wintitle">Add New Dialect/Claim</span> page, click <span class="ph uicontrol">Add Local Claim</span>.</span>
+          </li>
+
+          <li class="li substep">
+            <span class="ph cmd">On the <span class="keyword wintitle">Add Local Claim</span> page, enter values for the logon name claim as shown in the table below, and then click <span class="ph uicontrol">Add</span>.</span>
+          </li>
+
+        </ol>
+
+        
+<table border="1" frame="hsides" rules="rows" cellpadding="4" cellspacing="0" summary="" class="simpletable choicetable choicetableborder">
+<colgroup><col style="width:50%"><col style="width:50%"></colgroup><thead><tr class="sthead chhead"><th class="stentry choptionhd" style="vertical-align:bottom;text-align:left;" id="d13922e87-option">Field</th>
+<th class="stentry chdeschd" style="vertical-align:bottom;text-align:left;" id="d13922e87-desc">Entry</th></tr></thead>
+<tbody><tr class="strow chrow">
+            <th style="vertical-align:top;" headers="d13922e87-option" id="d13922e100" class="stentry choption">Claim URI</th>
+
+            <td style="vertical-align:top;" headers="d13922e87-desc d13922e100" class="stentry chdesc">Enter <kbd class="ph userinput">http://wso2.org/claims/logonname</kbd></td>
+
+          </tr>
+<tr class="strow chrow">
+            <th style="vertical-align:top;" headers="d13922e87-option" id="d13922e111" class="stentry choption">Display Name</th>
+
+            <td style="vertical-align:top;" headers="d13922e87-desc d13922e111" class="stentry chdesc">Example: <kbd class="ph userinput">Logon name</kbd></td>
+
+          </tr>
+<tr class="strow chrow">
+            <th style="vertical-align:top;" headers="d13922e87-option" id="d13922e122" class="stentry choption">Description</th>
+
+            <td style="vertical-align:top;" headers="d13922e87-desc d13922e122" class="stentry chdesc">Example: <kbd class="ph userinput">Logon name</kbd></td>
+
+          </tr>
+<tr class="strow chrow">
+            <th style="vertical-align:top;" headers="d13922e87-option" id="d13922e133" class="stentry choption">Mapped Attribute</th>
+
+            <td style="vertical-align:top;" headers="d13922e87-desc d13922e133" class="stentry chdesc">Enter <kbd class="ph userinput">sAMAccountName</kbd></td>
+
+          </tr>
+</tbody></table>
+
+      </li>
+<li class="li step">
+        <span class="ph cmd">Create a claim for UPN:</span>
+        <ol type="a" class="ol substeps">
+          <li class="li substep">
+            <span class="ph cmd">Under <span class="ph uicontrol">Claims</span>, click <span class="ph uicontrol">Add</span>.</span>
+          </li>
+
+          <li class="li substep">
+            <span class="ph cmd">On the <span class="keyword wintitle">Add New Dialect/Claim</span> page, click <span class="ph uicontrol">Add Local Claim</span>.</span>
+          </li>
+
+          <li class="li substep">
+            <span class="ph cmd">On the <span class="keyword wintitle">Add Local Claim</span> page, enter values for the UPN claim as shown in the table below, and then click <span class="ph uicontrol">Add</span>.</span>
+          </li>
+
+        </ol>
+
+        
+<table border="1" frame="hsides" rules="rows" cellpadding="4" cellspacing="0" summary="" class="simpletable choicetable choicetableborder">
+<colgroup><col style="width:50%"><col style="width:50%"></colgroup><thead><tr class="sthead chhead"><th class="stentry choptionhd" style="vertical-align:bottom;text-align:left;" id="d13922e188-option">Field</th>
+<th class="stentry chdeschd" style="vertical-align:bottom;text-align:left;" id="d13922e188-desc">Entry</th></tr></thead>
+<tbody><tr class="strow chrow">
+            <th style="vertical-align:top;" headers="d13922e188-option" id="d13922e201" class="stentry choption">Claim URI</th>
+
+            <td style="vertical-align:top;" headers="d13922e188-desc d13922e201" class="stentry chdesc">Enter <kbd class="ph userinput">http://wso2.org/claims/UPN</kbd></td>
+
+          </tr>
+<tr class="strow chrow">
+            <th style="vertical-align:top;" headers="d13922e188-option" id="d13922e212" class="stentry choption">Display Name</th>
+
+            <td style="vertical-align:top;" headers="d13922e188-desc d13922e212" class="stentry chdesc">Example: <kbd class="ph userinput">UPN</kbd></td>
+
+          </tr>
+<tr class="strow chrow">
+            <th style="vertical-align:top;" headers="d13922e188-option" id="d13922e223" class="stentry choption">Description</th>
+
+            <td style="vertical-align:top;" headers="d13922e188-desc d13922e223" class="stentry chdesc">Example: <kbd class="ph userinput">User principal name</kbd></td>
+
+          </tr>
+<tr class="strow chrow">
+            <th style="vertical-align:top;" headers="d13922e188-option" id="d13922e234" class="stentry choption">Mapped Attribute</th>
+
+            <td style="vertical-align:top;" headers="d13922e188-desc d13922e234" class="stentry chdesc">Enter <kbd class="ph userinput">userPrincipalName</kbd></td>
+
+          </tr>
+</tbody></table>
+
+      </li>
+</ol>
+
+  </div>
+
+</div></div></section>
+<section id="t-690"><h4>Create the service providers</h4><div class="content-locale-en-US content-locale-en"><div id="t_crm_eeid_service_provider"><div class="body taskbody"><p class="shortdesc">CRM products require two service providers for integration with <span class="keyword">Ellucian Ethos Identity</span>: one for <span class="keyword">Ellucian CRM</span> web-based applications and one for other <span class="keyword">Ellucian CRM</span> connections.</p>
+
+    <div class="tasklabel"><h2 class="sectiontitle tasklabel">Procedure</h2></div><ol class="ol steps"><li class="li step stepexpand">
+        <span class="ph cmd">Log in to the Management Console.</span>
+        <div class="itemgroup info">Log in as a user who has access to all service providers. You can either always use the same login to maintain service providers, or give multiple users access to each service provider using the procedure in <cite class="cite">Make a service provider visible to additional administrators</cite>.</div>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd" id="t_crm_eeid_service_provider__d64e148">Click the <span class="ph uicontrol">Main</span> tab. </span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Go to <span class="ph menucascade"><span class="ph uicontrol">Service Providers</span><abbr title="and then"> &gt; </abbr><span class="ph uicontrol">Add</span></span>.</span>
+        <div class="itemgroup info">First, you will create the service provider for non-web-based <span class="keyword">Ellucian CRM</span> connections.</div>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">On the <span class="keyword wintitle">Add New Service Provider</span> page, in the <span class="ph uicontrol">Service Provider Name</span> field, enter a name for the service provider.</span>
+        <div class="itemgroup stepxmp">Example: <kbd class="ph userinput">CRM Dynamics Svc</kbd></div>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Click <span class="ph uicontrol">Register</span>.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">On the <span class="keyword wintitle">Service Providers</span> page, expand <span class="ph uicontrol">Claim Configuration</span>.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Select <span class="ph uicontrol">Define Custom Claim Dialect</span></span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Add a claim URI for UPN:</span>
+        <ol type="a" class="ol substeps">
+          <li class="li substep">
+            <span class="ph cmd">Click <span class="ph uicontrol">Add Claim URI</span>.</span>
+          </li>
+
+          <li class="li substep">
+            <span class="ph cmd">In the <span class="ph uicontrol">Service Provider Claim</span> column, enter <kbd class="ph userinput">http://schemas.xmlsoap.org/ws/2005/05/identity/claims/upn</kbd></span>
+          </li>
+
+          <li class="li substep">
+            <span class="ph cmd">In the <span class="ph uicontrol">Local Claim</span> column, select the UPN claim that you created earlier.</span>
+          </li>
+
+          <li class="li substep">
+            <span class="ph cmd">Select the <span class="ph uicontrol">Requested Claim</span> check box.</span>
+          </li>
+
+        </ol>
+
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Add a claim URI for logon name:</span>
+        <ol type="a" class="ol substeps">
+          <li class="li substep">
+            <span class="ph cmd">Click <span class="ph uicontrol">Add Claim URI</span>.</span>
+          </li>
+
+          <li class="li substep">
+            <span class="ph cmd">In the <span class="ph uicontrol">Service Provider Claim</span> column, enter <kbd class="ph userinput">http://schemas.xmlsoap.org/ws/2005/05/identity/claims/name</kbd></span>
+          </li>
+
+          <li class="li substep">
+            <span class="ph cmd">In the <span class="ph uicontrol">Local Claim</span> column, select the logon name claim that you created earlier.</span>
+          </li>
+
+          <li class="li substep">
+            <span class="ph cmd">Select the <span class="ph uicontrol">Requested Claim</span> check box.</span>
+          </li>
+
+        </ol>
+
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">In the <span class="ph uicontrol">Subject Claim URI</span> field, select the UPN claim that you created earlier.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Expand <span class="ph menucascade"><span class="ph uicontrol">Inbound Authentication Configuration</span><abbr title="and then"> &gt; </abbr><span class="ph uicontrol">WS-Federation (Passive) Configuration</span></span>. </span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">In the <span class="ph uicontrol">Passive STS Realm</span> field, enter <kbd class="ph userinput"><var class="keyword varname">&lt;your_CRM_URL&gt;</var>/XRMServices/2011/Organization.svc</kbd></span>
+        <div class="itemgroup stepxmp">Example: <kbd class="ph userinput">crm.myschool.edu:443/XRMServices/2011/Organization.svc</kbd></div>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">In the <span class="ph uicontrol">Passive STS WReply URL</span> field, enter the same value that you entered in the <span class="ph uicontrol">Passive STS Realm</span> field.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Expand <span class="ph menucascade"><span class="ph uicontrol">Inbound Authentication Configuration</span><abbr title="and then"> &gt; </abbr><span class="ph uicontrol">WS-Trust Security Token Service Configuration</span></span>.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Click <span class="ph uicontrol">Configure</span>.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">On the <span class="keyword wintitle">STS Configuration</span> page, in the <span class="ph uicontrol">Endpoint Address</span> field, enter the same value that you entered in the <span class="ph uicontrol">Passive STS Realm</span> field.</span>
+        <div class="itemgroup stepxmp">Example: <kbd class="ph userinput">crm.myschool.edu:443/XRMServices/2011/Organization.svc</kbd></div>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">In the <span class="ph uicontrol">Certificate Alias</span> drop down, select a certificate that CRM trusts.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Click <span class="ph uicontrol">Apply</span>.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Back on the <span class="keyword wintitle">Service Providers</span> page, click <span class="ph uicontrol">Update</span> to create the service provider.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Go to <span class="ph menucascade"><span class="ph uicontrol">Service Providers</span><abbr title="and then"> &gt; </abbr><span class="ph uicontrol">Add</span></span>.</span>
+        <div class="itemgroup info">Next, you will create the service provider for web-based <span class="keyword">Ellucian CRM</span> applications.</div>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">On the <span class="keyword wintitle">Add New Service Provider</span> page, in the <span class="ph uicontrol">Service Provider Name</span> field, enter a name for the service provider.</span>
+        <div class="itemgroup stepxmp">Example: <kbd class="ph userinput">CRM Dynamics Web</kbd></div>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Click <span class="ph uicontrol">Register</span>.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">On the <span class="keyword wintitle">Service Providers</span> page, expand <span class="ph uicontrol">Claim Configuration</span>.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Select <span class="ph uicontrol">Define Custom Claim Dialect</span></span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Add a claim URI for UPN:</span>
+        <div class="itemgroup info">These claim definitions are identical to those for the service provider that you created earlier.</div>
+        <ol type="a" class="ol substeps">
+          <li class="li substep">
+            <span class="ph cmd">Click <span class="ph uicontrol">Add Claim URI</span>.</span>
+          </li>
+
+          <li class="li substep">
+            <span class="ph cmd">In the <span class="ph uicontrol">Service Provider Claim</span> column, enter <kbd class="ph userinput">http://schemas.xmlsoap.org/ws/2005/05/identity/claims/upn</kbd></span>
+          </li>
+
+          <li class="li substep">
+            <span class="ph cmd">In the <span class="ph uicontrol">Local Claim</span> column, select the UPN claim that you created earlier.</span>
+          </li>
+
+          <li class="li substep">
+            <span class="ph cmd">Select the <span class="ph uicontrol">Requested Claim</span> check box.</span>
+          </li>
+
+        </ol>
+
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Add a claim URI for logon name:</span>
+        <ol type="a" class="ol substeps">
+          <li class="li substep">
+            <span class="ph cmd">Click <span class="ph uicontrol">Add Claim URI</span>.</span>
+          </li>
+
+          <li class="li substep">
+            <span class="ph cmd">In the <span class="ph uicontrol">Service Provider Claim</span> column, enter <kbd class="ph userinput">http://schemas.xmlsoap.org/ws/2005/05/identity/claims/name</kbd></span>
+          </li>
+
+          <li class="li substep">
+            <span class="ph cmd">In the <span class="ph uicontrol">Local Claim</span> column, select the logon name claim that you created earlier.</span>
+          </li>
+
+          <li class="li substep">
+            <span class="ph cmd">Select the <span class="ph uicontrol">Requested Claim</span> check box.</span>
+          </li>
+
+        </ol>
+
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">In the <span class="ph uicontrol">Subject Claim URI</span> field, select the UPN claim that you created earlier.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Expand <span class="ph menucascade"><span class="ph uicontrol">Inbound Authentication Configuration</span><abbr title="and then"> &gt; </abbr><span class="ph uicontrol">WS-Federation (Passive) Configuration</span></span>.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">In the <span class="ph uicontrol">Passive STS Realm</span> field, enter <kbd class="ph userinput"><var class="keyword varname">&lt;your_CRM_URL&gt;</var>/</kbd></span>
+        <div class="itemgroup stepxmp">Example: <kbd class="ph userinput">crm.myschool.edu:443/</kbd></div>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">In the <span class="ph uicontrol">Passive STS WReply URL</span> field, enter the same value that you entered in the <span class="ph uicontrol">Passive STS Realm</span> field.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Expand <span class="ph menucascade"><span class="ph uicontrol">Inbound Authentication Configuration</span><abbr title="and then"> &gt; </abbr><span class="ph uicontrol">WS-Trust Security Token Service Configuration</span></span>.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Click <span class="ph uicontrol">Configure</span>.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">On the <span class="keyword wintitle">STS Configuration</span> page, in the <span class="ph uicontrol">Endpoint Address</span> field, enter the same value that you entered in the <span class="ph uicontrol">Passive STS Realm</span> field.</span>
+        <div class="itemgroup stepxmp">Example: <kbd class="ph userinput">crm.myschool.edu:443/</kbd></div>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">In the <span class="ph uicontrol">Certificate Alias</span> drop down, select a certificate that CRM trusts.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Click <span class="ph uicontrol">Apply</span>.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Back on the <span class="keyword wintitle">Service Providers</span> page, click <span class="ph uicontrol">Update</span> to create the service provider.</span>
+      </li>
+</ol>
+
+  </div>
+
+</div></div></section>
+<section id="t-700"><h4>Apply a security policy to allow Ellucian CRM users to authenticate using Ellucian Ethos Identity</h4><div class="content-locale-en-US content-locale-en"><div id="t_crm_eeid_security_policy"><div class="body taskbody"><p class="shortdesc">You can apply a security policy to limit which users can authenticate to <span class="keyword">Ellucian CRM</span> applications using <span class="keyword">Ellucian Ethos Identity</span>.</p>
+
+    <div class="section context"><div class="tasklabel"><h2 class="sectiontitle tasklabel">About this task</h2></div>If you previously applied a security policy for Office 365, and you selected an LDAP group (such as Internal/Everyone) that also includes your <span class="keyword">Ellucian CRM</span> users, you can skip this procedure.</div>
+
+    <div class="tasklabel"><h2 class="sectiontitle tasklabel">Procedure</h2></div><ol class="ol steps"><li class="li step stepexpand">
+        <span class="ph cmd">Log in to the Management Console.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Click the <span class="ph uicontrol">Main</span> tab. </span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Under <span class="ph uicontrol">Identity Providers</span>, click <span class="ph uicontrol">Resident</span>.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Expand <span class="ph menucascade"><span class="ph uicontrol">Inbound Authentication Configuration</span><abbr title="and then"> &gt; </abbr><span class="ph uicontrol">Security Token Service Configuration</span></span>.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Click <span class="ph uicontrol">Apply Security Policy</span>. </span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">In the <span class="ph uicontrol">Enable Security</span> field, select <span class="ph uicontrol">Yes</span>. </span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Under Basic Scenarios, select <span class="ph uicontrol">UsernameToken</span> and then click <span class="ph uicontrol">Next</span>. </span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">On the <span class="keyword wintitle">Activate Security</span> page, select the LDAP groups that include the users that you want to be able to authenticate to <span class="keyword">Ellucian CRM</span> applications.</span>
+        <div class="itemgroup stepxmp">For example, to allow all users in your LDAP to authenticate, search for the <code class="ph codeph">Internal/Everyone</code> group and select the check box for that group.</div>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Click <span class="ph uicontrol">Finish</span> and then click <span class="ph uicontrol">Update</span>.</span>
+      </li>
+</ol>
+
+  </div>
+
+</div></div></section>
+<section id="t-710"><h4>Make the SAML metadata accessible to CRM applications</h4><div class="content-locale-en-US content-locale-en"><div id="t_crm_eeid_saml_metadata"><div class="body taskbody"><p class="shortdesc">To authenticate with a security token service, <span class="keyword">Ellucian CRM</span> products expect a federation metadata file that contains specific details about the service.</p>
+
+    <div class="tasklabel"><h2 class="sectiontitle tasklabel">Procedure</h2></div><ol class="ol steps"><li class="li step stepexpand">
+        <span class="ph cmd" id="t_crm_eeid_saml_metadata__d64e132">Log in to the Management Console.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd" id="t_crm_eeid_saml_metadata__d64e148">Click the <span class="ph uicontrol">Main</span> tab. </span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Under Identity Providers, click <span class="ph uicontrol">Resident</span>. </span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Expand <span class="ph menucascade"><span class="ph uicontrol">Inbound Authentication Configuration</span><abbr title="and then"> &gt; </abbr><span class="ph uicontrol">SAML2 Web SSO Configuration</span></span>. </span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Click <span class="ph uicontrol">Download SAML Metadata</span>.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Upload the metadata file to a web server.</span>
+        <div class="itemgroup info"><span class="keyword">Ellucian CRM</span> requires that the metadata be accessible as a URL. As part of <span class="keyword">Ellucian CRM</span> setup, you will point your <span class="keyword">Ellucian CRM</span> configuration to the URL for the metadata on the web server.</div>
+      </li>
+</ol>
+
+  </div>
+
+</div></div></section>
+<section id="t-720"><h3>Office 365</h3><div class="content-locale-en-US content-locale-en"><div id="c_eeid_365"><div class="body conbody"><p class="shortdesc">Configure <span class="keyword">Ellucian Ethos Identity</span> with Microsoft Office 365.</p>
+
+    <p class="p"><span class="keyword">Ellucian Ethos Identity</span> uses web-based WS-Federation Passive authentication to accomplish federation with Microsoft Office 365 web-based applications and WS-Federation Active authentication for non-web-based applications. This provides support to the web-based Office 365 applications.</p>
+
+    <p class="p"><span class="keyword">Ellucian Ethos Identity</span> also provides access to email on iPhone and Android devices by the Outlook Application (when configured to use an <code class="ph codeph">Office 365</code> account type) and native Exchange on Android and iOS in addition to Skype for business on Mobile, Skype for business on Desktop, OneDrive for business, and OneDrive desktop application.</p>
+
+  </div>
+
+</div></div></section>
+<section id="t-730"><h4>Prerequisites</h4><div class="content-locale-en-US content-locale-en"><div id="c_eeid_365_prereq"><div class="body conbody"><p class="shortdesc">Follow these prerequisites when configuring Office 365 with <span class="keyword">Ellucian Ethos Identity</span>.</p>
+
+    <ul class="ul">
+      <li class="li">A valid Office 365 domain configured to use federation. </li>
+
+      <li class="li">The ability to connect to Office 365 through an Azure Active Directory Module for Windows PowerShell. This is a basic requirement for managing Office 365. </li>
+
+      <li class="li">Users synced into Office 365: <ul class="ul"> <li class="li">The following configuration assumes the Immutable ID in Office 365 is set to the objectGUID in Active Directory, which is the default when using Azure Active Directory sync.</li>
+ <li class="li"><span class="keyword">Ellucian Ethos Identity</span> authentication against Active Directory, or another directory server, must reference a user name that matches the Office 365 email address. In Active Directory, this means userPrincipalName.<div class="note"><span class="notetitle">Note:</span> Changing the authentication mechanism in this way dictates the format of the username you use to log in to <span class="keyword">Ellucian Ethos Identity</span> for users and administrators.</div>
+</li>
+ </ul>
+</li>
+
+    </ul>
+
+  </div>
+
+</div></div></section>
+<section id="t-740"><h4>Modify Identity settings</h4><div class="content-locale-en-US content-locale-en"><div id="t_eeid_365_identity_settings"><div class="body taskbody"><p class="shortdesc">The following settings are required within your <span class="ph filepath">deployment.toml</span> file for Office365.</p>
+
+    <div class="tasklabel"><h2 class="sectiontitle tasklabel">Procedure</h2></div><ol class="ol steps"><li class="li step stepexpand">
+        <span class="ph cmd">In the <span class="ph filepath">EIS_HOME/repository/conf</span> directory, open the <span class="ph filepath">deployment.toml</span> file.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Set the value of the <code class="ph codeph">enable_email_domain</code> property under the [tenant_mgt] root key as follows to use the ActiveDirectory attribute that contains the e-mail address of the Office 365 account for users instead of <code class="ph codeph">sAMAccountName</code>:</span>
+        <div class="itemgroup info">
+          
+<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" class="table" frame="hsides" border="1" rules="all"><colgroup><col style="width:53.48837209302325%"><col style="width:46.51162790697674%"></colgroup><thead class="thead" style="text-align:left;">
+                <tr class="row">
+                  <th class="entry cellrowborder" style="vertical-align:top;" id="d5978e75">Property</th>
+
+                  <th class="entry row-nocellborder" style="vertical-align:top;" id="d5978e78">Description</th>
+
+                </tr>
+
+              </thead>
+<tbody class="tbody">
+                <tr class="row">
+                  <td class="entry cellrowborder" style="vertical-align:top;" headers="d5978e75 ">enable_email_domain</td>
+
+                  <td class="entry row-nocellborder" style="vertical-align:top;" headers="d5978e78 ">Require e-mail address format for username<p class="p">Default value: false</p>
+</td>
+
+                </tr>
+
+              </tbody>
+</table>
+</div>
+
+        </div>
+        <div class="itemgroup info">In most cases, this attribute will be <code class="ph codeph">userPrincipalName</code>.</div>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Set the following property: <code class="ph codeph">eis.userstore.JavaNamingLdapAttributesBinary=objectGUID</code></span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">From the <span class="ph filepath">EllucianEthosIdentity/config</span> directory, run the appropriate command for your operating system.</span>
+        <div class="itemgroup info">Linux/UNIX: <pre class="pre codeblock"><code>ANT_HOME=../apache-ant/
+export ANT_HOME
+../apache-ant/bin/ant configure-user-store</code></pre>Windows:<pre class="pre codeblock"><code>..\apache-ant\bin\ant configure-user-store</code></pre></div>
+      </li>
+</ol>
+
+  </div>
+
+</div></div></section>
+<section id="t-750"><h4>Add global claim mapping</h4><div class="content-locale-en-US content-locale-en"><div id="t_eeid_365_global_claim_mapping"><div class="body taskbody"><p class="shortdesc">The typical Office 365 configuration relies on several attributes from Active Directory that are not automatically mapped by <span class="keyword">Ellucian Ethos Identity</span>. The following steps will create the required claims.</p>
+
+    <div class="tasklabel"><h2 class="sectiontitle tasklabel">Procedure</h2></div><ol class="ol steps"><li class="li step stepexpand">
+        <span class="ph cmd" id="t_eeid_365_global_claim_mapping__d64e132">Log in to the Management Console.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd" id="t_eeid_365_global_claim_mapping__d64e148">Click the <span class="ph uicontrol">Main</span> tab. </span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Under Claims, click <span class="ph uicontrol">Add</span>.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Under Add New Dialect/Claim, click <span class="ph uicontrol">Add Local Claim</span>.</span>
+      </li>
+<li class="li step stepexpand" id="t_eeid_365_global_claim_mapping__nct_zy3_my">
+        <span class="ph cmd" id="t_eeid_365_global_claim_mapping__wnb_vrm_sgb">Enter the required data for each required claim mapping, and then click <span class="ph uicontrol" id="t_eeid_365_global_claim_mapping__xnb_vrm_sgb">Add</span>. </span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Repeat step 6 and 7 for each claim listed in the following table.</span>
+        <div class="itemgroup info">
+          
+<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" class="table" frame="hsides" border="1" rules="rows"><colgroup><col><col><col><col></colgroup><thead class="thead" style="text-align:left;">
+                <tr class="row">
+                  <th class="entry row-nocellborder" style="text-align:left;vertical-align:top;" id="d10830e99">Claim</th>
+
+                  <th class="entry row-nocellborder" style="text-align:left;vertical-align:top;" id="d10830e102"><span class="keyword">Ellucian Ethos Identity</span> URI</th>
+
+                  <th class="entry row-nocellborder" style="text-align:left;vertical-align:top;" id="d10830e107">LDAP Attribute</th>
+
+                  <th class="entry row-nocellborder" style="text-align:left;vertical-align:top;" id="d10830e110">Purpose</th>
+
+                </tr>
+
+              </thead>
+<tbody class="tbody">
+                <tr class="row">
+                  <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d10830e99 ">User Principal</td>
+
+                  <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d10830e102 ">http://wso2.org/​claims/​upn</td>
+
+                  <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d10830e107 ">
+                    <code class="ph codeph">userPrincipalName</code>
+                  </td>
+
+                  <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d10830e110 ">This must be the email address of the Office 365 user. Usually this is the <code class="ph codeph">userPrincipalName</code> in Active Directory.</td>
+
+                </tr>
+
+                <tr class="row">
+                  <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d10830e99 ">Immutable ID</td>
+
+                  <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d10830e102 ">http://wso2.org/​claims/​objectguid</td>
+
+                  <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d10830e107 ">
+                    <code class="ph codeph">objectGUID</code>
+                  </td>
+
+                  <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d10830e110 ">This is the immutable ID that is set by the Azure AD sync service out of the box. If you use a different value, this claim must be populated with that value for each user.</td>
+
+                </tr>
+
+              </tbody>
+</table>
+</div>
+
+        </div>
+      </li>
+</ol>
+
+  </div>
+
+</div></div></section>
+<section id="t-760"><h4>Add service provider claim mapping</h4><div class="content-locale-en-US content-locale-en"><div id="t_eeid_365_serv_provider_claim_map"><div class="body taskbody"><p class="shortdesc">When creating a service provider for Office 365, you must map the previously defined global claims to specific claim names.</p>
+
+    <div class="tasklabel"><h2 class="sectiontitle tasklabel">Procedure</h2></div><ol class="ol steps"><li class="li step stepexpand">
+        <span class="ph cmd" id="t_eeid_365_serv_provider_claim_map__d64e132">Log in to the Management Console.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd" id="t_eeid_365_serv_provider_claim_map__d64e148">Click the <span class="ph uicontrol">Main</span> tab. </span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Under <span class="ph uicontrol">Service Providers</span>, click <span class="ph uicontrol">List</span>.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Click <span class="ph uicontrol">Edit</span> for the target service provider. If the service provider does not exist, then click <span class="ph uicontrol">Add</span> under Service Providers before proceeding. </span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Expand the <span class="ph uicontrol">Claim Configuration</span> panel and click <span class="ph uicontrol">Define Custom Claim Dialect</span>. </span>
+      </li>
+<li class="li step stepexpand" id="t_eeid_365_serv_provider_claim_map__r1q_vj3_my">
+        <span class="ph cmd">Click <span class="ph uicontrol">Add Claim URI</span> to add a new claim mapping. </span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">In the <span class="ph uicontrol">Service Provider Claim</span> field, enter the claim name required by the service provider. </span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">In the <span class="ph uicontrol">Local Claim</span> field, select the internal claim that contains the required value. </span>
+      </li>
+<li class="li step stepexpand" id="t_eeid_365_serv_provider_claim_map__y5h_g43_my">
+        <span class="ph cmd">Select the <span class="ph uicontrol">Requested Claims</span> check box to always send the claim.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Repeat step 6 through 9 for the claims in the following table.</span>
+        <div class="itemgroup info">
+          
+<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" class="table" frame="hsides" border="1" rules="rows"><colgroup><col><col></colgroup><thead class="thead" style="text-align:left;">
+                <tr class="row">
+                  <th class="entry row-nocellborder" style="vertical-align:top;" id="d11837e135">Service Provider Claim</th>
+
+                  <th class="entry row-nocellborder" style="vertical-align:top;" id="d11837e138">Internal Claim</th>
+
+                </tr>
+
+              </thead>
+<tbody class="tbody">
+                <tr class="row">
+                  <td class="entry row-nocellborder" style="vertical-align:top;" headers="d11837e135 ">http://schemas.xmlsoap.org/claims/UPN</td>
+
+                  <td class="entry row-nocellborder" style="vertical-align:top;" headers="d11837e138 ">http://wso2.org/claims/upn</td>
+
+                </tr>
+
+                <tr class="row">
+                  <td class="entry row-nocellborder" style="vertical-align:top;" headers="d11837e135 ">http://schemas.microsoft.com/LiveID/Federation/2008/05/ImmutableID</td>
+
+                  <td class="entry row-nocellborder" style="vertical-align:top;" headers="d11837e138 ">http://wso2.org/claims/objectguid</td>
+
+                </tr>
+
+                <tr class="row">
+                  <td class="entry row-nocellborder" style="vertical-align:top;" headers="d11837e135 ">http://schemas.microsoft.com/ws/2008/06/identity/claims/role</td>
+
+                  <td class="entry row-nocellborder" style="vertical-align:top;" headers="d11837e138 ">http://wso2.org/claims/role</td>
+
+                </tr>
+
+              </tbody>
+</table>
+</div>
+
+        </div>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Set the <span class="ph uicontrol">Subject Claim URI</span> to the ImmutableID service provider claim mapped above.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Set the <span class="ph uicontrol">Role Claim URI</span> to the role service provider claim mapped above.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Expand <span class="ph menucascade"><span class="ph uicontrol">Inbound Authentication Configuration</span><abbr title="and then"> &gt; </abbr><span class="ph uicontrol">WS-Federation (Passive) Configuration</span></span>. </span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">In the <span class="ph uicontrol">Passive STS Realm</span> field, enter the Office365 realm: <kbd class="ph userinput">urn:federation:MicrosoftOnline</kbd>.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">In the <span class="ph uicontrol">Passive STS WReply URL</span> field, enter the Office365 federation endpoint: <kbd class="ph userinput">https://login.microsoftonline.com/login.srf</kbd>.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Expand <span class="ph uicontrol">WS-Trust Security Token Service Configuration</span>.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Click <span class="ph uicontrol">Configure</span>.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">In the <span class="ph uicontrol">Endpoint Address</span> field, enter <kbd class="ph userinput">urn:federation:MicrosoftOnline</kbd>.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">In the <span class="ph uicontrol">Certificate Alias</span> field, select the signing certificate that will be used for Office 365 and click <span class="ph uicontrol">Apply</span>.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Click <span class="ph uicontrol">Update</span>.</span>
+      </li>
+</ol>
+
+  </div>
+
+</div></div></section>
+<section id="t-770"><h4>Apply a security policy to allow Office 365 users to authenticate using Ellucian Ethos Identity</h4><div class="content-locale-en-US content-locale-en"><div id="t_eeid_365_ws_trust"><div class="body taskbody"><p class="shortdesc">You can apply a security policy to limit which users can authenticate to Office 365 applications using <span class="keyword">Ellucian Ethos Identity</span>.</p>
+
+    <div class="section context"><div class="tasklabel"><h2 class="sectiontitle tasklabel">About this task</h2></div>If you previously applied a security policy for <span class="keyword">Ellucian CRM</span>, and you selected an LDAP group (such as Internal/Everyone) that also includes your Office 365 users, you can skip this procedure.</div>
+
+    <div class="tasklabel"><h2 class="sectiontitle tasklabel">Procedure</h2></div><ol class="ol steps"><li class="li step stepexpand">
+        <span class="ph cmd" id="t_eeid_365_ws_trust__d64e132">Log in to the Management Console.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd" id="t_eeid_365_ws_trust__d64e148">Click the <span class="ph uicontrol">Main</span> tab. </span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Under <span class="ph uicontrol">Identity Providers</span>, click <span class="ph uicontrol">Resident</span>.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Expand <span class="ph menucascade"><span class="ph uicontrol">Inbound Authentication Configuration</span><abbr title="and then"> &gt; </abbr><span class="ph uicontrol">Security Token Service Configuration</span></span>.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Click <span class="ph uicontrol">Apply Security Policy</span>.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">In the <span class="ph uicontrol">Enable Security</span> field, select <span class="ph uicontrol">Yes</span>.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Under Basic Scenarios, select <span class="ph uicontrol">UsernameToken</span> and then click <span class="ph uicontrol">Next</span>.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">On the <span class="keyword wintitle">Activate Security</span> page, select the LDAP groups that include the users that you want to be able to authenticate to Office 365 applications.</span>
+        <div class="itemgroup stepxmp">For example, to allow all users in your LDAP to authenticate, search for the <code class="ph codeph">Internal/Everyone</code> group and select the check box for that group.</div>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Click <span class="ph uicontrol">Finish</span> and then click <span class="ph uicontrol">Update</span>.</span>
+      </li>
+</ol>
+
+  </div>
+
+</div></div></section>
+<section id="t-780"><h4>Office 365 configuration</h4><div class="content-locale-en-US content-locale-en"><div id="c_eeid_365_config"><div class="body conbody"><p class="shortdesc">Open an Office 365 PowerShell session and connect to Office 365. It can be easier to open a PowerShell ISE session, edit the following script and run it.</p>
+
+    <div class="note"><span class="notetitle">Note:</span> The X509 Certificate referenced below is the public certificate used by <span class="keyword">Ellucian Ethos Identity</span> to sign tokens and to secure the website.</div>
+
+    <pre class="pre codeblock"><code>$domain = "school.edu"
+
+$brandname = "Ellucian University"
+
+$issuerUri= "https://auth.school.edu"
+
+$activeLogonUri = "https://auth.school.edu/services/wso2carbon-sts.wso2carbon-stsHttpsSoap12Endpoint"
+
+$passiveLogonUri = "https://auth.school.edu/passivests"
+
+$mex = "https://auth.school.edu/services/mex-ut1"
+
+$cert = New-Object System.Security.Cryptography.X509Certificates.X509Certificate2("C:\temp\eis_public_certificate.cer")
+
+$certBase64 = [System.Convert]::ToBase64String($cert.Export​([System.Security.Cryptography.X509Certificates.X509ContentType]::Cert))
+
+Set-MsolDomainAuthentication -DomainName $domain -Authentication Federated -ActiveLogOnUri $activeLogonUri -IssuerUri $issuerUri -SigningCertificate $certBase64 -LogOffUri $passiveLogonUri -FederationBrandName $brandname -MetadataExchangeUri $mex -PassiveLogOnUri $passiveLogonUri -PreferredAuthenticationProtocol WsFed</code></pre>
+    <p class="p">After these commands run successfully, the federated Office 365 domain will begin to use <span class="keyword">Ellucian Ethos Identity</span> for authentication. </p>
+
+    <p class="p">See Article 000034651, "How to back up Azure AD Settings," in the <a class="xref ft-external-link" href="https://ellucian.force.com/clients" target="_blank" rel="noopener"><span class="ph">Ellucian Customer Center</span></a> for information about a power shell script that you can use to create a backup script of any current federation settings which may be used to restore the previous settings. Alternately, use the <span class="keyword cmdname">Get-MsolDomainFederationSettings</span> command to view the current settings before making any changes.</p>
+
+  </div>
+
+</div></div></section>
+<section id="t-790"><h3>Outlook Web App</h3><div class="content-locale-en-US content-locale-en"><div id="c_eeid_outlook_web_app"><p class="shortdesc"><span class="keyword">Outlook Web App</span> (OWA) is Microsoft Exchange Server 2010's web-based email client. OWA 2013 can use <span class="keyword">Ellucian Ethos Identity</span> as its claims identity provider.</p>
+
+</div></div></section>
+<section id="t-800"><h4>Configure OWA for federation</h4><div class="content-locale-en-US content-locale-en"><div id="t_config_owa_federation"><div class="body taskbody"><p class="shortdesc">When configuring <span class="keyword">Ellucian Ethos Identity</span> to be used for claims-based authentication with OWA and the Exchange Admin Center (EAC) in Exchange 2013, you must enable <span class="keyword">Ellucian Ethos Identity</span> for your Exchange organization.</p>
+
+    <div class="tasklabel"><h2 class="sectiontitle tasklabel">Procedure</h2></div><ol class="ol steps"><li class="li step stepexpand">
+        <span class="ph cmd">On the Exchange Server, set the AD FS issuer to <span class="ph filepath">https://ethos.school.edu/passivests</span>.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Set the URIs to <span class="ph filepath">https://mail.school.edu/owa/</span> and <span class="ph filepath">https://mail.school.edu/ecp/</span></span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Obtain the <span class="keyword">Ellucian Ethos Identity</span> token signing certificate thumbprint.</span>
+        <ol type="a" class="ol substeps">
+          <li class="li substep">
+            <span class="ph cmd">Open the <span class="keyword">Ellucian Ethos Identity</span> token signing certificate thumbprint in a certificate viewer.</span>
+          </li>
+
+          <li class="li substep">
+            <span class="ph cmd">Copy the thumbprint.</span>
+          </li>
+
+          <li class="li substep">
+            <span class="ph cmd">Assign the token-signing certificate thumbprint that you found.</span>
+          </li>
+
+        </ol>
+
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Using the Exchange Management Shell, enter the following code.</span>
+        <div class="itemgroup info">
+          <pre class="pre codeblock"><code>$uris = @(" https://mail.school.edu/owa/","https://mail.school.edu/ecp/")
+Set-OrganizationConfig -AdfsIssuer "https://ethos.school.edu/passivests" -AdfsAudienceUris $uris -AdfsSignCertificateThumbprint"ETHOS_SIGNING_CERTIFICATE_THUMBPRINT"</code></pre>
+        </div>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Enable AD FS authentication on the OWA and ECP virtual directories.</span>
+        <div class="itemgroup info">For the OWA and ECP virtual directories, enable Federated authentication as the only authentication method and disable all other forms of authentication. </div>
+        <div class="itemgroup info">
+          <div class="note"><span class="notetitle">Note:</span> You must configure the ECP virtual directory before you configure the OWA virtual directory.</div>
+
+        </div>
+        <ol type="a" class="ol substeps">
+          <li class="li substep substepexpand">
+            <span class="ph cmd">To configure the ECP virtual directory, enter the following in the Exchange Management Shell.</span>
+            <div class="itemgroup info">
+              <pre class="pre codeblock"><code>Get-EcpVirtualDirectory | Set-EcpVirtualDirectory -AdfsAuthentication $true -BasicAuthentication $false -DigestAuthentication $false -FormsAuthentication $false -WindowsAuthentication $false
+</code></pre>
+            </div>
+          </li>
+
+          <li class="li substep substepexpand">
+            <span class="ph cmd">To configure the OWA virtual directory, enter the following in the Exchange Management Shell.</span>
+            <div class="itemgroup info">
+              <kbd class="ph userinput">Get-OwaVirtualDirectory | Set-OwaVirtualDirectory -AdfsAuthentication $true -BasicAuthentication $false -DigestAuthentication $false -FormsAuthentication $false -WindowsAuthentication $false -OAuthAuthentication $false
+</kbd>
+            </div>
+          </li>
+
+        </ol>
+
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Restart or recycle Internet Information Services (IIS).</span>
+      </li>
+</ol>
+
+  </div>
+
+</div></div></section>
+<section id="t-810"><h4>Configure OWA as a service provider</h4><div class="content-locale-en-US content-locale-en"><div id="t_config_owa_serv_provider"><div class="body taskbody"><p class="shortdesc">Set up OWA as the service provider in the Management Console.</p>
+
+    <div class="tasklabel"><h2 class="sectiontitle tasklabel">Procedure</h2></div><ol class="ol steps"><li class="li step stepexpand">
+        <span class="ph cmd" id="t_config_owa_serv_provider__d64e132">Log in to the Management Console.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd" id="t_config_owa_serv_provider__d64e148">Click the <span class="ph uicontrol">Main</span> tab. </span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Under Service Providers, click <span class="ph uicontrol">Add</span>.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Enter a <span class="ph uicontrol">Service Provider Name</span> and <span class="ph uicontrol">Description</span>, and click <span class="ph uicontrol">Register</span>.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Expand the <span class="ph uicontrol">Claim Configuration</span> section.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Choose the option <span class="ph uicontrol">Define Custom Claim Dialect</span>.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Click <span class="ph uicontrol">Add Claim URI</span>.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Enter the following identity provider claim URIs.</span>
+        <div class="itemgroup info">
+          
+<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" class="table" frame="hsides" border="1" rules="rows"><colgroup><col><col></colgroup><thead class="thead" style="text-align:left;">
+                <tr class="row">
+                  <th class="entry row-nocellborder" style="text-align:left;vertical-align:top;" id="d8554e114">Service Provider Claim</th>
+
+                  <th class="entry row-nocellborder" style="text-align:left;vertical-align:top;" id="d8554e117">Local Claim</th>
+
+                </tr>
+
+              </thead>
+<tbody class="tbody">
+                <tr class="row">
+                  <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d8554e114 ">http://schemas.ellucian.com/ws/2013/12/claims/logonname</td>
+
+                  <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d8554e117 ">http://wso2.org/claims/logonname</td>
+
+                </tr>
+
+                <tr class="row">
+                  <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d8554e114 ">http://schemas.microsoft.com/ws/2008/06/identity/claims/role</td>
+
+                  <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d8554e117 ">http://wso2.org/claims/role</td>
+
+                </tr>
+
+                <tr class="row">
+                  <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d8554e114 ">http://schemas.xmlsoap.org/ws/2005/05/identity/claims/upn</td>
+
+                  <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d8554e117 ">http://wso2.org/claims/upn</td>
+
+                </tr>
+
+              </tbody>
+</table>
+</div>
+
+        </div>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">For each Identity Provider Claim URI, select the <span class="ph uicontrol">Requested Claim</span> check box.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Expand the <span class="ph uicontrol">Inbound Authentication Configuration</span> section.</span>
+        <ol type="a" class="ol substeps">
+          <li class="li substep substepexpand">
+            <span class="ph cmd">Expand the <span class="ph uicontrol">WS-Federation (Passive) Configuration</span> section.</span>
+          </li>
+
+          <li class="li substep substepexpand">
+            <span class="ph cmd">Set the <span class="keyword wintitle">Passive STS Realm</span> to your institution's <span class="keyword">Outlook Web App</span> URL.</span>
+            <div class="itemgroup stepxmp">Example: <span class="ph filepath">https://mail.school.edu/owa</span></div>
+          </li>
+
+          <li class="li substep substepexpand">
+            <span class="ph cmd">Set the <span class="keyword wintitle">Passive STS WReply URL</span> to your institution's <span class="keyword">Outlook Web App</span> URL.</span>
+            <div class="itemgroup stepxmp">Example: <span class="ph filepath">https://mail.school.edu/owa</span></div>
+          </li>
+
+        </ol>
+
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Expand the <span class="ph uicontrol">WS-Trust Security Token Service Configuration</span> section.</span>
+        <ol type="a" class="ol substeps">
+          <li class="li substep substepexpand">
+            <span class="ph cmd">Click <span class="ph uicontrol">Configure</span> to add a new security token service.</span>
+          </li>
+
+          <li class="li substep substepexpand">
+            <span class="ph cmd">Set the <span class="keyword wintitle">Endpoint Address</span> to your institution's <span class="keyword">Outlook Web App</span> URL.</span>
+            <div class="itemgroup stepxmp">For example, <span class="ph filepath">https://mail.school.edu/owa</span></div>
+          </li>
+
+          <li class="li substep substepexpand">
+            <span class="ph cmd">Select the certificate to be used for the <span class="keyword">Outlook Web App</span>.</span>
+          </li>
+
+          <li class="li substep substepexpand">
+            <span class="ph cmd">Click <span class="ph uicontrol">Apply</span>.</span>
+          </li>
+
+        </ol>
+
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Click <span class="ph uicontrol">Update</span>.</span>
+      </li>
+</ol>
+
+  </div>
+
+</div></div></section>
+<section id="t-820"><h3>Other Ellucian products</h3><div class="content-locale-en-US content-locale-en"><div id="c_eeid_setup_other_products"><div class="body conbody"><p class="shortdesc">Setup of other <span class="ph">Ellucian</span> products with <span class="keyword">Ellucian Ethos Identity</span> is covered in the documentation for those products.</p>
+
+    <p class="p">For <span class="keyword">Colleague Self-Service</span>, see the <cite class="cite"><span class="keyword">Colleague Self-Service</span> Installation and Administration</cite> manual, available from the <span class="keyword">Colleague Self-Service</span> documentation library in the <a class="xref ft-external-link" href="https://ellucian.force.com/clients/s/document-libraries-search?q=Installation%20and%20Administration&amp;libid=058G0000000U8DDIA0" target="_blank" rel="noopener"><span class="ph">Ellucian Customer Center</span></a>.</p>
+
+    <p class="p">For WebAdvisor, see the <cite class="cite">WebAdvisor Installation and Administration</cite> manual, available from the Colleague WebAdvisor documentation library in the <a class="xref ft-external-link" href="https://ellucian.force.com/clients/s/document-libraries-search?q=WebAdvisor%20Installation%20and%20Administration&amp;libid=058G0000000U49vIAC" target="_blank" rel="noopener"><span class="ph">Ellucian Customer Center</span></a>.</p>
+
+  </div>
+
+</div></div></section></main></body></html>

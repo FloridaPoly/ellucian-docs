@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Ethos Identity - Get Started</title><style>body{font-family:-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;line-height:1.55;color:#1a1a1a;max-width:920px;margin:0 auto;padding:24px}header{border-bottom:2px solid #5a16d6;margin-bottom:8px}h1{color:#3a0ca3}h2,h3,h4,h5,h6{margin-top:1.6em}.crumb{color:#666;font-size:13px;margin:0}.meta{color:#888;font-size:12px}nav.toc{background:#f6f4fc;border:1px solid #e3dcf5;border-radius:8px;padding:12px 18px;margin:18px 0}nav.toc h2{margin:.2em 0}nav.toc ul{list-style:none;padding-left:0}nav.toc a{text-decoration:none;color:#5a16d6}section{margin:1.2em 0;padding-top:.4em}img{max-width:100%;height:auto}table{border-collapse:collapse}td,th{border:1px solid #ccc;padding:4px 8px}code,pre{background:#f4f4f4;border-radius:4px}pre{padding:10px;overflow:auto}</style></head><body><header><p class="crumb">Ethos Identity › Ethos Identity - Get Started</p><h1>Ethos Identity - Get Started</h1><p class="meta">Source: <a href="https://resources.elluciancloud.com/r/bundle/ethos_identity_lrn_get_started">https://resources.elluciancloud.com/r/bundle/ethos_identity_lrn_get_started</a> &middot; Retrieved 2026-06-17</p></header><nav class="toc"><h2>Contents</h2><ul><li style="margin-left:0px"><a href="#t-10">About Ellucian Ethos Identity</a></li><li style="margin-left:16px"><a href="#t-20">Features</a></li><li style="margin-left:16px"><a href="#t-30">Architecture</a></li><li style="margin-left:16px"><a href="#t-40">New MyAccount</a></li><li style="margin-left:16px"><a href="#t-50">Identity management for Ethos Identity</a></li><li style="margin-left:16px"><a href="#t-60">WSO2 documentation</a></li><li style="margin-left:0px"><a href="#t-70">About Ethos Identity secondary user stores</a></li><li style="margin-left:16px"><a href="#t-80">Multiple authentication user stores</a></li><li style="margin-left:16px"><a href="#t-90">Attribute stores</a></li><li style="margin-left:16px"><a href="#t-100">Performance considerations for multiple user stores</a></li><li style="margin-left:32px"><a href="#t-110">Scenario 1: users in multiple contexts</a></li><li style="margin-left:32px"><a href="#t-120">Scenario 2: users and attributes in multiple contexts</a></li><li style="margin-left:32px"><a href="#t-130">Moving user DN prevents login/authentication</a></li></ul></nav><main><section id="t-10"><h2>About Ellucian Ethos Identity</h2><div class="content-locale-en-US content-locale-en"><div id="c_about_eeid"><div class="body conbody"><p class="shortdesc"><span class="keyword">Ellucian Ethos Identity</span> is an enterprise middleware solution for institutions seeking to implement, simplify, or improve an identity and access management infrastructure.</p>
+
+    <p class="p">It is based on the WSO2 Identity Server product, which <span class="keyword">Ellucian</span> has enhanced to address specific needs of higher education.</p>
+
+    <p class="p"><span class="keyword">Ellucian Ethos Identity</span> 7.0.0 is based on WSO2 Identity Server 7.0.0.</p>
+
+  </div>
+
+</div></div></section>
+<section id="t-20"><h3>Features</h3><div class="content-locale-en-US content-locale-en"><div id="c_ellucian_ethos_identity_features"><div class="body conbody"><p class="shortdesc"><span class="keyword">Ellucian Ethos Identity</span> provides several key features.</p>
+
+    <div class="section"><h2 class="title sectiontitle"><span class="keyword">Ellucian Ethos Identity</span> 7.0.0 features</h2>
+      
+      <ul class="ul">
+        <li class="li">Refreshing Look and Feel for the Console UI</li>
+
+        <li class="li">HYPR for Passwordless and Biometric Authentication</li>
+
+        <li class="li">User-portal, now become MyAccount portal</li>
+
+        <li class="li">Management console is now become console as new look and feel</li>
+
+        <li class="li">Email and SMS OTP for Passwordless Login.</li>
+
+        <li class="li">WSO2 platform upgrade - 7.0.0<ul class="ul">
+          <li class="li">Functional enhancements</li>
+
+          <li class="li">Security updates</li>
+
+          <li class="li">Bug fixes</li>
+
+          </ul>
+</li>
+
+        <li class="li">Upgraded <span class="keyword">Ellucian Ethos Identity</span> Installer</li>
+
+        <li class="li">Migration support from <span class="keyword">Ellucian Ethos Identity</span> 5.10.10</li>
+
+        <li class="li">Oracle 19c support</li>
+
+      </ul>
+
+    </div>
+
+  </div>
+
+</div></div></section>
+<section id="t-30"><h3>Architecture</h3><div class="content-locale-en-US content-locale-en"><div id="c_architecture"><div class="body conbody"><p class="shortdesc"><span class="keyword">Ellucian Ethos Identity</span> is a self-contained Java application that includes an embedded instance of Apache Tomcat. You can run it on Windows, Linux or UNIX. </p>
+
+    <p class="p">The application includes an authentication endpoint, LDAP integration, and database integration. The authentication endpoint leverages LDAP for authentication against a user store and a database for sessions and settings. The LDAP integration is configured against an existing directory server that contains users and identity attributes for the institution. The database integration leverages JDBC for access to many industry standard databases, including Oracle and SQL Server.</p>
+
+    <div class="note"><span class="notetitle">Note:</span> <span class="keyword">Ellucian Ethos Identity</span> also includes an embedded LDAP directory and an embedded database that allow quick setup of a test instance. You should not use these components for production deployments.</div>
+
+    <p class="p">For more information about the software architecture, including major sub-systems and process flows, refer to <cite class="cite">Architecture</cite> on the WSO2 documentation website for the corresponding WSO2 version.</p>
+
+  </div>
+
+</div></div></section>
+<section id="t-40"><h3>New MyAccount</h3><div class="content-locale-en-US content-locale-en"><div id="c_config_myaccount"><div class="body conbody"><p class="shortdesc">The new <span class="ph">WSO2 Identity Server</span> user portal consists of many new components through which users can manage their user account-related preferences with more convenience. </p>
+
+    <p class="p">The new user portal features are as follows:</p>
+
+    <ul class="ul">
+      <li class="li">User profile management</li>
+
+      <li class="li">Linked accounts</li>
+
+      <li class="li">Export user profile</li>
+
+      <li class="li">Reset password</li>
+
+      <li class="li">Account recovery</li>
+
+      <li class="li">Multi-factor authentication</li>
+
+      <li class="li">Monitor active user sessions</li>
+
+    </ul>
+
+  </div>
+
+</div></div></section>
+<section id="t-50"><h3>Identity management for Ethos Identity</h3><div class="content-locale-en-US content-locale-en"><div id="c_id_management"><div class="body conbody"><p class="shortdesc"><span class="keyword">Ellucian Ethos Identity</span> supports some of the identity management features of <span class="keyword">WSO2 Identity Server</span>.</p>
+
+    <p class="p">The following table lists the identity management features of <span class="keyword">WSO2 Identity Server</span> that are supported by <span class="keyword">Ellucian Ethos Identity</span> and provides a link to the WSO2 documentation for those features.</p>
+
+    
+<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" class="table" frame="hsides" border="1" rules="all"><colgroup><col style="width:34.843205574912886%"><col style="width:65.1567944250871%"></colgroup><thead class="thead" style="text-align:left;">
+          <tr class="row">
+            <th class="entry nocellnorowborder" style="vertical-align:top;" id="d1215e61">Feature</th>
+
+            <th class="entry nocellnorowborder" style="vertical-align:top;" id="d1215e64">WSO2 documentation page</th>
+
+          </tr>
+
+        </thead>
+<tbody class="tbody">
+          <tr class="row">
+            <td class="entry nocellnorowborder" style="vertical-align:top;" headers="d1215e61 ">Password recovery</td>
+
+            <td class="entry nocellnorowborder" style="vertical-align:top;" headers="d1215e64 "> Refer to <cite class="cite">Password recovery for users</cite> on the WSO2 documentation website for the corresponding WSO2 version. </td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry nocellnorowborder" style="vertical-align:top;" headers="d1215e61 ">Username recovery</td>
+
+            <td class="entry nocellnorowborder" style="vertical-align:top;" headers="d1215e64 "> Refer to <cite class="cite">Username Recovery</cite> on the WSO2 documentation website for the corresponding WSO2 version. </td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry nocellnorowborder" style="vertical-align:top;" headers="d1215e61 ">Password change</td>
+
+            <td class="entry nocellnorowborder" style="vertical-align:top;" headers="d1215e64 "> Refer to <cite class="cite">Change password</cite> on the WSO2 documentation website for the corresponding WSO2 version. </td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry nocellnorowborder" style="vertical-align:top;" headers="d1215e61 ">Forced password reset by administrator</td>
+
+            <td class="entry nocellnorowborder" style="vertical-align:top;" headers="d1215e64 "> Refer to <cite class="cite">Admin initiated password reset</cite> on the WSO2 documentation website for the corresponding WSO2 version. </td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry nocellnorowborder" style="vertical-align:top;" headers="d1215e61 ">Password history</td>
+
+            <td class="entry nocellnorowborder" style="vertical-align:top;" headers="d1215e64 "> Refer to <cite class="cite">Password history count</cite> on the WSO2 documentation website for the corresponding WSO2 version. </td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry nocellnorowborder" style="vertical-align:top;" headers="d1215e61 ">Password complexity</td>
+
+            <td class="entry nocellnorowborder" style="vertical-align:top;" headers="d1215e64 "> Refer to <cite class="cite">Password validation</cite> on the WSO2 documentation website for the corresponding WSO2 version. </td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry nocellnorowborder" style="vertical-align:top;" headers="d1215e61 ">User account locking</td>
+
+            <td class="entry nocellnorowborder" style="vertical-align:top;" headers="d1215e64 "> Refer to <cite class="cite">Account configurations</cite> on the WSO2 documentation website for the corresponding WSO2 version. </td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry nocellnorowborder" style="vertical-align:top;" headers="d1215e61 ">User account disabling</td>
+
+            <td class="entry nocellnorowborder" style="vertical-align:top;" headers="d1215e64 "> Refer to <cite class="cite">Account configurations</cite> on the WSO2 documentation website for the corresponding WSO2 version. </td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry nocellnorowborder" style="vertical-align:top;" headers="d1215e61 ">User account suspension</td>
+
+            <td class="entry nocellnorowborder" style="vertical-align:top;" headers="d1215e64 "> Refer to <cite class="cite">Account configurations</cite> on the WSO2 documentation website for the corresponding WSO2 version. </td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry nocellnorowborder" style="vertical-align:top;" headers="d1215e61 ">ReCAPTCHA feature</td>
+
+            <td class="entry nocellnorowborder" style="vertical-align:top;" headers="d1215e64 "> Refer to <cite class="cite">Bot detection</cite> on the WSO2 documentation website for the corresponding WSO2 version. </td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry nocellnorowborder" style="vertical-align:top;" headers="d1215e61 ">Time-Based One Time Password (TOTP)</td>
+
+            <td class="entry nocellnorowborder" style="vertical-align:top;" headers="d1215e64 "> Refer to <cite class="cite">Enroll TOTP via My Account</cite> on the WSO2 documentation website for the corresponding WSO2 version. </td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry nocellnorowborder" style="vertical-align:top;" headers="d1215e61 ">SMS One Time Password (OTP)</td>
+
+            <td class="entry nocellnorowborder" style="vertical-align:top;" headers="d1215e64 "> Refer to <cite class="cite">Add MFA with SMS OTP</cite> on the WSO2 documentation website for the corresponding WSO2 version. </td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="vertical-align:top;" headers="d1215e61 ">EMAIL One Time Password (OTP)</td>
+
+            <td class="entry row-nocellborder" style="vertical-align:top;" headers="d1215e64 "> Refer to <cite class="cite">Add MFA with Email OTP</cite> on the WSO2 documentation website for the corresponding WSO2 version. </td>
+
+          </tr>
+
+        </tbody>
+</table>
+</div>
+
+  </div>
+
+</div></div></section>
+<section id="t-60"><h3>WSO2 documentation</h3><div class="content-locale-en-US content-locale-en"><div id="c_wso2_documentation"><div class="body conbody"><p class="shortdesc">WSO2 provides its own set of comprehensive documentation. <span class="keyword">Ellucian</span> recommends that you reference that documentation as you work with <span class="keyword">Ellucian Ethos Identity</span>.</p>
+
+    <p class="p">You can access the WSO2 documentation from the WSO2 website for the corresponding WSO2 version from: </p>
+
+    <p class="p"><a class="xref ft-external-link" href="https://is.docs.wso2.com/en/versions/" target="_blank" rel="noopener">WSO2 Identity Server Documentation</a>.</p>
+
+    <div class="note"><span class="notetitle">Note:</span> The link goes to the appropriate version of WSO2 documentation for <span class="keyword">Ellucian Ethos Identity</span> version. There are other versions of documentation on the WSO2 website, but those versions are not appropriate for <span class="keyword">Ellucian Ethos Identity</span> versions.</div>
+
+  </div>
+
+</div></div></section>
+<section id="t-70"><h2>About Ethos Identity secondary user stores</h2><div class="content-locale-en-US content-locale-en"><div id="c_about_secondary_user_stores"><div class="body conbody"><p class="shortdesc">Secondary user stores support scenarios that benefit from multiple user stores.</p>
+
+    <p class="p"><span class="keyword">Ellucian Ethos Identity</span> supports a primary user store that you configured during installation. In addition to the primary user store, <span class="keyword">Ellucian Ethos Identity</span> also supports scenarios with multiple user stores, such as multiple authentication user stores or attribute stores. Anything outside of the primary user store is a secondary user store.</p>
+
+    <p class="p">These topics describe the use of secondary user stores in <span class="keyword">Ellucian Ethos Identity</span>. For the setup procedures, see <cite class="cite">Secondary user store configuration for <span class="keyword">Ethos Identity</span></cite>.</p>
+
+    <p class="p">For more information about other configuration options for service providers, refer to <cite class="cite">Configuring Secondary User Stores</cite> on the WSO2 documentation website for the corresponding WSO2 version.</p>
+
+  </div>
+
+<div class="related-links">
+<div class="linklist relinfo relconcepts" xml:lang="en-US" lang="en-US"><strong>Related concepts</strong><br>
+<ul class="linklist">
+<li class="linklist"><span class="link ft-internal-xlink" title="uses an LDAP directory, Active directory server, or database server as a secondary user store. The secondary user store will configure from the management console." data-ft-warning="excluded-from-rendering" data-clusterid="ID_ETHOS_master_2026-03-04/id_ethos/ethos_identity/c_config_secondary_user_stores">Secondary user store configuration for</span></li></ul></div>
+</div></div></div></section>
+<section id="t-80"><h3>Multiple authentication user stores</h3><div class="content-locale-en-US content-locale-en"><div id="c_mult_auth_user_stores"><div class="body conbody"><p class="shortdesc">In this scenario, there are multiple directory servers for authentication. For example, <span class="keyword">Banner</span> customer user store or <span class="keyword">Colleague</span> staff or student user store can be configured for an <code class="ph codeph">admin</code> user that exists only in the customer user store LDAP.</p>
+
+    <p class="p">As shown in the following image, this admin user does not exist in the primary user store (PRIMARY). <span class="keyword">Ellucian Identity Service</span> must authenticate against a secondary user store (customer user store). The domain name is configured on the secondary user store.</p>
+
+    <div class="note"><span class="notetitle">Note:</span> The Domain Name for a secondary user store is prefixed before user IDs. A domain name of <code class="ph codeph">banner</code> will look like <code class="ph codeph">BANNER\myuser</code>. The domain name is always uppercase when displayed or referenced. The Domain Name is excluded from the CAS protocol implementation, but appears in the SAML 2.0 protocol implementation.</div>
+
+  </div>
+
+</div></div></section>
+<section id="t-90"><h3>Attribute stores</h3><div class="content-locale-en-US content-locale-en"><div id="c_attribute_stores"><div class="body conbody"><p class="shortdesc">In this scenario, one directory server provides authentication and another directory server provides identity attributes. For example, <span class="keyword">Banner</span> customer attribute store or <span class="keyword">Colleague</span> staff or student attribute store could be configured to authenticate against Microsoft Active Directory and retrieve identity attributes from the customer attribute store LDAP.</p>
+
+    <p class="p">As shown in the following image, the user authenticates against the primary user store (PRIMARY) and retrieves identity attributes from a secondary user store (PRIMARY-ATTRIBUTE-STORE). The domain name PRIMARYATTRIBUTE- STORE is configured on the secondary user store and follows the convention of <code class="ph codeph">&lt;User Store Domain Name&gt;-ATTRIBUTE-STORE</code>. </p>
+
+    <br><div class="imageleft"><img class="image imageleft" height="439" width="557" alt="Attribute retrieval from a secondary user store" data-ft-asset-display-name="i_attribute_retrieval_secondary_user_store.gif" src="images/ethos-identity-get-started-1.gif" data-ft-resource-id="znM3ESMA0_ZK39hkqY5DCg-mODnQnKQWxTUbo~CfQAksg"></div><br>
+    <p class="p">In addition to serving attributes, the attribute store can also provide fail-over authentication and support the previous customer attribute store administration user scenario.</p>
+
+  </div>
+
+</div></div></section>
+<section id="t-100"><h3>Performance considerations for multiple user stores</h3><div class="content-locale-en-US content-locale-en"><div id="c_perform_considerations"><p class="shortdesc">Large LDAP directories can contribute to slow performance during search operations. If users are spread across multiple contexts, split the user stores accordingly.</p>
+
+  
+</div></div></section>
+<section id="t-110"><h4>Scenario 1: users in multiple contexts</h4><div class="content-locale-en-US content-locale-en"><div id="c_perform_considerations_scenario1"><div class="body conbody"><p class="shortdesc">Consider this scenario when users are spread across multiple contexts.</p>
+
+    <p class="p">At school.edu, the top-level domain in the directory server, ad.school.edu, is DC=school,DC=edu and there are three contexts for students, faculty, and staff. The students context is the largest group of user objects and is accessed most often. In a standard configuration, the primary user store points to the top-level domain for LDAP search and queries all objects at or below that scope. LDAP search operations at this level are very slow for all logins because of the large number of objects they are comparing.</p>
+
+    <p class="p">Because the students context is the largest and most frequently accessed, the primary user store, configured in <span class="ph filepath"><var class="keyword varname">EIS_HOME</var>/config/eis_config.properties</span>, can use that User Search Base for more precise search operations, for example, CN=students,DC=school,DC=edu. This also means that the faculty and staff contexts must be set up as secondary user stores as shown in the following table. Splitting the search operations against smaller scopes improves performance.</p>
+
+    
+<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" class="table" frame="hsides" border="1" rules="rows"><caption><span class="tablecap"><span class="table--title-label">Table 1. </span>Performance Optimized User Stores</span></caption><colgroup><col><col><col></colgroup><thead class="thead" style="text-align:left;">
+          <tr class="row">
+            <th class="entry row-nocellborder" style="vertical-align:top;" id="d290e61">User Store</th>
+
+            <th class="entry row-nocellborder" style="vertical-align:top;" id="d290e64">Domain Name</th>
+
+            <th class="entry row-nocellborder" style="vertical-align:top;" id="d290e67">User Search Base</th>
+
+          </tr>
+
+        </thead>
+<tbody class="tbody">
+          <tr class="row">
+            <td class="entry row-nocellborder" style="vertical-align:top;" headers="d290e61 ">Primary User Store</td>
+
+            <td class="entry row-nocellborder" style="vertical-align:top;" headers="d290e64 ">PRIMARY</td>
+
+            <td class="entry row-nocellborder" style="vertical-align:top;" headers="d290e67 ">CN=students,DC=school,​DC=edu</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="vertical-align:top;" headers="d290e61 ">Faculty User Store</td>
+
+            <td class="entry row-nocellborder" style="vertical-align:top;" headers="d290e64 ">FACULTY</td>
+
+            <td class="entry row-nocellborder" style="vertical-align:top;" headers="d290e67 ">CN=faculty,DC=school,​DC=edu</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="vertical-align:top;" headers="d290e61 ">Staff User Store</td>
+
+            <td class="entry row-nocellborder" style="vertical-align:top;" headers="d290e64 ">STAFF</td>
+
+            <td class="entry row-nocellborder" style="vertical-align:top;" headers="d290e67 ">CN=staff,DC=school,​DC=edu</td>
+
+          </tr>
+
+        </tbody>
+</table>
+</div>
+
+  </div>
+
+</div></div></section>
+<section id="t-120"><h4>Scenario 2: users and attributes in multiple contexts</h4><div class="content-locale-en-US content-locale-en"><div id="c_perform_considerations_scenario2"><div class="body conbody"><p class="shortdesc">Building on Scenario 1, there could also be attribute stores that must be aggregated for various applications.</p>
+
+    <p class="p"><span class="keyword">Ellucian Ethos Identity</span> permits a 1-to-1 mapping from an attribute store to a primary or secondary user store using a Domain Name pattern such as: <code class="ph codeph">&lt;User Store Domain Name&gt;-ATTRIBUTE-STORE</code></p>
+
+    <p class="p">The attribute stores are located on a different server and each is associated to a defined primary or secondary user store as shown in the following table.</p>
+
+    
+<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" class="table" frame="hsides" border="1" rules="rows"><caption><span class="tablecap"><span class="table--title-label">Table 1. </span>Performance Optimized User and Attribute Stores</span></caption><colgroup><col><col><col><col></colgroup><thead class="thead" style="text-align:left;">
+          <tr class="row">
+            <th class="entry row-nocellborder" style="vertical-align:top;" id="d786e62">User Store</th>
+
+            <th class="entry row-nocellborder" style="vertical-align:top;" id="d786e65">Domain Name</th>
+
+            <th class="entry row-nocellborder" style="vertical-align:top;" id="d786e68">LDAP Server</th>
+
+            <th class="entry row-nocellborder" style="vertical-align:top;" id="d786e71">User Search Base</th>
+
+          </tr>
+
+        </thead>
+<tbody class="tbody">
+          <tr class="row">
+            <td class="entry row-nocellborder" style="vertical-align:top;" headers="d786e62 ">Primary User Store</td>
+
+            <td class="entry row-nocellborder" style="vertical-align:top;" headers="d786e65 ">PRIMARY</td>
+
+            <td class="entry row-nocellborder" style="vertical-align:top;" headers="d786e68 ">ad.school.edu</td>
+
+            <td class="entry row-nocellborder" style="vertical-align:top;" headers="d786e71 ">CN=students,DC=school,​DC=edu</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="vertical-align:top;" headers="d786e62 ">Primary Attribute Store</td>
+
+            <td class="entry row-nocellborder" style="vertical-align:top;" headers="d786e65 ">PRIMARY-ATTRIBUTE-​STORE</td>
+
+            <td class="entry row-nocellborder" style="vertical-align:top;" headers="d786e68 ">domain.school.edu</td>
+
+            <td class="entry row-nocellborder" style="vertical-align:top;" headers="d786e71 ">ou=people,o=cp</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="vertical-align:top;" headers="d786e62 ">Faculty User Store</td>
+
+            <td class="entry row-nocellborder" style="vertical-align:top;" headers="d786e65 ">FACULTY</td>
+
+            <td class="entry row-nocellborder" style="vertical-align:top;" headers="d786e68 ">ad.school.edu</td>
+
+            <td class="entry row-nocellborder" style="vertical-align:top;" headers="d786e71 ">CN=faculty,DC=school,​DC=edu</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="vertical-align:top;" headers="d786e62 ">Faculty Attribute Store</td>
+
+            <td class="entry row-nocellborder" style="vertical-align:top;" headers="d786e65 ">FACULTY-ATTRIBUTE-​STORE</td>
+
+            <td class="entry row-nocellborder" style="vertical-align:top;" headers="d786e68 ">domain.school.edu</td>
+
+            <td class="entry row-nocellborder" style="vertical-align:top;" headers="d786e71 ">ou=people,o=cp</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="vertical-align:top;" headers="d786e62 ">Staff User Store</td>
+
+            <td class="entry row-nocellborder" style="vertical-align:top;" headers="d786e65 ">STAFF</td>
+
+            <td class="entry row-nocellborder" style="vertical-align:top;" headers="d786e68 ">ad.school.edu</td>
+
+            <td class="entry row-nocellborder" style="vertical-align:top;" headers="d786e71 ">CN=staff,DC=school,​DC=edu</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="vertical-align:top;" headers="d786e62 ">Staff Attribute​ Store</td>
+
+            <td class="entry row-nocellborder" style="vertical-align:top;" headers="d786e65 ">STAFF-ATTRIBUTE-​STORE</td>
+
+            <td class="entry row-nocellborder" style="vertical-align:top;" headers="d786e68 ">domain.school.edu</td>
+
+            <td class="entry row-nocellborder" style="vertical-align:top;" headers="d786e71 ">ou=admin,o=cp</td>
+
+          </tr>
+
+        </tbody>
+</table>
+</div>
+
+  </div>
+
+</div></div></section>
+<section id="t-130"><h4>Moving user DN prevents login/authentication</h4><div class="content-locale-en-US content-locale-en"><div id="c_moving_user_dn"><div class="body conbody"><p class="shortdesc"><span class="keyword">Ellucian Identity Service</span> uses caching to achieve better authentication performance. The caching process is enabled by default and you cannot disable it. When the system authenticates a user, the username and user DN are cached. </p>
+
+    <p class="p">If the user account is moved within the directory server to a separate OU, the next authentication attempt by the user will fail because the DN no longer matches what was cached. After the first authentication fails, the next authentication attempt will be successful. The user's new DN will be cached so that all subsequent authentication attempts will be successful.</p>
+
+  </div>
+
+</div></div></section></main></body></html>

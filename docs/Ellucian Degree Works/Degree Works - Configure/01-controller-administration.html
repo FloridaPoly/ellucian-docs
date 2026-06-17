@@ -1,0 +1,1252 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Degree Works - Configure — Controller Administration</title><style>body{font-family:-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;line-height:1.55;color:#1a1a1a;max-width:920px;margin:0 auto;padding:24px}header{border-bottom:2px solid #5a16d6;margin-bottom:8px}h1{color:#3a0ca3}h2,h3,h4,h5,h6{margin-top:1.6em}.crumb{color:#666;font-size:13px;margin:0}.meta{color:#888;font-size:12px}nav.toc{background:#f6f4fc;border:1px solid #e3dcf5;border-radius:8px;padding:12px 18px;margin:18px 0}nav.toc h2{margin:.2em 0}nav.toc ul{list-style:none;padding-left:0}nav.toc a{text-decoration:none;color:#5a16d6}section{margin:1.2em 0;padding-top:.4em}img{max-width:100%;height:auto}table{border-collapse:collapse}td,th{border:1px solid #ccc;padding:4px 8px}code,pre{background:#f4f4f4;border-radius:4px}pre{padding:10px;overflow:auto}</style></head><body><header><p class="crumb">Ellucian Degree Works › Degree Works - Configure</p><h1>Degree Works - Configure — Controller Administration</h1><p class="meta">Source: <a href="https://resources.elluciancloud.com/r/bundle/dgrwrks_acn_configure">https://resources.elluciancloud.com/r/bundle/dgrwrks_acn_configure</a> &middot; Retrieved 2026-06-17</p></header><nav class="toc"><h2>Contents</h2><ul><li style="margin-left:0px"><a href="#t-10">Controller Administration</a></li><li style="margin-left:16px"><a href="#t-20">Initial Controller setup and configuration</a></li><li style="margin-left:32px"><a href="#t-30">Authentication</a></li><li style="margin-left:32px"><a href="#t-40">User access to Controller</a></li><li style="margin-left:32px"><a href="#t-50">Controller Shepherd settings</a></li><li style="margin-left:32px"><a href="#t-60">Controller UCX Tables</a></li><li style="margin-left:32px"><a href="#t-70">Controller deployment</a></li><li style="margin-left:48px"><a href="#t-80">Controller environment settings</a></li><li style="margin-left:16px"><a href="#t-90">Authorization</a></li><li style="margin-left:32px"><a href="#t-100">Users</a></li><li style="margin-left:48px"><a href="#t-110">User search</a></li><li style="margin-left:48px"><a href="#t-120">Create and edit users</a></li><li style="margin-left:64px"><a href="#t-130">User Information</a></li><li style="margin-left:64px"><a href="#t-140">User Access</a></li><li style="margin-left:64px"><a href="#t-150">User Keys</a></li><li style="margin-left:64px"><a href="#t-160">User Groups</a></li><li style="margin-left:48px"><a href="#t-170">Delete users</a></li><li style="margin-left:32px"><a href="#t-180">Groups</a></li><li style="margin-left:48px"><a href="#t-190">Search for groups</a></li><li style="margin-left:48px"><a href="#t-200">Create and edit groups</a></li><li style="margin-left:64px"><a href="#t-210">Group Details</a></li><li style="margin-left:64px"><a href="#t-220">Group Keys</a></li><li style="margin-left:48px"><a href="#t-230">Delete groups</a></li><li style="margin-left:16px"><a href="#t-240">Configuration</a></li><li style="margin-left:32px"><a href="#t-250">Search for configurations</a></li><li style="margin-left:32px"><a href="#t-260">Shepherd settings</a></li><li style="margin-left:48px"><a href="#t-270">Add specifications</a></li><li style="margin-left:48px"><a href="#t-280">Delete specifications</a></li><li style="margin-left:48px"><a href="#t-290">Add setting</a></li><li style="margin-left:32px"><a href="#t-300">UCX tables</a></li><li style="margin-left:48px"><a href="#t-310">Create and edit UCX entries</a></li><li style="margin-left:48px"><a href="#t-320">Delete UCX entries</a></li><li style="margin-left:48px"><a href="#t-330">Import and export UCX entries</a></li><li style="margin-left:16px"><a href="#t-340">Properties</a></li><li style="margin-left:32px"><a href="#t-350">Properties search</a></li><li style="margin-left:32px"><a href="#t-360">Properties localization</a></li><li style="margin-left:16px"><a href="#t-370">Scribe</a></li><li style="margin-left:32px"><a href="#t-380">UCX Tables</a></li><li style="margin-left:32px"><a href="#t-390">Scribe blocks management</a></li><li style="margin-left:32px"><a href="#t-400">Block search</a></li><li style="margin-left:32px"><a href="#t-410">Search results</a></li><li style="margin-left:32px"><a href="#t-420">Block creation</a></li><li style="margin-left:32px"><a href="#t-430">Open Local Block</a></li><li style="margin-left:32px"><a href="#t-440">Block editing</a></li><li style="margin-left:48px"><a href="#t-450">Parse</a></li><li style="margin-left:32px"><a href="#t-460">Block Details</a></li><li style="margin-left:32px"><a href="#t-470">Block save</a></li><li style="margin-left:48px"><a href="#t-480">Save</a></li><li style="margin-left:48px"><a href="#t-490">Save As</a></li><li style="margin-left:48px"><a href="#t-500">Save Local File</a></li><li style="margin-left:32px"><a href="#t-510">Block deleting</a></li><li style="margin-left:32px"><a href="#t-520">Block printing</a></li><li style="margin-left:16px"><a href="#t-530">Controller debugging</a></li><li style="margin-left:32px"><a href="#t-540">Enable debugging</a></li><li style="margin-left:32px"><a href="#t-550">Debug file access</a></li></ul></nav><main><section id="t-10"><h2>Controller Administration</h2><div class="content-locale-en-US content-locale-en"><div id="c_controller_introduction"><div class="body conbody"><p class="shortdesc">Controller is a tool Degree Works administrators use to manage user authorization, application configuration settings, validation tables, and application language properties, and to code and store degree and program requirements.</p>
+
+    <p class="p">The Controller deployment artifact is deployed as a jar on any supported Unix server and is independent of the classic software. It includes an embedded container so a separate Java container like Tomcat is not required. </p>
+
+  </div>
+
+</div></div></section>
+<section id="t-20"><h3>Initial Controller setup and configuration</h3></section>
+<section id="t-30"><h4>Authentication</h4><div class="content-locale-en-US content-locale-en"><div id="c_controller_authentication"><p class="shortdesc">The Controller user interface supports SHP, CAS and SAML authentication methods, and external access managers such as Oracle Access Manager. </p>
+
+  
+</div></div></section>
+<section id="t-40"><h4>User access to Controller</h4><div class="content-locale-en-US content-locale-en"><div id="c_grant_user_access_contrlr"><div class="body conbody"><p class="shortdesc">The CONTROL Shepherd key grants access to the Controller application. </p>
+
+    <p class="p">A user also needs at least one of the keys that grant access to the functionality menus – CTLUSERS for Authorization - Users, CTLGROUP for Authorization - Groups, CTLCONF for Configurations, CTLPROP for Properties, or SCRIBE for Scribe. Additional Shepherd keys grant access to adding, modifying, and deleting.</p>
+
+    <p class="p">The CONTROL Shepherd group can be used to assign access to users for Authorization, Configuration, and Properties. </p>
+
+    <p class="p">Standard Shepherd Groups that give access to Scribe functionality are SCRIBREG, SCRIBAID, and SCRIBAEA.</p>
+
+    <p class="p">The Shepherd keys required for Scribe are SCRIBE and SCRPARSE. Additionally, users should be given the keys for the block types they have access to modify. Most users can be provided the SCRBLALL key that grants access to modify all block types. Users with limited access should be given the keys for the appropriate block type(s).</p>
+
+    <p class="p">The list of all Controller keys and groups is available in the <span class="xref ft-internal-xlink" title="Each user has a keyring with one or more keys." data-ft-warning="excluded-from-rendering" data-clusterid="id_crm/dgrwrks/c_keys_keyrings">Keys and keyrings</span> topic.</p>
+
+    
+<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" class="table" frame="hsides" border="1" rules="all"><colgroup><col style="width:50%"><col style="width:50%"></colgroup><thead class="thead" style="text-align:left;">
+          <tr class="row">
+            <th class="entry cellrowborder" style="text-align:left;vertical-align:top;" id="d50430e68">Key</th>
+
+            <th class="entry row-nocellborder" style="text-align:left;vertical-align:top;" id="d50430e71">Block type</th>
+
+          </tr>
+
+        </thead>
+<tbody class="tbody">
+          <tr class="row">
+            <td class="entry cellrowborder" style="text-align:left;vertical-align:top;" headers="d50430e68 ">SCRBLATH</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d50430e71 ">ATHLETE</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry cellrowborder" style="text-align:left;vertical-align:top;" headers="d50430e68 ">SCRBLAWR</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d50430e71 ">AWARD</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry cellrowborder" style="text-align:left;vertical-align:top;" headers="d50430e68 ">SCRBLCOL</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d50430e71 ">COLLEGE</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry cellrowborder" style="text-align:left;vertical-align:top;" headers="d50430e68 ">SCRBLCON</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d50430e71 ">CONC</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry cellrowborder" style="text-align:left;vertical-align:top;" headers="d50430e68 ">SCRBLDEG</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d50430e71 ">DEGREE</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry cellrowborder" style="text-align:left;vertical-align:top;" headers="d50430e68 ">SCRBLID</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d50430e71 ">ID</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry cellrowborder" style="text-align:left;vertical-align:top;" headers="d50430e68 ">SCRBLLIB</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d50430e71 ">LIBL</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry cellrowborder" style="text-align:left;vertical-align:top;" headers="d50430e68 ">SCRBLMAJ</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d50430e71 ">MAJOR</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry cellrowborder" style="text-align:left;vertical-align:top;" headers="d50430e68 ">SCRBLMIN</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d50430e71 ">MINOR</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry cellrowborder" style="text-align:left;vertical-align:top;" headers="d50430e68 ">SCRBLOTH</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d50430e71 ">OTHER</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry cellrowborder" style="text-align:left;vertical-align:top;" headers="d50430e68 ">SCRBLPRG</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d50430e71 ">PROGRAM</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry cellrowborder" style="text-align:left;vertical-align:top;" headers="d50430e68 ">SCRBLREQ</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d50430e71 ">REQUISITE</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry cellrowborder" style="text-align:left;vertical-align:top;" headers="d50430e68 ">SCRBLSCH</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d50430e71 ">SCHOOL</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry cellrowborder" style="text-align:left;vertical-align:top;" headers="d50430e68 ">SCRBLSPC</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d50430e71 ">SPEC</td>
+
+          </tr>
+
+        </tbody>
+</table>
+</div>
+
+  </div>
+
+</div></div></section>
+<section id="t-50"><h4>Controller Shepherd settings</h4><div class="content-locale-en-US content-locale-en"><div id="c_controller_shepherd_settings"><div class="body conbody"><p class="shortdesc">To manage the behavior of <span class="keyword">Controller</span>, you can maintain most configurations using the <span class="keyword">Controller</span> Configuration function.</p>
+
+    <p class="p">For <span class="keyword">Scribe</span>, review and configure the <code class="ph codeph">scribe.*</code> Shepherd settings.</p>
+
+    <p class="p">For Properties, review and configure the following Shepherd settings:</p>
+
+    <pre class="pre codeblock"><code>localization.internationalization.enable
+localization.internationalization.cacheMilliseconds</code></pre>
+    <div class="p">If you use CAS authentication, review the following Shepherd settings, make any necessary changes and restart <span class="keyword">Controller</span>.<ul class="ul">
+      <li class="li">core.security.cas.callbackUrl spec=controller</li>
+
+      <li class="li">core.security.authenticationType = CAS for spec=controller (if spec=default is not already configured this way)</li>
+
+      </ul>
+</div>
+
+  </div>
+
+</div></div></section>
+<section id="t-60"><h4>Controller UCX Tables</h4><div class="content-locale-en-US content-locale-en"><div id="c_controller_ucx_tables"><div class="body conbody"><p class="shortdesc">SHP080 provides a list of locales you can use when creating localized properties on the Properties tab.</p>
+
+    <p class="p">Review the SHP080 UCX table to ensure it is configured correctly for your environment.</p>
+
+  </div>
+
+</div></div></section>
+<section id="t-70"><h4>Controller deployment</h4><div class="content-locale-en-US content-locale-en"><div id="c_controller_deployment"><div class="body conbody"><p class="shortdesc"><span class="keyword">Controller</span> is designed to deploy equally well in on-premise and cloud-hosted scenarios on all supported platforms. It provides a mobile-ready, responsive user interface communicating with the servers using lightweight, stateless, restful API over HTTP SSL.</p>
+
+    <p class="p">The <span class="keyword">Controller</span> deployment artifact is a JAR file that is executable using java and includes an embedded container.</p>
+
+    <div class="section"><h2 class="title sectiontitle">Prerequisites</h2>
+      
+      <p class="p"><span class="keyword">Controller</span> requires prerequisites in its setup.</p>
+
+      <ul class="ul">
+        <li class="li">Java: <p class="p">Java version 17 is the only third-party dependency required to run this application. Oracle Java and OpenJDK are supported.</p>
+</li>
+
+        <li class="li">SSL: <p class="p"><span class="keyword">Ellucian</span> recommends SSL, because the security implementation uses stateless tokens. Using signed certificates is recommended for all deployment scenarios, including test or development environments. Self-signed certificates, even for internal test deployments, can be problematic because of browser requirements and warnings. The SSL certificate needs to be configured in a keystore, and that keystore needs to be accessible in the deployment environment. There are various options for how to do this, for example using Java's keytool command.</p>
+</li>
+
+      </ul>
+
+    </div>
+
+    <div class="section"><h2 class="title sectiontitle">Deployment examples</h2>
+      
+      <p class="p">When the prerequisites and configuration are in place, start up the application using a java -jar command.</p>
+
+      <pre class="pre codeblock"><code>java $JAVA_OPTIONS -jar Controller.jar</code></pre>
+      
+<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" class="table" frame="hsides" border="1" rules="rows"><colgroup><col style="width:50%"><col style="width:50%"></colgroup><thead class="thead" style="text-align:left;">
+            <tr class="row">
+              <th class="entry row-nocellborder" style="vertical-align:top;" id="d11881e92">Example</th>
+
+              <th class="entry row-nocellborder" style="vertical-align:top;" id="d11881e95">Description</th>
+
+            </tr>
+
+          </thead>
+<tbody class="tbody">
+            <tr class="row">
+              <td class="entry row-nocellborder" style="vertical-align:top;" headers="d11881e92 ">Controller example startup sript</td>
+
+              <td class="entry row-nocellborder" style="vertical-align:top;" headers="d11881e95 ">You can employ a shell script to start the application.<p class="p">The <var class="keyword varname">Controller.jar</var> file must be staged at the DEPLOY_LOCATION. </p>
+<pre class="pre codeblock"><code>#!/bin/ksh
+export DW_DATASOURCE_URL="jdbc:oracle:thin:@MyServer:1521/service_name"
+export DW_DATASOURCE_USERNAME="my-dw-user"
+export DW_DATASOURCE_PASSWORD="my-dw-password"
+export SERVER_PORT="8501"
+export SERVER_SERVLET_CONTEXT_PATH=""
+export SERVER_SSL_KEY_STORE="/usr/local/my-keystore.jks"
+export SERVER_SSL_KEY_STORE_PASSWORD="my-key-password"
+export SERVER_SSL_KEYSTORETYPE="jks"
+export SERVER_SSL_KEY_ALIAS="my-keystore-alias"
+export DW_DATAPOOL_INITIAL_SIZE=10
+export DW_DATAPOOL_MIN_IDLE=10
+export DW_DATAPOOL_MAX_IDLE=10
+export DW_DATAPOOL_MAX_TOTAL=300
+export DEPLOY_LOCATION="/path/to/jarfile"
+export JAVA_OPTIONS="-Xms1536m -Xmx1536m";
+export DEBUG="false"
+# To enable full-time debug log output, remove the # from the line below
+#export LOG_DEFAULT_THRESHOLD=DEBUG
+java -jar $JAVA_OPTIONS DEPLOY_LOCATION/Controller.jar &gt; startup-log-file.log &amp;
+</code></pre></td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry row-nocellborder" style="vertical-align:top;" headers="d11881e92 ">Controller example stop script</td>
+
+              <td class="entry row-nocellborder" style="vertical-align:top;" headers="d11881e95 ">If you use a start script, you must use a corresponding stop script.<pre class="pre codeblock"><code>#!/bin/ksh
+pkill -f Controller</code></pre></td>
+
+            </tr>
+
+          </tbody>
+</table>
+</div>
+
+    </div>
+
+  </div>
+
+</div></div></section>
+<section id="t-80"><h5>Controller environment settings</h5><div class="content-locale-en-US content-locale-en"><div id="c_controller_environment_settings"><div class="body conbody"><p class="shortdesc">Several environment variables are required to be configured before running the application.</p>
+
+    <p class="p">Depending on the desired deployment platform there are many options for how these environment variables can be configured. The only requirement is that they are available in the environment where the product's JAR file will be executed. For example, it may be desirable to configure them in a shell script, in a specific user's profile, a startup instruction like init.d, or in a continuous deployment tool like Jenkins. </p>
+
+    <p class="p">The minimum required variables are documented here. But, many optional variables are provided in the Spring Boot platform, for example tuning the embedded container. Please refer to Spring documentation for those: <a class="xref ft-external-link" href="http://docs.spring.io/spring-boot/appendix/application-properties/index.html" target="_blank" rel="noopener">http://docs.spring.io/spring-boot/appendix/application-properties/index.html</a>.</p>
+
+    <p class="p">Environment Variables are the recommended method to configure these properties. But there are various other ways these can be configured. Please refer to this documentation for more information: <a class="xref ft-external-link" href="https://docs.spring.io/spring-boot/reference/features/external-config.html" target="_blank" rel="noopener">https://docs.spring.io/spring-boot/reference/features/external-config.html</a>.</p>
+
+    <div class="section"><h2 class="title sectiontitle">Required environment variables</h2>
+      
+      <ul class="ul">
+        <li class="li">DW_DATASOURCE_URL: A JDBC connection string for the <span class="ph">Degree Works</span> database. For example: <var class="keyword varname">jdbc:oracle:thin:@{SERVER}:{PORT}/{SERVICE_NAME}</var> where <var class="keyword varname">{SERVER}</var> is the address, <var class="keyword varname">{PORT}</var> is the port of the listener, and <var class="keyword varname">{SERVICE_NAME}</var> is the service name of the database. This is the same database and schema used by the classic <span class="ph">Degree Works</span> software.</li>
+
+        <li class="li">DW_DATASOURCE_USERNAME: The <span class="ph">Degree Works</span> database username.</li>
+
+        <li class="li">DW_DATASOURCE_PASSWORD: The <span class="ph">Degree Works</span> database password. This can be encoded. To get the encoded value, use the <var class="keyword varname">showdbpasswords --password</var> command in the classic environment. It will display the encoded value to place here (e.g. <var class="keyword varname">ENC(skdfjldjs)</var>). </li>
+
+        <li class="li">SERVER_PORT: The desired port for <span class="keyword">Controller</span>. </li>
+
+        <li class="li">SERVER_SERVLET_CONTEXT_PATH: An optional context path. If this is blank, the application will be deployed at the root URL like https://myserver.edu:NNNN (where NNNN is the SERVER_PORT). If a value is specified like /my-context-path, the application would be accessible at a URL like https://myserver.edu:NNNN/my-context-path (where NNNN is the SERVER_PORT).</li>
+
+        <li class="li">SERVER_SSL_KEY_STORE: The path to a keystore file you created to contain your SSL certificate.</li>
+
+        <li class="li">SERVER_SSL_KEY_STORE_PASSWORD: The password for your keystore file.</li>
+
+        <li class="li">SERVER_SSL_KEYSTORETYPE: The type of your keystore. JKS is the default.</li>
+
+        <li class="li">SERVER_SSL_KEY_ALIAS: The alias of the key you created.</li>
+
+      </ul>
+
+    </div>
+
+    <div class="section"><h2 class="title sectiontitle">Optional environment settings</h2>
+      
+      <ul class="ul">
+        <li class="li">JAVA_OPTIONS: The memory allocation for the application can be defined using this variable, and is recommended. The value defines the initial heap size and max heap size and is in the following format: <var class="keyword varname">-Xms1536m -Xmx1536m</var>. The heap size values should be adjusted as appropriate for your server.</li>
+
+        <li class="li">SERVER_MAX_HTTP_HEADER_SIZE: This setting allows you to set the maximum size of the HTTP message header. By default, this is 8KB, and for some users with a large number of Shepherd access keys, this can be too small. It’s recommended to use this variable and set it to at least 12KB. For example: <var class="keyword varname">export SERVER_MAX_HTTP_HEADER_SIZE=12288</var></li>
+
+        <li class="li">SERVER_TOMCAT_REDIRECT_CONTEXT_ROOT: Embedded Tomcat for Spring Boot has a default behavior to redirect a request without a trailing slash to one with a trailing slash. However, that redirect happens without evaluating forward headers like <var class="keyword varname">X-Forwarded-Proto</var>. So, when SSL offloading is in place, the redirect happens to <var class="keyword varname">http</var> instead of <var class="keyword varname">https</var>. This can be an issue especially for load balanced environments. To disable the default behavior, set this variable to false.<div class="note warning"><span class="warningtitle">Warning:</span> You should do this only if the default behavior is not working. If you are offloading SSL at a proxy or load balancer, make sure to follow the instructions in the <span class="xref ft-internal-xlink" title="Load balancing Java applications such as Responsive Dashboard and Transfer Equivalency Self-Service is straightforward, as generally nothing special is required." data-ft-warning="excluded-from-rendering" data-clusterid="id_crm/dgrwrks/c_standalone_java_application_load_balancing">Java application load balancing</span> topic. Then, if you have problems accessing the application in the browser when you do not include a trailing slash at the end of the request, try setting this variable to <span class="ph uicontrol">false</span>.</div>
+</li>
+
+        <li class="li">DEBUG: A boolean true or false which will enable or disable debug logging. The log file is by default named Controller.log. But, the location and name of that file can be customized by setting the <var class="keyword varname">LOGGING_PATH</var> and <var class="keyword varname">LOGGING_FILE</var> environment variables. </li>
+
+        <li class="li">DEPLOY_LOCATION: the location of the <var class="keyword varname">Controller.jar</var> file. This location should be set then referenced in the <var class="keyword varname">java -jar</var> command that starts the application.</li>
+
+        <li class="li">LOGGING_FILE: the name of the file including the path location. If this is specified, the <var class="keyword varname">LOG_PATH</var> should not be used.</li>
+
+        <li class="li">LOG_PATH: the location of the log file. The default PATH location is the Java temporary java folder from the Java property<var class="keyword varname"> java.io.tmpdir</var>. This is usually <var class="keyword varname">/tmp</var>. The file name will be <var class="keyword varname">controller.log</var>.</li>
+
+        <li class="li">LOG_DEFAULT_THRESHOLD: If set to <var class="keyword varname">DEBUG</var>, the application will output more verbose logging. Debug output will be sent to the log during the startup process and for all requests thereafter. Warning: this will result in very large log files. If not set, the debug threshold is <var class="keyword varname">INFO</var>.</li>
+
+        <li class="li">DW_ENABLE_MONITOR - This environment variable can be set to enable /health, /metrics, /prometheus, and /status endpoints for health and monitoring metrics. By default, this monitoring functionality is not enabled. Adding this variable to an application's startup script and setting it to true would enable these endpoints for the application. See individual API documentation in the API Catalog for additional information.</li>
+
+        <li class="li">DW_RABBITMQ_SSLALGORITHM: Specify the SSL algorithm to use when connecting to the RabbitMQ broker using SSL. If not specified, it uses the current RabbitMQ driver's default (at least TLSv1.2). This is only considered if the Shepherd setting core.amqp.useSsl is set to true.</li>
+
+      </ul>
+
+    </div>
+
+    <div class="section"><h2 class="title sectiontitle">Database pooling configuration</h2>
+      
+      <p class="p">For production deployments, you can configure the size of the database connection pool through the following environment variables:</p>
+
+      <div class="p">
+        <ul class="ul">
+          <li class="li">DW_DATAPOOL_INITIAL_SIZE: The initial number of connections that are created when the pool is started.</li>
+
+          <li class="li">DW_DATAPOOL_MIN_IDLE: The minimum number of active connections that can remain idle in the pool, without extra ones being created.</li>
+
+          <li class="li">DW_DATAPOOL_MAX_IDLE: The maximum number of connections that can remain idle in the pool, without extra ones being released.</li>
+
+          <li class="li">DW_DATAPOOL_MAX_TOTAL: The maximum number of active connections that can be allocated from this pool at the same time.</li>
+
+        </ul>
+
+      </div>
+
+      <p class="p">For more information, see the <span class="xref ft-internal-xlink" title="Java programs obtain a database connection from a pool of open connections." data-ft-warning="excluded-from-rendering" data-clusterid="id_crm/dgrwrks/c_java_database_pooling_configuration">Java database pooling configuration</span> topic.</p>
+
+    </div>
+
+    <div class="section"><h2 class="title sectiontitle">SSL offloading</h2>When SSL offloading is in use (SSL is terminated before reaching the application) with a load balancer, proxy server, and so on, some additional configuration needs to be done to make sure <span class="ph">Degree Works</span> applications behave as expected. See the <span class="xref ft-internal-xlink" title="Load balancing Java applications such as Responsive Dashboard and Transfer Equivalency Self-Service is straightforward, as generally nothing special is required." data-ft-warning="excluded-from-rendering" data-clusterid="id_crm/dgrwrks/c_standalone_java_application_load_balancing">Java application load balancing</span> topic for more information about this setup. </div>
+
+  </div>
+
+</div></div></section>
+<section id="t-90"><h3>Authorization</h3><div class="content-locale-en-US content-locale-en"><div id="c_controller_authorization"><p class="shortdesc">Under the Authorization menu, user access to Degree Works applications and functionality can be managed. This is either done for an individual user in the Users tab, or for a user role in the Groups tab.</p>
+
+  
+</div></div></section>
+<section id="t-100"><h4>Users</h4><div class="content-locale-en-US content-locale-en"><div id="c_users"><div class="body conbody"><p class="shortdesc">In the Users tab, user access records can be created or modified. These user access records are used to manage user access to Degree Works applications, and in conjunction with the core.security.rules.shpcfg Shepherd setting help construct a user’s authorization keyring.</p>
+
+    <p class="p">Typically, user access records for students, advisors and applicants are created through the data bridge extract from the student records system. These records can be maintained in Controller. For other users of Degree Works who might not have data in the student records system, such as staff, a user access record can be created in Controller so they can be granted access to Degree Works functionality.</p>
+
+    <p class="p">For additional information about user authorization, please see the <span class="xref ft-internal-xlink" title="User access to functionality in Degree Works is controlled by keys and services." data-ft-warning="excluded-from-rendering" data-clusterid="id_crm/dgrwrks/c_access_control_authorization">Access control (authorization)</span> topic.</p>
+
+    <div class="section"><h2 class="title sectiontitle">Configuration</h2>
+      
+      <p class="p">Access to Users is granted if the user has the CTLUSERS Shepherd key.</p>
+
+    </div>
+
+  </div>
+
+</div></div></section>
+<section id="t-110"><h5>User search</h5><div class="content-locale-en-US content-locale-en"><div id="c_search_user"><div class="body conbody"><p class="shortdesc">Existing user access records can be searched for by username, access ID, SSO ID, or Degree Works ID.</p>
+
+    <p class="p">These correspond to the <var class="keyword varname">shp_name</var>, <var class="keyword varname">shp_access_id</var>, <var class="keyword varname">shp_sso_id</var>, and <var class="keyword varname">shp_box_id</var> columns in the <var class="keyword varname">shp_user_mst</var> database table, respectively. To search for user access records, type a keyword string and hit Enter. A paginated list of matching records will be returned. The list is initially sorted alphabetically ascending by the name, but the grid can be sorted by any column by clicking on the column header. An arrow will appear next to the column header to indicate that it is being used for the sort, and the direction of the arrow indicates whether it is ascending or descending.</p>
+
+    <p class="p">Existing user access records may also be searched by entering a few characters allowing a suggestive set of records to display below the search bar. Clicking a particular user will populate the respective details into the search results grid.</p>
+
+    <p class="p">The pagination details at the bottom of the search results grid allow the user to page to additional matching records, control how many records per page should display and how many total matching records were found.</p>
+
+  </div>
+
+</div></div></section>
+<section id="t-120"><h5>Create and edit users</h5><div class="content-locale-en-US content-locale-en"><div id="c_create_edit_user"><div class="body conbody"><p class="shortdesc">A new user access record can be created by clicking on the Add new user button on the User search page. A user access record can be edited by clicking on the edit icon in the search results grid.</p>
+
+    <p class="p">To edit a user access record, click the edit icon. A card with all the access details for this user will load.</p>
+
+    <p class="p">After modifying the details for the user, click the Save button to keep your changes.</p>
+
+    <div class="section"><h2 class="title sectiontitle">Configuration</h2>
+      
+      <div class="p">Access to the following is granted if the user has the specified Shepherd key:<ul class="ul"> <li class="li">Add user access records - CTLUSRAD</li>
+ <li class="li">Edit user access records - CTLUSRMD</li>
+ </ul>
+</div>
+
+    </div>
+
+  </div>
+
+</div></div></section>
+<section id="t-130"><h6>User Information</h6><div class="content-locale-en-US content-locale-en"><div id="c_user_info"><div class="body conbody"><p class="shortdesc">Information that identifies the user is detailed in the User Information section.</p>
+
+    <p class="p">The <span class="ph uicontrol">User name</span> that displays in Degree Works applications can be added or modified; this is typically initially loaded for most users through the data bridge. </p>
+
+    <p class="p">A user access record is usually linked to a <span class="ph uicontrol">Degree Works ID</span>. This is typically done when a user is loaded through the data bridge, but can be changed or added when manually creating a new user access record. Click the <span class="ph uicontrol">Search</span> icon to search the Degree Works database by either the <var class="keyword varname">rad_id or rad_name</var> on the <var class="keyword varname">rad_primary_mst</var>. Select the correct record to link the <span class="ph uicontrol">Degree Works ID</span> to the user access record. The <var class="keyword varname">rad_name</var> will display as the <span class="ph uicontrol">Name</span> for reference.</p>
+
+    <p class="p">When adding a user, a unique <span class="ph uicontrol">Access ID</span> must be provided. This is the ID that the user will use to access Degree Works applications. It can be up to 14 alphanumeric characters in length. When a user access record has been saved, the <span class="ph uicontrol">Access ID</span> cannot be changed.</p>
+
+    <p class="p">If your environment uses SHP authentication, you can use Controller to manager the user’s password. Other methods of authentication such as CAS or SAML will not use this password. This password cannot be displayed after the user access record has been saved, but to view the password while entering it, click “Show”. The password will be saved as encrypted when password encoding is enabled.</p>
+
+    <p class="p">If you are using single sign-on authentication, the <span class="ph uicontrol">Single sign-on ID</span> is an optional field that stores the user's ID. For example, the ID used in CAS authentication.</p>
+
+    <p class="p">If you are using Transfer Finder, the <span class="ph uicontrol">Transfer Finder ID</span> is an optional field that stores the common system ID used by Transfer Finder.</p>
+
+    <p class="p">If you are using Transfer Equivalency Self-Service, the <span class="ph uicontrol">Alternate username</span> is an optional field that stores the prospective student's email address used for logging in. </p>
+
+    <div class="section"><h2 class="title sectiontitle">Configuration</h2>
+      
+      <p class="p">Review the <code class="ph codeph">core.security.passwordEncoding.enabled</code> Shepherd setting to ensure it is configured correctly.</p>
+
+    </div>
+
+  </div>
+
+</div></div></section>
+<section id="t-140"><h6>User Access</h6><div class="content-locale-en-US content-locale-en"><div id="c_user_access"><div class="body conbody"><p class="shortdesc">Details about how the user can access Degree Works applications are stored in the User Access section.</p>
+
+    <p class="p">For any Degree Works application, the date and time of the user’s last successful logon and their last failed logon attempt are displayed, and the Fail count displays the number of times the user has entered an Access ID or Password that is not valid during logon. The count can be reset by clicking the <span class="ph uicontrol">Reset count</span> button.</p>
+
+    <p class="p">User class is a required field, and this defines the services that the user can access. The user class drop-down is populated by AUD012.</p>
+
+    <p class="p">Certain users may be granted access to have students from a designated major(s), school (s), or college(s) pre-load in the Responsive Dashboard. To add an advisee filter, click the <span class="ph uicontrol">Add filter</span> button and select a Department, School, or College filter type. A user can only be assigned one advisee filter type. Then select the major, school, or college from the drop-down. Up to 10 filter codes can be added by clicking the add filter icon. Filters can be removed by clicking the delete icon. Assigned filters for the user will display in the interface. These can be deleted individually or en masse by clicking <span class="ph uicontrol">Clear all</span>.</p>
+
+    <p class="p">You can restrict a user’s access to Degree Works by enabling the <span class="ph uicontrol">Deny</span> flag, which prevents a user from being able to access any service on their next logon. If you want to set an expiration date for the account, specify it in the <span class="ph uicontrol">User expire</span> field.</p>
+
+    <p class="p">Use the Timeout increment to specify the time after which a user's session should automatically end, if the user is inactive. When the user first gets authenticated, the timeout is set to the current time plus the timeout increment. This value is the time when the session will end if the user is inactive. Inactive is defined as not requesting a Degree Works service within a specific time frame. If the user stays active then the timeout value will be updated. The timeout value is updated by taking the current time and adding on the timeout increment. The Timeout maximum specifies the maximum time for which a user session can be inactive before ending. The timeout value cannot exceed the initial authentication time plus the timeout maximum. As long as the user stays active, the session will not end within the maximum time allotted. If the timeout fields are not filled in, the timeouts are from the user's groups or from the <code class="ph codeph">core.security.passport.timeout*</code> Shepherd settings. If you want to keep the user logged in irrespective of the inactive time, select the <span class="ph uicontrol">Never timeout</span> check box. </p>
+
+    <div class="section"><h2 class="title sectiontitle">Configuration</h2>
+      
+      <p class="p">Review the following Shepherd settings to ensure they are configured correctly:</p>
+
+      <pre class="pre codeblock"><code>core.security.passport.timeoutIncrementDefault
+core.security.passport.timeoutMaximumDefault
+core.security.passport.timeoutPrecedence
+core.security.passport.timeoutPreference
+core.authorization.adviseeFiltering.college.enabled
+core.authorization.adviseeFiltering.department.enabled
+core.authorization.adviseeFiltering.school.enabled</code></pre>
+    </div>
+
+  </div>
+
+</div></div></section>
+<section id="t-150"><h6>User Keys</h6><div class="content-locale-en-US content-locale-en"><div id="c_user_key"><div class="body conbody"><p class="shortdesc">User access to Degree Works services is managed by Shepherd keys.</p>
+
+    <p class="p">Typically, users are assigned Shepherd keys explicitly by role through the core.security.rules.shpcfg Shepherd setting. But refined access can be assigned to or removed from the user implicitly using Controller. </p>
+
+    <p class="p">To add a key, click the <span class="ph uicontrol">Add key</span> button. Select the key that you want to add to the user's keyring. From the <span class="ph uicontrol">Operator</span> drop-down, choose whether you want to grant or deny access to this key for this user. If you want to set a time limit for this key, click the calendar icon for the Expire date and set a date after which the user will no longer have permissions to the service and the key will be removed from the user's keyring.</p>
+
+    <p class="p">All keys assigned to a user will display in a grid and are initially sorted alphabetically ascending by the key. This grid can be filtered by Shepherd key or description. Keys can also be sorted by clicking any of the column headers. To modify a key, click on the <span class="ph uicontrol">Edit</span> icon. To delete a key, click on the <span class="ph uicontrol">Delete</span> icon.</p>
+
+    <div class="section"><h2 class="title sectiontitle">Configuration</h2>
+      
+      <p class="p">Review the core.security.rules.shpcfg Shepherd setting to ensure it is configured correctly.</p>
+
+    </div>
+
+  </div>
+
+</div></div></section>
+<section id="t-160"><h6>User Groups</h6><div class="content-locale-en-US content-locale-en"><div id="c_user_group"><div class="body conbody"><p class="shortdesc">Shepherd keys related to a particular service or role can be grouped together in Shepherd groups so user access can be more easily assigned.</p>
+
+    <p class="p">Typically, users are assigned Shepherd groups explicitly by role through the core.security.rules.shpcfg Shepherd setting. But refined access can be assigned to or removed from the user implicitly using Controller. </p>
+
+    <p class="p">To add a group click the <span class="ph uicontrol">Add group</span> button. Select the group that you want to add to the user's keyring. From the <span class="ph uicontrol">Operator</span> dropdown, choose whether you want to grant or deny access to this group for this user. If you want to set a time limit for this group, click the calendar icon for the Expire date and set a date after which the group will be removed from the user's keyring.</p>
+
+    <p class="p">All groups assigned to a user will display in a grid sorted alphabetically ascending by group. This grid can be filtered by Shepherd group or description. Groups can also be sorted by clicking any of the column headers. To modify a group, click the <span class="ph uicontrol">Edit</span> icon. To delete a group, click the <span class="ph uicontrol">Delete</span> icon.</p>
+
+    <div class="section"><h2 class="title sectiontitle">Configuration</h2>
+      
+      <p class="p">Review the <code class="ph codeph">core.security.rules.shpcfg</code> Shepherd setting to ensure it is configured correctly.</p>
+
+    </div>
+
+  </div>
+
+</div></div></section>
+<section id="t-170"><h5>Delete users</h5><div class="content-locale-en-US content-locale-en"><div id="c_delet_user"><div class="body conbody"><p class="shortdesc">A user access record can be deleted from the search results grid or from the user detail page.</p>
+
+    <p class="p">To delete a user access record, click on either the delete icon in the user search results grid or the Delete user button on the user detail page. Multiple records can be deleted by selecting all the required rows and clicking the delete button on the card. Note that this will delete only the user access record. For information about deleting data in other Degree Works database tables, see <span class="xref ft-internal-xlink" title="RAD40 can be used to permanently delete student records from the database. This deletes data only. The student's data in the SIS is not deleted." data-ft-warning="excluded-from-rendering" data-clusterid="id_crm/dgrwrks/t_rad40_student_data_delete_processor_run">Run RAD40 - Student Data Delete Processor</span>.</p>
+
+    <div class="section"><h2 class="title sectiontitle">Configuration</h2>
+      
+      <p class="p">Access to delete user access records is granted if the user has the <span class="ph uicontrol">CTLUSRDL</span> Shepherd key.</p>
+
+    </div>
+
+  </div>
+
+</div></div></section>
+<section id="t-180"><h4>Groups</h4><div class="content-locale-en-US content-locale-en"><div id="c_group"><div class="body conbody"><p class="shortdesc">In the Group tab, Shepherd group records can be created or modified.</p>
+
+    <p class="p">Groups are collections of Shepherd keys and can be assigned to users to grant them access to that collection of Degree Works services. </p>
+
+    <div class="section"><h2 class="title sectiontitle">Configuration</h2>
+      
+      <p class="p">Access to Groups is granted if the user has the CTLGROUP Shepherd key.</p>
+
+    </div>
+
+  </div>
+
+</div></div></section>
+<section id="t-190"><h5>Search for groups</h5><div class="content-locale-en-US content-locale-en"><div id="c_search_group"><div class="body conbody"><p class="shortdesc">Existing Shepherd groups can be searched for by group or description.</p>
+
+    <p class="p">To search for a group, type a keyword string and press Enter. A paginated list of matching records will be returned. The list is initially sorted alphabetically ascending by the group, but the grid can be sorted by any column by clicking on the column header. An arrow will appear next to the column header to indicate that it is being used for the sort, and the direction of the arrow indicates whether it is ascending or descending.</p>
+
+    <p class="p">Existing Shepherd group records may also be searched by entering a few characters allowing a suggestive set of records to display below the search bar. Clicking a particular group will populate the respective details into the search results grid.</p>
+
+    <p class="p">The pagination details at the bottom of the search results grid allow the user to page to additional matching records, control how many records per page should display and how many total matching records were found.</p>
+
+  </div>
+
+</div></div></section>
+<section id="t-200"><h5>Create and edit groups</h5><div class="content-locale-en-US content-locale-en"><div id="c_create_edit_grp"><div class="body conbody"><p class="shortdesc">A new group can be created by clicking the <span class="ph uicontrol">Add new group</span> button on the Group search page.</p>
+
+    <p class="p">A group can be edited by clicking on the edit icon in the search results grid. A card with all the details for this group will load. After modifying the details for the group, click the <span class="ph uicontrol">Save</span> button to keep your changes.</p>
+
+    <div class="section"><h2 class="title sectiontitle">Configuration</h2>
+      
+      <div class="p">Access to the following is granted if the user has the specified Shepherd key:<ul class="ul"> <li class="li">Add user access records - CTLGRPAD</li>
+ <li class="li">Edit user access records - CTLGRPMD</li>
+ </ul>
+</div>
+
+    </div>
+
+  </div>
+
+</div></div></section>
+<section id="t-210"><h6>Group Details</h6><div class="content-locale-en-US content-locale-en"><div id="c_grp_detail"><div class="body conbody"><p class="shortdesc">Information about the group is detailed in the Group Details section. </p>
+
+    <p class="p">When adding a group, a unique <span class="ph uicontrol">Group</span> name must be provided. It can be up to 8 alphanumeric characters in length. When a group has been saved, the Group name cannot be changed.</p>
+
+    <p class="p">A <span class="ph uicontrol">Description</span> of the group’s function can be entered. It can be up to 30 alphanumeric characters in length.</p>
+
+    <p class="p">If you want to set an expiration date for the group, specify it in the <span class="ph uicontrol">Expire date</span> field.</p>
+
+    <p class="p">Use the <span class="ph uicontrol">Timeout increment</span> to specify the time after which the session of a user with this group should automatically end, if the user is inactive. When the user first gets authenticated, the timeout is set to the current time plus the timeout increment. This value is the time when the session will end if the user is inactive. Inactive is defined as not requesting a Degree Works service within a specific time frame. If the user stays active, then the timeout value will be updated. The timeout value is updated by taking the current time and adding on the timeout increment. The <span class="ph uicontrol">Timeout maximum</span> specifies the maximum time for which a user session can be inactive before ending. The timeout value cannot exceed the initial authentication time plus the timeout maximum. As long as the user stays active, the session will not end within the maximum time allotted. If the timeout fields are not filled in, then the timeouts from the user's groups or from the<var class="keyword varname"> core.security.passport.timeout*</var> Shepherd settings. If you want to keep the user logged in irrespective of the inactive time, select the <span class="ph uicontrol">Never timeout</span> check box.</p>
+
+    <div class="section"><h2 class="title sectiontitle">Configuration</h2>
+      
+      <p class="p">Review the following Shepherd settings to ensure they are configured correctly:</p>
+
+      <pre class="pre codeblock"><code>core.security.passport.timeoutIncrementDefault
+core.security.passport.timeoutMaximumDefault
+core.security.passport.timeoutPrecedence
+core.security.passport.timeoutPreference</code></pre>
+    </div>
+
+  </div>
+
+</div></div></section>
+<section id="t-220"><h6>Group Keys</h6><div class="content-locale-en-US content-locale-en"><div id="c_group_keyss"><div class="body conbody"><p class="shortdesc">A key can be added to a group.</p>
+
+    <p class="p">To add a key to the group, click the “Add key” button. Select the key that you want to add to the group. From the <span class="ph uicontrol">Operator</span> dropdown, choose whether you want to grant or deny access to this key for this group. If you want to set a time limit for this group, click the calendar icon for the <span class="ph uicontrol">Expire date</span> and set a date after which the key will be removed from the group.</p>
+
+    <p class="p">All keys assigned to a group will display in a grid initially sorted alphabetically ascending by the key. This grid can be filtered by Shepherd key or description. To modify a key, click on the <span class="ph uicontrol">Edit</span> icon. To delete a key, click on the <span class="ph uicontrol">Delete</span> icon.</p>
+
+    <p class="p">Groups are stored in the <var class="keyword varname">shp-group-mst</var> record. There is a limit of 50 keys that can be added to a shp_group_mst record, but you can assign more than 50 keys to a group by sequencing the group name. The format of the sequence is &lt;group&gt;-nn. After adding the 50th key to the group, save your changes, and then create a new group that has the same name plus a sequence number, for example, SRNREG-2, SRNREG-3, and so on. You do not need to assign each group sequence record to a user. For example, assigning just SRNREG to a user assigns all the keys on SRNREG, SRNREG-2, SRNREG-3, and so on.</p>
+
+  </div>
+
+</div></div></section>
+<section id="t-230"><h5>Delete groups</h5><div class="content-locale-en-US content-locale-en"><div id="c_delete_group"><div class="body conbody"><p class="shortdesc">A group can be deleted from the group search results grid or from the group detail page.</p>
+
+    <p class="p">To delete a group, click on either the delete icon in the group search results grid or the <span class="ph uicontrol">Delete group</span> button on the group detail page.</p>
+
+    <div class="section"><h2 class="title sectiontitle">Configuration</h2>
+      
+      <p class="p">Access to delete user access records is granted if the user has the CTLGRPDL Shepherd key.</p>
+
+    </div>
+
+  </div>
+
+</div></div></section>
+<section id="t-240"><h3>Configuration</h3><div class="content-locale-en-US content-locale-en"><div id="c_controller_configuration"><div class="body conbody"><p class="shortdesc">In the Configuration menu, Shepherd settings and UCX tables can be managed.</p>
+
+    <p class="p">Shepherd settings are used to configure Degree Works application behavior and UCX tables contain validation data.</p>
+
+    <div class="section"><h2 class="title sectiontitle">Configuration</h2>
+      
+      <p class="p">Access to Configuration is granted if the user has the CTLCONF Shepherd key.</p>
+
+    </div>
+
+  </div>
+
+</div></div></section>
+<section id="t-250"><h4>Search for configurations</h4><div class="content-locale-en-US content-locale-en"><div id="c_search_configurations"><div class="body conbody"><p class="shortdesc">Configurations can be searched for by setting key, or UCX table, or description.</p>
+
+    <p class="p">To search for a configuration, type a keyword string and press Enter. A paginated list of matching records will be returned. The list is initially sorted alphabetically ascending by the configuration, but the grid can be sorted by any column by clicking on the column header. An arrow will appear next to the column header to indicate that it is being used for the sort, and the direction of the arrow indicates whether it is ascending or descending.</p>
+
+    <p class="p">Configurations may also be searched by entering a few characters allowing a suggestive set of records to display below the search bar. Clicking a particular configuration will populate the respective details into the search results grid.</p>
+
+    <p class="p">The pagination details at the bottom of the search results grid allow the user to page to additional matching records, control how many records per page should display and how many total matching records were found.</p>
+
+    <p class="p">To view or edit a configuration, click anywhere in the search results row.</p>
+
+  </div>
+
+</div></div></section>
+<section id="t-260"><h4>Shepherd settings</h4><div class="content-locale-en-US content-locale-en"><div id="c_shepherd_setting"><div class="body conbody"><p class="shortdesc">When viewing or editing a setting, a card will display the setting key and description along with a grid of all the defined specifications for that setting.</p>
+
+    <p class="p">To edit a value of a setting, click on the edit icon. An editable value field will load. Click the <span class="ph uicontrol">Save</span> button to keep your changes or <span class="ph uicontrol">Cancel</span> to return to the setting card.</p>
+
+    <div class="section"><h2 class="title sectiontitle">Configuration</h2>
+      
+      <p class="p">Access to edit settings is granted if the user has the CTLSETMD Shepherd key.</p>
+
+    </div>
+
+  </div>
+
+</div></div></section>
+<section id="t-270"><h5>Add specifications</h5><div class="content-locale-en-US content-locale-en"><div id="c_add_specification"><div class="body conbody"><p class="shortdesc">While most of the settings are specific to a particular application, there are many that generally apply to all applications (for example, core settings). </p>
+
+    <p class="p">It may be desirable, in certain situations, to specify a different value for these general settings to different applications. The specification field allows you to create or modify configurations based on the application. Each application has a unique spec value. The application will first use the setting that contains that specification. If it is not found, then the specification with the default value will be used. </p>
+
+    <p class="p">To add a specification for a setting, click the <span class="ph uicontrol">Add specification</span> button, select the desired specification and specify the correct value. Click the <span class="ph uicontrol">Save</span> button to keep your changes.</p>
+
+    <div class="section"><h2 class="title sectiontitle">Configuration</h2>
+      
+      <p class="p">Access to add additional specifications for settings is granted if the user has the CTLSETAD Shepherd key.</p>
+
+    </div>
+
+  </div>
+
+</div></div></section>
+<section id="t-280"><h5>Delete specifications</h5><div class="content-locale-en-US content-locale-en"><div id="c_delete_speification"><div class="body conbody"><p class="shortdesc">Specifications can be deleted from the setting card.</p>
+
+    <p class="p">To delete a specification, click on the delete icon next to the specification on the setting card. Note that default specifications cannot be deleted.</p>
+
+    <div class="section"><h2 class="title sectiontitle">Configuration</h2>
+      
+      <p class="p">Access to delete specifications for settings is granted if the user has the CTLSETDL Shepherd key.</p>
+
+    </div>
+
+  </div>
+
+</div></div></section>
+<section id="t-290"><h5>Add setting</h5><div class="content-locale-en-US content-locale-en"><div id="c_add_setting"><div class="body conbody"><p class="shortdesc">The need to add a new setting should be rare. Ellucian delivers new settings through software update packages. But there are some scenarios where you may need to add a new setting, such as localizing the next steps displayed in Transfer Equivalency Self-Service. </p>
+
+    <p class="p">To add a new setting, click the <span class="ph uicontrol">Add a Shepherd setting</span> button. Enter the key and value then click the <span class="ph uicontrol">Save</span> button to keep your changes. The setting will be added with a default specification. You can define a description for this setting by adding a localized property to <code class="ph codeph">ShpSettingsMessages.properties</code> on the Properties tab in Controller. This property should be in the format of <var class="keyword varname">"shpSetting.description." + SHP</var> setting key. For example, if your new setting is <code class="ph codeph">treq.selfService.nextSteps.10</code>, your description property should be <code class="ph codeph">shpSetting.description.treq.selfService.nextSteps.10.</code></p>
+
+    <div class="section"><h2 class="title sectiontitle">Configuration</h2>
+      
+      <p class="p">Access to add a new setting is granted if the user has the CTLSETAD Shepherd key.</p>
+
+    </div>
+
+  </div>
+
+</div></div></section>
+<section id="t-300"><h4>UCX tables</h4><div class="content-locale-en-US content-locale-en"><div id="c_ucx_setting"><div class="body conbody"><p class="shortdesc">When viewing or editing a UCX table, a card with a paginated list of all the entries in the table will display.</p>
+
+    <p class="p">The list is initially sorted alphabetically ascending by the key, but the grid can be sorted by any column by clicking on the column header. An arrow will appear next to the column header to indicate that it is being used for the sort, and the direction of the arrow indicates whether it is ascending or descending.</p>
+
+    <p class="p">The pagination details at the bottom of the grid allow the user to page to additional matching records, control how many records per page should display and how many total matching records were found.</p>
+
+  </div>
+
+</div></div></section>
+<section id="t-310"><h5>Create and edit UCX entries</h5><div class="content-locale-en-US content-locale-en"><div id="c_create_edit_ucx"><div class="body conbody"><p class="shortdesc">A new UCX entry can be created by clicking the Add record button on the UCX table page. </p>
+
+    <p class="p">An existing UCX entry can be edited by clicking on the edit icon in the grid. The values of an existing UCX entry can be copied to a new key by clicking on the copy icon. A card with all the details for this record will load. After modifying the details for the UCX entry, click the <span class="ph uicontrol">Save</span> button to keep your changes.</p>
+
+    <div class="section"><h2 class="title sectiontitle">Configuration</h2>
+      
+      <ul class="ul">
+        <li class="li">Access to add UCX entries is granted if the user has the CTLUCXAD Shepherd key.</li>
+
+        <li class="li">Access to edit UCX entries is granted if the user has the CTLUCXMD Shepherd key.</li>
+
+      </ul>
+
+    </div>
+
+  </div>
+
+</div></div></section>
+<section id="t-320"><h5>Delete UCX entries</h5><div class="content-locale-en-US content-locale-en"><div id="c_delete_ucx"><div class="body conbody"><p class="shortdesc">A UCX entry can be deleted from the grid.</p>
+
+    <p class="p">To delete a UCX entry, click on the delete icon in the grid. Note that an entire UCX table cannot be deleted, just individual entries.</p>
+
+    <div class="section"><h2 class="title sectiontitle">Configuration</h2>
+      
+      <p class="p">Access to delete specifications for settings is granted if the user has the <span class="ph uicontrol">CTLUCXDL</span> Shepherd key.</p>
+
+    </div>
+
+  </div>
+
+</div></div></section>
+<section id="t-330"><h5>Import and export UCX entries</h5><div class="content-locale-en-US content-locale-en"><div id="c_import_export_ucx"><div class="body conbody"><p class="shortdesc">UCX tables can be modified in bulk using the Import and Export functionality. UCX entries can be transferred to a file which can be modified using a plain text editor and then loaded back into table.</p>
+
+    <p class="p">Click the <span class="ph uicontrol">Export</span> button to export all records in a UCX table out to a file on the user’s computer. The user will be prompted for a location to where the file should be saved.</p>
+
+    <p class="p">Click the <span class="ph uicontrol">Import</span> button to import a file of records on the user’s computer into a UCX table. All the records in the UCX table will be overwritten on an Import, so care should be taken when using this functionality. Controller will validate the file for the correct UCX table, duplicate entries, tab characters, and so on and will prevent the file from being imported if errors are found. These must be corrected before the file can be imported successfully.</p>
+
+    <div class="section"><h2 class="title sectiontitle">Configuration</h2>
+      
+      <p class="p">Access to import and export UCX tables is granted if the user has the CTLUCXBK Shepherd key.</p>
+
+    </div>
+
+  </div>
+
+</div></div></section>
+<section id="t-340"><h3>Properties</h3><div class="content-locale-en-US content-locale-en"><div id="c_controller_properties"><div class="body conbody"><p class="shortdesc">Using the Properties menu, you can localize the labels, text, and messages in <span class="keyword">Degree Works</span> applications. You can also create a custom experience for users in different countries.</p>
+
+    <p class="p">Language properties are stored in the SHP_RESOURCE_MST. At installation or in an update, <span class="keyword">Ellucian</span> delivers baseline versions in English, Spanish, and French Canadian. They are not modifiable. When a resource is localized, these changes are saved in a separate SHP_RESOURCE_MST record with a specific locale defined, and the baseline version is always available for comparison and troubleshooting. A localized resource needs to be enabled before it can be used in <span class="keyword">Degree Works</span> applications.</p>
+
+    <div class="section"><h2 class="title sectiontitle">Configuration</h2>
+      
+      <p class="p">Access to Properties is granted if the user has the CTLPROP Shepherd key.</p>
+
+    </div>
+
+  </div>
+
+</div></div></section>
+<section id="t-350"><h4>Properties search</h4><div class="content-locale-en-US content-locale-en"><div id="c_controller_properties_search"><p class="shortdesc">A paginated list of language properties displays initially, and it can be filtered by name or description. Properties are listed in alphabetical order by name, and selecting a property opens it in the editor page. The localization.internationalization.baseline.language Shepherd setting determines the language of the property description.</p>
+
+  
+</div></div></section>
+<section id="t-360"><h4>Properties localization</h4><div class="content-locale-en-US content-locale-en"><div id="c_controller_properties_localization"><div class="body conbody"><p class="shortdesc">Maintain localized properties on the editor page.</p>
+
+    <p class="p">You can create a localized version of a baseline language property, update a localized language property, enable a localized language property, or view property details.</p>
+
+    <p class="p">The language property name and description displays above the editor. The localization.internationalization.baseline.language Shepherd setting determines the language of the property description.</p>
+
+    <p class="p">To view information such as Localization Last Modified data, Localization Created data, or Baseline Version, click the history button in the upper right.</p>
+
+    <p class="p">When a language property is initially loaded in the editor, the baseline version of the language specified in the localization.internationalization.baseline.language Shepherd setting loads in the Baseline Resource editor, while the localized resource for the default locale loads in the Localized Resource editor, if it exists. You can select a different locale from the Locale drop-down under the Localized Resource editor to either load that properties file or create it.</p>
+
+    <p class="p">If a localized version for the selected locale cannot be found when loading a language property in the editor, a message appears.</p>
+
+    <div class="section"><h2 class="title sectiontitle">Locales</h2>
+      
+      <p class="p">The list of locales is populated from SHP080 and contains a description in addition to the actual locale code. The locale code is the IETF language tag, and typically consists of language and country codes, or just a language code. Based on settings in your browser, the correct properties file loads so that the application text is appropriate for your location. </p>
+
+      <div class="p">Examples:<ul class="ul">
+        <li class="li">jp – Japanese language translation</li>
+
+        <li class="li">es – the Spanish language translation</li>
+
+        <li class="li">es-MX – Spanish language translation, specific to Mexico</li>
+
+        <li class="li">es-CL – Spanish language translation, specific to Chile</li>
+
+        </ul>
+</div>
+
+      <div class="note"><span class="notetitle">Note:</span> A default localized resource can be saved without a locale. The values in this default localized resource overwrite the values in the baseline resource.</div>
+
+    </div>
+
+    <div class="section"><h2 class="title sectiontitle">Create a localized language property</h2>
+      
+      <p class="p">To create language property localizations, select and copy the items you want to localize from the baseline resource into the localized, and then make your modifications. </p>
+
+      <div class="note warning"><span class="warningtitle">Warning:</span> Ellucian strongly recommends copying only the properties you want to localize. Copying the entire baseline resource to the localized resource will likely cause problems with future upgrades.</div>
+
+    </div>
+
+    <div class="section"><h2 class="title sectiontitle">Enable a localized language property</h2>
+      
+      <p class="p">To globally enable localized language properties in <span class="keyword">Degree Works</span>, the localization.internationalization.enable Shepherd setting should be set to true.</p>
+
+      <p class="p">When this setting is true, <span class="keyword">Degree Works</span> applications use localized language properties with is_enabled = Y. This setting should always be enabled, but it can be useful when troubleshooting issues or processing an update to set it to false temporarily. A related setting, localization.internationalization.cacheMilliseconds, determines how long resources are cached. Wait at least this long after making modifications to language properties before refreshing your browser to see those changes reflected.</p>
+
+      <p class="p">Additionally, <span class="keyword">Degree Works</span> does not use a localized language property unless it has been enabled. To enable a localized language property, select the localization toggle so it switches from disabled to enabled. Note that changing the localization toggle to on triggers an auto save of the script.</p>
+
+      <div class="p">Review the following Shepherd settings to ensure they are configured correctly:<ul class="ul">
+        <li class="li">localization.internationalization.baseline.language</li>
+
+        <li class="li">localization.internationalization.cacheMilliseconds</li>
+
+        <li class="li">localization.internationalization.enable</li>
+
+        </ul>
+</div>
+
+    </div>
+
+    <div class="section" id="c_controller_properties_localization__section_mff_bd2_42c"><h2 class="title sectiontitle">Localize language properties in an application</h2><p class="p">Each of the entries in language properties is made up of two sections, the key and the text. For example, the following entry is for the label on the Responsive Dashboard audit over-the-limit section:</p>
+<code class="ph codeph">dash.worksheet.section.overTheLimit.title=Over The Limit</code><p class="p">In the example, dash.worksheet.section.overTheLimit.title is the key, and Over The Limit is the text part of the entry.</p>
+<p class="p">To change the message, modify the text part of the entry. The modified text is displayed to users.</p>
+<div class="note" id="c_controller_properties_localization__note_nff_bd2_42c"><span class="notetitle">Note:</span> Do not modify the key. The application uses this is a reference, and if modified, the message does not display.</div>
+<p class="p">If you want to change the default text for all users, you would create a default localization. In the editor, select the Default locale and then add the properties you want to localize. If you would like text to be in the native language of the user, you can create separate records specific to their locale by creating a localization record for the specific locale. The localized values overwrite the baseline values for the user, based on how their default language is configured in their browser.</p>
+<p class="p">Baseline and localized resources merge together following this hierarchy:</p>
+<ol class="ol">
+      <li class="li">The application first loads the baseline.</li>
+
+      <li class="li">The default (blank locale) localization loads.</li>
+
+      <li class="li">The one code locale (for example, es) loads.</li>
+
+      <li class="li">The most specific, two-code locale (for example, es-MX) loads.</li>
+
+      </ol>
+<div class="note" id="c_controller_properties_localization__note_uhs_kc2_42c"><span class="notetitle">Note:</span> You can add whichever locales you want to support in SHP080.</div>
+<div class="p">Certain characters require special handling in a language property.<ul class="ul">
+      <li class="li">Single quotes must be doubled to display properly. For example, <code class="ph codeph">Student''s ID</code>.</li>
+
+      <li class="li">In certain messages, mostly error messages, you may have problems with the percent character (<code class="ph codeph">%</code>). If it does not display, use two percent characters together (for example,<code class="ph codeph">%%</code>).</li>
+
+      <li class="li">In certain messages, mostly error messages, you may have problems with the open brace (<code class="ph codeph">{</code>). In this case, precede the brace with a single quote (for example, <code class="ph codeph">'{ </code>).</li>
+
+      <li class="li">Any single byte character can be entered directly into a file. This includes any keyboard character or common Western extended characters. For example, the e with the grave accent - <code class="ph codeph">è</code>.</li>
+
+      <li class="li">Any character, including multibyte characters, can be entered with their 4-digit hexadecimal number. These should be prefixed with a<code class="ph codeph"> \u</code>. The <code class="ph codeph">u</code> must be lower case, and the number must be zero-padded. For example, the following are the codes for some special quote characters.<ul class="ul">
+        <li class="li">Left single quote: <code class="ph codeph">\u2018</code></li>
+
+        <li class="li">Right single quote:<code class="ph codeph">\u2019</code></li>
+
+        <li class="li">Left double quote: <code class="ph codeph">\u201c</code></li>
+
+        <li class="li">Right double quote: <code class="ph codeph">\u201d</code></li>
+
+        </ul>
+</li>
+
+      </ul>
+</div>
+</div>
+
+    <div class="section"><h2 class="title sectiontitle">Language property details</h2>
+      
+      <p class="p">Language property details can be accessed by clicking the history icon in the upper right. This display-only information shows the Last modified date and who, Created date and who, and the Baseline version.</p>
+
+      <p class="p">The Last modified date and who is updated when changes are saved to the localized resource. These fields do not display unless a localized resource for the selected locale exists in the database.</p>
+
+      <p class="p">The Created date and who reflect when the localized resource was initially created. These fields do not display unless a localized resource for the selected locale exists in the database.</p>
+
+      <p class="p">The Baseline version is the <span class="keyword">Degree Works</span> release in which that version of the baseline source was delivered.</p>
+
+    </div>
+
+    <div class="section"><h2 class="title sectiontitle">Save a localized language property</h2>
+      
+      <p class="p">Save changes to a localized language property by clicking the Save button or by switching the localization toggle. If the save is successful, a confirmation message displays.</p>
+
+    </div>
+
+    <div class="section"><h2 class="title sectiontitle">Delete a localized language property</h2>
+      
+      <p class="p">To delete a localized language property, switch the localization toggle to disabled, select all the text in the Localized resource editor and delete it, and then Save your changes.</p>
+
+    </div>
+
+  </div>
+
+</div></div></section>
+<section id="t-370"><h3>Scribe</h3><div class="content-locale-en-US content-locale-en"><div id="c_introduction"><div class="body conbody"><p class="shortdesc"><span class="keyword">Scribe</span> is used to code and store degree and program requirements. </p>
+
+    <p class="p">Requirements are stored in units called blocks. Using <span class="keyword">Scribe</span>, you can create new blocks or edit existing requirement blocks. When <span class="ph">Degree Works</span> produces a student worksheet, its auditor matches the courses on a student's record against the requirements in scribe blocks that contain the student's degree requirements.</p>
+
+  </div>
+
+</div></div></section>
+<section id="t-380"><h4>UCX Tables</h4><div class="content-locale-en-US content-locale-en"><div id="c_ucx_table"><div class="body conbody"><p class="shortdesc">Several UCX tables are used for block values and tags in Scribe.</p>
+
+    <p class="p">These UCX tables should be reviewed to ensure they contain the necessary entries and the descriptions are clear and accurate. After updating one of these UCX tables, refresh the page in the browser to load the changes. It is not necessary to restart the application.</p>
+
+    <div class="p">Review the following UCX tables to ensure that they are configured correctly for your Scribe environment.<ul class="ul"> <li class="li">CFG020, DAP14, and DAP13</li>
+ <li class="li">AUD031, AUD033, SCR002, SCR003, SCR004, SCR007, STU016, STU023, STU024, STU035, STU307, STU316, STU323, STU324, STU350, STU560, and STU563</li>
+ </ul>
+</div>
+
+  </div>
+
+</div></div></section>
+<section id="t-390"><h4>Scribe blocks management</h4><div class="content-locale-en-US content-locale-en"><div id="c_manag_scribe_block"><div class="body conbody"><p class="shortdesc">As a best practice, blocks are typically updated and tested in a non-production environment. After they have been verified, they can be transferred to a production environment in bulk.</p>
+
+    <p class="p">To transfer blocks from one environment to another, use the DAP40 and DAP41 jobs. See the <span class="xref ft-internal-xlink" title="Scribe block data can be copied between environments to keep data current and in sync." data-ft-warning="excluded-from-rendering" data-clusterid="id_crm/dgrwrks/p_blocks_transfer_between_two_different_environments">Blocks transfer between two different environments</span> topic for more information.</p>
+
+    <p class="p">To bulk insert blocks from files, use the dapblockinsert script. See the <span class="xref ft-internal-xlink" title="The scripts that Degree Works uses will not always be accessed through a user interface. Most of the scripts are used within other scripts and processes." data-ft-warning="excluded-from-rendering" data-clusterid="id_crm/dgrwrks/r_scripts_dw">Degree Works special scripts</span> topic for more information.</p>
+
+  </div>
+
+</div></div></section>
+<section id="t-400"><h4>Block search</h4><div class="content-locale-en-US content-locale-en"><div id="c_search_block"><div class="body conbody"><p class="shortdesc">A user can search for existing blocks either by the Requirement ID or using selection criteria on the Block Search page.</p>
+
+    <p class="p">To open a block by the Requirement ID, the user should enter the numeric value of the Requirement ID in the text box. The field will automatically left zero-fill. That is, if you type 1234 you will see 001234 appear. The RA prefix will default and is applicable to most blocks. To search for a block created in the student planner, select <span class="ph uicontrol">RB</span> from the <span class="ph uicontrol">Prefix</span> drop-down list. Clicking <span class="ph uicontrol">Open block requirement ID</span> will open the Edit page in a new tab, and the block will display in the editor. If a Requirement ID that is not valid is provided, the user will be shown an error message.</p>
+
+    <p class="p">A user can also open a block by first searching for blocks based on selection criteria. The more criteria provided, the smaller the number of matching blocks. When a <span class="ph uicontrol">Block type</span> is selected, the <span class="ph uicontrol">Block value</span> drop-down list will load with the values from the UCX validation table for that block type, unless the block type is Other, Requisite, or Student ID. For Other and Requisite block types, when the user starts typing in the field a drop-down of matching blocks will be displayed, and the user can select one of these values to search on. For a Student ID block type, a valid Student ID should be entered in the <span class="ph uicontrol">Block value</span> field.</p>
+
+    <p class="p">A start or stop catalog year can also be provided when searching.</p>
+
+    <div class="note"><span class="notetitle">Note:</span> If a Requisite block value is selected, the period labels will be <span class="ph uicontrol">Start term</span> and <span class="ph uicontrol">Stop term</span> instead of <span class="ph uicontrol">Start catalog year</span> and <span class="ph uicontrol">Stop catalog year</span>.</div>
+
+    <p class="p">The user can also include Secondary Tags in the search. The <span class="ph uicontrol">Student ID</span> is a text field and the user should enter a valid student ID. For <span class="ph uicontrol">School</span>, <span class="ph uicontrol">Degree</span>, <span class="ph uicontrol">College</span>, <span class="ph uicontrol">Major 1</span>, <span class="ph uicontrol">Major 2</span>, <span class="ph uicontrol">Concentration</span>, <span class="ph uicontrol">Minor</span>, <span class="ph uicontrol">Liberal Learning</span>, <span class="ph uicontrol">Specialization</span> and <span class="ph uicontrol">Program</span>, the user should select from the drop-down of values from the corresponding UCX validation table.</p>
+
+    <p class="p">The search may be limited to only those blocks with parsing errors by checking the <span class="ph uicontrol">Only blocks with errors</span> check box. If the block has parse_status = NO, it will be included in the search results.</p>
+
+    <p class="p">To perform the search by criteria, click <span class="ph uicontrol">Search</span>. Clicking <span class="ph uicontrol">Clear</span> will reset the selected criteria back to the initial values.</p>
+
+    <p class="p">The number of matching Requisite blocks that will be returned and shown in the autocomplete drop-down list is limited by the <code class="ph codeph">scribe.query.threshold.requisite</code> setting. This is delivered initially as 500, but can be adjusted as necessary. Increasing this value can impact performance of the drop-down list.</p>
+
+    <p class="p">The Secondary Tags that display in the Block Selection Criteria section can be configured. To remove a secondary tag from the display, set the corresponding <code class="ph codeph">scribe.secondaryTag.show*</code> setting to <span class="ph uicontrol">false</span>.</p>
+
+    <p class="p">Review the following Shepherd settings to ensure they are configured correctly for your Scribe environment:</p>
+
+    <pre class="pre codeblock"><code>scribe.query.threshold.requisite
+scribe.secondaryTag.showCollege
+scribe.secondaryTag.showConcentration
+scribe.secondaryTag.showDegree
+scribe.secondaryTag.showLiberalLearning
+scribe.secondaryTag.showMajor1
+scribe.secondaryTag.showMajor2
+scribe.secondaryTag.showMinor
+scribe.secondaryTag.showProgram
+scribe.secondaryTag.showSchool
+scribe.secondaryTag.showSpecialization
+scribe.secondaryTag.showStudentId
+scribe.upshift.codes</code></pre>
+  </div>
+
+</div></div></section>
+<section id="t-410"><h4>Search results</h4><div class="content-locale-en-US content-locale-en"><div id="c_search_result"><div class="body conbody"><p class="shortdesc">The results of a block search by criteria will be returned in a card on the search page.</p>
+
+    <p class="p">The results are initially sorted by title with a secondary sort on start catalog year/term. If no matching blocks are found based on the selection criteria provided, the user will be shown an error message.</p>
+
+    <p class="p">The <span class="ph uicontrol">Title</span>, <span class="ph uicontrol">Block type</span>, <span class="ph uicontrol">Block value</span>, <span class="ph uicontrol">Requirement ID</span>, and <span class="ph uicontrol">Start/Stop catalog year</span> will always display in the results grid. If a search includes the Requisite block type as criteria, the results grid will display <span class="ph uicontrol">Start/Stop term</span> instead of <span class="ph uicontrol">Start/Stop catalog year</span>. The secondary tags that are displayed can be configured. To remove a secondary tag from the display, set the corresponding <code class="ph codeph">scribe.secondaryTag.show*</code> setting to <span class="ph uicontrol">false</span>. The results grid can be sorted in ascending or descending order by any column by clicking on the column header.</p>
+
+    <p class="p">Selecting a block in the results grid will open a new tab with the block in the editor.</p>
+
+    <p class="p">Multiple blocks can be opened at the same time.</p>
+
+    <p class="p">A user can delete one or more blocks from the results grid by selecting the check box to the left of the block title and clicking <span class="ph uicontrol">Delete</span>. The user will be prompted to confirm the delete before the block is deleted.</p>
+
+  </div>
+
+</div></div></section>
+<section id="t-420"><h4>Block creation</h4><div class="content-locale-en-US content-locale-en"><div id="c_create_new_block"><div class="body conbody"><p class="shortdesc">A new requirement block can be created by clicking the <span class="ph uicontrol">New Block</span> button. A new block template will be opened in the editor.</p>
+
+    <p class="p">This new block template can be localized in the <code class="ph codeph">scribe.template.newBlock</code> setting in Controller. </p>
+
+    <p class="p">The user can define the block details by clicking the <span class="ph uicontrol">Block details</span> link.</p>
+
+    <p class="p">To add the new block to the database, click the <span class="ph uicontrol">Save</span> button on the Edit page. A block details edit window will be displayed and the user can either confirm the values they have already defined or can enter the appropriate values. Clicking <span class="ph uicontrol">Save</span> will save the block to the database and clicking <span class="ph uicontrol">Cancel</span> will take the user back to the editor. Before a block can be saved to the database, it will be parsed and validated. If any parsing or validation errors are found, a message will be displayed in the editor and the block will not be saved to the database. These errors must be corrected before the block can be successfully saved. When a block is successfully saved, the <span class="ph uicontrol">Access Details</span> fields will be updated and displayed in the <span class="ph uicontrol">History</span> link.</p>
+
+    <p class="p">Review the <code class="ph codeph">scribe.template.newBlock</code> Shepherd setting to ensure it is configured correctly for your Scribe environment.</p>
+
+  </div>
+
+</div></div></section>
+<section id="t-430"><h4>Open Local Block</h4><div class="content-locale-en-US content-locale-en"><div id="c_open_local_block"><div class="body conbody"><p class="shortdesc">A plain text file of requirements previously saved to the user’s computer can be opened in Scribe for editing and can then be saved to the database.</p>
+
+    <p class="p">Click the <span class="ph uicontrol">Open Local Block</span> button, then navigate to the local file you want to open. Click <span class="ph uicontrol">Open</span> to load the file in a new unsaved block editor window. </p>
+
+  </div>
+
+</div></div></section>
+<section id="t-440"><h4>Block editing</h4><div class="content-locale-en-US content-locale-en"><div id="c_edit_block"><div class="body conbody"><p class="shortdesc">Block requirements and details can be modified on the edit page.</p>
+
+    <p class="p">The user can update an existing block, save as a new block, create a new block, export the block to a file on the user’s computer, print the block, and parse the block to check for syntax errors.</p>
+
+    <p class="p">The block’s title will display with the requirement ID above the editor and in the browser tab. If the block is new and has not yet been saved to the database, the title will display as <span class="keyword wintitle">Untitled</span>. If the block has unsaved edits, an asterisk appears in the block title after the requirement ID.</p>
+
+    <p class="p">To edit requirement text, place your cursor on the line in the editor you want to modify. You can either type your own <span class="keyword">Scribe</span> code or use <span class="keyword">Scribe</span> templates to get you started. To use templates, place your cursor in the editor where you want to insert the template and select the template from the drop-down. If you hover over the template name, a preview of the template text will display to assist in determining which template to select. Some templates can be used as delivered, but most will require some modification to match your specific requirements.</p>
+
+    <p class="p"><span class="keyword">Scribe</span> template text is defined in the scribe.template.scribeCode.* Shepherd settings. There is a 3-character sequence after scribe.template.scribeCode that helps identify each template. The set of templates ranging from 001 through 799 is delivered by <span class="keyword">Ellucian</span>, and while you can modify these templates in <span class="keyword">Controller</span>, they may be updated by <span class="keyword">Ellucian</span> in a future release and your changes will be lost. If you do want to make changes to templates or have <span class="keyword">Scribe</span> code that you use frequently, you can create a your own template by creating a new Shepherd setting in the range of 800 - 999. To add a new setting, your user must have the CTLSETAD Shepherd key. In addition to adding a Shepherd setting, you must create a localized scribe.template.description.* property in ScribeMessages.properties to define the text that displays in the template drop-down in <span class="keyword">Scribe</span>. The sequence used in your Shepherd setting must match the sequence used in your localized property.  The default sort order of the templates in the drop-down is the scribe.template.description property label then the 3-character sequence. The format of the template drop-down entries can be changed by modifying scribe.block.templates.description.format . To prevent a template from displaying in the drop-down, you can create a localized version of the corresponding scribe.template.description property and replace the label with a backslash and space. For example, if you do not want to include the ATHLETE BLOCK - Football rule (755) template in the list of available templates, add scribe.template.description.755=\ as a localized property. For more information, see the <span class="xref ft-internal-link" title="Maintain localized properties on the editor page." data-ft-warning="excluded-from-rendering" data-mapid="igXg2AijGFGkGiTrAzay5w" data-tocid="3jTL3tGQUiKcM8lio79G1Q">Properties localization</span> topic.</p>
+
+    <p class="p">In the editor, syntax highlighting exists on comments (lines beginning with #), labels, remarks, and so on (text contained in quotes), and <span class="keyword">Scribe</span> reserved words. A block may have an unlimited number of lines, and each line is of unlimited length. However, Labels, Display, and ProxyAdvice each have a maximum length of 200 characters.</p>
+
+    <p class="p">You can use a utility to find and replace text in a block. In the editor window, <span class="ph uicontrol">Ctrl-F</span> opens the find toolbar or <span class="ph uicontrol">Ctrl-H</span> opens the find/replace toolbar. You can then enter a string of text in the <span class="ph uicontrol">Search for</span> field and press the <span class="ph uicontrol">Enter</span> key or click the down or up arrow to find the first instance of that string. The string search is case-insensitive. All matching instances of that string will be returned. To replace a string of text, you can enter the string you want to find in the <span class="ph uicontrol">Search for</span> field and the string you want to replace it with in the <span class="ph uicontrol">Replace with</span> field. Clicking <span class="ph uicontrol">Replace</span> finds the first instance of that string, and then clicking <span class="ph uicontrol">Replace</span> again makes the text substitution. Alternatively, you can select <span class="ph uicontrol">Replace All</span> from the drop-down list and all instances of the find string will be replaced with the replace string.</p>
+
+    <p class="p">The <span class="ph uicontrol">Block details</span> link shows the block details (the editable primary and secondary tags for the block), while the <span class="ph uicontrol">History</span> link shows the access details (display-only create, modify, and parse information). </p>
+
+    <p class="p">The following shortcuts are available in the <span class="keyword">Scribe</span> editor. Some are standard editor shortcuts and some are specific to the third-party editor tool, ACE, used by <span class="keyword">Scribe</span>. </p>
+
+    
+<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" class="table" frame="hsides" border="1" rules="all"><colgroup><col style="width:50%"><col style="width:50%"></colgroup><thead class="thead" style="text-align:left;">
+          <tr class="row">
+            <th class="entry cellrowborder" style="vertical-align:top;" id="d13802e149">Shortcut</th>
+
+            <th class="entry row-nocellborder" style="vertical-align:top;" id="d13802e152">Action</th>
+
+          </tr>
+
+        </thead>
+<tbody class="tbody">
+          <tr class="row">
+            <td class="entry cellrowborder" style="vertical-align:top;" headers="d13802e149 ">Alt-L</td>
+
+            <td class="entry row-nocellborder" style="vertical-align:top;" headers="d13802e152 ">Moves user's focus to the editor from anywhere on the page.</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry cellrowborder" style="vertical-align:top;" headers="d13802e149 ">Ctrl-/</td>
+
+            <td class="entry row-nocellborder" style="vertical-align:top;" headers="d13802e152 ">Toggle comment; adds/removes # from front of selected lines, or on the current line if no lines are selected.</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry cellrowborder" style="vertical-align:top;" headers="d13802e149 ">Ctrl-A</td>
+
+            <td class="entry row-nocellborder" style="vertical-align:top;" headers="d13802e152 ">Select all text in the editor.</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry cellrowborder" style="vertical-align:top;" headers="d13802e149 ">Ctrl-C</td>
+
+            <td class="entry row-nocellborder" style="vertical-align:top;" headers="d13802e152 ">Copy to clipboard.</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry cellrowborder" style="vertical-align:top;" headers="d13802e149 ">Ctrl-D</td>
+
+            <td class="entry row-nocellborder" style="vertical-align:top;" headers="d13802e152 ">Delete the current line, or the selected text.</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry cellrowborder" style="vertical-align:top;" headers="d13802e149 ">Ctrl-Down-arrow</td>
+
+            <td class="entry row-nocellborder" style="vertical-align:top;" headers="d13802e152 ">Scroll line down.</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry cellrowborder" style="vertical-align:top;" headers="d13802e149 ">Ctrl-End</td>
+
+            <td class="entry row-nocellborder" style="vertical-align:top;" headers="d13802e152 ">Go to the last line.</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry cellrowborder" style="vertical-align:top;" headers="d13802e149 ">Ctrl-Home</td>
+
+            <td class="entry row-nocellborder" style="vertical-align:top;" headers="d13802e152 ">Go to the first line.</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry cellrowborder" style="vertical-align:top;" headers="d13802e149 ">Ctrl-L</td>
+
+            <td class="entry row-nocellborder" style="vertical-align:top;" headers="d13802e152 ">Go to <span class="keyword">Scribe</span> template drop-down from editor.</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry cellrowborder" style="vertical-align:top;" headers="d13802e149 ">Ctrl-P</td>
+
+            <td class="entry row-nocellborder" style="vertical-align:top;" headers="d13802e152 ">Print</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry cellrowborder" style="vertical-align:top;" headers="d13802e149 ">Ctrl-Shift-U</td>
+
+            <td class="entry row-nocellborder" style="vertical-align:top;" headers="d13802e152 ">Change to lower case – either the current word or the selected text.</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry cellrowborder" style="vertical-align:top;" headers="d13802e149 ">Ctrl-U</td>
+
+            <td class="entry row-nocellborder" style="vertical-align:top;" headers="d13802e152 ">Change to upper case – either the current word or the selected text.</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry cellrowborder" style="vertical-align:top;" headers="d13802e149 ">Ctrl-Up-arrow</td>
+
+            <td class="entry row-nocellborder" style="vertical-align:top;" headers="d13802e152 ">Scroll line up.</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry cellrowborder" style="vertical-align:top;" headers="d13802e149 ">Ctrl-V</td>
+
+            <td class="entry row-nocellborder" style="vertical-align:top;" headers="d13802e152 ">Paste from clipboard.</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry cellrowborder" style="vertical-align:top;" headers="d13802e149 ">Ctrl-X</td>
+
+            <td class="entry row-nocellborder" style="vertical-align:top;" headers="d13802e152 ">Cut selected text.</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry cellrowborder" style="vertical-align:top;" headers="d13802e149 ">Ctrl-Z</td>
+
+            <td class="entry row-nocellborder" style="vertical-align:top;" headers="d13802e152 ">Undo last change.</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry cellrowborder" style="vertical-align:top;" headers="d13802e149 ">Triple-click</td>
+
+            <td class="entry row-nocellborder" style="vertical-align:top;" headers="d13802e152 ">Triple-click on a line to highlight the entire line allowing you to copy the text (using Ctrl-C or right-click plus Copy)</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry cellrowborder" style="vertical-align:top;" headers="d13802e149 ">F3</td>
+
+            <td class="entry row-nocellborder" style="vertical-align:top;" headers="d13802e152 ">Open block details window.</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry cellrowborder" style="vertical-align:top;" headers="d13802e149 ">F8</td>
+
+            <td class="entry row-nocellborder" style="vertical-align:top;" headers="d13802e152 ">Parse on demand without saving.</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry cellrowborder" style="vertical-align:top;" headers="d13802e149 ">F9</td>
+
+            <td class="entry row-nocellborder" style="vertical-align:top;" headers="d13802e152 ">Maximize browser window. Press F9 again to reset.</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry cellrowborder" style="vertical-align:top;" headers="d13802e149 ">F11</td>
+
+            <td class="entry row-nocellborder" style="vertical-align:top;" headers="d13802e152 ">Toggle removal of the browser controls for absolute maximization of the page.</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry cellrowborder" style="vertical-align:top;" headers="d13802e149 ">Windows-right-arrow</td>
+
+            <td class="entry row-nocellborder" style="vertical-align:top;" headers="d13802e152 ">Puts the current window on the right half of the screen. Use in conjunction with Windows-left- arrow to get two windows lined up next to each other.</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry cellrowborder" style="vertical-align:top;" headers="d13802e149 ">Windows-left-arrow</td>
+
+            <td class="entry row-nocellborder" style="vertical-align:top;" headers="d13802e152 ">Puts the current window on the left half of the screen. Use in conjunction with Windows-right- arrow to get two windows lined up next to each other.</td>
+
+          </tr>
+
+        </tbody>
+</table>
+</div>
+
+    <p class="p">Additional shortcuts for the ACE editor are available at <a class="xref ft-external-link" href="https://github.com/ajaxorg/ace/wiki/Default-Keyboard-Shortcuts" target="_blank" rel="noopener">https://github.com/ajaxorg/ace/wiki/Default-Keyboard-Shortcuts</a>; however, not all of these ACE shortcuts necessarily work in <span class="keyword">Scribe</span> and are not supported by <span class="keyword">Ellucian</span>.</p>
+
+  </div>
+
+</div></div></section>
+<section id="t-450"><h5>Parse</h5><div class="content-locale-en-US content-locale-en"><div id="c_parse"><div class="body conbody"><p class="shortdesc">A block can be checked for parse errors before saving by clicking the <span class="ph uicontrol">Parse</span> button.</p>
+
+    <p class="p">If no errors are found, a success message will display. If errors are found, an error message will display and the errors will be highlighted in the editor. An arrow will display at the beginning of each line that has a parse error. Hovering over this arrow will display a detailed error message. Additionally, the specific text in the line with the error will be underlined. All parse errors must be corrected before a block can be successfully saved.</p>
+
+    <p class="p">Review all flags in UCX-CFG020 DAP13 to ensure they are configured correctly for your Scribe environment.</p>
+
+  </div>
+
+</div></div></section>
+<section id="t-460"><h4>Block Details</h4><div class="content-locale-en-US content-locale-en"><div id="c_block_details"><div class="body conbody"><p class="shortdesc">Block details can be accessed from the Block details link on the edit page. </p>
+
+    <p class="p">For an existing block, clicking <span class="ph uicontrol">Block details</span> will display only the items that have been defined for the block. Clicking <span class="ph uicontrol">Edit Details</span> opens a window with all fields. When editing block details, the <span class="ph uicontrol">Title</span>, <span class="ph uicontrol">Block type</span>, <span class="ph uicontrol">Block value</span>, and <span class="ph uicontrol">Start/Stop catalog year</span> are required fields. When a <span class="ph uicontrol">Block type</span> is selected, the <span class="ph uicontrol">Block value</span> drop-down list will load with the values from the UCX validation table for that block type, unless the block type is Other, Requisite, or Student ID. For Other and Requisite Block Types, when the user starts typing in the field, a drop-down list of matching blocks will be displayed and the user can select one of these values or can enter a new value. The <code class="ph codeph">scribe.upshift.codes</code> setting controls if what the user has typed in the <span class="ph uicontrol">Block value</span> field should be upshifted. For a Student ID Bock Type, the <span class="ph uicontrol">Block value</span> is a text field and the user should enter a valid student ID.</p>
+
+    <p class="p">If a Requisite block value is selected, the period labels will be <span class="ph uicontrol">Start</span> and <span class="ph uicontrol">Stop term</span> instead of <span class="ph uicontrol">catalog year</span>.</p>
+
+    <p class="p">The user can also apply Secondary Tags to the block. The <span class="ph uicontrol">Student ID</span> is a text field, and the user should enter a valid student ID. For <span class="ph uicontrol">School</span>, <span class="ph uicontrol">Degree</span>, <span class="ph uicontrol">College</span>, <span class="ph uicontrol">Major 1</span>, <span class="ph uicontrol">Major 2</span>, <span class="ph uicontrol">Concentration</span>, <span class="ph uicontrol">Minor</span>, <span class="ph uicontrol">Liberal Learning</span>, <span class="ph uicontrol">Specialization</span> and <span class="ph uicontrol">Program</span>, the user should select from the drop-down of values from the corresponding UCX validation table. The Secondary Tags that display can be configured. To remove a Secondary Tag from the display, set the corresponding <code class="ph codeph">scribe.secondaryTag.show*</code> setting to false.</p>
+
+  </div>
+
+</div></div></section>
+<section id="t-470"><h4>Block save</h4><div class="content-locale-en-US content-locale-en"><div id="c_svae_block"><div class="body conbody"><p class="shortdesc">After creating or editing a block, the user can either update the existing block, add a new block to the database, or save the block to a file on their computer by clicking the <span class="ph uicontrol">Save</span> drop-down button.</p>
+
+    <p class="p">When updating an existing block or saving a new block, before the block will be written to the database, it will be parsed for syntax and rule structure and checked to ensure it does not overlap catalog years or terms with other blocks. If any errors are encountered, these will be shown at the top of the page or next to the line of the scribe information containing the error. The errors need to be resolved before the block can be saved to the database.</p>
+
+    <p class="p">If a user does not have access to modify a block type, the <span class="ph uicontrol">Save</span> and <span class="ph uicontrol">Block details</span> edit buttons will be inactive. The user can still view the block, but will not be able to parse it or make or save any changes to it.</p>
+
+  </div>
+
+</div></div></section>
+<section id="t-480"><h5>Save</h5><div class="content-locale-en-US content-locale-en"><div id="c_savee"><div class="body conbody"><p class="shortdesc">To save changes made to an existing block, users can click the <span class="ph uicontrol">Save</span> button. </p>
+
+    <p class="p">The user may be prompted to confirm that they want to update the existing block if the <var class="keyword varname">scribe.save.enable.confirmation</var> setting is ‘true’. When this setting is ‘false’, no confirmation message will be displayed. If enabled, clicking <span class="ph uicontrol">Yes</span> will save the block and clicking <span class="ph uicontrol">Cancel</span> will take the user back to the editor. </p>
+
+    <p class="p">When saving a new block, the block details edit window displays after clicking <span class="ph uicontrol">Save</span>. The user should review and fill in the block details and then click <span class="ph uicontrol">Save</span>. When saving an existing block, the block details edit does not display. In both instances, a save confirmation appears when the block is saved to the database.</p>
+
+    <p class="p">Review the scribe.save.enable.confirmation Shepherd setting to ensure it is configured correctly for your Scribe environment.</p>
+
+  </div>
+
+</div></div></section>
+<section id="t-490"><h5>Save As</h5><div class="content-locale-en-US content-locale-en"><div id="c_save_as"><p class="shortdesc">To save changes made to an existing block as a new block rather than updating the existing block, users can click the <span class="ph uicontrol">Save As</span> button. The block details edit window will be displayed and the user should review and fill in the block details and then click <span class="ph uicontrol">Save</span>. </p>
+
+  
+</div></div></section>
+<section id="t-500"><h5>Save Local File</h5><div class="content-locale-en-US content-locale-en"><div id="c_save_local_file"><div class="body conbody"><p class="shortdesc">Requirement text can be saved as a file on the user’s computer for archival purposes or to edit and add to the database at a later time. </p>
+
+    <p class="p">Click Save Local File – depending on your browser configurations, you will either be prompted for a location where the file is to be saved or the file will be saved in the default location configured in the browser. The requirement text for the block is saved in the form of a text (.txt) file. The default filename is a combination of the block type, value, requirement ID, and title. The filename will be ‘untitled’ if the block details have not yet been assigned.</p>
+
+    <div class="note"><span class="notetitle">Note:</span> On the Safari browser, clicking Save Local File will open the block text on a new window. You will have to press the Command key + S to save the block as a local file. In addition, the default filename for the block will not be generated on Safari browser instances.</div>
+
+  </div>
+
+</div></div></section>
+<section id="t-510"><h4>Block deleting</h4><div class="content-locale-en-US content-locale-en"><div id="c_delete_block"><div class="body conbody"><p class="shortdesc">A requirement block can be deleted by an authorized user in several places.</p>
+
+    <p class="p">To delete a requirement block, either click <span class="ph uicontrol">Delete</span> on the More menu when on the edit page, or select the block(s) you want to delete and click the <span class="ph uicontrol">Delete</span> button on the search page. A delete confirmation message will display. Users can click <span class="ph uicontrol">OK</span> to delete the block or <span class="ph uicontrol">Cancel</span> to return to the page.</p>
+
+  </div>
+
+</div></div></section>
+<section id="t-520"><h4>Block printing</h4><div class="content-locale-en-US content-locale-en"><div id="c_print_block"><div class="body conbody"><p class="shortdesc">A requirement block can be printed from the Scribe editor.</p>
+
+    <p class="p">To print a block’s requirement text, users can select <span class="ph uicontrol">Print</span> from the More menu when on the edit page. The browser's print window will open, allowing the user to select the desired printer, preview the output, change the headers and footers, and so on. The print output will show the block's Requirement ID and Title, and then all of the requirement text. Long lines of text will wrap in the printed output.</p>
+
+  </div>
+
+</div></div></section>
+<section id="t-530"><h3>Controller debugging</h3><div class="content-locale-en-US content-locale-en"><div id="c_debug"><div class="body conbody"><p class="shortdesc">Controller allows users to enable debugging to troubleshoot issues in the Controller application for their session. </p>
+
+    <p class="p">Users with access to this functionality will be able to enable and disable debug from the Debug page, which is accessed from the User Profile image in the upper right of the header. Access to the application server is not needed to enable debugging. However, access to the server is required to access the generated log files. Debug files can be found in the logs directory of the application server. </p>
+
+    <p class="p"> </p>
+
+  </div>
+
+</div></div></section>
+<section id="t-540"><h4>Enable debugging</h4><div class="content-locale-en-US content-locale-en"><div id="c_enabling_debug"><div class="body conbody"><p class="shortdesc">Debugging can be enabled from the Debug page.</p>
+
+    <p class="p">On the Debug page, toggle the Enable Debug switch to turn debugging on for the application. A random Debug Tag will be generated, and the user can copy this to their clipboard by clicking on the page icon. This Debug Tag will be appended to each line of debug in the log file so that the user can easily identify which lines are from their session, as opposed to other users using the application at the same time.</p>
+
+    <p class="p">After enabling debug, the user can then resume using Controller and execute the steps to duplicate the issue they are experiencing. Debug should be turned off by going back to the Debug page and toggling the Enable Debug switch when the issue has been duplicated. Debug for this user’s session will also be turned off when they log out of the application.</p>
+
+  </div>
+
+</div></div></section>
+<section id="t-550"><h4>Debug file access</h4><div class="content-locale-en-US content-locale-en"><div id="c_accessing_debug_files"><div class="body conbody"><p class="shortdesc">Debug will appear in the Controller log file on the application server. This is typically defined by the $LOGGING_FILE environment variable.</p>
+
+    <p class="p">Searching for the user’s debug tag will isolate the lines of debug specific to their actions. For example:</p>
+
+    <pre class="pre codeblock"><code>2017-10-24 16:22:23,144 68b4e19d-3fb4-4975-9815-83eea01266ff DEBUG [41-exec-17] .h.d.s.s.StatelessPreAuthenticatedFilter : Checking secure context token: null</code></pre>
+    <p class="p">For more information about collecting the log files generated for a user session’s debug tag, <span class="xref ft-internal-xlink" title="The packdebug script can be used to collect debug files from the server when a user has enabled debugging from the Java applications running on the Java Application Servers." data-ft-warning="excluded-from-rendering" data-clusterid="id_crm/dgrwrks/c_packdebug_script">packdebug script</span>. </p>
+
+    <div class="section"><h2 class="title sectiontitle">Configuration</h2>
+      
+      <p class="p">Access to Debug is granted if the user has the DEBUG Shepherd key.</p>
+
+    </div>
+
+  </div>
+
+</div></div></section></main></body></html>

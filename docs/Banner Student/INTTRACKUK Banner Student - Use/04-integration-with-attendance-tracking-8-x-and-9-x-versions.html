@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>INTTRACKUK Banner Student - Use — Integration with Attendance Tracking 8.x and 9.x versions</title><style>body{font-family:-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;line-height:1.55;color:#1a1a1a;max-width:920px;margin:0 auto;padding:24px}header{border-bottom:2px solid #5a16d6;margin-bottom:8px}h1{color:#3a0ca3}h2,h3,h4,h5,h6{margin-top:1.6em}.crumb{color:#666;font-size:13px;margin:0}.meta{color:#888;font-size:12px}nav.toc{background:#f6f4fc;border:1px solid #e3dcf5;border-radius:8px;padding:12px 18px;margin:18px 0}nav.toc h2{margin:.2em 0}nav.toc ul{list-style:none;padding-left:0}nav.toc a{text-decoration:none;color:#5a16d6}section{margin:1.2em 0;padding-top:.4em}img{max-width:100%;height:auto}table{border-collapse:collapse}td,th{border:1px solid #ccc;padding:4px 8px}code,pre{background:#f4f4f4;border-radius:4px}pre{padding:10px;overflow:auto}</style></head><body><header><p class="crumb">Banner Student › INTTRACKUK Banner Student - Use</p><h1>INTTRACKUK Banner Student - Use — Integration with Attendance Tracking 8.x and 9.x versions</h1><p class="meta">Source: <a href="https://resources.elluciancloud.com/r/bundle/banner_student_acn_use_inttrackuk">https://resources.elluciancloud.com/r/bundle/banner_student_acn_use_inttrackuk</a> &middot; Retrieved 2026-06-17</p></header><nav class="toc"><h2>Contents</h2><ul><li style="margin-left:0px"><a href="#t-70">Integration with Attendance Tracking 8.x and 9.x versions</a></li></ul></nav><main><section id="t-70"><h2>Integration with Attendance Tracking 8.x and 9.x versions</h2><div class="content-locale-en-US content-locale-en"><div id="c_integration_attr_8x_and_9x"><div class="body conbody"><p class="shortdesc"><span class="keyword">Banner</span> <span class="keyword">INTTRACKUK</span> 8.x is version integrated with <span class="keyword">Banner</span> Attendance Tracking 8.x version to allow institutions to monitor missed attendance of international students and display the missed contact counts to be reported to UKVI in the SKAICAS page. </p>
+
+    <p class="p"><span class="keyword">Banner</span> Attendance Tracking 8x version allows you to track the attendance of students for Courses or Events. Refer to the <cite class="cite">Banner Attendance Tracking</cite> use content for more information on how to setup tracking of students by CRN or Event.</p>
+
+    <p class="p">After you have setup and started tracking international students who have a CAS application record in SKAICAS page. You can use the “Create missed contacts snapshot” procedure to snapshot ten or more unauthorized missed contacts for the student between the Program (or Visa) Start Date and Expected End Date defined for all CAS applications of the student. </p>
+
+    <p class="p">The query selects students with an entry in the CAS Application Table (SKRICAS) where the CAS status is = USED who also have entries in the attendance tracking table (SKRATTR) between their program start and end dates for the following tasks.</p>
+
+    <p class="p">Events linked to a missed contact event type (specified in GKAKSYS in the MISCON_EVENTTYPE parameter)</p>
+
+    <p class="p">OR</p>
+
+    <p class="p">Meetings linked to a missed contact CRN meeting type (specified in GKAKSYS in the MISCON_CRNMEETTYPE parameter) where a certain number of contact events or CRN meetings as specified in the GKAKSYS MISCON_EVENTNUM or MISCON_CRNMEETNUM system parameters have been missed, respectively.</p>
+
+    <p class="p">To allow users to be able to use <span class="keyword">Banner</span> Attendance Tracking 9.x and benefit from its new functionality, as of version 8.3.1 INTTRACK UK is integrated with ATTR 9.x version.</p>
+
+    <div class="note"><span class="notetitle">Note:</span> <span class="keyword">Banner</span> Attendance Tracking 9.x does not support tracking by Event anymore, as the functionality is already delivered as part of <span class="keyword">Banner</span> Event Management 9.x version. However, INTTRACK UK 8.3.1 does not deliver integration with Event Management 9.x version.</div>
+
+    <div class="p">If you are using Attendance Tracking 9.x to track attendance of international students, you can use the 9.x specific activity to retrieve attendance counts based on the following criteria:<ul class="ul"> <li class="li">Student attendance is tracked by CRN</li>
+ <li class="li">The Meeting Type parameter in GKAKSYS is optional, when set, only CRNs for which correct meeting type is defined will be tracked</li>
+ <li class="li">Student must have a CAS record in INTTRACK with status USED</li>
+
+      <li class="li">Student's attendance is monitored between the Program/Visa Start date and Expected Program End Date recorded against their CAS record</li>
+ </ul>
+If the NOTIFYABS parameter in GTVSDAX is set to not count authorized non-attendance as missed contact, those missed classes will not be included in the missed contact count for the student. </div>
+
+    <p class="p">As the tracking attendance with Attendance Tracking 8.x and 9.x is supported in parallel, counts from Attendance Tracking 8.x and Attendance Tracking 9.x are displayed in separate columns in the Missed Contacts Snapshot (SKRMCON) table. However, the Total Number From Latest Snapshot field in SKAICAS adds up the counts from 8.x and 9.x for the user to see the cumulative count for a student. </p>
+
+    <p class="p">For Attendance Tracking 9 integration, the Meeting Type parameter (MISCON_CRNMEETTYPE) in GKAKSYS has been made optional, when set, only CRNs for which correct meeting type is defined will be tracked.</p>
+
+    <div class="p">Therefore, for migration to Attendance Tracking 9 or parallel use of Attendance Tracking 8 and 9, the following scenarios must be considered:<ul class="ul"> <li class="li">If you migrate from Attendance Tracking8 and want to use Attendance Tracking 9 only, you can either set or not set the MISCON_CRNMEETTYPE meeting parameter in GKAKSYS. Your existing ATTR 8 counts will be preserved as ATTR 9 activity inserts counts into a separate column in the snapshot table</li>
+
+      <li class="li">If you use or migrate to Attendance Tracking 9 and do not set the MISCON_CRNMEETTYPE parameter, but decide to set it at later point; previous counts from ATTR9 will not show in snapshot table and SKAICAS anymore after you have run the activity again unless the CRNs previously tracked have the correct meeting type defined, because the activity re- queries all student records and updates counts in snapshot table each time the activity is run </li>
+
+      <li class="li">To use Attendance Tracking 8 and 9 in parallel, you must set the MISCON_CRNMEETTYPE parameter, as it is a mandatory item in the Attendance Tracking 8 specific activity</li>
+ </ul>
+</div>
+
+  </div>
+
+</div></div></section></main></body></html>

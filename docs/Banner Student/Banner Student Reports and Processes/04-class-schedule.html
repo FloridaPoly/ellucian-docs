@@ -1,0 +1,2042 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Banner Student Reports and Processes — Class Schedule</title><style>body{font-family:-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;line-height:1.55;color:#1a1a1a;max-width:920px;margin:0 auto;padding:24px}header{border-bottom:2px solid #5a16d6;margin-bottom:8px}h1{color:#3a0ca3}h2,h3,h4,h5,h6{margin-top:1.6em}.crumb{color:#666;font-size:13px;margin:0}.meta{color:#888;font-size:12px}nav.toc{background:#f6f4fc;border:1px solid #e3dcf5;border-radius:8px;padding:12px 18px;margin:18px 0}nav.toc h2{margin:.2em 0}nav.toc ul{list-style:none;padding-left:0}nav.toc a{text-decoration:none;color:#5a16d6}section{margin:1.2em 0;padding-top:.4em}img{max-width:100%;height:auto}table{border-collapse:collapse}td,th{border:1px solid #ccc;padding:4px 8px}code,pre{background:#f4f4f4;border-radius:4px}pre{padding:10px;overflow:auto}</style></head><body><header><p class="crumb">Banner Student › Banner Student Reports and Processes</p><h1>Banner Student Reports and Processes — Class Schedule</h1><p class="meta">Source: <a href="https://resources.elluciancloud.com/r/bundle/banner_student_ref_reports">https://resources.elluciancloud.com/r/bundle/banner_student_ref_reports</a> &middot; Retrieved 2026-06-17</p></header><nav class="toc"><h2>Contents</h2><ul><li style="margin-left:0px"><a href="#t-100">Class Schedule</a></li><li style="margin-left:16px"><a href="#t-110">Section Seat Enroll Update Process (SSPSEAT)</a></li><li style="margin-left:16px"><a href="#t-120">Section Seat Generator Process (SSPGSEA)</a></li><li style="margin-left:16px"><a href="#t-130">Term Roll Report (SSRROLL)</a></li><li style="margin-left:32px"><a href="#t-140">DegreeWorks Prerequisite Checking and CAPP Area Prerequisite Checking</a></li><li style="margin-left:32px"><a href="#t-150">Calculated Drop Dates and SSRROLL</a></li><li style="margin-left:16px"><a href="#t-160">Class Schedule Report (SSRSECT)</a></li><li style="margin-left:16px"><a href="#t-170">Scheduled Section Tally Report (SSRTALY)</a></li><li style="margin-left:16px"><a href="#t-180">Schedule Purge Report (SSPSCHD)</a></li><li style="margin-left:16px"><a href="#t-190">Room Attribute Sequence Update Process (SSRATSQ)</a></li><li style="margin-left:16px"><a href="#t-200">Schedule25 Work File Creation Process (SSRSCRM)</a></li><li style="margin-left:16px"><a href="#t-210">Scheduler Work Table Update Process (SSRSCUP)</a></li><li style="margin-left:16px"><a href="#t-220">Update Building/Room Process (SSRSCMT)</a></li><li style="margin-left:16px"><a href="#t-230">Scheduler Work Table Purge Process (SSRSCPR)</a></li><li style="margin-left:16px"><a href="#t-240">Section Fee Population Process (SSPMFEE)</a></li><li style="margin-left:16px"><a href="#t-250">Schedule Open Learning Rule Default Process (SSPRDEF)</a></li><li style="margin-left:16px"><a href="#t-260">Available Seats to Zero Process (SSRASTZ)</a></li></ul></nav><main><section id="t-100"><h2>Class Schedule</h2></section>
+<section id="t-110"><h3>Section Seat Enroll Update Process (SSPSEAT)</h3><div class="content-locale-en-US content-locale-en"><div id="r_section_seat_enrollment_count_update_sspseat"><div class="body refbody"><p class="shortdesc">The SSPSEAT batch process updates enrollment counts in the section table (SSBSECT) based on records in the registration table (SFRSTCR). </p>
+
+    <div class="section">
+      <p class="p">You can run it in sleep/wake mode for a term, or on-demand for a term or term and CRN. The process also removes expired pending seat assignments. Expired pending seat assignments are defined as seat assignment records (SSRSEAT) having a pending status for which there is not a corresponding registration record (SFRSTCR) and where the difference between the assignment date/time and the registration access (SFRRACL) date/time is greater than pending time limit defined on SSASEAT.</p>
+
+      <p class="p">When the process is run in sleep wake mode there must be at least one row in the SSRSEAT or SSRSEAW table for the section to be processed. If the last row is deleted, this section will not be selected and reflected in the SSBSECT update. The process can be run in batch mode to be processed.</p>
+
+      <p class="p">When running in sleep/wake SSPSEAT uses the union of CRN's that exist in either SSRSEAT or SSRSEAW as the driver to select CRN's for processing. A row must be present in at least one of the two seat assignment tables for an SSBSECT record to be analyzed for enrollment count updates based on registration data.</p>
+
+      <p class="p">When running in straight batch mode, the driving table for processing CRN's is SSBSECT. Data does not have to be present in SSRSEAT or SSRSEAW for the parent SSBSECT to be analyzed and have the enrollment counts updated based on registration data</p>
+
+    </div>
+
+    
+<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" class="table" frame="hsides" border="1" rules="rows"><colgroup><col style="width:17.953321364452425%"><col style="width:19.748653500897667%"><col style="width:34.8294434470377%"><col style="width:27.468581687612208%"></colgroup><thead class="thead" style="text-align:left;vertical-align:bottom;">
+          <tr class="row">
+            <th class="entry row-nocellborder" style="text-align:left;vertical-align:bottom;" id="d45489e66">Parameter Name</th>
+
+            <th class="entry row-nocellborder" style="text-align:left;vertical-align:bottom;" id="d45489e69">Required?</th>
+
+            <th class="entry row-nocellborder" style="text-align:left;vertical-align:bottom;" id="d45489e72">Description</th>
+
+            <th class="entry row-nocellborder" style="text-align:left;vertical-align:bottom;" id="d45489e75">Values</th>
+
+          </tr>
+
+        </thead>
+<tbody class="tbody">
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d45489e66 ">Run in sleep wake mode</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d45489e69 ">Y</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d45489e72 ">Run in sleep wake mode option</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d45489e75 ">Y and N<p class="p">Default = N</p>
+</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d45489e66 ">Sleep interval</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d45489e69 ">N</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d45489e72 ">Time in seconds before each polling of seat assignments.</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d45489e75 ">
+              <p class="p"> Default = 300</p>
+
+            </td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d45489e66 ">Sleepwake Printer</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d45489e69 ">N</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d45489e72 ">Printer for sleep wake process.</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d45489e75 ">Printer Validation (GTVPRNT)<p class="p">Default = null</p>
+</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d45489e66 ">Term</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d45489e69 ">Y</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d45489e72 ">Term code of enrollment to poll, enter % for all active terms.</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d45489e75 ">Term Code Validation (STVTERM)<p class="p">Default = null</p>
+</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d45489e66 ">CRN</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d45489e69 ">N</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d45489e72 ">Update CRN if run in non-sleep wake mode.</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d45489e75 ">Default = null</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d45489e66 ">Process Enrollment</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d45489e69 ">Y</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d45489e72 ">Y/N to process enrollment counts.</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d45489e75 ">Y and N<p class="p">Default = Y</p>
+</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d45489e66 ">Remove Pending</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d45489e69 ">Y</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d45489e72 ">Y/N to remove expired pending.</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d45489e75 ">Y and N<p class="p">Default = Y</p>
+</td>
+
+          </tr>
+
+        </tbody>
+</table>
+</div>
+
+  </div>
+
+</div></div></section>
+<section id="t-120"><h3>Section Seat Generator Process (SSPGSEA)</h3><div class="content-locale-en-US content-locale-en"><div id="r_section_seat_generator_sspgsea"><div class="body refbody"><p class="shortdesc">The SSPGSEA batch process generates seat assignment records for sections. </p>
+
+    <div class="section">
+      <p class="p">You can run the process to generate seat assignment records for sections created before the seat assignment functionality was enabled for the term.</p>
+
+    </div>
+
+    
+<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" class="table" frame="hsides" border="1" rules="rows"><colgroup><col style="width:17.953321364452425%"><col style="width:19.748653500897667%"><col style="width:34.8294434470377%"><col style="width:27.468581687612208%"></colgroup><thead class="thead" style="text-align:left;vertical-align:bottom;">
+          <tr class="row">
+            <th class="entry row-nocellborder" style="text-align:left;vertical-align:bottom;" id="d53978e57">Parameter Name</th>
+
+            <th class="entry row-nocellborder" style="text-align:left;vertical-align:bottom;" id="d53978e60">Required?</th>
+
+            <th class="entry row-nocellborder" style="text-align:left;vertical-align:bottom;" id="d53978e63">Description</th>
+
+            <th class="entry row-nocellborder" style="text-align:left;vertical-align:bottom;" id="d53978e66">Values</th>
+
+          </tr>
+
+        </thead>
+<tbody class="tbody">
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d53978e57 ">Term</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d53978e60 ">Y</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d53978e63 ">Term code of enrollment to poll, enter % for all active terms.</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d53978e66 ">Term Code Validation (STVTERM)<p class="p">Default = null</p>
+</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d53978e57 ">CRN</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d53978e60 ">N</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d53978e63 ">Update CRN if run in non-sleep wake mode.</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d53978e66 ">Default = null</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d53978e57 ">Audit Mode</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d53978e60 ">Y</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d53978e63 ">Enter A (Audit) or U (Update) for run mode.</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d53978e66 ">A and U<p class="p">Default = A</p>
+</td>
+
+          </tr>
+
+        </tbody>
+</table>
+</div>
+
+    <div class="example">
+      <div class="p">SSPGSEA generates a <span class="ph filepath">.lis</span> file based on the information that a user enters for the parameter names. The following example is a sample <span class="ph filepath">.lis</span> file. In the following example:<ul class="ul">
+        <li class="li">The table column values <code class="ph codeph">MAX</code>, <code class="ph codeph">ENROLL</code>, <code class="ph codeph">AVAIL</code>, and <code class="ph codeph">REGISTERED</code> are the current seat counts for the section as a result of the SSPGSEA run.</li>
+
+        <li class="li">The table column values <code class="ph codeph">NEW SEATS</code>, <code class="ph codeph">TOTAL SEATS</code>, <code class="ph codeph">REG SEATS</code>, <code class="ph codeph">PENDING</code>, <code class="ph codeph">CAPC OVERRIDE</code>, <code class="ph codeph">REMOVED</code>, and <code class="ph codeph">WAIT REM</code> are dependent on the specific run of SSPGSEA. These values might be 0 if there are no changes or if the value is already 0.</li>
+
+        </ul>
+</div>
+
+      <pre class="pre codeblock"><code>July 8, 2024 5:24:10 AM               E2E Dev Environment Update                     sspgsea
+                                      Section Seat Generator                         Page 1   
+                             
+
+TERM    CRN   SUBJ  CRSE  SEQ  TITLE            MAX  ENROLL  AVAIL   REGISTERED  NEW SEATS  TOTAL SEATS   REG SEATS   PENDING   CAPC OVERRIDE   REMOVED   WAIT REM
+202250  52    ALX   321   01   Waitlist Course  2    0       2       2           2          2             2           0         0               0         0
+
+July 8, 2024 5:24:10 AM                 E2E Dev Environment Update                   sspgsea
+                                        Section Seat Generator                       Page 2              
+
+
+** REPORT CONTROL INFORMATION **
+--------------------------------
+PROGRAM NAME : ssppgsea
+PROGRAM VERSION : 8.25
+USER : SYSTEST08
+
+Job Submission Parameters
+Parameter 01 Term Code : 202250
+Parameter 02 CRN : 52
+Parameter 03 Audit Mode : U</code></pre>
+      <div class="p">The table columns are defined as follows:<ul class="ul">
+        <li class="li"><code class="ph codeph">TERM</code> indicates the academic term or semester code.</li>
+
+        <li class="li"><code class="ph codeph">CRN</code> indicates the course reference number, which is a unique identifier for a specific course section in a given term.</li>
+
+        <li class="li"><code class="ph codeph">SUBJ</code> indicates the abbreviated code for the academic subject.</li>
+
+        <li class="li"><code class="ph codeph">CRSE</code> indicates the course code within the academic subject (for example, <span class="ph uicontrol">ENGL 101</span>).</li>
+
+        <li class="li"><code class="ph codeph">SEQ</code> indicates the section sequence, which identifies the specific section of the course (such as <span class="ph uicontrol">01</span> for Section 1).</li>
+
+        <li class="li"><code class="ph codeph">TITLE</code> indicates the name of the course.</li>
+
+        <li class="li"><code class="ph codeph">MAX</code> indicates the total number of seats available for enrollment in that section.</li>
+
+        <li class="li"><code class="ph codeph">ENROLL</code> indicates the number of students currently enrolled.</li>
+
+        <li class="li"><code class="ph codeph">AVAIL</code> indicates seats that are available for enrollment.</li>
+
+        <li class="li"><code class="ph codeph">REGISTERED</code> indicates the number of students who have successfully registered.</li>
+
+        <li class="li"><code class="ph codeph">NEW SEATS</code> indicates the new seats added to the section.</li>
+
+        <li class="li"><code class="ph codeph">TOTAL SEATS</code> indicates the total seats after adjustments are made (including any new added seats).</li>
+
+        <li class="li"><code class="ph codeph">REG SEATS</code> indicates the numbered of registered seats.</li>
+
+        <li class="li"><code class="ph codeph">PENDING</code> indicates registrations that are processing or pending approval.</li>
+
+        <li class="li"><code class="ph codeph">CAPC OVERRIDE</code> overrides any set capacity limits for the normal registration maximum amount to add more seats.</li>
+
+        <li class="li"><code class="ph codeph">REMOVED</code> indicates the seats that are removed from the section.</li>
+
+        <li class="li"><code class="ph codeph">WAIT REM</code> indicates the number of remaining wait list seats.</li>
+
+        </ul>
+</div>
+
+    </div>
+
+  </div>
+
+</div></div></section>
+<section id="t-130"><h3>Term Roll Report (SSRROLL)</h3><div class="content-locale-en-US content-locale-en"><div id="c_term_roll_report_ssrroll"><div class="body conbody"><p class="shortdesc">Use the Term Roll Report (SSRROLL) to roll traditional or open learning sections of one term to another term.</p>
+
+    <p class="p">As a pre-requisite to running SSRROLL, the section default rules must be set up in SOAORUL. Some parameters allow you to roll data from the catalog and from the schedule.</p>
+
+    <div class="note"><span class="notetitle">Note:</span> When you roll the registration from and registration to dates from the open learning rules on SOAORUL, an error message displays and the process halts if you have not created open learning rules for the new term.<p class="p">With an ability to roll only traditional, or roll only open leaning sections individually using the <span class="keyword parmname">Roll Sections</span> parameter. If the <span class="keyword parmname">Roll CRNs</span> parameter is run with Y chances that the process will not be able to maintain the same CRN numbers in the <span class="ph uicontrol">To Term</span> as the respective CRN number would be already used with the previous SSRROLL run. Significant error message displays against the respective section.</p>
+</div>
+
+    
+<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" id="c_term_roll_report_ssrroll__r_degreeworks_prerequisite_checking_capp_area_prerequisite_checking-utbl1" class="table" frame="hsides" border="1" rules="rows"><colgroup><col><col><col><col></colgroup><thead class="thead" style="text-align:left;vertical-align:bottom;">
+          <tr class="row">
+            <th class="entry row-nocellborder" style="text-align:left;vertical-align:bottom;" id="d42773e68">Parameter Name</th>
+
+            <th class="entry row-nocellborder" style="text-align:left;vertical-align:bottom;" id="d42773e71">Required?</th>
+
+            <th class="entry row-nocellborder" style="text-align:left;vertical-align:bottom;" id="d42773e74">Description</th>
+
+            <th class="entry row-nocellborder" style="text-align:left;vertical-align:bottom;" id="d42773e77">Values</th>
+
+          </tr>
+
+        </thead>
+<tbody class="tbody">
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d42773e68 ">Report Term</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d42773e71 ">Yes</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d42773e74 ">Enter the term code for which you want to perform the term roll process.</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d42773e77 ">Term Code Validation Form (STVTERM)</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d42773e68 ">From Term</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d42773e71 ">Yes</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d42773e74 ">Enter the starting term code from which you want to roll the section data.</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d42773e77 ">Term Code Validation Form (STVTERM)</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d42773e68 ">To Term</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d42773e71 ">Yes</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d42773e74 ">Enter the ending term code till which you want to roll the section data.</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d42773e77 ">Term Code Validation Form (STVTERM)</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d42773e68 ">Run Mode (A=Audit, U=Update)</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d42773e71 ">Yes</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d42773e74 ">A or Audit mode will print a report of all sections which will be rolled to the selected term. <kbd class="ph userinput">U</kbd> or Update mode updates and creates the new section records for the selected term. The default run mode is <kbd class="ph userinput">A</kbd> (Audit mode).</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d42773e77 ">A - Audit mode <p class="p">U - Update mode</p>
+</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d42773e68 ">Roll Meeting Time</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d42773e71 ">Yes</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d42773e74 ">Enter <kbd class="ph userinput">Y</kbd> if you want to roll the meeting times for the sections. This parameter also rolls the buildings and rooms associated with the meeting times, if those buildings and rooms exist. The default is <kbd class="ph userinput">Y</kbd>.</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d42773e77 ">Y - Roll meeting times <p class="p">N - Do not roll meeting times</p>
+<p class="p">B - Roll meeting times without buildings and rooms</p>
+</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d42773e68 ">Roll Instructors</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d42773e71 ">Yes</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d42773e74 ">Enter <kbd class="ph userinput">Y</kbd> if you want to roll the instructors for the sections. Instructors can only be rolled if meeting time information is rolled forward. The default is <kbd class="ph userinput">Y</kbd>.</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d42773e77 ">Y - Roll instructors <p class="p">N - Do not roll instructors</p>
+</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d42773e68 ">Roll CRNs <ul class="ul">
+              <li class="li">Y = Roll</li>
+
+              <li class="li">N = Oneup</li>
+
+              </ul>
+</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d42773e71 ">Yes</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d42773e74 ">Enter <kbd class="ph userinput">Y</kbd> if you want to roll the CRNs for the sections, or enter <kbd class="ph userinput">N</kbd> if you want the system to generate a one-up number. The default is Y.<p class="p">If you enter <kbd class="ph userinput">Y</kbd>, you can roll block schedule codes, links, cross-listed data, and corequisites. If you enter <kbd class="ph userinput">N</kbd>, you cannot roll block schedule codes, links, cross-listed data, or corequisites.</p>
+
+              <p class="p">You must roll CRNs to roll corequisites and cross-listed data. If you enter <kbd class="ph userinput">N</kbd> for Roll CRNs, but you enter <kbd class="ph userinput">Y</kbd> for Roll Corequisites or the <span class="ph uicontrol">Roll Cross List Data</span> parameters (or both), the <kbd class="ph userinput">Y</kbd> is ignored, and <kbd class="ph userinput">N</kbd> is printed as the value for those parameters in the Report Control information.</p>
+</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d42773e77 ">Y - Roll CRNs <p class="p">N - Generate a one-up number</p>
+</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d42773e68 ">Roll Links</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d42773e71 ">Yes</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d42773e74 ">Enter <kbd class="ph userinput">Y</kbd> if you want to roll the link information for the sections. The default is <kbd class="ph userinput">Y</kbd>.</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d42773e77 ">Y - Roll link information <p class="p">N - Do not roll link information</p>
+</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d42773e68 ">Roll Corequisites</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d42773e71 ">Yes</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d42773e74 ">Enter <kbd class="ph userinput">Y</kbd> if you want to roll the corequisite information for the sections. The default is <kbd class="ph userinput">Y</kbd>. <p class="p">You must roll CRNs to roll corequisites and cross-listed data. If you enter <kbd class="ph userinput">N</kbd> to Roll CRNs, but you enter <kbd class="ph userinput">Y</kbd> for Roll Corequisites or the <span class="ph uicontrol">Roll Cross List Data</span> parameters (or both), the <kbd class="ph userinput">Y</kbd> is ignored, and <kbd class="ph userinput">N</kbd> is printed as the value for those parameters in the Report Control information.</p>
+</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d42773e77 ">Y - Roll corequisite information <p class="p">N - Do not roll corequisite information</p>
+</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d42773e68 ">Roll Fees</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d42773e71 ">Yes</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d42773e74 ">Enter <kbd class="ph userinput">Y</kbd> to roll the fees from the schedule, enter <kbd class="ph userinput">C</kbd> to roll the fees from the catalog, or enter <kbd class="ph userinput">N</kbd> not to roll the fees. The default is Y.</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d42773e77 ">Y - Roll fees from the schedule <p class="p">C - Roll fees from the catalog</p>
+ <p class="p">N - Do not roll the fees</p>
+</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d42773e68 ">Roll Degree Attributes</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d42773e71 ">Yes</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d42773e74 ">Enter <kbd class="ph userinput">Y</kbd> to roll the degree attributes from the schedule, enter <kbd class="ph userinput">C</kbd> to roll the degree attributes from the catalog, or enter <kbd class="ph userinput">N</kbd> not to roll the degree attributes. The default is <kbd class="ph userinput">Y</kbd>.</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d42773e77 ">Y - Roll degree attributes from the schedule <p class="p">C - Roll degree attributes from the catalog</p>
+ <p class="p">N - Do not roll attributes</p>
+</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d42773e68 ">Roll Text</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d42773e71 ">Yes</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d42773e74 ">Enter <kbd class="ph userinput">Y</kbd> to roll the text from the schedule, enter <kbd class="ph userinput">C</kbd> to roll the text from the catalog, or enter <kbd class="ph userinput">N</kbd> not to roll the text. The default is <kbd class="ph userinput">Y</kbd>.</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d42773e77 ">Y - Roll text from the schedule <p class="p">C - Roll text from the catalog</p>
+<p class="p">N - Do not roll text</p>
+</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d42773e68 ">Roll Class Restrictions</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d42773e71 ">Yes</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d42773e74 ">Enter <kbd class="ph userinput">Y</kbd> to roll the class restrictions from the schedule, enter <kbd class="ph userinput">C</kbd> to roll the class restrictions from the catalog, or enter <kbd class="ph userinput">N</kbd> not to roll the class restrictions. The default is <kbd class="ph userinput">Y</kbd>.</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d42773e77 ">Y - Roll class restrictions from the schedule <p class="p">C - Roll class restrictions from the catalog</p>
+<p class="p">N - Do not roll class restrictions</p>
+</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d42773e68 ">Roll College Restrictions</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d42773e71 ">Yes</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d42773e74 ">Enter <kbd class="ph userinput">Y</kbd> to roll the college restrictions from the schedule, enter <kbd class="ph userinput">C</kbd> to roll the college restrictions from the catalog, or enter <kbd class="ph userinput">N</kbd> not to roll the college restrictions. The default is <kbd class="ph userinput">Y</kbd>.</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d42773e77 ">Y - Roll college restrictions from the schedule <p class="p">C - Roll college restrictions from the catalog</p>
+<p class="p">N - Do not roll college restrictions</p>
+</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d42773e68 ">Roll Fld of Study Restrictions</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d42773e71 ">Yes</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d42773e74 ">Enter <kbd class="ph userinput">Y</kbd> to roll the field of study restrictions from the schedule, enter <kbd class="ph userinput">C</kbd> not to roll the field of study restrictions from catalog, or enter <kbd class="ph userinput">N</kbd> not to roll the field of study restrictions. The default is <kbd class="ph userinput">Y</kbd>.</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d42773e77 ">Y - Roll field of study restrictions from the schedule <p class="p">C - Roll field of study restrictions from the catalog</p>
+<p class="p">N - Do not roll field of study restrictions</p>
+</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d42773e68 ">Roll Level Restrictions</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d42773e71 ">Yes</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d42773e74 ">Enter <kbd class="ph userinput">Y</kbd> to roll the level restrictions from the schedule, enter <kbd class="ph userinput">C</kbd> to roll the level restrictions from the catalog, or enter <kbd class="ph userinput">N</kbd> not to roll the level restrictions. The default is <kbd class="ph userinput">Y</kbd>.</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d42773e77 ">Y - Roll level restrictions from the schedule <p class="p">C - Roll level restrictions from the catalog</p>
+<p class="p">N - Do not roll level restrictions</p>
+</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d42773e68 ">Roll Reserved Seats</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d42773e71 ">Yes</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d42773e74 ">Enter <kbd class="ph userinput">Y</kbd> if you want to roll the reserved seats for the sections. The default is <kbd class="ph userinput">Y</kbd>.</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d42773e77 ">Y - Roll reserved seats <p class="p">N - Do not roll reserved seats</p>
+</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d42773e68 ">Roll Cross List Data</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d42773e71 ">Yes</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d42773e74 ">Enter <kbd class="ph userinput">Y</kbd> if you want to roll the cross list data for the sections. The default is <kbd class="ph userinput">Y</kbd>. <p class="p">You must roll CRNs to roll corequisites and cross-listed data. If you enter <kbd class="ph userinput">N</kbd> for Roll CRNs, but you enter <kbd class="ph userinput">Y</kbd> for Roll Corequisites or the <span class="ph uicontrol">Roll Cross List Data </span>parameters or both, the <kbd class="ph userinput">Y</kbd> is ignored, and <kbd class="ph userinput">N</kbd> is printed as the value for those parameters in the Report Control information.</p>
+</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d42773e77 ">Y - Roll cross list data <p class="p">N - Do not roll cross list data</p>
+</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d42773e68 ">Roll Campus Restrictions</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d42773e71 ">Yes</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d42773e74 ">Enter <kbd class="ph userinput">Y</kbd> to roll the campus restrictions from the schedule, enter <kbd class="ph userinput">C</kbd> to roll the campus restrictions from the catalog, or enter <kbd class="ph userinput">N</kbd> not to roll the campus restrictions. The default is <kbd class="ph userinput">Y</kbd>.</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d42773e77 ">Y - Roll campus restrictions from the schedule <p class="p">C - Roll campus restrictions from the catalog</p>
+<p class="p">N - Do not roll campus restrictions</p>
+</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d42773e68 ">Roll Contract Information</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d42773e71 ">Yes</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d42773e74 ">Enter <kbd class="ph userinput">Y</kbd> if you want to roll the contract information for the sections. The default is <kbd class="ph userinput">Y</kbd>.</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d42773e77 ">Y - Roll contract information <p class="p">N - Do not roll contract information</p>
+</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d42773e68 ">Roll Schedule Override Info</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d42773e71 ">Yes</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d42773e74 ">Enter <kbd class="ph userinput">Y</kbd> if you want to roll the schedule override for the sections. The default is <kbd class="ph userinput">Y</kbd>.</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d42773e77 ">Y - Roll schedule overrides <p class="p">N - Do not roll schedule overrides</p>
+</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d42773e68 ">Roll Test Restricts &amp; Pre-reqs</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d42773e71 ">Yes</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d42773e74 ">Enter <kbd class="ph userinput">Y</kbd> to roll the test score restrictions and prerequisites from the schedule, enter <kbd class="ph userinput">C</kbd> to roll the test score restrictions and prerequisites from the catalog, or enter <kbd class="ph userinput">N</kbd> not to roll the test score restrictions and prerequisites. The default is <kbd class="ph userinput">Y</kbd>.</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d42773e77 ">Y - Roll test score restrictions and prerequisites from the schedule <p class="p">C - Roll test score restrictions and prerequisites from the catalog</p>
+<p class="p">N - Do not roll test score restrictions and prerequisites</p>
+</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d42773e68 ">Roll Schedule Evaluation</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d42773e71 ">Yes</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d42773e74 ">Enter <kbd class="ph userinput">Y</kbd> if you want to roll the schedule evaluation for the sections. The default is <kbd class="ph userinput">Y</kbd>.</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d42773e77 ">Y - Roll schedule evaluation <p class="p">N - Do not roll schedule evaluation</p>
+</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d42773e68 ">Roll Block Schedule Codes</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d42773e71 ">Yes</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d42773e74 ">Enter <kbd class="ph userinput">Y</kbd> if you want to roll the block schedule codes for the sections. The default is <kbd class="ph userinput">Y</kbd>.</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d42773e77 ">Y - Roll block schedule codes <p class="p">N - Do not roll block schedule codes</p>
+</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d42773e68 ">Roll CAPP Area or DW Pre-reqs</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d42773e71 ">Yes</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d42773e74 ">Enter <kbd class="ph userinput">Y</kbd> to roll CAPP or DegreeWorks prerequisite rules from the schedule, enter <kbd class="ph userinput">C</kbd> to roll CAPP or DegreeWorks prerequisite rules from the catalog, or enter <kbd class="ph userinput">N</kbd> not to roll prerequisite rules. The default is <kbd class="ph userinput">Y</kbd>.</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d42773e77 ">Y - Roll prerequisite rules from the schedule <p class="p">C - Roll prerequisite rules from the catalog</p>
+<p class="p">N - Do not roll prerequisite rules</p>
+</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d42773e68 ">Roll Degree Restrictions</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d42773e71 ">Yes</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d42773e74 ">Enter <kbd class="ph userinput">Y</kbd> to roll the degree restrictions from the schedule, enter <kbd class="ph userinput">C</kbd> to roll the degree restrictions from the catalog, or enter <kbd class="ph userinput">N</kbd> not to roll the degree restrictions. The default is <kbd class="ph userinput">Y</kbd>.</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d42773e77 ">Y - Roll degree restrictions from the schedule <p class="p">C - Roll degree restrictions from the catalog</p>
+<p class="p">N - Do not roll degree restrictions</p>
+</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d42773e68 ">Roll Program Restrictions</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d42773e71 ">Yes</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d42773e74 ">Enter <kbd class="ph userinput">Y</kbd> to roll the program restrictions from the schedule, enter <kbd class="ph userinput">C</kbd> to roll the program restrictions from the catalog, or enter <kbd class="ph userinput">N</kbd> not to roll the program restrictions. The default is <kbd class="ph userinput">Y</kbd>.</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d42773e77 ">Y - Roll program restrictions from the schedule <p class="p">C - Roll program restrictions from the catalog</p>
+<p class="p">N - Do not roll program restrictions</p>
+</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d42773e68 ">Roll Gradable Components</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d42773e71 ">Yes</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d42773e74 ">Enter <kbd class="ph userinput">Y</kbd> to roll gradable components for a section in one term to the same section in a new term. The default is <kbd class="ph userinput">Y</kbd>.</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d42773e77 ">Y - Roll gradable components <p class="p">N - Do not roll gradable components</p>
+</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d42773e68 ">Roll Partition Codes</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d42773e71 ">Yes</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d42773e74 ">Enter <kbd class="ph userinput">Y</kbd> to roll the partition codes from the schedule, enter <kbd class="ph userinput">C</kbd> to roll the partition codes from the catalog, or enter <kbd class="ph userinput">N</kbd> not to roll the partition codes. The default is <kbd class="ph userinput">Y</kbd>.</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d42773e77 ">Y - Roll partition codes from the schedule <p class="p">C - Roll partition codes from the catalog</p>
+<p class="p">N - Do not roll partition codes</p>
+</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d42773e68 ">Roll Room Attributes</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d42773e71 ">Yes</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d42773e74 ">Enter <kbd class="ph userinput">Y</kbd> to roll the cross-room attributes from the schedule, enter <kbd class="ph userinput">C</kbd> to roll the cross room attributes from the catalog, or enter <kbd class="ph userinput">N</kbd> not to roll the cross-room attributes. The default is <kbd class="ph userinput">Y</kbd>.</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d42773e77 ">Y - Roll cross-room attributes from the schedule <p class="p">C - Roll cross-room attributes from the catalog</p>
+<p class="p">N - Do not roll cross-room attributes</p>
+</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d42773e68 ">Roll CRN Scheduler Status Code</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d42773e71 ">Yes</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d42773e74 ">Enter <kbd class="ph userinput">Y</kbd> to roll the CRN scheduler status code or enter <kbd class="ph userinput">N</kbd> not to roll the code. The default is <kbd class="ph userinput">Y</kbd>.</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d42773e77 ">Y - Roll the CRN scheduler status code <p class="p">N - Do not roll the CRN scheduler status code</p>
+</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d42773e68 ">Roll Meeting Time Part Pref</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d42773e71 ">Yes</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d42773e74 ">Enter <kbd class="ph userinput">Y</kbd> to roll the meeting time partition preferences or enter <kbd class="ph userinput">N</kbd> not to roll the preferences. The default is <kbd class="ph userinput">Y</kbd>.</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d42773e77 ">Y - Roll the meeting time partition preferences <p class="p">N - Do not roll the meeting time partition preferences</p>
+</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d42773e68 ">Roll Meeting Time Room Attrib</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d42773e71 ">Yes</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d42773e74 ">Enter <kbd class="ph userinput">Y</kbd> to roll the meeting time room attribute preferences or enter <kbd class="ph userinput">N</kbd> not to roll the preferences. The default is <kbd class="ph userinput">Y</kbd>.</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d42773e77 ">Y - Roll meeting time room attribute preferences <p class="p">N - Do not roll meeting time room attribute preferences</p>
+</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d42773e68 ">Roll Sub-Components</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d42773e71 ">Yes</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d42773e74 ">Enter <kbd class="ph userinput">Y</kbd> to roll gradable sub-components for a section in one term to the same section in a new term. The default is <kbd class="ph userinput">N</kbd>. <p class="p">You can only set this parameter to <kbd class="ph userinput">Y</kbd> when the <span class="ph uicontrol">Roll Gradable Components</span> parameter is set to <kbd class="ph userinput">Y</kbd>.</p>
+</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d42773e77 ">Y - Roll sub-components <p class="p">N - Do not roll sub-components</p>
+</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d42773e68 ">Roll Section Syllabus</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d42773e71 ">Yes</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d42773e74 ">Enter <kbd class="ph userinput">Y</kbd> to roll the section syllabus information from the schedule, enter <kbd class="ph userinput">C</kbd> to roll the section syllabus information from the catalog, or enter <kbd class="ph userinput">N</kbd> not to roll the section syllabus information. The default is <kbd class="ph userinput">Y</kbd>. <p class="p">If you enter <kbd class="ph userinput">Y</kbd>, the records from SSASYLB are created for the new term or CRN.</p>
+</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d42773e77 ">Y - Roll the section syllabus from the schedule <p class="p">C - Roll the section syllabus from the catalog</p>
+<p class="p">N - Do not roll the section syllabus</p>
+</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d42773e68 ">Create Section Rules</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d42773e71 ">Yes</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d42773e74 ">Enter <kbd class="ph userinput">R</kbd> to roll existing rules. Enter <kbd class="ph userinput">D</kbd> to default to the existing open learning rules defined for the section to the term specified in the <span class="ph uicontrol">To Term</span> parameter. Enter <kbd class="ph userinput">N</kbd> not to roll or default the rules. The default is <kbd class="ph userinput">R</kbd>. <p class="p">If you enter <kbd class="ph userinput">R</kbd>, the existing records in the SSRRSTS, SSRRFND, and SSREXTN tables are copied to the new term. If you enter <kbd class="ph userinput">D</kbd>, section level rules are created from the existing SOAORUL entries for the new term.</p>
+
+              <p class="p">As a pre-requisite to running SSRROLL, the section default rules must be set up in SOAORUL.</p>
+</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d42773e77 ">R - Roll existing rules <p class="p">D - Default open learning rules</p>
+<p class="p">N - Do not roll or default rules</p>
+</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d42773e68 ">Roll Student Web Controls</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d42773e71 ">Yes</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d42773e74 ">Enter <kbd class="ph userinput">Y</kbd> to roll the student web controls from SSBSSEC for the section or enter <kbd class="ph userinput">N</kbd> not to roll the controls. The default is <kbd class="ph userinput">Y</kbd>.</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d42773e77 ">Y - Roll student Web controls <p class="p">N - Do not roll Web controls</p>
+</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d42773e68 ">Roll Faculty Web Controls</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d42773e71 ">Yes</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d42773e74 ">Enter <kbd class="ph userinput">Y</kbd> to roll the faculty web controls from SSBFSEC for the section or enter <kbd class="ph userinput">N</kbd> not to roll the controls. The default is <kbd class="ph userinput">Y</kbd>.</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d42773e77 ">Y - Roll faculty web controls <p class="p">N - Do not roll web controls</p>
+</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d42773e68 ">Roll Labor Distribution</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d42773e71 ">Yes</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d42773e74 ">Enter <kbd class="ph userinput">Y</kbd> to roll the labor distribution FOAPAL elements for the SSACLBD section or enter <kbd class="ph userinput">N</kbd> not to roll the FOAPAL elements. The default is <kbd class="ph userinput">Y</kbd>. <div class="note"><span class="notetitle">Note:</span> FOAPAL stands for chart of accounts code entries - Fund, Organization, Account, Program, Activity, and Location.</div>
+</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d42773e77 ">Y - Roll FOAPAL elements for sections <p class="p">N - Do not roll FOAPAL elements</p>
+</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d42773e68 ">Roll Department Restrictions</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d42773e71 ">Yes</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d42773e74 ">Enter <kbd class="ph userinput">Y</kbd> to roll department restrictions from the schedule, enter <kbd class="ph userinput">C</kbd> to roll department restrictions from the catalog, or enter <kbd class="ph userinput">N</kbd> not to roll department restrictions. The default is <kbd class="ph userinput">Y</kbd>.</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d42773e77 ">Y - Roll department restrictions from the schedule <p class="p">C - Roll department restrictions from the catalog </p>
+<p class="p">N - Do not roll department restrictions</p>
+</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d42773e68 ">Roll Student Attr Restrictions</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d42773e71 ">Yes</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d42773e74 ">Enter <kbd class="ph userinput">Y</kbd> to roll student attribute restrictions from the schedule, enter <kbd class="ph userinput">C</kbd> to roll student attribute restrictions from the catalog, or <kbd class="ph userinput">N</kbd> not to roll student attribute restrictions. The default is <kbd class="ph userinput">Y</kbd>.</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d42773e77 ">Y - Roll student attribute restrictions from the schedule <p class="p">C - Roll student attribute restrictions from the catalog</p>
+<p class="p">N - Do not roll student attribute restrictions</p>
+</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d42773e68 ">Roll Cohort Restrictions</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d42773e71 ">Yes</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d42773e74 ">Enter <kbd class="ph userinput">Y</kbd> to roll cohort restrictions from the schedule, enter <kbd class="ph userinput">C</kbd> to roll cohort restrictions from the catalog, or enter <kbd class="ph userinput">N</kbd> not to roll cohort restrictions. The default is <kbd class="ph userinput">Y</kbd>.</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d42773e77 ">Y - Roll cohort restrictions from Schedule <p class="p">C - Roll cohort restrictions from Catalog</p>
+<p class="p">N - Do not roll cohort restrictions</p>
+</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d42773e68 ">Roll Anonymous Grading Controls</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d42773e71 ">Yes</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d42773e74 ">
+              <p class="p">Enter <kbd class="ph userinput">Y</kbd> if you want to roll/apply anonymous grading controls for a specific term range; or, enter <kbd class="ph userinput">N</kbd> if you do not want to roll/apply anonymous grading controls for a specific term, or <kbd class="ph userinput">C</kbd> to roll from the catalog.</p>
+
+            </td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d42773e77 ">
+              <p class="p">Y - Roll anonymous grading controls.</p>
+
+              <p class="p">N - Do not roll anonymous grading controls.</p>
+
+              <p class="p">C - Roll from the catalog. </p>
+
+            </td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d42773e68 ">Campus</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d42773e71 ">No</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d42773e74 ">Enter the campus code for which you want to roll the section data.</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d42773e77 ">Campus Code Validation (STVCAMP) page</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d42773e68 ">Part of Term</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d42773e71 ">No</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d42773e74 ">Enter the part-of-term code for which you want to roll the section data.</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d42773e77 ">Part of Term Code Validation (STVPTRM) page</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d42773e68 ">Roll Sections</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d42773e71 ">Yes</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d42773e74 ">Enter:<ul class="ul">
+              <li class="li"><kbd class="ph userinput">A</kbd> to roll all sections</li>
+
+              <li class="li"><kbd class="ph userinput">T</kbd> to roll traditional sections.</li>
+
+              <li class="li"><kbd class="ph userinput">O</kbd> to roll open learning sections.</li>
+
+              </ul>
+<p class="p">The default is <kbd class="ph userinput">A</kbd>.</p>
+</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d42773e77 ">
+              <ul class="ul">
+                <li class="li">A – Roll all sections.</li>
+
+                <li class="li">T - Roll traditional sections.</li>
+
+                <li class="li">O - Roll open learning sections.</li>
+
+              </ul>
+
+            </td>
+
+          </tr>
+
+        </tbody>
+</table>
+</div>
+
+  </div>
+
+<div class="related-links">
+<div class="linklist relinfo relconcepts" xml:lang="en-US" lang="en-US"><strong>Related concepts</strong><br>
+<ul class="linklist">
+<li class="linklist"><span class="link ft-internal-xlink" data-ft-warning="excluded-from-rendering" data-clusterid="id_b_stugen/stu_use/c_ssrroll_term_roll_report">Term Roll Report (SSRROLL) - Use</span></li></ul></div>
+
+<div class="linklist relinfo relref" xml:lang="en-US" lang="en-US"><strong>Related reference</strong><br>
+<ul class="linklist">
+<li class="linklist"><span class="link ft-internal-xlink" data-ft-warning="excluded-from-rendering" data-clusterid="id_b_stugen/stu_help/r_grading">Grading in SCADETL</span></li>
+<li class="linklist"><span class="link ft-internal-xlink" data-ft-warning="excluded-from-rendering" data-clusterid="id_b_stugen/stu_help/r_ssadetl_grading">Grading in SSADETL</span></li></ul></div>
+</div></div></div></section>
+<section id="t-140"><h4>DegreeWorks Prerequisite Checking and CAPP Area Prerequisite Checking</h4><div class="content-locale-en-US content-locale-en"><div id="r_degreeworks_prerequisite_checking_capp_area_prerequisite_checking"><div class="body refbody"><p class="shortdesc">Use the <span class="ph uicontrol">Prerequisite Check Method</span> radio group on the Schedule Prerequisite and Test Score Restrictions Form (SSAPREQ) to select which type of prerequisite requirements will be in effect for the sections listed in the report.</p>
+
+    <div class="section">
+      <div class="p">The choices are:<ul class="ul"> <li class="li"><kbd class="ph userinput">Basic or None</kbd></li>
+ <li class="li"><kbd class="ph userinput">CAPP</kbd></li>
+ <li class="li"><kbd class="ph userinput">DegreeWorks</kbd></li>
+ </ul>
+The default value is <kbd class="ph userinput">Basic or None</kbd>.</div>
+
+      <ul class="ul">
+        <li class="li">When the <span class="ph uicontrol">Prerequisite Check Method</span> field is set to <kbd class="ph userinput">Basic or None</kbd>, course test score and prerequisite restrictions will be listed for the sections in the report.</li>
+
+        <li class="li">When the <span class="ph uicontrol">Prerequisite Check Method</span> field is set to <kbd class="ph userinput">DegreeWorks</kbd> or <kbd class="ph userinput">CAPP</kbd>, DegreeWorks prerequisite requirements or CAPP area prerequisite requirements will be listed for the sections in the report.</li>
+
+        <li class="li">When DegreeWorks is installed, the <kbd class="ph userinput">CAPP</kbd> option is not available.</li>
+
+        <li class="li">When CAPP area prerequisite checking is in use, the <kbd class="ph userinput">DegreeWorks</kbd> option is not available.</li>
+
+      </ul>
+
+      <p class="p">When DegreeWorks prerequisite checking is in use, the report will either roll the prerequisite checking method and or convert prerequisite checking from a CAPP method to a DegreeWorks method, according to the begin term in <kbd class="ph userinput">PREREQCHK</kbd> rule on GTVSDAX. This allows you to create the schedule of class sections for terms where DegreeWorks will be used. SSRROLL will not allow the new sections to have a CAPP prerequisite checking method, unless a CAPP area is associated with the section per the Roll CAPP Area or DW Pre-reqs parameter.</p>
+
+      <p class="p">Set the <kbd class="ph userinput">PREREQCHK</kbd> rule to the beginning term code for which you use to use DegreeWorks. When the SSRROLL process is run and the Roll CAPP Area or DW Pre-reqs parameter is used, the process converts the prerequisite checking method for the sections from CAPP to DegreeWorks, based on the parameter setting. You can roll and convert the prerequisite checking method from Catalog or Schedule, or you can choose to not roll the data. Not rolling the data resets the <span class="ph uicontrol">Prerequisite Check Method</span> radio group to <kbd class="ph userinput">Basic or None</kbd> (<code class="ph codeph">SCBCRSE_PREREQ_CHK_METHOD_CDE</code> and <code class="ph codeph">SSBSECT_PREREQ_CHK_METHOD_CDE</code> set to <kbd class="ph userinput">B</kbd>).</p>
+
+      <div class="p">You can review the settings on GTVSDAX for the <kbd class="ph userinput">PREREQCHK</kbd> rule after running SSRROLL. When a valid term code is stored in the <span class="ph uicontrol">External Code</span> field that is less than or equal to the term code the data was rolled to, the settings should be as follows: <ul class="ul"> <li class="li">For CRNs where the <code class="ph codeph">SSBSECT_PREREQ_CHK_METHOD_CDE</code> is set to C, the setting is changed to <kbd class="ph userinput">D</kbd>.</li>
+
+        <li class="li">For CRNs where the <code class="ph codeph">SSBSECT_PREREQ_CHK_METHOD_CDE</code> is set to <kbd class="ph userinput">B</kbd>, the setting remains as it is.</li>
+ </ul>
+</div>
+
+      <p class="p">The Roll Test Restricts and Pre-reqs parameter rolls data based on the following conditions.</p>
+
+      <ul class="ul">
+        <li class="li">When the parameter is set to <kbd class="ph userinput">Y</kbd>, sections with <code class="ph codeph">SSBSECT_PREREQ_CHK_METHOD_CDE</code> column set to <kbd class="ph userinput">B</kbd> are rolled, in addition to any associated test score restrictions and prerequisites.</li>
+
+        <li class="li">When the parameter is set to <kbd class="ph userinput">C</kbd>, courses with the <code class="ph codeph">SCBCRSE_PREREQ_CHK_METHOD_CDE</code> column set to <kbd class="ph userinput">B</kbd> are rolled, in addition to any associated test score restrictions and prerequisites.</li>
+
+      </ul>
+
+      <p class="p">The Roll CAPP Area or DW Pre-reqs parameter rolls data based on the following conditions.</p>
+
+      <ul class="ul">
+        <li class="li">When the parameter is set to <kbd class="ph userinput">Y</kbd>, sections with <code class="ph codeph">SSBSECT_PREREQ_CHK_METHOD_CDE</code> column set to <kbd class="ph userinput">C</kbd> or <kbd class="ph userinput">D</kbd> are rolled, in addition to any associated CAPP area prerequisites.</li>
+
+        <li class="li">When the parameter is set to <kbd class="ph userinput">C</kbd>, courses with the <code class="ph codeph">SCBCRSE_PREREQ_CHK_METHOD_CDE</code> column set to <kbd class="ph userinput">C</kbd> or <kbd class="ph userinput">D</kbd> are rolled, in addition to any associated CAPP area prerequisites.</li>
+
+        <li class="li">When the parameter is set to <kbd class="ph userinput">N</kbd>, the <code class="ph codeph">SSBSECT_PREREQ_CHK_METHOD_CDE</code> column is set to <kbd class="ph userinput">B</kbd>.</li>
+
+      </ul>
+
+      <div class="p">The following term information is also considered: <ul class="ul"> <li class="li">For from and to terms that are before the start term for the <kbd class="ph userinput">PREREQCHK</kbd> rule on GTVSDAX, CAPP prerequisites are rolled.</li>
+ <li class="li">For from and to terms that are after the start term for the <kbd class="ph userinput">PREREQCHK</kbd> rule on GTVSDAX, traditional prerequisites or DegreeWorks prerequisites are rolled.</li>
+
+        <li class="li">For terms that straddle the from and to term range, the setting of the <code class="ph codeph">SSBSECT_PREREQ_CHK_METHOD_CDE</code> column is changed from <kbd class="ph userinput">C</kbd> to <kbd class="ph userinput">D</kbd>, and CAPP area prerequisites are dropped from the section. </li>
+ </ul>
+</div>
+
+    </div>
+
+  </div>
+
+</div></div></section>
+<section id="t-150"><h4>Calculated Drop Dates and SSRROLL</h4><div class="content-locale-en-US content-locale-en"><div id="c_ssrroll_calc_drop"><div class="body conbody"><p class="shortdesc">If you are using Calculated Drop Dates, the setting of the <span class="ph uicontrol">Roll Meeting Times</span> parameter affects the meeting time dates that will roll to the copied CRN. </p>
+
+    <div class="section"><h2 class="title sectiontitle">If the Roll Meeting Times parameter is set to Y</h2>
+      
+      <p class="p">If the SSRMEET record includes meeting days, the <span class="ph uicontrol">Calculated Section Start Date</span> is determined by evaluating all SSRMEET records and excludes dates defined on SSAEXCL. The <span class="ph uicontrol">Calculated Section Start Date</span> is visible on SSAACCL and is a non-database field. </p>
+
+      <p class="p">If the SSRMEET record does not include meeting days, the <span class="ph uicontrol">Calculated Section Start Date</span> is determined by the section <span class="ph uicontrol">Part of Term Start Date</span> and excludes dates defined on SSAEXCL. The <span class="ph uicontrol">Calculated Section Start Date</span> is visible on SSAACCL and is a non-database field. </p>
+
+    </div>
+
+    <div class="section"><h2 class="title sectiontitle">If the Roll Meeting Times parameter is set to N</h2>
+      
+      <p class="p">If the parameter is set to <var class="keyword varname">N</var>, the meeting times are not rolled to the copied CRN. The <span class="ph uicontrol">Calculated Start Date</span> is determined by the <span class="ph uicontrol">Part of Term Start Date</span> from the section and excludes dates defined on SSAEXCL. The <span class="ph uicontrol">Calculated Section Start Date</span> is visible on SSAACCL and is a non-database field. </p>
+
+    </div>
+
+    <div class="section">
+      <div class="note"><span class="notetitle">Note:</span> If an <span class="ph uicontrol">Academic Calendar Rule</span> has been applied to the section on SSAACCL in the <span class="ph uicontrol">Copy From Term</span>, SSRROLL will apply the same Academic Calendar Type only when the <span class="ph uicontrol">Academic Calendar Type</span> rule has been defined in the <span class="ph uicontrol">Copy To Term</span>. If no <span class="ph uicontrol">Academic Calendar Type</span> rule is applied to the section on SSAACCL and SOATERM Part of Term Calculated Drop Default dates exist for the same term, the SOATERM POT Calculated Drop Default dates populate the fields accordingly. </div>
+
+    </div>
+
+    <div class="section"><h2 class="title sectiontitle">If the Roll Meeting Times parameter is set to B</h2>
+      
+      <p class="p">If the parameter is set to <var class="keyword varname">B</var>, the meeting times are rolled without the buildings (SSRMEET_BLDG_CODE) and rooms (SSRMEET_ROOM_CODE) for the term defined on the <span class="ph uicontrol">To Term</span> parameter.</p>
+
+    </div>
+
+  </div>
+
+</div></div></section>
+<section id="t-160"><h3>Class Schedule Report (SSRSECT)</h3><div class="content-locale-en-US content-locale-en"><div id="r_class_schedule_report_ssrsect"><div class="body refbody"><p class="shortdesc">This report is used to print the schedule of classes for a term.</p>
+
+    <div class="section">
+      <div class="p">The report displays and rolls the following information for use with open learning sections: <ul class="ul"> <li class="li">schedule type code description for the section</li>
+ <li class="li">instructional method code description assigned to the section</li>
+ <li class="li">long course title from the syllabus (if designated)</li>
+ <li class="li">meeting type for the meeting time information</li>
+ <li class="li">long section title from the syllabus (if designated)</li>
+ </ul>
+</div>
+
+      <p class="p">If no meeting time records have been defined for an open learning section, <cite class="cite">N/A</cite> is printed on the report, instead of <cite class="cite">TBD</cite>.</p>
+
+      
+<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" id="r_class_schedule_report_ssrsect__r_class_schedule_report_ssrsect-utbl1" class="table" frame="hsides" border="1" rules="rows"><colgroup><col><col><col><col></colgroup><thead class="thead" style="text-align:left;vertical-align:bottom;">
+            <tr class="row">
+              <th class="entry row-nocellborder" style="text-align:left;vertical-align:bottom;" id="d47381e82">Parameter Name</th>
+
+              <th class="entry row-nocellborder" style="text-align:left;vertical-align:bottom;" id="d47381e85">Required?</th>
+
+              <th class="entry row-nocellborder" style="text-align:left;vertical-align:bottom;" id="d47381e88">Description</th>
+
+              <th class="entry row-nocellborder" style="text-align:left;vertical-align:bottom;" id="d47381e91">Values</th>
+
+            </tr>
+
+          </thead>
+<tbody class="tbody">
+            <tr class="row">
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d47381e82 ">Schedule Term</td>
+
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d47381e85 ">Yes</td>
+
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d47381e88 ">Enter the term for which you want the class schedule to be printed.</td>
+
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d47381e91 ">Term Code Validation Form (STVTERM)</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d47381e82 ">Part of Term (% for all)</td>
+
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d47381e85 ">Yes</td>
+
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d47381e88 ">Enter the part of term code for which the schedule of classes is to be printed. Multiple parts of term can be entered, or a <kbd class="ph userinput">%</kbd> can be used to indicate that all parts of term within the selected term are to be printed.</td>
+
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d47381e91 ">Part of Term Code Validation Form (STVPTRM)</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d47381e82 ">Order 1-Subj-Course, 2-Coll, Div, Dept</td>
+
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d47381e85 ">Yes</td>
+
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d47381e88 ">Enter <kbd class="ph userinput">1</kbd> to print the schedule of classes in subject, course number order, or enter <kbd class="ph userinput">2</kbd> to print in college, division, department order. All sort options create page breaks by campus and part of term.</td>
+
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d47381e91 ">1 - Subject, Course order <p class="p">2 - College, Division, Department order</p>
+</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d47381e82 ">Campus (% for all)</td>
+
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d47381e85 ">Yes</td>
+
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d47381e88 ">Enter the campus code representing the campus for which the schedule is to be printed.</td>
+
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d47381e91 ">Campus Code Validation Form (STVCAMP)</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d47381e82 ">Course Status (% for all)</td>
+
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d47381e85 ">Yes</td>
+
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d47381e88 ">Enter the course status code(s) for the class schedule for which information is to be printed.</td>
+
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d47381e91 ">Section Status Code Validation Form (STVSSTS)</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d47381e82 ">User Scheduler Results</td>
+
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d47381e85 ">No</td>
+
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d47381e88 ">Enter the <kbd class="ph userinput">Y</kbd> to retrieve meeting time data using the scheduler work data on SSTSCHW or <kbd class="ph userinput">N</kbd> to retrieve the scheduled data from SSRMEET. The default is <kbd class="ph userinput">N</kbd>. <p class="p">The scheduler work data is used in place of the schedule data.</p>
+</td>
+
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d47381e91 ">Y - Data from SSTSCHW - scheduler <p class="p">N - Data from SSRMEET - schedule</p>
+</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d47381e82 ">Schedule Type (% for all)</td>
+
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d47381e85 ">Yes</td>
+
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d47381e88 ">Enter <kbd class="ph userinput">%</kbd> for all schedule types, or enter the schedule type for the section.</td>
+
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d47381e91 ">Schedule Type Code Validation Form (STVSCHD)</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d47381e82 ">Instructional Method (% = all)</td>
+
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d47381e85 ">No</td>
+
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d47381e88 ">Enter the instructional method for the courses, or enter <kbd class="ph userinput">%</kbd> for all sections. You may enter multiple values. <p class="p">This parameter is used to report all sections with the same instructional method (such as, Web-based).</p>
+</td>
+
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d47381e91 ">Instructional Method Validation Form (GTVINSM)</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d47381e82 ">Print Long Course Title</td>
+
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d47381e85 ">Yes</td>
+
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d47381e88 ">Enter <kbd class="ph userinput">Y</kbd> to print the existing course title from the course record (SCBCRSE) or the long course title from the course syllabus (SCRSYLN). <p class="p">Enter <kbd class="ph userinput">N</kbd> to not print the long course title. The default is <kbd class="ph userinput">N</kbd>.</p>
+</td>
+
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d47381e91 ">Y - Print existing course title or long syllabus course title (if any) <p class="p">N - Do not print the long course title</p>
+</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d47381e82 ">Print Long Section Title</td>
+
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d47381e85 ">Yes</td>
+
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d47381e88 ">Enter <kbd class="ph userinput">Y</kbd> to print the existing section title from the section record (SSBSECT) or the long section title from the syllabus record (SSRSYLN). If these are null, the title from the course record (SCBCRSE) will be used. <p class="p">Enter <kbd class="ph userinput">N</kbd> to not print the long section title. The default is <kbd class="ph userinput">N</kbd>.</p>
+</td>
+
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d47381e91 ">Y - Print existing section title or long syllabus section title (if any) <p class="p">N - Do not print the long section title</p>
+</td>
+
+            </tr>
+
+          </tbody>
+</table>
+</div>
+
+    </div>
+
+  </div>
+
+</div></div></section>
+<section id="t-170"><h3>Scheduled Section Tally Report (SSRTALY)</h3><div class="content-locale-en-US content-locale-en"><div id="r_scheduled_section_tally_report_ssrtaly"><div class="body refbody"><p class="shortdesc">This report is used to list all sections for a term, with enrollment counts and seats remaining. It can be used for traditional sections or open learning sections.</p>
+
+    <div class="section">
+      <div class="p">The output for the sections can be sorted in several ways: <ul class="ul"> <li class="li">by subject and course order</li>
+ <li class="li">by college, division, and department order</li>
+ <li class="li">by department, college, and division order</li>
+ </ul>
+</div>
+
+      <div class="p">The report displays the following types of information for the scheduled sections: <ul class="ul"> <li class="li">term</li>
+ <li class="li">parts of term</li>
+ <li class="li">campus</li>
+ <li class="li">schedule type</li>
+ <li class="li">instructional method</li>
+ <li class="li">long course title from the syllabus (if designated)</li>
+ <li class="li">meeting type for the meeting time information</li>
+ <li class="li">long section title from the syllabus (if designated)<div class="note"><span class="notetitle">Note:</span> If no meeting time records have been defined for an open learning section, <cite class="cite">N/A</cite> is printed on the report, instead of <cite class="cite">TBD</cite>. </div>
+ 
+<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" id="r_scheduled_section_tally_report_ssrtaly__r_scheduled_section_tally_report_ssrtaly-utbl1" class="table" frame="hsides" border="1" rules="rows"><colgroup><col><col><col><col></colgroup><thead class="thead" style="text-align:left;vertical-align:bottom;"> <tr class="row">
+        <th class="entry row-nocellborder" style="text-align:left;vertical-align:bottom;" id="d11824e99">Parameter Name</th>
+ <th class="entry row-nocellborder" style="text-align:left;vertical-align:bottom;" id="d11824e102">Required?</th>
+ <th class="entry row-nocellborder" style="text-align:left;vertical-align:bottom;" id="d11824e105">Description</th>
+ <th class="entry row-nocellborder" style="text-align:left;vertical-align:bottom;" id="d11824e108">Values</th>
+ </tr>
+ </thead>
+<tbody class="tbody"> <tr class="row"> <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d11824e99 ">Term</td>
+ <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d11824e102 ">Yes</td>
+ <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d11824e105 ">Enter the term for which you want the scheduled sections to be printed.</td>
+ <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d11824e108 ">Term Code Validation Form (STVTERM)</td>
+ </tr>
+ <tr class="row"> <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d11824e99 ">Part of Term (% for all)</td>
+ <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d11824e102 ">No</td>
+
+        <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d11824e105 ">Enter the part of term code for which the scheduled sections are to be printed. Multiple parts of term can be entered, or a <kbd class="ph userinput">%</kbd> can be used to indicate that all parts of term within the selected term are to be printed. <p class="p">Leave this parameter blank (<kbd class="ph userinput">Null</kbd>) to select open learning sections when you do not want to print all parts of term (<kbd class="ph userinput">%</kbd>). If the report is run from the host, rather than from job submission, enter the word <kbd class="ph userinput">NULL</kbd> at the parameter prompt to print open learning sections.</p>
+</td>
+
+        <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d11824e108 ">Part of Term Code Validation Form (STVPTRM) <p class="p">% - all parts of term</p>
+ <p class="p">Blank - open learning sections</p>
+ <p class="p">NULL - from the host, for open learning sections</p>
+</td>
+ </tr>
+ <tr class="row"> <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d11824e99 ">Order of Report (VALUES 1, 2, 3)</td>
+ <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d11824e102 ">Yes</td>
+
+        <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d11824e105 ">Enter <kbd class="ph userinput">1</kbd> to print the scheduled sections in subject, course order, or <kbd class="ph userinput">2</kbd> to print in college, division, department order, or enter <kbd class="ph userinput">3</kbd> to list the scheduled sections in department, college, division order. All sort options break first on the page by campus and part of term.</td>
+ <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d11824e108 ">1 - Subject, Course order <p class="p">2 - College, Division, Department order</p>
+ <p class="p">3 - Department, College, Division order</p>
+</td>
+
+        </tr>
+ <tr class="row"> <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d11824e99 ">Campus (% for all)</td>
+ <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d11824e102 ">Yes</td>
+ <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d11824e105 ">Enter the campus code representing the campus for which the scheduled sections are to be printed.</td>
+ <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d11824e108 ">Campus Code Validation Form (STVCAMP)</td>
+ </tr>
+ <tr class="row"> <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d11824e99 ">Instructional Method</td>
+ <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d11824e102 ">Yes</td>
+
+        <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d11824e105 ">Enter the instructional method for the sections, or enter <kbd class="ph userinput">%</kbd> for all instructional methods. You may enter multiple values. This parameter is used to report all sections with the same instructional method (such as Web-based).</td>
+ <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d11824e108 ">Instructional Method Validation Form (GTVINSM)</td>
+ </tr>
+ <tr class="row"> <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d11824e99 ">Print Long Course Title</td>
+ <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d11824e102 ">Yes</td>
+
+        <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d11824e105 ">Enter <kbd class="ph userinput">Y</kbd> to print the existing course title from the course record (SCBCRSE) or the long course title from the course syllabus (SCRSYLN). Enter <kbd class="ph userinput">N</kbd> to not print the long course title. The default is <kbd class="ph userinput">N</kbd>.</td>
+ <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d11824e108 ">Y - Print existing course title or long syllabus course title (if any) <p class="p">N - Do not print the long course title</p>
+</td>
+ </tr>
+ <tr class="row"> <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d11824e99 ">Print Long Section Title</td>
+ <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d11824e102 ">Yes</td>
+
+        <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d11824e105 ">Enter <kbd class="ph userinput">Y</kbd> to print the existing section title from the section record (SSBSECT) or the long section title from the syllabus record (SSRSYLN). If these are null, the title from the course record (SCBCRSE) will be used. Enter <kbd class="ph userinput">N</kbd> to not print the long section title. The default is <kbd class="ph userinput">N</kbd>.</td>
+
+        <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d11824e108 ">Y - Print existing section title or long syllabus section title (if any) <p class="p">N - Do not print the long section title</p>
+</td>
+ </tr>
+ </tbody>
+</table>
+</div>
+</li>
+ </ul>
+</div>
+
+    </div>
+
+  </div>
+
+</div></div></section>
+<section id="t-180"><h3>Schedule Purge Report (SSPSCHD)</h3><div class="content-locale-en-US content-locale-en"><div id="r_schedule_purge_sspschd"><div class="body refbody"><p class="shortdesc">This report is used to purge class schedule information, in addition to all associated section information, based on term. Schedule information will not be deleted if outstanding registration information exists for the term. It is recommended that the Registration Purge (SFPREGS) be run before running SSPSCHD.</p>
+
+    <div class="section">
+      <p class="p">A new summary section history record is created in the table SCRSECT. Columns in this table include: Subject Code, Course Number, Campus, Schedule Type, Term, Number of Sections Offered, Total Enrollment, Total Census Enrollment, and Activity Date, and Part of Term. This history record allows institutions to review the historical course section information in summary format.</p>
+
+      <div class="note warning"><span class="warningtitle">Warning:</span> When a third party product is used for scheduling, you may need to rerun the report before you continue scheduling.</div>
+
+      
+<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" id="r_schedule_purge_sspschd__r_schedule_purge_sspschd-utbl1" class="table" frame="hsides" border="1" rules="rows"><colgroup><col><col><col><col></colgroup><thead class="thead" style="text-align:left;vertical-align:bottom;">
+            <tr class="row">
+              <th class="entry row-nocellborder" style="text-align:left;vertical-align:bottom;" id="d55525e54">Parameter Name</th>
+
+              <th class="entry row-nocellborder" style="text-align:left;vertical-align:bottom;" id="d55525e57">Required?</th>
+
+              <th class="entry row-nocellborder" style="text-align:left;vertical-align:bottom;" id="d55525e60">Description</th>
+
+              <th class="entry row-nocellborder" style="text-align:left;vertical-align:bottom;" id="d55525e63">Values</th>
+
+            </tr>
+
+          </thead>
+<tbody class="tbody">
+            <tr class="row">
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d55525e54 ">Process Term</td>
+
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d55525e57 ">Yes</td>
+
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d55525e60 ">Enter the term for which the schedule information is to be purged which has no registration.</td>
+
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d55525e63 ">Term Code Validation Form (STVTERM)</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d55525e54 ">Run Mode</td>
+
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d55525e57 ">Yes</td>
+
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d55525e60 ">Enter:<ul class="ul">
+                <li class="li"><kbd class="ph userinput">A</kbd> to print a report of all schedule information that will be purged for the selected term.</li>
+
+                <li class="li"><kbd class="ph userinput">U</kbd> to update the database and purge the schedule information for the selected term.</li>
+
+                </ul>
+</td>
+
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d55525e63 ">
+                <ul class="ul">
+                  <li class="li">A - Audit mode </li>
+
+                  <li class="li">U - Update mode</li>
+
+                </ul>
+
+              </td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d55525e54 ">Run for Process Term</td>
+
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d55525e57 ">Yes</td>
+
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d55525e60 ">
+                <ul class="ul">
+                  <li class="li">If the parameter is <kbd class="ph userinput">N</kbd> then all the terms that are less than or equal to the process term will be purged, if there is no existing registration.</li>
+
+                  <li class="li">If the parameter is <kbd class="ph userinput">Y</kbd> then the process term will be removed, if there is no existing registration.</li>
+
+                </ul>
+
+              </td>
+
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d55525e63 ">
+                <ul class="ul">
+                  <li class="li">Y - Yes</li>
+
+                  <li class="li">N - No</li>
+
+                </ul>
+
+              </td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d55525e54 ">Part of Term</td>
+
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d55525e57 ">Yes</td>
+
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d55525e60 ">Enter the part of term code for which the scheduled information is to be purged. You may enter multiple parts of a term, or use a <var class="keyword varname">%</var> to signify that all parts within the chosen term are to be purged. This step is required if Purge Sections is set to T. Leave this field empty when Purge Sections is set to A or O. </td>
+
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d55525e63 ">&nbsp;</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d55525e54 ">Purge Sections</td>
+
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d55525e57 ">Yes</td>
+
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d55525e60 ">Enter:<ul class="ul">
+                <li class="li">A to purge all sections.</li>
+
+                <li class="li">T to purge traditional sections.</li>
+
+                <li class="li">O to purge open learning sections</li>
+
+                </ul>
+</td>
+
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d55525e63 ">
+                <ul class="ul">
+                  <li class="li">A</li>
+
+                  <li class="li">T</li>
+
+                  <li class="li">O</li>
+
+                </ul>
+
+              </td>
+
+            </tr>
+
+          </tbody>
+</table>
+</div>
+
+    </div>
+
+  </div>
+
+</div></div></section>
+<section id="t-190"><h3>Room Attribute Sequence Update Process (SSRATSQ)</h3><div class="content-locale-en-US content-locale-en"><div id="r_room_attribute_sequence_update_process_ssratsq"><div class="body refbody"><p class="shortdesc">This process is used to automatically populate the sequence number of the room attribute information in the STVRDEF table. This process can be run at your discretion to populate values, resequence existing values, or delete all values.</p>
+
+    
+<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" id="r_room_attribute_sequence_update_process_ssratsq__r_room_attribute_sequence_update_process_ssratsq-utbl1" class="table" frame="hsides" border="1" rules="rows"><colgroup><col><col><col><col></colgroup><thead class="thead" style="text-align:left;vertical-align:bottom;">
+          <tr class="row">
+            <th class="entry row-nocellborder" style="text-align:left;vertical-align:bottom;" id="d41060e46">Parameter Name</th>
+
+            <th class="entry row-nocellborder" style="text-align:left;vertical-align:bottom;" id="d41060e49">Required?</th>
+
+            <th class="entry row-nocellborder" style="text-align:left;vertical-align:bottom;" id="d41060e52">Description</th>
+
+            <th class="entry row-nocellborder" style="text-align:left;vertical-align:bottom;" id="d41060e55">Values</th>
+
+          </tr>
+
+        </thead>
+<tbody class="tbody">
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d41060e46 ">Run Mode</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d41060e49 ">Yes</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d41060e52 ">Enter <kbd class="ph userinput">A</kbd> to add sequence numbers for attributes, <kbd class="ph userinput">D</kbd> to delete all existing sequence numbers, or <kbd class="ph userinput">R</kbd> to resequence the existing sequence numbers. The default is <kbd class="ph userinput">R</kbd>.</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d41060e55 ">A - Add <p class="p">D - Delete</p>
+ <p class="p">R - Resequence</p>
+</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d41060e46 ">Sort Code</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d41060e49 ">Yes</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d41060e52 ">Enter <kbd class="ph userinput">A</kbd> for alpha sort or <kbd class="ph userinput">N</kbd> for numeric sort. The default is <kbd class="ph userinput">N</kbd>.</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d41060e55 ">A - Alpha <p class="p">N - Numeric</p>
+</td>
+
+          </tr>
+
+        </tbody>
+</table>
+</div>
+
+  </div>
+
+</div></div></section>
+<section id="t-200"><h3>Schedule25 Work File Creation Process (SSRSCRM)</h3><div class="content-locale-en-US content-locale-en"><div id="r_schedule25_work_file_creation_process_ssrscrm"><div class="body refbody"><p class="shortdesc">This process is used to create the building, room, partition, department (subject), class descriptor, and control files required to run the scheduling tool. This process needs to be run a minimum of one time for each scheduling cycle.</p>
+
+    <div class="section">
+      <div class="note"><span class="notetitle">Note:</span> Due to the layout constraints of the <code class="ph codeph">datain.dat</code> file, the duplicate meeting time scenario (handling CRNs with two identical SSRMEET records that do not have a building or room assignment) needs to be considered when this report is run. If the meeting times are adjusted by one minute, a unique meeting time record is created and will be scheduled by Schedule25. Use the exception report produced by SSRSCRM to highlight potential duplication issues and provide notification that adjustments to the meeting records are required.</div>
+
+      <div class="note"><span class="notetitle">Note:</span> The term in the section controls (SSACTRL) is treated as an effective term. If a campus code is not entered in the parameters when SSRSCRM or SSRSCUP are run, then the control record for the applicable effective term with no campus code is used as a valid control record. When SSRSCUP is run, it is especially important to use the same control record as was used for SSRSCRM processing if section control values are different from effective term to effective term.</div>
+
+      
+<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" id="r_schedule25_work_file_creation_process_ssrscrm__r_schedule25_work_file_creation_process_ssrscrm-utbl1" class="table" frame="hsides" border="1" rules="rows"><colgroup><col><col><col><col></colgroup><thead class="thead" style="text-align:left;vertical-align:bottom;">
+            <tr class="row">
+              <th class="entry row-nocellborder" style="text-align:left;vertical-align:bottom;" id="d55817e62">Parameter Name</th>
+
+              <th class="entry row-nocellborder" style="text-align:left;vertical-align:bottom;" id="d55817e65">Required?</th>
+
+              <th class="entry row-nocellborder" style="text-align:left;vertical-align:bottom;" id="d55817e68">Description</th>
+
+              <th class="entry row-nocellborder" style="text-align:left;vertical-align:bottom;" id="d55817e71">Values</th>
+
+            </tr>
+
+          </thead>
+<tbody class="tbody">
+            <tr class="row">
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d55817e62 ">Scheduling Term Code</td>
+
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d55817e65 ">Yes</td>
+
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d55817e68 ">Enter the extract term code for the file.</td>
+
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d55817e71 ">Term Code Validation Form (STVTERM)</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d55817e62 ">Scheduling Campus Code</td>
+
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d55817e65 ">No</td>
+
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d55817e68 ">Enter the extract campus code for the file.</td>
+
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d55817e71 ">Campus Code Validation Form (STVCAMP)</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d55817e62 ">Start Date</td>
+
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d55817e65 ">No</td>
+
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d55817e68 ">Enter the start date in format MMM-DD-YYYY for the date range to extract meeting times.</td>
+
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d55817e71 ">&nbsp;</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d55817e62 ">End Date</td>
+
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d55817e65 ">No</td>
+
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d55817e68 ">Enter the end date in format MMM-DD-YYYY for the date range to extract meeting times.</td>
+
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d55817e71 ">&nbsp;</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d55817e62 ">Room Attribute Def Filename</td>
+
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d55817e65 ">Yes</td>
+
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d55817e68 ">Enter the room attribute definition filename. The default filename is <code class="ph codeph">phys.dat</code>.</td>
+
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d55817e71 ">&nbsp;</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d55817e62 ">Partition Definition Filename</td>
+
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d55817e65 ">Yes</td>
+
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d55817e68 ">Enter the partition definition filename. The default filename is <code class="ph codeph">part.dat</code>.</td>
+
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d55817e71 ">&nbsp;</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d55817e62 ">Subject Definition Filename</td>
+
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d55817e65 ">Yes</td>
+
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d55817e68 ">Enter the subject definition filename. The default filename is <code class="ph codeph">depts.dat</code>.</td>
+
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d55817e71 ">&nbsp;</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d55817e62 ">Room Definition Filename</td>
+
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d55817e65 ">Yes</td>
+
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d55817e68 ">Enter the room definition filename. The default filename is <code class="ph codeph">rooms.dat</code>.</td>
+
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d55817e71 ">&nbsp;</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d55817e62 ">Control Parameters Filename</td>
+
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d55817e65 ">Yes</td>
+
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d55817e68 ">Enter the control parameters filename. The default filename is <code class="ph codeph">ctrl.dat</code>.</td>
+
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d55817e71 ">&nbsp;</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d55817e62 ">Class Descriptor Filename</td>
+
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d55817e65 ">Yes</td>
+
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d55817e68 ">Enter the class descriptor filename. The default filename is <code class="ph codeph">datain.dat</code>.</td>
+
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d55817e71 ">&nbsp;</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d55817e62 ">Create Work Table</td>
+
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d55817e65 ">Yes</td>
+
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d55817e68 ">Enter <kbd class="ph userinput">Y</kbd> to create the Work table viewable on SSASCHW or <kbd class="ph userinput">N</kbd> to not create the table. The default is <kbd class="ph userinput">Y</kbd>.</td>
+
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d55817e71 ">Y - Create Work table <p class="p">N - Do not create Work table</p>
+</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d55817e62 ">Control Term Code</td>
+
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d55817e65 ">Yes</td>
+
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d55817e68 ">Enter the effective term code for the control record from SSACTRL.</td>
+
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d55817e71 ">Term Code Validation Form (STVTERM)</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d55817e62 ">Control Campus Code</td>
+
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d55817e65 ">No</td>
+
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d55817e68 ">Enter the control campus code from SSACTRL.</td>
+
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d55817e71 ">Campus Code Validation Form (STVCAMP)</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d55817e62 ">Subject for Inactive Rooms</td>
+
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d55817e65 ">Yes</td>
+
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d55817e68 ">Enter the subject code to be used for the creation of inactive room periods.</td>
+
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d55817e71 ">Subject Code Validation Form (STVSUBJ)</td>
+
+            </tr>
+
+          </tbody>
+</table>
+</div>
+
+    </div>
+
+  </div>
+
+</div></div></section>
+<section id="t-210"><h3>Scheduler Work Table Update Process (SSRSCUP)</h3><div class="content-locale-en-US content-locale-en"><div id="r_scheduler_work_table_update_process_ssrscup"><div class="body refbody"><p class="shortdesc">This process reads the three Schedule25 export files (<code class="ph codeph">sortdp.dat</code>, <code class="ph codeph">losers.dat</code>, <code class="ph codeph">notposs.dat</code>), updating the existing records in the Scheduler Work Table (SSTSCHW). Theses entries can then be previewed using SSASCHW.</p>
+
+    <div class="section">
+      <div class="note"><span class="notetitle">Note:</span> The term in the section controls (SSACTRL) is treated as an effective term. If a campus code is not entered in the parameters when SSRSCRM or SSRSCUP are run, then the control record for the applicable effective term with no campus code is used as a valid control record. When SSRSCUP is run, it is especially important to use the same control record as was used for SSRSCRM processing if section control values are different from effective term to effective term.</div>
+
+      
+<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" id="r_scheduler_work_table_update_process_ssrscup__r_scheduler_work_table_update_process_ssrscup-utbl1" class="table" frame="hsides" border="1" rules="rows"><colgroup><col><col><col><col></colgroup><thead class="thead" style="text-align:left;vertical-align:bottom;">
+            <tr class="row">
+              <th class="entry row-nocellborder" style="text-align:left;vertical-align:bottom;" id="d26382e65">Parameter Name</th>
+
+              <th class="entry row-nocellborder" style="text-align:left;vertical-align:bottom;" id="d26382e68">Required?</th>
+
+              <th class="entry row-nocellborder" style="text-align:left;vertical-align:bottom;" id="d26382e71">Description</th>
+
+              <th class="entry row-nocellborder" style="text-align:left;vertical-align:bottom;" id="d26382e74">Values</th>
+
+            </tr>
+
+          </thead>
+<tbody class="tbody">
+            <tr class="row">
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d26382e65 ">Control Record Term Code</td>
+
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d26382e68 ">Yes</td>
+
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d26382e71 ">Enter the term code for the Work table records to be updated based on the control record entered on SSACTRL.</td>
+
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d26382e74 ">Term Code Validation Form (STVTERM)</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d26382e65 ">Control Record Campus Code</td>
+
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d26382e68 ">No</td>
+
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d26382e71 ">Enter the campus code for the work table records to be updated based on the control record entered on SSACTRL.</td>
+
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d26382e74 ">Campus Code Validation Form (STVCAMP)</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d26382e65 ">Filename for Schedule Updates</td>
+
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d26382e68 ">Yes</td>
+
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d26382e71 ">Enter the directory/filename for the schedule updates file. The default filename is <code class="ph codeph">sortdp.dat</code>.</td>
+
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d26382e74 ">&nbsp;</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d26382e65 ">Filename for Not Scheduled</td>
+
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d26382e68 ">Yes</td>
+
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d26382e71 ">Enter the directory/filename for the not scheduled courses file. The default filename is <code class="ph codeph">losers.dat</code>.</td>
+
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d26382e74 ">&nbsp;</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d26382e65 ">Filename for Schedule Errors</td>
+
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d26382e68 ">Yes</td>
+
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d26382e71 ">Enter the directory/filename for the schedule errors file. The default filename is <code class="ph codeph">notposs.dat</code>.</td>
+
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d26382e74 ">&nbsp;</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d26382e65 ">Audit or Update</td>
+
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d26382e68 ">Yes</td>
+
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d26382e71 ">Enter <kbd class="ph userinput">A</kbd> to run the report in Audit mode or <kbd class="ph userinput">U</kbd> to update the database. The default value is <kbd class="ph userinput">A</kbd>.</td>
+
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d26382e74 ">A - Audit mode <p class="p">U - Update mode</p>
+</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d26382e65 ">Print Detail</td>
+
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d26382e68 ">Yes</td>
+
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d26382e71 ">Enter <kbd class="ph userinput">Y</kbd> to print report detail or <kbd class="ph userinput">N</kbd> to not print report detail. The default value is <kbd class="ph userinput">N</kbd>.</td>
+
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d26382e74 ">Y - Print detail <p class="p">N - Do not print detail</p>
+</td>
+
+            </tr>
+
+          </tbody>
+</table>
+</div>
+
+    </div>
+
+  </div>
+
+</div></div></section>
+<section id="t-220"><h3>Update Building/Room Process (SSRSCMT)</h3><div class="content-locale-en-US content-locale-en"><div id="r_update_building_room_process_ssrscmt"><div class="body refbody"><p class="shortdesc">This process reads the Scheduler Work Table (SSTSCHW) entries (viewable on SSASCHW) and updates the SSRMEET table with the room assignments generated in Schedule25.</p>
+
+    <div class="section">
+      <p class="p">Only those records with an Update Indicator of <kbd class="ph userinput">Y</kbd> will be applied. The Work Table Update Indicator value will be changed to a <kbd class="ph userinput">U</kbd> as a result of the upload process of the scheduled sections to indicate that the upload was successful for that record.</p>
+
+    </div>
+
+    
+<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" id="r_update_building_room_process_ssrscmt__r_update_building_room_process_ssrscmt-utbl1" class="table" frame="hsides" border="1" rules="rows"><colgroup><col><col><col><col></colgroup><thead class="thead" style="text-align:left;vertical-align:bottom;">
+          <tr class="row">
+            <th class="entry row-nocellborder" style="text-align:left;vertical-align:bottom;" id="d54581e63">Parameter Name</th>
+
+            <th class="entry row-nocellborder" style="text-align:left;vertical-align:bottom;" id="d54581e66">Required?</th>
+
+            <th class="entry row-nocellborder" style="text-align:left;vertical-align:bottom;" id="d54581e69">Description</th>
+
+            <th class="entry row-nocellborder" style="text-align:left;vertical-align:bottom;" id="d54581e72">Values</th>
+
+          </tr>
+
+        </thead>
+<tbody class="tbody">
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d54581e63 ">Term Code</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d54581e66 ">Yes</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d54581e69 ">Enter the term code(s) for the room assignments.</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d54581e72 ">Term Code Validation Form (STVTERM)</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d54581e63 ">Audit/Update Mode</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d54581e66 ">Yes</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d54581e69 ">Enter <kbd class="ph userinput">A</kbd> to run the process in Audit mode or <kbd class="ph userinput">U</kbd> to update the database. The default is <kbd class="ph userinput">A</kbd>.</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d54581e72 ">A - Audit mode <p class="p">U - Update mode</p>
+</td>
+
+          </tr>
+
+        </tbody>
+</table>
+</div>
+
+  </div>
+
+</div></div></section>
+<section id="t-230"><h3>Scheduler Work Table Purge Process (SSRSCPR)</h3><div class="content-locale-en-US content-locale-en"><div id="r_scheduler_work_table_purge_process_ssrscpr"><div class="body refbody"><p class="shortdesc">This process is used to delete Scheduler Work Table (SSTSCHW) data based on the term or campus specified in the parameters or both.</p>
+
+    
+<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" id="r_scheduler_work_table_purge_process_ssrscpr__r_scheduler_work_table_purge_process_ssrscpr-utbl1" class="table" frame="hsides" border="1" rules="rows"><colgroup><col><col><col><col></colgroup><thead class="thead" style="text-align:left;vertical-align:bottom;">
+          <tr class="row">
+            <th class="entry row-nocellborder" style="text-align:left;vertical-align:bottom;" id="d29603e51">Parameter Name</th>
+
+            <th class="entry row-nocellborder" style="text-align:left;vertical-align:bottom;" id="d29603e54">Required?</th>
+
+            <th class="entry row-nocellborder" style="text-align:left;vertical-align:bottom;" id="d29603e57">Description</th>
+
+            <th class="entry row-nocellborder" style="text-align:left;vertical-align:bottom;" id="d29603e60">Values</th>
+
+          </tr>
+
+        </thead>
+<tbody class="tbody">
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d29603e51 ">Term Code</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d29603e54 ">Yes</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d29603e57 ">Enter the term code for the data to be deleted.</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d29603e60 ">Term Code Validation Form (STVTERM)</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d29603e51 ">Campus Code</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d29603e54 ">No</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d29603e57 ">Enter the campus code for the data to be deleted.</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d29603e60 ">Campus Code Validation Form (STVCAMP)</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d29603e51 ">Update (U), Audit (A), Mode</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d29603e54 ">Yes</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d29603e57 ">Enter <kbd class="ph userinput">A</kbd> to run the process in Audit mode or <kbd class="ph userinput">U</kbd> to update the database. The default is <kbd class="ph userinput">U</kbd>.</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d29603e60 ">A - Audit mode <p class="p">U - Update mode</p>
+</td>
+
+          </tr>
+
+        </tbody>
+</table>
+</div>
+
+  </div>
+
+</div></div></section>
+<section id="t-240"><h3>Section Fee Population Process (SSPMFEE)</h3><div class="content-locale-en-US content-locale-en"><div id="r_section_fee_population_process_sspmfee"><div class="body refbody"><p class="shortdesc">This process examines the course/section characteristics defined in SSADFEE<strong class="ph b">,</strong> determines the applicable sections based on those characteristics, and inserts the appropriate records in the SSRFEES table.</p>
+
+    <div class="section">
+      <p class="p">It is important to note that record insertions will only occur if no section level fees have already been defined. In the case where fee entries already exist in the SSRFEES table, no insertion of new or update of existing records will be made.</p>
+
+      <p class="p">The report output displays the CRNs that were updated, the section characteristics from the fee used to create the SSRFEES records, and the total number of records inserted into the SSRFEES table. The section characteristics include department, college, campus schedule type, and instructional method. The fee information includes level, detail code, amount, and fee type. When the appropriate section is determined, the fee definition contained in SSADFEE is used to create a new fee record in the SSRFEES table. The report control information shows the term and run mode, in addition to the count of sections that were updated.</p>
+
+      
+<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" id="r_section_fee_population_process_sspmfee__r_section_fee_population_process_sspmfee-utbl1" class="table" frame="hsides" border="1" rules="rows"><colgroup><col><col><col><col></colgroup><thead class="thead" style="text-align:left;vertical-align:bottom;">
+            <tr class="row">
+              <th class="entry row-nocellborder" style="text-align:left;vertical-align:bottom;" id="d76789e57">Parameter Name</th>
+
+              <th class="entry row-nocellborder" style="text-align:left;vertical-align:bottom;" id="d76789e60">Required?</th>
+
+              <th class="entry row-nocellborder" style="text-align:left;vertical-align:bottom;" id="d76789e63">Description</th>
+
+              <th class="entry row-nocellborder" style="text-align:left;vertical-align:bottom;" id="d76789e66">Values</th>
+
+            </tr>
+
+          </thead>
+<tbody class="tbody">
+            <tr class="row">
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d76789e57 ">Term</td>
+
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d76789e60 ">Yes</td>
+
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d76789e63 ">Enter the term for which the section records are to be checked for incomplete registrations.</td>
+
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d76789e66 ">Term Code Validation Form (STVTERM)</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d76789e57 ">Run Mode</td>
+
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d76789e60 ">Yes</td>
+
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d76789e63 ">Enter <kbd class="ph userinput">A</kbd> for an audit report or <kbd class="ph userinput">U</kbd> to update the database. The default is <kbd class="ph userinput">A</kbd>.</td>
+
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d76789e66 ">A - Audit mode <p class="p">U - Update mode</p>
+</td>
+
+            </tr>
+
+          </tbody>
+</table>
+</div>
+
+    </div>
+
+  </div>
+
+</div></div></section>
+<section id="t-250"><h3>Schedule Open Learning Rule Default Process (SSPRDEF)</h3><div class="content-locale-en-US content-locale-en"><div id="r_schedule_open_learning_rule_default_process_ssprdef"><div class="body refbody"><p class="shortdesc">This process defaults open learning rules for sections, as defined on SOAORUL, for CRNs that have been created before the rules have been established or have been deleted.</p>
+
+    <div class="section">
+      <p class="p">Only those open learning sections where no corresponding rules have been defaulted to or entered in SSARULE (the SSRRSTS, SSRRFND, or SSREXTN tables or all of them) are updated by this process. This batch job uses the same rule defaulting criteria as the processing that occurs when a new section is created.</p>
+
+      <p class="p">The report output displays the CRNs that were updated, the section characteristics from the rule used to create the SSARULE records, and the total number of records inserted into the SSRRSTS, SSRRFND, and SSREXTN tables. The report control information shows the term and run mode, in addition to the count of sections that were updated.</p>
+
+      
+<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" id="r_schedule_open_learning_rule_default_process_ssprdef__r_schedule_open_learning_rule_default_process_ssprdef-utbl1" class="table" frame="hsides" border="1" rules="rows"><colgroup><col><col><col><col></colgroup><thead class="thead" style="text-align:left;vertical-align:bottom;">
+            <tr class="row">
+              <th class="entry row-nocellborder" style="text-align:left;vertical-align:bottom;" id="d67483e59">Parameter Name</th>
+
+              <th class="entry row-nocellborder" style="text-align:left;vertical-align:bottom;" id="d67483e62">Required?</th>
+
+              <th class="entry row-nocellborder" style="text-align:left;vertical-align:bottom;" id="d67483e65">Description</th>
+
+              <th class="entry row-nocellborder" style="text-align:left;vertical-align:bottom;" id="d67483e68">Values</th>
+
+            </tr>
+
+          </thead>
+<tbody class="tbody">
+            <tr class="row">
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d67483e59 ">Term</td>
+
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d67483e62 ">Yes</td>
+
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d67483e65 ">Enter the term for which the section records are to be checked for missing open learning section level rules.</td>
+
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d67483e68 ">Term Code Validation Form (STVTERM)</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d67483e59 ">Run Mode</td>
+
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d67483e62 ">Yes</td>
+
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d67483e65 ">Enter <kbd class="ph userinput">A</kbd> for an audit report or <kbd class="ph userinput">U</kbd> to update the database. The default is <kbd class="ph userinput">A</kbd>.</td>
+
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d67483e68 ">A - Audit mode <p class="p">U - Update mode</p>
+</td>
+
+            </tr>
+
+          </tbody>
+</table>
+</div>
+
+    </div>
+
+  </div>
+
+</div></div></section>
+<section id="t-260"><h3>Available Seats to Zero Process (SSRASTZ)</h3><div class="content-locale-en-US content-locale-en"><div id="r_available_seats_zero_process_ssrastz"><div class="body refbody"><p class="shortdesc">This process is used to modify the available seats for a CRN by setting the number of available seats to zero. This process can be run in Audit or Update Mode for a term or part-of-term and can specify CRNs by campus, subject, and course number.</p>
+
+    <div class="section">
+      <p class="p">The process will change the maximum enrollment for a section (SSBSECT) to the same value as the number of students that are registered in the section. If reserved seats exist (SSRRESV), that capacity is also reduced for each rule.</p>
+
+    </div>
+
+    
+<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" id="r_available_seats_zero_process_ssrastz__r_available_seats_zero_process_ssrastz-utbl1" class="table" frame="hsides" border="1" rules="rows"><colgroup><col><col><col><col></colgroup><thead class="thead" style="text-align:left;vertical-align:bottom;">
+          <tr class="row">
+            <th class="entry row-nocellborder" style="text-align:left;vertical-align:bottom;" id="d65324e52">Parameter Name</th>
+
+            <th class="entry row-nocellborder" style="text-align:left;vertical-align:bottom;" id="d65324e55">Required?</th>
+
+            <th class="entry row-nocellborder" style="text-align:left;vertical-align:bottom;" id="d65324e58">Description</th>
+
+            <th class="entry row-nocellborder" style="text-align:left;vertical-align:bottom;" id="d65324e61">Values</th>
+
+          </tr>
+
+        </thead>
+<tbody class="tbody">
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d65324e52 ">Term</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d65324e55 ">Yes</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d65324e58 ">Enter the term for the CRNs for which available seats are to be set to zero.</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d65324e61 ">Term Code Validation Form (STVTERM)</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d65324e52 ">Part of Term</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d65324e55 ">No</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d65324e58 ">Enter the part of term for which specific CRNs are to be processed, or enter <kbd class="ph userinput">%</kbd> for all parts of term.</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d65324e61 ">Part of Term Code Validation Form (STVPTRM)</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d65324e52 ">Campus</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d65324e55 ">No</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d65324e58 ">Enter the campus for which CRNs are to be processed, or enter <kbd class="ph userinput">%</kbd> for all campuses.</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d65324e61 ">Campus Code Validation Form (STVCAMP)</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d65324e52 ">CRN</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d65324e55 ">No</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d65324e58 ">Enter one or more CRNs to be processed, or enter <kbd class="ph userinput">%</kbd> for all CRNs.</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d65324e61 ">&nbsp;</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d65324e52 ">Subject</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d65324e55 ">No</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d65324e58 ">Enter the subject for which CRNs are to be processed, or enter <kbd class="ph userinput">%</kbd> for all subjects.</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d65324e61 ">Subject Code Validation Form (STVSUBJ)</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d65324e52 ">Course</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d65324e55 ">No</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d65324e58 ">Enter the course number for which CRNs are to be processed. If a value has been entered in the Subject parameter, the Course parameter is required.</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d65324e61 ">&nbsp;</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d65324e52 ">Run Mode</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d65324e55 ">Yes</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d65324e58 ">Enter <kbd class="ph userinput">A</kbd> to produce an audit report or <kbd class="ph userinput">U</kbd> to update the database. The default is <kbd class="ph userinput">A</kbd>.</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d65324e61 ">A - Audit mode <p class="p">U - Update mode</p>
+</td>
+
+          </tr>
+
+        </tbody>
+</table>
+</div>
+
+  </div>
+
+</div></div></section></main></body></html>

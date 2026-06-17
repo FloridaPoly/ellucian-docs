@@ -1,0 +1,495 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Banner Ethos API - Release Notes — Ethos API 9.42</title><style>body{font-family:-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;line-height:1.55;color:#1a1a1a;max-width:920px;margin:0 auto;padding:24px}header{border-bottom:2px solid #5a16d6;margin-bottom:8px}h1{color:#3a0ca3}h2,h3,h4,h5,h6{margin-top:1.6em}.crumb{color:#666;font-size:13px;margin:0}.meta{color:#888;font-size:12px}nav.toc{background:#f6f4fc;border:1px solid #e3dcf5;border-radius:8px;padding:12px 18px;margin:18px 0}nav.toc h2{margin:.2em 0}nav.toc ul{list-style:none;padding-left:0}nav.toc a{text-decoration:none;color:#5a16d6}section{margin:1.2em 0;padding-top:.4em}img{max-width:100%;height:auto}table{border-collapse:collapse}td,th{border:1px solid #ccc;padding:4px 8px}code,pre{background:#f4f4f4;border-radius:4px}pre{padding:10px;overflow:auto}</style></head><body><header><p class="crumb">Banner Ethos API Administration › Banner Ethos API - Release Notes</p><h1>Banner Ethos API - Release Notes — Ethos API 9.42</h1><p class="meta">Source: <a href="https://resources.elluciancloud.com/r/bundle/banner_ethos_api_rel_release_notes">https://resources.elluciancloud.com/r/bundle/banner_ethos_api_rel_release_notes</a> &middot; Retrieved 2026-06-17</p></header><nav class="toc"><h2>Contents</h2><ul><li style="margin-left:0px"><a href="#t-30">Ethos API 9.42</a></li><li style="margin-left:16px"><a href="#t-40">Integration API Release 9.42</a></li><li style="margin-left:16px"><a href="#t-50">Student API Release 9.42</a></li></ul></nav><main><section id="t-30"><h2>Ethos API 9.42</h2></section>
+<section id="t-40"><h3>Integration API Release 9.42</h3><div class="content-locale-en-US content-locale-en"><div id="c_banner_integration_api_942"><div class="body conbody"><p class="shortdesc">The <span class="keyword">Banner Integration API</span> 9.42 release includes enhancements to bank-tapes API error handling, international tracking bulk import capabilities, person merge operations, Grails framework upgrade, custom configuration APIs, comprehensive filtering for generated APIs, API Designer, new ProCode APIs, and enhanced person APIs.</p>
+
+    <p class="p"><span class="keyword">Banner Integration API</span> 9.42 runs on <span class="keyword">Banner</span> platform version 12.0 and <span class="keyword">Banner Common DB Upgrade</span> 9.43.</p>
+
+    <div class="note tip"><span class="tiptitle">Tip:</span> For more information about the following APIs, see the <a class="xref ft-external-link" href="https://resources.elluciancloud.com/p/api_catalog" target="_blank" rel="noopener">Banner API Catalog</a>.</div>
+
+    <div class="section"><h2 class="title sectiontitle">Integration API 9.42 release record</h2>
+      
+      <p class="p">For more information about the enhancements and defect resolutions for this release, see the <span class="keyword">Ellucian Customer Center</span> <a class="xref ft-external-link" href="https://elluciansupport.service-now.com/customer_center?id=standard_ticket&amp;table=ellucian_product_release&amp;sys_id=5807c74d83000f98546a7d447daad309&amp;view=" target="_blank" rel="noopener">Banner Integration API 9.42</a> release page <span class="keyword wintitle">Related Enhancements</span> and <span class="keyword wintitle">Related Defects</span>.</p>
+
+    </div>
+
+    <div class="section"><h2 class="title sectiontitle">Enhanced ucasxmlset Integration API </h2>
+      
+      <p class="p">The ucasxmlset Integration API has been enhanced to include two new UCAS reference endpoints: <code class="ph codeph">getReferenceApplicationSections</code> and <code class="ph codeph">getReferenceDocumentCategories</code>.</p>
+
+      <p class="p">This enhancement addresses PE0006670 in the <span class="keyword">Ellucian Customer Center</span>.</p>
+
+    </div>
+
+    <div class="section"><h2 class="title sectiontitle">Enhanced bank-tapes API with improved error messaging</h2>
+      
+      <p class="p">The <span class="keyword apiname">bank-tapes</span> API has been enhanced to provide user-friendly error messages when not valid ID values are submitted in PUT or POST batch requests. </p>
+
+      <p class="p">This enhancement includes updates to the PHRBKTP (Payroll Bank Tape) database table to properly configure the <code class="ph codeph">SURROGATE_ID</code>, <code class="ph codeph">DATA_ORIGIN</code>, <code class="ph codeph">USER_ID</code>, and <code class="ph codeph">VERSION</code> columns as non-nullable, and adds a <code class="ph codeph">GUID</code> column to the table. These database improvements enable the API to perform proper validation and return clear, actionable error messages when the not valid ID values are detected in batch operations, improving the integration development experience and reducing troubleshooting time.</p>
+
+      <p class="p">For complete API specifications and error response schemas, see the <span class="keyword apiname">bank-tapes</span> API in the <a class="xref ft-external-link" href="https://resources.elluciancloud.com/p/api_catalog" target="_blank" rel="noopener">Banner API Catalog</a>.</p>
+
+      <p class="p">This enhancement addresses PE0008185 in the <span class="keyword">Ellucian Customer Center</span>.</p>
+
+    </div>
+
+    <div class="section"><h2 class="title sectiontitle">Enhanced bulk import capabilities for international tracking agency recruit integration</h2>
+      
+      <p class="p">A new Integration API, <span class="keyword apiname">intt-agent-transactions</span>, has been introduced to retrieve agency and agent-related data from Recruit into Banner. This API is utilized within the INTTRACK Data Collection pipelines, specifically the Agency GET Pipeline and Agent GET Pipeline</p>
+
+      <p class="p">The <span class="keyword">Ellucian Ethos Data Access</span> pipelines have been enhanced to support bulk data loading for international student recruitment tracking through agency partnerships. The enhancement implements Data Connect pipelines for the international tracking agency recruit integration, enabling institutions to efficiently process large volumes of recruitment data from international agencies.</p>
+
+      <p class="p">These pipelines enable automated bulk import of agent and agency transaction data for UKVI (UK Visas and Immigration) compliance tracking and international student recruitment workflows. The enhancement includes integration API endpoints and ETL (Extract, Transform, Load) processes that support CSV file-based bulk loading of recruitment tracking data, significantly improving data processing efficiency for institutions managing high volumes of international recruitment activities.</p>
+
+      <p class="p">For information about configuring and using bulk import processes for international tracking, see <span class="xref ft-internal-xlink" data-ft-warning="excluded-from-rendering" data-clusterid="id_ethos/beapi_release/c_bnr_da_config">Configure Banner for file bulk loads</span>.</p>
+
+      <p class="p">This enhancement addresses PE0008175 in the <span class="keyword">Ellucian Customer Center</span>.</p>
+
+    </div>
+
+    <div class="section"><h2 class="title sectiontitle">Enhanced duplicate-person-data-cleanup-operations API</h2>
+      
+      <p class="p">The <span class="keyword apiname">duplicate-person-data-cleanup-operations</span> API has been enhanced to automatically detect and resolve sequence number conflicts during person merge operations. Previously, when merging duplicate person records with identical sequence numbers in multi-row tables (such as <code class="ph codeph">spraddr</code> for person addresses), the merge operation would fail due to uniqueness constraints, requiring manual database intervention to increment sequence numbers before completing the merge.</p>
+
+      <p class="p">This enhancement implements intelligent backend logic that automatically detects sequence number conflicts between source ("bad ID") and target ("good ID") person records during merge processing. When conflicts are detected, the system automatically assigns the next available sequence number to the incoming data, ensuring a successful merge without manual SQL updates. The auto-resolution logic is designed as a reusable service component that supports multiple Banner tables using sequence numbers, improving data cleanup efficiency and reducing the risk of human error in manual interventions.</p>
+
+      <p class="p">The enhancement includes comprehensive error handling, structured logging with correlation identifiers for troubleshooting, and performance optimizations to ensure merge operations complete within established service-level targets. These improvements streamline duplicate person remediation workflows and support institutional data quality initiatives.</p>
+
+      <p class="p">For complete API specifications and merge operation schemas, see the <span class="keyword apiname">duplicate-person-data-cleanup-operations</span> API in the <a class="xref ft-external-link" href="https://resources.elluciancloud.com/p/api_catalog" target="_blank" rel="noopener">Banner API Catalog</a>.</p>
+
+      <p class="p">This enhancement addresses PE0008353 in the <span class="keyword">Ellucian Customer Center</span>.</p>
+
+    </div>
+
+    <div class="section"><h2 class="title sectiontitle">Upgraded to Grails 7 framework for enhanced performance and security</h2>
+      
+      <p class="p">The <span class="keyword">Banner Integration API</span> platform has been upgraded to Grails 7, a modern application framework that provides significant improvements in performance, security, and long-term maintainability. Grails 7 brings enhanced compatibility with current Java technologies, improved memory management, and optimized request processing capabilities that benefit all API operations.</p>
+
+      <p class="p">This platform upgrade ensures <span class="keyword">Banner Integration API</span> continues to leverage industry-standard security practices and performance optimizations. The upgrade includes enhanced dependency management, improved plugin architecture, and modernized runtime components that support future API enhancements. Integration partners can expect continued API compatibility while benefiting from the underlying performance and security improvements provided by the Grails 7 framework.</p>
+
+      <p class="p">This enhancement addresses PE0008352 in the <span class="keyword">Ellucian Customer Center</span>.</p>
+
+    </div>
+
+    <div class="section"><h2 class="title sectiontitle">Enhanced extension-configurations and custom-table-configurations APIs</h2>
+      
+      <p class="p">The <span class="keyword apiname">extension-configurations</span> and <span class="keyword apiname">custom-table-configurations</span> APIs have been enhanced to support Boolean data types for custom extension fields and custom table columns. </p>
+
+      <p class="p">This enhancement introduces native Boolean data type support in extension definitions and custom table schemas, enabling institutions to define Boolean fields that accept standard <code class="ph codeph">true</code>/<code class="ph codeph">false</code> values in API requests and responses. The enhancement includes proper JSON schema validation, automatic type conversion, and improved error messaging when not valid Boolean values are submitted. Integration partners can now design cleaner data models with explicit Boolean semantics, simplifying conditional logic in external systems and improving data quality through stronger type enforcement.</p>
+
+      <p class="p">For complete API specifications, extension configuration patterns, and custom table schema definitions, see the <span class="keyword apiname">extension-configurations</span> and <span class="keyword apiname">custom-table-configurations</span> APIs in the <a class="xref ft-external-link" href="https://resources.elluciancloud.com/p/api_catalog" target="_blank" rel="noopener">Banner API Catalog</a>.</p>
+
+      <p class="p">This enhancement addresses PE0008391 in the <span class="keyword">Ellucian Customer Center</span>.</p>
+
+    </div>
+
+    <div class="section"><h2 class="title sectiontitle">Enhanced comprehensive filtering for Schema Designer generated extension and custom table APIs</h2>
+      
+      <p class="p">APIs generated through Schema Designer for custom table extensions and custom tables have been enhanced to support comprehensive filtering capabilities using criteria specifications. </p>
+
+      <p class="p">This enhancement implements the SPEC (Specification) API filtering framework for all Schema Designer generated APIs, enabling institutions and integration partners to construct complex filter criteria using query parameters similar to standard Ethos APIs. The enhancement supports multiple filter operators (equals, contains, greater than, less than), compound conditions (AND/OR logic), and nested criteria expressions. Generated APIs now process filter criteria server-side using optimized SQL query generation, returning only matching records and significantly reducing data transfer volumes.</p>
+
+      <p class="p">The comprehensive filtering support includes proper URL encoding handling, null value filtering, and integration with the existing Ethos filter compiler infrastructure. These improvements enable more efficient API consumption patterns for custom data extensions, supporting complex integration scenarios while maintaining consistent filtering semantics across all <span class="keyword">Banner Integration API</span> endpoints.</p>
+
+      <p class="p">For complete API specifications and filter syntax documentation, see the generated API definitions in the <a class="xref ft-external-link" href="https://resources.elluciancloud.com/p/api_catalog" target="_blank" rel="noopener">Banner API Catalog</a> and <cite class="cite">Schema Designer</cite> documentation.</p>
+
+      <p class="p">This enhancement addresses PE0008390 in the <span class="keyword">Ellucian Customer Center</span>.</p>
+
+    </div>
+
+    <div class="section"><h2 class="title sectiontitle">Enhanced identity-profile-roles API</h2>
+      
+      <p class="p">The <span class="keyword apiname">identity-profile-roles</span> Banner ERP API (v2.0.0) is enhanced to improve data access patterns, database integration capabilities, and query performance.</p>
+
+      <p class="p">The API now supports GET by ID, in addition to the existing GET list functionality. This enhancement enables Banner to return a single resource along with its associated array of institutional roles, improving flexibility and alignment with expected behavior.</p>
+
+      <p class="p">The enhancements include optimizations to database query execution, improved connection pooling management, and refined data retrieval patterns that reduce overhead for high-volume API operations. These improvements benefit all Integration API endpoints by providing a more robust and performant foundation for data access operations, particularly for APIs that retrieve or update large datasets. </p>
+
+      <p class="p">This enhancement addresses PE0008206 in the <span class="keyword">Ellucian Customer Center</span>.</p>
+
+    </div>
+
+    <div class="section"><h2 class="title sectiontitle">Banner Java Batch Technical Currency upgrade </h2>
+      
+      <p class="p">Banner General Java batch programs now provide runtime compatibility with the latest libraries, including Spring Framework 7.x, Spring Boot 4.x, and Spring Batch 6.x.</p>
+
+      <p class="p">This enhancement addresses PE0008177 in the <span class="keyword">Ellucian Customer Center</span>.</p>
+
+    </div>
+
+    <div class="section"><h2 class="title sectiontitle">Enhanced LOV metadata in custom table configuration APIs</h2>
+      
+      <p class="p">The <span class="keyword apiname">custom‑table‑configurations</span> API and <span class="keyword apiname">custom‑table‑configurations‑revisions</span> API are enhanced to include LOV metadata in their responses. Columns configured with List of Values (LOV) will now return the associated metadata, improving usability and consistency for applications consuming these APIs.</p>
+
+      <p class="p">For information about using API Designer and configuring custom API endpoints, see the <a class="xref ft-external-link" href="https://resources.elluciancloud.com/p/api_catalog" target="_blank" rel="noopener">Banner API Catalog</a> and API Designer documentation.</p>
+
+      <p class="p">This enhancement addresses PE0008389 in the <span class="keyword">Ellucian Customer Center</span>.</p>
+
+    </div>
+
+    <div class="section"><h2 class="title sectiontitle">Enhanced student-services-amenities API </h2>
+      
+      <p class="p">The <span class="keyword apiname">student-services-amenities</span> API is enhanced to add IS_HDR, FULL_TIME_DAYS, ENGAGED_DAYS and support additional Student Services and Amenities Fees (SSAF) reporting requirements for institutions in the Australia Pacific region. These enhancements expand the API's capability to retrieve and manage SSAF fee details for compliance with Australian government reporting requirements.</p>
+
+      <p class="p">The enhancement includes support for additional SSAF data fields and improved query capabilities that enable institutions to retrieve comprehensive fee information by academic year, term, and student cohort. The enhanced API supports the addition of Higher Degree by Research (HDR) student classification and other data elements required for Australian SSAF reporting. These improvements ensure institutions can efficiently collect and report SSAF fee data in accordance with regulatory requirements while maintaining data integrity and supporting complex fee structures.</p>
+
+      <p class="p">For complete API specifications and SSAF data requirements, see the <span class="keyword apiname">student-services-amenities</span> API in the <a class="xref ft-external-link" href="https://resources.elluciancloud.com/p/api_catalog" target="_blank" rel="noopener">Banner API Catalog</a>.</p>
+
+      <p class="p">This enhancement addresses PE0008220 in the <span class="keyword">Ellucian Customer Center</span>.</p>
+
+    </div>
+
+    <div class="section"><h2 class="title sectiontitle">Support to allow integration with third party payment providers</h2>
+      
+      <p class="p">The enhancements include:</p>
+
+      <ul class="ul">
+        <li class="li">FABCHKP – Check Print Process Enhancements<p class="p">When invoices originate exclusively from TPP, the Check Print process now performs the following updates:</p>
+<ul class="ul">
+          <li class="li">Origin Code mapping: Copies the FABINVH_ORIGIN_CODE (values like TPP_) into the new column FABCHKS_ORIGIN_CODE. </li>
+
+          <li class="li">Final Reconciliation status: Creates checks with reconciliation indicators<p class="p">(FABCHKS_RECON_IND = 'F', FABINCK_RECON_IND = 'Y').</p>
+</li>
+
+          <li class="li">Invoice Number population: For single‑invoice checks, populates the new column FABCHKS_INVOICE_NUM with the TPP invoice number. </li>
+
+          <li class="li">Pending Pay Type: Sets FABCHKS_PAY_TYPE to “Pending” until settlement details are added through the <span class="keyword apiname">check‑payment‑type‑details</span> API. Additional fields supported:<ul class="ul">
+            <li class="li">FABCHKS_TPP_PAYMENT_NUM </li>
+
+            <li class="li">FABCHKS_TPP_PAYMENT_DATE </li>
+
+            <li class="li">FABCHKS_TPP_RECON_INFO</li>
+
+            </ul>
+</li>
+
+          </ul>
+</li>
+
+        <li class="li">Accounts Payable Invoices API (v16.2.0)<p class="p">Enhancements include:</p>
+<ul class="ul">
+          <li class="li">POST API originCode: New property originCode to represent TPP invoices (FABINVH_ORIGIN_CODE like TPP_)</li>
+
+          <li class="li">Grouping Indicator: New property groupingIndicator (combine or isolate) to control Banner Check Number assignment.</li>
+
+          <li class="li">GET API properties: Includes originCode and groupingIndicator. </li>
+
+          <li class="li">GET API queries: Adds filters such as originCode, type, referenceNumber, paymentStatus, processState, and payment:source.</li>
+
+          </ul>
+</li>
+
+        <li class="li">Check Payment Type Details API<p class="p">Updates across versions:</p>
+<ul class="ul">
+          <li class="li">POST Batch API v1.1.0 &amp; v2.0.0: Accepts new properties:<ul class="ul">
+            <li class="li">tppPaymentNumber (FABCHKS_TPP_PAYMENT_NUM)</li>
+
+            <li class="li">tppPaymentDate (FABCHKS_TPP_PAYMENT_DATE)</li>
+
+            <li class="li">tppSettlementDate (FABCHKS_TPP_SETTLE_DATE)</li>
+
+            <li class="li">tppReconciliationInformation (FABCHKS_TPP_RECON_INFO)</li>
+
+            </ul>
+</li>
+
+          <li class="li">Payment Type values: Expanded to include debitCard, vCard, ACH, and Check.</li>
+
+          <li class="li">GET API v1.1.0 &amp; v2.0.0: Returns additional values such as originCode, invoiceNumber, and TPP payment details.</li>
+
+          <li class="li">POST Batch API v2.0.0 only:<ul class="ul">
+            <li class="li">Pay Type <span class="ph uicontrol">Check</span> no longer removes Final Reconciliation status. </li>
+
+            <li class="li">Pay Type <span class="ph uicontrol">None</span> removes Final Reconciliation status (for non‑TPP partners). </li>
+
+            <li class="li">Pay Type <span class="ph uicontrol">Check</span> is deprecated for non‑TPP integrations in v2.0.0, though v1.1.0 continues to support it.</li>
+
+            </ul>
+</li>
+
+          </ul>
+</li>
+
+      </ul>
+
+      <p class="p">This enhancement addresses PE0007450 in the <span class="keyword">Ellucian Customer Center</span>.</p>
+
+    </div>
+
+    <div class="section"><h2 class="title sectiontitle">Supporting documentation</h2>
+      
+      <p class="p">To download supporting documentation for this release, click <span class="ph uicontrol">Attachments</span> <img class="image ell-icon" src="images/03-ethos-api-9-42-1.png" alt="" data-ft-asset-display-name="paperclip.png" data-ft-resource-id="U1hxGZ~0RYMIz4qOJhMPjg-uxRb0CDn~o_sqaDxyinjBg"> on this page and then select the associated compressed (<span class="ph filepath">.zip</span>) file.</p>
+
+    </div>
+
+    <div class="section"><h2 class="title sectiontitle">Additional supporting information</h2>
+      
+      <div class="p">The following resources provide information about all of the supported <span class="ph">Banner Ethos APIs</span>:<ul class="ul">
+        <li class="li"><span class="xref ft-internal-xlink" data-ft-warning="excluded-from-rendering" data-clusterid="id_ethos/beapi_release/c_eedm_support_info">Ellucian Ethos support information</span> attachment provides a complete list of all Ethos APIs, the operations supported by each (create, read, update, delete), and the versions of the <span class="keyword">Ellucian Ethos Data Model</span> supported by each API.</li>
+
+        <li class="li">The <a class="xref ft-external-link" href="https://resources.elluciancloud.com/bundle/dev_res_ref_api_catalog/page/c_about_api_catalog.html" target="_blank" rel="noopener">API Catalog</a> provides information about the APIs that are implemented for each version and product. To filter the data-model-based APIs in the documentation, filter the APIs using the API Type in the <span class="ph uicontrol">API Catalog</span>.</li>
+
+        <li class="li"><a class="xref ft-external-link" href="https://resources.elluciancloud.com/search?labelkey=category-api&amp;rpp=50&amp;sort.field=title&amp;sort.value=asc" target="_blank" rel="noopener">API documentation page</a> provides a list of all <span class="ph">Banner Ethos APIs</span> supported by <span class="keyword">Banner</span> and information on the pagination parameters, filters, and named queries supported by the APIs.</li>
+
+        <li class="li"><span class="xref ft-internal-xlink" data-ft-warning="excluded-from-rendering" data-clusterid="id_ethos/beapi_release/c_bnr_da_config">Configure Banner for file bulk loads</span> provides instructions to set up <span class="keyword">Banner</span> to run bulk jobs and to configure the communication with <span class="ph">Ellucian Ethos Data Access</span> through <span class="ph">Ethos Integration</span>.</li>
+
+        <li class="li">For <span class="ph">Banner Ethos API</span> troubleshooting information, file bulk load troubleshooting, and additional API setup information, see <a class="xref ft-external-link" href="https://elluciansupport.service-now.com/customer_center?id=kb_article_view&amp;sys_kb_id=3658308b87d381102f5a0dc4dabb3587" target="_blank" rel="noopener">Banner Ethos API - Additional Resources and Troubleshooting</a> (<cite class="cite">Article 000047659</cite>) in the <span class="ph">Ellucian Customer Center</span>.</li>
+
+        <li class="li">For a comprehensive understanding of GUIDs and information on the GUID generation process, see <span class="xref ft-internal-xlink" data-ft-warning="excluded-from-rendering" data-clusterid="id_ethos/beapi_release/c_generate_banner_guids">Generate Banner GUIDs</span> on the <span class="keyword">Ellucian Documentation site</span> and <cite class="cite">Article Number 000043988 - Understanding Ethos GUIDs in Banner Releases</cite> in the <span class="keyword">Ellucian Customer Center</span>.</li>
+
+        </ul>
+</div>
+
+    </div>
+
+  </div>
+
+</div></div></section>
+<section id="t-50"><h3>Student API Release 9.42</h3><div class="content-locale-en-US content-locale-en"><div id="c_banner_student_api_942"><div class="body conbody"><p class="shortdesc">The <span class="keyword">Banner Student API</span> 9.42 release includes upgrade to current releases of third-party software, improve stability, and maintain security standards.</p>
+
+    <p class="p"><span class="keyword">Banner Student API</span> 9.42 runs on <span class="keyword">Banner</span> platform version 12.0 and <span class="keyword">Banner Common DB Upgrade</span> 9.43.</p>
+
+    <div class="note tip"><span class="tiptitle">Tip:</span> For more information about the following APIs, see the <a class="xref ft-external-link" href="https://resources.elluciancloud.com/p/api_catalog" target="_blank" rel="noopener">Banner API Catalog</a>.</div>
+
+    <div class="section"><h2 class="title sectiontitle">Student API 9.42 release record</h2>
+      
+      <p class="p">For more information about the enhancements and defect resolutions for this release, see the <span class="keyword">Ellucian Customer Center</span> <a class="xref ft-external-link" href="https://elluciansupport.service-now.com/customer_center?id=standard_ticket&amp;table=ellucian_product_release&amp;sys_id=70a9e499835bb618209676226daad300&amp;view=" target="_blank" rel="noopener">Banner Student API 9.42</a> release page <span class="keyword wintitle">Related Enhancements</span> and <span class="keyword wintitle">Related Defects</span>.</p>
+
+    </div>
+
+    <div class="section"><h2 class="title sectiontitle">Enhanced Structured Progression Student Profile data visibility</h2>
+      
+      <p class="p">The Structured Progression Student Profile has been enhanced to display actual module scores alongside the "F" grade for failed modules. This enhancement provides programme leaders and exam board members with the detailed academic data needed to identify students eligible for compensation or condonement under institutional assessment regulations.</p>
+
+      <p class="p">The enhancement improves the reliability and efficiency of progression processing and exam board preparation by ensuring all relevant academic data is available in a single view. This does not alter grading or progression logic; it purely enhances data visibility in the user interface.</p>
+
+      <p class="p">This enhancement addresses PE0007290 in the <span class="keyword">Ellucian Customer Center</span>.</p>
+
+    </div>
+
+    <div class="section"><h2 class="title sectiontitle">Enhanced audit history API with committee details</h2>
+      
+      <p class="p">The <span class="keyword apiname">audit-history</span> API has been enhanced to return committee details for progression and classification audit records displayed on the Student Profile page. The API now provides <code class="ph codeph">progressionCommitteeDescription</code> for Stage Audit records and <code class="ph codeph">classificationCommitteeDescription</code> for Classification Audit records.</p>
+
+      <p class="p">This enhancement enables the Student Profile Audit History section to display committee information, providing users with complete context about which committee evaluated each audit record. The enhanced API retrieves the description for the associated committee code, enabling institutions to track and display the specific committee responsible for each progression or classification decision.</p>
+
+      <p class="p">For complete API specifications and response schema details, see the <span class="keyword apiname">audit-history</span> API in the <a class="xref ft-external-link" href="https://resources.elluciancloud.com/p/api_catalog" target="_blank" rel="noopener">Banner API Catalog</a>.</p>
+
+      <p class="p">This enhancement addresses PE0008250 in the <span class="keyword">Ellucian Customer Center</span>.</p>
+
+    </div>
+
+    <div class="section"><h2 class="title sectiontitle">Enhanced Structured Progression with automatic curriculum end date and catalogue term updates</h2>
+      
+      <p class="p">Structured Progression has been enhanced to automatically update the Learner Curriculum End Date (<code class="ph codeph">SORLCUR_END_DATE</code>) and increment the Catalogue Term when progression outcomes are locked or approved. This automation ensures alignment with UK and Ireland institutional data maintenance practices and compliance with HESA and ERM statutory reporting standards.</p>
+
+      <p class="p">When progression outcomes from an exam committee determine that a student must repeat a year or extend their study period, the system now automatically extends the curriculum end date based on configurable rules mapped to the progression outcome. For example, a "Repeat Year" outcome automatically extends the end date by one academic year. The enhancement also automatically increments the Catalogue Term for rolled records, ensuring accurate term alignment for downstream reporting and compliance processes.</p>
+
+      <p class="p">This automation eliminates the need for manual student-by-student record updates, reducing administrative workload and minimizing the risk of reporting inaccuracies. The enhancement integrates seamlessly with the existing roll-to-next-term process, ensuring data updates occur within the standard progression workflow while maintaining synchronization between progression outcomes, academic standing, and learner curriculum details.</p>
+
+      <p class="p">This enhancement addresses PE0007399 in the <span class="keyword">Ellucian Customer Center</span>.</p>
+
+    </div>
+
+    <div class="section"><h2 class="title sectiontitle">Enhanced sections API for improved update semantics</h2>
+      
+      <p class="p">The <span class="keyword apiname">sections</span> API has been enhanced to improve usability and align with standard REST API update semantics. The <code class="ph codeph">academicPeriod</code> field behavior now differs between POST and PUT operations for more intuitive API usage.</p>
+
+      <p class="p">For POST (create) operations, <code class="ph codeph">academicPeriod</code> remains a required field, as a section cannot be created without an academic period. For PUT (update) operations, <code class="ph codeph">academicPeriod</code> is now optional. When not provided in a PUT request, the API retains the existing academic period value. When provided, the value is validated and updated according to existing business rules.</p>
+
+      <p class="p">This enhancement enables partial updates without redundant payload requirements, reduces the likelihood of integration errors, and simplifies client implementations while preserving correct creation rules and validation for academic period changes.</p>
+
+      <p class="p">For complete API specifications and request examples, see the <span class="keyword apiname">sections</span> API in the <a class="xref ft-external-link" href="https://resources.elluciancloud.com/p/api_catalog" target="_blank" rel="noopener">Banner API Catalog</a>.</p>
+
+      <p class="p">This enhancement addresses PE0007883 in the <span class="keyword">Ellucian Customer Center</span>.</p>
+
+    </div>
+
+    <div class="section"><h2 class="title sectiontitle">Enhanced payment posting APIs with duplicate detection</h2>
+      
+      <p class="p">The <span class="keyword apiname">proxy-student-charges-payments</span> and <span class="keyword apiname">proxy-charges-payments</span> APIs have been enhanced to prevent duplicate payment transactions that can occur when API requests time out. The APIs now validate the payment ID field before posting transactions to detect and prevent duplicate payments.</p>
+
+      <p class="p">The enhanced APIs now check for existing payment IDs in previously posted transactions and return an appropriate error response when a duplicate payment attempt is detected, preventing duplicate charges from being posted to student accounts.</p>
+
+      <p class="p">For complete API specifications, request and response schemas, and duplicate detection behavior, see the <span class="keyword apiname">proxy-student-charges-payments</span> and <span class="keyword apiname">proxy-charges-payments</span> APIs in the <a class="xref ft-external-link" href="https://resources.elluciancloud.com/p/api_catalog" target="_blank" rel="noopener">Banner API Catalog</a>.</p>
+
+      <p class="p">This enhancement addresses PE0007638 in the <span class="keyword">Ellucian Customer Center</span>.</p>
+
+    </div>
+
+    <div class="section"><h2 class="title sectiontitle">Enhanced payment posting APIs with UTC timezone support</h2>
+      
+      <p class="p">The <span class="keyword apiname">proxy-student-charges-payments</span> and <span class="keyword apiname">proxy-charges-payments</span> APIs have been enhanced to support ISO 8601 timestamp format with automatic UTC offset conversion. The APIs now convert the UTC offset provided in API requests to the receiving Banner server's UTC offset for both POST operations and response data.</p>
+
+      <p class="p">This enhancement eliminates timezone discrepancies between client applications and Banner server instances. Integration partners no longer need to manually calculate and adjust for timezone differences, as the APIs automatically handle the conversion between the client's timezone and the server's configured timezone. Timestamps submitted in requests are converted to the server's local time for storage, and response timestamps are converted from server time to the client's requested timezone format.</p>
+
+      <p class="p">For complete API specifications, timezone format requirements, and conversion behavior, see the <span class="keyword apiname">proxy-student-charges-payments</span> and <span class="keyword apiname">proxy-charges-payments</span> APIs in the <a class="xref ft-external-link" href="https://resources.elluciancloud.com/p/api_catalog" target="_blank" rel="noopener">Banner API Catalog</a>.</p>
+
+      <p class="p">This enhancement addresses PE0008203 in the <span class="keyword">Ellucian Customer Center</span>.</p>
+
+    </div>
+
+    <div class="section"><h2 class="title sectiontitle">Enhanced payment posting APIs with batch posting capability</h2>
+      
+      <p class="p">The <span class="keyword apiname">proxy-student-charges-payments</span> and <span class="keyword apiname">proxy-charges-payments</span> APIs have been enhanced to support batch posting of multiple payment records in a single transaction. This enhancement enables integration partners to post hundreds or thousands of payment records efficiently without requiring multiple HTTP requests.</p>
+
+      <p class="p">The enhanced APIs accept multiple payment records in a single batch request, significantly improving processing efficiency and reducing network overhead. This batch posting capability is particularly valuable for institutions processing high volumes of payment transactions from payment processors or third-party systems.</p>
+
+      <p class="p">For complete API specifications, batch request payload structure, and response handling, see the <span class="keyword apiname">proxy-student-charges-payments</span> and <span class="keyword apiname">proxy-charges-payments</span> APIs in the <a class="xref ft-external-link" href="https://resources.elluciancloud.com/p/api_catalog" target="_blank" rel="noopener">Banner API Catalog</a>.</p>
+
+      <p class="p">This enhancement addresses PE0008089 in the <span class="keyword">Ellucian Customer Center</span>.</p>
+
+    </div>
+
+    <div class="section"><h2 class="title sectiontitle">Enhanced student-account-details API</h2>
+      
+      <p class="p">The <span class="keyword apiname">student-account-details</span> API has been enhanced to provide expanded date filtering capabilities and improved date format standardization. The API now supports filtering by <code class="ph codeph">dueDate</code>, <code class="ph codeph">effectiveDate</code>, <code class="ph codeph">activityDate</code>, and <code class="ph codeph">entryDate</code> in addition to the existing transaction date and bill date filters.</p>
+
+      <p class="p">Additionally, the API has been updated to use ISO 8601 date format with millisecond precision and timezone offset (yyyy-MM-dd'T'HH:mm:ss.SSSZ). This standardized format displays the actual time offset, enabling integration partners to accurately process and display account transaction timestamps across different timezones. The enhanced filtering options enable more precise account detail queries, while the standardized date format ensures consistent datetime handling for account reconciliation and reporting workflows.</p>
+
+      <p class="p">For complete API specifications, supported date filter parameters, and date format requirements, see the <span class="keyword apiname">student-account-details</span> API in the <a class="xref ft-external-link" href="https://resources.elluciancloud.com/p/api_catalog" target="_blank" rel="noopener">Banner API Catalog</a>.</p>
+
+      <p class="p">This enhancement addresses PE0007867 and PE0008169 in the <span class="keyword">Ellucian Customer Center</span>.</p>
+
+    </div>
+
+    <div class="section"><h2 class="title sectiontitle">Enhanced registration-status API</h2>
+      
+      <p class="p">The <span class="keyword apiname">registration-status</span> v1.1.0 API has been enhanced to return the student registration group code in API responses. This enhancement provides integration partners with access to registration group information, enabling more comprehensive student registration data retrieval and processing.</p>
+
+      <p class="p">The GET request method is supported. </p>
+
+      <p class="p">The student registration group code identifies the specific registration group assigned to a student for a given academic period. This information supports registration workflows, reporting requirements, and integration scenarios where registration group classification is needed for business logic or data analysis. The enhancement extends the existing API response structure without affecting current functionality or requiring changes to existing integrations.</p>
+
+      <p class="p">For complete API specifications and response schema details, see the <span class="keyword apiname">registration-status</span> API in the <a class="xref ft-external-link" href="https://resources.elluciancloud.com/p/api_catalog" target="_blank" rel="noopener">Banner API Catalog</a>.</p>
+
+      <p class="p">This enhancement addresses PE0008034 in the <span class="keyword">Ellucian Customer Center</span>.</p>
+
+    </div>
+
+    <div class="section"><h2 class="title sectiontitle">Enhanced batch import processes for California MIS reporting</h2>
+      
+      <p class="p">Batch import processes have been enhanced to support California community colleges Management Information System (MIS) reporting requirements. The enhancement delivers updated APIs and <span class="keyword">Ellucian Ethos Data Access</span> pipelines to enable bulk import of MIS reporting data from CSV files into <span class="keyword">Banner</span>.</p>
+
+      <p class="p">This enhancement specifically supports the new VR (Vocational Rehabilitation) report added to California MIS reporting requirements in 2025. Institutions can now efficiently import large volumes of VR report data through batch processing instead of individual record posting, significantly improving operational efficiency for compliance reporting workflows. The batch import capabilities use existing <span class="keyword">Ellucian Ethos Data Access</span> infrastructure and follow established patterns for CSV-based bulk data loading.</p>
+
+      <p class="p">For information about configuring and using batch import processes, see the <a class="xref ft-external-link" href="https://resources.elluciancloud.com/p/api_catalog" target="_blank" rel="noopener">Banner API Catalog</a> and <span class="xref ft-internal-xlink" data-ft-warning="excluded-from-rendering" data-clusterid="id_ethos/beapi_release/c_bnr_da_config">Configure Banner for file bulk loads</span>.</p>
+
+      <p class="p">This enhancement addresses PE0008211 in the <span class="keyword">Ellucian Customer Center</span>.</p>
+
+    </div>
+
+    <div class="section"><h2 class="title sectiontitle">TCC Grails7 Integration tests and compatibility</h2>
+      
+      <p class="p">Upgraded the TCC integration tests within <span class="keyword apiname">banner_student_api_app</span> to ensure full compatibility with Grails 7. All TCC tests now compile and pass successfully under the new platform version, and stay current on technology.</p>
+
+      <p class="p">These enhancements address PE0008294 and PE0008351 in the <span class="keyword">Ellucian Customer Center</span>.</p>
+
+    </div>
+
+    <div class="section"><h2 class="title sectiontitle">New aid-year-term-details API</h2>
+      
+<p class="p">A new <span class="keyword apiname">aid-year-term-details</span> API has been developed to support data access and management for the Aid Year-Term (KVAAYTE) page in Banner Student Aid. This API enables integration partners to retrieve and manage academic year term eligibility information for financial aid applicants.</p>
+
+      <p class="p">The POST, PUT, and GET request methods are supported.</p>
+
+  <p class="p">The API provides programmatic access to academic year term eligibility data, supporting workflows for financial aid administration and compliance reporting. Integration scenarios include third-party financial aid management systems, enrollment verification processes, and institutional reporting requirements.</p>
+
+  <p class="p">For complete API specifications and supported operations, see the <span class="keyword apiname">academic-year-term-eligibility</span> API in the <a class="xref ft-external-link" href="https://resources.elluciancloud.com/p/api_catalog" target="_blank" rel="noopener">Banner API Catalog</a>.</p>
+
+  <p class="p">This enhancement addresses PE0008129 in the <span class="keyword">Ellucian Customer Center</span>.</p>
+
+    </div>
+
+    <div class="section"><h2 class="title sectiontitle">New aid-year-period-term API</h2>
+      
+<p class="p">A new <span class="keyword apiname">aid-year-period-term</span> API has been developed to support data access and management for the Aid Year-Period-Term (KVAAYPT) page in Banner Student Aid. This API enables integration partners to retrieve and manage aid year, period, and term configuration information for financial aid administration.</p>
+
+      <p class="p">The POST, PUT, and GET request methods are supported.</p>
+
+  <p class="p">The API provides programmatic access to aid year period term data, supporting workflows for financial aid setup, eligibility processing, and award packaging. Integration scenarios include third-party financial aid management systems, student portal integrations, and institutional reporting requirements. The API enables institutions to manage the display and availability of aid periods and terms for web-based self-service applications.</p>
+
+  <p class="p">For complete API specifications and supported operations, see the <span class="keyword apiname">aid-year-period-term</span> API in the <a class="xref ft-external-link" href="https://resources.elluciancloud.com/p/api_catalog" target="_blank" rel="noopener">Banner API Catalog</a>.</p>
+
+    </div>
+
+<div class="section"><h2 class="title sectiontitle">Enhanced applicant-disbursement-details API</h2>
+  
+  <p class="p">The <span class="keyword apiname">applicant-disbursement-details</span> API has been enhanced to support POST operations, enabling integration partners to create new disbursement records in the KVRDISB table. This enhancement expands the API beyond its original read-only functionality to support full disbursement record creation workflows.</p>
+
+  <p class="p">The POST endpoint enables institutions and integration partners to programmatically create applicant disbursement records for financial aid management. This capability supports integration scenarios including third-party financial aid management systems, automated disbursement scheduling processes, and external payment processing workflows. The enhancement maintains data integrity through validation of required fields and business rules while enabling efficient bulk disbursement record creation.</p>
+
+  <p class="p">For complete API specifications, POST request schemas, and validation requirements, see the <span class="keyword apiname">applicant-disbursement-details</span> API in the <a class="xref ft-external-link" href="https://resources.elluciancloud.com/p/api_catalog" target="_blank" rel="noopener">Banner API Catalog</a>.</p>
+
+  <p class="p">This enhancement addresses PE0008145 in the <span class="keyword">Ellucian Customer Center</span>.</p>
+
+</div>
+
+    <div class="section"><h2 class="title sectiontitle">Admission-to-Enrollment account support</h2>
+      
+      <p class="p">This release introduces database and process-level improvements to strengthen Online Enrollment functionality. Key updates include the creation of new database objects, the implementation of sequences for key generation, and several DML adjustments to ensure smooth operational performance. </p>
+
+      <p class="p">Additionally, defects in the Java processes TVEPROL and TVPRSAC have been resolved, enhancing execution stability, validation accuracy, and overall system reliability.</p>
+
+      <p class="p">This enhancement addresses PE0007950 in the <span class="keyword">Ellucian Customer Center</span>.</p>
+
+    </div>
+
+    <div class="section"><h2 class="title sectiontitle">Grails 7 Migration: Date-Time JSON Response Format Change</h2>
+      
+      <p class="p">As part of the Student API App migration to Grails 7, the JSON rendering behavior for date/time fields has changed. This affects GET API responses that return date-time values, such as <span class="keyword apiname">expectedGradDate</span> property in one of the API.</p>
+
+      <p class="p">In Grails 7, <code class="ph codeph">java.util.Date</code>-style values are rendered in ISO-8601 format with a <code class="ph codeph">Z</code> suffix and include millisecond precision. The Grails 7 upgrade guide documents that <code class="ph codeph">java.util.Date</code> values now render with milliseconds, for example changing from <samp class="ph msgph">2025-10-07T21:14:31Z</samp> to <samp class="ph msgph">2025-10-07T21:14:31.407Z</samp>. The guide also notes that <code class="ph codeph">Date</code> and <code class="ph codeph">Calendar</code> values use millisecond precision with three decimal places, and that temporal values with timezone information render with the <code class="ph codeph">Z</code> suffix for UTC.</p>
+
+      <p class="p"><span class="ph uicontrol">Impacted API Behavior</span></p>
+
+      <p class="p">In the Student API App, when a date-time field is assigned using <code class="ph codeph">Timestamp</code>, the GET response now includes milliseconds in the serialized JSON output.</p>
+
+      <p class="p">Code Example:</p>
+
+      <pre class="pre codeblock"><code>entity.studentObject.expectedGradDate =
+        new Timestamp(entity.studentObject.expectedGradDate.getTime())</code></pre>
+      <p class="p">Previous Response Format:</p>
+
+      <pre class="pre codeblock"><code>{
+  "expectedGradDate": "2026-09-30T04:00:00Z"
+}</code></pre>
+      <p class="p">Grails 7 Response Format:</p>
+
+      <pre class="pre codeblock"><code>{
+  "expectedGradDate": "2026-09-30T04:00:00.000Z"
+}</code></pre>
+      <p class="p">The <code class="ph codeph">.000</code> portion represents milliseconds. In this example, the millisecond value is zero, so Grails renders it as <code class="ph codeph">.000</code>.</p>
+
+      <p class="p">This enhancement addresses PE0008352 in the <span class="keyword">Ellucian Customer Center</span>.</p>
+
+    </div>
+
+    <div class="section"><h2 class="title sectiontitle">Supporting documentation</h2>
+      
+      <p class="p">To download supporting documentation for this release, click <span class="ph uicontrol">Attachments</span> <img class="image ell-icon" src="images/03-ethos-api-9-42-1.png" alt="" data-ft-asset-display-name="paperclip.png" data-ft-resource-id="U1hxGZ~0RYMIz4qOJhMPjg-uxRb0CDn~o_sqaDxyinjBg"> on this page and then select the associated compressed (<span class="ph filepath">.zip</span>) file.</p>
+
+    </div>
+
+    <div class="section"><h2 class="title sectiontitle">Additional supporting information</h2>
+      
+      <div class="p">The following resources provide information about all of the supported <span class="keyword">Banner Ethos APIs</span>:<ul class="ul">
+        <li class="li"><span class="xref ft-internal-xlink" data-ft-warning="excluded-from-rendering" data-clusterid="id_ethos/beapi_release/c_eedm_support_info">Ellucian Ethos support information</span> attachment provides a complete list of all Ethos APIs, the operations supported by each (create, read, update, delete), and the versions of the <span class="keyword">Ellucian Ethos Data Model</span> supported by each API.</li>
+
+        <li class="li">The <a class="xref ft-external-link" href="https://resources.elluciancloud.com/bundle/dev_res_ref_api_catalog/page/c_about_api_catalog.html" target="_blank" rel="noopener">API Catalog</a> provides information about the APIs that are implemented for each version and product. To filter the data-model-based APIs in the documentation, filter the APIs using the API Type in the <span class="ph uicontrol">API Catalog</span>.</li>
+
+        <li class="li"><a class="xref ft-external-link" href="https://resources.elluciancloud.com/search?labelkey=category-api&amp;rpp=50&amp;sort.field=title&amp;sort.value=asc" target="_blank" rel="noopener">API documentation page</a> provides a list of all <span class="keyword">Banner Ethos APIs</span> supported by <span class="keyword">Banner</span> and information on the pagination parameters, filters, and named queries supported by the APIs.</li>
+
+        <li class="li"><span class="xref ft-internal-xlink" data-ft-warning="excluded-from-rendering" data-clusterid="id_ethos/beapi_release/c_bnr_da_config">Configure Banner for file bulk loads</span> provides instructions to set up <span class="keyword">Banner</span> to run bulk jobs and to configure the communication with <span class="keyword">Ellucian Ethos Data Access</span> through <span class="ph">Ethos Integration</span>.</li>
+
+        <li class="li">For <span class="ph">Banner Ethos API</span> troubleshooting information, file bulk load troubleshooting, and additional API setup information, see <a class="xref ft-external-link" href="https://elluciansupport.service-now.com/customer_center?id=kb_article_view&amp;sys_kb_id=3658308b87d381102f5a0dc4dabb3587" target="_blank" rel="noopener">Banner Ethos API - Additional Resources and Troubleshooting</a> (<cite class="cite">Article 000047659</cite>) in the <span class="ph">Ellucian Customer Center</span>.</li>
+
+        <li class="li">For a comprehensive understanding of GUIDs and for information on the GUID generation process, see <span class="xref ft-internal-xlink" data-ft-warning="excluded-from-rendering" data-clusterid="id_ethos/beapi_release/c_generate_banner_guids">Generate Banner GUIDs</span> on the <span class="keyword">Ellucian Documentation site</span> and <cite class="cite">Article Number 000043988 - Understanding Ethos GUIDs in Banner Releases</cite> in the <span class="keyword">Ellucian Customer Center</span>.</li>
+
+        </ul>
+</div>
+
+    </div>
+
+  </div>
+
+</div></div></section></main></body></html>

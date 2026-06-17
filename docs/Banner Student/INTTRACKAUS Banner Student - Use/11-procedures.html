@@ -1,0 +1,721 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>INTTRACKAUS Banner Student - Use — Procedures</title><style>body{font-family:-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;line-height:1.55;color:#1a1a1a;max-width:920px;margin:0 auto;padding:24px}header{border-bottom:2px solid #5a16d6;margin-bottom:8px}h1{color:#3a0ca3}h2,h3,h4,h5,h6{margin-top:1.6em}.crumb{color:#666;font-size:13px;margin:0}.meta{color:#888;font-size:12px}nav.toc{background:#f6f4fc;border:1px solid #e3dcf5;border-radius:8px;padding:12px 18px;margin:18px 0}nav.toc h2{margin:.2em 0}nav.toc ul{list-style:none;padding-left:0}nav.toc a{text-decoration:none;color:#5a16d6}section{margin:1.2em 0;padding-top:.4em}img{max-width:100%;height:auto}table{border-collapse:collapse}td,th{border:1px solid #ccc;padding:4px 8px}code,pre{background:#f4f4f4;border-radius:4px}pre{padding:10px;overflow:auto}</style></head><body><header><p class="crumb">Banner Student › INTTRACKAUS Banner Student - Use</p><h1>INTTRACKAUS Banner Student - Use — Procedures</h1><p class="meta">Source: <a href="https://resources.elluciancloud.com/r/bundle/banner_student_acn_use_inttrackaus">https://resources.elluciancloud.com/r/bundle/banner_student_acn_use_inttrackaus</a> &middot; Retrieved 2026-06-17</p></header><nav class="toc"><h2>Contents</h2><ul><li style="margin-left:0px"><a href="#t-350">Procedures</a></li><li style="margin-left:16px"><a href="#t-360">Define reporting data elements</a></li><li style="margin-left:16px"><a href="#t-370">Define system parameters</a></li><li style="margin-left:16px"><a href="#t-380">Copy system parameters to another year</a></li><li style="margin-left:16px"><a href="#t-390">Build CRICOS course data</a></li><li style="margin-left:16px"><a href="#t-400">Process INTTRACKAUS data</a></li><li style="margin-left:32px"><a href="#t-410">SC_INTERNATIONAL_TRACKING</a></li><li style="margin-left:32px"><a href="#t-420">SC_INTTRACK_ATTENDANCE</a></li><li style="margin-left:16px"><a href="#t-430">Process CRICOS reports</a></li><li style="margin-left:32px"><a href="#t-440">ASC_CRICOS_REPORTING</a></li><li style="margin-left:16px"><a href="#t-450">Create CSV reports</a></li><li style="margin-left:16px"><a href="#t-460">Export CLOB column as CSV file</a></li><li style="margin-left:16px"><a href="#t-470">View CSV file in Excel</a></li><li style="margin-left:16px"><a href="#t-480">View INTTRACKAUS data</a></li></ul></nav><main><section id="t-350"><h2>Procedures</h2><div class="content-locale-en-US content-locale-en"><div id="c_procedures"><p class="shortdesc">This chapter explains following procedures.</p>
+
+</div></div></section>
+<section id="t-360"><h3>Define reporting data elements</h3><div class="content-locale-en-US content-locale-en"><div id="t_define_reporting_data_elements"><div class="body taskbody"><p class="shortdesc">This procedure is needed only for Australian CRICOS reporting.</p>
+
+    <div class="section context"><div class="tasklabel"><h2 class="sectiontitle tasklabel">About this task</h2></div>
+      <p class="p">To map <span class="keyword">Banner</span> data to reporting data elements, you must create activities in the MDUU. Before you can create these activities, you need to define the elements and their valid values as described in the following procedure. Element codes have been delivered for reporting elements that do not have a logical baseline <span class="keyword">Banner</span> location and are required for CRICOS reporting.</p>
+
+    </div>
+
+    <div class="tasklabel"><h2 class="sectiontitle tasklabel">Procedure</h2></div><ol class="ol steps"><li class="li step stepexpand">
+        <span class="ph cmd">Access the <span class="keyword wintitle">Report Element Validation (SKVRVAL)</span> page.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Define each element to be mapped.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Save your changes.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Access the <span class="keyword wintitle">Report Element Values (SKARVAL)</span> page.</span>
+      </li>
+<li class="li step stepexpand" id="t_define_reporting_data_elements__t_define_reporting_data_elements-step1">
+        <span class="ph cmd">Define the valid values for an element as follows.</span>
+        <div class="itemgroup info">
+          <div class="note"><span class="notetitle">Note:</span> You must define a separate record for each valid value for an element. For example, if an element has six valid values, you must define six records, one for each value.</div>
+
+        </div>
+        <ol type="a" class="ol substeps">
+          <li class="li substep" id="t_define_reporting_data_elements__t_define_reporting_data_elements-substep1">
+            <span class="ph cmd">Create a new record.</span>
+          </li>
+
+          <li class="li substep">
+            <span class="ph cmd">Enter the element name, as defined on SKVRVAL, in the <span class="ph uicontrol">Element Code</span> field.</span>
+          </li>
+
+          <li class="li substep">
+            <span class="ph cmd">Enter a valid value for the element in the <span class="ph uicontrol">Element Value</span> field.</span>
+          </li>
+
+          <li class="li substep">
+            <span class="ph cmd">Enter the text description associated with the value in the <span class="ph uicontrol">Description</span> field.</span>
+          </li>
+
+          <li class="li substep">
+            <span class="ph cmd">Select the <span class="ph uicontrol">Active</span> check box.</span>
+          </li>
+
+          <li class="li substep">
+            <span class="ph cmd">If the valid value is to be in use only for a limited time, enter the last date on which the value is to be used in the <span class="ph uicontrol">End Date</span> field.</span>
+          </li>
+
+          <li class="li substep">
+            <span class="ph cmd">Save your changes.</span>
+          </li>
+
+          <li class="li substep">
+            <span class="ph cmd">Repeat step <span class="xref ft-internal-link" data-ft-warning="excluded-from-rendering" data-mapid="0uAN2FEW4hRmSdL5GfxcsA" data-tocid="dOtfb~K3ZoIUJXohR~K6og" data-section="t_define_reporting_data_elements__t_define_reporting_data_elements-step1">5</span> for each valid value.</span>
+          </li>
+
+        </ol>
+
+      </li>
+</ol>
+
+  </div>
+
+</div></div></section>
+<section id="t-370"><h3>Define system parameters</h3><div class="content-locale-en-US content-locale-en"><div id="t_define_system_parameters"><div class="body taskbody"><p class="shortdesc">There are several reporting elements where the selection of the correct data depends on specific <span class="keyword">Banner</span> codes.</p>
+
+    <div class="section context"><div class="tasklabel"><h2 class="sectiontitle tasklabel">About this task</h2></div>
+      <p class="p">For example, to identify whether a student received a charge for their OSHC, you must query the accounts receivable tables for charges with an OSHC detail code. If you have defined OSHC as the detail code, you would assign it as the value for the OSHC system parameter. A student who has no charges with an OSHC detail code will not be included in the OSHC snapshot.</p>
+
+      <p class="p">To support interconnectivity between baseline codes and INTTRACK reporting elements, a predefined set of system parameters is delivered with INTTRACK Reporting, and you must configure these parameters for use. You can modify the delivered parameters to meet your needs, or you can create new ones. Those that are required by the system are noted as such in the <cite class="cite">System Parameters</cite> section.</p>
+
+      <p class="p">Only users with appropriate permissions can define or modify system parameters.</p>
+
+    </div>
+
+    <div class="tasklabel"><h2 class="sectiontitle tasklabel">Procedure</h2></div><ol class="ol steps"><li class="li step stepexpand">
+        <span class="ph cmd">Access the <span class="keyword wintitle">Report System Parameters (SKARSYS)</span> page.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Enter the academic year code in the <span class="ph uicontrol">Academic Year</span> field, then go to the next block.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Enter the parameter for which you want to enter valid values in the <span class="ph uicontrol">Parameter</span> field.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Enter the valid value(s) for the parameter in the <span class="ph uicontrol">Value</span> field.</span>
+        <div class="itemgroup info">You can enter multiple values for each parameter, separated by a comma, up to 2,000 characters.</div>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">If desired, enter information in the <span class="ph uicontrol">Description</span> and <span class="ph uicontrol">Notes</span> fields.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Save your changes.</span>
+      </li>
+</ol>
+
+  </div>
+
+<div class="related-links">
+<div class="linklist relinfo relconcepts" xml:lang="en-US" lang="en-US"><strong>Related concepts</strong><br>
+<ul class="linklist">
+<li class="linklist"><span class="link ft-internal-link" title="This section discusses the system parameters delivered for the INTTRACKAUS 8.2 release." data-ft-warning="excluded-from-rendering" data-mapid="0uAN2FEW4hRmSdL5GfxcsA" data-tocid="_X4rEQBk0yGTyx4wqGf4MQ">System Parameters</span></li></ul></div>
+
+<div class="linklist relinfo reltasks" xml:lang="en-US" lang="en-US"><strong>Related tasks</strong><br>
+<ul class="linklist">
+<li class="linklist"><span class="link ft-internal-link" title="System parameters are associated with an academic year. You can copy one year's parameter definitions to another, then modify the new definition as desired." data-ft-warning="excluded-from-rendering" data-mapid="0uAN2FEW4hRmSdL5GfxcsA" data-tocid="RYQbvdnBFk5S8gERTOoEFQ">Copy system parameters to another year</span></li></ul></div>
+</div></div></div></section>
+<section id="t-380"><h3>Copy system parameters to another year</h3><div class="content-locale-en-US content-locale-en"><div id="t_copy_system_parameters_another_year"><div class="body taskbody"><p class="shortdesc">System parameters are associated with an academic year. You can copy one year's parameter definitions to another, then modify the new definition as desired.</p>
+
+    <div class="section context"><div class="tasklabel"><h2 class="sectiontitle tasklabel">About this task</h2></div>
+      <p class="p">When you copy system parameter rules from one year to another, all rules are copied. System parameter rules cannot be deleted if the system required indicator is selected, but the parameter value can be updated to null. System parameter rules can be deleted after being copied to the new academic year if the system required indicator is not selected. You can copy rules forwards or backwards in time; the only restriction is that you cannot copy system parameter rules to an academic year that already has system parameter rules.</p>
+
+      <p class="p">If you attempt to copy parameters to a year for which at least one parameter has already been defined, the system does not perform the copy and displays an error message.</p>
+
+    </div>
+
+    <div class="tasklabel"><h2 class="sectiontitle tasklabel">Procedure</h2></div><ol class="ol steps"><li class="li step">
+        <span class="ph cmd">Access the <span class="keyword wintitle">Report System Parameters (SKARSYS)</span> page.</span>
+      </li>
+<li class="li step">
+        <span class="ph cmd">Select the <span class="ph uicontrol">Copy Rules to New Year</span> button.</span>
+      </li>
+<li class="li step">
+        <span class="ph cmd">Enter the code of the academic year to be copied in the <span class="ph uicontrol">From Year</span> field of the <span class="keyword wintitle">Copy Rules</span> window.</span>
+      </li>
+<li class="li step">
+        <span class="ph cmd">Enter the code of the academic year to which the definitions are to be copied in the <span class="ph uicontrol">To Year</span> field.</span>
+      </li>
+<li class="li step">
+        <span class="ph cmd">Select the <span class="ph uicontrol">Process Rule Copy</span> button.</span>
+      </li>
+<li class="li step">
+        <span class="ph cmd">If desired, modify the parameter definitions as explained in the <cite class="cite">Define system parameters</cite> section.</span>
+      </li>
+</ol>
+
+  </div>
+
+<div class="related-links">
+<div class="linklist relinfo reltasks" xml:lang="en-US" lang="en-US"><strong>Related tasks</strong><br>
+<ul class="linklist">
+<li class="linklist"><span class="link ft-internal-link" title="There are several reporting elements where the selection of the correct data depends on specific Banner codes." data-ft-warning="excluded-from-rendering" data-mapid="0uAN2FEW4hRmSdL5GfxcsA" data-tocid="oqGSTAkrQjfjr_wOlQJ1LQ">Define system parameters</span></li></ul></div>
+</div></div></div></section>
+<section id="t-390"><h3>Build CRICOS course data</h3><div class="content-locale-en-US content-locale-en"><div id="t_build_cricos_course_data"><div class="body taskbody"><p class="shortdesc">This procedure is needed only for Australian CRICOS reporting.</p>
+
+    <div class="section context"><div class="tasklabel"><h2 class="sectiontitle tasklabel">About this task</h2></div>
+      <p class="p">The following procedure explains how to build data for capture by the snapshot activity (ASC_SNA_CRICOS_COURSE) for each file when the CRICOS Course Data Reporting file is created.</p>
+
+    </div>
+
+    <div class="tasklabel"><h2 class="sectiontitle tasklabel">Procedure</h2></div><ol class="ol steps"><li class="li step stepexpand">
+        <span class="ph cmd">Access the <span class="keyword wintitle">CRICOS Course Data (SKACRIC)</span> page.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Enter the institution ID in the <span class="ph uicontrol">ID</span> field of the key block.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Enter a program code in the <span class="ph uicontrol">Program</span> field, or click <span class="ph uicontrol">Search</span> to select a program.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Enter the term code in the <span class="ph uicontrol">Term</span> field.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Select Next Block.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Enter the course definition details in the <span class="keyword wintitle">CRICOS Course Definition</span> window.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Save the record.</span>
+        <div class="itemgroup info">
+          <p class="p">Refer to the <cite class="cite"><span class="keyword">INTTRACKAUS</span> Reference</cite> for more information on field descriptions.</p>
+
+        </div>
+      </li>
+</ol>
+
+  </div>
+
+</div></div></section>
+<section id="t-400"><h3>Process INTTRACKAUS data</h3><div class="content-locale-en-US content-locale-en"><div id="c_process_inttrackaus_data"><div class="body conbody"><p class="shortdesc">Use this procedure to produce data for users to manage compliance reporting.</p>
+
+    <p class="p">The SC_INTERNATIONAL_TRACKING process is used to produce INTTRACK data. This process contains snapshot, extract, and export activities.</p>
+
+    <p class="p">The SC_INTTRACK_ATTENDANCE process is used to produce INTTRACK attendance data. This process contains snapshot, extract, and export activities.</p>
+
+    <p class="p">You can control the execution of each process to run specific activities or tasks separately, or to run all tasks and activities together. However, we advise you to run each task separately, evaluating the data each time. This results in better processing times and allows you to do any data cleaning before the final data is used in any reporting.</p>
+
+    <p class="p">Refer to the <cite class="cite"><span class="keyword">Banner</span> Mass Data Update Utility Use</cite> for more information about the pages.</p>
+
+  </div>
+
+<div class="related-links">
+<div class="linklist relinfo reltasks" xml:lang="en-US" lang="en-US"><strong>Related tasks</strong><br>
+<ul class="linklist">
+<li class="linklist"><span class="link ft-internal-link" title="Use this process to produce INTTRACK data. This process contains snapshot, extract, and export activities." data-ft-warning="excluded-from-rendering" data-mapid="0uAN2FEW4hRmSdL5GfxcsA" data-tocid="Cbsd74MCuGZWPmrNhKi_WA">SC_INTERNATIONAL_TRACKING</span></li>
+<li class="linklist"><span class="link ft-internal-link" title="Use this process to produce INTTRACK attendance data. This process contains snapshot, extract, and export activities." data-ft-warning="excluded-from-rendering" data-mapid="0uAN2FEW4hRmSdL5GfxcsA" data-tocid="v3NVPRmsX4pWPttVQuEg~w">SC_INTTRACK_ATTENDANCE</span></li></ul></div>
+</div></div></div></section>
+<section id="t-410"><h4>SC_INTERNATIONAL_TRACKING</h4><div class="content-locale-en-US content-locale-en"><div id="t_sc_international_tracking"><div class="body taskbody"><p class="shortdesc">Use this process to produce INTTRACK data. This process contains snapshot, extract, and export activities.</p>
+
+    <div class="tasklabel"><h2 class="sectiontitle tasklabel">Procedure</h2></div><ol class="ol steps"><li class="li step stepexpand">
+        <span class="ph cmd">Access the <span class="keyword wintitle">Execution Tree Set-up (GKAPEXS)</span> page.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Enter <kbd class="ph userinput">SC_INTERNATIONAL_TRACKING</kbd> in the <span class="ph uicontrol">Process Code</span> field.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Select Next Block.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Customise the execution tree to meet your local requirements, for example, by changing the status of tree nodes using the <span class="ph uicontrol">Change Status</span> button.</span>
+        <div class="itemgroup info">
+          <p class="p">If desired, you can customise the activities and add these to the execution tree, or you can create your own execution tree. If you customise the activities, you need to create local copies of the baseline activities first.</p>
+
+        </div>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Access the <span class="keyword wintitle">Process Tree Execution (GKAPEXE)</span> page.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Enter <kbd class="ph userinput">SC_INTERNATIONAL_TRACKING</kbd> in the <span class="ph uicontrol">Process Code</span> field.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Select Next Block.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Select the required stages on the <span class="keyword wintitle">Execution Tree Set-up</span> window.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Go to the <span class="keyword wintitle">Execution</span> window.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Enter the appropriate run-time parameters, as shown in the following table.</span>
+        <div class="itemgroup info">
+          
+<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" id="t_sc_international_tracking__t_sc_international_tracking-utbl1" class="table" frame="hsides" border="1" rules="rows"><colgroup><col><col></colgroup><thead class="thead" style="text-align:left;vertical-align:bottom;">
+                <tr class="row">
+                  <th class="entry row-nocellborder" style="text-align:left;vertical-align:bottom;" id="d3492e139">Parameter name</th>
+
+                  <th class="entry row-nocellborder" style="text-align:left;vertical-align:bottom;" id="d3492e142">Description</th>
+
+                </tr>
+
+              </thead>
+<tbody class="tbody">
+                <tr class="row">
+                  <td class="entry row-nocellborder" colspan="2" style="text-align:left;vertical-align:top;" headers="d3492e139 d3492e142 ">Activities for Overseas Student Health Cover data (SC_SNA_OSHC, SC_EXT_OSHC and SC_EXP_OSHC)</td>
+
+                </tr>
+
+                <tr class="row">
+                  <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d3492e139 ">Academic Year</td>
+
+                  <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d3492e142 ">The academic year for terms that should be included in the report.</td>
+
+                </tr>
+
+                <tr class="row">
+                  <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d3492e139 ">Purge Before Populate</td>
+
+                  <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d3492e142 ">If set to Y, target tables rows for the academic year, report period and submission combination will be purged before being re-populated.</td>
+
+                </tr>
+
+                <tr class="row">
+                  <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d3492e139 ">Report Period</td>
+
+                  <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d3492e142 ">The report period that has been linked terms that should be included in the report, on the Reporting Calendar (SKAREPT) page.</td>
+
+                </tr>
+
+                <tr class="row">
+                  <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d3492e139 ">Submission Number</td>
+
+                  <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d3492e142 ">The submission number that has been linked terms that should be included in the report, on the Reporting Calendar (SKAREPT) page.<p class="p">If Reporting Calendar rules have been built without using Submission, then leave this blank and it will default to <code class="ph codeph">0</code>.</p>
+</td>
+
+                </tr>
+
+                <tr class="row">
+                  <td class="entry row-nocellborder" colspan="2" style="text-align:left;vertical-align:top;" headers="d3492e139 d3492e142 ">All other activities in this process tree</td>
+
+                </tr>
+
+                <tr class="row">
+                  <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d3492e139 ">Academic Year</td>
+
+                  <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d3492e142 ">The academic year for terms that should be included in the report.</td>
+
+                </tr>
+
+                <tr class="row">
+                  <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d3492e139 ">Date since activity last run</td>
+
+                  <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d3492e142 ">Enter a date as DD-MON-YYYY to pick up records that have met the selection criteria for an activity from the last time the activity was run.</td>
+
+                </tr>
+
+                <tr class="row">
+                  <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d3492e139 ">Purge Before Populate</td>
+
+                  <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d3492e142 ">If set to Y, target tables rows for the academic year, report period and submission combination, that also match the value entered for 'Date since activity last run' will be purged before being re-populated.</td>
+
+                </tr>
+
+                <tr class="row">
+                  <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d3492e139 ">Report Period</td>
+
+                  <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d3492e142 ">The report period that has been linked terms that should be included in the report, on the Reporting Calendar (SKAREPT) page.</td>
+
+                </tr>
+
+                <tr class="row">
+                  <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d3492e139 ">Submission Number</td>
+
+                  <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d3492e142 ">The submission number that has been linked terms that should be included in the report, on the Reporting Calendar (SKAREPT) page.<p class="p">If Reporting Calendar rules have been built without using Submission, then leave this blank and it will default to <code class="ph codeph">0</code>.</p>
+</td>
+
+                </tr>
+
+              </tbody>
+</table>
+</div>
+
+        </div>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Change the value in the <span class="ph uicontrol">Execution Mode</span> field to <kbd class="ph userinput">Update</kbd>.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Select either the <span class="ph uicontrol">Run for Jobsub</span> or <span class="ph uicontrol">Run Now</span> button, as desired, to execute the process.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Review the results by selecting the View SQL log.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Access the <span class="keyword wintitle">Universal Viewer (GKAPUNV)</span> page to review the data generated by the process.</span>
+      </li>
+</ol>
+
+  </div>
+
+<div class="related-links">
+<div class="linklist relinfo relconcepts" xml:lang="en-US" lang="en-US"><strong>Related concepts</strong><br>
+<ul class="linklist">
+<li class="linklist"><span class="link ft-internal-link" title="Use this procedure to produce data for users to manage compliance reporting." data-ft-warning="excluded-from-rendering" data-mapid="0uAN2FEW4hRmSdL5GfxcsA" data-tocid="E4y2DB5BevjAtKNqtGagoA">Process INTTRACKAUS data</span></li></ul></div>
+</div></div></div></section>
+<section id="t-420"><h4>SC_INTTRACK_ATTENDANCE</h4><div class="content-locale-en-US content-locale-en"><div id="t_sc_inttrack_attendance"><div class="body taskbody"><p class="shortdesc">Use this process to produce INTTRACK attendance data. This process contains snapshot, extract, and export activities.</p>
+
+    <div class="tasklabel"><h2 class="sectiontitle tasklabel">Procedure</h2></div><ol class="ol steps"><li class="li step stepexpand">
+        <span class="ph cmd">Access the <span class="keyword wintitle">Execution Tree Set-up (GKAPEXS)</span> page.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Enter <kbd class="ph userinput">SC_INTTRACK_ATTENDANCE</kbd> in the <span class="ph uicontrol">Process Code</span> field.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Select Next Block.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Customise the execution tree to meet your local requirements, for example, by changing the status of tree nodes using the <span class="ph uicontrol">Change Status</span> button.</span>
+        <div class="itemgroup info">
+          <p class="p">If desired, you can customise the activities and add these to the execution tree, or you can create your own execution tree. If you customise the activities, you need to create local copies of the baseline activities first.</p>
+
+        </div>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Access the <span class="keyword wintitle">Process Tree Execution (GKAPEXE)</span> page.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Enter <kbd class="ph userinput">SC_INTTRACK_ATTENDANCE</kbd> in the <span class="ph uicontrol">Process Code</span> field.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Select Next Block.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Select the required stages on the <span class="keyword wintitle">Execution Tree Set-up</span> window.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Go to the <span class="keyword wintitle">Execution</span> window.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Enter the appropriate run-time parameters, as shown in the following table.</span>
+        <div class="itemgroup info">
+          
+<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" id="t_sc_inttrack_attendance__t_sc_inttrack_attendance-utbl1" class="table" frame="hsides" border="1" rules="rows"><colgroup><col><col></colgroup><thead class="thead" style="text-align:left;vertical-align:bottom;">
+                <tr class="row">
+                  <th class="entry row-nocellborder" style="text-align:left;vertical-align:bottom;" id="d2374e139">Parameter name</th>
+
+                  <th class="entry row-nocellborder" style="text-align:left;vertical-align:bottom;" id="d2374e142">Description</th>
+
+                </tr>
+
+              </thead>
+<tbody class="tbody">
+                <tr class="row">
+                  <td class="entry row-nocellborder" colspan="2" style="text-align:left;vertical-align:top;" headers="d2374e139 d2374e142 ">Snapshot activities (SC_SNA_PROGRAM_ATTEND, SC_SNA_ESOS_ATTEND)</td>
+
+                </tr>
+
+                <tr class="row">
+                  <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d2374e139 ">Absence</td>
+
+                  <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d2374e142 ">Students are included in the snapshot if their absence hours are greater than or equal to the value entered for the Absence parameter at run time. Absence parameter values must be entered as decimals, for example, .15 for 15% or .2, or .20 for 20%.</td>
+
+                </tr>
+
+                <tr class="row">
+                  <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d2374e139 ">Academic Year</td>
+
+                  <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d2374e142 ">The academic year for terms that should be included in the report.</td>
+
+                </tr>
+
+                <tr class="row">
+                  <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d2374e139 ">Date since activity last run</td>
+
+                  <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d2374e142 ">Enter a date as DD-MON-YYYY to pick up records that have met the selection criteria for an activity from the last time the activity was run.</td>
+
+                </tr>
+
+                <tr class="row">
+                  <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d2374e139 ">Purge Before Populate</td>
+
+                  <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d2374e142 ">If set to <code class="ph codeph">Y</code>, target tables rows for the academic year, report period and submission combination, that also match the value entered for 'Date since activity last run' will be purged before being re-populated.</td>
+
+                </tr>
+
+                <tr class="row">
+                  <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d2374e139 ">Report Period</td>
+
+                  <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d2374e142 ">The report period that has been linked terms that should be included in the report, on the Reporting Calendar (SKAREPT) page.</td>
+
+                </tr>
+
+                <tr class="row">
+                  <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d2374e139 ">Submission Number</td>
+
+                  <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d2374e142 ">The submission number that has been linked terms that should be included in the report, on the Reporting Calendar (SKAREPT) page.<p class="p">If Reporting Calendar rules have been built without using Submission, then leave this blank and it will default to <code class="ph codeph">0</code>.</p>
+</td>
+
+                </tr>
+
+                <tr class="row">
+                  <td class="entry row-nocellborder" colspan="2" style="text-align:left;vertical-align:top;" headers="d2374e139 d2374e142 ">All other activities in this process tree</td>
+
+                </tr>
+
+                <tr class="row">
+                  <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d2374e139 ">Academic Year</td>
+
+                  <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d2374e142 ">The academic year for terms that should be included in the report.</td>
+
+                </tr>
+
+                <tr class="row">
+                  <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d2374e139 ">Date since activity last run</td>
+
+                  <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d2374e142 ">Enter a date as DD-MON-YYYY to pick up records that have met the selection criteria for an activity from the last time the activity was run.</td>
+
+                </tr>
+
+                <tr class="row">
+                  <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d2374e139 ">Purge Before Populate</td>
+
+                  <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d2374e142 ">If set to Y, target tables rows for the academic year, report period and submission combination, that also match the value entered for 'Date since activity last run' will be purged before being re-populated.</td>
+
+                </tr>
+
+                <tr class="row">
+                  <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d2374e139 ">Report Period</td>
+
+                  <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d2374e142 ">The report period that has been linked terms that should be included in the report, on the Reporting Calendar Form (SKAREPT).</td>
+
+                </tr>
+
+                <tr class="row">
+                  <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d2374e139 ">Submission Number</td>
+
+                  <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d2374e142 ">The submission number that has been linked terms that should be included in the report, on the Reporting Calendar (SKAREPT) page.<p class="p">If Reporting Calendar rules have been built without using Submission, then leave this blank and it will default to <code class="ph codeph">0</code>.</p>
+</td>
+
+                </tr>
+
+              </tbody>
+</table>
+</div>
+
+        </div>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Change the value in the <span class="ph uicontrol">Execution Mode</span> field to <kbd class="ph userinput">Update</kbd>.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Select either the <span class="ph uicontrol">Run for Jobsub</span> or <span class="ph uicontrol">Run Now</span> button, as desired, to execute the process.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Review the results by selecting the View SQL log.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Access the <span class="keyword wintitle">Universal Viewer (GKAPUNV)</span> page to review the data generated by the process.</span>
+      </li>
+</ol>
+
+  </div>
+
+<div class="related-links">
+<div class="linklist relinfo relconcepts" xml:lang="en-US" lang="en-US"><strong>Related concepts</strong><br>
+<ul class="linklist">
+<li class="linklist"><span class="link ft-internal-link" title="Use this procedure to produce data for users to manage compliance reporting." data-ft-warning="excluded-from-rendering" data-mapid="0uAN2FEW4hRmSdL5GfxcsA" data-tocid="E4y2DB5BevjAtKNqtGagoA">Process INTTRACKAUS data</span></li></ul></div>
+</div></div></div></section>
+<section id="t-430"><h3>Process CRICOS reports</h3><div class="content-locale-en-US content-locale-en"><div id="c_process_cricos_reports"><div class="body conbody"><p class="shortdesc">This procedure is needed only for Australian CRICOS reporting.</p>
+
+    <p class="p">The ASC_CRICOS_REPORTING process is used for CRICOS reporting. This process contains snapshot, extract, and export activities for files.</p>
+
+    <p class="p">You can control the execution of the process to run specific activities or tasks separately, or to run all tasks and activities together. However, we advise you to run each task separately, evaluating the data each time. This results in better processing times and allows you to do any data cleaning before the final files are ready for use in managing CRICOS compliance.</p>
+
+    <p class="p">Refer to the <cite class="cite"><span class="keyword">Banner</span> Mass Data Update Utility Use</cite> for more information about the pages.</p>
+
+  </div>
+
+<div class="related-links">
+<div class="linklist relinfo reltasks" xml:lang="en-US" lang="en-US"><strong>Related tasks</strong><br>
+<ul class="linklist">
+<li class="linklist"><span class="link ft-internal-link" title="Use this procedure to produce the files to use in CRICOS compliance." data-ft-warning="excluded-from-rendering" data-mapid="0uAN2FEW4hRmSdL5GfxcsA" data-tocid="sp2uF5x9uq2_mT6pZb4BPw">ASC_CRICOS_REPORTING</span></li></ul></div>
+</div></div></div></section>
+<section id="t-440"><h4>ASC_CRICOS_REPORTING</h4><div class="content-locale-en-US content-locale-en"><div id="t_asc_cricos_reporting"><div class="body taskbody"><p class="shortdesc">Use this procedure to produce the files to use in CRICOS compliance.</p>
+
+    <div class="tasklabel"><h2 class="sectiontitle tasklabel">Procedure</h2></div><ol class="ol steps"><li class="li step stepexpand">
+        <span class="ph cmd">Access the <span class="keyword wintitle">Execution Tree Set-up (GKAPEXS)</span> page.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Enter <kbd class="ph userinput">ASC_CRICOS_REPORTING</kbd> in the <span class="ph uicontrol">Process Code</span> field.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Select <span class="ph uicontrol">Next Block</span>.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Customise the execution tree to meet your local requirements, for example, by changing the status of tree nodes.</span>
+        <div class="itemgroup info">
+          <p class="p">If desired, you can customise the activities and add these to the execution tree, or you can create your own execution tree. If you customise the activities, you need to create local copies of the baseline activities first.</p>
+
+        </div>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Access the <span class="keyword wintitle">Process Tree Execution (GKAPEXE)</span> page.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Enter <kbd class="ph userinput">ASC_CRICOS_REPORTING</kbd> in the <span class="ph uicontrol">Process Code</span> field.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Select <span class="ph uicontrol">Next Block</span>.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Select the required stages on the <span class="keyword wintitle">Execution Tree Set-up</span> window.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Go to the <span class="keyword wintitle">Execution</span> window.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Enter the appropriate run-time parameters, as shown in the following table.</span>
+        <div class="itemgroup info">
+          
+<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" id="t_asc_cricos_reporting__t_asc_cricos_reporting-utbl1" class="table" frame="hsides" border="1" rules="rows"><colgroup><col><col></colgroup><thead class="thead" style="text-align:left;vertical-align:bottom;">
+                <tr class="row">
+                  <th class="entry row-nocellborder" style="text-align:left;vertical-align:bottom;" id="d5854e142">Parameter name</th>
+
+                  <th class="entry row-nocellborder" style="text-align:left;vertical-align:bottom;" id="d5854e145">Description</th>
+
+                </tr>
+
+              </thead>
+<tbody class="tbody">
+                <tr class="row">
+                  <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d5854e142 ">Academic Year</td>
+
+                  <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d5854e145 ">The academic year for system parameters on the Report System Parameters Form (SKARSYS) and mapping rules on the Report Element Mapping (SKARMAP) page.</td>
+
+                </tr>
+
+                <tr class="row">
+                  <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d5854e142 ">Effective Term</td>
+
+                  <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d5854e145 ">The effective term for records from the CRICOS Course Definition (SKACRIC) page.</td>
+
+                </tr>
+
+                <tr class="row">
+                  <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d5854e142 ">Purge Before Populate</td>
+
+                  <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d5854e145 ">If set to Y, target tables rows for the effective term will be purged before being re-populated.</td>
+
+                </tr>
+
+              </tbody>
+</table>
+</div>
+
+        </div>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Change the value in the <span class="ph uicontrol">Execution Mode</span> field to <kbd class="ph userinput">Update</kbd>.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Select either the <span class="ph uicontrol">Run for Jobsub</span> or <span class="ph uicontrol">Run Now</span> button, as desired, to execute the process.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Review the results by selecting the View SQL log.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Access the <span class="keyword wintitle">Universal Viewer (GKAPUNV)</span> page to review the data generated by the process.</span>
+      </li>
+</ol>
+
+  </div>
+
+<div class="related-links">
+<div class="linklist relinfo relconcepts" xml:lang="en-US" lang="en-US"><strong>Related concepts</strong><br>
+<ul class="linklist">
+<li class="linklist"><span class="link ft-internal-link" title="This procedure is needed only for Australian CRICOS reporting." data-ft-warning="excluded-from-rendering" data-mapid="0uAN2FEW4hRmSdL5GfxcsA" data-tocid="gRn_stejdQDEIAArCDQOWA">Process CRICOS reports</span></li></ul></div>
+</div></div></div></section>
+<section id="t-450"><h3>Create CSV reports</h3><div class="content-locale-en-US content-locale-en"><div id="c_create_csv_reports"><div class="body conbody"><p class="shortdesc">You can use the baseline data extract feature to create a data extract that can be used in MS Excel. The CLOB text can be converted to columns within MS Excel.</p>
+
+    <p class="p">Alternatively, you can use an ODBC connection to import data directly into MS Excel. For example, you might use this feature to import the contents of the OSHC Data Extract (SKREOSH) table or the OSHC Data Export (SKRXOSH) table directly into an excel workbook.</p>
+
+  </div>
+
+</div></div></section>
+<section id="t-460"><h3>Export CLOB column as CSV file</h3><div class="content-locale-en-US content-locale-en"><div id="t_export_clob_column_as_csv_file"><div class="body taskbody"><p class="shortdesc">Use the following procedure to export the CLOB column as a csv file.</p>
+
+    <div class="tasklabel"><h2 class="sectiontitle tasklabel">Procedure</h2></div><ol class="ol steps"><li class="li step stepexpand">
+        <span class="ph cmd">Access the <span class="keyword wintitle">Universal Viewer (GKAPUNV)</span> page.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Type the export table name (for example, <kbd class="ph userinput">SKRXESO</kbd>) or select the name of the export table containing the data you want to export.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Use the <span class="ph uicontrol">Filter Column</span> and <span class="ph uicontrol">Filter Value</span> fields to filter the data that you want to export (for example, you can filter for a particular academic year and report year combination).</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Select Next Block.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Navigate to the CLOB column.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Double-click to open the <span class="keyword wintitle">Export Data</span> window.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">In the <span class="ph uicontrol">Filter</span> field, type <kbd class="ph userinput">ORDER BY TABLENAME_SEQNO</kbd>, where <kbd class="ph userinput">TABLENAME</kbd> is the name of the export table containing the data you want to export, (for example <kbd class="ph userinput">ORDER BY SKRXESO_SEQNO</kbd>).</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">In the <span class="ph uicontrol">Directory</span> field, type or select the directory where the you want the exported file to be saved.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">In the <span class="ph uicontrol">File Name</span> field, type a name for the file being sure to use the .csv extension.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Click <span class="ph uicontrol">Export Column Data</span>.</span>
+        <div class="itemgroup info">
+          <p class="p">The file can be opened in Excel and will have a header row and the data will be correctly arranged in columns.</p>
+
+          <p class="p">If your data contains special characters, such as accents in student names then you will need to use the Data Import feature of Excel to ensure that Excel opens the file using the UTF-8 character set.</p>
+
+        </div>
+      </li>
+</ol>
+
+  </div>
+
+</div></div></section>
+<section id="t-470"><h3>View CSV file in Excel</h3><div class="content-locale-en-US content-locale-en"><div id="t_view_csv_file_excel"><div class="body taskbody"><p class="shortdesc">Assuming that you have Excel 2007, use the following steps to view the saved csv file data in Excel.</p>
+
+    <div class="tasklabel"><h2 class="sectiontitle tasklabel">Procedure</h2></div><ol class="ol steps"><li class="li step stepexpand">
+        <span class="ph cmd">Open Microsoft Excel application.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Click <span class="ph uicontrol">New</span> or press CTRL+N to create a new document or open an existing spreadsheet if you want to append rows to an existing file.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Click the <span class="ph uicontrol">Data</span> tab.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">In the <span class="ph uicontrol">External Data</span> group, click <span class="ph uicontrol">From Text</span>.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Locate and select your csv file.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Click <span class="ph uicontrol">Import</span>.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">As a first step in the <span class="ph uicontrol">Text Import</span> wizard, as a first step, set <span class="ph uicontrol">Original Data Type</span> to <kbd class="ph userinput">Delimited</kbd>.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Change the File origin to <kbd class="ph userinput">UTF-8</kbd>.</span>
+        <div class="itemgroup info">It might be listed as 65001: Unicode (UTF-8).</div>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Click <span class="ph uicontrol">Next</span>.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">As a second step in the <span class="ph uicontrol">Text Import</span> wizard, select <code class="ph codeph">,</code> (comma) as the delimiter.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Click <span class="ph uicontrol">Finish</span>.</span>
+        <div class="itemgroup info">In the <span class="ph uicontrol">Import Data</span> box, you can select to store the data into the existing sheet, and can nominate the cell for starting the import. For a new document, this is likely to be the first cell - $A$1. For adding rows to an existing document, select the first empty cell in your document.</div>
+      </li>
+</ol>
+
+  </div>
+
+</div></div></section>
+<section id="t-480"><h3>View INTTRACKAUS data</h3><div class="content-locale-en-US content-locale-en"><div id="c_view_inttrackaus_data"><p class="shortdesc">You can view the <span class="keyword">INTTRACKAUS</span> extract and snapshot data using a SQL tool such as SQL*Plus or a reporting tool like Oracle Discovery. The MDUU includes a Universal Viewer to allow this data to be viewed.</p>
+
+</div></div></section></main></body></html>

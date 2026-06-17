@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Ethos Identity - Install and Migrate — Migrate to Ellucian Ethos Identity 7.0.0</title><style>body{font-family:-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;line-height:1.55;color:#1a1a1a;max-width:920px;margin:0 auto;padding:24px}header{border-bottom:2px solid #5a16d6;margin-bottom:8px}h1{color:#3a0ca3}h2,h3,h4,h5,h6{margin-top:1.6em}.crumb{color:#666;font-size:13px;margin:0}.meta{color:#888;font-size:12px}nav.toc{background:#f6f4fc;border:1px solid #e3dcf5;border-radius:8px;padding:12px 18px;margin:18px 0}nav.toc h2{margin:.2em 0}nav.toc ul{list-style:none;padding-left:0}nav.toc a{text-decoration:none;color:#5a16d6}section{margin:1.2em 0;padding-top:.4em}img{max-width:100%;height:auto}table{border-collapse:collapse}td,th{border:1px solid #ccc;padding:4px 8px}code,pre{background:#f4f4f4;border-radius:4px}pre{padding:10px;overflow:auto}</style></head><body><header><p class="crumb">Ethos Identity › Ethos Identity - Install and Migrate</p><h1>Ethos Identity - Install and Migrate — Migrate to Ellucian Ethos Identity 7.0.0</h1><p class="meta">Source: <a href="https://resources.elluciancloud.com/r/bundle/ethos_identity_acn_installation">https://resources.elluciancloud.com/r/bundle/ethos_identity_acn_installation</a> &middot; Retrieved 2026-06-17</p></header><nav class="toc"><h2>Contents</h2><ul><li style="margin-left:0px"><a href="#t-440">Migrate to Ellucian Ethos Identity 7.0.0</a></li><li style="margin-left:16px"><a href="#t-450">Verify the administrator credentials</a></li><li style="margin-left:16px"><a href="#t-460">Migrate the instance</a></li><li style="margin-left:16px"><a href="#t-470">Migrate the database</a></li><li style="margin-left:16px"><a href="#t-480">Configure Office 365 service provider after migration</a></li></ul></nav><main><section id="t-440"><h2>Migrate to Ellucian Ethos Identity 7.0.0</h2><div class="content-locale-en-US content-locale-en"><div id="c_migrate_to_eeid510"><div class="body conbody"><p class="shortdesc">Migrate from <span class="keyword">Ellucian Ethos Identity</span> 5.10.10 or later to <span class="keyword">Ellucian Ethos Identity</span> 7.0.0. The migration preserves your existing settings and files.</p>
+
+    <div class="p">Migrating <span class="keyword">Ellucian Ethos Identity</span> Server from one version to another includes two steps:<ol class="ol"> <li class="li"><span class="ph">Ethos Identity</span> instance migration</li>
+ <li class="li"><span class="ph">Ethos Identity</span> database migration</li>
+ </ol>
+</div>
+
+    <p class="p">You must be on <span class="keyword">Ellucian Ethos Identity</span> 5.10.10 or later to migrate to <span class="keyword">Ellucian Ethos Identity</span> 7.0.0.</p>
+
+  </div>
+
+<div class="related-links">
+<div class="linklist relinfo relconcepts" xml:lang="en-US" lang="en-US"><strong>Related concepts</strong><br>
+<ul class="linklist">
+<li class="linklist"><span class="link ft-internal-link" title="You can manually complete the entire Ellucian Ethos Identity installation by downloading the Ellucian Ethos Identity installer from the Download Center or using SA Valet. You need to manually set up application-specific configurations." data-ft-warning="excluded-from-rendering" data-mapid="OI0ZAw9lJQuIpNlMtaSiIQ" data-tocid="TtG26uHT9Zam7ykjO6Mt9w">Install Ellucian Ethos Identity</span></li></ul></div>
+</div></div></div></section>
+<section id="t-450"><h3>Verify the administrator credentials</h3><div class="content-locale-en-US content-locale-en"><div id="t_adminuser_creds"><div class="body taskbody"><p class="shortdesc"><span class="keyword">Ellucian Ethos Identity</span> uses an administrative user during the migration process. Verify that the user has the required privileges to support the migration.</p>
+
+    <div class="tasklabel"><h2 class="sectiontitle tasklabel">Procedure</h2></div><ol class="ol steps"><li class="li step stepexpand">
+        <span class="ph cmd">In a text editor, open the <span class="ph filepath">user-mgt.xml</span> file located in the <span class="ph filepath"><var class="keyword varname">EIS_HOME</var>/repository/conf/</span> directory.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Locate the <span class="ph menucascade"><span class="ph uicontrol">UserManager</span><abbr title="and then"> &gt; </abbr><span class="ph uicontrol">Realm</span><abbr title="and then"> &gt; </abbr><span class="ph uicontrol">Configuration</span><abbr title="and then"> &gt; </abbr><span class="ph uicontrol">AdminUser</span></span> node.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Under that node, determine the credentials in the <code class="ph codeph">UserName</code> and <code class="ph codeph">Password</code> nodes.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Use those credentials to log in to the Management Console.</span>
+        <div class="itemgroup info">Verify that you can use these credentials to log in to the Management Console. If not, continue with step 5.</div>
+      </li>
+<li class="li step stepexpand" id="t_adminuser_creds__tjp_xkd_31b"><strong>Optional: </strong>
+        <span class="ph cmd">In the <span class="ph filepath">user-mgt.xml</span> file, change the entries in the <code class="ph codeph">UserName</code> and <code class="ph codeph">Password</code> nodes to contain the username and password of a user who can log in to the Management Console.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Save the changes to the <span class="ph filepath">user-mgt.xml</span> file.</span>
+      </li>
+</ol>
+
+  </div>
+
+</div></div></section>
+<section id="t-460"><h3>Migrate the instance</h3><div class="content-locale-en-US content-locale-en"><div id="t_migrate_eeid_instance"><div class="body taskbody"><p class="shortdesc">The <span class="keyword">Ellucian Ethos Identity</span> installer contains both <span class="keyword">WSO2 Identity Server</span> 7.0.0 and the <span class="keyword">Ellucian Ethos Identity</span> 7.0.0 extensions.</p>
+
+    <div class="section context"><div class="tasklabel"><h2 class="sectiontitle tasklabel">About this task</h2></div>As <span class="keyword">Ellucian Ethos Identity</span> 5.10.x is installed in a clustered environment, perform the following steps on each node.</div>
+
+    <div class="tasklabel"><h2 class="sectiontitle tasklabel">Procedure</h2></div><ol class="ol steps"><li class="li step stepexpand">
+        <span class="ph cmd">Stop <span class="keyword">Ellucian Ethos Identity</span> 5.10.x.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Perform the following steps before the migration:</span>
+        <ol type="a" class="ol substeps">
+          <li class="li substep substepexpand">
+            <span class="ph cmd">In the <span class="keyword">WSO2 Identity Server</span> 5.10.x, ensure that the registry versioning is turned off.</span>
+            <div class="itemgroup info">
+              <ol class="ol" type="i">
+                <li class="li">Open the <span class="ph filepath">registry.xml</span> file in the <span class="ph filepath">wso2is-5.10.0/repository/conf</span> directory.</li>
+
+                <li class="li">Ensure that the <code class="ph codeph">versioningProperties</code>, <code class="ph codeph">versioningComments</code>, <code class="ph codeph">versioningTags</code>, and <code class="ph codeph">versioningRatings</code> are set to <kbd class="ph userinput">false</kbd>.</li>
+
+              </ol>
+
+            </div>
+          </li>
+
+          <li class="li substep substepexpand">
+            <span class="ph cmd">Update the grant access to all the schemas as follows:</span>
+            <div class="itemgroup info">
+              <p class="p">REGISTRY_DB </p>
+
+              <pre class="pre codeblock"><code>grant create session,create sequence, create table, create trigger,connect,dba, imp_full_database to REGISTRY_DB; </code></pre>
+              <p class="p">IDENTITY_DB</p>
+
+              <pre class="pre codeblock"><code>grant create session,create sequence, create table, create trigger,connect,dba, imp_full_database to IDENTITY_DB; </code></pre>
+              <p class="p">REGISTRY_LOCAL1 </p>
+
+              <pre class="pre codeblock"><code>grant create session,create sequence, create table, create trigger,connect,dba, imp_full_database to REGISTRY_LOCAL1; </code></pre>
+            </div>
+          </li>
+
+        </ol>
+
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Download the <span class="keyword">Ellucian Ethos Identity</span> 7.0.0 installer file <span class="ph filepath">EllucianEthosIdentity_baseline-7.0.0.zip</span> from the <span class="keyword">Ellucian Downloads</span> or using SA Valet.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Unzip the <span class="ph filepath">EllucianEthosIdentity_baseline-7.0.0.zip</span> file.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Move the unzipped contents at the same level as the existing <span class="ph filepath">EllucianEthosIdentity</span> directory.</span>
+        <div class="itemgroup info">The directory structure should look like this:<pre class="pre codeblock"><code><var class="keyword varname">parent_directory</var>
+	--wso2is-5.10.0
+	--EllucianEthosIdentity_extensions-7.0.0
+	--wso2is-7.0.0</code></pre><div class="note"><span class="notetitle">Note:</span> Throughout the <span class="keyword">Ellucian Ethos Identity</span> migration procedures, the <span class="ph filepath">wso2is-7.0.0</span> directory is referred to as <var class="keyword varname">EIS_HOME</var>, consistent with the WSO2 website.</div>
+</div>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Open a command prompt. (For Windows, right-click and run as administrator.)</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Change directories (<span class="keyword cmdname">cd</span>) to the <span class="ph filepath">EllucianEthosIdentity_extensions-7.0.0</span> directory.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Run the appropriate command for your operating system:</span>
+        <ul class="ul choices">
+          <li class="li choice">Linux/UNIX: <p class="lines"><span class="keyword cmdname">cd EllucianEthosIdentity_extensions-7.0.0</span></p>
+<p class="lines"><span class="keyword cmdname">chmod u+x apache-ant/bin/ant</span></p>
+<p class="lines"><span class="keyword cmdname">export ANT_HOME=apache-ant</span></p>
+<p class="lines"><span class="keyword cmdname">apache-ant/bin/ant migrate-install</span></p>
+</li>
+
+          <li class="li choice">Windows: <p class="lines"><span class="keyword cmdname">cd EllucianEthosIdentity_extensions-7.0.0</span></p>
+<p class="lines"><span class="keyword cmdname">apache-ant\bin\ant migrate-install</span></p>
+</li>
+
+        </ul>
+
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Change directory into the <span class="ph filepath">wso2is-7.0.0</span> directory.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Run the appropriate command for your operating system:</span>
+        <ul class="ul choices">
+          <li class="li choice">Linux/UNIX: <p class="lines"><span class="keyword cmdname">cd ../wso2is-7.0.0</span></p>
+<p class="lines"><span class="keyword cmdname">chmod u+x apache-ant/bin/ant</span></p>
+<p class="lines"><span class="keyword cmdname">apache-ant/bin/ant config-all-xml -buildfile config/build.xml</span></p>
+</li>
+
+          <li class="li choice">Windows: <p class="lines"><span class="keyword cmdname">cd ../wso2is-5.10.0</span></p>
+<p class="lines"><span class="keyword cmdname">apache-ant\bin\ant config-all-xml -buildfile config\build.xml</span></p>
+</li>
+
+        </ul>
+
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Copy/Migrate the necessary configurations from <span class="ph filepath">deployment.toml</span> file of  <span class="ph filepath">wso2is-5.10.0</span> to <span class="ph filepath">deployment.toml</span> of <span class="ph filepath">wso2is-7.0.0</span></span>
+        <ol type="a" class="ol substeps">
+          <li class="li substep substepexpand">
+            <span class="ph cmd">Ensure to set the create_admin_account is to <kbd class="ph userinput">false</kbd>.</span>
+          </li>
+
+          <li class="li substep substepexpand">
+            <span class="ph cmd">Copy the realm manager and other userstore and db details.</span>
+          </li>
+
+          <li class="li substep substepexpand">
+            <span class="ph cmd">Add the following property to the <span class="ph filepath">deployment.toml</span> file:</span>
+            <div class="itemgroup info">
+              <ul class="ul">
+                <li class="li">[authorization_manager.properties]</li>
+
+                <li class="li">GroupAndRoleSeparationEnabled = false</li>
+
+              </ul>
+
+            </div>
+          </li>
+
+          <li class="li substep substepexpand">
+            <span class="ph cmd">Add the following property only in case of oracle database.  For example:</span>
+            <div class="itemgroup info">
+              <ul class="ul">
+                <li class="li">[database.identity_db.pool_options]</li>
+
+                <li class="li">defaultAutoCommit = false</li>
+
+                <li class="li">[database.shared_db.pool_options]</li>
+
+                <li class="li">defaultAutoCommit = false</li>
+
+              </ul>
+
+            </div>
+          </li>
+
+        </ol>
+
+      </li>
+</ol>
+
+  </div>
+
+</div></div></section>
+<section id="t-470"><h3>Migrate the database</h3><div class="content-locale-en-US content-locale-en"><div id="t_database_migration"><div class="body taskbody"><p class="shortdesc">Migrate the <span class="keyword">Ellucian Ethos Identity</span> 5.10.10 or later to database for use with <span class="keyword">Ellucian Ethos Identity</span> 7.0.0.</p>
+
+    <div class="section context"><div class="tasklabel"><h2 class="sectiontitle tasklabel">About this task</h2></div>As <span class="keyword">Ellucian Ethos Identity</span> 5.10.10 or later is installed in a clustered environment, you need to perform the following steps on only one node:</div>
+
+    <div class="tasklabel"><h2 class="sectiontitle tasklabel">Procedure</h2></div><ol class="ol steps"><li class="li step stepexpand">
+        <span class="ph cmd">Create a backup copy of the existing <span class="keyword">Ellucian Ethos Identity</span> 5.10.10 or later database.</span>
+        <div class="itemgroup info">
+          <div class="note"><span class="notetitle">Note:</span> If you are using Microsoft SQL Server as the back-end database, ensure that the JTDS driver is updated to version 1.2.7.</div>
+
+        </div>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Open a command prompt. (For Windows, right-click and run as administrator.)</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Change directories (<span class="keyword cmdname">cd</span>) to the <span class="ph filepath">wso2is-7.0.0</span> directory</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Migrate the database. </span>
+        <ul class="ul choices">
+          <li class="li choice">Linux/UNIX: <p class="lines"><span class="keyword cmdname">chmod u+x bin/wso2server.sh</span></p>
+<p class="lines"><span class="keyword cmdname">bin/wso2server.sh -Dmigrate -Dcomponent=identity</span></p>
+</li>
+
+          <li class="li choice">Windows: <p class="lines"><span class="keyword cmdname">bin\wso2server.bat -Dmigrate -Dcomponent=identity</span></p>
+<div class="note"><span class="notetitle">Note:</span> Do not access the console during and after the database migration.</div>
+</li>
+
+        </ul>
+
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Exit the foreground process by pressing CTRL+C.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">After the successful database migration, perform the following steps:</span>
+        <ol type="a" class="ol substeps">
+          <li class="li substep">
+            <span class="ph cmd">remove 11c) property from migrate instance step in <span class="ph filepath">deployment.toml</span> file</span>
+          </li>
+
+          <li class="li substep">
+            <span class="ph cmd">set create_admin_account as true</span>
+          </li>
+
+        </ol>
+
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Start <span class="keyword">Ellucian Ethos Identity</span> 7.0.0 as you normally start <span class="keyword">Ellucian Ethos Identity</span> 5.10.x.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Verify that WSO2 Identity Server completes startup successfully and the Management Console is available in a web browser: https://&lt;hostname&gt;:port/console</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Log in to Identity Server Console and navigate to <span class="ph menucascade"><span class="ph uicontrol">Branding</span><abbr title="and then"> &gt; </abbr><span class="ph uicontrol"> Styles &amp; Text</span><abbr title="and then"> &gt; </abbr><span class="ph uicontrol"> Design</span></span>.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Under <span class="ph uicontrol">Login Layout</span>, select <span class="ph uicontrol">Custom</span> for your login screens.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Click <span class="ph uicontrol">Save &amp; Publish</span>.</span>
+      </li>
+</ol>
+
+  </div>
+
+</div></div></section>
+<section id="t-480"><h3>Configure Office 365 service provider after migration</h3><div class="content-locale-en-US content-locale-en"><div id="t_config_o365_sp"><div class="body taskbody"><p class="shortdesc">If you are using Office 365, perform the following steps to configure your Office 365 service provider after the migration is complete.</p>
+
+    <div class="tasklabel"><h2 class="sectiontitle tasklabel">Procedure</h2></div><ol class="ol steps"><li class="li step stepexpand">
+        <span class="ph cmd">Log in to the Console.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Click <span class="ph uicontrol">Connections</span> tab.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Click <span class="ph uicontrol">New Connection</span>.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">On the <span class="keyword wintitle">Create a New Connection</span>, click <span class="ph uicontrol">Custom Connector</span> and then click <span class="ph uicontrol">Crete</span>.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">On the <span class="ph uicontrol">Custom Connector</span> dialog box, enter the following details as required:</span>
+        <div class="itemgroup info">
+          
+<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" class="table" frame="border" border="1" rules="all"><colgroup><col style="width:35.3356890459364%"><col style="width:64.66431095406361%"></colgroup><thead class="thead" style="text-align:left;">
+                <tr class="row">
+                  <th class="entry cellrowborder" style="vertical-align:top;" id="d11940e96">Field</th>
+
+                  <th class="entry cellrowborder" style="vertical-align:top;" id="d11940e99">Description</th>
+
+                </tr>
+
+              </thead>
+<tbody class="tbody">
+                <tr class="row">
+                  <td class="entry cellrowborder" style="vertical-align:top;" headers="d11940e96 ">Name*</td>
+
+                  <td class="entry cellrowborder" style="vertical-align:top;" headers="d11940e99 ">Enter a name for the connection.</td>
+
+                </tr>
+
+                <tr class="row">
+                  <td class="entry cellrowborder" style="vertical-align:top;" headers="d11940e96 ">Description</td>
+
+                  <td class="entry cellrowborder" style="vertical-align:top;" headers="d11940e99 ">Enter a description of the connection.</td>
+
+                </tr>
+
+              </tbody>
+</table>
+</div>
+
+          <div class="note"><span class="notetitle">Note:</span> * indicates a required field.</div>
+
+        </div>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Click <span class="ph uicontrol">Finish</span>.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">On the created custom connector, click <span class="ph menucascade"><span class="ph uicontrol">Settings</span><abbr title="and then"> &gt; </abbr><span class="ph uicontrol"> New Authenticator</span><abbr title="and then"> &gt; </abbr><span class="ph uicontrol"> Office 365</span><abbr title="and then"> &gt; </abbr><span class="ph uicontrol"> Next</span></span>.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">On the <span class="keyword wintitle">Add New Authenticator</span>, enter the following details as required:</span>
+        <div class="itemgroup info">
+          
+<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" class="table" frame="border" border="1" rules="all"><colgroup><col style="width:35.3356890459364%"><col style="width:64.66431095406361%"></colgroup><thead class="thead" style="text-align:left;">
+                <tr class="row">
+                  <th class="entry cellrowborder" style="vertical-align:top;" id="d11940e185">Field</th>
+
+                  <th class="entry cellrowborder" style="vertical-align:top;" id="d11940e188">Description</th>
+
+                </tr>
+
+              </thead>
+<tbody class="tbody">
+                <tr class="row">
+                  <td class="entry cellrowborder" style="vertical-align:top;" headers="d11940e185 ">Client Id*</td>
+
+                  <td class="entry cellrowborder" style="vertical-align:top;" headers="d11940e188 ">Enter Office365 client identifier value.</td>
+
+                </tr>
+
+                <tr class="row">
+                  <td class="entry cellrowborder" style="vertical-align:top;" headers="d11940e185 ">Client Secret</td>
+
+                  <td class="entry cellrowborder" style="vertical-align:top;" headers="d11940e188 ">Enter Office365 client secret value.</td>
+
+                </tr>
+
+                <tr class="row">
+                  <td class="entry cellrowborder" style="vertical-align:top;" headers="d11940e185 ">Callback Url</td>
+
+                  <td class="entry cellrowborder" style="vertical-align:top;" headers="d11940e188 ">Enter value corresponding to callback url.</td>
+
+                </tr>
+
+                <tr class="row">
+                  <td class="entry cellrowborder" style="vertical-align:top;" headers="d11940e185 ">Additional Query Parameters</td>
+
+                  <td class="entry cellrowborder" style="vertical-align:top;" headers="d11940e188 ">Additional parameters that will be sent in the authorization request.<p class="p">Example: login_hint=email@example.com</p>
+</td>
+
+                </tr>
+
+              </tbody>
+</table>
+</div>
+
+          <div class="note"><span class="notetitle">Note:</span> * indicates a required field.</div>
+
+        </div>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Click <span class="ph uicontrol">Finish</span>.</span>
+      </li>
+</ol>
+
+  </div>
+
+</div></div></section></main></body></html>

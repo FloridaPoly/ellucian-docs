@@ -1,0 +1,1930 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Banner Student Registration Self-Service - Configure — Structured Registration</title><style>body{font-family:-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;line-height:1.55;color:#1a1a1a;max-width:920px;margin:0 auto;padding:24px}header{border-bottom:2px solid #5a16d6;margin-bottom:8px}h1{color:#3a0ca3}h2,h3,h4,h5,h6{margin-top:1.6em}.crumb{color:#666;font-size:13px;margin:0}.meta{color:#888;font-size:12px}nav.toc{background:#f6f4fc;border:1px solid #e3dcf5;border-radius:8px;padding:12px 18px;margin:18px 0}nav.toc h2{margin:.2em 0}nav.toc ul{list-style:none;padding-left:0}nav.toc a{text-decoration:none;color:#5a16d6}section{margin:1.2em 0;padding-top:.4em}img{max-width:100%;height:auto}table{border-collapse:collapse}td,th{border:1px solid #ccc;padding:4px 8px}code,pre{background:#f4f4f4;border-radius:4px}pre{padding:10px;overflow:auto}</style></head><body><header><p class="crumb">Banner Registration Self-Service › Banner Student Registration Self-Service - Configure</p><h1>Banner Student Registration Self-Service - Configure — Structured Registration</h1><p class="meta">Source: <a href="https://resources.elluciancloud.com/r/bundle/banner_regss_acn_configure">https://resources.elluciancloud.com/r/bundle/banner_regss_acn_configure</a> &middot; Retrieved 2026-06-17</p></header><nav class="toc"><h2>Contents</h2><ul><li style="margin-left:0px"><a href="#t-2060">Structured Registration</a></li><li style="margin-left:16px"><a href="#t-2070">Overview of Structured Registration</a></li><li style="margin-left:32px"><a href="#t-2080">CAPP overview</a></li><li style="margin-left:32px"><a href="#t-2090">Comparison of projected and structured</a></li><li style="margin-left:16px"><a href="#t-2100">Processing Structured Registration</a></li><li style="margin-left:32px"><a href="#t-2110">CAPP data detail and display</a></li><li style="margin-left:48px"><a href="#t-2120">Program, area, and group data</a></li><li style="margin-left:64px"><a href="#t-2130">A program in CAPP</a></li><li style="margin-left:64px"><a href="#t-2140">An area in CAPP</a></li><li style="margin-left:48px"><a href="#t-2150">Tiered structure example</a></li><li style="margin-left:48px"><a href="#t-2160">SMAPROG general requirements</a></li><li style="margin-left:48px"><a href="#t-2170">SMAPROG program area attachments</a></li><li style="margin-left:48px"><a href="#t-2180">SMAAREA data</a></li><li style="margin-left:48px"><a href="#t-2190">Area requirement types</a></li><li style="margin-left:32px"><a href="#t-2200">Processing path</a></li><li style="margin-left:32px"><a href="#t-2210">Set up Structured Registration</a></li><li style="margin-left:32px"><a href="#t-2220">Structured Registration controls</a></li><li style="margin-left:32px"><a href="#t-2230">GTVSDAX rules</a></li><li style="margin-left:48px"><a href="#t-2240">REGSTRUCT rule</a></li><li style="margin-left:48px"><a href="#t-2250">CLASS rule</a></li><li style="margin-left:48px"><a href="#t-2260">Rule summary</a></li><li style="margin-left:48px"><a href="#t-2270">Area name and selection of CAPP areas</a></li><li style="margin-left:48px"><a href="#t-2280">Area priority and selection of CAPP areas</a></li><li style="margin-left:48px"><a href="#t-2290">Student Attributes and selection of CAPP areas</a></li><li style="margin-left:48px"><a href="#t-2300">All area requirements</a></li><li style="margin-left:64px"><a href="#t-2310">All area requirements example</a></li><li style="margin-left:32px"><a href="#t-2320">Search Again</a></li><li style="margin-left:32px"><a href="#t-2330">Structured Overview display</a></li><li style="margin-left:48px"><a href="#t-2340">Display self-authored text for the Program, Rule, and Course</a></li><li style="margin-left:64px"><a href="#t-2350">Grant Access to Program Updates</a></li><li style="margin-left:64px"><a href="#t-2360">Grant Access to Area Updates</a></li><li style="margin-left:64px"><a href="#t-2370">Grant Access to Course Updates</a></li><li style="margin-left:64px"><a href="#t-2380">Set up information in CAPP</a></li><li style="margin-left:32px"><a href="#t-2390">Use external API</a></li><li style="margin-left:48px"><a href="#t-2400">Configure the external API</a></li><li style="margin-left:48px"><a href="#t-2410">Use third party service</a></li><li style="margin-left:64px"><a href="#t-2420">URL</a></li><li style="margin-left:64px"><a href="#t-2430">Authentication</a></li><li style="margin-left:64px"><a href="#t-2440">Request criteria</a></li><li style="margin-left:64px"><a href="#t-2450">Response</a></li><li style="margin-left:80px"><a href="#t-2460">Header JSON</a></li><li style="margin-left:80px"><a href="#t-2470">Rule JSON</a></li></ul></nav><main><section id="t-2060"><h2>Structured Registration</h2><div class="content-locale-en-US content-locale-en"><div id="c_structured_registration"><p class="shortdesc">This chapter details the setup and processing for <span class="keyword">Structured Registration</span>.</p>
+
+</div></div></section>
+<section id="t-2070"><h3>Overview of Structured Registration</h3><div class="content-locale-en-US content-locale-en"><div id="c_overview_structured_registration"><div class="body conbody"><p class="shortdesc">In <span class="keyword">Banner Student Registration</span>, the term <span class="keyword">Structured Registration</span> refers to a registration model where students are guided through the class selection based on their academic program requirements.</p>
+
+    <p class="p">To use this processing effectively, the academic program definition should be constructed so that the requirements occur in chronological order. In addition, there should be a clear delineation between requirements for each student classification or academic stage. For example, the academic program should have a distinct set of coursework from which the student must choose to progress from Freshman to Sophomore or from Year 1 to Year 2.</p>
+
+    <div class="p">For each stage defined in an academic program, there are three categories into which coursework can be divided:<ul class="ul"> <li class="li">Mandatory courses are specific courses the student must take to progress from one stage to the next.</li>
+ <li class="li">Optional courses are courses that relate closely to the student's major, and the student might be asked to choose a number of courses from a specific list.</li>
+
+      <li class="li">Elective courses are broadly defined selections using course ranges, attributes, departments, and so on.</li>
+ </ul>
+</div>
+
+    <p class="p">Settings on the Term Control Page (SOATERM) provide processing controls that define when mandatory, optional, or elective coursework is available for students to select in Self-Service. Students may only add and drop classes that are part of <span class="keyword">Structured Registration</span> if the type (mandatory, optional, or elective) is active.</p>
+
+    <p class="p">SOATERM also contains Error Severity controls that allow unsatisfied requirements to be considered as a fatal error, a warning, or no error. When error checking is set to Fatal, the student will not be able to save any of the registration selections until all requirements are met. When error checking is set to Warning or None, the student may continue with registration even when all requirements have not been met.</p>
+
+    <p class="p">You also have configuration options on SOATERM that allow you to decide whether courses that a student has already completed or has in progress should update the met/not met indicator for the requirements in their current term of study.</p>
+
+    <p class="p">Rules on the Crosswalk Validation Page (GTVSDAX) serve as processing controls for <span class="keyword">CAPP</span> areas using class codes, student attributes, priorities, or naming conventions.</p>
+
+  </div>
+
+</div></div></section>
+<section id="t-2080"><h4>CAPP overview</h4><div class="content-locale-en-US content-locale-en"><div id="c_capp_overview"><div class="body conbody"><p class="shortdesc"><span class="keyword">Structured Registration</span> uses <span class="keyword">CAPP</span> rules and programs to facilitate registration.</p>
+
+    <p class="p">With <span class="keyword">CAPP</span>, <span class="keyword">Banner</span> <span class="keyword">Registration Self-Service</span> displays courses that specifically relate to the student's primary academic program or the student's selected study path. Students must register for the courses presented to them. They cannot directly enter CRNs or search for classes that do not meet the <span class="keyword">CAPP</span> criteria.</p>
+
+    <div class="note"><span class="notetitle">Note:</span> If you do not use <span class="keyword">CAPP</span>, you can define and use an external API that will request data from a third party degree audit system and create a list of prescribed courses that <span class="keyword">Banner</span> will process. Refer to <cite class="cite">Use external API</cite> to set up processing with third party applications.</div>
+
+    <p class="p">For <span class="keyword">CAPP</span> program definitions in <span class="keyword">Structured Registration</span>, <span class="keyword">Banner</span> uses guidelines to determine which requirements you have designated as mandatory, optional, or elective. These guidelines ensure that <span class="keyword">CAPP</span> data includes the program definitions, along with the associated areas, groups, and the rules for those areas or groups.</p>
+
+    <div class="p"><span class="keyword">Banner</span> selects curriculum records as follows:<ul class="ul"> <li class="li"><span class="keyword">CAPP</span> matches the student's current and active primary curriculum record to select the program requirements.</li>
+ <li class="li">If your institution uses study paths, <span class="keyword">Banner</span> uses the program associated with the student's study path.</li>
+ <li class="li"><span class="keyword">Banner</span> uses the catalog term for the curriculum record to match the effective term of the <span class="keyword">CAPP</span> program requirement data. If the curriculum record does not have a catalog term, <span class="keyword">Banner</span> uses the registration term to find the effective term of the <span class="keyword">CAPP</span> program requirement data.</li>
+ </ul>
+</div>
+
+    <p class="p"><span class="keyword">Structured Registration</span> pulls data from <span class="keyword">CAPP</span> one time for each registration term. It does not recalculate the data after the student initially logs in and selects a term.</p>
+
+    <div class="note warning"><span class="warningtitle">Warning:</span> You must change data in <span class="keyword">CAPP</span> before students log in and begin registration. If you make any changes to <span class="keyword">CAPP</span> area or group requirements after a student initially selects the <span class="keyword">Structured Registration</span> tab, you will need to delete the pidm, term, and program data from the SFBSTRH and SFRSTRD tables. This ensures that <span class="keyword">Banner</span> <span class="keyword">Registration Self-Service</span> displays the new requirements.</div>
+
+    <p class="p">Depending on the Configuration Option settings on the Term Control (SOATERM) page, <span class="keyword">Registration Self-Service</span> may or may not consider in-progress registrations and coursework already taken by the student in the compilation of <span class="keyword">Structured Registration</span> data. <span class="keyword">Banner</span> uses the SFKRGST/SFKRGST1 package to collect data from <span class="keyword">CAPP</span>. It builds records for <span class="keyword">Structured Registration</span> that provide students with the courses they need for registration.</p>
+
+    <p class="p">Unlike <span class="keyword">Projected Registration</span>, it is not necessary to run compliance to use <span class="keyword">Structured Registration</span>. Compliance concerns classes that students have already completed. Based on their stage or classification, students must work with the displayed requirements to select class sections and complete registration. When a student logs in to registration, the registration process compiles the <span class="keyword">Structured Registration</span> data based on their primary, active program, or study path program. When the student submits the selected classes in the summary for registration, <span class="keyword">Structured Registration</span> processing verifies that the student has fulfilled all the program requirements for the registration period.</p>
+
+    <p class="p">See the <cite class="cite"><span class="keyword">Banner Student</span> <span class="keyword">CAPP</span></cite> content for more information about setting up and using <span class="keyword">CAPP</span>.</p>
+
+  </div>
+
+</div></div></section>
+<section id="t-2090"><h4>Comparison of projected and structured</h4><div class="content-locale-en-US content-locale-en"><div id="c_comparison_projected_structured"><div class="body conbody"><p class="shortdesc"><span class="keyword">Projected Registration</span> and <span class="keyword">Structured Registration</span> are
+    similar
+    in that they provide students with lists of classes from which to choose, but
+    different in the way those lists are generated. Here is a quick summary of the
+    differences.</p>
+
+    <div class="p"><span class="keyword">Projected Registration</span> works as follows: <ul class="ul">
+        <li class="li">The focus is on what is complete, based on what has already occurred in the past.</li>
+
+        <li class="li">No validation of how coursework will satisfy specific program requirements is
+          performed.</li>
+
+        <li class="li">Courses are presented to the student in a practical order based on prior coursework and
+          the organization of requirements in <span class="keyword">CAPP</span>.</li>
+
+        <li class="li">The course presentation is flexible, as to how much is shown to the student at one
+          time.</li>
+
+        <li class="li">A course that is identified as mandatory is one that is required for the degree but is
+          not required for the current registration period.</li>
+
+        <li class="li">Students can select courses from the projected list based on what they perceive as best
+          for
+          them.</li>
+
+      </ul>
+</div>
+
+    <div class="p"><span class="keyword">Structured Registration</span> works as follows: <ul class="ul"> <li class="li">The focus is on the student's current stage or classification and what coursework is required based on the student's academic program.</li>
+ <li class="li">Coursework is based on the categories (mandatory, optional, and elective) that make up the requirements for the current registration period.</li>
+ <li class="li">The focus is on subject matter for courses that are closely related to the student’s area of study.</li>
+
+      <li class="li">Each year of coursework is regimented, strictly organized, and controlled.</li>
+ <li class="li">A mandatory course is a one that must be taken in the current registration period.</li>
+ <li class="li">Students are guided through each registration period.</li>
+ <li class="li">Students are directed as to what courses they must take, and they cannot deviate from the structured requirements.</li>
+ <li class="li">Validation of selected coursework against specific program requirements is performed.</li>
+ </ul>
+</div>
+
+  </div>
+
+</div></div></section>
+<section id="t-2100"><h3>Processing Structured Registration</h3><div class="content-locale-en-US content-locale-en"><div id="c_processing_structured_registration"><div class="body conbody"><p class="shortdesc">This section contains information about setting up and using <span class="keyword">Structured Registration</span>. </p>
+
+    <div class="p">In summary:<ul class="ul"> <li class="li">Set up <span class="keyword">Structured Registration</span> controls on the Term Control Page (SOATERM).</li>
+ <li class="li">Define GTVSDAX rules as processing controls.</li>
+ <li class="li">Access the Structured tab in <span class="keyword">Banner</span> to use <span class="keyword">Structured Registration</span>.</li>
+ </ul>
+</div>
+
+    <div class="p">The following tables are used specifically with <span class="keyword">Banner Student</span> <span class="keyword">Structured Registration</span>:<ul class="ul"> <li class="li"><span class="keyword">Structured Registration</span> Header Table (SFBSTRH)</li>
+ <li class="li"><span class="keyword">Structured Registration</span> Rule Detail Table (SFRSTRD)</li>
+ <li class="li"><span class="keyword">Structured Registration</span> Term Control Table (SOBSTRG)</li>
+ </ul>
+</div>
+
+    <div class="p">The following <span class="keyword">Banner</span> views are used specifically with <span class="keyword">Structured Registration</span>:<ul class="ul"> <li class="li">SFVRGCP0 - used to select areas for a student’s curriculum based on GTVSDAX rules that identify how areas are coded.</li>
+ <li class="li">SFVRGCP1 - used to select student data and match the data to program requirements.</li>
+ <li class="li">SFVRGCP2 - used to select the GTVSDAX rule for identification of <span class="keyword">CAPP</span> requirements. The internal group <code class="ph codeph">REGPROJSTRUCT</code> is selected for the internal codes <code class="ph codeph">REGSTRUCT</code> and <code class="ph codeph">CLASS</code>.</li>
+ <li class="li">SOVCLTP - used to select the primary, current and active, concurrent curriculum record for a term. The term must be included to use this view, where <code class="ph codeph">SOVCLTR_STVTERM_CODE = 'XXXXXX'.</code></li>
+
+      <li class="li">SOVCLTR0 - used to select the concurrent curriculum record for a term. The term must be included to use this view, where <code class="ph codeph">SOVCLTR_STVTERM_CODE = 'XXXXXX'.</code></li>
+ </ul>
+</div>
+
+  </div>
+
+</div></div></section>
+<section id="t-2110"><h4>CAPP data detail and display</h4><div class="content-locale-en-US content-locale-en"><div id="c_capp_data_detail_display"><div class="body conbody"><p class="shortdesc">When <span class="keyword">CAPP</span> is in use, <span class="keyword">CAPP</span> program requirements for areas, groups, rules, and courses are considered for <span class="keyword">Structured Registration</span>.</p>
+
+    <p class="p">The data is extracted and presented to the student in Self-Service for selection. Checks occur to make sure registration can continue based on the student’s choices. Settings on SOATERM for mandatory, elective, and optional coursework direct how these categories are identified in the <span class="keyword">CAPP</span> program definition. Rules on GTVSDAX are used to match a <span class="keyword">CAPP</span> area to a student by associating a class code to a priority, or by associating the <span class="keyword">CAPP</span> area name to a class code using a naming convention. (See the " GTVSDAX Rules" section for more information.)</p>
+
+    <p class="p">In Self-Service, students are guided through the detailed course requirements, where they are allowed to select classes from a specific list. When courses are selected and added, they are displayed in the registration summary, where they can be submitted for registration. Any registration errors are displayed in the Notification Center.</p>
+
+    <p class="p"><span class="keyword">CAPP</span> allows text to be attached to the rule header. This text can be used to provide additional information to the student about the requirement. In addition, a URL can be inserted into the rule text which will allow the student to navigate to a website or document for additional clarification about the specific requirement or the academic program. <span class="keyword">CAPP</span> also allows for text entries to be associated with a type. SOATERM is used to associate a specific <span class="keyword">CAPP</span> text type with the informational text that is available to the student in <span class="keyword">Structured Registration</span>. A separate text type is used to identify the URL to which the student can navigate.</p>
+
+    <p class="p">The <span class="keyword">CAPP</span> detail used in <span class="keyword">Structured Registration</span> comes from the Program Requirements Page (SMAPROG), the Area Requirements Page (SMAAREA), and the Group Requirements Page (SMAGROP). The configuration below describes the basic organization of data within <span class="keyword">CAPP</span>. This organization is tiered and allows <span class="keyword">Structured Registration</span> to determine the stage or classification at which the student is positioned. It also presents a significant opportunity for students to pick from lists of courses. Each tier supports course ranges, credit hour ranges, and condition ranges. Conditions can be explicit and implicit (sets and subsets).</p>
+
+  </div>
+
+</div></div></section>
+<section id="t-2120"><h5>Program, area, and group data</h5><div class="content-locale-en-US content-locale-en"><div id="c_program_area_group_data"><p class="shortdesc">This section discusses how data from <span class="keyword">CAPP</span> is used in <span class="keyword">Structured Registration</span>.</p>
+
+</div></div></section>
+<section id="t-2130"><h6>A program in CAPP</h6><div class="content-locale-en-US content-locale-en"><div id="c_program_capp"><p class="shortdesc">A program makes the association between the student's curriculum and <span class="keyword">CAPP</span>.</p>
+
+</div></div></section>
+<section id="t-2140"><h6>An area in CAPP</h6><div class="content-locale-en-US content-locale-en"><div id="c_area_capp"><div class="body conbody"><p class="shortdesc"><dfn class="term">Areas</dfn> are the building blocks of a student's academic program requirements.</p>
+
+    <p class="p">There are two types of areas, group areas and course areas. As their names imply, group areas are areas made up of groups, and course areas are made up of course requirements. Groups are basically mini-areas which are made up of course requirements. For <span class="keyword">Structured Registration</span>, each area represents what a student must complete for a stage or classification within a registration period.</p>
+
+    <p class="p">An area can be either a group area or a course area. Also, areas can contain requirements from all three categories: mandatory, optional, and elective. The determination of which category requirements belong to is controlled by your entries on SOATERM.</p>
+
+    <div class="note"><span class="notetitle">Note:</span> You can define areas as dynamic. For more information on dynamic areas, see the <cite class="cite"><span class="keyword">Banner Student</span> <span class="keyword">CAPP</span></cite> content. When dynamic areas are used, the association between stage or classification must be contained within the area name.</div>
+
+    <div class="section"><h2 class="title sectiontitle">Course area</h2>
+      
+      <div class="p">Course areas are made up of the following:<ul class="ul"> <li class="li">area course/attributes attachments</li>
+ <li class="li">area course/attributes attachment rules</li>
+ </ul>
+</div>
+
+    </div>
+
+    <div class="section"><h2 class="title sectiontitle">Group area</h2>
+      
+      <p class="p">Group areas are made up of the following:</p>
+
+      <ul class="ul">
+        <li class="li">area group attachments</li>
+
+        <li class="li">area group attachment rules<div class="note"><span class="notetitle">Note:</span> Set and subset designations can be used for attachments to both group areas and course areas and allow for the construction and processing of course lists. For more information on sets and subsets, see the <cite class="cite"><span class="keyword">Banner Student</span> <span class="keyword">CAPP</span></cite> content.</div>
+</li>
+
+      </ul>
+
+    </div>
+
+    <div class="section"><h2 class="title sectiontitle">Other attributes</h2>
+      
+      <p class="p">Characteristics from <span class="keyword">CAPP</span> course records may also be used, to make requirements more specific.</p>
+
+      <div class="p">Other characteristics can include:<ul class="ul"> <li class="li">course attributes</li>
+ <li class="li">campus</li>
+ <li class="li">college</li>
+ <li class="li">department</li>
+ </ul>
+</div>
+
+    </div>
+
+    <div class="section"><h2 class="title sectiontitle">Requirement types</h2>
+      
+      <div class="p">Data extracted from <span class="keyword">CAPP</span> falls into three categories of requirements (mandatory, optional, and elective) based on the area attachments.<ul class="ul"> <li class="li">Type 1 (mandatory) is identified by the Mandatory Rule Key entered on SOATERM or any course attachment defined without using a rule.</li>
+ <li class="li">Type 2 (optional) is identified by the Optional Rule Key entered on SOATERM. Generally, courses identified as optional closely relate to a student's major or program.</li>
+
+        <li class="li">Type 3 (elective) is identified by the Elective Rule Key entered on SOATERM. Generally, these requirements are very broad and allow the student considerable freedom in selection.<div class="note"><span class="notetitle">Note:</span> The above descriptions are simply general guidelines. There is no hard and fast rule that differentiates one type from another. For the best results, use the same requirement types across Areas and Groups. This is especially important when Groups are attached to Areas with Set/Subset values that create an OR condition between them.</div>
+</li>
+ </ul>
+</div>
+
+      <p class="p"><span class="keyword">Structured Registration</span> takes into consideration only those <span class="keyword">CAPP</span> entries that exist in the Area Course/Attribute Attachment section and the Group Course/Attribute Attachment section of SMAAREA and SMAGROP, respectively.</p>
+
+    </div>
+
+  </div>
+
+</div></div></section>
+<section id="t-2150"><h5>Tiered structure example</h5><div class="content-locale-en-US content-locale-en"><div id="c_tiered_structure_example"><div class="body conbody"><p class="shortdesc">Below is an example of the tiered structure.</p>
+
+    <p class="p">The student is asked to pick two items from a list of three. The first available item is a course range where the course must have an attribute of "Medieval Literature." The second item is a course range where the course must have an attribute indicating the course is "Non-Shakespearean." The third item is a complex item requiring the student to make multiple selections to complete the single requirement.</p>
+
+    <div class="p">Pick 2 from 3:<ul class="ul"> <li class="li">Pick 1 from EN 2000 to EN 2999 with Attribute MDLV (Medieval Literature)</li>
+ <li class="li">Pick 1 from EN 2000 to EN 2999 with Attribute NSHK (Non-Shakespearean)</li>
+ <li class="li">Pick 1 of the following conditions:
+<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" class="table" frame="border" border="1" rules="all"><colgroup><col style="width:50%"><col style="width:50%"></colgroup><thead class="thead" style="text-align:left;"> <tr class="row"> <th class="entry cellrowborder" style="vertical-align:top;" id="d3606e57">Condition</th>
+ <th class="entry cellrowborder" style="vertical-align:top;" id="d3606e60">Selection</th>
+ </tr>
+ </thead>
+<tbody class="tbody"> <tr class="row">
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d3606e57 ">Condition 1</td>
+ <td class="entry cellrowborder" style="vertical-align:top;" headers="d3606e60 "> <ul class="ul"> <li class="li">Course A</li>
+ <li class="li">Course B</li>
+ <li class="li">Course C</li>
+ <li class="li">Course D</li>
+ </ul>
+ </td>
+ </tr>
+ <tr class="row"> <td class="entry cellrowborder" style="vertical-align:top;" headers="d3606e57 ">Condition 2</td>
+ <td class="entry cellrowborder" style="vertical-align:top;" headers="d3606e60 ">Pick 2 from EN 2000 to 2999 with attribute AAA (American Author)</td>
+ </tr>
+ </tbody>
+</table>
+</div>
+</li>
+ </ul>
+</div>
+
+  </div>
+
+</div></div></section>
+<section id="t-2160"><h5>SMAPROG general requirements</h5><div class="content-locale-en-US content-locale-en"><div id="c_smaprog_general_requirements"><div class="body conbody"><p class="shortdesc">Use the Program Requirements (SMAPROG) page to establish the general requirements for the program. When a student accesses Structured Registration in Self-Service, the student's primary program or selected study path is used to determine which program requirements are used.</p>
+
+    <p class="p">The term in the SMAPROG General Requirements section, relates to the effective term of these program requirements. The catalog term from the student’s program record (or the registration term if the catalog term is Null) is used to determine the correct version of the program requirements to process.</p>
+
+    <div class="note"><span class="notetitle">Note:</span> The program requirements must be active.</div>
+
+    <p class="p">When programs are captive, all required areas should be attached to the program when the process determines which areas to use for a specific term or stage. When programs are not captive, areas will be checked to see if they are dynamic. All dynamic areas are evaluated to see if the student meets the defined criteria. For more information about captive and dynamic areas, see the <cite class="cite"><span class="keyword">Banner Student</span> <span class="keyword">CAPP</span></cite> content.</p>
+
+  </div>
+
+</div></div></section>
+<section id="t-2170"><h5>SMAPROG program area attachments</h5><div class="content-locale-en-US content-locale-en"><div id="c_smaprog_program_area_attachments"><div class="body conbody"><p class="shortdesc">Program Area Attachments are also defined on SMAPROG. When a student accesses Structured Registration in Self-Service, the student's primary program or selected study path is used to determine which program requirements are used.</p>
+
+    <p class="p">The term in the record relates to the effective term of these program requirements. The catalog term from the student's program record (or the registration term if the catalog term is Null) is used to determine the correct version of the program requirements to be processed.</p>
+
+    <p class="p">The <span class="keyword">Structured Registration</span> <span class="keyword">Banner Self-Service</span> process determines which areas pertain to the student’s current registration period by using values from the GTVSDAX <code class="ph codeph">REGPROJSTRUCT</code> internal group. See the "GTVSDAX rules" section for more information.</p>
+
+    <ul class="ul">
+      <li class="li">When the GTVSDAX <code class="ph codeph">REGSTRUCT</code> rule is A, all areas attached to the program will be processed.</li>
+
+      <li class="li">When the GTVSDAX <code class="ph codeph">REGSTRUCT</code> rule is N, processing evaluates the area name and identifies the areas to be used, based on the student's class. This setting must be used when dynamic areas are in use.</li>
+
+      <li class="li">When the GTVSDAX <code class="ph codeph">REGSTRUCT</code> rule is P, processing evaluates the area priority which is associated with the area when it is attached to the <span class="keyword">CAPP</span> program on SMAPROG. The order in which areas should be processed can also be mapped to a class (year in school).</li>
+
+      <li class="li">When the GTVSDAX <code class="ph codeph">REGSTRUCT</code> rule is T, the area requirements will be used when the following conditions are met. <ul class="ul"> <li class="li">The <span class="keyword">Structured Registration</span> Attribute field on the Area Library (SMAALIB) page has an attribute assigned to the area.</li>
+ <li class="li">The student has that Attribute code assigned to them on the Additional Student Information (SGASADD) page.</li>
+ </ul>
+</li>
+
+    </ul>
+
+  </div>
+
+</div></div></section>
+<section id="t-2180"><h5>SMAAREA data</h5><div class="content-locale-en-US content-locale-en"><div id="c_smaarea_data"><div class="body conbody"><p class="shortdesc">Here is a summary of the area data used in <span class="keyword">Structured Registration</span> processing.</p>
+
+    <ul class="ul">
+      <li class="li">An area is associated with a program by defining the program as either captive or non-captive. <ul class="ul"> <li class="li">Programs that are defined as captive must have their associated areas explicitly attached. This is done by listing the areas in the Program Areas Attachment information of SMAPROG.</li>
+
+        <li class="li">Non-captive programs can have either their associated areas explicitly attached or their areas dynamically selected by the program, based on matching the characteristics attached to the area with the characteristics that belong to the student.<p class="p">For more information on the difference between captive and non-captive programs, see the <cite class="cite">Banner Student <span class="keyword">CAPP</span></cite> content.</p>
+</li>
+ </ul>
+</li>
+
+      <li class="li">The area header contains the area, term, catalog term, student level, and course level. This data is accessed from the area identified from the program area attachments and indicates whether the course or group path should be used in <span class="keyword">Structured Registration</span>.</li>
+
+      <li class="li">The area course/attribute attachment data used in processing includes: set, subset, rule, subject, course numbers low and high, course attributes, required credits and courses, maximum credits and courses, campus, college, and department.</li>
+
+      <li class="li">The area course/attribute attachment rule data used in processing includes: required number of conditions, required credits per condition, required courses per condition, maximum credits per condition, maximum courses per condition, total required credits, total required courses, total maximum credits, and total maximum courses.</li>
+
+      <li class="li">The area group attachment is used to associate a group with an area.</li>
+
+    </ul>
+
+  </div>
+
+</div></div></section>
+<section id="t-2190"><h5>Area requirement types</h5><div class="content-locale-en-US content-locale-en"><div id="c_area_requirement_types"><div class="body conbody"><p class="shortdesc"><span class="keyword">Structured Registration</span> provides the ability to define up to three types of requirements within a program area.</p>
+
+    <p class="p">The types are mandatory, optional and elective. Each type is differentiated by creating the detail requirements under rules defined at the area level. Each type is assigned an arbitrary name which is used as a standard for all areas. The association of the rule name used for each type is then set up on SOATERM. For the type designated as mandatory, besides having the detail requirements stored under a rule, the detail requirements can also be attached directly to the area.</p>
+
+    <p class="p">Generally, mandatory courses are those which are required based on the student’s program and year in the school. </p>
+
+    <p class="p">Courses can be designated as mandatory on SMAAREA without including them in an area rule. Mandatory courses are requirements attached directly to an area or attached to an area using the Mandatory Rule Key defined on SOATERM.</p>
+
+    <p class="p">Optional and elective courses can be selected from lists presented to the student. These lists of courses can contain specific courses, course ranges, or courses with specified attributes. Optional and elective courses are defined in <span class="keyword">CAPP</span> using area level rule attachments.</p>
+
+  </div>
+
+</div></div></section>
+<section id="t-2200"><h4>Processing path</h4><div class="content-locale-en-US content-locale-en"><div id="t_processing_path"><div class="body taskbody"><p class="shortdesc">Here is a sample path for navigating through <span class="keyword">Structured Registration</span> in Self-Service.</p>
+
+    <div class="section context"><div class="tasklabel"><h2 class="sectiontitle tasklabel">About this task</h2></div>A breadcrumb trail is displayed at the top of the page, so you can see where you are in the levels of data. Use the breadcrumb trail to navigate back and forth.</div>
+
+    <div class="tasklabel"><h2 class="sectiontitle tasklabel">Procedure</h2></div><ol class="ol steps"><li class="li step stepexpand">
+        <span class="ph cmd">Select <span class="ph uicontrol">Register for Classes</span> on the <span class="keyword wintitle">Registration Landing</span> page.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Log in to the application.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Use <span class="keyword wintitle">Select a Term page</span> to choose a term.</span>
+        <div class="itemgroup info">
+          <ul class="ul">
+            <li class="li">Terms that are open for registration are listed.</li>
+
+            <li class="li">Study paths can be selected at this point if they are available.</li>
+
+          </ul>
+
+        </div>
+        <div class="itemgroup stepresult">You are taken to the Register for Classes page with the Structured tab displayed.</div>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">View the mandatory, elective, and optional requirements for registration.</span>
+        <div class="itemgroup info">Display and availability are based on the settings on <span class="keyword wintitle">SOATERM</span>.</div>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Select the <span class="ph uicontrol">Requirements Summary</span> link to see the high level requirements for the rule in a tree structure display.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Select the hyperlinks for individual requirements to search for classes that can apply toward meeting the requirements.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Click <span class="ph uicontrol">Add</span> to add the sections to the registration summary.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Click <span class="ph uicontrol">Submit</span> to register for the added classes.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Resolve any registration errors presented in the <span class="keyword wintitle">Notification Center</span>.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Access the <span class="keyword wintitle">Schedule and Options</span> tab to modify course variables as allowed.</span>
+      </li>
+</ol>
+
+  </div>
+
+</div></div></section>
+<section id="t-2210"><h4>Set up Structured Registration</h4><div class="content-locale-en-US content-locale-en"><div id="t_set_up_structured_registration"><div class="body taskbody"><p class="shortdesc">Set up <span class="keyword">Structured Registration</span> in administrative <span class="keyword">Banner</span>.</p>
+
+    <div class="tasklabel"><h2 class="sectiontitle tasklabel">Procedure</h2></div><ol class="ol steps"><li class="li step stepexpand">
+        <span class="ph cmd">Access the <span class="keyword wintitle">Term Control Page (SOATERM)</span>.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Select the <span class="keyword wintitle">Registration</span> tab and go to the <span class="keyword wintitle">Registration Model</span> section.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Select the <span class="ph uicontrol">Structured</span> indicator.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Select the <span class="keyword">Structured Registration</span> tab.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Verify the settings for <span class="keyword">Structured Registration</span> controls.</span>
+        <ol type="a" class="ol substeps">
+          <li class="li substep substepexpand">
+            <span class="ph cmd">Define the error severity.</span>
+            <div class="itemgroup info">
+              <ul class="ul">
+                <li class="li">Fatal - Students must complete all registration requirements before saving selected classes.</li>
+
+                <li class="li">Warning - Students will be warned if all registration requirements have not been met, but they will be allowed to save what has been selected.</li>
+
+                <li class="li">None - Students will not be stopped or warned if requirements have not been met.</li>
+
+              </ul>
+
+            </div>
+          </li>
+
+          <li class="li substep substepexpand">
+            <span class="ph cmd">Under the Configuration Options section, indicate if you would like courses taken in other terms to be considered when requirements are displayed for the current term in <span class="keyword">Structured Registration</span>.</span>
+            <div class="itemgroup info">
+              <ul class="ul">
+                <li class="li">Check Academic History - Use this indicator to select if you want the system to query academic history and update the display of program requirements that have already been met. To be applied toward meeting a requirement, classes in academic history must be assigned a passing grade. Passing grades are those which have the Count in Passed check box selected on the Grade Code Maintenance (SHAGRDE) page.</li>
+
+                <li class="li">Check In Progress Courses - Use this check box to indicate that you want the system to update the status of students' requirements based on their currently enrolled classes when they are registering. This includes classes in other terms and those in which the student was enrolled through the Student Course Registration page (SFAREGS) for the current term. Only classes with a Registered status type will be applied toward meeting requirements. Classes with Dropped, Withdrawn, and Waitlisted statuses will not be applied toward meeting requirements. Grades assigned to in-progress courses will not be considered.</li>
+
+                <li class="li">Evaluate Non-Rolled Grades on In Progress Courses - When you have selected the Check In Progress Courses check box, use this check box to indicate if you want the system to evaluate grades assigned to in-progress courses that have not yet been rolled to academic history. When this check box is selected, only those in-progress courses with passing grades will be applied toward meeting requirements. Passing grades are those which have the Count in Passed check box selected on the Grade Code Maintenance (SHAGRDE) page.</li>
+
+              </ul>
+
+            </div>
+          </li>
+
+          <li class="li substep substepexpand">
+            <span class="ph cmd">Define whether registration is active for mandatory requirements.</span>
+            <div class="itemgroup info">
+              <p class="p">Select the <span class="ph uicontrol">Mandatory Active</span> check box.</p>
+
+              <p class="p">If mandatory requirements are defined under the area rules, enter the name of the mandatory rule key to be retrieved from <span class="keyword">CAPP</span> or the third party software.</p>
+
+              <p class="p">The rule key is the name by which the mandatory classes are defined. If left blank, registration expects mandatory classes to be defined at the top-most level of the <span class="keyword">CAPP</span> area.</p>
+
+            </div>
+          </li>
+
+          <li class="li substep substepexpand">
+            <span class="ph cmd">Define whether registration is active for optional requirements.</span>
+            <div class="itemgroup info">
+              <p class="p">Select the <span class="ph uicontrol">Optional Active</span> check box.</p>
+
+              <p class="p">Enter the name of the optional rule key to be retrieved from <span class="keyword">CAPP</span> or the third party software. The rule key is the name by which the optional classes are defined. The rule key is required when you select the <span class="ph uicontrol">Optional Active</span> check box.</p>
+
+            </div>
+          </li>
+
+          <li class="li substep substepexpand">
+            <span class="ph cmd">Define whether registration is active for elective courses.</span>
+            <div class="itemgroup info">
+              <p class="p">Select the <span class="ph uicontrol">Elective Active</span> check box.</p>
+
+              <p class="p">Enter the name of the elective rule key to be retrieved from <span class="keyword">CAPP</span> or the third party software. The rule key is the name by which the elective classes are defined. The rule key is required when you select the <span class="ph uicontrol">Elective Active</span> check box.</p>
+
+            </div>
+          </li>
+
+          <li class="li substep substepexpand">
+            <span class="ph cmd">Enter the information for the external API when <span class="keyword">CAPP</span> is not in use. (See step <span class="xref ft-internal-link" data-ft-warning="excluded-from-rendering" data-mapid="YrBUkW9_uTki0wEoVn7SaQ" data-tocid="My50qo2sewBauFYs8OquAQ" data-section="t_set_up_structured_registration__ygk_s1h_4z">7</span>.)</span>
+          </li>
+
+          <li class="li substep substepexpand">
+            <span class="ph cmd">Define the print type and links type for information text.</span>
+            <div class="itemgroup info">
+              <ul class="ul">
+                <li class="li">When additional text instructions have been appended to a <span class="keyword">CAPP</span> rule and should be displayed to the student, enter the print type to be used in the <span class="ph uicontrol">Structured Print Type</span> field.</li>
+
+                <li class="li">When the rule text contains a URL that is to be displayed to the student, enter the print type to be used in the <span class="ph uicontrol">Links Print Type</span> field.</li>
+
+              </ul>
+
+            </div>
+          </li>
+
+        </ol>
+
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Access <span class="keyword wintitle">GTVSDAX</span> and set up the rules for REGSTRUCT and CLASS.</span>
+        <div class="itemgroup info">See the " GTVSDAX Rules" section for more information.</div>
+      </li>
+<li class="li step stepexpand" id="t_set_up_structured_registration__ygk_s1h_4z">
+        <span class="ph cmd">Set up the external API if <span class="keyword">CAPP</span> is not in use.</span>
+        <div class="itemgroup info">See the "Use external API" section for more information.</div>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Access the Program Requirements Page (SMAPROG).</span>
+        <div class="itemgroup info">Verify that the registration model is set to <var class="keyword varname">Structured</var> for the program and term range.</div>
+      </li>
+</ol>
+
+  </div>
+
+</div></div></section>
+<section id="t-2220"><h4>Structured Registration controls</h4><div class="content-locale-en-US content-locale-en"><div id="r_structured_registration_controls"><div class="body refbody"><p class="shortdesc">Use the <span class="keyword wintitle">Term Control Page (SOATERM)</span> to set up <span class="keyword">Structured Registration</span> controls.</p>
+
+    <div class="section">
+      <p class="p">In the <span class="keyword">Registration Self-Service</span> tab, access the indicators in the Registration Model section to designate which type of registration processing you want to use for the term. Choices include <span class="ph uicontrol">Basic</span>, <span class="ph uicontrol">Structured</span>, and <span class="ph uicontrol">Projected</span>.</p>
+
+      <p class="p">In the <span class="keyword">Structured Registration</span> tab, define the field values. These fields come from the <span class="keyword">Structured Registration</span> Term Control Table (SOBSTRG).</p>
+
+      <p class="p">Use this field to define the error severity setting for <span class="keyword">Structured Registration</span>.</p>
+
+      
+<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" id="r_structured_registration_controls__r_structured_registration_controls-utbl1" class="table" frame="hsides" border="1" rules="rows"><colgroup><col><col></colgroup><thead class="thead" style="text-align:left;vertical-align:bottom;">
+            <tr class="row">
+              <th class="entry row-nocellborder" style="text-align:left;vertical-align:bottom;" id="d18305e82">Fields</th>
+
+              <th class="entry row-nocellborder" style="text-align:left;vertical-align:bottom;" id="d18305e85">Descriptions</th>
+
+            </tr>
+
+          </thead>
+<tbody class="tbody">
+            <tr class="row">
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d18305e82 ">Error Severity</td>
+
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d18305e85 ">Radio group used to select error severity. Choices include Fatal, Warning, and None.<ul class="ul"> <li class="li">Fatal - Registration changes are not saved until all <span class="keyword">Structured Registration</span> requirements are met.</li>
+ <li class="li">Warning - Registration changes are saved. The student is warned when <span class="keyword">Structured Registration</span> requirements have not been met.</li>
+ <li class="li">None - Registration changes are saved. The student is not informed when <span class="keyword">Structured Registration</span> requirements have not been met.</li>
+ </ul>
+</td>
+
+            </tr>
+
+          </tbody>
+</table>
+</div>
+
+      <p class="p">Use these fields to indicate if you would like courses taken in other terms to be considered when requirements are displayed in <span class="keyword">Structured Registration</span>.</p>
+
+      
+<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" class="table" frame="hsides" border="1" rules="rows"><colgroup><col><col></colgroup><thead class="thead" style="text-align:left;vertical-align:bottom;">
+            <tr class="row">
+              <th class="entry row-nocellborder" style="text-align:left;vertical-align:bottom;" id="d18305e143">Fields</th>
+
+              <th class="entry row-nocellborder" style="text-align:left;vertical-align:bottom;" id="d18305e146">Descriptions</th>
+
+            </tr>
+
+          </thead>
+<tbody class="tbody">
+            <tr class="row">
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d18305e143 ">Check Academic History</td>
+
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d18305e146 ">Use this indicator to select if you want the system to query academic history and update the display of program requirements that have already been met.<p class="p">Select one of these options: </p>
+<ul class="ul"> <li class="li">No - (default) Do not query academic history to update the status for program requirements that have already been met.</li>
+ <li class="li">Institutional only - Query only your institution's academic history records.</li>
+
+                <li class="li">Institutional and Transfer - Query both your institution's academic history records and the transfer academic history records.</li>
+ </ul>
+</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d18305e143 ">Check In Progress Courses</td>
+
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d18305e146 ">Use this check box to indicate that you want the system to update the status of students' requirements based on their currently enrolled classes. This option does not check grades assigned to in-progress courses.<p class="p">The default is not to update students' program requirements based on their currently registered classes.</p>
+</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d18305e143 ">Evaluate Non-Rolled Grades on In Progress Courses</td>
+
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d18305e146 ">When the Check In Progress Courses check box is selected, use this check box to indicate if you want the system to evaluate grades assigned to in-progress courses that have not yet been rolled to academic history.<p class="p">If a current class has a failing grade, for example, Count in Passing is not selected on SHAGRDE, the system will display the program requirement as not met.</p>
+<p class="p">The default is not to evaluate grades assigned to students' current classes.</p>
+</td>
+
+            </tr>
+
+          </tbody>
+</table>
+</div>
+
+      <p class="p">Use these fields to set up the mandatory rule.</p>
+
+      
+<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" id="r_structured_registration_controls__r_structured_registration_controls-utbl2" class="table" frame="hsides" border="1" rules="rows"><colgroup><col><col></colgroup><thead class="thead" style="text-align:left;vertical-align:bottom;">
+            <tr class="row">
+              <th class="entry row-nocellborder" style="text-align:left;vertical-align:bottom;" id="d18305e217">Fields</th>
+
+              <th class="entry row-nocellborder" style="text-align:left;vertical-align:bottom;" id="d18305e220">Descriptions</th>
+
+            </tr>
+
+          </thead>
+<tbody class="tbody">
+            <tr class="row">
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d18305e217 ">Mandatory Active</td>
+
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d18305e220 ">Check box indicates whether the mandatory requirements are open for registration in <span class="keyword">Banner Self-Service</span>.</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d18305e217 ">Mandatory Rule Key</td>
+
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d18305e220 ">Defines the rule under which mandatory requirements are found. <p class="p">Enter a key such as MANDATORY.</p>
+<p class="p">When this field is blank, only requirements attached directly to the area display in the mandatory section of <span class="keyword">Banner Self-Service</span>.</p>
+</td>
+
+            </tr>
+
+          </tbody>
+</table>
+</div>
+
+      <p class="p">Use these fields to set up the optional rule.</p>
+
+      
+<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" id="r_structured_registration_controls__r_structured_registration_controls-utbl3" class="table" frame="hsides" border="1" rules="rows"><colgroup><col><col></colgroup><thead class="thead" style="text-align:left;vertical-align:bottom;">
+            <tr class="row">
+              <th class="entry row-nocellborder" style="text-align:left;vertical-align:bottom;" id="d18305e273">Fields</th>
+
+              <th class="entry row-nocellborder" style="text-align:left;vertical-align:bottom;" id="d18305e276">Descriptions</th>
+
+            </tr>
+
+          </thead>
+<tbody class="tbody">
+            <tr class="row">
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d18305e273 ">Optional Active</td>
+
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d18305e276 ">Check box indicates whether the optional requirements are open for registration in <span class="keyword">Banner Self-Service</span>.</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d18305e273 ">Optional Rule Key</td>
+
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d18305e276 ">Defines the rule under which optional requirements are found. <p class="p">Enter a key such as OPTIONAL.</p>
+<p class="p">When this field is blank, the optional rule cannot be active.</p>
+</td>
+
+            </tr>
+
+          </tbody>
+</table>
+</div>
+
+      <p class="p">Use these fields to set up the elective rule.</p>
+
+      
+<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" id="r_structured_registration_controls__r_structured_registration_controls-utbl4" class="table" frame="hsides" border="1" rules="rows"><colgroup><col><col></colgroup><thead class="thead" style="text-align:left;vertical-align:bottom;">
+            <tr class="row">
+              <th class="entry row-nocellborder" style="text-align:left;vertical-align:bottom;" id="d18305e327">Fields</th>
+
+              <th class="entry row-nocellborder" style="text-align:left;vertical-align:bottom;" id="d18305e330">Descriptions</th>
+
+            </tr>
+
+          </thead>
+<tbody class="tbody">
+            <tr class="row">
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d18305e327 ">Elective Active</td>
+
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d18305e330 ">Check box indicates whether the elective requirements are open for registration in <span class="keyword">Banner Self-Service</span>.</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d18305e327 ">Elective Rule Key</td>
+
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d18305e330 ">Defines the rule under which elective requirements are found. <p class="p">Enter a key such as ELECTIVE.</p>
+<p class="p">When this field is blank, the elective rule cannot be active.</p>
+</td>
+
+            </tr>
+
+          </tbody>
+</table>
+</div>
+
+      <p class="p">Use this field to set up the external API.</p>
+
+      
+<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" id="r_structured_registration_controls__r_structured_registration_controls-utbl5" class="table" frame="hsides" border="1" rules="rows"><colgroup><col><col></colgroup><thead class="thead" style="text-align:left;vertical-align:bottom;">
+            <tr class="row">
+              <th class="entry row-nocellborder" style="text-align:left;vertical-align:bottom;" id="d18305e380">Fields</th>
+
+              <th class="entry row-nocellborder" style="text-align:left;vertical-align:bottom;" id="d18305e383">Descriptions</th>
+
+            </tr>
+
+          </thead>
+<tbody class="tbody">
+            <tr class="row">
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d18305e380 ">External API</td>
+
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d18305e383 ">Name of the external API used for processing when <span class="keyword">CAPP</span> is not in use for <span class="keyword">Structured Registration</span>.</td>
+
+            </tr>
+
+          </tbody>
+</table>
+</div>
+
+      <p class="p">Use these fields to set up the information text.</p>
+
+      
+<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" id="r_structured_registration_controls__r_structured_registration_controls-utbl6" class="table" frame="hsides" border="1" rules="rows"><colgroup><col><col></colgroup><thead class="thead" style="text-align:left;vertical-align:bottom;">
+            <tr class="row">
+              <th class="entry row-nocellborder" style="text-align:left;vertical-align:bottom;" id="d18305e423">Fields</th>
+
+              <th class="entry row-nocellborder" style="text-align:left;vertical-align:bottom;" id="d18305e426">Descriptions</th>
+
+            </tr>
+
+          </thead>
+<tbody class="tbody">
+            <tr class="row">
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d18305e423 ">Structured Print Type</td>
+
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d18305e426 ">Print type code and description used for <span class="keyword">Structured Registration</span> information text to be displayed in Self-Service. Select a value from the list of print type choices.</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d18305e423 ">Links Print Type</td>
+
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d18305e426 ">Print type code and description used for display of links/URLs in <span class="keyword">Structured Registration</span>. Select a value from the list of print type choices.</td>
+
+            </tr>
+
+          </tbody>
+</table>
+</div>
+
+    </div>
+
+  </div>
+
+</div></div></section>
+<section id="t-2230"><h4>GTVSDAX rules</h4><div class="content-locale-en-US content-locale-en"><div id="c_gtvsdax_rules"><p class="shortdesc">Rules on GTVSDAX with the internal  group of REGPROJSTRUCT are used for <span class="keyword">Structured Registration</span> processing.</p>
+
+</div></div></section>
+<section id="t-2240"><h5>REGSTRUCT rule</h5><div class="content-locale-en-US content-locale-en"><div id="c_regstruct_rule"><div class="body conbody"><p class="shortdesc">Use the REGSTRUCT rule to determine whether to use the name convention for the area (N), the area priority (P), the student attribute (T), or all (A).The default is P.</p>
+
+    <p class="p">Area selection for display in a given term is based on the student's class or year in school when this rule is set to N or P.</p>
+
+  </div>
+
+</div></div></section>
+<section id="t-2250"><h5>CLASS rule</h5><div class="content-locale-en-US content-locale-en"><div id="c_class_rule"><div class="body conbody"><p class="shortdesc">Use the CLASS rule to map your institution’s class codes to the area(s) to be processed for each stage of a student’s academic program (such as first year, second year, and so on).</p>
+
+    <p class="p">Multiple CLASS rules should be created, each having a sequence field that corresponds to the order in which a student progresses through the institution’s class codes and one of the institution's class codes entered in the external code field.</p>
+
+    <ul class="ul">
+      <li class="li">When the REGSTRUCT rule is set to N, the last two characters of the name of each area attached to the students’ program should match the class code students would have when they are expected to complete that set of requirements.</li>
+
+      <li class="li">When the REGSTRUCT rule is set to P, the priority assigned to an area when it is attached to the program on SMAPROG is matched to the sequence number of the student's class code entered for the CLASS rule</li>
+
+    </ul>
+
+    <p class="p">During processing, the system looks for an area associated with the student's program on SMAPROG that has a priority value equal to the GTVSDAX sequence number of the CLASS record with an external code equal to the student's class code.</p>
+
+  </div>
+
+</div></div></section>
+<section id="t-2260"><h5>Rule summary</h5><div class="content-locale-en-US content-locale-en"><div id="r_rule_summary"><div class="body refbody"><p class="shortdesc">Sample seed data rules are provided for your reference.</p>
+
+    <div class="section">
+      <div class="note"><span class="notetitle">Note:</span>  The external code for the class code can be any valid class code. It does not have to be numeric. Also, the sequence number does not necessarily correspond to the class year, such as sequence 1 does not have to correspond to first year class. Sequence number 1 maps to the area with priority of 1 on SMAPROG. Sequence number 2 maps to the area with priority 2 on SMAPROG, and so on. Therefore, a class code of SR could be mapped to sequence number 1 if you choose to do so.</div>
+
+    </div>
+
+    
+<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" id="r_rule_summary__r_rule_summary-utbl1" class="table" frame="hsides" border="1" rules="rows"><colgroup><col style="width:81pt"><col style="width:89.4pt"><col style="width:70.2pt"><col style="width:122.4pt"><col style="width:125.4pt"></colgroup><thead class="thead" style="text-align:left;vertical-align:bottom;">
+          <tr class="row">
+            <th class="entry row-nocellborder" style="text-align:left;vertical-align:bottom;" id="d17380e55">External Code</th>
+
+            <th class="entry row-nocellborder" style="text-align:left;vertical-align:bottom;" id="d17380e58">Internal Code</th>
+
+            <th class="entry row-nocellborder" style="text-align:left;vertical-align:bottom;" id="d17380e61">Internal Code Seq Num</th>
+
+            <th class="entry row-nocellborder" style="text-align:left;vertical-align:bottom;" id="d17380e64">Internal Code Group</th>
+
+            <th class="entry row-nocellborder" style="text-align:left;vertical-align:bottom;" id="d17380e67">Description</th>
+
+          </tr>
+
+        </thead>
+<tbody class="tbody">
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d17380e55 ">P, N, T A <p class="p">Default is P</p>
+</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d17380e58 ">REGSTRUCT</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d17380e61 ">&nbsp;</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d17380e64 ">REGPROJSTRUCT</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d17380e67 ">Values are P = Priority, N = Name, T = Student Attribute, A = All</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d17380e55 ">01</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d17380e58 ">CLASS</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d17380e61 ">1</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d17380e64 ">REGPROJSTRUCT</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d17380e67 ">1st year class</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d17380e55 ">02</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d17380e58 ">CLASS</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d17380e61 ">2</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d17380e64 ">REGPROJSTRUCT</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d17380e67 ">2nd year class</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d17380e55 ">03</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d17380e58 ">CLASS</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d17380e61 ">3</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d17380e64 ">REGPROJSTRUCT</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d17380e67 ">3rd year class</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d17380e55 ">04</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d17380e58 ">CLASS</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d17380e61 ">4</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d17380e64 ">REGPROJSTRUCT</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d17380e67 ">4th year class</td>
+
+          </tr>
+
+        </tbody>
+</table>
+</div>
+
+  </div>
+
+</div></div></section>
+<section id="t-2270"><h5>Area name and selection of CAPP areas</h5><div class="content-locale-en-US content-locale-en"><div id="c_area_name_selection_capp_areas"><div class="body conbody"><p class="shortdesc">When you want to use the area name to select <span class="keyword">CAPP</span> areas for a student's program, the following GTVSDAX rules must exist.</p>
+
+    
+<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" id="c_area_name_selection_capp_areas__c_area_name_selection_capp_areas-utbl1" class="table" frame="hsides" border="1" rules="rows"><colgroup><col><col><col></colgroup><thead class="thead" style="text-align:left;vertical-align:bottom;">
+          <tr class="row">
+            <th class="entry row-nocellborder" style="text-align:left;vertical-align:bottom;" id="d13130e50">External Code</th>
+
+            <th class="entry row-nocellborder" style="text-align:left;vertical-align:bottom;" id="d13130e53">Internal Code</th>
+
+            <th class="entry row-nocellborder" style="text-align:left;vertical-align:bottom;" id="d13130e56">Internal Code Group</th>
+
+          </tr>
+
+        </thead>
+<tbody class="tbody">
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d13130e50 ">N</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d13130e53 ">REGSTRUCT</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d13130e56 ">REGPROJSTRUCT</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d13130e50 ">Student's class code as displayed on SGASTDN</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d13130e53 ">CLASS</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d13130e56 ">REGPROJSTRUCT</td>
+
+          </tr>
+
+        </tbody>
+</table>
+</div>
+
+    <p class="p">When this combination of GTVSDAX rules exists and an area name associated with the student's program on SMAPROG ends with the class code value, the requirements associated with that area are displayed in <span class="keyword">Structured Registration</span>. For <span class="keyword">Structured Registration</span>, only the primary curriculum program is selected. If study paths are used, the current and active curriculum record per study path is selected.</p>
+
+    <div class="section"><h2 class="title sectiontitle">Example of area name and selection of <span class="keyword">CAPP</span> areas</h2>
+      
+      <p class="p">A student's class code is 01. When a GTVSDAX record exists with the internal code of CLASS, the internal group of REGPROJSTRUCT, and the external code of 01, and an area assigned to the student's program on SMAPROG has a name that ends with 01, the requirements associated with that area are displayed in <span class="keyword">Structured Registration</span>.</p>
+
+    </div>
+
+  </div>
+
+</div></div></section>
+<section id="t-2280"><h5>Area priority and selection of CAPP areas</h5><div class="content-locale-en-US content-locale-en"><div id="c_area_priority_selection_capp_areas"><div class="body conbody"><p class="shortdesc">When you want to use the area priority to select <span class="keyword">CAPP</span> areas for a student's program, the following GTVSDAX rules must exist.</p>
+
+    
+<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" id="c_area_priority_selection_capp_areas__c_area_priority_selection_capp_areas-utbl1" class="table" frame="hsides" border="1" rules="rows"><colgroup><col><col><col><col></colgroup><thead class="thead" style="text-align:left;vertical-align:bottom;">
+          <tr class="row">
+            <th class="entry row-nocellborder" style="text-align:left;vertical-align:bottom;" id="d51548e52">External Code</th>
+
+            <th class="entry row-nocellborder" style="text-align:left;vertical-align:bottom;" id="d51548e55">Internal Code</th>
+
+            <th class="entry row-nocellborder" style="text-align:left;vertical-align:bottom;" id="d51548e58">Internal Code Sequence Number</th>
+
+            <th class="entry row-nocellborder" style="text-align:left;vertical-align:bottom;" id="d51548e61">Internal Code Group</th>
+
+          </tr>
+
+        </thead>
+<tbody class="tbody">
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d51548e52 ">P</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d51548e55 ">REGSTRUCT</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d51548e58 ">&nbsp;</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d51548e61 ">REGPROJSTRUCT</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d51548e52 ">Student's class code as displayed on SGASTDN</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d51548e55 ">CLASS</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d51548e58 ">1, 2, 3, or 4</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d51548e61 ">REGPROJSTRUCT</td>
+
+          </tr>
+
+        </tbody>
+</table>
+</div>
+
+    <p class="p">The GTVSDAX CLASS rule with sequence number of 1 is mapped to the area on SMAPROG with the area priority of 1. The external code in this record can be any valid class value (such as 1, FR, SO, 03, etc.). When the external code is equal to the student's class value, the area on SMAPROG with a priority of 1 is used for the <span class="keyword">Structured Registration</span> requirements.</p>
+
+    <div class="section"><h2 class="title sectiontitle">Example of area priority and selection of <span class="keyword">CAPP</span> areas</h2>
+      
+      <p class="p">When the CLASS rule has an external code of FR with a sequence number of 1, the requirements for the SMAPROG area with a priority of 1 will be displayed for a student with the class code of FR. When the external code is 03 with a sequence number of 1, the requirements for the SMAPROG area with a priority of 1 will be displayed for a student with a class code of 03.</p>
+
+    </div>
+
+  </div>
+
+</div></div></section>
+<section id="t-2290"><h5>Student Attributes and selection of CAPP areas</h5><div class="content-locale-en-US content-locale-en"><div id="c_student_attributes_capp_areas"><div class="body conbody"><p class="shortdesc">When you want to use student attributes to select CAPP areas for a student's program, the GTVSDAX rule must exist.</p>
+
+    
+<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" id="c_student_attributes_capp_areas__c_area_name_selection_capp_areas-utbl1" class="table" frame="hsides" border="1" rules="rows"><colgroup><col><col><col></colgroup><thead class="thead" style="text-align:left;vertical-align:bottom;">
+          <tr class="row">
+            <th class="entry row-nocellborder" style="text-align:left;vertical-align:bottom;" id="d11805e44">External Code</th>
+
+            <th class="entry row-nocellborder" style="text-align:left;vertical-align:bottom;" id="d11805e47">Internal Code</th>
+
+            <th class="entry row-nocellborder" style="text-align:left;vertical-align:bottom;" id="d11805e50">Internal Code Group</th>
+
+          </tr>
+
+        </thead>
+<tbody class="tbody">
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d11805e44 ">T</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d11805e47 ">REGSTRUCT</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d11805e50 ">REGPROJSTRUCT</td>
+
+          </tr>
+
+        </tbody>
+</table>
+</div>
+
+    <p class="p">When using Student Attributes to select CAPP areas, the class rules are not considered. When the student has been assigned an attribute on SGASADD, and it is effective for the registration term, the requirements will be displayed for any area that 1) is attached to the student’s program and 2) has been assigned the same attribute on SMAALIB.</p>
+
+    <div class="section"><h2 class="title sectiontitle">Example of student attributes and selection of CAPP areas</h2>
+      
+      <p class="p">A student has been assigned the attribute Y1S1 (Year 1, Semester 1) on SGASADD effective term 201610. On SMAALIB, area AAS_ACCS1 (AAS Accounting Sem 1) has been defined with Y1S1 in the Structured Registration Attribute field, and on SMAPROG the area has been attached to the student's program. When the student logs into Self-Service Registration and selects term 201610, the requirements associated with that area are displayed in Structured Registration.</p>
+
+    </div>
+
+  </div>
+
+</div></div></section>
+<section id="t-2300"><h5>All area requirements</h5><div class="content-locale-en-US content-locale-en"><div id="c_all_area_requirements"><div class="body conbody"><p class="shortdesc">When you want to use requirements for all areas associated with the student's program, the following GTVSDAX rules must exist.</p>
+
+    
+<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" id="c_all_area_requirements__c_all_area_requirements-utbl1" class="table" frame="hsides" border="1" rules="rows"><colgroup><col><col><col></colgroup><thead class="thead" style="text-align:left;vertical-align:bottom;">
+          <tr class="row">
+            <th class="entry row-nocellborder" style="text-align:left;vertical-align:bottom;" id="d3428e49">External Code</th>
+
+            <th class="entry row-nocellborder" style="text-align:left;vertical-align:bottom;" id="d3428e52">Internal Code</th>
+
+            <th class="entry row-nocellborder" style="text-align:left;vertical-align:bottom;" id="d3428e55">Internal Code Group</th>
+
+          </tr>
+
+        </thead>
+<tbody class="tbody">
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d3428e49 ">A</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d3428e52 ">REGSTRUCT</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d3428e55 ">REGPROJSTRUCT</td>
+
+          </tr>
+
+        </tbody>
+</table>
+</div>
+
+    <p class="p">In this case, all requirements from all areas associated with the student's program are displayed to the student, regardless of the area name, the priority of the area on SMAPROG, the student's class, and the student's attributes. However, the ability to register for specific requirement types is determined by the SOATERM settings for mandatory requirements, optional requirements, and electives.</p>
+
+  </div>
+
+</div></div></section>
+<section id="t-2310"><h6>All area requirements example</h6><div class="content-locale-en-US content-locale-en"><div id="c_all_area_requirements_example"><div class="body conbody"><p class="shortdesc">Here is an example where the GTVSDAX REGSTRUCT rule is set to A, and the student's <span class="keyword">CAPP</span> program definition contains three areas.</p>
+
+    
+<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" id="c_all_area_requirements_example__c_all_area_requirements_example-utbl1" class="table" frame="hsides" border="1" rules="rows"><colgroup><col><col><col></colgroup><thead class="thead" style="text-align:left;vertical-align:bottom;">
+          <tr class="row">
+            <th class="entry row-nocellborder" style="text-align:left;vertical-align:bottom;" id="d49132e47">Program Area</th>
+
+            <th class="entry row-nocellborder" style="text-align:left;vertical-align:bottom;" id="d49132e50">Rules</th>
+
+            <th class="entry row-nocellborder" style="text-align:left;vertical-align:bottom;" id="d49132e53">Requirement Type</th>
+
+          </tr>
+
+        </thead>
+<tbody class="tbody">
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d49132e47 ">GEN-ED</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d49132e50 ">2 rules attached</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d49132e53 ">MANDATORY, ELECTIVE</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d49132e47 ">MAJOR</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d49132e50 ">2 rules attached</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d49132e53 ">MANDATORY, OPTIONAL</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d49132e47 ">ENGL-ELEC</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d49132e50 ">1 rule attached</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d49132e53 ">ELECTIVE</td>
+
+          </tr>
+
+        </tbody>
+</table>
+</div>
+
+    <p class="p">When the SOATERM settings for <span class="keyword">Structured Registration</span> are set with Mandatory Active selected and Optional Active selected, the student would be able to register for the mandatory requirements from GEN-ED and MAJOR along with the optional requirements from MAJOR. The student would not be able to register for the electives from GEN-ED and ENGL-ELEC.</p>
+
+    <p class="p">When the SOATERM settings for <span class="keyword">Structured Registration</span> are set with Elective Active selected, the student would be able to register for the elective requirements from GEN-ED and ENGL-ELEC. The student would not be able to register for the mandatory or optional requirements from GEN-ED and MAJOR.</p>
+
+  </div>
+
+</div></div></section>
+<section id="t-2320"><h4>Search Again</h4><div class="content-locale-en-US content-locale-en"><div id="c_refine_search"><div class="body conbody"><p class="shortdesc">A Search Again button is provided to manage the number of sections presented to the user.</p>
+
+    <p class="p"><span class="keyword">CAPP</span> supports single course numbers, course number ranges, attributes, and various characteristics, any of which can result in large numbers of sections being listed. <span class="keyword">Structured Registration</span> uses the Basic Search page layout in Self-Service when the Search Again button is selected. Processing does not support the expansion to the Advanced Search page. The displays for Basic Search and the Search Again share the same SOAWSCR configuration entries.</p>
+
+    <p class="p">When the Basic Search page is configured, all the fields the student can use must be included on a single page. It is recommended that only the low and high course number fields are displayed and not the Course Number field. When either the Course Number Low value or the Course Number High value from <span class="keyword">CAPP</span> exists, all Course Number fields on the Search Again page will be protected from update.</p>
+
+    <p class="p">When both the Course Number Low and the Course Number High values are populated in <span class="keyword">CAPP</span>, the Course Number field on the Search Again page is Null. The Course Number Low from <span class="keyword">CAPP</span> populates the low Course Number Range field, and the Course Number High from <span class="keyword">CAPP</span> populates the high Course Number Range field.</p>
+
+  </div>
+
+</div></div></section>
+<section id="t-2330"><h4>Structured Overview display</h4><div class="content-locale-en-US content-locale-en"><div id="c_structured_overview_display"><div class="body conbody"><p class="shortdesc">When using <span class="keyword">Structured Registration</span> in Self-Service, an outline is presented in the left panel of the page to show a high level overview of the program.</p>
+
+    <p class="p">This view displays a hierarchy of requirements that can be reviewed using the links. This view provides a visual display of requirements that have been met (green check mark), and still need to be met (empty circle), grouped into their mandatory, optional, or elective categories.</p>
+
+  </div>
+
+</div></div></section>
+<section id="t-2340"><h5>Display self-authored text for the Program, Rule, and Course</h5><div class="content-locale-en-US content-locale-en"><div id="c_display_self_authored_text_the_program_rule_course"><div class="body conbody"><p class="shortdesc">You can create self-authored text as an alternative to the system-generated text displayed for the Program Title, Rule Title and Description, and the Course Title and Description.</p>
+
+    <div class="note"><span class="notetitle">Note:</span> Before you can use this functionality, you need to make sure that the Program Catalog and Fee Generation (PROGCAT) application, the Self Service Engine (SSEN) for Registration 9.4.1, and the <span class="keyword">Banner</span> Mass Data Update Utility (MDUU) are installed on your system. You can find these applications in the <span class="keyword">Ellucian</span> Download Center.</div>
+
+    <p class="p">A person at your institution with access to edit a <span class="keyword">CAPP</span> Program Area and Course Title and Description needs to allow Faculty Member users permission to edit the Program Catalog Program Access Control List (SKAPROO) page, the Program Catalog Area Access Control List (SKAAREO) page, and the Program Catalog Course Access Control List (SKACRSO) page.</p>
+
+  </div>
+
+</div></div></section>
+<section id="t-2350"><h6>Grant Access to Program Updates</h6><div class="content-locale-en-US content-locale-en"><div id="t_grant_access_program_updates"><div class="body taskbody"><p class="shortdesc">Provide Faculty Member users the ability to edit Program details.</p>
+
+    <div class="tasklabel"><h2 class="sectiontitle tasklabel">Procedure</h2></div><ol class="ol steps"><li class="li step stepexpand">
+        <span class="ph cmd">Go to the <span class="keyword wintitle">Program Catalog Program Access Control List (SKAPROO)</span> page.</span>
+      </li>
+<li class="li step stepexpand"><strong>Optional: </strong>
+        <span class="ph cmd">Enter a <span class="ph uicontrol">Program Code</span>, <span class="ph uicontrol">Term Code</span>, or both codes in the key block, and click <span class="ph uicontrol">Go</span>.</span>
+        <div class="itemgroup info">If you leave the fields blank, the system returns all programs in all terms.</div>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Enter the <span class="ph uicontrol">Program Code</span>, <span class="ph uicontrol">Term Code</span>, and the <span class="ph uicontrol">ID</span> of the faculty member to whom you are granting access.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Select the <span class="ph uicontrol">Active Indicator</span> check box.</span>
+        <div class="itemgroup info"> By default, this check box is selected when you create a new record.</div>
+      </li>
+</ol>
+
+  </div>
+
+</div></div></section>
+<section id="t-2360"><h6>Grant Access to Area Updates</h6><div class="content-locale-en-US content-locale-en"><div id="t_grant_access_area_updates"><div class="body taskbody"><p class="shortdesc">Provide Faculty Member users the ability to edit Area details.</p>
+
+    <div class="tasklabel"><h2 class="sectiontitle tasklabel">Procedure</h2></div><ol class="ol steps"><li class="li step stepexpand">
+        <span class="ph cmd">Go to the <span class="keyword wintitle">Program Catalog Area Access Control List (SKAAREO)</span> page.</span>
+      </li>
+<li class="li step stepexpand"><strong>Optional: </strong>
+        <span class="ph cmd">Enter an <span class="ph uicontrol">Area Code</span>, <span class="ph uicontrol">Term Code</span>, <span class="ph uicontrol">ID</span>, or any combination of those in the key block, and click <span class="ph uicontrol">Go</span>.</span>
+        <div class="itemgroup info">If you leave the fields blank, the system returns all areas in all terms for all IDs that have been granted access.</div>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Enter the <span class="ph uicontrol">Area Code</span>, <span class="ph uicontrol">Effective Term</span>, and the <span class="ph uicontrol">ID</span> of the faculty member to whom you are granting access.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Select the <span class="ph uicontrol">Active Indicator</span> check box.</span>
+        <div class="itemgroup info"> By default, this check box is selected when you create a new record.</div>
+      </li>
+</ol>
+
+  </div>
+
+</div></div></section>
+<section id="t-2370"><h6>Grant Access to Course Updates</h6><div class="content-locale-en-US content-locale-en"><div id="t_grant_access_course_updates"><div class="body taskbody"><p class="shortdesc">Provide Faculty Member users the ability to edit Course details.</p>
+
+    <div class="tasklabel"><h2 class="sectiontitle tasklabel">Procedure</h2></div><ol class="ol steps"><li class="li step stepexpand">
+        <span class="ph cmd">Access the <span class="keyword wintitle">Program Catalog Course Access Control List (SKACRSO)</span> page.</span>
+      </li>
+<li class="li step stepexpand"><strong>Optional: </strong>
+        <span class="ph cmd">Enter a <span class="ph uicontrol">Subject Code</span>, <span class="ph uicontrol">Course Number</span>, <span class="ph uicontrol">Term Code</span>, <span class="ph uicontrol">ID</span>, or any combination of those in the key block, and click <span class="ph uicontrol">Go</span>.</span>
+        <div class="itemgroup info">If you leave all the fields blank, the system returns all courses and subjects in all terms for all IDs that have been granted access.</div>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Enter the <span class="ph uicontrol">Subject Code</span>, <span class="ph uicontrol">Course Number,</span> <span class="ph uicontrol">Effective Term</span>, and the <span class="ph uicontrol">ID</span> of the faculty member to whom you are granting access.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Select the <span class="ph uicontrol">Active Indicator</span> check box.</span>
+        <div class="itemgroup info">By default, this check box is selected when you create a new record.</div>
+      </li>
+</ol>
+
+    <div class="section postreq"><div class="tasklabel"><h2 class="sectiontitle tasklabel">What to do next</h2></div>After faculty members have permission to edit these forms, they need to provide the text for the titles and descriptions.</div>
+
+  </div>
+
+</div></div></section>
+<section id="t-2380"><h6>Set up information in CAPP</h6><div class="content-locale-en-US content-locale-en"><div id="t_set_up_information_capp"><div class="body taskbody"><p class="shortdesc">The following procedure explains how to set up or modify data in the <span class="keyword">CAPP</span> module for use in the Program Catalog module. If your institution does not use <span class="keyword">CAPP</span>, you will need to set up the values specified in this procedure.</p>
+
+    <div class="section context"><div class="tasklabel"><h2 class="sectiontitle tasklabel">About this task</h2></div>
+      <p class="p">If your institution uses <span class="keyword">CAPP</span>, the information below should already be set up, although step <span class="xref ft-internal-link" data-ft-warning="excluded-from-rendering" data-mapid="YrBUkW9_uTki0wEoVn7SaQ" data-tocid="fH6HL~yE~nRjgoGC6YAIQQ" data-section="t_set_up_information_capp__spn_r5h_4z">15</span> was not included in your original setup. You must enter a value for the <span class="ph uicontrol">Text</span> and <span class="ph uicontrol">Print</span> fields. You might also want to review the existing values for suitability for display to student and visitor users.</p>
+
+      <p class="p">This version of the Program Catalog module does not support the use of <span class="keyword">CAPP</span> groups, set/subset logic, degree attributes, or <span class="keyword">CAPP</span> rules. It also does not support the use of course syllabus (SCASYLB) data.</p>
+
+    </div>
+
+    <div class="tasklabel"><h2 class="sectiontitle tasklabel">Procedure</h2></div><ol class="ol steps"><li class="li step stepexpand">
+        <span class="ph cmd">Review the values on the following forms and modify values as necessary:</span>
+        <div class="itemgroup info">
+          <ul class="ul">
+            <li class="li">Campus Code Validation (STVCAMP) page</li>
+
+            <li class="li">College Code Validation (STVCOLL) page</li>
+
+            <li class="li">Level Code Validation (STVLEVL) page</li>
+
+            <li class="li">Degree Code Validation (STVDEGC) page</li>
+
+            <li class="li">Term Code Validation (STVTERM) page</li>
+
+            <li class="li">Basic Course Information (SCACRSE) page</li>
+
+            <li class="li">Program Definition Rules (SMAPRLE) page</li>
+
+          </ul>
+
+        </div>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Access the <span class="keyword wintitle">Term Control (SOATERM)</span> page.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Select the <span class="ph uicontrol">Master Web Term Control</span> check box in the Control Settings section of the main window, and then save your change.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Access the <span class="keyword wintitle">Program Requirements (SMAPROG)</span> page.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Create active, term-effective general requirements for each program you want to be available in the program catalog.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Go to the <span class="keyword wintitle">Program Text</span> window of SMAPROG.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Create the program text to be used as the long title as follows.</span>
+        <ol type="a" class="ol substeps">
+          <li class="li substep">
+            <span class="ph cmd">Enter the text in the <span class="ph uicontrol">Text</span> field.</span>
+          </li>
+
+          <li class="li substep">
+            <span class="ph cmd">Enter <kbd class="ph userinput">LONG</kbd> in the <span class="ph uicontrol">Print</span> field, and then save your changes.</span>
+          </li>
+
+        </ol>
+
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Create the narrative text to be used as the long summary description as follows.</span>
+        <ol type="a" class="ol substeps">
+          <li class="li substep">
+            <span class="ph cmd">Enter the text in the <span class="ph uicontrol">Text</span> field.</span>
+          </li>
+
+          <li class="li substep">
+            <span class="ph cmd">Enter <kbd class="ph userinput">REQS</kbd> in the <span class="ph uicontrol">Print</span> field, and then save your changes.</span>
+          </li>
+
+        </ol>
+
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Access the <span class="keyword wintitle">Area Libraries (SMAALIB)</span> page.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd"> Define the area codes to be attached to the program, and then save your changes.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd"> Access the <span class="keyword wintitle">Area Requirements (SMAAREA)</span> page.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd"> Create active, term-effective requirements for each area you want to be available in the program catalog.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd"> Define the program sub-requirement codes and descriptions.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd"> Go to the <span class="ph uicontrol">Area Text</span> window of SMAAREA.</span>
+      </li>
+<li class="li step stepexpand" id="t_set_up_information_capp__spn_r5h_4z">
+        <span class="ph cmd"> Create the narrative text to be used as the long summary description as follows.</span>
+        <ol type="a" class="ol substeps">
+          <li class="li substep">
+            <span class="ph cmd">Enter the text in the <span class="ph uicontrol">Text</span> field.</span>
+          </li>
+
+          <li class="li substep">
+            <span class="ph cmd">Enter <kbd class="ph userinput">REQS</kbd> in the <span class="ph uicontrol">Print</span> field.</span>
+          </li>
+
+        </ol>
+
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd"> Access <span class="keyword wintitle">SMAPROG</span>.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd"> Attach the defined areas to the program.</span>
+      </li>
+</ol>
+
+  </div>
+
+</div></div></section>
+<section id="t-2390"><h4>Use external API</h4><div class="content-locale-en-US content-locale-en"><div id="c_use_external_api"><p class="shortdesc"><span class="keyword">Structured Registration</span> processing can request data from external third party applications and receive a list of courses to be processed in <span class="keyword">Banner</span>. This is done by setting up an external API when <span class="keyword">CAPP</span> is not in use.</p>
+
+</div></div></section>
+<section id="t-2400"><h5>Configure the external API</h5><div class="content-locale-en-US content-locale-en"><div id="t_configure_external_api"><div class="body taskbody"><p class="shortdesc">Do the following to set up the external API used to retrieve <span class="keyword">Structured Registration</span> data from a third party application.</p>
+
+    <div class="tasklabel"><h2 class="sectiontitle tasklabel">Procedure</h2></div><ol class="ol steps"><li class="li step stepexpand">
+        <span class="ph cmd">Create a new record for the external RESTful API code and description on the <span class="keyword wintitle">External API Information Validation Page (STVREST)</span>.</span>
+        <div class="itemgroup stepxmp">For example, enter <kbd class="ph userinput">SRG - Third Party Connection for <span class="keyword">Structured Registration</span></kbd>. You will use this code in step <span class="xref ft-internal-link" data-ft-warning="excluded-from-rendering" data-mapid="YrBUkW9_uTki0wEoVn7SaQ" data-tocid="LKO3RavdgYI7X_QIUeyLDw" data-section="t_configure_external_api__zhb_1wh_4z">2</span>.</div>
+      </li>
+<li class="li step stepexpand" id="t_configure_external_api__zhb_1wh_4z">
+        <span class="ph cmd">Define the RESTful API controls on the <span class="keyword wintitle">External API Connection Information Page (SOAREST)</span>.</span>
+        <ol type="a" class="ol substeps">
+          <li class="li substep">
+            <span class="ph cmd">Select the code created on <span class="keyword wintitle">STVREST</span>.</span>
+          </li>
+
+          <li class="li substep">
+            <span class="ph cmd">Enter the username, password, and URL information used to connect to your third party APIs.</span>
+          </li>
+
+        </ol>
+
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Update the RESTful API code on <span class="keyword wintitle">SOATERM</span>.</span>
+        <div class="itemgroup info">This step tells your registration process how to collect <span class="keyword">Structured Registration</span> data.</div>
+        <ol type="a" class="ol substeps">
+          <li class="li substep">
+            <span class="ph cmd">Enter the term that you want to use.</span>
+          </li>
+
+          <li class="li substep">
+            <span class="ph cmd">Select the <span class="keyword">Structured Registration</span> tab.</span>
+          </li>
+
+          <li class="li substep">
+            <span class="ph cmd">Enter the external API using the code defined on <span class="keyword wintitle">STVREST</span>.</span>
+          </li>
+
+          <li class="li substep">
+            <span class="ph cmd">Save the changes.</span>
+          </li>
+
+        </ol>
+
+      </li>
+</ol>
+
+  </div>
+
+</div></div></section>
+<section id="t-2410"><h5>Use third party service</h5><div class="content-locale-en-US content-locale-en"><div id="c_use_third_party_service"><div class="body conbody"><p class="shortdesc">The third party service needs to send all processed data in the proper hierarchy for rules and rules under rules. If "AND", "OR" conditions exist for requirements, the third party service should group them accordingly.</p>
+
+    <p class="p">The following sections describe the minimum requirements that your third party service provider must meet.</p>
+
+  </div>
+
+</div></div></section>
+<section id="t-2420"><h6>URL</h6><div class="content-locale-en-US content-locale-en"><div id="c_url"><p class="shortdesc">Your third party service should be exposed as a RESTful Service on the URL accessible by the <span class="keyword">Banner</span>
+    <span class="ph">9.31.0</span> application.</p>
+
+</div></div></section>
+<section id="t-2430"><h6>Authentication</h6><div class="content-locale-en-US content-locale-en"><div id="c_authentication"><p class="shortdesc">External API access requires Base64 encoding of the username and password. The third party service is expected to authenticate all incoming requests with the Base64 encoded username and password. The response is returned when the data is successfully validated, based on the credentials entered in SOAREST.</p>
+
+</div></div></section>
+<section id="t-2440"><h6>Request criteria</h6><div class="content-locale-en-US content-locale-en"><div id="r_request_criteria"><div class="body refbody"><p class="shortdesc">The <span class="keyword">Banner</span>
+    <span class="ph">9.31.0</span> application will provide following criteria for the RESTful request.</p>
+
+    
+<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" id="r_request_criteria__r_request_criteria-utbl1" class="table" frame="hsides" border="1" rules="rows"><colgroup><col><col><col></colgroup><thead class="thead" style="text-align:left;vertical-align:bottom;">
+          <tr class="row">
+            <th class="entry row-nocellborder" style="text-align:left;vertical-align:bottom;" id="d17904e50">Response Field</th>
+
+            <th class="entry row-nocellborder" style="text-align:left;vertical-align:bottom;" id="d17904e53">Field Attribute</th>
+
+            <th class="entry row-nocellborder" style="text-align:left;vertical-align:bottom;" id="d17904e56">Description</th>
+
+          </tr>
+
+        </thead>
+<tbody class="tbody">
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d17904e50 ">bannerId</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d17904e53 ">String (9 char)</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d17904e56 ">Student's ID, required.</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d17904e50 ">term</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d17904e53 ">String (6 char)</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d17904e56 ">Student's term, required.</td>
+
+          </tr>
+
+        </tbody>
+</table>
+</div>
+
+  </div>
+
+</div></div></section>
+<section id="t-2450"><h6>Response</h6><div class="content-locale-en-US content-locale-en"><div id="c_response"><div class="body conbody"><p class="shortdesc">A JSON type of response is expected from the third party service. The <span class="keyword">Banner</span> <span class="ph">9.31.0</span> application will request "application/json" as the acceptToken in the request.</p>
+
+    <p class="p">The response should contain hierarchical information about <span class="keyword">Structured Registration</span> data. The response contains one or more headers, and each header can contain hierarchical subRules.</p>
+
+    <p class="p">A sample structured registration JSON file for AREAS is attached for your reference. To download the sample JSON file, click <span class="ph uicontrol">More </span><img class="image" src="images/06-structured-registration-1.png" alt="more_icon" data-ft-asset-display-name="icn_resources_action.png" data-ft-resource-id="tryxUqymdmWN_WU~ehbAtg-YrBUkW9_uTki0wEoVn7SaQ"> and then <span class="ph uicontrol">Attachment</span>.</p>
+
+  </div>
+
+</div></div></section>
+<section id="t-2460"><h6>Header JSON</h6><div class="content-locale-en-US content-locale-en"><div id="r_header_json"><div class="body refbody"><p class="shortdesc">Here is the header JSON information for criteria field, field attribute, and description.</p>
+
+    
+<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" id="r_header_json__r_header_json-utbl1" class="table" frame="hsides" border="1" rules="rows"><colgroup><col><col><col></colgroup><thead class="thead" style="text-align:left;vertical-align:bottom;">
+          <tr class="row">
+            <th class="entry row-nocellborder" style="text-align:left;vertical-align:bottom;" id="d12249e44">Criteria Field</th>
+
+            <th class="entry row-nocellborder" style="text-align:left;vertical-align:bottom;" id="d12249e47">Field Attribute</th>
+
+            <th class="entry row-nocellborder" style="text-align:left;vertical-align:bottom;" id="d12249e50">Description</th>
+
+          </tr>
+
+        </thead>
+<tbody class="tbody">
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d12249e44 ">bannerId</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d12249e47 ">String (9 char)</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d12249e50 ">Student's ID, required.</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d12249e44 ">termCode</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d12249e47 ">String (6 char)</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d12249e50 ">Student's term, required.</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d12249e44 ">Program</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d12249e47 ">String (12 char)</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d12249e50 ">Student's program code - required.</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d12249e44 ">programDescription</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d12249e47 ">String (30 char)</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d12249e50 ">Program description.</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d12249e44 ">studyPath</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d12249e47 ">Number (2) <p class="p">0 - 99</p>
+</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d12249e50 ">Key sequence of the study path for the <span class="keyword">Structured Registration</span> header record.</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d12249e44 ">catalogTerm</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d12249e47 ">String (6 char)</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d12249e50 ">Catalog term code of the learner.</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d12249e44 ">typeCode</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d12249e47 ">String (1 char) <p class="p">["1", "2", "3"]</p>
+</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d12249e50 ">The type value corresponding to the <code class="ph codeph">ACTIVE_IND</code> for the term. <div class="p">Valid values include:<ul class="ul">
+                  <li class="li">1 - Mandatory Active</li>
+
+                  <li class="li">2 - Optional Active</li>
+
+                  <li class="li">3 - Elective Active</li>
+
+                </ul>
+</div>
+</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d12249e44 ">subRules</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d12249e47 ">List &lt;Rule&gt;</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d12249e50 ">Sub rules represent a list of rules that are children of the current rule. This field provides hierarchical capabilities to the <span class="keyword">Structured Registration</span> data.</td>
+
+          </tr>
+
+        </tbody>
+</table>
+</div>
+
+  </div>
+
+</div></div></section>
+<section id="t-2470"><h6>Rule JSON</h6><div class="content-locale-en-US content-locale-en"><div id="r_rule_json"><div class="body refbody"><p class="shortdesc">Here is the rule JSON information for response field, field attribute, and description.</p>
+
+    
+<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" id="r_rule_json__r_rule_json-utbl1" class="table" frame="hsides" border="1" rules="rows"><colgroup><col><col><col></colgroup><thead class="thead" style="text-align:left;vertical-align:bottom;">
+          <tr class="row">
+            <th class="entry row-nocellborder" style="text-align:left;vertical-align:bottom;" id="d13615e44">Response Field</th>
+
+            <th class="entry row-nocellborder" style="text-align:left;vertical-align:bottom;" id="d13615e47">Field Attribute</th>
+
+            <th class="entry row-nocellborder" style="text-align:left;vertical-align:bottom;" id="d13615e50">Description</th>
+
+          </tr>
+
+        </thead>
+<tbody class="tbody">
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d13615e44 ">bannerId</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d13615e47 ">String (9 char)</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d13615e50 ">Student’s ID, required.</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d13615e44 ">termCode</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d13615e47 ">String (6 char)</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d13615e50 ">Student’s term, required.</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d13615e44 ">area</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d13615e47 ">String (10 char)</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d13615e50 ">Entity used to define general requirements and any related detail requirements for use as a program component - required.</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d13615e44 ">areaDescription</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d13615e47 ">String (30 char)</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d13615e50 ">Description for area of study.</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d13615e44 ">set</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d13615e47 ">String (3 char)</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d13615e50 ">Used to associate individual rules and provide AND and OR groupings. Refer to the <cite class="cite"><span class="keyword">Banner Student</span> <span class="keyword">CAPP</span></cite> content for details.</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d13615e44 ">subset</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d13615e47 ">Number (3)<p class="p">0-999</p>
+</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d13615e50 ">Defines the relationship of the rules denoted by the associated set. When the subset is specified, the set must also be specified.</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d13615e44 ">groupName</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d13615e47 ">String (30 char)</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d13615e50 ">Name of the group associated with the requirement.</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d13615e44 ">ruleName</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d13615e47 ">String (10 char)</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d13615e50 ">Used to segregate detail requirements which need additional controls over and above the controls already specified for the area detail requirements.</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d13615e44 ">ruleDescription</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d13615e47 ">String (30 char)</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d13615e50 ">Description for the rule.</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d13615e44 ">ruleCondition</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d13615e47 ">Number (3)<p class="p">0-999</p>
+</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d13615e50 ">When the type of rule is a condition, this is the number of the condition.</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d13615e44 ">ruleRequiredNumberCondition</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d13615e47 ">Number (3)<p class="p">0-999</p>
+</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d13615e50 ">Required number of conditions that must be met. Applicable for rule requirements only.</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d13615e44 ">ruleConditionRequiredCredits</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d13615e47 ">Decimal (8,3)<p class="p">0.000 - 99999999.999</p>
+</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d13615e50 ">Required number of credits per condition.</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d13615e44 ">ruleConditionRequiredConnector</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d13615e47 ">String (1 char)<p class="p">[A,O,N]</p>
+</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d13615e50 ">Used to designate whether overall credits and overall courses should be considered together or individually as a requirement. <div class="p">Valid connector values include:<ul class="ul"> <li class="li">And</li>
+ <li class="li">Or</li>
+ <li class="li">None</li>
+ <li class="li">Null</li>
+ </ul>
+</div>
+</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d13615e44 ">ruleConditionRequiredCourses</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d13615e47 ">Number (3)<p class="p">0-999</p>
+</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d13615e50 ">Required number of courses per condition.</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d13615e44 ">ruleConditionMaxCredits</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d13615e47 ">Decimal (8,3)<p class="p">0.000 - 99999999.999</p>
+</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d13615e50 ">Maximum number of credits per condition.</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d13615e44 ">ruleConditionMaxConnector</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d13615e47 ">String (1 char)<p class="p">[A,O,N]</p>
+</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d13615e50 ">Used to designate whether maximum credits and maximum courses should be considered together or individually as a requirement.<div class="p">Valid connector values include:<ul class="ul"> <li class="li">And</li>
+ <li class="li">Or</li>
+ <li class="li">None</li>
+ <li class="li">Null</li>
+ </ul>
+</div>
+</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d13615e44 ">ruleConditionMaxCourses</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d13615e47 ">Number (3)<p class="p">0-999</p>
+</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d13615e50 ">Maximum number of courses per condition.</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d13615e44 ">ruleTotalRequiredCredits</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d13615e47 ">Decimal (8,3)<p class="p">0.000 - 99999999.999</p>
+</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d13615e50 ">Required number of total credits for the rule.</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d13615e44 ">ruleTotalRequiredConnector</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d13615e47 ">String (1 char)<p class="p">[A,O,N]</p>
+</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d13615e50 ">Used to designate whether overall credits and overall courses should be considered together or individually as a requirement. <div class="p">Valid connector values include:<ul class="ul"> <li class="li">And</li>
+ <li class="li">Or</li>
+ <li class="li">None</li>
+ <li class="li">Null</li>
+ </ul>
+</div>
+</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d13615e44 ">ruleTotalRequiredCourses</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d13615e47 ">Number (3)<p class="p">0-999</p>
+</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d13615e50 ">Required number of total courses for the rule.</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d13615e44 ">ruleTotalMaximumCredits</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d13615e47 ">Decimal (8,3)<p class="p">0.000 - 99999999.999</p>
+</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d13615e50 ">Maximum total credits that can be taken for the rule.</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d13615e44 ">ruleTotalMaximumConnector</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d13615e47 ">String (1 char)<p class="p">[A,O,N]</p>
+</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d13615e50 ">Used to designate whether maximum credits and maximum courses should be considered together or individually as a requirement. <div class="p">Valid connector values include:<ul class="ul"> <li class="li">And</li>
+ <li class="li">Or</li>
+ <li class="li">None</li>
+ <li class="li">Null</li>
+ </ul>
+</div>
+</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d13615e44 ">ruleTotalMaximumCourses</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d13615e47 ">Number (3)<p class="p">0-999</p>
+</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d13615e50 ">Maximum total number of courses that can be taken for the rule.</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d13615e44 ">courseRequiredCredits</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d13615e47 ">Decimal (8,3)<p class="p">0.000 - 99999999.999</p>
+</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d13615e50 ">Required number of credits for the course requirement. Applicable to course only.</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d13615e44 ">courseRequiredConnector</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d13615e47 ">String (1 char)<p class="p">[A,O,N]</p>
+</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d13615e50 ">Required courses/credits connector used to designate whether overall credits and overall courses should be considered together or individually as a requirement. Applicable to course requirement only.<div class="p">Valid connector values include:<ul class="ul"> <li class="li">And</li>
+ <li class="li">Or</li>
+ <li class="li">None</li>
+ <li class="li">Null</li>
+ </ul>
+</div>
+</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d13615e44 ">courseRequiredCourses</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d13615e47 ">Number (3)<p class="p">0-999</p>
+</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d13615e50 ">Number of courses required for the course requirement.</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d13615e44 ">courseMaxCredits</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d13615e47 ">Decimal (8,3)<p class="p">0.000 - 99999999.999</p>
+</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d13615e50 ">Maximum number of credits for the course requirement.</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d13615e44 ">courseMaxConnector</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d13615e47 ">String (1 char)<p class="p">[A,O,N]</p>
+</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d13615e50 ">Maximum courses/credits connector used to designate whether overall credits and overall courses should be considered together or individually as a requirement. Applicable for course requirement only.<div class="p">Valid connector values include:<ul class="ul"> <li class="li">And</li>
+ <li class="li">Or</li>
+ <li class="li">None</li>
+ <li class="li">Null</li>
+ </ul>
+</div>
+</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d13615e44 ">courseMaxCourses</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d13615e47 ">Number (3)<p class="p">0-999</p>
+</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d13615e50 ">Maximum number of courses required by the course requirement.</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d13615e44 ">subject</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d13615e47 ">String (4 char)</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d13615e50 ">Subject code.</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d13615e44 ">courseNumberLow</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d13615e47 ">String (5 char)</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d13615e50 ">Course number low. The subject and course number low should refer to an existing section.</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d13615e44 ">courseNumberHigh</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d13615e47 ">String (5 char)</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d13615e50 ">Course number high. If course number low and course number high are both populated, then a range is indicated. Course number high cannot exist without course number low.</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d13615e44 ">courseAttributeCode</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d13615e47 ">String (4 char)</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d13615e50 ">Attribute code for the course/rule. The attribute code must exist in <span class="keyword">Banner</span> <span class="ph">9.31.0</span>.</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d13615e44 ">campusCode</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d13615e47 ">String (3 char)</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d13615e50 ">Campus code for the course/rule. The campus code must exist in <span class="keyword">Banner</span> <span class="ph">9.31.0</span>.</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d13615e44 ">collegeCode</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d13615e47 ">String (2 char)</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d13615e50 ">College code for the course/rule. The college code must exist in <span class="keyword">Banner</span> <span class="ph">9.31.0</span>.</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d13615e44 ">departmentCode</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d13615e47 ">String (4 char)</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d13615e50 ">Department code for the course/rule. The department code must exist in <span class="keyword">Banner</span> <span class="ph">9.31.0</span>.</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d13615e44 ">source</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d13615e47 ">String (30 char)</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d13615e50 ">Identifies the source of data for <code class="ph codeph">ruleLink</code> and <code class="ph codeph">informationText</code> fields.</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d13615e44 ">ruleLink</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d13615e47 ">String (2000 char)</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d13615e50 ">URL presented to the student to prompt for more information.</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d13615e44 ">informationText</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d13615e47 ">CLOB</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d13615e50 ">When multiple informational text items exist for the requirement, all items should be concatenated into a single string.</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d13615e44 ">subRules</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d13615e47 ">List &lt;Rule&gt;</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d13615e50 ">Represents list of rules that are children of the current rule. Provides hierarchical capabilities for the <span class="keyword">Structured Registration</span> data.</td>
+
+          </tr>
+
+        </tbody>
+</table>
+</div>
+
+  </div>
+
+</div></div></section></main></body></html>

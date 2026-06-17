@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>PSIS Banner Student - Use — Extract data and generate files</title><style>body{font-family:-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;line-height:1.55;color:#1a1a1a;max-width:920px;margin:0 auto;padding:24px}header{border-bottom:2px solid #5a16d6;margin-bottom:8px}h1{color:#3a0ca3}h2,h3,h4,h5,h6{margin-top:1.6em}.crumb{color:#666;font-size:13px;margin:0}.meta{color:#888;font-size:12px}nav.toc{background:#f6f4fc;border:1px solid #e3dcf5;border-radius:8px;padding:12px 18px;margin:18px 0}nav.toc h2{margin:.2em 0}nav.toc ul{list-style:none;padding-left:0}nav.toc a{text-decoration:none;color:#5a16d6}section{margin:1.2em 0;padding-top:.4em}img{max-width:100%;height:auto}table{border-collapse:collapse}td,th{border:1px solid #ccc;padding:4px 8px}code,pre{background:#f4f4f4;border-radius:4px}pre{padding:10px;overflow:auto}</style></head><body><header><p class="crumb">Banner Student › PSIS Banner Student - Use</p><h1>PSIS Banner Student - Use — Extract data and generate files</h1><p class="meta">Source: <a href="https://resources.elluciancloud.com/r/bundle/banner_cdn_psis_acn_use">https://resources.elluciancloud.com/r/bundle/banner_cdn_psis_acn_use</a> &middot; Retrieved 2026-06-17</p></header><nav class="toc"><h2>Contents</h2><ul><li style="margin-left:0px"><a href="#t-260">Extract data and generate files</a></li><li style="margin-left:16px"><a href="#t-270">Extract and verify PSIS data</a></li><li style="margin-left:16px"><a href="#t-280">Use generic procedures to extract PSIS data</a></li><li style="margin-left:16px"><a href="#t-290">Generate PSIS flat files</a></li></ul></nav><main><section id="t-260"><h2>Extract data and generate files</h2><div class="content-locale-en-US content-locale-en"><div id="c_extract_data"><div class="body conbody"><p class="shortdesc">Learn how to gather data from <span class="keyword">Banner</span> tables and <span class="keyword">PSIS</span> tables and generate <span class="keyword">PSIS</span> flat files.</p>
+
+    <p class="p">The tables are defined after the inputting the required data elements. Institutions can review the captured data to verify its accuracy. Changes or corrections to the captured data must be made at the source level.</p>
+
+  </div>
+
+</div></div></section>
+<section id="t-270"><h3>Extract and verify PSIS data</h3><div class="content-locale-en-US content-locale-en"><div id="t_extract_and_verify_psis_data"><div class="body taskbody"><p class="shortdesc">Learn how to extract data from <span class="keyword">Banner</span> source files and populate the <span class="keyword">PSIS</span> extract tables.</p>
+
+    <div class="section prereq p"><div class="tasklabel"><h2 class="sectiontitle tasklabel">Before you begin</h2></div>Make sure you've set up <span class="keyword">Banner</span> <span class="keyword">PSIS</span>.</div>
+
+    <div class="tasklabel"><h2 class="sectiontitle tasklabel">Procedure</h2></div><ol class="ol steps"><li class="li step stepexpand">
+        <span class="ph cmd">Run the <span class="keyword">PSIS</span> Extraction Process (SVPESIS) to populate the <span class="keyword">PSIS</span> extract tables.</span>
+        <div class="itemgroup info">
+          <p class="p">Information is pulled from the appropriate <span class="keyword">Banner</span> source, and from the data element fields from <span class="keyword wintitle">SVAIDTB</span>, <span class="keyword wintitle">SVAIPTB</span>, and <span class="keyword wintitle">SVAICTB</span> to populate the SVRESID, SVRESIP, and SVRESIC tables. </p>
+
+          <p class="p"><span class="keyword wintitle">SVPESIS</span> also populates the SVRESSP, SVRESSC, and SVRESST tables for each PIDM generated during the population selection. </p>
+
+          <p class="p">The data is pulled from the appropriate <span class="keyword">Banner</span> source and from the data element fields from <span class="keyword wintitle">SVASPTB</span>.</p>
+
+        </div>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">To verify the extracted data, access the <span class="keyword">Statistics Canada</span> <span class="keyword">PSIS</span> Inquiry (SVIESIS) form.</span>
+        <ol type="a" class="ol substeps">
+          <li class="li substep substepexpand">
+            <span class="ph cmd">Select the report year, institution code, report type, and <span class="keyword">PSIS</span> file, then select <span class="ph uicontrol">Next Block</span>.</span>
+          </li>
+
+          <li class="li substep substepexpand">
+            <span class="ph cmd">Verify the information for the selected <span class="keyword">PSIS</span> file. </span>
+            <div class="itemgroup info">Use the scroll bar to view all of the information.</div>
+          </li>
+
+          <li class="li substep substepexpand">
+            <span class="ph cmd">Select <span class="ph uicontrol">Rollback</span> after the information is verified.</span>
+          </li>
+
+          <li class="li substep substepexpand">
+            <span class="ph cmd">Repeat steps 2a through 2c for the remaining <span class="keyword">PSIS</span> files.</span>
+          </li>
+
+        </ol>
+
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Access the <span class="keyword">Statistics Canada</span> <span class="keyword">PSIS</span> Student Inquiry (SVIESTU) form to view the <span class="keyword">PSIS</span> data for a given student ID.</span>
+        <ol type="a" class="ol substeps">
+          <li class="li substep substepexpand">
+            <span class="ph cmd">Select a student ID.</span>
+          </li>
+
+          <li class="li substep substepexpand">
+            <span class="ph cmd">Select the <span class="ph uicontrol">report year</span>, <span class="ph uicontrol">institution code</span>, and <span class="ph uicontrol">report type</span>, then select <span class="ph uicontrol">Next Block</span>.</span>
+          </li>
+
+          <li class="li substep substepexpand">
+            <span class="ph cmd">Verify the data.</span>
+          </li>
+
+          <li class="li substep substepexpand">
+            <span class="ph cmd">Select the following options to verify the remaining data for the student:</span>
+            <div class="itemgroup info">
+              <ul class="ul">
+                <li class="li">
+                  <span class="ph uicontrol">More...</span>
+                </li>
+
+                <li class="li">
+                  <span class="ph uicontrol">Student Description</span>
+                </li>
+
+                <li class="li">
+                  <span class="ph uicontrol">Student Program</span>
+                </li>
+
+                <li class="li">
+                  <span class="ph uicontrol">Student Course</span>
+                </li>
+
+                <li class="li">
+                  <span class="ph uicontrol">Student Transfer</span>
+                </li>
+
+              </ul>
+
+            </div>
+          </li>
+
+        </ol>
+
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Access the <span class="keyword">Statistics Canada</span> <span class="keyword">PSIS</span> Student Summary (SVIESTQ) form to view all of a student’s combinations of Reporting Year, Report Type and Institution. </span>
+        <div class="itemgroup info">SVIESTQ can also be opened by clicking the <span class="ph uicontrol">Sum</span> icon in the upper-right corner of the Key block on <span class="keyword wintitle">SVIESTU</span>.</div>
+        <ol type="a" class="ol substeps">
+          <li class="li substep">
+            <span class="ph cmd">Select a student ID, then select <span class="ph uicontrol">Next Block</span>.</span>
+          </li>
+
+          <li class="li substep">
+            <span class="ph cmd">Verify the data.</span>
+          </li>
+
+        </ol>
+
+      </li>
+</ol>
+
+  </div>
+
+</div></div></section>
+<section id="t-280"><h3>Use generic procedures to extract PSIS data</h3><div class="content-locale-en-US content-locale-en"><div id="t_alternative_extraction_method_using_generic_procedures"><div class="body taskbody"><p class="shortdesc">If one or more of the fields in the <span class="keyword">PSIS</span> flat files do not match the calculation method used at your institution, you can modify that calculation using the generic procedures to reflect your requirements.</p>
+
+    <div class="section prereq p"><div class="tasklabel"><h2 class="sectiontitle tasklabel">Before you begin</h2></div>Make sure you've set up <span class="keyword">Banner</span> <span class="keyword">PSIS</span>.</div>
+
+    <div class="section context"><div class="tasklabel"><h2 class="sectiontitle tasklabel">About this task</h2></div>
+      <p class="p">Follow these rules to use the generic procedures to insert local code.</p>
+
+      <div class="note"><span class="notetitle">Note:</span> The user is responsible for keeping the coherence between the code added in the generic procedure and the rest of the <span class="keyword">PSIS</span> elements.</div>
+
+    </div>
+
+    <div class="tasklabel"><h2 class="sectiontitle tasklabel">Procedure</h2></div><ol class="ol steps"><li class="li step stepexpand">
+        <span class="ph cmd">Select the correct procedure to insert or exclude the local code, depending on the <span class="keyword">PSIS</span> elements that need to be changed for one or more tables.</span>
+        <div class="itemgroup info">For example, if the elements need to be inserted into the SVRESSD table, then use the <code class="ph codeph">generic_data_SD</code> procedure. If records need to be excluded from the SVRESSD table, then use the <code class="ph codeph">generic_check_SD</code> procedure.</div>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Assign the <kbd class="ph userinput">WW</kbd> value to the corresponding <span class="keyword">PSIS</span> field. This rule applies only to the <code class="ph codeph">generic_data</code> procedures.</span>
+        <div class="itemgroup info">For example, if the element modified is the “Immigration status of student,” then add a line resembling the following to the generic procedure:<pre class="pre codeblock"><code>strcpy(svressd_immigration_status,
+    psisuser_immigration_status)</code></pre></div>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Any new procedure or variable that needs to be added because of local modifications should use the <code class="ph codeph">psisuser</code> prefix for its definition (that is, <code class="ph codeph">psisuser_procedurename</code>, <code class="ph codeph">psisuser_variablename</code>).</span>
+      </li>
+</ol>
+
+  </div>
+
+</div></div></section>
+<section id="t-290"><h3>Generate PSIS flat files</h3><div class="content-locale-en-US content-locale-en"><div id="t_generate_psis_flat_files"><div class="body taskbody"><p class="shortdesc">This procedure runs a <span class="keyword">Banner</span> job submission batch program that produces a series of <span class="keyword">PSIS</span> related flat files. Information collected and verified through the <span class="keyword">PSIS</span> interface is used to produce a series of flat files.</p>
+
+    <div class="section context"><div class="tasklabel"><h2 class="sectiontitle tasklabel">About this task</h2></div>
+      <p class="p">The resulting flat files are then delivered to <span class="keyword">Statistics Canada</span>. The necessary flat files are produced according to the following schedule:</p>
+
+      
+<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" class="table" frame="hsides" border="1" rules="rows"><colgroup><col style="width:17.513134851138354%"><col style="width:82.48686514886164%"></colgroup><thead class="thead" style="text-align:left;">
+            <tr class="row">
+              <th class="entry row-nocellborder" style="vertical-align:top;" id="d12917e69">Schedule</th>
+
+              <th class="entry row-nocellborder" style="vertical-align:top;" id="d12917e72">Required <span class="keyword">PSIS</span> Procedure</th>
+
+            </tr>
+
+          </thead>
+<tbody class="tbody">
+            <tr class="row">
+              <td class="entry row-nocellborder" style="vertical-align:top;" headers="d12917e69 ">October</td>
+
+              <td class="entry row-nocellborder" style="vertical-align:top;" headers="d12917e72 ">Produce metadata flat files.</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry row-nocellborder" style="vertical-align:top;" headers="d12917e69 ">January</td>
+
+              <td class="entry row-nocellborder" style="vertical-align:top;" headers="d12917e72 ">Produce preliminary flat files.</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry row-nocellborder" style="vertical-align:top;" headers="d12917e69 ">July</td>
+
+              <td class="entry row-nocellborder" style="vertical-align:top;" headers="d12917e72 ">Produce final flat files.</td>
+
+            </tr>
+
+          </tbody>
+</table>
+</div>
+
+      <div class="note"><span class="notetitle">Note:</span> <span class="keyword">Statistics Canada</span>’s Prescreen software is used to verify the contents of the <span class="keyword">PSIS</span> flat files. Installation and use of this software is beyond the scope of this document. Refer to <cite class="cite"><span class="keyword">Statistics Canada</span> Prescreen</cite> documentation for additional details.</div>
+
+      <p class="p">This procedure is used to create the flat files that are sent to <span class="keyword">Statistics Canada</span>.</p>
+
+    </div>
+
+    <div class="tasklabel"><h2 class="sectiontitle tasklabel">Procedure</h2></div><ol class="ol steps"><li class="li step">
+        <span class="ph cmd">Run the <span class="keyword">PSIS</span> Flat Files Generation Process (SVPESFF) form.</span>
+      </li>
+<li class="li step">
+        <span class="ph cmd">Verify the data contained in the flat file using a text editor or the external <span class="keyword">Statistics Canada</span> pre-screening process.</span>
+      </li>
+<li class="li step">
+        <span class="ph cmd">If errors exist on the flat file, repeat the previous setup steps to correct the data, then rerun all subsequent processes until the files are free from fatal errors.<span class="keyword">PSIS</span> pre-screening software and operating instructions are provided by <span class="keyword">Statistics Canada</span>.</span>
+      </li>
+<li class="li step">
+        <span class="ph cmd">Copy resulting <span class="keyword">PSIS</span> flat files to the appropriate media for transport to <span class="keyword">Statistics Canada</span>.</span>
+      </li>
+<li class="li step">
+        <span class="ph cmd">Send resulting <span class="keyword">PSIS</span> flat files to <span class="keyword">Statistics Canada</span> using the prescribed method.</span>
+      </li>
+</ol>
+
+  </div>
+
+</div></div></section></main></body></html>

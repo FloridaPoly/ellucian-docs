@@ -1,0 +1,870 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>CALBSTU Banner Student - Use — Course Repeats</title><style>body{font-family:-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;line-height:1.55;color:#1a1a1a;max-width:920px;margin:0 auto;padding:24px}header{border-bottom:2px solid #5a16d6;margin-bottom:8px}h1{color:#3a0ca3}h2,h3,h4,h5,h6{margin-top:1.6em}.crumb{color:#666;font-size:13px;margin:0}.meta{color:#888;font-size:12px}nav.toc{background:#f6f4fc;border:1px solid #e3dcf5;border-radius:8px;padding:12px 18px;margin:18px 0}nav.toc h2{margin:.2em 0}nav.toc ul{list-style:none;padding-left:0}nav.toc a{text-decoration:none;color:#5a16d6}section{margin:1.2em 0;padding-top:.4em}img{max-width:100%;height:auto}table{border-collapse:collapse}td,th{border:1px solid #ccc;padding:4px 8px}code,pre{background:#f4f4f4;border-radius:4px}pre{padding:10px;overflow:auto}</style></head><body><header><p class="crumb">Banner Student › CALBSTU Banner Student - Use</p><h1>CALBSTU Banner Student - Use — Course Repeats</h1><p class="meta">Source: <a href="https://resources.elluciancloud.com/r/bundle/banner_cal_calbstu_acn_use">https://resources.elluciancloud.com/r/bundle/banner_cal_calbstu_acn_use</a> &middot; Retrieved 2026-06-17</p></header><nav class="toc"><h2>Contents</h2><ul><li style="margin-left:0px"><a href="#t-140">Course Repeats</a></li><li style="margin-left:16px"><a href="#t-150">Registration processing</a></li><li style="margin-left:32px"><a href="#t-160">Recommended setup</a></li><li style="margin-left:48px"><a href="#t-170">Registration messages</a></li><li style="margin-left:48px"><a href="#t-180">Relationship of the setups to the registration repeat error messages</a></li><li style="margin-left:32px"><a href="#t-190">Repeat count evaluation for satisfactory grades</a></li><li style="margin-left:32px"><a href="#t-200">Repeat count evaluation for non-satisfactory grades</a></li><li style="margin-left:32px"><a href="#t-210">Repeat count evaluation for enrollments in repetition family courses</a></li><li style="margin-left:48px"><a href="#t-220">Repetition family courses and equivalent courses</a></li><li style="margin-left:64px"><a href="#t-230">Repetition family courses and equivalent courses example</a></li><li style="margin-left:48px"><a href="#t-240">Repetition family courses evaluation counts</a></li><li style="margin-left:64px"><a href="#t-250">Self-Service temporary record clean-up</a></li><li style="margin-left:48px"><a href="#t-260">Determining the courses to be included during registration evaluation</a></li><li style="margin-left:32px"><a href="#t-270">Using SFAROVR override</a></li><li style="margin-left:48px"><a href="#t-280">Example of how a manual override can cause limits to be disregarded</a></li><li style="margin-left:32px"><a href="#t-290">Review and research repetition family setups and registration messages</a></li><li style="margin-left:32px"><a href="#t-300">Review course repeat data</a></li><li style="margin-left:32px"><a href="#t-310">Registration mass entry on SFAMREG</a></li><li style="margin-left:16px"><a href="#t-320">Course Repeats Pages</a></li><li style="margin-left:16px"><a href="#t-330">Course Repeats Tables</a></li><li style="margin-left:16px"><a href="#t-340">Course Repeats Reports</a></li></ul></nav><main><section id="t-140"><h2>Course Repeats</h2><div class="content-locale-en-US content-locale-en"><div id="c_course_repeats"><p class="shortdesc">This section discusses Course Repeats localizations for California Community College clients. These localizations improve control over the student registration course repeat processing to meet the Title 5 regulations.</p>
+
+  
+</div></div></section>
+<section id="t-150"><h3>Registration processing</h3><div class="content-locale-en-US content-locale-en"><div id="c_registration_processing"><div class="body conbody"><p class="shortdesc">This section explains the localizations made to registration processing for the Course Repeats functionality. This information applies to registration in the following products.</p>
+
+    <ul class="ul">
+      <li class="li"><span class="keyword">Banner</span>® Student</li>
+
+      <li class="li"><span class="keyword">Banner</span> Student Self-Service</li>
+
+      <li class="li"><span class="keyword">Banner</span> Faculty and Advisor Self-Service</li>
+
+    </ul>
+
+    <p class="p">The terms "repetition family" and "family," when used in relation to the Course Repeats functionality, are the CALBSTU terms used to represent the regulatory requirement for "courses related in content."</p>
+
+    <p class="p">All changes relate to the <span class="ph uicontrol">Repeat Limit</span> field (SOBTERM_REPT_SEVERITY) on the Term Control Page (SOATERM) when it is set to <kbd class="ph userinput">Fatal</kbd>. If the <span class="ph uicontrol">Repeat Limit</span> field is set to <kbd class="ph userinput">Warning</kbd>, the CALBSTU logic is used with the new messages, but it is handled like the standard baseline warning and does not stop the save. The setting of <kbd class="ph userinput">Fatal</kbd> is needed to meet the regulation rules.</p>
+
+    <p class="p">The logic for <span class="ph uicontrol">Repeat Hours</span> field values, which relates to the <span class="ph uicontrol">Maximum Hours</span> field on the Basic Course Information Page (SCACRSE), has not been changed.</p>
+
+    <p class="p">When the system evaluates repeat limits, a null in the Limit field on SCACRSE is treated as 0. A null in the Repeat Type field on SCACRSE is treated the same as if the value were Non-repeatable Credit as long as the value in the Maximum Hours field is also null. However, if the Maximum Hours field is not null, only the Maximum Hours field will be validated for the course. This is consistent with baseline setups. See <span class="xref ft-internal-link" title="The Table 1 describes how the setups on the various pages are used together to trigger specific registration error checking." data-ft-warning="excluded-from-rendering" data-mapid="jL2UUBTQJR5uipmMJVsX5g" data-tocid="hgu0D6jwWcLX1RWZMzi7ww" data-section="r_relationship_the_setups_the_registration_repeat_error_messages">Relationship of the setups to the registration repeat error messages</span> for more information. The system evaluates records for satisfactory grade repeat counts as explained in <span class="xref ft-internal-link" title="The evaluation for satisfactory grade repeat counts is processed first because preventing students from replacing satisfactory grades is the highest priority. This evaluation relates to the registration error message REPT 1: Repeat exceeds %1% for satisfactory grade count." data-ft-warning="excluded-from-rendering" data-mapid="jL2UUBTQJR5uipmMJVsX5g" data-tocid="Ol0CDU8EHZ0aUdfLgm605w" data-section="c_repeat_count_evaluation_satisfactory_grades">Repeat count evaluation for satisfactory grades</span>. This is modified from the baseline logic and returns the baseline registration message Repeat exceeds 1% for satisfactory grade count (SFARMSG registration error message REPT 1). </p>
+
+    <p class="p">It uses the manual override column SFRSTCR_REPT_OVER (<kbd class="ph userinput">Yes</kbd> or <kbd class="ph userinput">All</kbd> in the <span class="ph uicontrol">Override</span> field on SFAREGS) or the SFAROVR <span class="ph uicontrol">Repeat Limit</span> field.</p>
+
+    <p class="p">The REPT 1 error is ignored if the value in the SCACRSE <span class="ph uicontrol">Repeat Type</span> field is <kbd class="ph userinput">Legally Mandated Training</kbd> or if the <span class="ph uicontrol">Limit</span> field is null with a value of <kbd class="ph userinput">Non-repeatable Credit</kbd> or null in the <span class="ph uicontrol">Repeat Limit</span> field when the value in the <span class="ph uicontrol">Maximum Hours</span> field is not null.</p>
+
+    <p class="p">The system evaluates records for substandard and withdrawal grade repeat counts as explained in <span class="xref ft-internal-link" title="The non-satisfactory grade evaluation is processed second. It is only processed if the satisfactory grade evaluation did not fail. This evaluation relates to the registration error message REPT 52: Repeat exceeds %1% for non-satisfactory grade count." data-ft-warning="excluded-from-rendering" data-mapid="jL2UUBTQJR5uipmMJVsX5g" data-tocid="3XHAFMqBr0JG3UByJmXhqQ" data-section="c_repeat_count_evaluation_non-satisfactory_grades">Repeat count evaluation for non-satisfactory grades</span>. This is additional and returns the CALBSTU registration message <kbd class="ph userinput">Repeat exceeds %1% for non-satisfactory grade</kbd> (SFARMSG registration error message REPT 52). </p>
+
+    <p class="p">It uses the manual override column SVRSTCR_OVER_SUBSTD_LIMIT (<kbd class="ph userinput">Yes</kbd> or <kbd class="ph userinput">All</kbd> in the <span class="ph uicontrol">Override</span> field on SFAREGS) or the SFAROVR <span class="ph uicontrol">Repeat Limit</span> field.</p>
+
+    <div class="p">The REPT 52 error is ignored if at least one of the following is true: <ul class="ul"> <li class="li">The value in the SCACRSE <span class="ph uicontrol">Repeat Type</span> field is one of the following: <ul class="ul"> <li class="li"><kbd class="ph userinput">Activity/Other Repeatable</kbd></li>
+ <li class="li"><kbd class="ph userinput">Family Activity/Other Repeatable</kbd></li>
+ <li class="li"><kbd class="ph userinput">Legally Mandated Training</kbd></li>
+ </ul>
+</li>
+
+      <li class="li">The <span class="ph uicontrol">Limit</span> field is null with a value of <kbd class="ph userinput">Non-repeatable Credit</kbd> or null in the <span class="ph uicontrol">Repeat Limit</span> field when the value in the <span class="ph uicontrol">Maximum Hours</span> field is not null. <p class="p">See <span class="xref ft-internal-link" title="The Table 1 describes how the setups on the various pages are used together to trigger specific registration error checking." data-ft-warning="excluded-from-rendering" data-mapid="jL2UUBTQJR5uipmMJVsX5g" data-tocid="hgu0D6jwWcLX1RWZMzi7ww" data-section="r_relationship_the_setups_the_registration_repeat_error_messages">Relationship of the setups to the registration repeat error messages</span> for more information.</p>
+</li>
+ </ul>
+</div>
+
+    <p class="p">The system evaluates repeats for repetition families as explained in <span class="xref ft-internal-link" title="The enrollments in repetition family courses evaluation is processed last." data-ft-warning="excluded-from-rendering" data-mapid="jL2UUBTQJR5uipmMJVsX5g" data-tocid="zZgUwcfuz5EMYdFE4rPGxA" data-section="c_repeat_count_evaluation_enrollments_repetition_family_courses">Repeat count evaluation for enrollments in repetition family courses</span>. This returns the following CALBSTU registration message (SFARMSG registration error message REPT 54): Repeat exceeds %1% limit in %2% course repetition family. </p>
+
+    <p class="p">It uses the manual override column SVRSTCR_OVER_FAMILY_LIMIT (<kbd class="ph userinput">Yes</kbd> or <kbd class="ph userinput">All</kbd> in the <span class="ph uicontrol">Override</span> field on SFAREGS) or the SFAROVR <span class="ph uicontrol">Repeat Limit</span> field.</p>
+
+    <p class="p">The REPT 54 error is used only if the value in the SCACRSE <span class="ph uicontrol">Repeat Type</span> field is <kbd class="ph userinput">Family Non-repeatable Credit</kbd> or <kbd class="ph userinput">Family Activity/Other Repeatable</kbd>.</p>
+
+    <p class="p">The REPT 54 error is ignored if the value in the SCACRSE <span class="ph uicontrol">Repeat Type</span> field is any other value.</p>
+
+    <p class="p">For the courses related in content, each course can be associated with more than one family if needed as long as the course <span class="ph uicontrol">Repeat Type</span> field is <kbd class="ph userinput">Family Non-repeatable Credit</kbd> or <kbd class="ph userinput">Family Activity/Other Repeatable</kbd>.</p>
+
+    <p class="p">If the <span class="ph uicontrol">Repeat Limit Selection Rule</span> field on the Repeat/Multiple Course Rules Page (SHARPTR) is set to <kbd class="ph userinput">First Passing</kbd>, the rule is not used with the CALBSTU registration repeat limit logic, but it still impacts grade processing.</p>
+
+    <p class="p">The <span class="ph uicontrol">Repeat Limit Evaluation Grade</span> field on SHARPTR is not used with the CALBSTU registration repeat limit logic, but it still impacts grade processing.</p>
+
+    <p class="p">The <span class="ph uicontrol">Passing Grade</span> field on SHARPTR is not used with the CALBSTU registration repeat limit logic, but it still impacts grade processing and repeat hours.</p>
+
+    <p class="p">The following grades are considered in the repeat processing: </p>
+
+    <ul class="ul">
+      <li class="li">Grades that have been rolled to academic history in any term</li>
+
+      <li class="li">Grades that have not been rolled yet but recorded in the roaster in any term</li>
+
+      <li class="li">Transfer grades, when SHARPTR notes to include transfers, that are appropriately recorded for equivalency and inclusion in terms less than or equal to the registration term; these grades are only used to evaluate the satisfactory grade error REPT 1 and the non-satisfactory grade error REPT 52 errors on a single course and are not used to evaluate REPT 54 course repetition family errors.</li>
+
+      <li class="li">In-process registrations (not graded) in any term for a gradable CRN with an enrollment-included registration status code; these are treated as potential satisfactory grades. They will count toward the repeat limit on SCACRSE for the satisfactory grade REPT 1 error.</li>
+
+      <li class="li">Any of these records for a course's equivalent course. The repetition family REPT 54 error, the equivalent course does not need to have the same SCACRSE Repetition Family code on it; this design is intentional to prevent the maintenance of older, obsolete courses in your catalog.</li>
+
+    </ul>
+
+  </div>
+
+</div></div></section>
+<section id="t-160"><h4>Recommended setup</h4><div class="content-locale-en-US content-locale-en"><div id="c_recommended_setup"><div class="body conbody"><p class="shortdesc">To ensure that registration processing for course repeats works properly, the following items must be set up as specified.</p>
+
+    <div class="note"><span class="notetitle">Note:</span> The limit values noted within this chapter are the apportionment limits that are defined in the regulations. The regulations allow one or more (quarter systems) additional repetitions for enrollment purposes, but those extra repetitions would be without apportionment funding from the state. Therefore, it is recommended that you use the apportionment limits to avoid issues when it is time to submit your CCFS-320 reports.</div>
+
+    <p class="p">If you want future term registrations included in the repeat evaluation, the <span class="ph uicontrol">Future Terms for Repeats</span> field on the Term Control Page (SOATERM) must be checked. It defaults to unchecked.</p>
+
+    <p class="p">On SOATERM, the <span class="ph uicontrol">Repeat Limit</span> field must be set to <kbd class="ph userinput">Fatal</kbd>.</p>
+
+    <div class="p">On the Repeat/Multiple Course Rules Page (SHARPTR), take the following actions. <ul class="ul"> <li class="li">Set the <span class="ph uicontrol">Passing Grade</span> field to <kbd class="ph userinput">C</kbd>. This value is not used with the CALBSTU registration repeat limit logic, but it still impacts grade processing and repeat hours.</li>
+
+      <li class="li">Define two term-effective entries to Repeat/Equivalent Use and GPA Rules by Effective Term and Level Block to get the most accurate results until Repeat/Equivalent Course Check (SHRRPTS) is modified for CALBSTU in a future release.</li>
+ <li class="li">Define a record that is effective starting in the term currently active in registration as follows. This is the record that registration will use to process Repeat Limits. <ul class="ul">
+      <li class="li">The <span class="ph uicontrol">Repeat Limit Selection Rule</span> field must be set to <kbd class="ph userinput">First Passing</kbd>. This value is not used with the CALBSTU registration repeat limit logic, but it still impacts grade processing.</li>
+ <li class="li">The <span class="ph uicontrol">Repeat Limit Evaluation Grade</span> field must be set to <kbd class="ph userinput">W</kbd>. This value is not used with the CALBSTU registration repeat limit logic, but it still impacts grade processing.</li>
+
+      <li class="li">The <span class="ph uicontrol">Repeat Limit GPA Calculation</span> field must be set to <kbd class="ph userinput">Selected</kbd>.</li>
+ <li class="li">The <span class="ph uicontrol">Repeat Limit Maximum Non-satisfactory</span> field must be set to <kbd class="ph userinput">2</kbd>.</li>
+ </ul>
+</li>
+ <li class="li">Define a second record that is effective starting in term <kbd class="ph userinput">000000</kbd> for academic history. This is the record SHRRPTS will use. <ul class="ul">
+      <li class="li">The <span class="ph uicontrol">Repeat Limit Selection Rule</span> field must be set to <kbd class="ph userinput">Highest</kbd>. This value is not used with the CALBSTU registration repeat limit logic, but it still impacts grade processing.</li>
+ <li class="li">The <span class="ph uicontrol">Repeat Limit Evaluation Grade</span> field must be set to <kbd class="ph userinput">W</kbd>. This value is not used with the CALBSTU registration repeat limit logic, but it still impacts grade processing.</li>
+
+      <li class="li">The <span class="ph uicontrol">Repeat Limit GPA Calculation</span> field must be set to <kbd class="ph userinput">Selected</kbd>.</li>
+ <li class="li">The <span class="ph uicontrol">Repeat Limit Maximum Non-satisfactory</span> field must be set to <kbd class="ph userinput">2</kbd>.</li>
+ </ul>
+</li>
+ </ul>
+</div>
+
+    <p class="p">On the Course Repetition Family Validation Page (SVVCRFM), add the repetition family codes that will link a group of course together on SCACRSE. The value in the <span class="ph uicontrol">Repetition Limit</span> field must be set to <kbd class="ph userinput">3</kbd>.</p>
+
+    <div class="p">On the Basic Course Information Page (SCACRSE), the value in the <span class="ph uicontrol">Limit</span> field must be set to one of the following values, as appropriate. <ul class="ul"> <li class="li">If the value in the <span class="ph uicontrol">Repeat Type</span> field is null, the <span class="ph uicontrol">Limit</span> field must be null.</li>
+
+      <li class="li">If the value in the <span class="ph uicontrol">Repeat Type</span> field is <kbd class="ph userinput">Non-repeatable Credit</kbd>, the <span class="ph uicontrol">Limit</span> field must be set to <kbd class="ph userinput">0</kbd> (zero).<div class="note"><span class="notetitle">Note:</span> When the system evaluates repeat limits, a null in the <span class="ph uicontrol">Repeat Limit</span> field is treated the same as if the value were <kbd class="ph userinput">0</kbd>, and a null in the <span class="ph uicontrol">Repeat Type</span> field is treated the same as if the value were <kbd class="ph userinput">Non-repeatable Credit</kbd> as long as the value in the <span class="ph uicontrol">Maximum Hours</span> field is also null. However, if the value in the <span class="ph uicontrol">Maximum Hours</span> field is not null, only maximum hours will be validated for the course. This is consistent with baseline setups. Refer to <span class="xref ft-internal-link" title="The Table 1 describes how the setups on the various pages are used together to trigger specific registration error checking." data-ft-warning="excluded-from-rendering" data-mapid="jL2UUBTQJR5uipmMJVsX5g" data-tocid="hgu0D6jwWcLX1RWZMzi7ww" data-section="r_relationship_the_setups_the_registration_repeat_error_messages">Relationship of the setups to the registration repeat error messages</span> for more information.</div>
+</li>
+
+      <li class="li">If the value in the <span class="ph uicontrol">Repeat Type</span> field is <kbd class="ph userinput">Family Non-repeatable Credit</kbd>, the <span class="ph uicontrol">Limit</span> field must be set to <kbd class="ph userinput">0</kbd> (zero), and a value must be entered in the <span class="ph uicontrol">Code</span> field of the Course Repetition Family window (accessed using the <span class="ph uicontrol">Repetition Family</span> button in the Repeat Details section of the Course Details block). <p class="p">This designates the course as being treated as non-repeatable credit on its own for the satisfactory grade (REPT 1) and non-satisfactory grade (REPT 52) errors and as part of one or more repetition families for evaluation of the repetition family (REPT 54) error.</p>
+
+      <p class="p"><kbd class="ph userinput">0</kbd> is the REPT 1 error limit for this course. The repetition family limit for the REPT 54 error is defined on the repetition family code setup on SVVCRFM. (The REPT 52 error limit is found on SHARPTR, as usual.)</p>
+</li>
+ <li class="li">If the value in the <span class="ph uicontrol">Repeat Type</span> field is <kbd class="ph userinput">Legally Mandated Training</kbd>, the <span class="ph uicontrol">Limit</span> field must be set to <kbd class="ph userinput">99</kbd>.</li>
+
+      <li class="li">If the value in the <span class="ph uicontrol">Repeat Type</span> field is <kbd class="ph userinput">Activity/Other Repeatable</kbd>, the <span class="ph uicontrol">Limit</span> field must be set to no greater than <kbd class="ph userinput">3</kbd>. <p class="p">This designates the course as being treated as activity/other repeatable on its own for the satisfactory grade (REPT 1) error, which in this case includes the count of non-satisfactory grades.</p>
+</li>
+
+      <li class="li">If the value in the <span class="ph uicontrol">Repeat Type</span> field is <kbd class="ph userinput">Family Activity/Other Repeatable</kbd>, the <span class="ph uicontrol">Limit</span> field must be set to 3, and a value must be entered in the <span class="ph uicontrol">Code</span> field of the Course Repetition Family window. <p class="p">This designates the course as being treated as activity/other repeatable on its own for the satisfactory grade (REPT 1) error, which in this case includes the count of non-satisfactory grades, and as part of one or more repetition families for evaluation of the repetition family (REPT 54) error.<kbd class="ph userinput"></kbd><kbd class="ph userinput">3</kbd> is the REPT 1 error limit for the course. The repetition family limit for the REPT 54 error is defined on the repetition family code setup on SVVCRFM.</p>
+</li>
+
+      </ul>
+</div>
+
+  </div>
+
+</div></div></section>
+<section id="t-170"><h5>Registration messages</h5><div class="content-locale-en-US content-locale-en"><div id="r_registration_messages"><div class="body refbody"><p class="shortdesc">The following table displays the replacement messages that are in effect in the Student Course Registration Page (SFAREGS) for course repeats.</p>
+
+    
+<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" id="r_registration_messages__r_registration_messages-utbl1" class="table" frame="hsides" border="1" rules="rows"><colgroup><col><col><col><col></colgroup><thead class="thead" style="text-align:left;vertical-align:bottom;">
+          <tr class="row">
+            <th class="entry row-nocellborder" style="text-align:left;vertical-align:bottom;" id="d7856e53">SFRRMSG Message</th>
+
+            <th class="entry row-nocellborder" style="text-align:left;vertical-align:bottom;" id="d7856e56">SFRRMSG Code</th>
+
+            <th class="entry row-nocellborder" style="text-align:left;vertical-align:bottom;" id="d7856e59">SFRRMSG Seq No</th>
+
+            <th class="entry row-nocellborder" style="text-align:left;vertical-align:bottom;" id="d7856e62">Comment</th>
+
+          </tr>
+
+        </thead>
+<tbody class="tbody">
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d7856e53 ">Repeat exceeds %1% for satisfactory grade count</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d7856e56 ">REPT</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d7856e59 ">1</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d7856e62 ">This is a baseline message that has localized SFRRMSG_MESSAGE text in CALBSTU.</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d7856e53 ">Repeat exceeds %1% for non-satisfactory grade</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d7856e56 ">REPT</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d7856e59 ">52</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d7856e62 ">This is a message and validation in CALBSTU.</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d7856e53 ">Repeat exceeds %1% limit in %2% course repetition family</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d7856e56 ">REPT</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d7856e59 ">54</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d7856e62 ">This is a message and validation in CALBSTU.</td>
+
+          </tr>
+
+        </tbody>
+</table>
+</div>
+
+  </div>
+
+</div></div></section>
+<section id="t-180"><h5>Relationship of the setups to the registration repeat error messages</h5><div class="content-locale-en-US content-locale-en"><div id="r_relationship_the_setups_the_registration_repeat_error_messages"><div class="body refbody"><p class="shortdesc">The Table 1 describes how the setups on the various pages are used together to trigger specific registration error checking. </p>
+
+    <div class="section">This assumes that the value in the <span class="ph uicontrol">Repeat Limit</span> field on SOATERM is set to <kbd class="ph userinput">Fatal</kbd>. For the REPH 1 error, the value in the <span class="ph uicontrol">Repeat Hours</span> field must also be set to <kbd class="ph userinput">Fatal</kbd>.</div>
+
+    <div class="section">
+      <p class="p">The satisfactory grade REPT 1 error checking is a baseline error check that was localized for CALBSTU. The non-satisfactory grade REPT 52 and repetition family REPT 54 errors were added for CALBSTU. The repeat hours REPH 1 error is completely baseline and only included in the table because of the relationship it has with the REPT errors with certain setups. For a complete understanding for the repetition hours functionality, refer to the <cite class="cite"><span class="keyword">Banner</span> Student User Guide</cite>.</p>
+
+      <p class="p">The grade types are defined on SHAGRDE.</p>
+
+      
+<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" id="r_relationship_the_setups_the_registration_repeat_error_messages__r_relationship_the_setups_the_registration_repeat_error_messages-tbl1" class="table" frame="hsides" border="1" rules="rows"><caption><span class="tablecap"><span class="table--title-label">Table 1. </span>Registration setups</span></caption><colgroup><col><col><col><col><col></colgroup><thead class="thead" style="text-align:left;vertical-align:bottom;">
+            <tr class="row">
+              <th class="entry row-nocellborder" style="text-align:left;vertical-align:bottom;" id="d10381e87">Repeat Type, Limit, and Maximum Hours on SCACRSE</th>
+
+              <th class="entry row-nocellborder" style="text-align:left;vertical-align:bottom;" id="d10381e90">REPT 1 "satisfactory grades" (uses SCACRSE Limit; null=0)</th>
+
+              <th class="entry row-nocellborder" style="text-align:left;vertical-align:bottom;" id="d10381e93">REPT 52 "non-satisfactory grades" (uses SHARPTR Repeat Limit Maximum Non-Satisfactory)</th>
+
+              <th class="entry row-nocellborder" style="text-align:left;vertical-align:bottom;" id="d10381e96">REPT 54 "repetition family" (uses SVVCRFM Repetition Limit)</th>
+
+              <th class="entry row-nocellborder" style="text-align:left;vertical-align:bottom;" id="d10381e99">REPH 1 "hours" if hours is not null (uses SCACRSE Maximum Hours)</th>
+
+            </tr>
+
+          </thead>
+<tbody class="tbody">
+            <tr class="row">
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d10381e87 ">Limit =null, type is (null or Non-repeatable Credit), and hours is not null</td>
+
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d10381e90 ">No</td>
+
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d10381e93 ">No</td>
+
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d10381e96 ">No</td>
+
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d10381e99 ">Yes, because hours is not null</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d10381e87 ">Limit =null, type is (null or Non-repeatable Credit), and hours is null</td>
+
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d10381e90 ">Yes, counting Satisfactory grades and ungraded registrations</td>
+
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d10381e93 ">If REPT 1 did not error, Yes, counting Substandard and Withdrawal grades</td>
+
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d10381e96 ">No</td>
+
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d10381e99 ">No, because hours is null</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d10381e87 ">Non-repeatable Credit</td>
+
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d10381e90 ">Yes, counting Satisfactory grades and ungraded registrations</td>
+
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d10381e93 ">If REPT 1 did not error, Yes, counting Substandard and Withdrawal grades</td>
+
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d10381e96 ">No</td>
+
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d10381e99 ">Yes, if hours is not null</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d10381e87 ">Family Non-repeatable Credit</td>
+
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d10381e90 ">Yes, counting Satisfactory grades and ungraded registrations</td>
+
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d10381e93 ">If REPT 1 did not error, Yes, counting Substandard and Withdrawal grades</td>
+
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d10381e96 ">If REPT 1 and REPT 52 did not error, Yes, counting Satisfactory, Substandard, and Withdrawal grades and ungraded registrations across all courses within each repetition family assigned to the course. <p class="p">If the course has multiple families defined, the course is evaluated for each family individually in alphabetical order by family code. The first family that encounters the REPT 54 error is displayed in the message, and no other families are evaluated. (If all families are under the limit, the registration passes repeat checking.)</p>
+</td>
+
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d10381e99 ">Yes, if hours is not null</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d10381e87 ">Activity/Other Repeatable</td>
+
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d10381e90 ">Yes, counting Satisfactory, Substandard, and Withdrawal grades and ungraded registrations</td>
+
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d10381e93 ">No</td>
+
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d10381e96 ">No</td>
+
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d10381e99 ">Yes, if hours is not null</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d10381e87 ">Family Activity/Other Repeatable</td>
+
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d10381e90 ">Yes, counting Satisfactory, Substandard, and Withdrawal grades and ungraded registrations</td>
+
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d10381e93 ">No</td>
+
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d10381e96 ">If REPT 1 did not error, Yes, counting Satisfactory, Substandard, and Withdrawal grades and ungraded registrations across all courses within each repetition family assigned to the course. <p class="p">If the course has multiple families defined, the course is evaluated for each family individually in alphabetical order by family code. The first family that encounters the REPT 54 error is displayed in the message, and no other families are evaluated. (If all families are under the limit, the registration passes repeat checking.)</p>
+</td>
+
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d10381e99 ">Yes, if hours is not null</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d10381e87 ">Legally Mandated Training</td>
+
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d10381e90 ">No</td>
+
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d10381e93 ">No</td>
+
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d10381e96 ">No</td>
+
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d10381e99 ">Yes, if hours is not null</td>
+
+            </tr>
+
+          </tbody>
+</table>
+</div>
+
+    </div>
+
+  </div>
+
+</div></div></section>
+<section id="t-190"><h4>Repeat count evaluation for satisfactory grades</h4><div class="content-locale-en-US content-locale-en"><div id="c_repeat_count_evaluation_satisfactory_grades"><div class="body conbody"><p class="shortdesc">The evaluation for satisfactory grade repeat counts is processed first because preventing students from replacing satisfactory grades is the highest priority. This evaluation relates to the registration error message REPT 1: Repeat exceeds %1% for satisfactory grade count.</p>
+
+    <p class="p">If the value in the <span class="ph uicontrol">Repeat Type</span> field on SCACRSE is <kbd class="ph userinput">Legally Mandated Training</kbd>, the system skips this evaluation.</p>
+
+    <p class="p">The processing for each of the other values for the <span class="ph uicontrol">Repeat Type</span> field is as follows. The grade types noted (<kbd class="ph userinput">Satisfactory</kbd>, <kbd class="ph userinput">Substandard</kbd>, and <kbd class="ph userinput">Withdrawal</kbd>) are defined on SHAGRDE.</p>
+
+    <ul class="ul">
+      <li class="li">The SCACRSE <span class="ph uicontrol">Limit</span> field determines the number of repeats allowed for this processing.</li>
+
+      <li class="li">If the value in the <span class="ph uicontrol">Repeat Type</span> field is <kbd class="ph userinput">Non-repeatable Credit</kbd>, or if the <span class="ph uicontrol">Limit</span> field is null with a value of <kbd class="ph userinput">Non-repeatable Credit</kbd> or null in the <span class="ph uicontrol">Repeat Type</span> field when the value in the <span class="ph uicontrol">Maximum Hours</span> field is also null, and if at least one prior <kbd class="ph userinput">Satisfactory</kbd> grade exists in the grading records analysis, the system performs this evaluation as follows. (See <span class="xref ft-internal-link" title="The Table 1 describes how the setups on the various pages are used together to trigger specific registration error checking." data-ft-warning="excluded-from-rendering" data-mapid="jL2UUBTQJR5uipmMJVsX5g" data-tocid="hgu0D6jwWcLX1RWZMzi7ww" data-section="r_relationship_the_setups_the_registration_repeat_error_messages">Relationship of the setups to the registration repeat error messages</span> for more information.) <ul class="ul">
+        <li class="li">Starting with the term in which the first satisfactory grade is found (ignoring all prior grade entries), it counts the number of grade records (grades with a repeat type that is not null, looking for equivalents and transfers, the same as baseline). This count includes all grades with a repeat type that is not null. <p class="p">For example (using the recommended SHAGRDE setups), assume the following terms have grades for this course: 201310 has a D, 201320 has a W, 201330 has a B, and 201410 has a B. The counting will start with term 201330 for a satisfactory count of 2.</p>
+</li>
+
+        <li class="li">If in any term a saved, ungraded (rolled or not), “in-progress” registration exists, that CRN is defined as <kbd class="ph userinput">Gradable</kbd> on SSASECT, and that registration has a status code that is defined as <kbd class="ph userinput">Counted in Enrollment</kbd> on STVRSTS, it will be counted as a satisfactory grade and added to this count. <p class="p">For example, if in addition to the grades above, there was also an ungraded RE record in term 201420 on a gradable CRN, that will be added to make a satisfactory count of 3.</p>
+</li>
+
+        <li class="li">If this count is less than or equal to the value in the <span class="ph uicontrol">Limit</span> field (treating null as <kbd class="ph userinput">0</kbd> [zero]), registration passes without generating a message; otherwise, it processes the record like a normal fatal error message in baseline (when the SOATERM <span class="ph uicontrol">Repeat Limit</span> field is set to <kbd class="ph userinput">Fatal</kbd>). Registration is stopped and the message displays the <kbd class="ph userinput">Repeat exceeds %1% for satisfactory grade count</kbd> error message (SFARMSG code <kbd class="ph userinput">REPT</kbd> sequence <kbd class="ph userinput">1</kbd>), where <kbd class="ph userinput">%1%</kbd> represents the value in the <span class="ph uicontrol">Limit</span> field.</li>
+
+        <li class="li">Same as baseline, after a fatal error occurs and halts processing, the user can enter <kbd class="ph userinput">Yes</kbd> or <kbd class="ph userinput">All</kbd> in the <span class="ph uicontrol">Override</span> field on SFAREGS to override the condition. (This is not recommended for Title 5, CCFS-320 Reporting, or control purposes.) The manual override is saved in the SFRSTCR_REPT_OVER column.</li>
+ </ul>
+</li>
+
+      <li class="li">If the value in the <span class="ph uicontrol">Repeat Type</span> field is <kbd class="ph userinput">Activity/Other Repeatable</kbd>, and if at least one prior <kbd class="ph userinput">Satisfactory</kbd>, <kbd class="ph userinput">Substandard</kbd>, or <kbd class="ph userinput">Withdrawal</kbd> grade exists in the grading records analysis, the system performs this evaluation as follows. <ul class="ul">
+        <li class="li">Starting with the term in which the first satisfactory, substandard, or withdrawal grade is found (ignoring all prior grade entries), it counts the number of grade records (the same as baseline), but it adds or replaces the following condition on the Repeat Type column. This count includes all grades with a repeat type that is not null. <p class="p">For example (using the recommended SHAGRDE setups), assume the following terms have grades for this course: 201310 has a D, 201320 has a W, 201330 has a B, and 201410 has a B. The counting will start with term 201310 for a grade (or enrollment) count of 4.</p>
+</li>
+
+        <li class="li">If in any term a saved, ungraded (rolled or not), “in-progress” registration exists and that CRN is defined as <kbd class="ph userinput">Gradable</kbd> on SSASECT, and that registration has a status code that is defined as <kbd class="ph userinput">Counted in Enrollment</kbd> on STVRSTS, it will be counted as a satisfactory grade and added to this count. <p class="p">For example, if in addition to the grades above, there was also an ungraded RE record in term 201420 on a gradable CRN, that will be added to make a count of 5.</p>
+</li>
+
+        <li class="li">If this count is less than or equal to the value in the <span class="ph uicontrol">Limit</span> field (treating null as <kbd class="ph userinput">0</kbd> [zero]), registration passes without generating a message; otherwise, it processes the record like a normal fatal error message in baseline. Registration is stopped and the message displays the <kbd class="ph userinput">Repeat exceeds %1% for satisfactory grade count</kbd> error message (REPT 1), where <kbd class="ph userinput">%1%</kbd> represents the value in the <span class="ph uicontrol">Limit</span> field.</li>
+
+        <li class="li">Same as baseline, after a fatal error occurs and halts processing, the user can enter <kbd class="ph userinput">Yes</kbd> or <kbd class="ph userinput">All</kbd> in the <span class="ph uicontrol">Override</span> field on SFAREGS to override the condition. (This is not recommended for Title 5, CCFS-320 Reporting, or control purposes.) The manual override is saved in the SFRSTCR_REPT_OVER column.</li>
+ </ul>
+</li>
+
+    </ul>
+
+    <p class="p">You can use the SFAROVR override baseline functionality to permit registrations beyond the limit. See <span class="xref ft-internal-link" title="You can use the SFAROVR override baseline functionality to permit registrations beyond the limit." data-ft-warning="excluded-from-rendering" data-mapid="jL2UUBTQJR5uipmMJVsX5g" data-tocid="xHHvvKrr2yFbjtv8n6TLHA" data-section="c_using_sfarovr_override">Using SFAROVR override</span> for more information.</p>
+
+  </div>
+
+</div></div></section>
+<section id="t-200"><h4>Repeat count evaluation for non-satisfactory grades</h4><div class="content-locale-en-US content-locale-en"><div id="c_repeat_count_evaluation_non-satisfactory_grades"><div class="body conbody"><p class="shortdesc">The non-satisfactory grade evaluation is processed second. It is only processed if the satisfactory grade evaluation did not fail. This evaluation relates to the registration error message REPT 52: Repeat exceeds %1% for non-satisfactory grade count.</p>
+
+    <p class="p">If the value in the <span class="ph uicontrol">Repeat Type</span> field on SCACRSE is <kbd class="ph userinput">Legally Mandated Training</kbd> or <kbd class="ph userinput">Activity/Other Repeatable</kbd>, or if the <span class="ph uicontrol">Limit</span> field is null with a value of <kbd class="ph userinput">Non-repeatable Credit</kbd> or null in the <span class="ph uicontrol">Repeat Type</span> field when the value in the <span class="ph uicontrol">Maximum Hours</span> field is not null, the system skips this evaluation. Otherwise, the system performs this evaluation as follows. (See <span class="xref ft-internal-link" title="The Table 1 describes how the setups on the various pages are used together to trigger specific registration error checking." data-ft-warning="excluded-from-rendering" data-mapid="jL2UUBTQJR5uipmMJVsX5g" data-tocid="hgu0D6jwWcLX1RWZMzi7ww" data-section="r_relationship_the_setups_the_registration_repeat_error_messages">Relationship of the setups to the registration repeat error messages</span> for more information.)</p>
+
+    <ul class="ul">
+      <li class="li">If in the processing for satisfactory grade repeat counts the system finds any satisfactory grades on file, this message is not evaluated. The existence of a satisfactory grade means that the non-satisfactory repeat rules no longer apply for the course/subject/student.</li>
+
+      <li class="li">The SHARPTR <span class="ph uicontrol">Repeat Limit Maximum Non-satisfactory</span> field determines the number of repeats that are allowed for this processing. This should be <kbd class="ph userinput">2</kbd>.</li>
+
+      <li class="li">Starting with the term in which the first substandard or withdrawal grade is found (ignoring all prior grade entries), it counts the number of grade records (grades with a repeat type of <kbd class="ph userinput">Substandard</kbd> or <kbd class="ph userinput">Withdrawal</kbd>, looking for equivalents and transfers, the same as baseline). <p class="p">For example (using the recommended SHAGRDE setups), assume the following terms have grades for this course: 201330 has a W, and 201410 has an F. The counting will start with term 201330 for a substandard grade count of 2.</p>
+</li>
+
+      <li class="li">If this count is less than or equal to the value in the <span class="ph uicontrol">Repeat Limit Maximum Non-satisfactory</span> field, registration passes without generating a message; otherwise, it processes the record like a normal fatal error message in baseline. Registration is stopped and the message displays the Repeat exceeds %1% for non-satisfactory grade error message (REPT 52), where %1% represents the value in the <span class="ph uicontrol">Repeat Limit Maximum Non-satisfactory</span> field.</li>
+
+      <li class="li">Same as baseline, after a fatal error occurs and halts processing, the user can enter manual override of <kbd class="ph userinput">Yes</kbd> or <kbd class="ph userinput">All</kbd> in the <span class="ph uicontrol">Override</span> field on SFAREGS to override the condition. (This is not recommended for Title 5, CCFS-320 Reporting, or control purposes.) The manual override is saved in the SVRSTCR_OVER_SUBSTD_LIMIT column.</li>
+
+    </ul>
+
+    <p class="p">You can use the SFAROVR override baseline functionality to permit registrations beyond the limit. See <span class="xref ft-internal-link" title="You can use the SFAROVR override baseline functionality to permit registrations beyond the limit." data-ft-warning="excluded-from-rendering" data-mapid="jL2UUBTQJR5uipmMJVsX5g" data-tocid="xHHvvKrr2yFbjtv8n6TLHA" data-section="c_using_sfarovr_override">Using SFAROVR override</span> for more information.</p>
+
+  </div>
+
+</div></div></section>
+<section id="t-210"><h4>Repeat count evaluation for enrollments in repetition family courses</h4><div class="content-locale-en-US content-locale-en"><div id="c_repeat_count_evaluation_enrollments_repetition_family_courses"><div class="body conbody"><p class="shortdesc">The enrollments in repetition family courses evaluation is processed last. </p>
+
+    <p class="p">This evaluation relates to registration repetition family error message (REPT 54): Repeat exceeds %1% limit in %2% course repetition family. This message is used only when the value in the <span class="ph uicontrol">Repeat Type</span> field on SCACRSE is set to <kbd class="ph userinput">Family Non-repeatable Credit</kbd> or <kbd class="ph userinput">Family Activity/Other Repeatable</kbd>.</p>
+
+    <p class="p">Unlike the satisfactory grade (REPT 1) and non-satisfactory grade (REPT 52) registration error messages, REPT 54 does not count transfer data toward the limit.</p>
+
+    <p class="p">Related to a specific CRN being evaluated in registration for the <kbd class="ph userinput">Family Non-repeatable Credit</kbd> repeat type, REPT 54 is processed only if the satisfactory grade evaluation (REPT 1) and non-satisfactory grade evaluation (REPT 52) did not fail for that CRN.</p>
+
+    <p class="p">Related to a specific CRN being evaluated in registration for the <kbd class="ph userinput">Family Activity/Other Repeatable</kbd> repeat type, REPT 54 is processed only if the satisfactory grade and non-satisfactory grade evaluation (REPT 1) did not fail for that CRN.</p>
+
+    <p class="p">With both family repeat types, REPT 54 actually evaluates a group of courses (including their equivalents), whereas REPT 1 and REPT 52 evaluate only one particular course (including its equivalents). Therefore, when several CRNs for the same repetition family are added in registration at the same time, if one of those CRNs has any other registration fatal error (REPT 1, REPT 52, or any other registration error), that CRN is not counted toward the repetition family count. because students cannot register in the CRNs with fatal errors this session, it is assumed that you would remove them (not using the manual SFAREGS override) and allow registration only in the non-error CRNs. Refer to <span class="xref ft-internal-link" title="For courses with multiple repetition family codes, the system always evaluates each repetition family individually, even for equivalents." data-ft-warning="excluded-from-rendering" data-mapid="jL2UUBTQJR5uipmMJVsX5g" data-tocid="WQBaZpqzGTQvqk07whGJ1Q" data-section="c_repetition_family_courses_evaluation_counts">Repetition family courses evaluation counts</span> for examples and more details.</p>
+
+    <p class="p">For the system to perform this evaluation, the value in the <span class="ph uicontrol">Repeat Type</span> field on SCACRSE must be <kbd class="ph userinput">Family Non-repeatable Credit</kbd> or <kbd class="ph userinput">Family Activity/Other Repeatable</kbd>, and at least one value must be entered in the <span class="ph uicontrol">Code</span> field of the Course Repetition Family window (accessed using the <span class="ph uicontrol">Repetition Family</span> button in the Repeat Details section of the Course Details block). (If the value in the <span class="ph uicontrol">Repeat Type</span> field on SCACRSE is any other value, the system does not perform this evaluation.)</p>
+
+    <p class="p">When a course is assigned to multiple family codes, registration evaluates the family codes in alphabetical order.</p>
+
+    <p class="p">For each family code being evaluated, the value in the course’s repetition family’s <span class="ph uicontrol">Repetition Limit</span> field on SVVCRFM determines the number of repeats allowed for this processing.</p>
+
+    <p class="p">For each family being evaluated for the enrollments in repetition family courses evaluation, the search for existing enrollments looks for all courses and their equivalents within the same repetition family as the course of the CRN being registered. This is shown in the following example.</p>
+
+    
+<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" id="c_repeat_count_evaluation_enrollments_repetition_family_courses__c_repeat_count_evaluation_enrollments_repetition_family_courses-utbl1" class="table" frame="hsides" border="1" rules="rows"><colgroup><col><col></colgroup><thead class="thead" style="text-align:left;vertical-align:bottom;">
+          <tr class="row">
+            <th class="entry row-nocellborder" style="text-align:left;vertical-align:bottom;" id="d9996e121">Repetition Family</th>
+
+            <th class="entry row-nocellborder" style="text-align:left;vertical-align:bottom;" id="d9996e124">Courses in Repetition Family</th>
+
+          </tr>
+
+        </thead>
+<tbody class="tbody">
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d9996e121 ">TENNIS</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d9996e124 ">TENS 101 <p class="p">TENS 102</p>
+ <p class="p">TENS 301</p>
+ <p class="p">TENS 401</p>
+ <p class="p">TENS 402</p>
+ <p class="p">TENS 403</p>
+</td>
+
+          </tr>
+
+        </tbody>
+</table>
+</div>
+
+    <p class="p">When searching the existing data for a student registering in course TENS 401, the system counts data meeting the requirements below in all six of the repetition family courses. Any occurrence of <kbd class="ph userinput">Satisfactory</kbd>, <kbd class="ph userinput">Substandard</kbd>, and <kbd class="ph userinput">Withdrawal</kbd> grades (as defined on SHAGRDE), ungraded registrations (if the CRN is defined as <kbd class="ph userinput">Gradable</kbd> on SSASECT, and that registration has a status code that is defined as <kbd class="ph userinput">Counted in Enrollment</kbd> on STVRSTS), and equivalents meeting all requirements are counted toward the repetition family limit for the REPT 54 error regardless of which of the six courses and their equivalents.</p>
+
+    <div class="note"><span class="notetitle">Note:</span> Any equivalent course does not need to have the same repetition family defined for it. Refer to <span class="xref ft-internal-link" title="If a course within a repetition family has an equivalent course on it, that equivalent course’s data is counted toward the repetition family limit for REPT 54 regardless of what is entered for the equivalent course’s repetition family code." data-ft-warning="excluded-from-rendering" data-mapid="jL2UUBTQJR5uipmMJVsX5g" data-tocid="QqelX78rvm4oXCVZt~Q_3A" data-section="c_repetition_family_courses_equivalent_courses">Repetition family courses and equivalent courses</span>.</div>
+
+    <p class="p">The system performs this evaluation as follows for each family code assigned to the course.</p>
+
+    <ul class="ul">
+      <li class="li">Starting with the term in which the first satisfactory, substandard, or withdrawal grade is found (ignoring all prior grade entries), it counts the number of grade records (grades with a repeat type that is not null, looking for equivalents, the same as baseline). This count includes all grades with a repeat type that is not null. The REPT 54 does not include transfer grades. <p class="p">For example (using the recommended SHAGRDE setups), assume the following terms have grades for this course: 201310 has a D in TENS 101, 201320 has a W in TENS 101, 201330 has a B in TENS 101, and 201410 has a B in TENS 102. The counting will start with term 201310 for a grade (or enrollment) count of 4.</p>
+</li>
+
+      <li class="li">If in any term a saved, ungraded (rolled or not), “in-progress” registration exists, if that CRN is <kbd class="ph userinput">Gradable</kbd> on SSASECT, and if that registration has a status code of <kbd class="ph userinput">Count in Enrollment</kbd> on STVRSTS, it is counted as a satisfactory grade and is added to the repeat limit count. <p class="p">For example, if in addition to the grades above, there was also an ungraded RE record in term 201420 on a gradable CRN for TENS 301, that will be added to make a count of 5.</p>
+</li>
+
+      <li class="li">If the repeat limit count is less than or equal to the value in the <span class="ph uicontrol">Repetition Limit</span> field, registration passes without generating a message; otherwise, it processes the record like a normal fatal error message in baseline (when the SOATERM <span class="ph uicontrol">Repeat Limit</span> field is set to <kbd class="ph userinput">Fatal</kbd>). Registration is stopped and the message displays the Repeat exceeds %1% limit in %2% course repetition family error message (SFARMSG code REPT sequence 54), where %1% represents the value in the Repetition Limit field and %2% represents the course’s repetition family code.</li>
+
+      <li class="li">Same as baseline, after a fatal error occurs and halts processing, the user can enter a manual override of <kbd class="ph userinput">Yes</kbd> or <kbd class="ph userinput">All</kbd> in the <span class="ph uicontrol">Override</span> field on SFAREGS to override the condition. (This is not recommended for Title 5, CCFS-320 Reporting, or control purposes.) The manual override is saved in the SVRSTCR_OVER_FAMILY_LIMIT column.</li>
+
+    </ul>
+
+    <p class="p">After performing this evaluation on the first alphabetical family code assigned to the course, if the result is the REPT 54 error, the processing stops and the system does not evaluate any additional families for the REPT 54 error. However, if the first family passes the evaluation (error-free) and if multiple families are assigned, the system evaluates the next family. This evaluation continues until either the first REPT 54 error is encountered or all assigned families pass the evaluation with no REPT 54 error.</p>
+
+    <p class="p">There is only one repetition family error (REPT 54) and, respective to it, one override column (SVRSTCR_OVER_FAMILY_LIMIT). Take note of the following information about how the system evaluates courses assigned to multiple families.</p>
+
+    <ul class="ul">
+      <li class="li">The course is evaluated for all families assigned to it in alphabetical order by family code. It continues evaluating each family until a family is found with the REPT 54 error or until all families pass without error. Therefore, a student's registration entry will fail only after (if at all), and the error will be for the first family code that surpasses its limit. There could be other families in the list that would have also failed, but because processing stops at the first error, these are not encountered and therefore are not noted.</li>
+
+      <li class="li">It is recommended that you not use the <span class="ph uicontrol">Override</span> field on SFAREGS due to the potential impact on CCFS-320 apportionment reporting. However, if you enter <kbd class="ph userinput">Yes</kbd> in the <span class="ph uicontrol">Override</span> to bypass a REPT 54 error on a course that is assigned to multiple families, you will be allowing that entry to bypass all potential families. In this case, no other family code will be evaluated.</li>
+
+    </ul>
+
+    <p class="p">You can use the SFAROVR override baseline functionality to permit registrations beyond the limit. See <span class="xref ft-internal-link" title="You can use the SFAROVR override baseline functionality to permit registrations beyond the limit." data-ft-warning="excluded-from-rendering" data-mapid="jL2UUBTQJR5uipmMJVsX5g" data-tocid="xHHvvKrr2yFbjtv8n6TLHA" data-section="c_using_sfarovr_override">Using SFAROVR override</span> for more information.</p>
+
+    <div class="p">The following sections provide more details and examples to explain how the data is used when the system evaluates for the REPT 54 error: <ul class="ul"> <li class="li"><span class="xref ft-internal-link" title="If a course within a repetition family has an equivalent course on it, that equivalent course’s data is counted toward the repetition family limit for REPT 54 regardless of what is entered for the equivalent course’s repetition family code." data-ft-warning="excluded-from-rendering" data-mapid="jL2UUBTQJR5uipmMJVsX5g" data-tocid="QqelX78rvm4oXCVZt~Q_3A" data-section="c_repetition_family_courses_equivalent_courses">Repetition family courses and equivalent courses</span></li>
+ <li class="li"><span class="xref ft-internal-link" title="For courses with multiple repetition family codes, the system always evaluates each repetition family individually, even for equivalents." data-ft-warning="excluded-from-rendering" data-mapid="jL2UUBTQJR5uipmMJVsX5g" data-tocid="WQBaZpqzGTQvqk07whGJ1Q" data-section="c_repetition_family_courses_evaluation_counts">Repetition family courses evaluation counts</span></li>
+ <li class="li"><span class="xref ft-internal-link" title="When registration is validating the repetition course repeats, the term selected in registration (key block of SFAREGS or Self-Service term selection) is used to find the SCACRSE definition that is effective for that term." data-ft-warning="excluded-from-rendering" data-mapid="jL2UUBTQJR5uipmMJVsX5g" data-tocid="1DZOIQ7_nQGQClI19i_BVw" data-section="r_determining_courses_be_included_during_registration_evaluation">Determining the courses to be included during registration evaluation</span></li>
+ </ul>
+</div>
+
+  </div>
+
+</div></div></section>
+<section id="t-220"><h5>Repetition family courses and equivalent courses</h5><div class="content-locale-en-US content-locale-en"><div id="c_repetition_family_courses_equivalent_courses"><div class="body conbody"><p class="shortdesc">If a course within a repetition family has an equivalent course on it, that equivalent course’s data is counted toward the repetition family limit for REPT 54 regardless of what is entered for the equivalent course’s repetition family code. </p>
+
+    <div class="note"><span class="notetitle">Note:</span> This is by design to prevent the need to maintain older courses that are no longer offered. For courses with multiple repetition family codes, the system always evaluates each repetition family individually, even for equivalents.</div>
+
+  </div>
+
+</div></div></section>
+<section id="t-230"><h6>Repetition family courses and equivalent courses example</h6><div class="content-locale-en-US content-locale-en"><div id="c_repetition_family_courses_equivalent_courses_example"><div class="body conbody"><p class="shortdesc">This example uses the <kbd class="ph userinput">Family Non-repeatable Credit</kbd> repeat type, but the details apply to the <kbd class="ph userinput">Family Activity/Other Repeatable</kbd> repeat type, too.</p>
+
+    <ul class="ul">
+      <li class="li">Course GYM 10 was discontinued four years ago or was part of your converted catalog data.</li>
+
+      <li class="li">Course PE 101 is the currently offered course that replaced GYM 10.</li>
+
+      <li class="li">On SCACRSE, GYM 10 has a null in the <span class="ph uicontrol">Repeat Type</span> field and a null in the <span class="ph uicontrol">Repetition Family</span> field.</li>
+
+      <li class="li">On SCACRSE, the value in the <span class="ph uicontrol">Repeat Type</span> field for PE 101 is <kbd class="ph userinput">Family Non-repeatable Credit</kbd>, and the value in the Repetition Family field is PHYSED.</li>
+
+      <li class="li">On SCADETL, GYM 10 and PE 101 are defined as equivalents by any combination. <p class="p">If a student registers for a CRN in the PHYSED repetition family, the limit for REPT 54 will count enrollments for CRNs of GYM 10. Even though GYM 10 does not have <kbd class="ph userinput">PHYSED</kbd> in its <span class="ph uicontrol">Repetition Family</span> field, it is counted because of its equivalency to one of the PHYSED courses (PE 101).</p>
+
+        <p class="p">With the setup described above, you should not be registering students for CRNs in current terms for GYM 10. If for any reason you are still offering CRNs for GYM 10, you should update it to be part of the PHYSED repetition family. Otherwise, registrations into the GYM 10 CRNs would not be counted and evaluated for the PHYSED REPT 54 while at the same time the GYM 10 data is counted toward registrations in the other PHYSED courses.</p>
+
+        <p class="p">If you will be registering students for GYM 10 in the current term, you need to maintain SCACRSE, adding the <kbd class="ph userinput">Family Non-repeatable Credit</kbd> repeat type and <kbd class="ph userinput">PHYSED</kbd> repetition family to it.</p>
+</li>
+
+    </ul>
+
+  </div>
+
+</div></div></section>
+<section id="t-240"><h5>Repetition family courses evaluation counts</h5><div class="content-locale-en-US content-locale-en"><div id="c_repetition_family_courses_evaluation_counts"><div class="body conbody"><p class="shortdesc">For courses with multiple repetition family codes, the system always evaluates each repetition family individually, even for equivalents.</p>
+
+    <p class="p">Repetition family courses evaluation (for the REPT 54 message) counts all entries for the course in which a student is registering. When it counts the other course in the repetition family, it only counts to the limit, then it stops. After it hits the number of records that puts the count over the specified limit, the system stops counting and displays the error.</p>
+
+    <p class="p">If the course being evaluated has multiple repetition family codes, the evaluation occurs in alphabetical order by family code, and it stops the first time it encounters the REPT 54 error. It does not evaluate any remaining families after one fails.</p>
+
+    <p class="p">For example, if the repetition family limit is <kbd class="ph userinput">3</kbd> for the first repetition family evaluated for the course, and if the student has no records for the course being registered and an additional eight records for the other courses of this repetition family in any of the sources (history, equivalents, ungraded registrations in any term, or in the pending registration session of SFAREGS), the cursor to count for the REPT 54 error does not need to loop and count all eight records. It needs to count only to the fourth entry, which is the one that passes the repetition family limit of <kbd class="ph userinput">3</kbd>, or 4 enrollments. After it counts the fourth entry, it stops and displays the REPT 54 error because the student is not allowed to register in any more of the CRNs in the repetition family.</p>
+
+    <p class="p">On the other hand, if the repetition family limit is 3 and the student has three records for the course being registered and an additional eight records for the other courses of this repetition family in any of the sources, after the cursor counts the three records for this course, it counts only one more record from the other courses. It only needs to count the fourth entry, which is the one that passes the repetition family repeat limit of <kbd class="ph userinput">3</kbd>. Then it stops and displays the REPT 54 error because the student is not allowed to register in any more of the CRNs in the repetition family.</p>
+
+    <p class="p">The REPT 54 evaluation searches in course-subject ascending order when it is looking for the other courses in the repetition family.</p>
+
+    <p class="p">First, it looks for all data, including the Registration Temporary Table (SFTREGS), that does not have a fatal error (used on SFAREGS to process the current transactions) for the course of the CRN on this registration line.</p>
+
+    <p class="p">Next, it queries all courses in the same repetition family, sorting them into course-subject order.</p>
+
+    <p class="p">Finally, it reads the list of courses that have the same repetition family code, searching one by one for all occurrences of the first course including its equivalents, then the second course, and so on.</p>
+
+    <p class="p">If more families are assigned to the course being registered and the REPT 54 error was not returned, it will repeat this cycle again for the other families (until the REPT 54 error occurs or all families pass the evaluation).</p>
+
+  </div>
+
+</div></div></section>
+<section id="t-250"><h6>Self-Service temporary record clean-up</h6><div class="content-locale-en-US content-locale-en"><div id="c_self-service_temporary_record_clean-up"><p class="shortdesc"><span class="keyword">Banner</span> Self-Service registration leaves records in SFTREGS. Because these records count in the repeat limit error checking, it is recommended that you clean this table periodically, especially during heavy registration periods. Running the Registration Admin Messages Report (SFRRGAM) for each term found in SFTREGS will remove those term's records.</p>
+
+  
+</div></div></section>
+<section id="t-260"><h5>Determining the courses to be included during registration evaluation</h5><div class="content-locale-en-US content-locale-en"><div id="r_determining_courses_be_included_during_registration_evaluation"><div class="body refbody"><p class="shortdesc">When registration is validating the repetition course repeats, the term selected in registration (key block of SFAREGS or Self-Service term selection) is used to find the SCACRSE definition that is effective for that term. </p>
+
+    <div class="section">The repeat definitions from that term-effective SCACRSE record are used. The system determines the answers to the following questions.<ul class="ul"> <li class="li">Repeat type and repeat limit: Is the course restricted for repeats, and, if so, to what limit?</li>
+
+      <li class="li">Course Repetition Family window: If the repeat type is one of the repetition family types, what family code(s) are used for REPT 54 validation? For each repetition family, the system builds the family's list of courses by selecting all course records that are effective in the registration term and have the same repetition family code.</li>
+
+      </ul>
+<p class="p">After these details are established, the settings for them in prior terms do not matter.</p>
+<p class="p">For example, assume the following setups and student data.</p>
+
+<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" id="r_determining_courses_be_included_during_registration_evaluation__r_determining_courses_be_included_during_registration_evaluation-tbl2" class="table" frame="hsides" border="1" rules="rows"><caption><span class="tablecap"><span class="table--title-label">Table 1. </span>SVVCRFM data</span></caption><colgroup><col><col></colgroup><thead class="thead" style="text-align:left;vertical-align:bottom;"> <tr class="row"> <th class="entry row-nocellborder" style="text-align:left;vertical-align:bottom;" id="d16937e66">Family code</th>
+
+      <th class="entry row-nocellborder" style="text-align:left;vertical-align:bottom;" id="d16937e69">Family limit</th>
+ </tr>
+ </thead>
+<tbody class="tbody"> <tr class="row"> <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d16937e66 ">ART</td>
+ <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d16937e69 ">1</td>
+ </tr>
+ </tbody>
+</table>
+</div>
+
+<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" id="r_determining_courses_be_included_during_registration_evaluation__r_determining_courses_be_included_during_registration_evaluation-tbl3" class="table" frame="hsides" border="1" rules="rows"><caption><span class="tablecap"><span class="table--title-label">Table 2. </span>SCACRSE data</span></caption><colgroup><col><col><col><col><col></colgroup><thead class="thead" style="text-align:left;vertical-align:bottom;"> <tr class="row"> <th class="entry row-nocellborder" style="text-align:left;vertical-align:bottom;" id="d16937e109">Course</th>
+ <th class="entry row-nocellborder" style="text-align:left;vertical-align:bottom;" id="d16937e112">Effective Term</th>
+ <th class="entry row-nocellborder" style="text-align:left;vertical-align:bottom;" id="d16937e115">Repeat Type</th>
+ <th class="entry row-nocellborder" style="text-align:left;vertical-align:bottom;" id="d16937e118">Repeat Limit</th>
+ <th class="entry row-nocellborder" style="text-align:left;vertical-align:bottom;" id="d16937e121">Family Code</th>
+ </tr>
+ </thead>
+<tbody class="tbody"> <tr class="row"> <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d16937e109 ">PNT 101</td>
+ <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d16937e112 ">200610</td>
+ <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d16937e115 ">(null)</td>
+ <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d16937e118 ">(null)</td>
+ <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d16937e121 ">(not applicable)</td>
+ </tr>
+ <tr class="row"> <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d16937e109 ">PNT 101</td>
+ <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d16937e112 ">201510</td>
+ <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d16937e115 ">Family Activity/Other Repeatable</td>
+ <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d16937e118 ">3</td>
+ <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d16937e121 ">ART</td>
+ </tr>
+ <tr class="row"> <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d16937e109 ">DRAW 101</td>
+
+      <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d16937e112 ">200810</td>
+ <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d16937e115 ">Activity/Other Repeatable</td>
+ <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d16937e118 ">3</td>
+ <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d16937e121 ">(not applicable)</td>
+ </tr>
+ <tr class="row"> <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d16937e109 ">DRAW 101</td>
+ <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d16937e112 ">201410</td>
+ <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d16937e115 ">Family Activity/Other Repeatable</td>
+ <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d16937e118 ">3</td>
+ <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d16937e121 ">ART</td>
+ </tr>
+ </tbody>
+</table>
+</div>
+
+<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" id="r_determining_courses_be_included_during_registration_evaluation__r_determining_courses_be_included_during_registration_evaluation-tbl4" class="table" frame="hsides" border="1" rules="rows"><caption><span class="tablecap"><span class="table--title-label">Table 3. </span>Student data</span></caption><colgroup><col><col><col></colgroup><thead class="thead" style="text-align:left;vertical-align:bottom;"> <tr class="row"> <th class="entry row-nocellborder" style="text-align:left;vertical-align:bottom;" id="d16937e219">Term</th>
+ <th class="entry row-nocellborder" style="text-align:left;vertical-align:bottom;" id="d16937e222">Course</th>
+ <th class="entry row-nocellborder" style="text-align:left;vertical-align:bottom;" id="d16937e225">Existing Data</th>
+ </tr>
+ </thead>
+<tbody class="tbody"> <tr class="row"> <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d16937e219 ">201320</td>
+ <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d16937e222 ">PNT 101</td>
+ <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d16937e225 ">Academic History: Grade of A</td>
+ </tr>
+ <tr class="row"> <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d16937e219 ">201330</td>
+ <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d16937e222 ">DRAW 101</td>
+ <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d16937e225 ">Academic History: Grade of D</td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<p class="p">In term 201610, the student attempts to register for PNT 101.</p>
+<ul class="ul"> <li class="li">As of 201610, PNT 101 has a repeat definition of <kbd class="ph userinput">Family Activity/Other Repeatable</kbd> with a limit of <kbd class="ph userinput">3</kbd>. It is also assigned to repetition family code ART.</li>
+ <li class="li">As of 201610, ART family, which has a limit of <kbd class="ph userinput">1</kbd>, has the courses assigned PNT 101 and DRAW 101.</li>
+
+      <li class="li">When evaluated for the REPT 1 error for PNT 101, it passes. The course's limit is three repeats, and only one satisfactory, substandard, or withdrawal grade is found, which is the A in 201320.</li>
+ <li class="li">When evaluated for the REPT 54 error for ART family, it fails. The limit is one repeat, but two satisfactory, substandard, or withdrawal grades were found, which are the A in 201320 for PNT 101 and the D in 201330 for DRAW 101.</li>
+
+      </ul>
+<p class="p">As this example demonstrates, the prior SCACRSE settings do not matter when evaluating any of the repeat errors (REPT 1, REPT 52, or REPT 54). Only the settings effective in the registration term are used. If a course's repeat definitions change over time, it will not affect the selection of the student's prior registration and history data.</p>
+</div>
+
+  </div>
+
+</div></div></section>
+<section id="t-270"><h4>Using SFAROVR override</h4><div class="content-locale-en-US content-locale-en"><div id="c_using_sfarovr_override"><div class="body conbody"><p class="shortdesc">You can use the SFAROVR override baseline functionality to permit registrations beyond the limit. </p>
+
+    <p class="p">There is only one SFAROVR indicator for the <span class="ph uicontrol">Repeat Limit</span>. This setting covers the satisfactory grade limit (REPT 1 registration error message), the non-satisfactory grade limit (REPT 52 registration error message), and the repetition family limit (REPT 54 registration error message). In the case of the REPT 54 error, it also relates to all repetition family codes assigned to the course. If a matching SFASRPO record exists for the student with a code that has the <span class="ph uicontrol">Repeat Limit</span> checked, it applies to all of the REPT messages (REPT 1, REPT 52, and REPT 54).</p>
+
+    <div class="section"><h2 class="title sectiontitle">Warning on SFAREGS manual overrides</h2>
+      
+      <div class="note warning"><span class="warningtitle">Warning:</span> You must not use the manual override on SFAREGS. If you do, you risk getting unexpected results, as illustrated in the following example. It might also cause conflicts with the CCFS-320 apportionment reporting regulatory requirements. </div>
+
+    </div>
+
+  </div>
+
+</div></div></section>
+<section id="t-280"><h5>Example of how a manual override can cause limits to be disregarded</h5><div class="content-locale-en-US content-locale-en"><div id="r_example_how_manual_override_can_cause_limits_be_disregarded"><div class="body refbody"><p class="shortdesc">After entering three new CRNs for a student, SFAREGS has the following lines and messages. All of these CRNs are in the PE repetition family, which will allow only one more enrollment.</p>
+
+    <div class="section">
+      
+<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" id="r_example_how_manual_override_can_cause_limits_be_disregarded__r_example_how_manual_override_can_cause_limits_be_disregarded-utbl1" class="table" frame="hsides" border="1" rules="rows"><colgroup><col><col><col><col><col><col></colgroup><thead class="thead" style="text-align:left;vertical-align:bottom;">
+            <tr class="row">
+              <th class="entry row-nocellborder" style="text-align:left;vertical-align:bottom;" id="d8288e60">CRN</th>
+
+              <th class="entry row-nocellborder" style="text-align:left;vertical-align:bottom;" id="d8288e63">Crse/Subj</th>
+
+              <th class="entry row-nocellborder" style="text-align:left;vertical-align:bottom;" id="d8288e66">Status</th>
+
+              <th class="entry row-nocellborder" style="text-align:left;vertical-align:bottom;" id="d8288e69">Override</th>
+
+              <th class="entry row-nocellborder" style="text-align:left;vertical-align:bottom;" id="d8288e72">Error</th>
+
+              <th class="entry row-nocellborder" style="text-align:left;vertical-align:bottom;" id="d8288e76">Message</th>
+
+            </tr>
+
+          </thead>
+<tbody class="tbody">
+            <tr class="row">
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d8288e60 ">1001</td>
+
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d8288e63 ">PE 101</td>
+
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d8288e66 ">RE</td>
+
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d8288e69 ">&nbsp;</td>
+
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d8288e72 ">Fatal</td>
+
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d8288e76 ">REPT 1 (over satisfactory grade limit for PE 101)</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d8288e60 ">1052</td>
+
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d8288e63 ">PE 102</td>
+
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d8288e66 ">RE</td>
+
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d8288e69 ">&nbsp;</td>
+
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d8288e72 ">&nbsp;</td>
+
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d8288e76 ">&nbsp;</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d8288e60 ">1073</td>
+
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d8288e63 ">PE 103</td>
+
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d8288e66 ">RE</td>
+
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d8288e69 ">&nbsp;</td>
+
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d8288e72 ">Fatal</td>
+
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d8288e76 ">REPT 54 (over PE repetition family limit)</td>
+
+            </tr>
+
+          </tbody>
+</table>
+</div>
+
+      <p class="p">In this case, the following would occur.</p>
+
+      <ul class="ul">
+        <li class="li">CRN 1001 PE 101 has the satisfactory grade REPT 1 error. As is, it cannot be registered and should be removed. This CRN is not being counted toward the PE repetition family REPT 54 limit because it has the fatal error for REPT 1.</li>
+
+        <li class="li">CRN 1052 PE 102 has no error. As is, it will be allowed as the final enrollment for repetition family PE. This CRN is taking up the last available enrollment allowed for the PE repetition family.</li>
+
+        <li class="li">CRN 1073 PE 103 is returning REPT 54 because of the no-error entry for CRN 1052 PE 102. (One more enrollment is allowed in the repetition family, but not two more.) As is, it cannot be registered and should be removed or dropped.</li>
+
+      </ul>
+
+      <p class="p">To show how the limit would be allowed to be exceeded, let’s say that SFAREGS is then updated as follows (clearing all fatal messages). (No changes are made on CRN 1052.)</p>
+
+      
+<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" id="r_example_how_manual_override_can_cause_limits_be_disregarded__r_example_how_manual_override_can_cause_limits_be_disregarded-utbl2" class="table" frame="hsides" border="1" rules="rows"><colgroup><col><col><col><col><col><col></colgroup><thead class="thead" style="text-align:left;vertical-align:bottom;">
+            <tr class="row">
+              <th class="entry row-nocellborder" style="text-align:left;vertical-align:bottom;" id="d8288e186">CRN</th>
+
+              <th class="entry row-nocellborder" style="text-align:left;vertical-align:bottom;" id="d8288e189">Crse/Subj</th>
+
+              <th class="entry row-nocellborder" style="text-align:left;vertical-align:bottom;" id="d8288e192">Status</th>
+
+              <th class="entry row-nocellborder" style="text-align:left;vertical-align:bottom;" id="d8288e195">Override</th>
+
+              <th class="entry row-nocellborder" style="text-align:left;vertical-align:bottom;" id="d8288e198">Error</th>
+
+              <th class="entry row-nocellborder" style="text-align:left;vertical-align:bottom;" id="d8288e202">Message</th>
+
+            </tr>
+
+          </thead>
+<tbody class="tbody">
+            <tr class="row">
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d8288e186 ">1001</td>
+
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d8288e189 ">PE 101</td>
+
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d8288e192 ">RE</td>
+
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d8288e195 ">Yes</td>
+
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d8288e198 ">&nbsp;</td>
+
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d8288e202 ">&nbsp;</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d8288e186 ">1052</td>
+
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d8288e189 ">PE 102</td>
+
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d8288e192 ">RE</td>
+
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d8288e195 ">&nbsp;</td>
+
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d8288e198 ">&nbsp;</td>
+
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d8288e202 ">&nbsp;</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d8288e186 ">1073</td>
+
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d8288e189 ">PE 103</td>
+
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d8288e192 ">DC</td>
+
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d8288e195 ">&nbsp;</td>
+
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d8288e198 ">&nbsp;</td>
+
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d8288e202 ">&nbsp;</td>
+
+            </tr>
+
+          </tbody>
+</table>
+</div>
+
+      <p class="p">When these changes are saved, the system would successfully allow the registration of both CRNs 1001 and 1052. The override on 1001 allowed it to bypass all REPT errors. The status of CRN 1052 in the registration design is that it has already passed the repeat limit error checking, and it does not need to be reevaluated for the PE repetition family REPT 54 limit.</p>
+
+      <p class="p">Additionally, if the PE 101course had multiple repetition family codes, all of its families would be suppressed from the family evaluation of REPT 54.</p>
+
+      <p class="p">To prevent surpassing the repeat limit as shown in this example, do not use manual overrides on SFAREGS.</p>
+
+      <div class="note"><span class="notetitle">Note:</span> There is a change in the order of appearance of registration error messages whereby the Course Repeats related error will appear last, after all the other registration errors. There is no change in the order in which the Course Repeats related error messages themselves are displayed.</div>
+
+    </div>
+
+  </div>
+
+</div></div></section>
+<section id="t-290"><h4>Review and research repetition family setups and registration messages</h4><div class="content-locale-en-US content-locale-en"><div id="c_review_research_repetition_family_setups_registration_messages"><div class="body conbody"><p class="shortdesc">The Repetition Family Courses Inquiry Page (SVICRPT) can be used to review your repetition family setups after you update SVVCRFM and SCACRSE. SVICRPT lists the repeat-related information for all courses within the repetition family for the term specified in the Key block. </p>
+
+    <p class="p">When using SVICRPT for this purpose, clear the <span class="ph uicontrol">Include Courses Previously Ended</span> check box.</p>
+
+    <p class="p">SVICRPT can also be used when researching a repetition family error message (REPT 54) on a student registration as it helps verify the courses that are directly linked to the registration course’s repetition family.</p>
+
+    <p class="p">If multiple repetition families are assigned to a course in the list, the <span class="ph uicontrol">Course is a member of other families</span> check box is selected. To view the details for any of the other families assigned to this course, go to the Course Repetition Family window on SCACRSE.</p>
+
+    <p class="p">If you do not select the <span class="ph uicontrol">Include Courses Previously Ended</span> check box in the key block of SVICRPT, the page lists only courses that are currently active (not ended on Course Base Maintenance Page [SCABASE]) and assigned to this family code (on SCACRSE) for the effective term. If you select the <span class="ph uicontrol">Include Courses Previously Ended</span> check box, the page lists all courses that are currently assigned by the effective term, including courses that have been ended on SCABASE in a prior term.</p>
+
+  </div>
+
+</div></div></section>
+<section id="t-300"><h4>Review course repeat data</h4><div class="content-locale-en-US content-locale-en"><div id="c_review_course_repeat_data"><div class="body conbody"><p class="shortdesc">The Course Repeat Details Report (SVRCRPT) lists all courses and their repeat setup details. Similar to SVICRPT, it can be used to research registration repeat error messages, or it can be used to review all of your courses for their repeat setups.</p>
+
+    <div class="note"><span class="notetitle">Note:</span> SVRCRPT does not have an option to include older courses that have been ended by their SCABASE setups. </div>
+
+  </div>
+
+</div></div></section>
+<section id="t-310"><h4>Registration mass entry on SFAMREG</h4><div class="content-locale-en-US content-locale-en"><div id="c_registration_mass_entry_sfamreg"><div class="body conbody"><p class="shortdesc">When the Repeat Limit error checking on SFAMREG is checked, the SFAMREG process by default will follow the CALBSTU course repeat logic when registering students. </p>
+
+    <p class="p">If one of the registering students and CRNs included encounters a course repeat error, the appropriate error will be displayed. (This required no change to the baseline SFAMREG design as it calls the CALBSTU packages.)</p>
+
+  </div>
+
+</div></div></section>
+<section id="t-320"><h3>Course Repeats Pages</h3><div class="content-locale-en-US content-locale-en"><div id="c_course_repeats_forms"><div class="body conbody"><p class="shortdesc">The following pages were added or modified for the Course Repeats functionality.</p>
+
+    <ul class="ul">
+      <li class="li">Course Base Maintenance Page (SCABASE)</li>
+
+      <li class="li">Basic Course Information Page (SCACRSE)</li>
+
+      <li class="li">Student Course Registration Page (SFAREGS)</li>
+
+      <li class="li">Repeat/Multiple Course Rules Page (SHARPTR)</li>
+
+      <li class="li">Grade Code Maintenance Page (SHAGRDE)</li>
+
+      <li class="li">Repetition Family Courses Inquiry Page (SVICRPT)</li>
+
+      <li class="li">Course Repetition Family Validation Page (SVVCRFM)</li>
+
+    </ul>
+
+    <p class="p">These pages are discussed in the <span class="keyword">Banner</span> CALBSTU Online Help.</p>
+
+  </div>
+
+</div></div></section>
+<section id="t-330"><h3>Course Repeats Tables</h3><div class="content-locale-en-US content-locale-en"><div id="c_course_repeats_tables"><div class="body conbody"><p class="shortdesc">The following tables were added or modified for the Course Repeats functionality.</p>
+
+    <ul class="ul">
+      <li class="li">Course General Information Base Table (SCBCRSE)</li>
+
+      <li class="li">Repeat/Equivalent Course Rules Table (SHBRPTR)</li>
+
+      <li class="li">Grading Code Maintenance Table (SHRGRDE)</li>
+
+      <li class="li">Registration Override Message Table (SVRSTCR)</li>
+
+      <li class="li">Course Repetition Family Table (SVRCRFM)</li>
+
+      <li class="li">Course Repetition Family Validation Table (SVVCRFM)</li>
+
+    </ul>
+
+    <p class="p">These tables are discussed in <span class="xref ft-internal-link" title="This chapter discusses the baseline tables and the tables added for California processing." data-ft-warning="excluded-from-rendering" data-mapid="jL2UUBTQJR5uipmMJVsX5g" data-tocid="bErhqbDOVgv60Visq36Lqw" data-section="c_tables_used_california_processing">Tables used in California Processing</span>.</p>
+
+  </div>
+
+</div></div></section>
+<section id="t-340"><h3>Course Repeats Reports</h3><div class="content-locale-en-US content-locale-en"><div id="c_course_repeats_reports"><p class="shortdesc">The Course Catalog Repeat Details Report (SVRCRPT) was created for the Course Repeats functionality.</p>
+
+  
+</div></div></section></main></body></html>

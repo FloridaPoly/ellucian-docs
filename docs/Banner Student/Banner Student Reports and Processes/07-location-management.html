@@ -1,0 +1,709 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Banner Student Reports and Processes — Location Management</title><style>body{font-family:-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;line-height:1.55;color:#1a1a1a;max-width:920px;margin:0 auto;padding:24px}header{border-bottom:2px solid #5a16d6;margin-bottom:8px}h1{color:#3a0ca3}h2,h3,h4,h5,h6{margin-top:1.6em}.crumb{color:#666;font-size:13px;margin:0}.meta{color:#888;font-size:12px}nav.toc{background:#f6f4fc;border:1px solid #e3dcf5;border-radius:8px;padding:12px 18px;margin:18px 0}nav.toc h2{margin:.2em 0}nav.toc ul{list-style:none;padding-left:0}nav.toc a{text-decoration:none;color:#5a16d6}section{margin:1.2em 0;padding-top:.4em}img{max-width:100%;height:auto}table{border-collapse:collapse}td,th{border:1px solid #ccc;padding:4px 8px}code,pre{background:#f4f4f4;border-radius:4px}pre{padding:10px;overflow:auto}</style></head><body><header><p class="crumb">Banner Student › Banner Student Reports and Processes</p><h1>Banner Student Reports and Processes — Location Management</h1><p class="meta">Source: <a href="https://resources.elluciancloud.com/r/bundle/banner_student_ref_reports">https://resources.elluciancloud.com/r/bundle/banner_student_ref_reports</a> &middot; Retrieved 2026-06-17</p></header><nav class="toc"><h2>Contents</h2><ul><li style="margin-left:0px"><a href="#t-350">Location Management</a></li><li style="margin-left:16px"><a href="#t-360">Dormitory Address Creation Report (SLRDADD)</a></li><li style="margin-left:16px"><a href="#t-370">Active Housing Assignments Report (SLRHLST)</a></li><li style="margin-left:16px"><a href="#t-380">Batch Room/Meal/Phone Assess Report (SLRFASM)</a></li><li style="margin-left:16px"><a href="#t-390">Assignment Roll Process (SLRROLL)</a></li><li style="margin-left:16px"><a href="#t-400">Batch Housing Schedules Report (SLRSCHE)</a></li><li style="margin-left:16px"><a href="#t-410">Batch Scheduler Report (SLRSCHD)</a></li><li style="margin-left:16px"><a href="#t-420">Housing Purge Process (SLPHOUS)</a></li><li style="margin-left:16px"><a href="#t-430">ACS Housing Interface Report (SLRBACS)</a></li></ul></nav><main><section id="t-350"><h2>Location Management</h2></section>
+<section id="t-360"><h3>Dormitory Address Creation Report (SLRDADD)</h3><div class="content-locale-en-US content-locale-en"><div id="r_dormitory_address_creation_report_slrdadd"><div class="body refbody"><p class="shortdesc">This report is used to create dormitory address information from the housing assignments. The address associated with the dormitory assignment is maintained in the Building Definition Form (SLABLDG). This job will create a dormitory address for each active room assignment that falls within the requested room assignment date.</p>
+
+    <div class="section">
+      <p class="p">A check prevents a new dormitory address from being created if a record of the type selected in the parameters exists with no effective dates. For example, if a Dormitory Address (DO) exists with no effective dates and the Dormitory Address Creation Report is run for the term 199301, and a new DO address is to be created based on the person's assignments, an error message is generated, and no update will occur.</p>
+
+      
+<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" id="r_dormitory_address_creation_report_slrdadd__r_dormitory_address_creation_report_slrdadd-utbl1" class="table" frame="hsides" border="1" rules="rows"><colgroup><col><col><col><col></colgroup><thead class="thead" style="text-align:left;vertical-align:bottom;">
+            <tr class="row">
+              <th class="entry row-nocellborder" style="text-align:left;vertical-align:bottom;" id="d81225e51">Parameter Name</th>
+
+              <th class="entry row-nocellborder" style="text-align:left;vertical-align:bottom;" id="d81225e54">Required?</th>
+
+              <th class="entry row-nocellborder" style="text-align:left;vertical-align:bottom;" id="d81225e57">Description</th>
+
+              <th class="entry row-nocellborder" style="text-align:left;vertical-align:bottom;" id="d81225e60">Values</th>
+
+            </tr>
+
+          </thead>
+<tbody class="tbody">
+            <tr class="row">
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d81225e51 ">Process Term</td>
+
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d81225e54 ">Yes</td>
+
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d81225e57 ">Enter the term code representing the term for which the assignments are to be created.</td>
+
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d81225e60 ">Term Code Validation Form (STVTERM)</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d81225e51 ">Room Assignment Date</td>
+
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d81225e54 ">Yes</td>
+
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d81225e57 ">Enter the date on which the assignments take effect. This parameter is used to specify that only those room assignments which are active on the date selected are used to create address records. <p class="p">For example, if an assignment runs from 9/1 through 9/15, and the user enters 9/16 in this parameter, then the assignments will not be selected.</p>
+</td>
+
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d81225e60 ">&nbsp;</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d81225e51 ">Address Type</td>
+
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d81225e54 ">Yes</td>
+
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d81225e57 ">Enter the address type by which the created address should be referenced.</td>
+
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d81225e60 ">Address Type Code Validation Form (STVATYP)</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d81225e51 ">Address Source</td>
+
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d81225e54 ">No</td>
+
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d81225e57 ">Enter the address source by which the created address should be referenced.</td>
+
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d81225e60 ">Address Source Validation Form (STVASRC)</td>
+
+            </tr>
+
+          </tbody>
+</table>
+</div>
+
+    </div>
+
+  </div>
+
+</div></div></section>
+<section id="t-370"><h3>Active Housing Assignments Report (SLRHLST)</h3><div class="content-locale-en-US content-locale-en"><div id="r_active_housing_assignments_report_slrhlst"><div class="body refbody"><p class="shortdesc">This report is used to list all of the active housing assignments.</p>
+
+    
+<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" id="r_active_housing_assignments_report_slrhlst__r_active_housing_assignments_report_slrhlst-utbl1" class="table" frame="hsides" border="1" rules="rows"><colgroup><col><col><col><col></colgroup><thead class="thead" style="text-align:left;vertical-align:bottom;">
+          <tr class="row">
+            <th class="entry row-nocellborder" style="text-align:left;vertical-align:bottom;" id="d5863e46">Parameter Name</th>
+
+            <th class="entry row-nocellborder" style="text-align:left;vertical-align:bottom;" id="d5863e49">Required?</th>
+
+            <th class="entry row-nocellborder" style="text-align:left;vertical-align:bottom;" id="d5863e52">Description</th>
+
+            <th class="entry row-nocellborder" style="text-align:left;vertical-align:bottom;" id="d5863e55">Values</th>
+
+          </tr>
+
+        </thead>
+<tbody class="tbody">
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d5863e46 ">Process Term</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d5863e49 ">Yes</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d5863e52 ">Enter the term code representing the term for which the assignments are to be repeated.</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d5863e55 ">Term Code Validation Form (STVTERM)</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d5863e46 ">Room Assignment Date</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d5863e49 ">No</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d5863e52 ">Enter the date for which the room assignment should be selected. Leave blank for today's date, or enter the date selected in date format DD-MON-YYYY.</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d5863e55 ">&nbsp;</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d5863e46 ">Report Sequence</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d5863e49 ">Yes</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d5863e52 ">Enter <kbd class="ph userinput">1</kbd> to print the report in name order, enter <kbd class="ph userinput">2</kbd> to print in ID number order, or enter <kbd class="ph userinput">3</kbd> to print in building/room order.</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d5863e55 ">1 - Name order <p class="p">2 - ID number order</p>
+ <p class="p">3 - Building/room order</p>
+</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d5863e46 ">Address Selection Date</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d5863e49 ">No</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d5863e52 ">Enter the effective date for the address you want to have printed on the report. Leave blank for today, or enter in date format DD-MON-YYYY.</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d5863e55 ">&nbsp;</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d5863e46 ">Address Hierarchy</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d5863e49 ">Yes</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d5863e52 ">Enter the address type to be printed on the report; multiple requests are permitted and must be entered in priority sequence. <p class="p">For example, <kbd class="ph userinput">1MA 2PR</kbd> will first print the mailing address, and if none is found, will print the permanent address.</p>
+ <p class="p">Enter each parameter then hit return for the next prompt. Returning with a null value will move you on to the next parameter.</p>
+</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d5863e55 ">Address Type Code Validation Form (STVATYP)</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d5863e46 ">Selection Identifier</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d5863e49 ">No</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d5863e52 ">Enter the code that identifies the population with which you want to work. The selection identifier must be defined on the Population Selection Definition Rules Form (GLRSLCT). All or none of the population selection parameters must be entered.</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d5863e55 ">Population Selection Inquiry Form (GLISLCT)</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d5863e46 ">Application Code</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d5863e49 ">No</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d5863e52 ">Enter the code that identifies the general area for which the selection identifier was defined. All or none of the population selection parameters must be entered. <p class="p">The Population Selection Extract Inquiry Form (GLIEXTR) may be used to review the people who will be processed in the load from the selection identifier and application code entered.</p>
+</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d5863e55 ">Application Inquiry Form (GLIAPPL)</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d5863e46 ">Creator ID</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d5863e49 ">No</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d5863e52 ">Enter the user ID of the person who created the population rules. All or none of the population selection parameters must be entered.</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d5863e55 ">&nbsp;</td>
+
+          </tr>
+
+        </tbody>
+</table>
+</div>
+
+  </div>
+
+</div></div></section>
+<section id="t-380"><h3>Batch Room/Meal/Phone Assess Report (SLRFASM)</h3><div class="content-locale-en-US content-locale-en"><div id="r_batch_room_meal_phone_assess_report_slrfasm"><div class="body refbody"><p class="shortdesc">This report is used to provide batch assessment for room, meal, and phone charges.</p>
+
+    <div class="section">
+      <p class="p">The process automatically populates the Original Indicator to <kbd class="ph userinput">Y</kbd>, for the first time assessment occurs, for a specific detail code, for the student, for the term, and for all assessments before the cutoff dates established on SLATERM.</p>
+
+      
+<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" id="r_batch_room_meal_phone_assess_report_slrfasm__r_batch_room_meal_phone_assess_report_slrfasm-utbl1" class="table" frame="hsides" border="1" rules="rows"><colgroup><col><col><col><col></colgroup><thead class="thead" style="text-align:left;vertical-align:bottom;">
+            <tr class="row">
+              <th class="entry row-nocellborder" style="text-align:left;vertical-align:bottom;" id="d73355e54">Parameter Name</th>
+
+              <th class="entry row-nocellborder" style="text-align:left;vertical-align:bottom;" id="d73355e57">Required?</th>
+
+              <th class="entry row-nocellborder" style="text-align:left;vertical-align:bottom;" id="d73355e60">Description</th>
+
+              <th class="entry row-nocellborder" style="text-align:left;vertical-align:bottom;" id="d73355e63">Values</th>
+
+            </tr>
+
+          </thead>
+<tbody class="tbody">
+            <tr class="row">
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d73355e54 ">Process Term</td>
+
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d73355e57 ">Yes</td>
+
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d73355e60 ">Enter the term code representing the term for which the assessments are to be calculated.</td>
+
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d73355e63 ">Term Code Validation Form (STVTERM)</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d73355e54 ">Process Indicator</td>
+
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d73355e57 ">Yes</td>
+
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d73355e60 ">Enter <kbd class="ph userinput">O</kbd> to batch assess all outstanding room, meal, and phone charges; enter <kbd class="ph userinput">%</kbd> to assess everyone.</td>
+
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d73355e63 ">O - Assess room, meal, phone <p class="p">% - Assess everyone</p>
+</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d73355e54 ">Update Bills</td>
+
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d73355e57 ">Yes</td>
+
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d73355e60 ">Enter <kbd class="ph userinput">N</kbd> if you do not want to update the student's bills, or <kbd class="ph userinput">Y</kbd> to update the bills.</td>
+
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d73355e63 ">Y - Update bills <p class="p">N - Do not update bills</p>
+</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d73355e54 ">Sort Sequence</td>
+
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d73355e57 ">Yes</td>
+
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d73355e60 ">Enter <kbd class="ph userinput">I</kbd> to sort by ID number, or <kbd class="ph userinput">N</kbd> to sort by name.</td>
+
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d73355e63 ">I - ID number order <p class="p">N - Name order</p>
+</td>
+
+            </tr>
+
+          </tbody>
+</table>
+</div>
+
+    </div>
+
+  </div>
+
+</div></div></section>
+<section id="t-390"><h3>Assignment Roll Process (SLRROLL)</h3><div class="content-locale-en-US content-locale-en"><div id="r_assignment_roll_process_slrroll"><div class="body refbody"><p class="shortdesc">This process is used to roll one term's housing, meal, and phone assignments forward to another term.</p>
+
+    
+<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" id="r_assignment_roll_process_slrroll__r_assignment_roll_process_slrroll-utbl1" class="table" frame="hsides" border="1" rules="rows"><colgroup><col><col><col><col></colgroup><thead class="thead" style="text-align:left;vertical-align:bottom;">
+          <tr class="row">
+            <th class="entry row-nocellborder" style="text-align:left;vertical-align:bottom;" id="d59435e46">Parameter Name</th>
+
+            <th class="entry row-nocellborder" style="text-align:left;vertical-align:bottom;" id="d59435e49">Required?</th>
+
+            <th class="entry row-nocellborder" style="text-align:left;vertical-align:bottom;" id="d59435e52">Description</th>
+
+            <th class="entry row-nocellborder" style="text-align:left;vertical-align:bottom;" id="d59435e55">Values</th>
+
+          </tr>
+
+        </thead>
+<tbody class="tbody">
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d59435e46 ">From Term</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d59435e49 ">Yes</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d59435e52 ">Enter the term code representing the term from which the housing, meal, and phone assignments are to be rolled.</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d59435e55 ">Term Code Validation Form (STVTERM)</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d59435e46 ">To Term</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d59435e49 ">Yes</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d59435e52 ">Enter the term code representing the term to which the housing, meal, and phone assignments are to be rolled.</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d59435e55 ">Term Code Validation Form (STVTERM)</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d59435e46 ">Report Mode</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d59435e49 ">Yes</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d59435e52 ">Enter <kbd class="ph userinput">A</kbd> for Audit mode or <kbd class="ph userinput">U</kbd> for Update mode. Audit mode does not update the database and is useful for identifying errors which can then be corrected for a roll in Update mode.</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d59435e55 ">A - Audit mode <p class="p">U - Update mode</p>
+</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d59435e46 ">Roll Room Assignments</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d59435e49 ">Yes</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d59435e52 ">Enter <kbd class="ph userinput">Y</kbd> to roll room assignments, <kbd class="ph userinput">N</kbd> to not roll room assignments.</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d59435e55 ">Y - Roll assignments <p class="p">N - Do not roll assignments</p>
+</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d59435e46 ">Room Assignment Status Code</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d59435e49 ">No</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d59435e52 ">Enter the status code for the room assignment. This code will be the status assigned to the rolled room assignments. Only one active room assignment is rolled at a time.</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d59435e55 ">Room Assignment Status Code Validation Form (STVASCD)</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d59435e46 ">Room Assignment Status Date</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d59435e49 ">No</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d59435e52 ">Enter the date on which the room assignment becomes effective. <p class="p">When a status code is entered in the Room Assignment Status Code parameter, you must enter an associated status date in this parameter.</p>
+</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d59435e55 ">&nbsp;</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d59435e46 ">Roll Meal Assignments</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d59435e49 ">Yes</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d59435e52 ">Enter <kbd class="ph userinput">Y</kbd> to roll meal assignments, <kbd class="ph userinput">N</kbd> to not roll meal assignments.</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d59435e55 ">Y - Roll assignments <p class="p">N - Do not roll assignments</p>
+</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d59435e46 ">Meal Assignment Status Code</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d59435e49 ">No</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d59435e52 ">Enter the status code for the meal assignment. Only one active meal assignment is rolled at a time.</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d59435e55 ">Meal Assignment Status Code Validation Form (STVMSCD)</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d59435e46 ">Meal Assignment Status Date</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d59435e49 ">No</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d59435e52 ">Enter the date on which the meal assignment becomes effective. <p class="p">When a status code is entered in the Meal Assignment Status Code parameter, you must enter an associated status date in this parameter.</p>
+</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d59435e55 ">&nbsp;</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d59435e46 ">Roll Phone Assignments</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d59435e49 ">Yes</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d59435e52 ">Enter <kbd class="ph userinput">Y</kbd> to roll phone assignments, <kbd class="ph userinput">N</kbd> to not roll phone assignments.</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d59435e55 ">Y - Roll assignments <p class="p">N - Do not roll assignments</p>
+</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d59435e46 ">Phone Assignment Status Code</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d59435e49 ">No</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d59435e52 ">Enter the status code for the phone assignment. Only one active phone assignment is rolled at a time.</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d59435e55 ">Phone Assignment Status Code Validation Form (STVPSCD)</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d59435e46 ">Phone Assignment Status Date</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d59435e49 ">No</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d59435e52 ">Enter the date on which the phone assignment becomes effective. <p class="p">When a status code is entered in the Phone Assignment Status Code parameter, you must enter an associated status date in this parameter.</p>
+</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d59435e55 ">&nbsp;</td>
+
+          </tr>
+
+        </tbody>
+</table>
+</div>
+
+  </div>
+
+</div></div></section>
+<section id="t-400"><h3>Batch Housing Schedules Report (SLRSCHE)</h3><div class="content-locale-en-US content-locale-en"><div id="r_batch_housing_schedules_report_slrsche"><div class="body refbody"><p class="shortdesc">This report is used to extract the building, room, and application data from the database, and create a temporary assignment file for a processing term, based on the applicant's preferences, priorities, and attributes.</p>
+
+    <div class="section">
+      <div class="note"><span class="notetitle">Note:</span> You must run SLRSCHE before running SLRSCHD, to create the temporary assignment file of data to be used when SLRSCHD is run.</div>
+
+      
+<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" id="r_batch_housing_schedules_report_slrsche__r_batch_housing_schedules_report_slrsche-utbl1" class="table" frame="hsides" border="1" rules="rows"><colgroup><col><col><col><col></colgroup><thead class="thead" style="text-align:left;vertical-align:bottom;">
+            <tr class="row">
+              <th class="entry row-nocellborder" style="text-align:left;vertical-align:bottom;" id="d77653e51">Parameter Name</th>
+
+              <th class="entry row-nocellborder" style="text-align:left;vertical-align:bottom;" id="d77653e54">Required?</th>
+
+              <th class="entry row-nocellborder" style="text-align:left;vertical-align:bottom;" id="d77653e57">Description</th>
+
+              <th class="entry row-nocellborder" style="text-align:left;vertical-align:bottom;" id="d77653e60">Values</th>
+
+            </tr>
+
+          </thead>
+<tbody class="tbody">
+            <tr class="row">
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d77653e51 ">Term</td>
+
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d77653e54 ">Yes</td>
+
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d77653e57 ">Enter the term code for the term to be used when creating the temporary assignment data. The data is then used when SLRSCHD is run.</td>
+
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d77653e60 ">Term Code Validation Form (STVTERM)</td>
+
+            </tr>
+
+          </tbody>
+</table>
+</div>
+
+      <p class="p">There is no hardcopy output associated with this report.</p>
+
+    </div>
+
+  </div>
+
+</div></div></section>
+<section id="t-410"><h3>Batch Scheduler Report (SLRSCHD)</h3><div class="content-locale-en-US content-locale-en"><div id="r_batch_scheduler_report_slrschd"><div class="body refbody"><p class="shortdesc">This report is used to create dormitory housing assignments in batch mode, based on the applicant's preferences.</p>
+
+    <div class="section">
+      <div class="note"><span class="notetitle">Note:</span> You must run the COBOL program <code class="ph codeph">slrsche.pco</code> first, to create a temporary assignment file of data to be used in running SLRSCHD.</div>
+
+      
+<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" id="r_batch_scheduler_report_slrschd__r_batch_scheduler_report_slrschd-utbl1" class="table" frame="hsides" border="1" rules="rows"><colgroup><col><col><col><col></colgroup><thead class="thead" style="text-align:left;vertical-align:bottom;">
+            <tr class="row">
+              <th class="entry row-nocellborder" style="text-align:left;vertical-align:bottom;" id="d53732e54">Parameter Name</th>
+
+              <th class="entry row-nocellborder" style="text-align:left;vertical-align:bottom;" id="d53732e57">Required?</th>
+
+              <th class="entry row-nocellborder" style="text-align:left;vertical-align:bottom;" id="d53732e60">Description</th>
+
+              <th class="entry row-nocellborder" style="text-align:left;vertical-align:bottom;" id="d53732e63">Values</th>
+
+            </tr>
+
+          </thead>
+<tbody class="tbody">
+            <tr class="row">
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d53732e54 ">Process Term</td>
+
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d53732e57 ">Yes</td>
+
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d53732e60 ">Enter the term code representing the term for which the assignments are to be created.</td>
+
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d53732e63 ">Term Code Validation Form (STVTERM)</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d53732e54 ">Report Order</td>
+
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d53732e57 ">Yes</td>
+
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d53732e60 ">Enter <kbd class="ph userinput">I</kbd> to run the report in ID number order, <kbd class="ph userinput">N</kbd> to run in name order, or <kbd class="ph userinput">P</kbd> to run in application priority order.</td>
+
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d53732e63 ">I - ID number order <p class="p">N - Name order</p>
+ <p class="p">P - Application priority order</p>
+</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d53732e54 ">Report Mode</td>
+
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d53732e57 ">Yes</td>
+
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d53732e60 ">Enter <kbd class="ph userinput">A</kbd> to run in Audit mode or <kbd class="ph userinput">U</kbd> to run in Update mode. Audit mode does not update the database and is useful for identifying errors which can then be corrected before Update mode.</td>
+
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d53732e63 ">A - Audit mode <p class="p">U - Update mode</p>
+</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d53732e54 ">Room Rate Code</td>
+
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d53732e57 ">Yes</td>
+
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d53732e60 ">Enter the desired rate code for the rooms to be scheduled. This parameter is required whether the report is run in Audit mode or Update mode.</td>
+
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d53732e63 ">Room Rate Code Validation Form (STVRRCD)</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d53732e54 ">Room Assignment Status Code</td>
+
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d53732e57 ">Yes</td>
+
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d53732e60 ">Enter the status code for the room assignment. This parameter is required whether the report is run in Audit mode or Update mode.</td>
+
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d53732e63 ">Room Assignment Status Code Validation Form (STVASCD)</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d53732e54 ">Room Assignment Status Date</td>
+
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d53732e57 ">Yes</td>
+
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d53732e60 ">Enter the date on which the room assignment becomes effective. This parameter is required whether the report are run in Audit mode or Update mode.</td>
+
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d53732e63 ">&nbsp;</td>
+
+            </tr>
+
+          </tbody>
+</table>
+</div>
+
+    </div>
+
+  </div>
+
+</div></div></section>
+<section id="t-420"><h3>Housing Purge Process (SLPHOUS)</h3><div class="content-locale-en-US content-locale-en"><div id="r_housing_purge_slphous"><div class="body refbody"><p class="shortdesc">This process will purge the housing applications, housing, meal plan, and phone assignments for the user specified terms and activity dates.</p>
+
+    <div class="section">
+      <p class="p">These assignment assessments must have been processed and accepted in the Accounts Receivable module. The user may choose either of two options: option <kbd class="ph userinput">1</kbd> is purge by term, and option <kbd class="ph userinput">2</kbd> is purge by term and activity date.</p>
+
+    </div>
+
+    
+<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" id="r_housing_purge_slphous__r_housing_purge_slphous-utbl1" class="table" frame="hsides" border="1" rules="rows"><colgroup><col><col><col><col></colgroup><thead class="thead" style="text-align:left;vertical-align:bottom;">
+          <tr class="row">
+            <th class="entry row-nocellborder" style="text-align:left;vertical-align:bottom;" id="d67625e58">Parameter Name</th>
+
+            <th class="entry row-nocellborder" style="text-align:left;vertical-align:bottom;" id="d67625e61">Required?</th>
+
+            <th class="entry row-nocellborder" style="text-align:left;vertical-align:bottom;" id="d67625e64">Description</th>
+
+            <th class="entry row-nocellborder" style="text-align:left;vertical-align:bottom;" id="d67625e67">Values</th>
+
+          </tr>
+
+        </thead>
+<tbody class="tbody">
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d67625e58 ">Process Term</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d67625e61 ">Yes</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d67625e64 ">Enter the term code representing the term for which the housing information is to be purged.</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d67625e67 ">Term Code Validation Form (STVTERM)</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d67625e58 ">Purge Option</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d67625e61 ">Yes</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d67625e64 ">Enter <kbd class="ph userinput">1</kbd> to purge records by term or <kbd class="ph userinput">2</kbd> to purge records by term and activity date.</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d67625e67 ">1 - Purge by term <p class="p">2 - Purge by term and activity date</p>
+</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d67625e58 ">Activity Date</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d67625e61 ">No</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d67625e64 ">Housing assignments with activity dates that match the date entered will be purged. Enter in date format DD-MON-YYYY.</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d67625e67 ">&nbsp;</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d67625e58 ">Run Mode</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d67625e61 ">Yes</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d67625e64 ">Enter <kbd class="ph userinput">A</kbd> to produce a listing of all selected purge data without affecting the database. Enter <kbd class="ph userinput">U</kbd> to update the database after purging the selected data.</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d67625e67 ">A - Audit mode <p class="p">U - Update mode</p>
+</td>
+
+          </tr>
+
+        </tbody>
+</table>
+</div>
+
+  </div>
+
+</div></div></section>
+<section id="t-430"><h3>ACS Housing Interface Report (SLRBACS)</h3><div class="content-locale-en-US content-locale-en"><div id="r_acs_housing_interface_slrbacs"><div class="body refbody"><p class="shortdesc">This report reads <span class="keyword">Banner</span> files and extracts the specified data into a file for use by the Applied College Systems (ACS) Housing Information System (HIS).</p>
+
+    <div class="section">
+      <p class="p">The printed output is shown in a control report with totals of the records sent. A transaction file is also produced, which is formatted and ready to be run through the ACS HIS. This reduces the amount of data entry required in the Housing Information System.</p>
+
+    </div>
+
+    
+<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" id="r_acs_housing_interface_slrbacs__r_acs_housing_interface_slrbacs-utbl1" class="table" frame="hsides" border="1" rules="rows"><colgroup><col><col><col><col></colgroup><thead class="thead" style="text-align:left;vertical-align:bottom;">
+          <tr class="row">
+            <th class="entry row-nocellborder" style="text-align:left;vertical-align:bottom;" id="d6139e60">Parameter Name</th>
+
+            <th class="entry row-nocellborder" style="text-align:left;vertical-align:bottom;" id="d6139e63">Required?</th>
+
+            <th class="entry row-nocellborder" style="text-align:left;vertical-align:bottom;" id="d6139e66">Description</th>
+
+            <th class="entry row-nocellborder" style="text-align:left;vertical-align:bottom;" id="d6139e69">Values</th>
+
+          </tr>
+
+        </thead>
+<tbody class="tbody">
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d6139e60 ">Term Code</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d6139e63 ">Yes</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d6139e66 ">Enter the term code to be used to select housing application records for the ACS HIS file.</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d6139e69 ">Term Code Validation Form (STVTERM)</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d6139e60 ">Address Selection Date</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d6139e63 ">No</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d6139e66 ">Enter the date in DD-MON-YYYY format for the address(es), effective on this date, to be extracted for the ACS HIS file. The system date is the default if this parameter is left blank.</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d6139e69 ">&nbsp;</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d6139e60 ">Address Type</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d6139e63 ">Yes</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d6139e66 ">Enter the address type to be used in the selection of the addresses. Up to two address types may be requested.</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d6139e69 ">&nbsp;</td>
+
+          </tr>
+
+        </tbody>
+</table>
+</div>
+
+  </div>
+
+</div></div></section></main></body></html>

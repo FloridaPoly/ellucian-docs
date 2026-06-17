@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Banner Ethos API - Release Notes — Ethos API 9.40.2</title><style>body{font-family:-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;line-height:1.55;color:#1a1a1a;max-width:920px;margin:0 auto;padding:24px}header{border-bottom:2px solid #5a16d6;margin-bottom:8px}h1{color:#3a0ca3}h2,h3,h4,h5,h6{margin-top:1.6em}.crumb{color:#666;font-size:13px;margin:0}.meta{color:#888;font-size:12px}nav.toc{background:#f6f4fc;border:1px solid #e3dcf5;border-radius:8px;padding:12px 18px;margin:18px 0}nav.toc h2{margin:.2em 0}nav.toc ul{list-style:none;padding-left:0}nav.toc a{text-decoration:none;color:#5a16d6}section{margin:1.2em 0;padding-top:.4em}img{max-width:100%;height:auto}table{border-collapse:collapse}td,th{border:1px solid #ccc;padding:4px 8px}code,pre{background:#f4f4f4;border-radius:4px}pre{padding:10px;overflow:auto}</style></head><body><header><p class="crumb">Banner Ethos API Administration › Banner Ethos API - Release Notes</p><h1>Banner Ethos API - Release Notes — Ethos API 9.40.2</h1><p class="meta">Source: <a href="https://resources.elluciancloud.com/r/bundle/banner_ethos_api_rel_release_notes">https://resources.elluciancloud.com/r/bundle/banner_ethos_api_rel_release_notes</a> &middot; Retrieved 2026-06-17</p></header><nav class="toc"><h2>Contents</h2><ul><li style="margin-left:0px"><a href="#t-150">Ethos API 9.40.2</a></li><li style="margin-left:16px"><a href="#t-160">Student API Release 9.40.2</a></li></ul></nav><main><section id="t-150"><h2>Ethos API 9.40.2</h2></section>
+<section id="t-160"><h3>Student API Release 9.40.2</h3><div class="content-locale-en-US content-locale-en"><div id="c_banner_student_api_9402"><div class="body conbody"><p class="shortdesc">The <span class="keyword">Banner Student API</span> 9.40.2 release contains enhancements and defect resolutions.</p>
+
+    <p class="p"><span class="keyword">Banner Student API</span> 9.40.2 runs on <span class="keyword">Banner</span> platform version 11.4.1 and <span class="keyword">Banner Common DB Upgrade</span> 9.41.1.</p>
+
+    <div class="note tip"><span class="tiptitle">Tip:</span> For more information about the following APIs, see the <a class="xref ft-external-link" href="https://resources.elluciancloud.com/p/api_catalog" target="_blank" rel="noopener">Banner API Catalog</a>.</div>
+
+    <div class="section"><h2 class="title sectiontitle">Updates for catalog-course-descriptors API</h2>
+      
+      <p class="p">The <span class="keyword apiname">catalog-course-descriptors</span> Banner ERP API has been modified. The enhancements include:</p>
+
+      <ul class="ul">
+        <li class="li">Updates to OAS and schema to ensure the objects display as singular titles or property names.<ul class="ul">
+          <li class="li">learningObjectives is now learningObjective</li>
+
+          <li class="li">requiredMaterials is now requiredMaterial</li>
+
+          <li class="li">technicalRequirements is now technicalRequirement</li>
+
+          <li class="li">objectives is now objective</li>
+
+          <li class="li">requiredCourseMaterials is now requiredCourseMaterial</li>
+
+          <li class="li">courseTechnicalRequirements is now courseTechnicalRequirement</li>
+
+          </ul>
+</li>
+
+        <li class="li">Removed modifiedOn as a required property from longTitleAndUrl object in response schema.</li>
+
+      </ul>
+
+      <p class="p">This enhancement addresses PE0007604 in the <span class="keyword">Ellucian Customer Center</span>.</p>
+
+    </div>
+
+    <div class="section"><h2 class="title sectiontitle">Updates for catalog-course-descriptors-adjustments-process API</h2>
+      
+      <p class="p">The <span class="keyword apiname">catalog-course-descriptors-adjustments-process</span> Banner ERP API has been modified. The enhancements include:</p>
+
+      <ul class="ul">
+        <li class="li">Validation for CalBStu environments. When adjusting an existing course with CEU indicator = Y, the credit status (CA-only property) must have a credit course = N, or the API should throw an error.</li>
+
+        <li class="li">Updates to OAS and schema to ensure the objects display as singular property names if the object is not an array:<ul class="ul" id="c_banner_student_api_9402__ul_fsc_w3w_whc">
+          <li class="li">objectives is now objective</li>
+
+          <li class="li">requiredCourseMaterials is now requiredCourseMaterial</li>
+
+          <li class="li">courseTechnicalRequirements is now courseTechnicalRequirement</li>
+
+          </ul>
+</li>
+
+        <li class="li">Enhanced array processing. The API first does a compare of the submitted array and updates any existing records, deletes records not included in the array, and adds any new records submitted in the array. The API user must still send the full array.</li>
+
+        <li class="li">Correct misspelling of property name from “programTaxomony” to “programTaxonomy”</li>
+
+      </ul>
+
+      <p class="p">This enhancement addresses PE0007605 in the <span class="keyword">Ellucian Customer Center</span>.</p>
+
+    </div>
+
+    <div class="section"><h2 class="title sectiontitle">Updates for catalog-course-restrictions API</h2>
+      
+      <p class="p">The <span class="keyword apiname">catalog-course-restrictions</span> Banner ERP API has been enhanced for base call performance, and there are no schema changes. </p>
+
+      <p class="p">This enhancement addresses PE0007606 in the <span class="keyword">Ellucian Customer Center</span>.</p>
+
+    </div>
+
+    <div class="section"><h2 class="title sectiontitle">Updates for catalog-course-restrictions-adjustments-process API</h2>
+      
+      <p class="p">The <span class="keyword apiname">catalog-course-restrictions-adjustments-process</span> Banner ERP API has been enhanced for base call performance, and there are no schema changes. The API has also been modified to enhance array processing. Now, the API first does a compare of the submitted array and updates any existing records, deletes records not included in the array, and adds any new records submitted in the array. The API user must still send the full array.</p>
+
+      <p class="p">This enhancement addresses PE0007607 in the <span class="keyword">Ellucian Customer Center</span>.</p>
+
+    </div>
+
+    <div class="section"><h2 class="title sectiontitle">Updates for catalog-course-requisites-and-equivalents API</h2>
+      
+      <p class="p">The <span class="keyword apiname">catalog-course-requisites-and-equivalents</span> Banner ERP API has been modified. The enhancements include: </p>
+
+      <ul class="ul">
+        <li class="li">Updates to OAS and schema ensure the objects display as singular property names if the object is not an array:<ul class="ul">
+          <li class="li">checkMethodDetails is now checkMethodDetail</li>
+
+          <li class="li">prerequisites is now prerequisite</li>
+
+          </ul>
+</li>
+
+        <li class="li">The object name for the basic array is pluralized.<ul class="ul">
+          <li class="li">basic is now basicPrerequisites</li>
+
+          </ul>
+</li>
+
+      </ul>
+
+      <p class="p">This enhancement addresses PE0007608 in the <span class="keyword">Ellucian Customer Center</span>.</p>
+
+    </div>
+
+    <div class="section"><h2 class="title sectiontitle">Updates for catalog-course-requisites-and-equivalents-adjustments-process API</h2>
+      
+      <p class="p">The <span class="keyword apiname">catalog-course-requisites-and-equivalents-adjustments-process</span> Banner ERP API has been modified. </p>
+
+      <div class="p">
+        <ul class="ul" id="c_banner_student_api_9402__ul_p2k_rls_c3c">
+          <li class="li">Updates to OAS and schema to ensure the objects display as singular property names if the object is not an array:<ul class="ul" id="c_banner_student_api_9402__ul_p2r_sls_c3c">
+            <li class="li">checkMethodDetails is now checkMethodDetail</li>
+
+            <li class="li">prerequisites object is now prerequisite </li>
+
+            </ul>
+</li>
+
+          <li class="li">Updates to OAS and schema to ensure arrays display as pluralized.<ul class="ul" id="c_banner_student_api_9402__ul_wzv_yls_c3c">
+            <li class="li">basic object is now basicPrerequisites</li>
+
+            </ul>
+</li>
+
+          <li class="li">Enhanced array processing. The API first does a compare of the submitted array and updates any existing records, deletes records not included in the array, and adds any new records submitted in the array. The API user must still send the full array.</li>
+
+        </ul>
+
+      </div>
+
+      <p class="p">This enhancement addresses PE0007609 in the <span class="keyword">Ellucian Customer Center</span>.</p>
+
+    </div>
+
+    <div class="section"><h2 class="title sectiontitle">Student API 9.40.2 release record</h2>
+      
+      <p class="p">For more information about the enhancements and defect resolutions for this release, see the <span class="keyword">Ellucian Customer Center</span> <a class="xref ft-external-link" href="https://elluciansupport.service-now.com/customer_center?id=standard_ticket&amp;table=ellucian_product_release&amp;sys_id=6e967d7783123694c2649550ceaad31a&amp;view=" target="_blank" rel="noopener">Banner Student API 9.40.2</a> release page <span class="keyword wintitle">Related Enhancements</span> and <span class="keyword wintitle">Related Defects</span>.</p>
+
+    </div>
+
+    <div class="section"><h2 class="title sectiontitle">Supporting documentation</h2>
+      
+      <p class="p">To download supporting documentation for this release, click <span class="ph uicontrol">Attachments</span> <img class="image ell-icon" src="images/07-ethos-api-9-40-2-1.png" alt="" data-ft-asset-display-name="paperclip.png" data-ft-resource-id="U1hxGZ~0RYMIz4qOJhMPjg-uxRb0CDn~o_sqaDxyinjBg"> on this page and then select the associated compressed (<span class="ph filepath">.zip</span>) file.</p>
+
+    </div>
+
+    <div class="section"><h2 class="title sectiontitle">Additional supporting information</h2>
+      
+      <div class="p">The following resources provide information about all of the supported <span class="keyword">Banner Ethos APIs</span>:<ul class="ul">
+        <li class="li"><span class="xref ft-internal-xlink" data-ft-warning="excluded-from-rendering" data-clusterid="id_ethos/beapi_release/c_eedm_support_info">Ellucian Ethos support information</span> attachment provides a complete list of all Ethos APIs, the operations supported by each (create, read, update, delete), and the versions of the <span class="keyword">Ellucian Ethos Data Model</span> supported by each API.</li>
+
+        <li class="li">The <a class="xref ft-external-link" href="https://resources.elluciancloud.com/bundle/dev_res_ref_api_catalog/page/c_about_api_catalog.html" target="_blank" rel="noopener">API Catalog</a> provides information about the APIs that are implemented for each version and product. To filter the data-model-based APIs in the documentation, filter the APIs using the API Type in the <span class="ph uicontrol">API Catalog</span>.</li>
+
+        <li class="li"><a class="xref ft-external-link" href="https://resources.elluciancloud.com/search?labelkey=category-api&amp;rpp=50&amp;sort.field=title&amp;sort.value=asc" target="_blank" rel="noopener">API documentation page</a> provides a list of all <span class="keyword">Banner Ethos APIs</span> supported by <span class="keyword">Banner</span> and information on the pagination parameters, filters, and named queries supported by the APIs.</li>
+
+        <li class="li"><span class="xref ft-internal-xlink" data-ft-warning="excluded-from-rendering" data-clusterid="id_ethos/beapi_release/c_bnr_da_config">Configure Banner for file bulk loads</span> provides instructions to set up <span class="keyword">Banner</span> to run bulk jobs and to configure the communication with <span class="keyword">Ellucian Ethos Data Access</span> through <span class="ph">Ethos Integration</span>.</li>
+
+        <li class="li">For <span class="ph">Banner Ethos API</span> troubleshooting information, file bulk load troubleshooting, and additional API setup information, see <a class="xref ft-external-link" href="https://elluciansupport.service-now.com/customer_center?id=kb_article_view&amp;sys_kb_id=3658308b87d381102f5a0dc4dabb3587" target="_blank" rel="noopener">Banner Ethos API - Additional Resources and Troubleshooting</a> (<cite class="cite">Article 000047659</cite>) in the <span class="ph">Ellucian Customer Center</span>.</li>
+
+        <li class="li">For a comprehensive understanding of GUIDs and for information on the GUID generation process, see <span class="xref ft-internal-xlink" data-ft-warning="excluded-from-rendering" data-clusterid="id_ethos/beapi_release/c_generate_banner_guids">Generate Banner GUIDs</span> on the <span class="keyword">Ellucian Documentation site</span> and <cite class="cite">Article Number 000043988 - Understanding Ethos GUIDs in Banner Releases</cite> in the <span class="keyword">Ellucian Customer Center</span>.</li>
+
+        </ul>
+</div>
+
+    </div>
+
+  </div>
+
+</div></div></section></main></body></html>

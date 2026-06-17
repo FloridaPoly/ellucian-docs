@@ -1,0 +1,2111 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Banner Student - Release Notes — 2024 Releases</title><style>body{font-family:-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;line-height:1.55;color:#1a1a1a;max-width:920px;margin:0 auto;padding:24px}header{border-bottom:2px solid #5a16d6;margin-bottom:8px}h1{color:#3a0ca3}h2,h3,h4,h5,h6{margin-top:1.6em}.crumb{color:#666;font-size:13px;margin:0}.meta{color:#888;font-size:12px}nav.toc{background:#f6f4fc;border:1px solid #e3dcf5;border-radius:8px;padding:12px 18px;margin:18px 0}nav.toc h2{margin:.2em 0}nav.toc ul{list-style:none;padding-left:0}nav.toc a{text-decoration:none;color:#5a16d6}section{margin:1.2em 0;padding-top:.4em}img{max-width:100%;height:auto}table{border-collapse:collapse}td,th{border:1px solid #ccc;padding:4px 8px}code,pre{background:#f4f4f4;border-radius:4px}pre{padding:10px;overflow:auto}</style></head><body><header><p class="crumb">Banner Student › Banner Student - Release Notes</p><h1>Banner Student - Release Notes — 2024 Releases</h1><p class="meta">Source: <a href="https://resources.elluciancloud.com/r/bundle/banner_student_rel_release_notes">https://resources.elluciancloud.com/r/bundle/banner_student_rel_release_notes</a> &middot; Retrieved 2026-06-17</p></header><nav class="toc"><h2>Contents</h2><ul><li style="margin-left:0px"><a href="#t-250">2024 Releases</a></li><li style="margin-left:16px"><a href="#t-260">Release 9.3.36 and 8.33</a></li><li style="margin-left:32px"><a href="#t-270">Database updates</a></li><li style="margin-left:32px"><a href="#t-280">Technical currency updates</a></li><li style="margin-left:16px"><a href="#t-290">Release 8.32.4</a></li><li style="margin-left:16px"><a href="#t-300">Release 9.3.35.3 and 8.32.3</a></li><li style="margin-left:16px"><a href="#t-310">Release 9.3.35.2 and 8.32.2</a></li><li style="margin-left:16px"><a href="#t-320">Release 9.3.35.1 and 8.32.1</a></li><li style="margin-left:16px"><a href="#t-330">Release 9.3.34.3 and 8.31.3</a></li><li style="margin-left:16px"><a href="#t-340">Release 9.3.35 and 8.32</a></li><li style="margin-left:32px"><a href="#t-350">Database updates</a></li><li style="margin-left:16px"><a href="#t-360">Release 9.3.34.2 and 8.31.2</a></li><li style="margin-left:16px"><a href="#t-370">Release 9.3.34.1 and 8.31.1</a></li><li style="margin-left:16px"><a href="#t-380">Release 9.3.34 and 8.31</a></li><li style="margin-left:32px"><a href="#t-390">Database updates</a></li><li style="margin-left:16px"><a href="#t-400">Release 8.30.2</a></li><li style="margin-left:16px"><a href="#t-410">Release 9.3.33.1 and 8.30.1</a></li><li style="margin-left:16px"><a href="#t-420">Release 9.3.33 and 8.30</a></li><li style="margin-left:16px"><a href="#t-430">Release 9.3.32.2 and 8.29.1.1</a></li></ul></nav><main><section id="t-250"><h2>2024 Releases</h2></section>
+<section id="t-260"><h3>Release 9.3.36 and 8.33</h3><div class="content-locale-en-US content-locale-en"><div id="c_release_9.3.36_8.33"><div class="body conbody"><p class="shortdesc">The <span class="keyword">Banner Student</span> <span class="keyword">9.3.36 and 8.33</span> release includes quality improvements and technical currency updates.</p>
+
+    <div class="section"><h2 class="title sectiontitle">Enhancement to support the Assembly Bill (AB1111)</h2>
+      
+      <p class="p">A new page Course Alias Usage Rules page (SCACARL) is introduced in Banner Admin to support the AB1111 - Common Course Numbering legislation. Use this page to control the Course Alias field v/s the Course field configuration in your institution. </p>
+
+      <p class="p">This enhancement addresses PE0004633 in the <span class="keyword">Ellucian Customer Center</span>.</p>
+
+    </div>
+
+    <div class="section"><h2 class="title sectiontitle">Anonymous Grading updates</h2>
+      
+      <p class="p">The <span class="ph uicontrol">Anonymous Grading Controls</span> section is removed from the <span class="keyword wintitle">Academic History Control (SHACTRL)</span> page. The dependencies on the SHBANGD fields are removed from the <span class="keyword apiname">student-anonymous-grading-registered</span> business event and from the svq_anonymous_grading view.</p>
+
+      <p class="p">The relevant controls were the length of the anonymous grading ID, whether used to generate IDs by section or by term or to generate separate Midterm IDs and regardless if grade adjustments were used. Controls are moved to the <span class="keyword">Anonymous Grading</span> settings page in Ellucian Experience.</p>
+
+      <p class="p">Anonymous Grading is an Experience SaaS solution, the anonymous ID generator will be available in Experience.</p>
+
+      <div class="note"><span class="notetitle">Note:</span> All <span class="keyword">Banner</span> feature updates related to <span class="keyword">Banner</span> <span class="keyword">Anonymous Grading</span> are in support of a future <span class="keyword">Ellucian</span> SaaS Solution.</div>
+
+      <p class="p">This enhancement address PE0005157 in the <span class="keyword">Ellucian Customer Center</span>.</p>
+
+    </div>
+
+    <div class="section"><h2 class="title sectiontitle">Clock Hours to Credit Hours Conversion enhancements</h2>
+      
+      <p class="p">This release includes enhancements that enable the conversion of clock hours to credit hours to support accurate financial aid disbursements based on credit hours. The Basic Course Information (SCACRSE) page includes a new <span class="ph uicontrol">Clock Hour</span> field. When you set the <span class="ph uicontrol">Clock Hour</span> field to <var class="keyword varname">Y</var>, the Schedule (SSASECT) page will dynamically calculate <span class="ph uicontrol">Credit Hours</span> and <span class="ph uicontrol">Billing Hours</span> based on <span class="ph uicontrol">Contact Hours</span> for clock hour courses.</p>
+
+    </div>
+
+    <div class="section"><h2 class="title sectiontitle">Process enhancements</h2>
+      
+      <ul class="ul">
+        <li class="li">The Advisor Assignment Process (SGPADVA) is enhanced to delete or end a single advisor, or all advisors depending on a specific Advisor Type.<p class="p">This enhancement addresses PE0005176 in the <span class="keyword">Ellucian Customer Center</span>.</p>
+</li>
+
+        <li class="li">A new parameter <span class="ph uicontrol">Outcome Record Required</span> is introduced in the Transcript Population Creation Process (SHRTPOP), which allows the user to set the parameter to <kbd class="ph userinput">N</kbd>, so that the students in the population selection do not need to have a SHADEGR record. By default the valid value of the parameter is <kbd class="ph userinput">Y</kbd>.<p class="p">This enhancement addresses PE0005314 in the <span class="keyword">Ellucian Customer Center</span>.</p>
+</li>
+
+      </ul>
+
+    </div>
+
+    <div class="section"><h2 class="title sectiontitle">Generate transcripts for multiple levels</h2>
+      
+      <p class="p">The Transcript Request (SHARQTC) page is enhanced with a new <span class="ph uicontrol">Level</span> section for users to enter up to 10 level codes for a multiple level transcript request. </p>
+
+      <p class="p">A <span class="ph uicontrol">Level Option</span> radio group is added so that when users make requests, they can indicate whether the request is a Single Level, Multiple Levels, or All Levels request.</p>
+
+      <p class="p">The Level Option (SHTTRAN_LEVEL_OPTION_CDE) field automatically updates for any existing records, as follows: </p>
+
+      <ul class="ul">
+        <li class="li">Any existing records with AL as the Level code has the Level Option set to A - All Levels. </li>
+
+        <li class="li">All other existing records will have the Level Option set to S - Single Level.</li>
+
+      </ul>
+
+      <p class="p">There is no change in the existing functionality, and the transcript requests for a single level, or for all levels will continue to work correctly even if the Level Option field is not populated. Any existing customer methods of populating the SHTTRAN table for single level or all levels transcript requests will continue to work, similar to eTranscript requests. This enhancement does not change the eTranscripts.</p>
+
+      <p class="p">For more information, see the <span class="xref ft-internal-xlink" data-ft-warning="excluded-from-rendering" data-clusterid="id_b_stugen/stu_release/r_sharqtc_transcript_request">Transcript Request section</span> in <cite class="cite">Banner Student Page Reference</cite>. </p>
+
+      <p class="p">This enhancement address PE0004504 in the <span class="keyword">Ellucian Customer Center</span>.</p>
+
+    </div>
+
+    <div class="section"><h2 class="title sectiontitle">ASCGEN enhancements</h2>
+      
+      <div class="p">Following are the enhancements available with the release.<ul class="ul">
+        <li class="li">Changed page: The SOAHELP page includes a new <span class="ph uicontrol">Max Help Loan Amount</span> field in the HELP Balances section.</li>
+
+        <li class="li">Changed table: The <code class="ph codeph">SORHELP_MAX_HELP_LOAN_AMOUNT</code> column  is new to support the new <span class="ph uicontrol">Max Help Loan Amount </span>field in the SOAHELP page.</li>
+
+        </ul>
+</div>
+
+    </div>
+
+    <div class="section"><h2 class="title sectiontitle">HESA enhancements</h2>
+      
+      <div class="p">Following are the enhancements available with the release.<ul class="ul">
+        <li class="li">New tables:  <ul class="ul">
+          <li class="li">The SORENPQ table is new to store the Higher Education Level Qualification details held by the student on the entry to their engagement at post graduate level.  This enhancement satisfies PE0005120.</li>
+
+          <li class="li">The SORENPS table is new to store the details of the subjects associated with an entry qualification for a student at the post graduate level.  This enhancement satisfies PE0005120.</li>
+
+          </ul>
+</li>
+
+        <li class="li">Changed tables:<ul class="ul">
+          <li class="li">SOBSTCS:  The SOBSTCS_RECID VARCHAR2 (20) column is new to store the value of the Record Type indicator for a student course session. This enhancement satisfies PE0005167.</li>
+
+          <li class="li">SOBENGA:  The SOBENGA_UKRISRN VARCHAR (7) column is new to store the student's UKRI Studentship Reference number.</li>
+
+          </ul>
+</li>
+
+        </ul>
+</div>
+
+    </div>
+
+    <div class="section"><h2 class="title sectiontitle">HESA Data Futures enhancements</h2>
+      
+      <p class="p">Following are the enhancements available with the release.</p>
+
+      <div class="p">Changed JAVA process:  The SOPMSDF process includes the following updates:<ul class="ul">
+        <li class="li">A paper fix for the &lt;ACTDURATIONTYPE&gt; and &lt;EntryQualificationSubject&gt; tags to be populated in the XML.  This defect fix satisfies PD0016301.</li>
+
+        <li class="li">Code modifications to replace the leadpartner field to leadschool field.  This defect fix satisfies PD0017493.</li>
+
+        <li class="li">Fix to the Engagement concatenation issue when the SID are same, but only differs in leading zeros.  This defect fix satisfies PD0017493.</li>
+
+        </ul>
+</div>
+
+    </div>
+
+    <div class="section"><h2 class="title sectiontitle">HEA GO enhancements</h2>
+      
+      <div class="p">Following are the enhancements available with the release.<ul class="ul">
+        <li class="li">Changed page: The SOAHEGO page includes a new Description column in the Key block LOV. Also, the hard-coded "HGO_MAIN" survey code is removed. This enhancement satisfies PE0005057.</li>
+
+        <li class="li">Changed JAVA process: The SORHEGO process includes modifications to the Country Code and Country Name fields.  Also, a few country names are deleted from the list. </li>
+
+        <li class="li">Changed tables: <ul class="ul">
+          <li class="li">To support the new survey available for the year 2025 for 2024 graduates, the following tables are modified:<ul class="ul">
+            <li class="li">GVBQCOD</li>
+
+            <li class="li">GVVGSRC</li>
+
+            <li class="li">GVRSDEF</li>
+
+            <li class="li">GVRSREL</li>
+
+            <li class="li">GVRPVAC</li>
+
+            </ul>
+</li>
+
+          <li class="li">The GVRPVAC table includes updates to support the updated counties in the survey.</li>
+
+          </ul>
+</li>
+
+        </ul>
+These enhancements satisfy PE0005057.</div>
+
+    </div>
+
+    <div class="section"><h2 class="title sectiontitle">INTTRACKUK enhancements</h2>
+      
+      <div class="p">Changed table:  The following columns are new to the SKRICAS table to support the INTTRACKUK regulatory enhancements:<ul class="ul">
+        <li class="li">SKRICAS_JOINT_CAS_PROGRAM (VARCHAR2(12))</li>
+
+        <li class="li">SKRICAS_JOINT_CAS_IND (VARCHAR2(1) Default value 'N'</li>
+
+        <li class="li">SKRICAS_CREDIT_HOURS (NUMBER(4,1))<div class="note"><span class="notetitle">Note:</span> To support the PD0014368, dropped the SKRCTAF_SKRICAS_DEL, SKRCTAF_SKRICAS_INS and SKRCTAF_SKRICAS_UPD duplicate triggers  from the SKRCTAF table.</div>
+</li>
+
+        </ul>
+</div>
+
+    </div>
+
+    <div class="section"><h2 class="title sectiontitle">SLC enhancements</h2>
+      
+      <p class="p">Following are the enhancements available with the release.</p>
+
+      <div class="p">Changed tables: <ul class="ul">
+        <li class="li">The RKRSINT table delivers a change where the length of the RKRSINT_SLC_COURSE_CODE column size is increased from 6 to 11 (VARCHAR2(11).  This enhancement satisfies PE0004877.</li>
+
+        <li class="li">The RKRSSLC table (SKRUFLD_INIT_DEST) delivers a change where the length of the RKRSSLC_SLC_COURSE_CODE column size is increased from 6 to 11 (VARCHAR2(11). This enhancement satisfies PE0004877.</li>
+
+        </ul>
+</div>
+
+    </div>
+
+    <div class="section"><h2 class="title sectiontitle">SUSI enhancements</h2>
+      
+      <p class="p">Following are the enhancements available with the release.</p>
+
+      <p class="p">Changed JAVA process:  The SOPSUIM process includes the Open Cursors Exceeded error fix.  This defect fix satisfies PD0017301.</p>
+
+    </div>
+
+    <div class="section"><h2 class="title sectiontitle">Supporting Documentation</h2>
+      
+      <p class="p">To download the content for this release, go to the <a class="xref ft-external-link" href="https://edocs-private.ellucian.com/index.html" target="_blank" rel="noopener">Previous Versions</a> page, navigate to the appropriate product, and then click the file associated with the version you need in the preferred language. All content is available in English (enus), and some content is available in Spanish (esmx) and French Canadian (frca).</p>
+
+      <p class="p"><span class="ph">The downloaded compressed (.zip) file contains an Attachments.zip file, which includes the following documents that support this release.</span></p>
+
+      <ul class="ul">
+        <li class="li"><span class="keyword">Banner Student</span> readme 8.33</li>
+
+        <li class="li"><span class="keyword">Banner Student</span> Object List 8.33</li>
+
+        <li class="li"><span class="keyword">Banner Student</span> Page List 9.3.36</li>
+
+        <li class="li"><span class="keyword">Banner Student</span> Use <span class="keyword">9.3.36 and 8.33</span></li>
+
+        <li class="li"><span class="keyword">Banner Student</span> Resolutions Report 8.33</li>
+
+        <li class="li"><span class="keyword">Banner Student</span> Resolutions Report 9.3.36</li>
+
+        <li class="li"><span class="keyword">Banner Student</span> Upgrade Guide Template</li>
+
+        <li class="li"><span class="keyword">Banner Student</span> 903360003 Installation Reference</li>
+
+        <li class="li"><span class="keyword">Banner Student</span> Release Notes <span class="keyword">9.3.36 and 8.33</span></li>
+
+        <li class="li"><span class="keyword">Banner Student</span> Reports and Processes <span class="keyword">9.3.36 and 8.33</span></li>
+
+      </ul>
+
+      <p class="p">The content published on the Documentation site for this release and the documentation included in the associated zip file (listed above) also support any associated hot fix releases.</p>
+
+    </div>
+
+  </div>
+
+</div></div></section>
+<section id="t-270"><h4>Database updates</h4><div class="content-locale-en-US content-locale-en"><div id="c_db_updates_8.33"><div class="body conbody"><p class="shortdesc"><span class="keyword">Ellucian</span> delivers database updates to support enhancements included with the <span class="keyword">Banner Student</span> <span class="keyword">9.3.36 and 8.33</span> release.</p>
+
+    <div class="section"><h2 class="title sectiontitle">New tables and Database views for AB1111</h2>
+      
+      <p class="p"><span class="keyword">Ellucian</span> delivers new tables and database views to support AB1111 California Common Course Numbering. </p>
+
+      
+<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" class="table" frame="hsides" border="1" rules="all"><caption><span class="tablecap"><span class="table--title-label">Table 1. </span>New tables</span></caption><colgroup><col style="width:50%"><col style="width:50%"></colgroup><thead class="thead" style="text-align:left;">
+            <tr class="row">
+              <th class="entry cellrowborder" style="vertical-align:top;" id="d16834e68">Table</th>
+
+              <th class="entry row-nocellborder" style="vertical-align:top;" id="d16834e71">Description</th>
+
+            </tr>
+
+          </thead>
+<tbody class="tbody">
+            <tr class="row">
+              <td class="entry cellrowborder" style="vertical-align:top;" headers="d16834e68 ">SCRCARL</td>
+
+              <td class="entry row-nocellborder" style="vertical-align:top;" headers="d16834e71 ">Course Alias Usage Rules table</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry cellrowborder" style="vertical-align:top;" headers="d16834e68 ">SHRTADI </td>
+
+              <td class="entry row-nocellborder" style="vertical-align:top;" headers="d16834e71 ">Transfer Course Additional Information table</td>
+
+            </tr>
+
+          </tbody>
+</table>
+</div>
+
+      <p class="p"><span class="ph uicontrol">Common Function Logic</span></p>
+
+      <p class="p">Ellucian has provided a new common function logic <code class="ph codeph">sckcsin.f_get_course_alias</code> with this release for AB1111. You can create a common function in the database and the service layer to display the <span class="ph uicontrol">Course Display Value</span> so that all the other solutions can use the function to display the Course Alias.</p>
+
+      <p class="p">Based on the Subject, Course, Effective Term and College you can get the Course Display Value and send the value as an output of this common function.</p>
+
+      <p class="p">Check if a rule is defined for college that is tagged to a Course, If yes then, consider the <span class="ph uicontrol">Enable</span> indicator for that rule.</p>
+
+      <ul class="ul">
+        <li class="li">If Enable = Y, then, send Course Alias value for the course as an output of the common function.<p class="p">If the Course Alias is not defined for the respective course on <span class="ph menucascade"><span class="ph uicontrol">SCARCSE</span><abbr title="and then"> &gt; </abbr><span class="ph uicontrol">Course Alias</span></span>field then send Course Number value for the course as an output of the common function</p>
+</li>
+
+        <li class="li">If Enable = N, then, send Course Number value for the course as an output of the common function.</li>
+
+      </ul>
+
+      <p class="p">If No rules are defined at an individual College level then check if overall rule is defined, that is, <span class="ph uicontrol">Enable Course Alias for All Colleges</span> field.</p>
+
+      <ul class="ul">
+        <li class="li">If Enable Course Alias for All Colleges = Y, then, send Course Alias value for the course as an output of the common function.</li>
+
+        <li class="li">If Enable Course Alias for All Colleges = N, then, send Course Number value for the course as an output of the common function.</li>
+
+      </ul>
+
+      <p class="p">The function updates the <span class="ph uicontrol">Views</span> on the Self-Service applications. A new column <span class="ph uicontrol">Course Display Value</span> is used Sorting and Searching the records.</p>
+
+      <p class="p"><span class="ph uicontrol">New Database views</span></p>
+
+      <ul class="ul">
+        <li class="li">svq_classsearch_rslt.sql</li>
+
+        <li class="li">svq_classsearch.sql</li>
+
+        <li class="li">svq_course_section.sql</li>
+
+        <li class="li">svq_coursesearch.sql</li>
+
+      </ul>
+
+      <p class="p">This enhancement address PE0005157 in the <span class="keyword">Ellucian Customer Center</span>.</p>
+
+    </div>
+
+    <div class="section"><h2 class="title sectiontitle">Tables for transcripts for multiple levels</h2>
+      
+      <p class="p">The Academic Transcript (SHRTRTC), PESC/XML Export Process (SHRPESE) and Elec. Data Interchange Extract (SHREDIY) processes have been enhanced to accurately manage values for Level Option and to properly process requests for multiple level transcripts.</p>
+
+      <p class="p">The Transcript Request Purge (SHPTRTC) process has been enhanced so that when the transcript requests are purged, any associated child records in the Multiple Level Transcript Request (SHRTRML) table will also be purged.</p>
+
+      <p class="p">Changed Table</p>
+
+      
+<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" class="table" frame="hsides" border="1" rules="all"><colgroup><col style="width:50%"><col style="width:50%"></colgroup><thead class="thead" style="text-align:left;">
+            <tr class="row">
+              <th class="entry cellrowborder" style="vertical-align:top;" id="d16834e219">Table</th>
+
+              <th class="entry row-nocellborder" style="vertical-align:top;" id="d16834e222">What changed</th>
+
+            </tr>
+
+          </thead>
+<tbody class="tbody">
+            <tr class="row">
+              <td class="entry cellrowborder" style="vertical-align:top;" headers="d16834e219 ">SHTTRAN</td>
+
+              <td class="entry row-nocellborder" style="vertical-align:top;" headers="d16834e222 ">Added column SHTTRAN_LEVEL_OPTION_CDE</td>
+
+            </tr>
+
+          </tbody>
+</table>
+</div>
+
+      <p class="p">New Table</p>
+
+      
+<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" class="table" frame="hsides" border="1" rules="all"><colgroup><col style="width:50%"><col style="width:50%"></colgroup><thead class="thead" style="text-align:left;">
+            <tr class="row">
+              <th class="entry cellrowborder" style="vertical-align:top;" id="d16834e257">Table</th>
+
+              <th class="entry row-nocellborder" style="vertical-align:top;" id="d16834e260">What changed</th>
+
+            </tr>
+
+          </thead>
+<tbody class="tbody">
+            <tr class="row">
+              <td class="entry cellrowborder" style="vertical-align:top;" headers="d16834e257 ">SHRTRML</td>
+
+              <td class="entry row-nocellborder" style="vertical-align:top;" headers="d16834e260 ">New table - SHRTRML - Transcript Request Multiple Levels</td>
+
+            </tr>
+
+          </tbody>
+</table>
+</div>
+
+      <p class="p">This enhancement address PE0004504 in the <span class="keyword">Ellucian Customer Center</span>.</p>
+
+    </div>
+
+  </div>
+
+</div></div></section>
+<section id="t-280"><h4>Technical currency updates</h4><div class="content-locale-en-US content-locale-en"><div id="c_tech_currency_dec_2024"><div class="body conbody"><p class="shortdesc">The December 2024 <span class="keyword">Banner Student</span> <span class="keyword">9.3.36 and 8.33</span> releases include technical currency changes to improve product quality, upgrade to current releases of third-party software, improve stability, and maintain security standards.</p>
+
+    <p class="p">For more information about these updates, see <span class="xref ft-internal-xlink" data-ft-warning="excluded-from-rendering" data-clusterid="id_b_stugen/stu_release/c_release_9_3_37_admc">Banner Admin Common Releases 9.3.37 and 9.3.36.4</span>.</p>
+
+    <div class="note"><span class="notetitle">Note:</span> <span class="keyword">Ellucian</span> strongly recommends customers always operate on software versions that we actively support and advises <span class="keyword">Banner</span> users to promptly apply this upgrade as it addresses vulnerabilities in <span class="keyword">Ellucian</span> code and third-party components.</div>
+
+  </div>
+
+</div></div></section>
+<section id="t-290"><h3>Release 8.32.4</h3><div class="content-locale-en-US content-locale-en"><div id="c_release_8.32.4"><div class="body conbody"><p class="shortdesc">The <span class="keyword">Banner Student</span> <span class="keyword">8.32.4</span> release includes quality improvements and technical currency updates.</p>
+
+    <div class="section"><h2 class="title sectiontitle">Supporting Documentation</h2>
+      
+      <p class="p">To download the content for this release, go to the <a class="xref ft-external-link" href="https://edocs-private.ellucian.com/index.html" target="_blank" rel="noopener">Previous Versions</a> page, navigate to the appropriate product, and then click the file associated with the version you need in the preferred language. All content is available in English (enus), and some content is available in Spanish (esmx) and French Canadian (frca).</p>
+
+      <p class="p"><span class="ph">The downloaded compressed (.zip) file contains an Attachments.zip file, which includes the following documents that support this release.</span></p>
+
+      <div class="p">
+        <ul class="ul">
+          <li class="li">Banner Student Readme 8.32.4</li>
+
+          <li class="li">Banner Student Object List 8.32.4</li>
+
+          <li class="li">Banner Student Upgrade Guide Template</li>
+
+          <li class="li">Banner Student Resolutions Report 8.32.4</li>
+
+        </ul>
+
+      </div>
+
+    </div>
+
+    <div class="section">
+      <p class="p">For a list of defects and enhancements resolved in <span class="keyword">Banner Student</span> <span class="keyword">8.32.4</span>, see the release page for <a class="xref ft-external-link" href="https://elluciansupport.service-now.com/customer_center?id=standard_ticket&amp;table=ellucian_product_release&amp;sys_id=2b160af583255a54546a7d447daad356" target="_blank" rel="noopener">Release 8.32.4</a> in the <span class="keyword">Ellucian Customer Center</span>.</p>
+
+    </div>
+
+  </div>
+
+</div></div></section>
+<section id="t-300"><h3>Release 9.3.35.3 and 8.32.3</h3><div class="content-locale-en-US content-locale-en"><div id="c_release_9.3.35.3_8.32.3"><div class="body conbody"><p class="shortdesc">The <span class="keyword">Banner Student</span> <span class="keyword">9.3.35.3 and 8.32.3</span> release includes quality improvements and technical currency updates.</p>
+
+    <div class="section"><h2 class="title sectiontitle">Clock Hours to Credit Hours Conversion enhancements</h2>
+      
+      <p class="p">This release includes enhancements that enable the conversion of clock hours to credit hours to support financial aid disbursements based on credit hours. The new Course Catalog Control (SCACTRL) page allows for the management of the clock hour to credit hour configuration. For more details see the <span class="xref ft-internal-xlink" data-ft-warning="excluded-from-rendering" data-clusterid="id_b_stugen/stu_help/c_scactrl_course_catalog_control_page">Course Catalog Control (SCACTRL)</span> page.</p>
+
+      <p class="p"><span class="keyword">Ellucian</span> will deliver additional enhancements that support the clock hour to credit hour conversion in a future release.</p>
+
+      <div class="p">The following tables included in this release support the conversion of clock hours to credit hours.<ul class="ul">
+        <li class="li">Course Catalog Control (SCBCTRL)</li>
+
+        <li class="li">Course Clock Hours Terms Control (SCRCLTR)</li>
+
+        <li class="li">Course Clock Hours (SCRCLKH)</li>
+
+        </ul>
+</div>
+
+      <p class="p">This enhancement addresses PE0005179 in the <span class="keyword">Ellucian Customer Center</span>.</p>
+
+    </div>
+
+    <div class="section"><h2 class="title sectiontitle">Supporting Documentation</h2>
+      
+      <p class="p">To download the content for this release, go to the <a class="xref ft-external-link" href="https://edocs-private.ellucian.com/index.html" target="_blank" rel="noopener">Previous Versions</a> page, navigate to the appropriate product, and then click the file associated with the version you need in the preferred language. All content is available in English (enus), and some content is available in Spanish (esmx) and French Canadian (frca).</p>
+
+      <p class="p"><span class="ph">The downloaded compressed (.zip) file contains an Attachments.zip file, which includes the following documents that support this release.</span></p>
+
+      <div class="p">
+        <ul class="ul">
+          <li class="li"><span class="keyword">Banner Student</span> readme 8.32.3</li>
+
+          <li class="li"><span class="keyword">Banner Student</span> Object List 8.32.3</li>
+
+          <li class="li"><span class="keyword">Banner Student</span> Resolutions Report 8.32.3</li>
+
+          <li class="li"><span class="keyword">Banner Student</span> Resolutions Report 9.3.35.3</li>
+
+          <li class="li"><span class="keyword">Banner Student</span> Upgrade Guide Template</li>
+
+          <li class="li"><span class="keyword">Banner Student</span> Release Notes <span class="keyword">9.3.35.3 and 8.32.3</span></li>
+
+        </ul>
+
+      </div>
+
+      <p class="p">The content published on the Documentation site for this release and the documentation included in the associated zip file (listed above) also support any associated hot fix releases.</p>
+
+    </div>
+
+  </div>
+
+</div></div></section>
+<section id="t-310"><h3>Release 9.3.35.2 and 8.32.2</h3><div class="content-locale-en-US content-locale-en"><div id="c_release_9.3.35.2_8.32.2"><div class="body conbody"><p class="shortdesc">The <span class="keyword">Banner Student</span> <span class="keyword">9.3.35.2 and 8.32.2</span> release includes product enhancements and updates to support the UCAS regulatory for the UK region.</p>
+
+    <div class="section"><h2 class="title sectiontitle">CAO enhancements</h2>
+      
+      <p class="p">New table: The Europe CAO Net Acceptance File Data (SARNAFD) table is new to store the new fields of the CAO Net Acceptance File and used is in the SORNAIM JAVA java process and SZAIIOT page.</p>
+
+    </div>
+
+    <div class="section"><h2 class="title sectiontitle">UCAS enhancements</h2>
+      
+      <div class="p">Following are the enhancements available with the release.<ul class="ul">
+        <li class="li">New table: The Student Admission Data Download-Upload Summary (SARSDUS) table is new to store the UCAS transaction details. When data is downloaded or uploaded to UCAS using the UCAS XML LINK DC pipelines, the end point wise number of records processed are stored in the new table.  The SKKXUTL UCAS package and the <span class="keyword apiname">ucas-application-transactions-details</span> Ethos Integration API  uses the SARSDUS table.</li>
+
+        <li class="li">Changed tables: <ul class="ul">
+          <li class="li">SARMCML: The SARMCML_RECORD_STATUS column is new to the SARMCML table.</li>
+
+          <li class="li">SARMCMU: Updates to the SARMCMU_RECORD_STATUS column description to modify the record status details.</li>
+
+          </ul>
+</li>
+
+        </ul>
+</div>
+
+    </div>
+
+    <div class="section"><h2 class="title sectiontitle">SGPADVA process update</h2>
+      
+      <p class="p">The Advisors Assignment Process (SGPADVA) is updated to accept a range of values for the <span class="ph uicontrol">Starting Last Name</span> and <span class="ph uicontrol">Ending Last Name</span> fields on the Advisors Assignment Rules (SGAAVRL) page. For example, the process checks the last names that start with A up to the last names where the starting letter is C. For more information, see <cite class="cite">Advisors Assignment Process (SGPADVA)</cite> in <cite class="cite">Banner Student Reports and Processes</cite>.</p>
+
+      <p class="p">This defect satisfies PD0017492 in the <span class="keyword">Ellucian Customer Center</span>.</p>
+
+    </div>
+
+    <div class="section"><h2 class="title sectiontitle">Business Process API</h2>
+      
+      <p class="p">The <span class="keyword apiname">committee-service-information</span> BPAPI now supports the Post method to add the committee service information.</p>
+
+      <p class="p">This enhancement addresses PE0004718 in the <span class="keyword">Ellucian Customer Center</span>.</p>
+
+      <p class="p">See the <cite class="cite">Banner API Catalog</cite> on the <span class="keyword">Ellucian Documentation site</span> for more information about this API.</p>
+
+    </div>
+
+    <div class="section"><h2 class="title sectiontitle">Supporting Documentation</h2>
+      
+      <p class="p">To download the content for this release, go to the <a class="xref ft-external-link" href="https://edocs-private.ellucian.com/index.html" target="_blank" rel="noopener">Previous Versions</a> page, navigate to the appropriate product, and then click the file associated with the version you need in the preferred language. All content is available in English (enus), and some content is available in Spanish (esmx) and French Canadian (frca).</p>
+
+      <p class="p"><span class="ph">The downloaded compressed (.zip) file contains an Attachments.zip file, which includes the following documents that support this release.</span></p>
+
+      <div class="p">
+        <ul class="ul">
+          <li class="li"><span class="keyword">Banner Student</span> readme 8.32.2</li>
+
+          <li class="li"><span class="keyword">Banner Student</span> Object List 8.32.2</li>
+
+          <li class="li"><span class="keyword">Banner Student</span> Resolutions Report 8.32.2</li>
+
+          <li class="li"><span class="keyword">Banner Student</span> Resolutions Report 9.3.35.2</li>
+
+          <li class="li"><span class="keyword">Banner Student</span> Upgrade Guide Template</li>
+
+          <li class="li"><span class="keyword">Banner Student</span> 903350205 Installation Reference</li>
+
+          <li class="li"><span class="keyword">Banner Student</span> Release Notes <span class="keyword">9.3.35.2 and 8.32.2</span></li>
+
+          <li class="li"><span class="keyword">Banner Student</span> Reports and Processes <span class="keyword">9.3.35.2 and 8.32.2</span></li>
+
+        </ul>
+
+      </div>
+
+      <p class="p">The content published on the Documentation site for this release and the documentation included in the associated zip file (listed above) also support any associated hot fix releases.</p>
+
+    </div>
+
+  </div>
+
+</div></div></section>
+<section id="t-320"><h3>Release 9.3.35.1 and 8.32.1</h3><div class="content-locale-en-US content-locale-en"><div id="c_release_9.3.35.1_8.32.1"><div class="body conbody"><p class="shortdesc">The <span class="keyword">Banner Student</span> <span class="keyword">9.3.35.1 and 8.32.1</span> release includes US Regulatory updates to meet Gainful Employment/FVT reporting needs.</p>
+
+    <div class="section"><h2 class="title sectiontitle">New section for Financial Value Transparency / Gainful Employment</h2>
+      
+      <p class="p">The September 2024 <span class="keyword">Banner</span> releases bring the Gainful Employment processing within <span class="keyword">Banner</span> up to the new regulations.</p>
+
+      <p class="p">The Department of Education has renamed the regulations to “Financial Value Transparency / Gainful Employment” (also known as FVT/GE). <span class="keyword">Ellucian</span> has implemented both the “Financial Value Transparency” and “Gainful Employment” in the <span class="keyword">Banner</span> pages and processes, and has retained the original (shorter) designation of “Gainful Employment” (also known as, GE).</p>
+
+      <p class="p">Direct any questions about the regulations to the appropriate government agency.</p>
+
+    </div>
+
+    <div class="section"><h2 class="title sectiontitle">Overview of processing</h2>
+      
+      <p class="p">The FVT/GE regulations include reporting both details about students and high-level information about programs. These are two separate reports.</p>
+
+      <p class="p"><span class="keyword">Ellucian</span> has enhanced the existing configuration/rules page so that institutions can enter information for both of the reports on this single page. <span class="keyword">Ellucian</span> continues the practice of isolating the GE configuration from other <span class="keyword">Banner Student</span> configuration because of the dependency on the Federal regulations.</p>
+
+      <div class="p">For both reports, <span class="keyword">Ellucian</span> anticipates that an institution will:<ul class="ul">
+        <li class="li">enter the configuration and rules.</li>
+
+        <li class="li">run the appropriate process (student or program) to write the data to the table.</li>
+
+        <li class="li">use the appropriate administrative page to review and possibly update the data.</li>
+
+        <li class="li">repeat the above steps until satisfied with the data.</li>
+
+        <li class="li">run the same process to extract the data from the table to create the <span class="ph filepath">comma separated value (.csv)</span> file</li>
+
+        <li class="li">submit the file to the National Student Clearinghouse (NSC)</li>
+
+        </ul>
+</div>
+
+      <p class="p">The two report processes are independent; an institution can choose to work on one process, or work on both processes simultaneously.</p>
+
+    </div>
+
+    <div class="section"><h2 class="title sectiontitle">Standard versus Transitional processing</h2>
+      
+      <p class="p">For this reporting year, institutions will need to choose if they are following the “Standard” or the “Transitional” method. Depending on this choice, the institution will need to report student data for different years and with different populations. <span class="keyword">Ellucian</span> is providing a job/sub parameter to enable you to control the students included in the files <span class="keyword">Banner</span> generates. The following tables provide more detailed information.</p>
+
+      <p class="p"><span class="keyword">Banner</span> generates, verifies, and independently submits the files for the various years. You can process the files in any order.</p>
+
+      <p class="p">For institutions choosing the “Standard” method, see the following table:</p>
+
+      
+<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" class="table" frame="border" border="1" rules="all"><colgroup><col style="width:33.33333333333333%"><col style="width:33.33333333333333%"><col style="width:33.33333333333333%"></colgroup><thead class="thead" style="text-align:left;">
+            <tr class="row">
+              <th class="entry cellrowborder" style="vertical-align:top;" id="d19656e157">Award year</th>
+
+              <th class="entry cellrowborder" style="vertical-align:top;" id="d19656e160">Student population</th>
+
+              <th class="entry cellrowborder" style="vertical-align:top;" id="d19656e163">Job/sub parm 12</th>
+
+            </tr>
+
+          </thead>
+<tbody class="tbody">
+            <tr class="row">
+              <td class="entry cellrowborder" style="vertical-align:top;" headers="d19656e157 ">2023 – 2024</td>
+
+              <td class="entry cellrowborder" style="vertical-align:top;" headers="d19656e160 ">All students</td>
+
+              <td class="entry cellrowborder" style="vertical-align:top;" headers="d19656e163 ">A</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry cellrowborder" style="vertical-align:top;" headers="d19656e157 ">2022 – 2023</td>
+
+              <td class="entry cellrowborder" style="vertical-align:top;" headers="d19656e160 ">Graduated and withdrawn students for all programs</td>
+
+              <td class="entry cellrowborder" style="vertical-align:top;" headers="d19656e163 ">G</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry cellrowborder" style="vertical-align:top;" headers="d19656e157 ">2021 – 2022</td>
+
+              <td class="entry cellrowborder" style="vertical-align:top;" headers="d19656e160 ">Graduated and withdrawn students for all programs</td>
+
+              <td class="entry cellrowborder" style="vertical-align:top;" headers="d19656e163 ">G</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry cellrowborder" style="vertical-align:top;" headers="d19656e157 ">2020 – 2021</td>
+
+              <td class="entry cellrowborder" style="vertical-align:top;" headers="d19656e160 ">Graduated and withdrawn students for all programs</td>
+
+              <td class="entry cellrowborder" style="vertical-align:top;" headers="d19656e163 ">G</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry cellrowborder" style="vertical-align:top;" headers="d19656e157 ">2019 – 2020</td>
+
+              <td class="entry cellrowborder" style="vertical-align:top;" headers="d19656e160 ">Graduated and withdrawn student for all programs.</td>
+
+              <td class="entry cellrowborder" style="vertical-align:top;" headers="d19656e163 ">G</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry cellrowborder" style="vertical-align:top;" headers="d19656e157 ">2018 – 2019</td>
+
+              <td class="entry cellrowborder" style="vertical-align:top;" headers="d19656e160 ">Graduated and withdrawn student for all programs.</td>
+
+              <td class="entry cellrowborder" style="vertical-align:top;" headers="d19656e163 ">G</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry cellrowborder" style="vertical-align:top;" headers="d19656e157 ">2017 – 2018</td>
+
+              <td class="entry cellrowborder" style="vertical-align:top;" headers="d19656e160 ">Graduated and withdrawn student for all programs.</td>
+
+              <td class="entry cellrowborder" style="vertical-align:top;" headers="d19656e163 ">G</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry cellrowborder" style="vertical-align:top;" headers="d19656e157 ">2016 – 2017</td>
+
+              <td class="entry cellrowborder" style="vertical-align:top;" headers="d19656e160 ">Graduated and withdrawn student for qualifying graduate programs.</td>
+
+              <td class="entry cellrowborder" style="vertical-align:top;" headers="d19656e163 ">Q</td>
+
+            </tr>
+
+          </tbody>
+</table>
+</div>
+
+      <p class="p"><span class="keyword">Banner</span> uses the <span class="keyword parmname">standard</span> parameter for the “write to file” part of the process. <span class="keyword">Banner</span> writes all students to the table during the initial step of writing to the file.</p>
+
+      <p class="p">For institutions choosing the “Transitional” method, see the following table:</p>
+
+      
+<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" class="table" frame="border" border="1" rules="all"><colgroup><col style="width:33.33333333333333%"><col style="width:33.33333333333333%"><col style="width:33.33333333333333%"></colgroup><thead class="thead" style="text-align:left;">
+            <tr class="row">
+              <th class="entry cellrowborder" style="vertical-align:top;" id="d19656e299">Award year</th>
+
+              <th class="entry cellrowborder" style="vertical-align:top;" id="d19656e302">Student population</th>
+
+              <th class="entry cellrowborder" style="vertical-align:top;" id="d19656e305">Job/sub parm 12</th>
+
+            </tr>
+
+          </thead>
+<tbody class="tbody">
+            <tr class="row">
+              <td class="entry cellrowborder" style="vertical-align:top;" headers="d19656e299 ">2023 – 2024</td>
+
+              <td class="entry cellrowborder" style="vertical-align:top;" headers="d19656e302 ">All students</td>
+
+              <td class="entry cellrowborder" style="vertical-align:top;" headers="d19656e305 ">A</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry cellrowborder" style="vertical-align:top;" headers="d19656e299 ">2022 – 2023</td>
+
+              <td class="entry cellrowborder" style="vertical-align:top;" headers="d19656e302 ">Graduated and withdrawn students for all programs</td>
+
+              <td class="entry cellrowborder" style="vertical-align:top;" headers="d19656e305 ">G</td>
+
+            </tr>
+
+          </tbody>
+</table>
+</div>
+
+      <p class="p">Again, <span class="keyword">Banner</span> uses the <span class="keyword parmname">transitional</span> parameter for the “write to file” part of the process. <span class="keyword">Banner</span> writes all students to the table during the initial step of writing to the file.</p>
+
+      <p class="p">You can now filter the students in the SFRGEFM table to see only the population you need to verify for the ultimate file creation. Do not worry that more students are written to the table than are included in the <span class="ph filepath">.csv</span> file <span class="keyword">Banner</span> generated. This is expected behavior. You can use the standard filter to ignore the data that the file creation step ignores.</p>
+
+    </div>
+
+    <div class="section"><h2 class="title sectiontitle">Use of “Batch ID”</h2>
+      
+      <p class="p">The previous GE solution within <span class="keyword">Banner</span> used the concept of a “batch ID”. Whenever SFRGEED was run to create data in the SFRGEFM table, <span class="keyword">Banner</span> generated a one-up “batch ID” and attached it to the newly created records. The batch ID number was included in the <span class="ph filepath">.lis</span> file.</p>
+
+      <p class="p">This batch ID could be used when reviewing data on SFAGEFM. It was also an optional parameter when creating the output file and for any data purging (using SFPGEED).</p>
+
+      <p class="p"><span class="keyword">Ellucian</span> is continuing the use of the “batch ID” concept. There are separate sequences for the student data (which SFPGESC generates) and the program data (which SFPGEPC generates).</p>
+
+    </div>
+
+    <div class="section"><h2 class="title sectiontitle">Student Distinctions</h2>
+      
+      <div class="p">The previous GE regulations made a distinction between “enrolled” and “graduated or withdrawn” students. The current regulations continue this distinction. The record type field provides codes to easily distinguish these types of students.<ul class="ul">
+        <li class="li">AA stands for "Annual Amount". AA records are current enrollment records.</li>
+
+        <li class="li">TA stands for "Total Amount" TA records are graduated or withdrawn records.</li>
+
+        </ul>
+</div>
+
+      <p class="p">The AA and TA codes also let you know which of the financial cost fields should be populated.</p>
+
+    </div>
+
+    <div class="section"><h2 class="title sectiontitle">Configuration and Rules</h2>
+      
+      <p class="p"><span class="keyword">Ellucian</span> is using the existing configuration and rules from the previous versions of Gainful Employment; some entries require you to supply additional information to fully use the new reports. As your institution inserts or updates a row, <span class="keyword">Banner</span>checks the entry for the current mandatory/optional status. However, existing rows that are not updated will not be explicitly flagged. It is the institution’s responsibility to make all such updates.</p>
+
+    </div>
+
+    <div class="section"><h2 class="title sectiontitle">New page:</h2>
+      
+      <p class="p"><span class="keyword wintitle">Gainful Employment Program File Maintenance (SFAGEPM)</span> page</p>
+
+      <p class="p">This administrative page enables your institution to review generated program records. Your institution can insert, update, or delete records.</p>
+
+    </div>
+
+    <div class="section"><h2 class="title sectiontitle">Updated pages: </h2>
+      
+      <p class="p"><span class="keyword wintitle">Gainful Employment Program Rules (SFAGECR)</span> page</p>
+
+      <p class="p"><span class="keyword">Ellucian</span> has enhanced the <span class="ph uicontrol">Curricula</span> tab to enable you to specify additional characteristics for a curriculum. For the most part, the program report process uses the fields in the lower section.</p>
+
+      <p class="p">Some fields that were previously optional are now mandatory when a row is inserted or updated. An example is credential length. If these fields are not completed before running the reports, then the students or programs will be missing this information. <span class="keyword">Ellucian</span> has continued the use of allowing an institution to specify by major, CIP code, degree code, level code, program, or a combination of these fields.</p>
+
+      <p class="p"><span class="keyword">Ellucian</span> also enhanced the <span class="ph uicontrol">Detail Codes</span> tab to enable an institution to specify additional categories for a detail code.</p>
+
+      <div class="p"><span class="keyword">Ellucian</span> did not:<ul class="ul">
+        <li class="li">change the <span class="ph uicontrol">Books/Supplies/Equipment Allowance</span> tab.</li>
+
+        <li class="li">change the <span class="ph uicontrol">OPEID</span> tab.</li>
+
+        </ul>
+</div>
+
+      <div class="p"><span class="keyword">Ellucian</span> has added:<ul class="ul">
+        <li class="li">the <span class="ph uicontrol">Residency Tuition Status</span> tab to enable an institution to cross-walk their student residence code values (which are maintained on the <span class="keyword wintitle">Residence Code Validation</span> (STVRESD) page) to the tuition status values the regulation provides.</li>
+
+        <li class="li">the <span class="ph uicontrol">Housing/Food Allowance</span> tab to enable an institution to specify component codes to identify “housing and food” components. </li>
+
+        </ul>
+</div>
+
+      <div class="p">There are two blocks on this tab:<ul class="ul">
+        <li class="li"><span class="ph uicontrol">Aid Year Budget</span> block – Use this block to enter aid year budget component codes from the <span class="ph uicontrol">Budget Component Validation (RTVCOMP)</span> page.</li>
+
+        <li class="li"><span class="ph uicontrol">Period Budget</span> block – Use this block to enter period budget component codes from the <span class="ph uicontrol">Period Component Validation (RTVPBCP)</span> page.</li>
+
+        </ul>
+The <span class="ph uicontrol">Housing/Food Allowance</span> tab is not enabled when <span class="keyword">Banner Financial Aid</span> is not in use.</div>
+
+      <p class="p"><span class="keyword wintitle">Gainful Employment File Maintenance (SFAGEFM)</span> page</p>
+
+      <p class="p">The <span class="keyword wintitle">SFAGEFM</span> administrative page enables an institution to review generated student records. You can insert, update, or delete records. <span class="keyword">Ellucian</span> has enhanced this page to accommodate the new fields in the student report.</p>
+
+      <p class="p">This enhancement addresses PE0004338 in the <span class="keyword">Ellucian Customer Center</span>.</p>
+
+    </div>
+
+    <div class="section"><h2 class="title sectiontitle">New processes</h2><p class="p"><span class="keyword wintitle">Gainful Employment Student Creation (SFPGESC)</span> process</p>
+<p class="p">The <span class="keyword wintitle">SFPGESC</span> process creates student report records which <span class="keyword">Banner</span> stores in the SFRGEFM table. After reviewing, you can run this process again to create the file to submit to the NSC.</p>
+<p class="p">NSC has indicated that they will need your file named in this format: <span class="ph filepath">6 digitOPEID_AwardYear.csv</span></p>
+<p class="p">For example, <span class="ph filepath">001234_20222023.csv</span></p>
+<p class="p"><span class="keyword">Banner</span> will not be using this format, so institutions will be responsible for renaming the file before submitting it.</p>
+<strong class="ph b">Gainful Employment Program Creation process (SFPGEPC)</strong><p class="p">The <span class="keyword wintitle">SFPGEPC</span> process creates program report records which <span class="keyword">Banner</span> stores in the SFRGEPM table. After reviewing, you can run this process again to create the file to submit to the NSC.</p>
+<div class="note"><span class="notetitle">Note:</span> The NSC specs say to produce a row for each NSC/NSLDS program, which would be a combination of CIP code + credential level. <span class="keyword">Ellucian</span> is producing a row for the combination of OPEID + CIP code + credential level.</div>
+</div>
+
+    <div class="section"><h2 class="title sectiontitle">Unchanged process</h2>
+      
+      <p class="p"><span class="keyword wintitle">Gainful Employment Purge Report (SFPGEED)</span> process</p>
+
+      <p class="p"><span class="keyword">Ellucian</span> did not change the <span class="keyword wintitle">SFPGEED</span> process. You can run it to delete records from the student report (SFRGEFM) table.</p>
+
+    </div>
+
+    <div class="section"><h2 class="title sectiontitle">Deprecated process</h2>
+      
+      <p class="p"><span class="keyword wintitle">Gainful Employment Report (SFRGEED)</span> process</p>
+
+      <p class="p">The <span class="keyword wintitle">SFRGEED</span> process previously did all of the processing for the student report table and for the subsequent files. Due to the extensive updates to the regulations, <span class="keyword">Ellucian</span> determined that it would be better to deprecate this process and to provide a new streamlined process.</p>
+
+    </div>
+
+    <div class="section"><h2 class="title sectiontitle">Pending new process</h2>
+      
+      <p class="p"><span class="keyword wintitle">Gainful Employment Program Purge (SFPGEPP)</span> process</p>
+
+      <p class="p">Due to time constraints, <span class="keyword">Ellucian</span> will not be able to provide a purge process for the program report data with this initial release, although the release will contain foundational work. <span class="keyword">Ellucian</span> will provide this process in a future release.</p>
+
+    </div>
+
+    <div class="section"><h2 class="title sectiontitle">New tables</h2>
+      
+      <p class="p"><span class="keyword wintitle">Residency Tuition Status (SFRGERT)</span> table</p>
+
+      <p class="p">You can use the SFRGERT table to store the crosswalk from student residence code values to the tuition status for the regulation.</p>
+
+      <p class="p"><span class="keyword wintitle">Housing and Food Allowance – Aid Year (SFRGEAF)</span> table</p>
+
+      <p class="p">You can use the SFRGEAF table to store the Aid Year budget component codes for Housing and Food allowances.</p>
+
+      <p class="p"><span class="keyword wintitle">Housing and Food Allowance – Period (SFRGEPF)</span> table</p>
+
+      <p class="p">You can use the SFRGEPF table to store the Period budget component codes for Housing and Food allowances.</p>
+
+      <p class="p"><span class="keyword wintitle">Program report data (SFRGEPM)</span> table</p>
+
+      <p class="p">You can use the SFRGEPM table to store program report data.</p>
+
+    </div>
+
+    <div class="section"><h2 class="title sectiontitle">Updated tables</h2>
+      
+      <p class="p"><span class="keyword">Ellucian</span> updated the following tables:</p>
+
+      <p class="p"><span class="keyword wintitle">Curricula configuration (SFRGECR) table</span></p>
+
+      <p class="p">You can use the SFRGECR table to store configuration and rules around curricula.</p>
+
+      <p class="p"><span class="keyword wintitle">Detail code configuration (SFRGEDR)</span> table</p>
+
+      <p class="p">You can use the SFRGEDR table to store configuration and rules around detail codes.</p>
+
+      <p class="p"><span class="keyword wintitle">Student report data (SFRGEFM)</span> table</p>
+
+      <p class="p">You can use the SFREFM table to store student report data.</p>
+
+    </div>
+
+    <div class="section"><h2 class="title sectiontitle">Supporting Documentation</h2>
+      
+      <p class="p">To download the content for this release, go to the <a class="xref ft-external-link" href="https://edocs-private.ellucian.com/index.html" target="_blank" rel="noopener">Previous Versions</a> page, navigate to the appropriate product, and then click the file associated with the version you need in the preferred language. All content is available in English (enus), and some content is available in Spanish (esmx) and French Canadian (frca).</p>
+
+      <p class="p"><span class="ph">The downloaded compressed (.zip) file contains an Attachments.zip file, which includes the following documents that support this release.</span></p>
+
+      <div class="p">
+        <ul class="ul">
+          <li class="li"><span class="keyword">Banner Student</span> readme 8.32.1</li>
+
+          <li class="li"><span class="keyword">Banner Student</span> Object List 8.32.1</li>
+
+          <li class="li"><span class="keyword">Banner Student</span> Use <span class="keyword">9.3.35.1 and 8.32.1</span></li>
+
+          <li class="li"><span class="keyword">Banner Student</span> Resolutions Report 8.32.1</li>
+
+          <li class="li"><span class="keyword">Banner Student</span> Resolutions Report 9.3.35.1</li>
+
+          <li class="li"><span class="keyword">Banner Student</span> Upgrade Guide Template</li>
+
+          <li class="li"><span class="keyword">Banner Student</span> 903350102 Installation Reference</li>
+
+          <li class="li"><span class="keyword">Banner Student</span> Release Notes <span class="keyword">9.3.35.1 and 8.32.1</span></li>
+
+          <li class="li"><span class="keyword">Banner Student</span> Reports and Processes <span class="keyword">9.3.35.1 and 8.32.1</span></li>
+
+        </ul>
+
+      </div>
+
+      <p class="p">The content published on the Documentation site for this release and the documentation included in the associated zip file (listed above) also support any associated hot fix releases.</p>
+
+    </div>
+
+  </div>
+
+</div></div></section>
+<section id="t-330"><h3>Release 9.3.34.3 and 8.31.3</h3><div class="content-locale-en-US content-locale-en"><div id="c_release_9.3.34.3_8.31.3"><div class="body conbody"><p class="shortdesc">The <span class="keyword">Banner Student</span> <span class="keyword">9.3.34.3 and 8.31.3</span> release includes US Regulatory updates to meet Gainful Employment/FVT reporting needs.</p>
+
+    <div class="section"><h2 class="title sectiontitle">Supporting Documentation</h2>
+      
+      <p class="p">To download the content for this release, go to the <a class="xref ft-external-link" href="https://edocs-private.ellucian.com/index.html" target="_blank" rel="noopener">Previous Versions</a> page, navigate to the appropriate product, and then click the file associated with the version you need in the preferred language. All content is available in English (enus), and some content is available in Spanish (esmx) and French Canadian (frca).</p>
+
+      <p class="p"><span class="ph">The downloaded compressed (.zip) file contains an Attachments.zip file, which includes the following documents that support this release.</span></p>
+
+      <div class="p">
+        <ul class="ul">
+          <li class="li"><span class="keyword">Banner Student</span> readme 8.31.3</li>
+
+          <li class="li"><span class="keyword">Banner Student</span> Object List 8.31.3</li>
+
+          <li class="li"><span class="keyword">Banner Student</span> Resolutions Report 8.31.3</li>
+
+          <li class="li"><span class="keyword">Banner Student</span> Resolutions Report 9.3.34.3</li>
+
+          <li class="li"><span class="keyword">Banner Student</span> Upgrade Guide Template</li>
+
+          <li class="li"><span class="keyword">Banner Student</span> 903340301 Installation Reference</li>
+
+          <li class="li"><span class="keyword">Banner Student</span> Release Notes <span class="keyword">9.3.34.3 and 8.31.3</span></li>
+
+        </ul>
+
+      </div>
+
+      <p class="p">The content published on the Documentation site for this release and the documentation included in the associated zip file (listed above) also support any associated hot fix releases.</p>
+
+    </div>
+
+  </div>
+
+</div></div></section>
+<section id="t-340"><h3>Release 9.3.35 and 8.32</h3><div class="content-locale-en-US content-locale-en"><div id="c_release_9.3.35_8.32"><div class="body conbody"><p class="shortdesc">The <span class="keyword">Banner Student</span> <span class="keyword">9.3.35 and 8.32</span> release includes accessibility updates, quality improvements and technical currency updates.</p>
+
+    <div class="section"><h2 class="title sectiontitle">Enhancement to support the Assembly Bill (AB)</h2>
+      
+      <p class="p">The <span class="ph uicontrol">Course Alias</span> field is new in the key block and data block of the Basic Course Information (SCACRSE) page, and also in the key block of <span class="keyword">Banner</span> SCA pages to support the AB1111 - Common Course Numbering legislation. You can search for courses in your institution through the common course number, that is, <span class="ph uicontrol">Course Alias</span>. The Administrators can view the common course number in the <span class="keyword">Banner</span> SCA pages, and also search through the existing <span class="ph uicontrol">Course Number</span> field and Common Course number, that is, <span class="ph uicontrol">Course Alias</span>. The <span class="ph uicontrol">Course Alias</span> field is available in the following <span class="keyword">Banner</span> Admin catalog pages. </p>
+
+      <ul class="ul">
+        <li class="li">SCADETL - Course Detail Information</li>
+
+        <li class="li">SCARRES - Course Registration Restrictions</li>
+
+        <li class="li">SCAPREQ - Catalog Prerequisite and Test Score Restrictions</li>
+
+        <li class="li">SCASRES - Catalog Schedule Restrictions</li>
+
+        <li class="li">SCABASE - Course Base Maintenance</li>
+
+        <li class="li">SCACLBD - Course Labor Distribution</li>
+
+        <li class="li">SCASYLB - Course Syllabus</li>
+
+        <li class="li">SCASRCH - Course Search</li>
+
+        <li class="li">SCAMEXC - Mutual Course Exclusion</li>
+
+      </ul>
+
+      <p class="p">This enhancement addresses PE0004342 in the <span class="keyword">Ellucian Customer Center</span>.</p>
+
+    </div>
+
+    <div class="section"><h2 class="title sectiontitle">Seed data for a new process code</h2>
+      
+      <p class="p">A new process code UPDATECURRICULA is available as seed data for the Advisor security for the <span class="keyword">Change Curriculum</span> Experience solution. A record is delivered for the UPDATECURRICULA process to the SORFACS table for use by Advisors only. </p>
+
+      <div class="note"><span class="notetitle">Note:</span> UPDATECURRICULA will not be used by the Banner Faculty and Advisor Self-Service product.</div>
+
+      <p class="p">For more information on the process code, see <cite class="cite">New Process Control</cite> in the <cite class="cite">Banner Student Use</cite> content. </p>
+
+      <p class="p">This enhancement addresses PE0004038 in the <span class="keyword">Ellucian Customer Center</span>.</p>
+
+    </div>
+
+    <div class="section"><h2 class="title sectiontitle">Advisor Assignment process enhancement</h2>
+      
+      <p class="p">The <span class="ph uicontrol">Action</span> parameter in the Advisor Assignment process (SGPADVA) now includes two new options, E-End, and D-Delete to end or delete the primary advisors assigned to the student from the Multiple Advisors (SGAADVR) page.</p>
+
+      <p class="p">This enhancement addresses PE0004343 in the <span class="keyword">Ellucian Customer Center</span>.</p>
+
+    </div>
+
+    <div class="section"><h2 class="title sectiontitle">Changed pages</h2>
+      
+      <p class="p">A new <span class="ph uicontrol">Registration Holds</span> option group is now available in the Drop Roster Control (SFADRPC) page with <span class="ph uicontrol">No Check</span> and <span class="ph uicontrol">Fatal</span> options. When the Faculty user selects the <span class="ph uicontrol">No Check</span> option button for the registration hold, the user can drop the CRN for the student in <span class="keyword">Banner Student Self-Service</span>. </p>
+
+      <p class="p">This enhancement addresses PE0004397 in the <span class="keyword">Ellucian Customer Center</span>.</p>
+
+    </div>
+
+    <div class="section"><h2 class="title sectiontitle">OPEID enhancements</h2>
+      
+      <div class="p">The following forms have been enhanced to support Multiple OPEID for <span class="keyword">eTranscripts</span>.<ul class="ul">
+        <li class="li">SHRTETC - <span class="keyword">eTranscripts</span> Rule page<p class="p">See <span class="xref ft-internal-xlink" data-ft-warning="excluded-from-rendering" data-clusterid="id_b_stugen/stu_release/r_shrtetc_etranscript_rule">eTranscript Rule (SHRTETC) page</span> for more information.</p>
+</li>
+
+        <li class="li">SHAETAD - <span class="keyword">eTranscripts</span> Administration Configuration page<p class="p">See <span class="xref ft-internal-xlink" data-ft-warning="excluded-from-rendering" data-clusterid="id_b_stugen/stu_release/c_shaetad_etranscript_administrator_configuration">eTranscript Administrator Configuration (SHAETAD) page</span> for more information.</p>
+</li>
+
+        </ul>
+</div>
+
+      <p class="p">This enhancement addresses PE0004517 in the <span class="keyword">Ellucian Customer Center</span>.</p>
+
+    </div>
+
+    <div class="section"><h2 class="title sectiontitle">ASCGEN (TCSI/HEIMS API) enhancements</h2>
+      
+      <div class="p">Following are the enhancements available with the release.<ul class="ul">
+        <li class="li">New page: The Student Help Balances (SOAHELP) page is new to display the Help Balances information of a student. This enhancement satisfies PE0004525.</li>
+
+        <li class="li">Changed page: The <span class="ph uicontrol">Program Title</span>field in the SMAPFPA page that was allowing only 100 characters, includes an increase in the field length to accommodate 255 characters. This defect fix satisfies PD0015735.</li>
+
+        <li class="li">New table: The SORHELP table is new to store and display the Student Help Balances data. This enhancement satisfies PE0004479.</li>
+
+        </ul>
+</div>
+
+    </div>
+
+    <div class="section"><h2 class="title sectiontitle">HESA Data Futures enhancements</h2>
+      
+      <div class="p">Following are the enhancements available with the release.<ul class="ul">
+        <li class="li">New table: The SOBREGR table is new to store the student engagement details in HESA organisation. This enhancement satisfies PE0004123.</li>
+
+        <li class="li">Changed table: The SORPCDE table includes the new SORPCDE_SSDT_CODE_REGBODYID column with VARCHAR2 (8 CHAR) as the data type to store the identifier for the organisation that registers a student. This enhancement satisfies PE0004123.</li>
+
+        <li class="li">Changed JAVA processes:<ul class="ul">
+          <li class="li">SOPCCDF: Renaming of the Path of the file parameter name to Oracle Directory. This defect fix satisfies PD0015585.</li>
+
+          <li class="li">SOPMSDF:<ul class="ul">
+            <li class="li">Renaming of the Path of the file parameter name to Oracle Directory. This defect fix satisfies PD0015585.</li>
+
+            <li class="li">Renaming of the LEADSCHOOL tag to LEARPARTNER. <div class="note"><span class="notetitle">Note:</span> The LEADSCHOOL tag is no longer available and HESA Data Futures will support LEADPARTNER tag from here on.</div>
+</li>
+
+            <li class="li">Maintaining the leading zero in the SID.</li>
+
+            <li class="li">Addition of new error messages when users try to enter wrong directory name/file name. </li>
+
+            <li class="li">Combining all the SID data if empty, else, the SID value is non-numeric.</li>
+
+            </ul>
+<p class="p">These defect fixes satisfy PD0015614.</p>
+</li>
+
+          </ul>
+</li>
+
+        </ul>
+</div>
+
+    </div>
+
+    <div class="section"><h2 class="title sectiontitle">SLC enhancements</h2>
+      
+      <p class="p">Following are the enhancements available with the release.</p>
+
+      <div class="p">Changed tables<ul class="ul">
+        <li class="li">RKRSRUL: Changes to the data type from VARCHAR to CLOB for the RKRSRUL_SQL column to store 10000 characters. This enhancement satisfies PE0004458.</li>
+
+        <li class="li">RKRSSLC: Change in the size of the RKRSSLC_SLC_COURSE_CODE column from six to 11 to accommodate more characters. This enhancement satisfies PE0004506.<div class="note"><span class="notetitle">Note:</span> An important additional fix is available as a part of the PD0016982 defect. Ellucian recommends that you execute the fix manually before you use the SLC September release versions.</div>
+</li>
+
+        </ul>
+</div>
+
+    </div>
+
+    <div class="section"><h2 class="title sectiontitle">UCAS enhancements</h2>
+      
+      <div class="p">List of new tables available for UCAS to support the regulatory enhancements.<ul class="ul">
+        <li class="li">SARMCDS: Stores the EUROPE UCAS Modernised Contextual Data Service information.</li>
+
+        <li class="li">SARMCMD: Stores the EUROPE UCAS Modernised Contextual Data Monitoring Point ID details.</li>
+
+        <li class="li">SARMCML: Stores the EUROPE UCAS Modernised Contextual Data Monitoring Point link information.</li>
+
+        <li class="li">SARMCMU: Stores the EUROPE UCAS Modernised Contextual Data Monitoring Point URL details.</li>
+
+        </ul>
+</div>
+
+    </div>
+
+    <div class="section"><h2 class="title sectiontitle">Supporting Documentation</h2>
+      
+      <p class="p">To download the content for this release, go to the <a class="xref ft-external-link" href="https://edocs-private.ellucian.com/index.html" target="_blank" rel="noopener">Previous Versions</a> page, navigate to the appropriate product, and then click the file associated with the version you need in the preferred language. All content is available in English (enus), and some content is available in Spanish (esmx) and French Canadian (frca).</p>
+
+      <p class="p"><span class="ph">The downloaded compressed (.zip) file contains an Attachments.zip file, which includes the following documents that support this release.</span></p>
+
+      <div class="p">
+        <ul class="ul">
+          <li class="li"><span class="keyword">Banner Student</span> readme 8.32</li>
+
+          <li class="li"><span class="keyword">Banner Student</span> Object List 8.32</li>
+
+          <li class="li"><span class="keyword">Banner Student</span> Page List 9.3.35</li>
+
+          <li class="li"><span class="keyword">Banner Student</span> Use <span class="keyword">9.3.35 and 8.32</span></li>
+
+          <li class="li"><span class="keyword">Banner Student</span> Resolutions Report 8.32</li>
+
+          <li class="li"><span class="keyword">Banner Student</span> Resolutions Report 9.3.35</li>
+
+          <li class="li"><span class="keyword">Banner Student</span> Upgrade Guide Template</li>
+
+          <li class="li"><span class="keyword">Banner Student</span> 903350003 Installation Reference</li>
+
+          <li class="li"><span class="keyword">Banner Student</span> Release Notes <span class="keyword">9.3.35 and 8.32</span></li>
+
+          <li class="li"><span class="keyword">Banner Student</span> Reports and Processes <span class="keyword">9.3.35 and 8.32</span></li>
+
+        </ul>
+
+      </div>
+
+      <p class="p">The content published on the Documentation site for this release and the documentation included in the associated zip file (listed above) also support any associated hot fix releases.</p>
+
+    </div>
+
+  </div>
+
+</div></div></section>
+<section id="t-350"><h4>Database updates</h4><div class="content-locale-en-US content-locale-en"><div id="c_db_udpdates_8.32"><div class="body conbody"><p class="shortdesc">New and modified database objects to support enhancements included with the <span class="keyword">Banner Student</span> 8.32 release.</p>
+
+    <div class="section"><h2 class="title sectiontitle">Database support for Bibliographical Information in Registration Self-Service</h2>
+      
+      <p class="p">New dml scripts are available with the <span class="keyword">Banner Student</span> 8.35 version to show the admin pages in Admin Menu. You can still see the validation pages working, and the non-validation pages in the menu, but the pages will not open, when you click on the pages. </p>
+
+      <ul class="ul">
+        <li class="li">sgubobjsi_083200.sql</li>
+
+        <li class="li">gubpagei_083200.sql</li>
+
+        <li class="li">sguraobji_083200.sql</li>
+
+        <li class="li">sgurmenui_083200.sql</li>
+
+        <li class="li">sguruobji_083200.sql</li>
+
+      </ul>
+
+      <p class="p">The scripts are delivered for the following pages:</p>
+
+      <ul class="ul">
+        <li class="li">SVABICO - (Bibliography Settings Form)</li>
+
+        <li class="li">SVABICR - (Bibliography by Course)</li>
+
+        <li class="li">SVABIEL - (Bibliography Elements Configuration)</li>
+
+        <li class="li">SVIBIEL - (Bibliography Elements Query Form)</li>
+
+        <li class="li">SVABISR - (Bibliography by Section)</li>
+
+      </ul>
+
+      <p class="p">For any institution that has the STUBIBL localization installed, they can view the baseline and localization pages in the Admin menu. Institutions can continue to use the localization pages until Ellucian delivers the full functionality in the future releases.</p>
+
+      <div class="note"><span class="notetitle">Note:</span> All feature updates related to the Bibliography Section in Class Details pop-up are in support of a future enhancement (PE0003402).</div>
+
+    </div>
+
+  </div>
+
+</div></div></section>
+<section id="t-360"><h3>Release 9.3.34.2 and 8.31.2</h3><div class="content-locale-en-US content-locale-en"><div id="c_release_9.3.34.2_8.31.2"><div class="body conbody"><p class="shortdesc">The <span class="keyword">Banner Student</span> <span class="keyword">9.3.34.2 and 8.31.2</span> release includes quality improvements, defect fixes, and enhancement for selected Business Process APIs, and the requirements for Texas Regulatory.</p>
+
+    <div class="section"><h2 class="title sectiontitle">Business Process API</h2>
+      
+      <p class="p">The <span class="keyword apiname">course-maintenance-grades</span> BP API allows the users to filter out the records in the SHRTCKN block to add a new record in SHRTCKG block on SHATCKN. The BPAPI supports the Get, Post, and QAPI methods.</p>
+
+      <p class="p">This enhancement addresses PE0003968 in the <span class="keyword">Ellucian Customer Center</span>.</p>
+
+      <p class="p">See the <cite class="cite">Banner API Catalog</cite> on the <span class="keyword">Ellucian Documentation site</span> for more information about this API.</p>
+
+    </div>
+
+    <div class="section"><h2 class="title sectiontitle">Texas Connection Consortium (TCC) enhancement</h2>
+      
+      <p class="p">The <span class="keyword parmname">SZRCARL</span> table was renamed to <span class="keyword parmname">S2RCARL</span>. The <span class="keyword parmname">S2RCARL</span> table was released in <span class="keyword">Banner Student</span> <span class="ph">8.31.2</span> to include new columns that accommodate the addition of a dual credit application type in ApplyTexas.</p>
+
+      <p class="p">This enhancement addresses PE0004474 in the <span class="keyword">Ellucian Customer Center</span>.</p>
+
+    </div>
+
+    <div class="section"><h2 class="title sectiontitle">Supporting Documentation</h2>
+      
+      <p class="p">To download the content for this release, go to the <a class="xref ft-external-link" href="https://edocs-private.ellucian.com/index.html" target="_blank" rel="noopener">Previous Versions</a> page, navigate to the appropriate product, and then click the file associated with the version you need in the preferred language. All content is available in English (enus), and some content is available in Spanish (esmx) and French Canadian (frca).</p>
+
+      <p class="p"><span class="ph">The downloaded compressed (.zip) file contains an Attachments.zip file, which includes the following documents that support this release.</span></p>
+
+      <div class="p">
+        <ul class="ul">
+          <li class="li">Banner Student readme 8.31.2</li>
+
+          <li class="li">Banner Student Object List 8.31.2</li>
+
+          <li class="li">Banner Student Upgrade Guide Template</li>
+
+          <li class="li">Banner Student Resolutions Report 8.31.2</li>
+
+          <li class="li">Banner Student Resolutions Report 9.3.34.2</li>
+
+          <li class="li">Banner Student Release Notes <span class="keyword">9.3.34.2 and 8.31.2</span></li>
+
+        </ul>
+
+      </div>
+
+    </div>
+
+    <div class="section">
+      <p class="p">For a list of defects and enhancements resolved in <span class="keyword">Banner Student</span> <span class="keyword">9.3.34.2 and 8.31.2</span>, see the release pages for <a class="xref ft-external-link" href="https://elluciansupport.service-now.com/customer_center?id=standard_ticket&amp;table=ellucian_product_release&amp;sys_id=7f61060d839742d43db1cba6feaad3b4" target="_blank" rel="noopener">Release 9.3.34.2</a> and <a class="xref ft-external-link" href="https://elluciansupport.service-now.com/customer_center?id=standard_ticket&amp;table=ellucian_product_release&amp;sys_id=69411fe0930746100ff9ff947aba10e4" target="_blank" rel="noopener">Release 8.31.2</a> in the <span class="keyword">Ellucian Customer Center</span>.</p>
+
+    </div>
+
+  </div>
+
+</div></div></section>
+<section id="t-370"><h3>Release 9.3.34.1 and 8.31.1</h3><div class="content-locale-en-US content-locale-en"><div id="c_release_9.3.34.1_8.31.1"><div class="body conbody"><p class="shortdesc">The <span class="keyword">Banner Student</span> <span class="keyword">9.3.34.1 and 8.31.1</span> release includes quality improvements and regulatory updates to support global regulatory needs and defect fixes.</p>
+
+    <div class="section"><h2 class="title sectiontitle">OCAS regulatory enhancement</h2>
+      
+      <p class="p"><span class="keyword">Banner</span> Canada OCAS administrative pages are being updated for the 2024-2025 Coltrane cycle.</p>
+
+      <p class="p">This enhancement addresses PE0003907 in the <span class="keyword">Ellucian Customer Center</span>.</p>
+
+    </div>
+
+    <div class="section"><h2 class="title sectiontitle">Table changes</h2>
+      
+      <p class="p">The sequence number column <code class="ph codeph">SHRSAPP_SEQ_NO</code> in the SHRSAPP and SHRSARJ tables is enhanced to hold up to 30 numeric values during the processing.</p>
+
+      <p class="p">This enhancement addresses PE0001947 in the <span class="keyword">Ellucian Customer Center</span>.</p>
+
+    </div>
+
+    <div class="section"><h2 class="title sectiontitle">Business Process APIs</h2>
+      
+      <p class="p">The institutions can now create instructor records in SIBINST using the new APIs. You can also use the APIs to copy or end terms for contracts. This enhancement addresses PE0003793 in the <span class="keyword">Ellucian Customer Center</span>.</p>
+
+      <p class="p">The delete functionality is added to the <span class="keyword apiname">guardian-information</span> API to allow the students to maintain the Next of Kin, Guardian, Emergency Contact information on their own. This enhancement addresses PE0004214 in the <span class="keyword">Ellucian Customer Center</span>.</p>
+
+      <p class="p">See the <cite class="cite">Banner API Catalog</cite> on the <span class="keyword">Ellucian Documentation site</span> for more information about these APIs.</p>
+
+    </div>
+
+    <div class="section"><h2 class="title sectiontitle">Supporting Documentation</h2>
+      
+      <p class="p">To download the content for this release, go to the <a class="xref ft-external-link" href="https://edocs-private.ellucian.com/index.html" target="_blank" rel="noopener">Previous Versions</a> page, navigate to the appropriate product, and then click the file associated with the version you need in the preferred language. All content is available in English (enus), and some content is available in Spanish (esmx) and French Canadian (frca).</p>
+
+      <p class="p"><span class="ph">The downloaded compressed (.zip) file contains an Attachments.zip file, which includes the following documents that support this release.</span></p>
+
+      <div class="p">
+        <ul class="ul">
+          <li class="li">Banner Student readme 8.31.1</li>
+
+          <li class="li">Banner Student Object List 8.31.1</li>
+
+          <li class="li">Banner Student Upgrade Guide Template</li>
+
+          <li class="li">Banner Student Resolutions Report 8.31.1</li>
+
+          <li class="li">Banner Student Resolutions Report 9.3.34.1</li>
+
+          <li class="li">Banner Student Release Notes <span class="keyword">9.3.34.1 and 8.31.1</span></li>
+
+        </ul>
+
+      </div>
+
+    </div>
+
+    <div class="section">
+      <p class="p">For a list of defects and enhancements resolved in <span class="keyword">Banner Student</span> <span class="keyword">9.3.34.1 and 8.31.1</span>, see the release pages for <a class="xref ft-external-link" href="https://elluciansupport.service-now.com/customer_center?id=standard_ticket&amp;table=ellucian_product_release&amp;sys_id=020f5dec87a2c6949120840e0ebb3521" target="_blank" rel="noopener">Release 9.3.34.1</a> and <a class="xref ft-external-link" href="https://elluciansupport.service-now.com/customer_center?id=standard_ticket&amp;table=ellucian_product_release&amp;sys_id=0ffeb3e3970d4654ebc2bdcfe153af1d" target="_blank" rel="noopener">Release 8.31.1</a> in the <span class="keyword">Ellucian Customer Center</span>.</p>
+
+    </div>
+
+  </div>
+
+</div></div></section>
+<section id="t-380"><h3>Release 9.3.34 and 8.31</h3><div class="content-locale-en-US content-locale-en"><div id="c_release_9.3.34_8.31"><div class="body conbody"><p class="shortdesc">The <span class="keyword">Banner Student</span> <span class="keyword">9.3.34 and 8.31</span> includes accessibility updates, quality improvements and technical currency updates.</p>
+
+    <div class="section"><h2 class="title sectiontitle">Unofficial Transcript</h2>
+      
+      <p class="p">The Transcript Type Rules (SHARTPRT) page is enhanced to print the options in the <span class="ph uicontrol">Print Options</span> section. Selecting the <span class="ph uicontrol">Display 'Unofficial' watermark</span> check box prints the 'Unofficial' watermark in the Academic Transcript PDF. By default the check box is clear.</p>
+
+      <p class="p">This enhancement addresses PE0003246 in the <span class="keyword">Ellucian Customer Center</span>.</p>
+
+    </div>
+
+    <div class="section"><h2 class="title sectiontitle">Instructional Method enhancements</h2>
+      
+      <ul class="ul">
+        <li class="li">Changed Pages:
+<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" class="table" frame="hsides" border="1" rules="all"><colgroup><col style="width:50%"><col style="width:50%"></colgroup><thead class="thead" style="text-align:left;">
+              <tr class="row">
+                <th class="entry cellrowborder" style="vertical-align:top;" id="d11986e83">Page</th>
+
+                <th class="entry row-nocellborder" style="vertical-align:top;" id="d11986e86">Description</th>
+
+              </tr>
+
+            </thead>
+<tbody class="tbody">
+              <tr class="row">
+                <td class="entry cellrowborder" style="vertical-align:top;" headers="d11986e83 ">SOATERM </td>
+
+                <td class="entry row-nocellborder" style="vertical-align:top;" headers="d11986e86 ">A new block <span class="ph uicontrol">Section Term Overrides</span> is introduced in the Term Control (SOATERM) page. This block contains a new check box <span class="ph uicontrol">CRN Instructional Method Override</span> to indicate if the instructional method updates for the CRNs are allowed in the term that follow registration. </td>
+
+              </tr>
+
+              <tr class="row">
+                <td class="entry cellrowborder" style="vertical-align:top;" headers="d11986e83 ">SSASECT</td>
+
+                <td class="entry row-nocellborder" style="vertical-align:top;" headers="d11986e86 ">The <span class="ph uicontrol">Instructional Method</span> indicator is enhanced as an editable field to allow the users to update the instructional method for CRNs with enrollment by complying with the <span class="ph uicontrol">CRN Instructional Method Override</span> check box value from the SOATERM page, provided the <code class="ph codeph">SSBSECT_INSM_CODE</code> is not for Elevate, Cross Registration, and Open Learning Class.</td>
+
+              </tr>
+
+            </tbody>
+</table>
+</div>
+</li>
+
+        <li class="li">Changed Package:<p class="p">For the SB_SECTION_RULES package, a new cursor sorrtro_c is added to fetch the SORRTRO_INSM_REG_OVERRIDE_IND value from the SORRTRO table for the term. </p>
+<p class="p">In the procedure p_validate_update, a new logic is added to check if the instructional method registration override indicator is N, NULL, or Y to enable or disable the <span class="ph uicontrol">Instructional Method</span> field in the SSASECT page when enrollments exist.</p>
+</li>
+
+        <li class="li">New Table:<p class="p">A new table SORRTRO (Registration Term Rule Override ) is created to record the Instructional Override flag (SORRTRO_INSM_REG_OVERRIDE_IND) for a given term to authorize if the instructional method (SSBSECT_INSM_CODE) can be modified for a CRN in a term, if there exist any registration records.</p>
+</li>
+
+      </ul>
+
+      <p class="p">This enhancement addresses PE0003355 in the <span class="keyword">Ellucian Customer Center</span>.</p>
+
+    </div>
+
+    <div class="section"><h2 class="title sectiontitle">SSRROLL process enhancements</h2>
+      
+      <ul class="ul">
+        <li class="li">New parameters in SSRROLL process:<p class="p"><span class="keyword">Banner Student</span> <span class="keyword">9.3.34 and 8.31</span> introduces the following three new parameters in the Term Roll Report (SSRROLL) process. </p>
+
+<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" class="table" frame="hsides" border="1" rules="all"><colgroup><col style="width:50%"><col style="width:50%"></colgroup><thead class="thead" style="text-align:left;">
+              <tr class="row">
+                <th class="entry cellrowborder" style="vertical-align:top;" id="d11986e180">Parameter Name</th>
+
+                <th class="entry row-nocellborder" style="vertical-align:top;" id="d11986e183">Description</th>
+
+              </tr>
+
+            </thead>
+<tbody class="tbody">
+              <tr class="row">
+                <td class="entry cellrowborder" style="vertical-align:top;" headers="d11986e180 ">Campus</td>
+
+                <td class="entry row-nocellborder" style="vertical-align:top;" headers="d11986e183 ">Allows the users to roll sections using the campus code.</td>
+
+              </tr>
+
+              <tr class="row">
+                <td class="entry cellrowborder" style="vertical-align:top;" headers="d11986e180 ">Part of Term</td>
+
+                <td class="entry row-nocellborder" style="vertical-align:top;" headers="d11986e183 ">Allows the users to roll sections using the part-of-term code.</td>
+
+              </tr>
+
+              <tr class="row">
+                <td class="entry cellrowborder" style="vertical-align:top;" headers="d11986e180 ">Roll Sections</td>
+
+                <td class="entry row-nocellborder" style="vertical-align:top;" headers="d11986e183 ">Allows the users to control the ability to roll all, or only traditional, or only open learning sections.</td>
+
+              </tr>
+
+            </tbody>
+</table>
+</div>
+</li>
+
+        <li class="li">Updated parameter in SSRROLL process:<p class="p">The <span class="keyword parmname">Roll Meeting Time</span> parameter includes a new value <kbd class="ph userinput">B</kbd> to roll meeting times without buildings and rooms.</p>
+</li>
+
+      </ul>
+
+      <p class="p">For more information on these parameters, see <span class="xref ft-internal-xlink" data-ft-warning="excluded-from-rendering" data-clusterid="id_b_stugen/stu_release/c_term_roll_report_ssrroll">Term Roll Report (SSRROLL) process</span> in <cite class="cite">Banner Student Reports and Processes</cite>.</p>
+
+      <p class="p">This enhancement addresses PE0003354 in the <span class="keyword">Ellucian Customer Center</span>.</p>
+
+    </div>
+
+    <div class="section"><h2 class="title sectiontitle">HEA enhancements</h2>
+      
+      <p class="p">The <span class="keyword">Banner Student</span> <span class="keyword">9.3.34 and 8.31</span> release updates include the following Higher Education Authority (HEA) enhancements for the 2024-2025 year collection.</p>
+
+      <div class="p">Changed pages: <ul class="ul">
+        <li class="li">SOAPRCD: The Rollover Program and Course field (functionality) is new that copies all the latest program and course details from the SOAPRCD page to the current system academic year.</li>
+
+        <li class="li">STVUSIN: New seed data available for Up-Skilling Initiative field as Code TP for 2024 returns.</li>
+
+        </ul>
+These enhancements address PE0003589 in the <span class="keyword">Ellucian Customer Center</span>.</div>
+
+      <div class="p">Changed processes:<ul class="ul">
+        <li class="li">SORHEAR:<ul class="ul">
+          <li class="li">Updates to the sorhear.pl, sorhear.shl, Sorhear.java, and build.xml files to make SORHEAR  process compatible for JAVA 11</li>
+
+          <li class="li">The jakarta.activation-2.3.8.jar, jaxb-impl-2.3.8.jar, and jakarta.xml.bind-api-2.3.8.jar external jars are new</li>
+
+          </ul>
+</li>
+
+        </ul>
+</div>
+
+    </div>
+
+    <div class="section"><h2 class="title sectiontitle">Data Futures enhancements</h2>
+      
+      <div class="p">Changed process: The SOPMSDF process includes the following updates:<ul class="ul">
+        <li class="li">Updates to the Sopmsdf.jar, sopmsdf.pl, and sopmsdf.shl files to merge Student entity details when you have a duplicate SID in the XML.</li>
+
+        <li class="li">To support JAVA 11, the jakarta.activation-2.3.8.jar, jaxb-impl-2.3.8.jar, and jakarta.xml.bind-api-2.3.8.jar external jars are new</li>
+
+        </ul>
+</div>
+
+    </div>
+
+    <div class="section"><h2 class="title sectiontitle">HEA Graduate Outcomes enhancements</h2>
+      
+      <div class="p">The following enhancements are available to support the HEA GO regulatory updates for the 2024-2025 year collection.<ul class="ul">
+        <li class="li">New page: The HEA Graduate Outcome Survey (SOAHEGO) page is new with this release to allow administrators to enter the graduate outcome survey on behalf of the student. This enhancement addresses PE0003598 in the <span class="keyword">Ellucian Customer Center</span>.<p class="p">To know more information about the page details, field names and descriptions, refer to the <cite class="cite"><span class="keyword">Banner Student</span> Reference</cite> content.</p>
+</li>
+
+        <li class="li">New process: The HEA Graduate Outcome Ireland (SORHEGO) process is new that collects the survey responses from the HEA graduates for a specific return year and institution type. This enhancement addresses PE0002934 in the <span class="keyword">Ellucian Customer Center</span>.<p class="p">To know more information about the page details, field names and descriptions, refer to the <cite class="cite"><span class="keyword">Banner Student</span> Reports and Processes</cite> content. This enhancement addresses PE0003598 in the <span class="keyword">Ellucian Customer Center</span>.</p>
+</li>
+
+        </ul>
+</div>
+
+    </div>
+
+    <div class="section"><h2 class="title sectiontitle">SUSI enhancements</h2>
+      
+      <p class="p">Changed package: The soksusi1.sql package has updates where a new condition/logic to check for the HEA contract first is available. </p>
+
+      <div class="note"><span class="notetitle">Note:</span> If the logic does not exist, the system needs to check if the Free Fees Initiative check box in the SOASCFD page is selected. If the latter is true, Student Universal Support for Ireland (SUSI) should perform the same actions as the HEA contract.</div>
+
+      <p class="p">This enhancement addresses PE0003587 in the <span class="keyword">Ellucian Customer Center</span>.</p>
+
+    </div>
+
+    <div class="section"><h2 class="title sectiontitle">ASCGEN enhancements</h2>
+      
+      <p class="p">New column: The new column in SOTBACE, SKREAPI, SKRECAF, and SKRDCAN tables capture the start up help amount that the student requests for STARTUP-HELP. The new columns in SKRDCAN table captures the startup commencement date and startup debt incural date.</p>
+
+      <p class="p">This enhancement addresses PE0003591 in the <span class="keyword">Ellucian Customer Center</span>.</p>
+
+    </div>
+
+    <div class="section"><h2 class="title sectiontitle">SWF enhancement</h2>
+      
+      <p class="p">As part of its Global Database strategy, Ellucian has replaced the SWF_DATA_LOAD Mass Data Upload Utility process in the Canadian <span class="keyword">Banner Student</span> product, Standard Workload Form (SWF), with a batch Java process. The new process uses the SATURN baseline tables instead of the temporary PRGNREP tables. The format of the input files has not changed. </p>
+
+      <p class="p">This enhancement addresses PE0002292 in the <span class="keyword">Ellucian Customer Center</span>.</p>
+
+    </div>
+
+    <div class="section"><h2 class="title sectiontitle">CALBSTU enhancement</h2>
+      
+      <div class="p">To comply with the specifications from the California Community Colleges Chancellor's Office, Ellucian has provided the following 2024 MIS Regulatory Reporting updates in the California <span class="keyword">Banner Student</span> product, CALBSTU:<ul class="ul">
+        <li class="li">Student Disability Data Report (SD): new element, SD06, <code class="ph codeph">STUDENT-ASL-INTERPRET-CAPTION</code></li>
+
+        <li class="li">Student Special Population Data Report (SG): new element, SG29, <code class="ph codeph">STUDENT-RISING-SCHOLARS-NETWORK</code></li>
+
+        <li class="li">Student Enrollment Report (SX): new element, SX07, <code class="ph codeph">ENROLLMENT-CVC</code></li>
+
+        </ul>
+</div>
+
+      <p class="p">Ellucian also provided the seed data for the new element, SF21, <code class="ph codeph">STUDENT-AID-AWARD-TYPE</code>, will provided in the July 2024 release.</p>
+
+      <p class="p">This enhancement addresses PE0003985 in the <span class="keyword">Ellucian Customer Center</span>.</p>
+
+    </div>
+
+    <div class="section"><h2 class="title sectiontitle">Course Program of Study (CPoS) timeout</h2>
+      
+      <p class="p">Beginning with <span class="keyword">Banner Student</span> <span class="keyword">8.31</span>, the Course Program of Study (CPoS) processing will use the Timeout value associated with the CPOS entry on the External API Connection Information  (SOAREST) page when running audits against Degree Works. This value equals the number of seconds; if no response is received from Degree Works within this interval for the selected student, the process will abort and rollback any uncommitted updates.</p>
+
+      <p class="p">This update addresses PD0012339 in the <span class="keyword">Ellucian Customer Center</span>.</p>
+
+    </div>
+
+    <div class="section"><h2 class="title sectiontitle">SHRDEGV to provide NCS degree award category values</h2>
+      
+      <div class="p">Beginning with <span class="keyword">Banner Student</span> <span class="keyword">8.31</span>, the Degree Verification (SHRDEGV) process, will calculate the student's NSC degree award category based on an institution's <span class="keyword">Banner</span> configuration. The process will use the value from the <span class="ph uicontrol">NSC Credential Level Translation</span> field on the Degree Award Category Code Validation (STVACAT) page. That value is derived by tracing the value from the following pages in this order:<ol class="ol">
+        <li class="li">the student's degree from the Degrees and Other Formal Awards (SHADEGR) page</li>
+
+        <li class="li">the degree code validation from the Degree Code Validation (STVDEGC) page</li>
+
+        <li class="li">the award category from the Degree Award Category Code Validation (STVACAT) page</li>
+
+        </ol>
+If an institution adds more degree codes or award categories, they will have complete control on NSC values that get reported. Ellucian will not provide a degree award category code for the newly supported <span class="ph uicontrol">Credential</span> NSC category. Institutions will need to enter their local value on STVACAT and propagate it appropriately. Ellucian has also enhanced the current set of NSC category levels on STVACAT by including the new credential value.</div>
+
+      <p class="p">This update addresses CR-000182869 in the <span class="keyword">Ellucian Customer Center</span>.</p>
+
+    </div>
+
+    <div class="section"><h2 class="title sectiontitle">Supporting Documentation</h2>
+      
+      <p class="p">To download the content for this release, go to the <a class="xref ft-external-link" href="https://edocs-private.ellucian.com/index.html" target="_blank" rel="noopener">Previous Versions</a> page, navigate to the appropriate product, and then click the file associated with the version you need in the preferred language. All content is available in English (enus), and some content is available in Spanish (esmx) and French Canadian (frca).</p>
+
+      <p class="p"><span class="ph">The downloaded compressed (.zip) file contains an Attachments.zip file, which includes the following documents that support this release.</span></p>
+
+      <div class="p">
+        <ul class="ul">
+          <li class="li">Banner Student readme 8.31</li>
+
+          <li class="li">Banner Student Object List 8.31</li>
+
+          <li class="li">Banner Student Page List 9.3.34</li>
+
+          <li class="li">Banner Student Resolutions Report 8.31</li>
+
+          <li class="li">Banner Student Resolutions Report 9.3.34</li>
+
+          <li class="li">Banner Student Upgrade Guide Template</li>
+
+          <li class="li">Banner Student Use <span class="keyword">9.3.34 and 8.31</span></li>
+
+          <li class="li">Banner Student Installation Guide 8.31 lang </li>
+
+          <li class="li">Banner Student 903340005 Installation Reference</li>
+
+          <li class="li">Banner Student Release Notes <span class="keyword">9.3.34 and 8.31</span></li>
+
+          <li class="li">Banner Student Reports and Processes <span class="keyword">9.3.34 and 8.31</span></li>
+
+        </ul>
+
+      </div>
+
+      <p class="p">The content published on the Documentation site for this release and the documentation included in the associated zip file (listed above) also support any associated hot fix releases.</p>
+
+    </div>
+
+  </div>
+
+</div></div></section>
+<section id="t-390"><h4>Database updates</h4><div class="content-locale-en-US content-locale-en"><div id="c_db_udpdates_8.31"><div class="body conbody"><p class="shortdesc">New and modified database objects to support enhancements included with the <span class="keyword">Banner Student</span> 8.31 release.</p>
+
+    <div class="section"><h2 class="title sectiontitle">DDL to support Unofficial watermark</h2>
+      
+      <p class="p">The SHRTPRT table includes a new column SHRTPRT.SHRTPRT_WATERMARK_PRINT to print the Unofficial watermark in the Academic Transcript PDF. The Unofficial watermark can be translated in Spanish, French and Arabic languages. The following DDL scripts support this change.</p>
+
+      <ul class="ul">
+        <li class="li">shrtprt_083100_01.sql</li>
+
+        <li class="li">shrtprt_083100_02.sql</li>
+
+      </ul>
+
+      <p class="p">The <code class="ph codeph">shkpxex1.sql</code> dbproc is changed to support the Unofficial watermark. </p>
+
+      <p class="p">This update addresses PE0003246 in the <span class="keyword">Ellucian Customer Center</span>.</p>
+
+    </div>
+
+    <div class="section"><h2 class="title sectiontitle">Script sdiscon.sql correction</h2>
+      
+      <p class="p">The previous sdiscon.sql was in plus file and could not be re-run. <span class="keyword">Ellucian</span> has delivered a DDL script in <span class="keyword">Banner Student</span> 8.31 to disable the constraints on obsolete curricula columns and other columns that caused locking.</p>
+
+      <p class="p">This update addresses PD0014098 in the <span class="keyword">Ellucian Customer Center</span>.</p>
+
+    </div>
+
+    <div class="section"><h2 class="title sectiontitle">SIRSWFC table update</h2>
+      
+      <p class="p">Ellucian has included a DDL that updated several columns in the SIRSWFC table in the Canadian product, Standard Workload Form (SWF), to be non-nullable. This enhancement allows Ellucian to update the definition of the primary key, which will lead to better quality data.  </p>
+
+      <p class="p">This enhancement addresses PE0003901 in the <span class="keyword">Ellucian Customer Center</span>.</p>
+
+    </div>
+
+  </div>
+
+</div></div></section>
+<section id="t-400"><h3>Release 8.30.2</h3><div class="content-locale-en-US content-locale-en"><div id="c_release_8.30.2"><div class="body conbody"><p class="shortdesc">The <span class="keyword">Banner Student</span> <span class="keyword">8.30.2</span> release includes quality improvements and technical currency updates.</p>
+
+    <div class="section"><h2 class="title sectiontitle">Additional Fee Assessment API</h2>
+      
+      <p class="p">A micro-service outside of Banner will be used, and the waiver solution requires a hook to be added to the <span class="ph filepath">RegistrationBatchFeeAssessmentCollectorService.groovy</span> file. This hook checks if a valid Waiver connection is established in the <span class="keyword wintitle">External API Connection Information (SOAREST)</span> page, and if a connection exists, a POST API request is sent to the waiver micro-service with the required information. The code on SOAREST is called "COF" for the College Opportunity Fund, but can be utilized for any applicable scenario where a hook is required to send an API request from Fee Assessment to trigger the micro-service.</p>
+
+      <p class="p">Insert a script in the STVREST to add a new COF value.</p>
+
+      
+<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" class="table" frame="hsides" border="1" rules="all"><colgroup><col style="width:33.33333333333333%"><col style="width:33.33333333333333%"><col style="width:33.33333333333333%"></colgroup><thead class="thead" style="text-align:left;">
+            <tr class="row">
+              <th class="entry cellrowborder" style="vertical-align:top;" id="d2128e72">Code</th>
+
+              <th class="entry cellrowborder" style="vertical-align:top;" id="d2128e75">Description</th>
+
+              <th class="entry row-nocellborder" style="vertical-align:top;" id="d2128e78">Required</th>
+
+            </tr>
+
+          </thead>
+<tbody class="tbody">
+            <tr class="row">
+              <td class="entry cellrowborder" style="vertical-align:top;" headers="d2128e72 ">COF</td>
+
+              <td class="entry cellrowborder" style="vertical-align:top;" headers="d2128e75 ">College Opportunity Fund</td>
+
+              <td class="entry row-nocellborder" style="vertical-align:top;" headers="d2128e78 ">Y</td>
+
+            </tr>
+
+          </tbody>
+</table>
+</div>
+
+      <p class="p">An institution must create valid rows in the following Banner Admin pages:</p>
+
+      <ul class="ul">
+        <li class="li"><span class="keyword wintitle">Banner Applications Configurations (GUACONF)</span> page for the tenantId under the global application, and determine the configuration.</li>
+
+        <li class="li"><span class="keyword wintitle">External API Connection Information (SOAREST)</span> page to set a timeout.</li>
+
+      </ul>
+
+      
+<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" class="table" frame="hsides" border="1" rules="all"><colgroup><col style="width:16.666666666666664%"><col style="width:16.666666666666664%"><col style="width:16.666666666666664%"><col style="width:16.666666666666664%"><col style="width:16.666666666666664%"><col style="width:16.666666666666664%"></colgroup><thead class="thead" style="text-align:left;">
+            <tr class="row">
+              <th class="entry cellrowborder" style="vertical-align:top;" id="d2128e138">Code</th>
+
+              <th class="entry cellrowborder" style="vertical-align:top;" id="d2128e141">Code Description</th>
+
+              <th class="entry cellrowborder" style="vertical-align:top;" id="d2128e144">username</th>
+
+              <th class="entry cellrowborder" style="vertical-align:top;" id="d2128e147">password</th>
+
+              <th class="entry cellrowborder" style="vertical-align:top;" id="d2128e150">URL</th>
+
+              <th class="entry row-nocellborder" style="vertical-align:top;" id="d2128e154">Timeout</th>
+
+            </tr>
+
+          </thead>
+<tbody class="tbody">
+            <tr class="row">
+              <td class="entry cellrowborder" style="vertical-align:top;" headers="d2128e138 ">COF</td>
+
+              <td class="entry cellrowborder" style="vertical-align:top;" headers="d2128e141 ">College Opportunity Fund</td>
+
+              <td class="entry cellrowborder" style="vertical-align:top;" headers="d2128e144 ">Defined by Institution</td>
+
+              <td class="entry cellrowborder" style="vertical-align:top;" headers="d2128e147 ">Defined by Institution</td>
+
+              <td class="entry cellrowborder" style="vertical-align:top;" headers="d2128e150 ">Defined by the Institution. The URL must end with a forward slash (/).</td>
+
+              <td class="entry row-nocellborder" style="vertical-align:top;" headers="d2128e154 ">
+                <ul class="ul">
+                  <li class="li">0 to disable the endpoint.</li>
+
+                  <li class="li">Any number &gt; 0 to specify the default timeout (for example, 300).</li>
+
+                </ul>
+
+              </td>
+
+            </tr>
+
+          </tbody>
+</table>
+</div>
+
+      <p class="p">This enhancement addresses PE0003919 in the <span class="keyword">Ellucian Customer Center</span>.</p>
+
+    </div>
+
+    <div class="section"><h2 class="title sectiontitle">UCAS enhancements</h2>
+      
+      <p class="p">Changed SKRSAIN table: The length of the SKRSAIN_VISA_STATUS_OTHER column includes an increase from VARCHAR2(3) to VARCHAR2(150) to accommodate more characters. (VISA STATUS OTHER: Other visa or immigration status provided by the applicant when you select the Other option is the visaOrImmigrationStatusCode field.)</p>
+
+      <p class="p">This enhancement addresses PE0003912 in the <span class="keyword">Ellucian Customer Center</span>.</p>
+
+    </div>
+
+    <div class="section"><h2 class="title sectiontitle">Supporting Documentation</h2>
+      
+      <p class="p">To download the content for this release, go to the <a class="xref ft-external-link" href="https://edocs-private.ellucian.com/index.html" target="_blank" rel="noopener">Previous Versions</a> page, navigate to the appropriate product, and then click the file associated with the version you need in the preferred language. All content is available in English (enus), and some content is available in Spanish (esmx) and French Canadian (frca).</p>
+
+      <p class="p"><span class="ph">The downloaded compressed (.zip) file contains an Attachments.zip file, which includes the following documents that support this release.</span></p>
+
+      <div class="p">
+        <ul class="ul">
+          <li class="li">Banner Student Readme 8.30.2</li>
+
+          <li class="li">Banner Student Object List 8.30.2</li>
+
+          <li class="li">Banner Student Release Notes 8.30.2</li>
+
+          <li class="li">Banner Student Use 8.30.2</li>
+
+          <li class="li">Banner Student Upgrade Guide 8.30.2</li>
+
+          <li class="li">Banner Student Resolutions Report 8.30.2</li>
+
+        </ul>
+
+      </div>
+
+    </div>
+
+    <div class="section">
+      <p class="p">For a list of defects and enhancements resolved in <span class="keyword">Banner Student</span> <span class="keyword">8.30.2</span>, see the release page for <a class="xref ft-external-link" href="https://elluciansupport.service-now.com/customer_center?id=standard_ticket&amp;table=ellucian_product_release&amp;sys_id=dc8045fb9749c654ebc2bdcfe153af25" target="_blank" rel="noopener">Release 8.30.2</a> in the <span class="keyword">Ellucian Customer Center</span>.</p>
+
+    </div>
+
+  </div>
+
+</div></div></section>
+<section id="t-410"><h3>Release 9.3.33.1 and 8.30.1</h3><div class="content-locale-en-US content-locale-en"><div id="c_release_9.3.33.1_8.30.1"><div class="body conbody"><p class="shortdesc">The <span class="keyword">Banner Student</span> <span class="keyword">9.3.33.1 and 8.30.1</span> release includes quality improvements, resolutions to critical defects, and updates to support the Canadian SWF Regulatory.</p>
+
+    <div class="section"><h2 class="title sectiontitle">UCAS regulatory enhancements</h2>
+      
+      <p class="p">To support the <span class="keyword">Banner</span> UCAS regulatory enhancements, updates to the UCAS Applicant Address History (SARAADH) table are available with this release. </p>
+
+      <ul class="ul">
+        <li class="li">The following columns with the data type are new:<ul class="ul">
+          <li class="li">SARAADH_APPL_SEQUENCE_NUMBER with NUMBER(10,0) to support the Internal sequence number associated with internal application record</li>
+
+          <li class="li">SARAADH_ERROR_MSG with VARCHAR2(2000) to support the error message</li>
+
+          </ul>
+</li>
+
+        <li class="li">Increase in the length of the SARAADH_UCAS_INSTITUTION_CDE column (UCAS Institution Code field) from two to four characters with VARCHAR2(4) as data type.</li>
+
+      </ul>
+
+      <p class="p">These enhancements address PE0003757 in the <span class="keyword">Ellucian Customer Center</span>.</p>
+
+    </div>
+
+    <div class="section"><h2 class="title sectiontitle">Canada SWF regulatory update</h2>
+      
+      <p class="p">To comply with the latest union agreement, Standard Workflow Form (SWF) must include the discussion dates between the supervisor and faculty members on the Banner admin page, <span class="xref ft-internal-xlink" data-ft-warning="excluded-from-rendering" data-clusterid="id_b_stugen/stu_release/r_svafswf_faculty_standard_workload">Faculty Standard Workload (SVAFSWF)</span>. To meet this requirement, <span class="keyword">Ellucian</span> added a new table, Standard Workflow Form Discussion Dates, (SIRSWDD) to <span class="keyword">Banner Student</span>. </p>
+
+      <p class="p">This enhancement addresses PE0003418 in the <span class="keyword">Ellucian Customer Center</span>.</p>
+
+    </div>
+
+    <div class="section"><h2 class="title sectiontitle">Supporting Documentation</h2>
+      
+      <p class="p">To download the content for this release, go to the <a class="xref ft-external-link" href="https://edocs-private.ellucian.com/index.html" target="_blank" rel="noopener">Previous Versions</a> page, navigate to the appropriate product, and then click the file associated with the version you need in the preferred language. All content is available in English (enus), and some content is available in Spanish (esmx) and French Canadian (frca).</p>
+
+      <p class="p"><span class="ph">The downloaded compressed (.zip) file contains an Attachments.zip file, which includes the following documents that support this release.</span></p>
+
+      <div class="p">
+        <ul class="ul">
+          <li class="li">Banner Student readme 8.30.1</li>
+
+          <li class="li">Banner Student Object List 8.30.1</li>
+
+          <li class="li">Banner Student Upgrade Guide 8.30.1</li>
+
+          <li class="li">Banner Student Resolutions Report 8.30.1</li>
+
+          <li class="li">Banner Student Resolutions Report 9.3.33.1</li>
+
+          <li class="li">Banner Student 903330103 Installation Reference</li>
+
+          <li class="li">Banner Student Release Notes <span class="keyword">9.3.33.1 and 8.30.1</span></li>
+
+        </ul>
+
+      </div>
+
+    </div>
+
+    <div class="section">
+      <p class="p">For a list of defects and enhancements resolved in <span class="keyword">Banner Student</span> <span class="keyword">9.3.33.1 and 8.30.1</span>, see the release pages for <a class="xref ft-external-link" href="https://elluciansupport.service-now.com/customer_center?id=standard_ticket&amp;table=ellucian_product_release&amp;sys_id=c1ca0184932c8e1011e1be2a6aba10c1" target="_blank" rel="noopener">Release 9.3.33.1</a> and <a class="xref ft-external-link" href="https://elluciansupport.service-now.com/customer_center?id=standard_ticket&amp;table=ellucian_product_release&amp;sys_id=f0e81897876bf19c2f5a0dc4dabb3512" target="_blank" rel="noopener">Release 8.30.1</a> in the <span class="keyword">Ellucian Customer Center</span>.</p>
+
+    </div>
+
+  </div>
+
+</div></div></section>
+<section id="t-420"><h3>Release 9.3.33 and 8.30</h3><div class="content-locale-en-US content-locale-en"><div id="c_release_9.3.33_8.30"><div class="body conbody"><p class="shortdesc">The <span class="keyword">Banner Student</span> <span class="keyword">9.3.33 and 8.30</span> release includes resolution to API defects and new APIs, quality improvements, security enhancements, and technical currency updates.</p>
+
+    <div class="section"><h2 class="title sectiontitle">Enhancement to support Anonymous Grading</h2>
+      
+      <p class="p">A new <span class="ph uicontrol">Grading</span> check box on the <span class="keyword wintitle">Course to Schedule Copy (SCACSCY)</span> page can copy the Anonymous Grading configuration from the <span class="ph uicontrol">Grading</span> tab in the SCADETL page to the <span class="ph uicontrol">Grading</span> tab in the SSADETL page for all CRNs that have the same subject and course in the selected term. </p>
+
+      <div class="note"><span class="notetitle">Note:</span> All Banner feature updates related to Anonymous Grading are in support of a future Ellucian SaaS Solution.</div>
+
+      <p class="p">This enhancement addresses PE0003536 in the <span class="keyword">Ellucian Customer Center</span>. </p>
+
+    </div>
+
+    <div class="section"><h2 class="title sectiontitle">Hide Courses on Course Maintenance</h2>
+      
+      <p class="p">A new check box <span class="ph uicontrol">Hide in Transcripts</span> in the <span class="ph menucascade"><span class="ph uicontrol">Course Maintenance (SHATCKN)</span><abbr title="and then"> &gt; </abbr><span class="ph uicontrol">Course Details</span></span> section hides the courses listed in academic history from the transcripts. When the course is hidden and a transcript is generated, the course does not appear on the generated transcript. The <span class="ph uicontrol">Hide in Transcripts</span> check box impacts the following processes. </p>
+
+      <ul class="ul">
+        <li class="li">Academic Transcript (SHRTRTC)</li>
+
+        <li class="li">PESC/XML Transcript Export Process (SHRPESE)</li>
+
+        <li class="li">Electronic Data Interchange Extract (SHREDIY)</li>
+
+        <li class="li">eTranscript Export Process (SHRETRN)</li>
+
+        <li class="li">Student Self Service (Un-official Transcript)</li>
+
+      </ul>
+
+      <p class="p">The SHRTCKN - Institutional Course Term Maintenance Repeating table is modified to add a new column SHRTCKN_HIDE_TRANSCRIPT_IND in <span class="keyword">Banner Student</span> 8.30 to support the new field on the <span class="ph menucascade"><span class="ph uicontrol">Course Maintenance (SHATCKN)</span><abbr title="and then"> &gt; </abbr><span class="ph uicontrol">Course Details</span></span> section.</p>
+
+      <p class="p">This enhancement addresses PE0003255 in the <span class="keyword">Ellucian Customer Center</span>.</p>
+
+    </div>
+
+    <div class="section"><h2 class="title sectiontitle">Tables to support a future enhancement in Registration Self-Service</h2>
+      
+      <p class="p">The following new tables are added in <span class="keyword">Banner Student</span> 8.30. <span class="keyword">Ellucian</span> plans to use these tables in a future release for the Bibliography section in the Class Details pop-up in <span class="keyword">Registration Self-Service</span>.</p>
+
+      <ul class="ul">
+        <li class="li">SVRBICO - (Bibliography Configuration)</li>
+
+        <li class="li">SVRBIBL - (Bibliography Code Rule)</li>
+
+        <li class="li">SVVBITY - (Bibliography Type)</li>
+
+        <li class="li">SVRBICR - (Bibliography by Course)</li>
+
+        <li class="li">SVRBISR - (Bibliography by Section)</li>
+
+        <li class="li">SVVBIEL - (Bibliography Element Validation)</li>
+
+        <li class="li">SVRBIEL - (Bibliography Elements Configuration)</li>
+
+        <li class="li">SVVBIMD - (Bibliography Reference Model)</li>
+
+      </ul>
+
+      <p class="p">This enhancement addresses PE0003532 in the <span class="keyword">Ellucian Customer Center</span>.</p>
+
+    </div>
+
+    <div class="section"><h2 class="title sectiontitle">New Banner Business Process API (BAPI)</h2>
+      
+      <p class="p">The <var class="keyword varname">registration-queries</var> Banner Business Process API is available to query, insert, and update the Level and Billing Hours on the <span class="keyword wintitle">Registration Query (SFAREGQ)</span> page.</p>
+
+      <p class="p">This update addresses PE0003618 in the <span class="keyword">Ellucian Customer Center</span>.</p>
+
+      <p class="p">The <var class="keyword varname">admissions-decision-processing</var> Banner Business Process API posts the admission decision successfully without the keyblock term code on the <span class="keyword wintitle">Admissions Decision (SAADCRV)</span> page. </p>
+
+      <p class="p">This update addresses PD0012984 in the <span class="keyword">Ellucian Customer Center</span>.</p>
+
+      <p class="p">See the <cite class="cite">Banner API Catalog</cite> on the <span class="keyword">Ellucian Documentation site</span> for more information about these APIs.</p>
+
+    </div>
+
+    <div class="section"><h2 class="title sectiontitle">ASCGEN enhancements</h2>
+      
+      <p class="p">With this release, the following enhancements are available to support the ASCGEN regulatory updates.</p>
+
+      <p class="p">New table: The Indicative Fees (SORIFEE) table stores the indicative fees that a student can expect to pay for their program. This enhancement satisfies PE0003217.</p>
+
+    </div>
+
+    <div class="section"><h2 class="title sectiontitle">HESA enhancements</h2>
+      
+      <div class="p">With this release, the following enhancements are available to support the HESA regulatory updates.<ul class="ul">
+        <li class="li">Changed page: The SGACHRT page includes a defect fix so that the page now allows only one iteration of the student. This defect fix satisfies PD0007296. </li>
+
+        <li class="li">New Java process: The Create Cohort for Continuing Students (SOPCCDF) process is new to create cohort for continuing students from the CSV file for all the records. The process reads the <span class="ph uicontrol">OWNSTU</span> and <span class="ph uicontrol">NUMHUS</span> fields from the input file and uses the COHORT code and TERM code as parameters to create entries in the SGACHRT page for continuing students. This enhancement addresses PE0003239. See the <cite class="cite">Create Cohort for Continuing Students (SOPCCDF) process</cite> in the <cite class="cite"><span class="keyword">Banner Student</span> Reports and Processes</cite> content, available on the <span class="keyword">Ellucian Documentation site</span> for more information.</li>
+
+        <li class="li">Changed processes:<ul class="ul">
+          <li class="li">The following processes include code changes to resolve the translation warnings of 8.8:<ul class="ul">
+            <li class="li">SOPSUIM</li>
+
+            <li class="li">SOPCNDF</li>
+
+            <li class="li">SOPHUDF</li>
+
+            <li class="li">SOURRDF</li>
+
+            <li class="li">SORHEAR</li>
+
+            </ul>
+</li>
+
+          <li class="li">Updates to the SOURRDF process where the Qualification indicator on the SOAQUAL page is set to even, when the student does not the attend student course session.</li>
+
+          </ul>
+</li>
+
+        </ul>
+</div>
+
+    </div>
+
+    <div class="section"><h2 class="title sectiontitle">UCAS enhancements</h2>
+      
+      <div class="p">The following enhancements are available with this release to support the UCAS XML-LINK updates.<ul class="ul">
+        <li class="li">New tables: <ul class="ul">
+          <li class="li">The UCAS Applicant Address History (SARAADH) table is new store the UCAS applicant address history details</li>
+
+          <li class="li">The UCAS Address History (SPRADDRU) table is new to store the UCAS address history details</li>
+
+          </ul>
+</li>
+
+        <li class="li">Changed tables: <ul class="ul">
+          <li class="li">SKBUEDU: The SKBUEDU_STUDY_DELIVERY_MODE column is new with VARCHAR2(3) as data type</li>
+
+          <li class="li">SKBUSTK: The following columns with the data type are new:<ul class="ul">
+            <li class="li">SKBUSTK_NO_VISA_REASON_CDE with VARCHAR2(3)</li>
+
+            <li class="li">SKBUSTK_NO_VISA_REASON_OTHER with VARCHAR2(150)</li>
+
+            <li class="li">SKBUSTK_PRE_SETTLED_EXP_DATE with DATE</li>
+
+            <li class="li">SKBUSTK_PREV_STUDY_START_DATE with DATE</li>
+
+            <li class="li">SKBUSTK_PREV_STUDY_LEVEL_CDE with VARCHAR2(3)</li>
+
+            <li class="li">SKBUSTK_PREV_STUDY_END_DATE with DATE</li>
+
+            <li class="li">SKBUSTK_VISA_START_DATE with DATE</li>
+
+            <li class="li">SKBUSTK_VISA_IMMIGRATION_STAT with VARCHAR2(3)</li>
+
+            <li class="li">SKBUSTK_VISA_STATUS_OTHER with VARCHAR2(150)</li>
+
+            <li class="li">SKBUSTK_VISA_END_DATE with DATE</li>
+
+            <li class="li">SKBUSTK_NO_VISA_REASON_OTHER_U with VARCHAR2(150)</li>
+
+            <li class="li">SKBUSTK_VISA_STATUS_OTHER_U with VARCHAR2(150)</li>
+
+            </ul>
+</li>
+
+          <li class="li">SKRSAIN: The following columns with the data type are new:<ul class="ul">
+            <li class="li">SKRSAIN_NO_VISA_REASON_CDE with VARCHAR2(3)</li>
+
+            <li class="li">SKRSAIN_NO_VISA_REASON_OTHER with VARCHAR2(150)</li>
+
+            <li class="li">SKRSAIN_PRE_SETTLED_EXP_DATE with DATE</li>
+
+            <li class="li">SKRSAIN_PREV_STUDY_START_DATE with DATE</li>
+
+            <li class="li">SKRSAIN_PREV_STUDY_LEVEL_CDE with VARCHAR2(3)</li>
+
+            <li class="li">SKRSAIN_PREV_STUDY_END_DATE with DATE</li>
+
+            <li class="li">SKRSAIN_VISA_START_DATE with DATE</li>
+
+            <li class="li">SKRSAIN_VISA_IMMIGRATION_STAT with VARCHAR2(3)</li>
+
+            <li class="li">SKRSAIN_VISA_STATUS_OTHER with VARCHAR2(3)</li>
+
+            <li class="li">SKRSAIN_VISA_END_DATE with DATE</li>
+
+            <li class="li">SKRSAIN_STUDENT_VISA_REQ_IND with VARCHAR2(1) - DEFAULT ''N'' NOT NULL)</li>
+
+            <li class="li">SKRSAIN_STUDENT_VISA_STUDY_IND with VARCHAR2(1) - DEFAULT ''N'' NOT NULL)</li>
+
+            <li class="li">SKRSAIN_NO_VISA_REASON_OTHER_U with VARCHAR2(150)</li>
+
+            <li class="li">SKRSAIN_VISA_STATUS_OTHER_U with VARCHAR2(150)</li>
+
+            </ul>
+</li>
+
+          <li class="li">SKRUAED: The SKRUAED_STUDY_DELIVERY_MODE column is new with VARCHAR2(3) as data type</li>
+
+          <li class="li">SORAREF: The following columns with the data type are new:<ul class="ul">
+            <li class="li">SORAREF_CYCLE_FROM with VARCHAR2(4)</li>
+
+            <li class="li">SORAREF_CYCLE_TO with VARCHAR2(4) </li>
+
+            </ul>
+</li>
+
+          </ul>
+</li>
+
+        </ul>
+</div>
+
+    </div>
+
+    <div class="section"><h2 class="title sectiontitle">Texas Connection Consortium (TCC) enhancement</h2>
+      
+      <p class="p">The <span class="ph filepath">studbpr_baninst1_drop_083000.sql</span> script dropped all TCC packages from the baseline database for non-TCC institutions.</p>
+
+      <div class="p"><span class="keyword">Ellucian</span> used the following criteria to ensure that the script deleted only TCC objects and that it did not delete institution-created objects or non-TCC objects:<ul class="ul">
+        <li class="li">Object has a Z as the second character</li>
+
+        <li class="li">Release number matches the specific delivered release number</li>
+
+        <li class="li">Code contains text specific to the TCC delivered DBPROC</li>
+
+        <li class="li">Institution is non-TCC client</li>
+
+        </ul>
+</div>
+
+      <p class="p">As a best practice, <span class="keyword">Ellucian</span> recommends verification following the installation of a release.</p>
+
+      <p class="p">This enhancement addresses PE0003334 in the <span class="keyword">Ellucian Customer Center</span>.</p>
+
+    </div>
+
+    <div class="section"><h2 class="title sectiontitle">Supporting Documentation</h2>
+      
+      <p class="p">To download the content for this release, go to the <a class="xref ft-external-link" href="https://edocs-private.ellucian.com/index.html" target="_blank" rel="noopener">Previous Versions</a> page, navigate to the appropriate product, and then click the file associated with the version you need in the preferred language. All content is available in English (enus), and some content is available in Spanish (esmx) and French Canadian (frca).</p>
+
+      <p class="p"><span class="ph">The downloaded compressed (.zip) file contains an Attachments.zip file, which includes the following documents that support this release.</span></p>
+
+      <div class="p">
+        <ul class="ul">
+          <li class="li">Banner Student readme 8.30</li>
+
+          <li class="li">Banner Student Object List 8.30</li>
+
+          <li class="li">Banner Student Page List 9.3.33</li>
+
+          <li class="li">Banner Student Upgrade Guide 8.30</li>
+
+          <li class="li">Banner Student Use <span class="keyword">9.3.33 and 8.30</span></li>
+
+          <li class="li">Banner Student Installation Guide 8.30 lang </li>
+
+          <li class="li">Banner Student Resolutions Report 9.3.33</li>
+
+          <li class="li">Banner Student Resolutions Report 8.30</li>
+
+          <li class="li">Banner Student 903330011 Installation Reference</li>
+
+          <li class="li">Banner Student Release Notes <span class="keyword">9.3.33 and 8.30</span></li>
+
+          <li class="li">Banner Student Reports and Processes <span class="keyword">9.3.33 and 8.30</span></li>
+
+        </ul>
+
+      </div>
+
+      <p class="p">The content published on the Documentation site for this release and the documentation included in the associated zip file (listed above) also support any associated hot fix releases.</p>
+
+    </div>
+
+  </div>
+
+</div></div></section>
+<section id="t-430"><h3>Release 9.3.32.2 and 8.29.1.1</h3><div class="content-locale-en-US content-locale-en"><div id="c_release_9.3.32.2_8.29.1.1"><div class="body conbody"><p class="shortdesc">The <span class="keyword">Banner Student</span> <span class="keyword">9.3.32.2 and 8.29.1.1</span> release includes resolution to API defects and new APIs, quality improvements, security enhancements and technical currency updates.</p>
+
+    <div class="section"><h2 class="title sectiontitle">SFRNSLC report regulatory updates</h2>
+      
+      <p class="p">As part of this release, <span class="keyword">Ellucian</span> has corrected several defects associated with the <cite class="cite">Clearinghouse Extract (SFRNSLC)</cite> report.</p>
+
+    </div>
+
+    <div class="section"><h2 class="title sectiontitle">Supporting Documentation</h2>
+      
+      <p class="p">To download the content for this release, go to the <a class="xref ft-external-link" href="https://edocs-private.ellucian.com/index.html" target="_blank" rel="noopener">Previous Versions</a> page, navigate to the appropriate product, and then click the file associated with the version you need in the preferred language. All content is available in English (enus), and some content is available in Spanish (esmx) and French Canadian (frca).</p>
+
+      <p class="p"><span class="ph">The downloaded compressed (.zip) file contains an Attachments.zip file, which includes the following documents that support this release.</span></p>
+
+      <div class="p">
+        <ul class="ul">
+          <li class="li">Banner Student readme 8.29.1.1</li>
+
+          <li class="li">Banner Student Resolutions Report 8.29.1.1</li>
+
+          <li class="li">Banner Student Resolutions Report 9.3.32.2</li>
+
+          <li class="li">Banner Student Release Notes 9.3.32.2 and 8.29.1.1</li>
+
+        </ul>
+
+      </div>
+
+    </div>
+
+    <div class="section">
+      <p class="p">For a list of defects resolved in <span class="keyword">Banner Student</span> <span class="keyword">9.3.32.2 and 8.29.1.1</span>, see the release pages for <a class="xref ft-external-link" href="https://elluciansupport.service-now.com/customer_center?id=standard_ticket&amp;table=ellucian_product_release&amp;sys_id=8f53f42e87ab79d86c71ca27dabb3571" target="_blank" rel="noopener">Release 9.3.32.2</a> and <a class="xref ft-external-link" href="https://elluciansupport.service-now.com/customer_center?id=standard_ticket&amp;table=ellucian_product_release&amp;sys_id=ec11127f874fbd1099ecca65dabb35a2" target="_blank" rel="noopener">Release 8.29.1.1</a> in the <span class="keyword">Ellucian Customer Center</span>.</p>
+
+    </div>
+
+  </div>
+
+</div></div></section></main></body></html>

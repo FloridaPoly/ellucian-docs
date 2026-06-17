@@ -1,0 +1,1332 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Banner Student Registration Self-Service - Configure — Projected Registration</title><style>body{font-family:-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;line-height:1.55;color:#1a1a1a;max-width:920px;margin:0 auto;padding:24px}header{border-bottom:2px solid #5a16d6;margin-bottom:8px}h1{color:#3a0ca3}h2,h3,h4,h5,h6{margin-top:1.6em}.crumb{color:#666;font-size:13px;margin:0}.meta{color:#888;font-size:12px}nav.toc{background:#f6f4fc;border:1px solid #e3dcf5;border-radius:8px;padding:12px 18px;margin:18px 0}nav.toc h2{margin:.2em 0}nav.toc ul{list-style:none;padding-left:0}nav.toc a{text-decoration:none;color:#5a16d6}section{margin:1.2em 0;padding-top:.4em}img{max-width:100%;height:auto}table{border-collapse:collapse}td,th{border:1px solid #ccc;padding:4px 8px}code,pre{background:#f4f4f4;border-radius:4px}pre{padding:10px;overflow:auto}</style></head><body><header><p class="crumb">Banner Registration Self-Service › Banner Student Registration Self-Service - Configure</p><h1>Banner Student Registration Self-Service - Configure — Projected Registration</h1><p class="meta">Source: <a href="https://resources.elluciancloud.com/r/bundle/banner_regss_acn_configure">https://resources.elluciancloud.com/r/bundle/banner_regss_acn_configure</a> &middot; Retrieved 2026-06-17</p></header><nav class="toc"><h2>Contents</h2><ul><li style="margin-left:0px"><a href="#t-2480">Projected Registration</a></li><li style="margin-left:16px"><a href="#t-2490">Projected Registration overview</a></li><li style="margin-left:32px"><a href="#t-2500">Comparison of projected and Structured Registration</a></li><li style="margin-left:16px"><a href="#t-2510">Processing Projected Registration</a></li><li style="margin-left:32px"><a href="#t-2520">Programs, areas, and compliance</a></li><li style="margin-left:48px"><a href="#t-2530">Data used from compliance</a></li><li style="margin-left:32px"><a href="#t-2540">Process summary</a></li><li style="margin-left:32px"><a href="#t-2550">Filter by maximum areas</a></li><li style="margin-left:32px"><a href="#t-2560">Filter by student class</a></li><li style="margin-left:32px"><a href="#t-2570">Filter by first course</a></li><li style="margin-left:32px"><a href="#t-2580">Mark course as most probable</a></li><li style="margin-left:32px"><a href="#t-2590">Projected Registration planning</a></li><li style="margin-left:32px"><a href="#t-2600">Projected Registration processing path</a></li><li style="margin-left:32px"><a href="#t-2610">Set up Projected Registration</a></li><li style="margin-left:32px"><a href="#t-2620">Projected Registration controls</a></li><li style="margin-left:32px"><a href="#t-2630">Projected Registration GTVSDAX rules</a></li><li style="margin-left:48px"><a href="#t-2640">REGPROJ rule</a></li><li style="margin-left:48px"><a href="#t-2650">CLASS rule</a></li><li style="margin-left:48px"><a href="#t-2660">PRIADJFAC rule</a></li><li style="margin-left:32px"><a href="#t-2670">Elective course management for Projected Registration</a></li><li style="margin-left:48px"><a href="#t-2680">Elective Pool (SSAPOOL) page</a></li><li style="margin-left:48px"><a href="#t-2690">Schedule Specific Section Attribute (SSASATR) page</a></li><li style="margin-left:32px"><a href="#t-2700">Use external API for Projected Registration</a></li><li style="margin-left:48px"><a href="#t-2710">Configure the external API for Projected Registration</a></li><li style="margin-left:48px"><a href="#t-2720">Use third party service for Projected Registration</a></li><li style="margin-left:64px"><a href="#t-2730">URL for third party service</a></li><li style="margin-left:64px"><a href="#t-2740">Authentication for third party service</a></li><li style="margin-left:64px"><a href="#t-2750">Request criteria for third party service</a></li><li style="margin-left:64px"><a href="#t-2760">Response from third party service</a></li><li style="margin-left:80px"><a href="#t-2770">JSON</a></li><li style="margin-left:80px"><a href="#t-2780">Sample JSON object</a></li><li style="margin-left:64px"><a href="#t-2790">Processing note</a></li><li style="margin-left:16px"><a href="#t-2800">Administrative forms</a></li><li style="margin-left:32px"><a href="#t-2810">Projection Configuration by Program (SFALPRO)</a></li><li style="margin-left:32px"><a href="#t-2820">Projection Maintenance (SFAPROJ)</a></li><li style="margin-left:16px"><a href="#t-2830">Reporting in Projected Registration</a></li><li style="margin-left:32px"><a href="#t-2840">Student Projection Process (SFPPROJ)</a></li><li style="margin-left:32px"><a href="#t-2850">Schedule Planning Report (SFRPRES)</a></li></ul></nav><main><section id="t-2480"><h2>Projected Registration</h2><div class="content-locale-en-US content-locale-en"><div id="c_projected_registration"><p class="shortdesc">This chapter details the setup and processing for <span class="keyword">Projected Registration</span>.</p>
+
+</div></div></section>
+<section id="t-2490"><h3>Projected Registration overview</h3><div class="content-locale-en-US content-locale-en"><div id="c_projected_registration_overview"><div class="body conbody"><p class="shortdesc">In <span class="keyword">Banner Student Registration</span>, the term <span class="keyword">Projected Registration</span> refers to a registration model where a projected list of courses is generated.</p>
+
+    <p class="p">The projections allow an institution to produce a list of courses for which students are expected to register and therefore plan for the anticipated number of students per course. In Self-Service, students can use the projected list as a registration guide or as specific instructions when the list is limited to the courses for which a student must register.</p>
+
+    <p class="p">The course projection list is based on <span class="keyword">CAPP</span> compliance results for program requirements and area priority. As program requirements can be restrictive (courses can only be selected from the program or curriculum, and courses must be taken in a specific order), an institution can try to predict which courses a student will take in the next term and perform schedule planning accordingly.</p>
+
+    <p class="p">A batch process is used to create the projected courses list. Filters are used to determine the number of areas to be considered in the projections. Courses are marked as most probable, that is they are the most likely to be registered for in the next term. This is based on course credit limits and course attributes. Elective courses can also be identified and categorized for the students. Courses in <span class="keyword">CAPP</span> that are "not-met" or not completed are included in the list of projected courses. First course rules can be applied to filter courses by department, college, and subject. Prerequisite checking and corequisite checking are used to further refine the list of courses.</p>
+
+    <p class="p">Please see the <cite class="cite"><span class="keyword">Banner Student</span> <span class="keyword">CAPP</span></cite> content on the <span class="keyword">Ellucian Documentation site</span> for more information on setting up and using <span class="keyword">CAPP</span>.</p>
+
+    <div class="note"><span class="notetitle">Note:</span> It is assumed that <span class="keyword">CAPP</span> is in use at your institution. If it is not in use, please refer to the "Use external API" section to set up processing with the third party system that will provide data for use with <span class="keyword">Projected Registration</span>.</div>
+
+  </div>
+
+</div></div></section>
+<section id="t-2500"><h4>Comparison of projected and Structured Registration</h4><div class="content-locale-en-US content-locale-en"><div id="c_comparison_projected_structured_registration"><div class="body conbody"><p class="shortdesc"><span class="keyword">Projected Registration</span> and <span class="keyword">Structured Registration</span> are similar but different. Here is a quick summary of the differences.</p>
+
+<div class="p"><span class="keyword">Projected Registration</span> works as follows:
+<ul class="ul">
+<li class="li">The focus is on what has yet to be completed, based on what has already occurred in the past.</li>
+
+<li class="li">No validation of how coursework will satisfy specific program requirements is performed.</li>
+
+<li class="li">Courses are presented to the student in a practical order based on prior coursework and the organization of requirements in <span class="keyword">CAPP</span>.</li>
+
+<li class="li">The course presentation is flexible, as to how much is shown to the student at one time.</li>
+
+<li class="li">A course that is identified as mandatory is one that is required for the degree but is not required for the current registration period.</li>
+
+<li class="li">Students can select courses from the projected list based on what they perceive as best for them.</li>
+</ul>
+</div>
+
+<div class="p"><span class="keyword">Structured Registration</span> works as follows:
+<ul class="ul">
+<li class="li">The focus is on the student's current stage or classification and what coursework is required based on the student's academic program.</li>
+
+<li class="li">Coursework is based on the categories (mandatory, optional, and electives) that make up the requirements of the current registration period.</li>
+
+<li class="li">The focus is on subject matter for courses that are closely related to the student’s area of study.</li>
+
+<li class="li">Each year of coursework is regimented, strictly organized, and controlled.</li>
+
+<li class="li">A mandatory course is a course that must be taken in the current registration period.</li>
+
+<li class="li">Students are guided through each registration period.</li>
+
+<li class="li">Students are directed as to what courses they must take, and they cannot deviate from the structured requirements.</li>
+
+<li class="li">Validation of selected coursework against specific program requirements is performed.</li>
+</ul>
+</div>
+</div>
+</div></div></section>
+<section id="t-2510"><h3>Processing Projected Registration</h3><div class="content-locale-en-US content-locale-en"><div id="c_processing_projected_registration"><div class="body conbody"><p class="shortdesc">This section contains information about setting up and using <span class="keyword">Projected Registration</span>.</p>
+
+    <div class="p">The following administrative forms are used with <span class="keyword">Projected Registration</span>:<ul class="ul"> <li class="li">Projection Configuration by Program page (SFALPRO)</li>
+ <li class="li">Projection Maintenance page (SFAPROJ)</li>
+ </ul>
+</div>
+
+    <p class="p">The Term Control Page (SOATERM) contains controls used to set up <span class="keyword">Projected Registration</span>.</p>
+
+    <div class="p">The following tables are used specifically with <span class="keyword">Projected Registration</span>:<ul class="ul"> <li class="li"><span class="keyword">Projected Registration</span> Configuration by Program Table (SFRPCFG)</li>
+ <li class="li"><span class="keyword">Projected Registration</span> First Courses Table (SFRPFCR)</li>
+ <li class="li"><span class="keyword">Projected Registration</span> Most Probable Attribute Table (SFRPMPA)</li>
+ <li class="li">Student/Term Projections Table (SFRREGP)</li>
+ <li class="li"><span class="keyword">Projected Registration</span> Term Control Table (SOBPROJ)</li>
+ <li class="li">The following reports and processes are used with <span class="keyword">Projected Registration</span>:<ul class="ul">
+      <li class="li">Student Projection Process (SFPPROJ)</li>
+ <li class="li">Schedule Planning Report (SFRPRES)</li>
+ </ul>
+</li>
+ <li class="li">The Projections tab <span class="keyword">Banner Student</span> Self-Service is used for <span class="keyword">Projected Registration</span>.</li>
+ </ul>
+</div>
+
+  </div>
+
+</div></div></section>
+<section id="t-2520"><h4>Programs, areas, and compliance</h4><div class="content-locale-en-US content-locale-en"><div id="c_programs_areas_compliance"><div class="body conbody"><p class="shortdesc">Use the following pages to set up <span class="keyword">CAPP</span>.</p>
+
+    
+<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" id="c_programs_areas_compliance__c_programs_areas_compliance-utbl1" class="table" frame="hsides" border="1" rules="rows"><colgroup><col><col></colgroup><thead class="thead" style="text-align:left;vertical-align:bottom;">
+          <tr class="row">
+            <th class="entry row-nocellborder" style="text-align:left;vertical-align:bottom;" id="d48124e45">Page</th>
+
+            <th class="entry row-nocellborder" style="text-align:left;vertical-align:bottom;" id="d48124e48">Action</th>
+
+          </tr>
+
+        </thead>
+<tbody class="tbody">
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d48124e45 ">Program Definitions Rules Page (SMAPRLE)</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d48124e48 ">Set up <span class="keyword">CAPP</span> program requirements.</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d48124e45 ">Area Library Page (SMAALIB)</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d48124e48 ">Define areas.</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d48124e45 ">Area Requirements Page (SMAAREA)</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d48124e48 ">Set up area requirements.</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d48124e45 ">Program Requirements Page (SMAPROG)</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d48124e48 ">Associate areas with programs.</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d48124e45 ">Group Requirements Page (SMAGROP)</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d48124e48 ">Define the area priority.</td>
+
+          </tr>
+
+        </tbody>
+</table>
+</div>
+
+    <div class="p"><span class="keyword">CAPP</span> requirements are as follows for <span class="keyword">Projected Registration</span>:<ul class="ul"> <li class="li">All programs have defined requirements and attached areas.</li>
+ <li class="li">One area is defined for each program term.</li>
+ <li class="li">Program areas are organized in chronological order.</li>
+ <li class="li">The area priority defined on SMAPROG for the program indicates the order in which the student should register for the set of courses in the area.</li>
+ <li class="li">Area priorities are defined in sequences of 10, such as 10, 20, 30, and so on.</li>
+
+      <li class="li">Area names can also be used to identify the sequence in which the area courses should be taken. In this case, the ending characters of the area name are matched to the student's class code to identify the sequence. <div class="p">The REGPROJ rule in GTVSDAX specifies the mode used to identify the area sequence. When the REGPROJ rule is set to P in GTVSDAX, then the following occurs:<ul class="ul">
+      <li class="li">For captive programs, the projection process associates a priority of 99 with the areas on SMAPROG, when no priority has been associated with the areas.</li>
+ <li class="li">For non-captive programs, the projection process associates a priority of 99 with the areas on SMAPROG, and for areas considered from the area library based on matching area qualifiers. Priorities defined on SMAAREA are also considered.</li>
+ </ul>
+</div>
+</li>
+
+      <li class="li">Rules are used to define elective courses, as not all elective options should be considered as most probable, and elective courses must be listed under a rule.<p class="p">If a global or generic course needs to be marked as most probable where an elective course is considered in the projection, this is called the "global elective". To identify the global elective, the rule must have the same code as the subject and course number of the global elective course.</p>
+</li>
+
+      <li class="li"><span class="keyword">CAPP</span> compliance must be run for all students for the current program on the student record. <ul class="ul"> <li class="li">Compliance is run for the primary curriculum program when the study path is not active.</li>
+ <li class="li">Compliance is run for all active programs from the student curriculum when the study path is active.</li>
+ </ul>
+</li>
+ <li class="li">In progress courses must be included in compliance.<div class="note warning"><span class="warningtitle">Warning:</span> <span class="keyword">Projected Registration</span> will not work properly if areas have attached groups.</div>
+</li>
+ </ul>
+</div>
+
+  </div>
+
+</div></div></section>
+<section id="t-2530"><h5>Data used from compliance</h5><div class="content-locale-en-US content-locale-en"><div id="c_data_used_from_compliance"><div class="body conbody"><p class="shortdesc"><span class="keyword">Projected Registration</span> processing retrieves compliance data related to coursework that is marked incomplete for a student's program. However, not all data from incomplete coursework in compliance is carried over when the corresponding projection records are created.</p>
+
+    <p class="p">Boolean data such as sets, subsets, and conditions in <span class="keyword">CAPP</span> rules is not considered when the projection process reads data from compliance. Only data related to the program, associated areas, area priorities, and student level is stored in the corresponding <span class="keyword">Projected Registration</span> records. Course-related data such as subject, course number, attributes, and so on, is also stored in the corresponding <span class="keyword">Projected Registration</span> records.</p>
+
+    <p class="p">Campus, college, and department data that is configured in <span class="keyword">CAPP</span> rules and is also present in corresponding compliance records is processed and stored in the projected records. The data is passed as internal filter criteria when sections are listed for projected courses in Self-Service.</p>
+
+    <div class="p">The following data elements are read from compliance records when projection records are processed: <ul class="ul">
+        <li class="li">PIDM</li>
+
+        <li class="li">term code</li>
+
+        <li class="li">program code</li>
+
+        <li class="li">area code</li>
+
+        <li class="li">area description</li>
+
+        <li class="li">area priority</li>
+
+        <li class="li">subject code</li>
+
+        <li class="li">course number low</li>
+
+        <li class="li">course number high</li>
+
+        <li class="li">attribute code</li>
+
+        <li class="li">level code</li>
+
+        <li class="li">campus code</li>
+
+        <li class="li">college code</li>
+
+        <li class="li">department code</li>
+
+      </ul>
+</div>
+
+  </div>
+
+</div></div></section>
+<section id="t-2540"><h4>Process summary</h4><div class="content-locale-en-US content-locale-en"><div id="c_process_summary"><div class="body conbody"><p class="shortdesc"><span class="keyword">Projected Registration</span> involves the setup of controls and rules, and running processes to gather and refine the projected data. </p>
+
+    <p class="p">Projected controls are set up on SOATERM. After the controls are in place, the Projection Configuration by Program page (SFALPRO) is used to build projection rules and filters by program. Projections are then created by generating <span class="keyword">CAPP</span> compliance and running the Student Projection Process (SFPPROJ). The projected list that is created is collected in a table. The list of courses for a student can be manually edited using the Projection Maintenance page (SFAPROJ). After any edits are completed, the Schedule Planning Report (SFRPRES) is used to view the expected enrollment in each course in the projected list.</p>
+
+    <p class="p"><span class="keyword">Projected Registration</span> processing identifies incomplete areas for a student, lists courses in sequence by not met status and area priority, and analyzes incomplete coursework for the area. It then generates a pretend or mock registration to eliminate not met course prerequisites and missing corequisites. This elimination is based on the parameter values in SFPPROJ.</p>
+
+    <p class="p">When manual entries or changes are made to the projected list, and compliance and SFPPROJ are run again, the manual changes are retained and are not overridden. Only the system-generated entries are updated.</p>
+
+    <p class="p">After projections have been created, the student can register for courses on the list. If a course is not selected for registration, the process will move it to the projected list for the next semester.</p>
+
+    <div class="p">The following packages are used to process <span class="keyword">Projected Registration</span>:<ul class="ul"> <li class="li">SFKRGPJ/SFKRGPJ1 - This package is used to collect and process registration projections. Procedures are used to collect unmet courses from compliance, filter records based on projection configurations, and build <span class="keyword">Projected Registration</span> courses.</li>
+
+      <li class="li">SFKRPRJ/SFKRPRJ1 - This package is used to include failed courses in <span class="keyword">Projected Registration</span> processing. Procedures are used to create the projection when the student fails in the registered course. <p class="p">The process accepts input parameters from the post update trigger in SFRSTCR, and checks whether the student has failed the course. If yes, the process checks if projections are available for the student. If the course is not included in the projection records, the process adds the course to the list of projected courses.</p>
+</li>
+
+      </ul>
+</div>
+
+  </div>
+
+</div></div></section>
+<section id="t-2550"><h4>Filter by maximum areas</h4><div class="content-locale-en-US content-locale-en"><div id="c_filter_maximum_areas"><div class="body conbody"><p class="shortdesc"><span class="keyword">Projected Registration</span> uses filtering based on the area priority to determine which areas to ignore or consider for a student.</p>
+
+    <p class="p">The maximum number of areas to project can be set to only show the next specific areas (or semesters) for a student above the areas that have already been met, instead of showing all the areas remaining for the student ongoing. This allows the process to display the projected courses for the immediate semesters of registration. Non-met areas with lower priorities are not considered. The order in which the student must complete the area requirements is controlled by the area priority on SMAPROG.</p>
+
+    <p class="p">Below is an example of using maximum areas with a program design of six semesters or terms.</p>
+
+    <p class="p">Program: BA in Computer Science</p>
+
+    
+<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" id="c_filter_maximum_areas__c_filter_maximum_areas-utbl1" class="table" frame="hsides" border="1" rules="rows"><colgroup><col><col></colgroup><thead class="thead" style="text-align:left;vertical-align:bottom;">
+          <tr class="row">
+            <th class="entry row-nocellborder" style="text-align:left;vertical-align:bottom;" id="d4492e53">Area</th>
+
+            <th class="entry row-nocellborder" style="text-align:left;vertical-align:bottom;" id="d4492e56">Priority</th>
+
+          </tr>
+
+        </thead>
+<tbody class="tbody">
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d4492e53 ">First Semester</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d4492e56 ">10</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d4492e53 ">Second Semester</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d4492e56 ">20</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d4492e53 ">Third Semester</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d4492e56 ">30</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d4492e53 ">Fourth Semester</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d4492e56 ">40</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d4492e53 ">Fifth Semester</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d4492e56 ">50</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d4492e53 ">Sixth Semester</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d4492e56 ">60</td>
+
+          </tr>
+
+        </tbody>
+</table>
+</div>
+
+    <p class="p">Assuming the student is already registered in all the courses for the First Semester area, the projection will show all of the courses in the five remaining areas. However, you may only want to present the student projections for the next two areas or semesters and prevent the student from registering in a course from a later area such as the Sixth Semester area.</p>
+
+    <p class="p">To include only the two semesters after the current registration semester, you need to define the maximum level of "2" above the latest met area. This maximum is set up on SFALPRO for each program using the Maximum Number of Areas to Project field. The student projection will then only present courses from the Second Semester and Third Semester areas to the student.</p>
+
+    <p class="p">The projection process identifies the non-met area with the minimum priority and then considers only the next maximum priority area. For example, the non-met area with the minimum priority is the Second Semester area (priority 20). The non-met area with the maximum priority is the Third Semester area (priority 30). Because the maximum level is set to 2, only areas with the priority of 20 and 30 are considered in the projection. All areas above priority 30 are eliminated from consideration. If an area with a priority of 25 exists, that area and priority would still be included in the projection.</p>
+
+    <div class="note"><span class="notetitle">Note:</span> If the program setup and area setup at your institution are different from what is suggested, and you want to include all priorities in the projection, use a number such as 999 for the maximum number of areas.</div>
+
+    <p class="p">The system logic determines the maximum priority to be included in the projection process. Priorities are assumed to be based on increments of 10 (10, 20, 30, and so on). Therefore, the maximum level is multiplied by a factor of 10. The maximum level of 2 is then converted to 20. The logic adds the maximum level to the minimum priority, and subtracts 10.</p>
+
+    <p class="p">(20 + 20 maximum levels - 10) = 30</p>
+
+    <p class="p">All areas with a priority above 30 are excluded from the projection.</p>
+
+    <p class="p">The factor of 10 is the default value used to compare area priorities. This can be set to "1" on GTVSDAX for the PRIADJFAC rule. Only values of 1 and 10 are valid factors. See the "GTVSDAX rules" section for more information.</p>
+
+  </div>
+
+</div></div></section>
+<section id="t-2560"><h4>Filter by student class</h4><div class="content-locale-en-US content-locale-en"><div id="c_filter_student_class"><div class="body conbody"><p class="shortdesc">Student classes can be linked to program areas that are in progress for a student.</p>
+
+    <p class="p">This means that student classes are also related to the area priority. Therefore, the student class codes used must be numeric, such as 1, 2, 3, and so on. A class could be assigned, even when the student has non-met courses from a previously used area. That could cause the maximum number of areas rule to produce inappropriate results. Therefore, the Maximum Number of Areas Over Student Class field on SFALPRO defines the number of levels or area priorities for the program that are included in the projection, above the area priority determined by the student class. Processing always uses the lowest limit estimated by maximum number of levels or the maximum number of areas over student class when that maximum is used.</p>
+
+    <p class="p">Here is an example where the student class code is determined by the semester in which the student is registered.</p>
+
+    <p class="p">Program: BA in Computer Science</p>
+
+    
+<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" id="c_filter_student_class__c_filter_student_class-utbl1" class="table" frame="hsides" border="1" rules="rows"><colgroup><col><col><col></colgroup><thead class="thead" style="text-align:left;vertical-align:bottom;">
+          <tr class="row">
+            <th class="entry row-nocellborder" style="text-align:left;vertical-align:bottom;" id="d20203e53">Area</th>
+
+            <th class="entry row-nocellborder" style="text-align:left;vertical-align:bottom;" id="d20203e56">Priority</th>
+
+            <th class="entry row-nocellborder" style="text-align:left;vertical-align:bottom;" id="d20203e59">Student Class Code</th>
+
+          </tr>
+
+        </thead>
+<tbody class="tbody">
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d20203e53 ">First Semester</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d20203e56 ">10</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d20203e59 ">1</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d20203e53 ">Second Semester</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d20203e56 ">20</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d20203e59 ">2</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d20203e53 ">Third Semester</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d20203e56 ">30</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d20203e59 ">3</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d20203e53 ">Fourth Semester</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d20203e56 ">40</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d20203e59 ">4</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d20203e53 ">Fifth Semester</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d20203e56 ">50</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d20203e59 ">5</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d20203e53 ">Sixth Semester</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d20203e56 ">60</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d20203e59 ">6</td>
+
+          </tr>
+
+        </tbody>
+</table>
+</div>
+
+    <p class="p">In the previous example, the student has a class of "1 First Semester". If the Maximum Number of Areas Over Student Class field is set to 1, the limit is estimated by adding "1" to the class, using a factor of 10 for this value.</p>
+
+    <p class="p">Class: 10 + maximum over class * 10 = 20</p>
+
+    <p class="p">Only the courses with area priorities below or equal to 20 are included in the projection.</p>
+
+    <p class="p">The factor of 10 is the default value used to compare area priorities. This can be set to "1" on GTVSADX for the PRIADJFAC rule, as in the maximum levels example. See the "GTVSDAX rules" section for more information.</p>
+
+  </div>
+
+</div></div></section>
+<section id="t-2570"><h4>Filter by first course</h4><div class="content-locale-en-US content-locale-en"><div id="c_filter_first_course"><div class="body conbody"><p class="shortdesc">Course subjects may need to be considered in projections and marked as most probable, regardless of the area priority and other defined rules. </p>
+
+    <p class="p">Some programs need to include the first non-met course in the projection, without considering the priority. These types of courses can be identified for each program based on a combination of department, college, and subject. The maximum number of courses is defined for each rule.</p>
+
+  </div>
+
+</div></div></section>
+<section id="t-2580"><h4>Mark course as most probable</h4><div class="content-locale-en-US content-locale-en"><div id="c_mark_course_as_most_probable"><div class="body conbody"><p class="shortdesc">Courses are considered as most probable based on the following criteria.</p>
+
+    <ul class="ul">
+      <li class="li">Maximum Credits - A student is supposed to register for a maximum number of credits in each term. The process sorts the projected courses by area priority and marks the first courses. It then adds the number of credits for each course until the total is greater than the maximum credits per term as defined on SFALPRO.</li>
+
+      <li class="li">Special Attributes - Some courses are always considered as most probable based on a special attribute. The attributes are defined for the program on SFALPRO.</li>
+
+      <li class="li">First Course Rule - Courses considered to be first courses are included regardless of area priority.</li>
+
+    </ul>
+
+  </div>
+
+</div></div></section>
+<section id="t-2590"><h4>Projected Registration planning</h4><div class="content-locale-en-US content-locale-en"><div id="c_projected_registration_planning"><p class="shortdesc">Projected courses can be presented to the student when registration plans are created in Self-Service. The SOATERM <span class="keyword">Projected Registration</span> settings are also applicable to registration planning.</p>
+
+</div></div></section>
+<section id="t-2600"><h4>Projected Registration processing path</h4><div class="content-locale-en-US content-locale-en"><div id="t_projected_registration_processing_path"><div class="body taskbody"><p class="shortdesc">Here is a sample path for getting started and navigating through <span class="keyword">Projected Registration</span> in Self-Service.</p>
+
+    <div class="tasklabel"><h2 class="sectiontitle tasklabel">Procedure</h2></div><ol class="ol steps"><li class="li step stepexpand">
+        <span class="ph cmd">Select <span class="ph uicontrol">Register for Classes</span> from the <span class="keyword wintitle">Registration landing page</span>.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Log in to the application.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Use the <span class="keyword wintitle">Select a Term page</span> to choose a term.</span>
+        <div class="itemgroup info">
+          <ul class="ul">
+            <li class="li">Terms that are open for registration are listed.</li>
+
+            <li class="li">Study paths can be selected at this point if they are available.</li>
+
+          </ul>
+
+        </div>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">You are taken to the Register for Classes - Find Classes tab.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Select the Projections tab.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Review the list of projected courses for the term.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Use the <span class="ph uicontrol">View Sections</span> button to view existing sections or search on course sections.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">In the Search Results, use the <span class="ph uicontrol">Add</span> button to add sections to the registration summary.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Use the <span class="ph uicontrol">Submit</span> button to submit the sections for registration.</span>
+      </li>
+</ol>
+
+  </div>
+
+</div></div></section>
+<section id="t-2610"><h4>Set up Projected Registration</h4><div class="content-locale-en-US content-locale-en"><div id="t_set_up_projected_registration"><div class="body taskbody"><p class="shortdesc">Set up <span class="keyword">Projected Registration</span> in administrative <span class="keyword">Banner</span>.</p>
+
+    <div class="tasklabel"><h2 class="sectiontitle tasklabel">Procedure</h2></div><ol class="ol steps"><li class="li step stepexpand">
+        <span class="ph cmd">Access the <span class="keyword wintitle">Term Control Page (SOATERM)</span>.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Select the <span class="keyword wintitle">Registration</span> tab and then the<span class="keyword wintitle"> Registration Model </span>section.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Select the <span class="ph uicontrol">Projected</span> indicator.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Select the <span class="keyword">Projected Registration</span> tab.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Verify the settings for <span class="keyword">Projected Registration</span> controls.</span>
+        <ol type="a" class="ol substeps">
+          <li class="li substep substepexpand">
+            <span class="ph cmd">Set up restrictions.</span>
+            <div class="itemgroup info">
+              <ul class="ul">
+                <li class="li">Define whether the term is in use in Self-Service for <span class="keyword">Projected Registration</span>.</li>
+
+                <li class="li">Define whether registration is restricted to projected courses only.</li>
+
+                <li class="li">Define whether registration is restricted when no projected courses are listed, and the student is required to have a projection.</li>
+
+              </ul>
+
+            </div>
+          </li>
+
+          <li class="li substep substepexpand">
+            <span class="ph cmd">Set up student projections.</span>
+            <div class="itemgroup info">
+              <ul class="ul">
+                <li class="li">Define whether failed courses are included in the projection. <p class="p">This captures when a student fails a course, and the course is then added to the projected list. (This is helpful when compliance has been run with the assumption that students would pass their current classes.)</p>
+</li>
+
+                <li class="li">Define whether failed courses can be marked as most probable for the projection to help forecast seat requirements for courses in the term. This does not impact registration processing.</li>
+
+              </ul>
+
+            </div>
+          </li>
+
+          <li class="li substep substepexpand">
+            <span class="ph cmd">Set up Mandatory - Define the value which will be used to identify mandatory courses for registration.</span>
+            <div class="itemgroup info">
+              <ul class="ul">
+                <li class="li">Mandatory Rule Key - Value used to identify mandatory courses. Enter a key such as <kbd class="ph userinput">MANDATORY</kbd>.</li>
+
+                <li class="li">Mandatory Active - Select the check box when you want to make mandatory classes available to students for registration.</li>
+
+              </ul>
+
+              <p class="p">This will be compared against the value in the area rule description on SMAAREA.</p>
+
+              <p class="p">The mandatory rule key is used when courses that are required for students to complete their degrees have been entered into <span class="keyword">CAPP</span> area rules, and you want to have them designated as mandatory on the projected list.</p>
+
+            </div>
+          </li>
+
+          <li class="li substep substepexpand">
+            <span class="ph cmd">Set up Elective - Define the value which will be used to identify elective courses for registration.</span>
+            <div class="itemgroup info">
+              <ul class="ul">
+                <li class="li">Elective Rule Key - Value used to identify elective courses. Enter a key such as <kbd class="ph userinput">ELECTIVE</kbd>.</li>
+
+                <li class="li">Elective Active - Select the check box when you want to make elective classes available to students for registration.</li>
+
+                <li class="li">Roll section attribute to Academic History - Select this check box when you want the attribute associated with the CRN to be included in the roll process.</li>
+
+                <li class="li">Hide transferred courses - When this check box is selected, students will not see their transferred courses in the list of available classes.</li>
+
+                <li class="li">Hide in-progress courses - When this check box is selected, students will not see the courses they are currently taking in the list of available classes.</li>
+
+                <li class="li">Hide passed courses - When this check box is selected, students will not see the courses they have already passed in the list of available classes.</li>
+
+                <li class="li">Section Attribute for Elective Pool - If you would like to set up elective pools, use this field to assign the attribute that identifies the type of elective. See <cite class="cite">Elective course management for Projected Registration</cite> topic for more information.</li>
+
+              </ul>
+
+              <p class="p">This will be compared against the value in area rule description field in SMAAREA page.</p>
+
+              <p class="p">The elective rule key is used when courses that are optional for students to complete their degrees have been entered into <span class="keyword">CAPP</span> area rules, and you want to have them designated as elective on the projected list.</p>
+
+            </div>
+          </li>
+
+          <li class="li substep substepexpand">
+            <span class="ph cmd">Enter the information for the external API when <span class="keyword">CAPP</span> is not in use.</span>
+          </li>
+
+        </ol>
+
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Access <span class="keyword wintitle">GTVSDAX</span> and set up the rules for <code class="ph codeph">REGPROJ</code>, <code class="ph codeph">CLASS</code>, and <code class="ph codeph">PRIADJFAC</code>.</span>
+        <div class="itemgroup info">See the " GTVSDAX Rules" section for more information.</div>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Set up the external API if <span class="keyword">CAPP</span> is not in use.</span>
+        <div class="itemgroup info">See the "Use external API" section for more information.</div>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Access the Program Requirements Page (SMAPROG).</span>
+        <div class="itemgroup info">Verify that the registration model used on SOATERM is defined for the program and term range.</div>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Set up program filtering on the <span class="keyword wintitle">Projection Configuration by Program page (SFALPRO)</span>.</span>
+        <ol type="a" class="ol substeps">
+          <li class="li substep">
+            <span class="ph cmd">Enter the program for the rule.</span>
+          </li>
+
+          <li class="li substep">
+            <span class="ph cmd">Set the maximum area or class and credit parameters for the rule.</span>
+          </li>
+
+          <li class="li substep">
+            <span class="ph cmd">Set up the combinations of department, college, and subject to identify courses that can be treated as first courses.</span>
+          </li>
+
+          <li class="li substep">
+            <span class="ph cmd">View and update the most probable attributes for the program.</span>
+          </li>
+
+        </ol>
+
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Run the <span class="keyword wintitle">Student Projection Process (SFPPROJ)</span> to produce projection results.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Review and modify results on the <span class="keyword wintitle">Projection Maintenance page (SFAPROJ)</span>.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Run the <span class="keyword wintitle">Schedule Planning Report (SFRPRES)</span> to see expected registration for courses.</span>
+      </li>
+</ol>
+
+  </div>
+
+</div></div></section>
+<section id="t-2620"><h4>Projected Registration controls</h4><div class="content-locale-en-US content-locale-en"><div id="r_projected_registration_controls"><div class="body refbody"><p class="shortdesc">Use <span class="keyword wintitle">Term Control Page (SOATERM)</span> to set up <span class="keyword">Projected Registration</span> controls.</p>
+
+    <div class="section">
+      <p class="p">In the Registration tab, access the indicators in the Registration Model section to designate which type of registration processing you want to use for the term. Choices are <span class="ph uicontrol">Regular</span>, <span class="ph uicontrol">Structured</span>, or <span class="ph uicontrol">Projected</span>.</p>
+
+      <p class="p">In the <span class="keyword">Projected Registration</span> Controls, set up the sets of controls fields. These fields come from the <span class="keyword">Projected Registration</span> Term Control Table (SOBPROJ).</p>
+
+      <p class="p">Use these fields to set up restrictions.</p>
+
+      
+<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" id="r_projected_registration_controls__r_projected_registration_controls-utbl1" class="table" frame="hsides" border="1" rules="rows"><colgroup><col><col></colgroup><thead class="thead" style="text-align:left;vertical-align:bottom;">
+            <tr class="row">
+              <th class="entry row-nocellborder" style="text-align:left;vertical-align:bottom;" id="d47438e76">Fields</th>
+
+              <th class="entry row-nocellborder" style="text-align:left;vertical-align:bottom;" id="d47438e79">Descriptions</th>
+
+            </tr>
+
+          </thead>
+<tbody class="tbody">
+            <tr class="row">
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d47438e76 ">Term open for Self-Service Projections</td>
+
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d47438e79 ">Check box used to indicate whether <span class="keyword">Projected Registration</span> is in use for the term.</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d47438e76 ">Restrict to Projected Courses</td>
+
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d47438e79 ">Check box used to indicate whether registration and planning are restricted to only projected courses.</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d47438e76 ">Restrict to Null Projections</td>
+
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d47438e79 ">Check box used to indicate whether registration and planning are restricted when no projected courses are listed.</td>
+
+            </tr>
+
+          </tbody>
+</table>
+</div>
+
+      <p class="p">Use these fields to define student projection settings.</p>
+
+      
+<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" id="r_projected_registration_controls__r_projected_registration_controls-utbl2" class="table" frame="hsides" border="1" rules="rows"><colgroup><col><col></colgroup><thead class="thead" style="text-align:left;vertical-align:bottom;">
+            <tr class="row">
+              <th class="entry row-nocellborder" style="text-align:left;vertical-align:bottom;" id="d47438e135">Fields</th>
+
+              <th class="entry row-nocellborder" style="text-align:left;vertical-align:bottom;" id="d47438e138">Descriptions</th>
+
+            </tr>
+
+          </thead>
+<tbody class="tbody">
+            <tr class="row">
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d47438e135 ">Include Failed Courses in Student Projections</td>
+
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d47438e138 ">Check box used to indicate whether failed courses are included in the projections.</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d47438e135 ">Mark Failed Courses as Most Probable</td>
+
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d47438e138 ">Check box used to indicate whether failed courses can be marked as most probable in the projections.</td>
+
+            </tr>
+
+          </tbody>
+</table>
+</div>
+
+      <p class="p">Use this field to set up the mandatory rule.</p>
+
+      
+<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" id="r_projected_registration_controls__r_projected_registration_controls-utbl3" class="table" frame="hsides" border="1" rules="rows"><colgroup><col><col></colgroup><thead class="thead" style="text-align:left;vertical-align:bottom;">
+            <tr class="row">
+              <th class="entry row-nocellborder" style="text-align:left;vertical-align:bottom;" id="d47438e181">Fields</th>
+
+              <th class="entry row-nocellborder" style="text-align:left;vertical-align:bottom;" id="d47438e184">Descriptions</th>
+
+            </tr>
+
+          </thead>
+<tbody class="tbody">
+            <tr class="row">
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d47438e181 ">Mandatory Rule Key</td>
+
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d47438e184 ">Value used to identify mandatory courses. Enter a key such as <code class="ph codeph">MANDATORY</code>.<p class="p">When this field is blank, only independent courses listed in the area requirements are considered as mandatory.</p>
+</td>
+
+            </tr>
+
+          </tbody>
+</table>
+</div>
+
+      <p class="p">Use this field to set up the elective rule.</p>
+
+      
+<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" id="r_projected_registration_controls__r_projected_registration_controls-utbl4" class="table" frame="hsides" border="1" rules="rows"><colgroup><col><col></colgroup><thead class="thead" style="text-align:left;vertical-align:bottom;">
+            <tr class="row">
+              <th class="entry row-nocellborder" style="text-align:left;vertical-align:bottom;" id="d47438e223">Fields</th>
+
+              <th class="entry row-nocellborder" style="text-align:left;vertical-align:bottom;" id="d47438e226">Descriptions</th>
+
+            </tr>
+
+          </thead>
+<tbody class="tbody">
+            <tr class="row">
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d47438e223 ">Elective Rule Key</td>
+
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d47438e226 ">Value used to identify elective courses. Enter a key such as <code class="ph codeph">ELECTIVE</code>.<p class="p">When this is blank, the elective rule does not apply.</p>
+</td>
+
+            </tr>
+
+          </tbody>
+</table>
+</div>
+
+      <p class="p">Use this field to set up the external API.</p>
+
+      
+<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" id="r_projected_registration_controls__r_projected_registration_controls-utbl5" class="table" frame="hsides" border="1" rules="rows"><colgroup><col><col></colgroup><thead class="thead" style="text-align:left;vertical-align:bottom;">
+            <tr class="row">
+              <th class="entry row-nocellborder" style="text-align:left;vertical-align:bottom;" id="d47438e266">Fields</th>
+
+              <th class="entry row-nocellborder" style="text-align:left;vertical-align:bottom;" id="d47438e269">Descriptions</th>
+
+            </tr>
+
+          </thead>
+<tbody class="tbody">
+            <tr class="row">
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d47438e266 ">External API</td>
+
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d47438e269 ">Name of the external API used for processing registration projections when <span class="keyword">CAPP</span> is not in use.</td>
+
+            </tr>
+
+          </tbody>
+</table>
+</div>
+
+    </div>
+
+  </div>
+
+</div></div></section>
+<section id="t-2630"><h4>Projected Registration GTVSDAX rules</h4><div class="content-locale-en-US content-locale-en"><div id="c_projected_registration_gtvsdax_rules"><p class="shortdesc">Rules on GTVSDAX with the internal code group of REGPROJSTRUCT are used with <span class="keyword">Projected Registration</span>.</p>
+
+</div></div></section>
+<section id="t-2640"><h5>REGPROJ rule</h5><div class="content-locale-en-US content-locale-en"><div id="c_regproj_rule"><div class="body conbody"><p class="shortdesc">Use the REGPROJ rule to determine whether to use the name convention for the area or use the area priority.</p>
+
+    <div class="p">Values are P - Priority and N - Name. The default is P.<ul class="ul">
+        <li class="li">When an institute is using <span class="keyword">CAPP</span> and has associated sequenced priorities with areas in SMAPROG based on the order in which they will be taken, the value of P should be used.</li>
+
+        <li class="li">When an institute uses area naming conventions to identify the sequence, the value of N should be used.</li>
+
+      </ul>
+</div>
+
+  </div>
+
+</div></div></section>
+<section id="t-2650"><h5>CLASS rule</h5><div class="content-locale-en-US content-locale-en"><div id="c_projected_registration_class_rule"><div class="body conbody"><p class="shortdesc">For projections, the CLASS rule is only used when the REGPROJ rule is set to N.</p>
+
+    <p class="p">When the REGPROJ rule is set to N, the name of the class code found at the end of the area name is used. The CLASS rule can use numerical or alphabetical codes. However, the code must be used as the student's class code, and the area assigned to the student's program on SMAPROG must end with the same code.</p>
+
+  </div>
+
+</div></div></section>
+<section id="t-2660"><h5>PRIADJFAC rule</h5><div class="content-locale-en-US content-locale-en"><div id="r_priadjfac_rule"><div class="body refbody"><p class="shortdesc">Use the PRIADJFAC rule to adjust the priority factor for processing.</p>
+
+    <div class="section">Enter <kbd class="ph userinput">1</kbd> or <kbd class="ph userinput">10</kbd>. The default is 10. The adjust factor is used to set the maximum area and the maximum over the class rules. The factor of 10 assumes that area priorities are numbered in increments of 10, such as 10, 20, 30, and so on. The factor of 1 assumes that area priorities are numbered in increments of 1, such as 1, 2, 3, and so on.</div>
+
+    
+<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" id="r_priadjfac_rule__r_priadjfac_rule-utbl1" class="table" frame="hsides" border="1" rules="rows"><colgroup><col style="width:20%"><col style="width:20%"><col style="width:14.388489208633096%"><col style="width:25.61151079136691%"><col style="width:20%"></colgroup><thead class="thead" style="text-align:left;vertical-align:bottom;">
+          <tr class="row">
+            <th class="entry row-nocellborder" style="text-align:left;vertical-align:bottom;" id="d27723e58">External Code</th>
+
+            <th class="entry row-nocellborder" style="text-align:left;vertical-align:bottom;" id="d27723e61">Internal Code</th>
+
+            <th class="entry row-nocellborder" style="text-align:left;vertical-align:bottom;" id="d27723e64">Internal Code Seq Num</th>
+
+            <th class="entry row-nocellborder" style="text-align:left;vertical-align:bottom;" id="d27723e67">Internal Code Group</th>
+
+            <th class="entry row-nocellborder" style="text-align:left;vertical-align:bottom;" id="d27723e70">Description</th>
+
+          </tr>
+
+        </thead>
+<tbody class="tbody">
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d27723e58 ">P and N <p class="p">Default is P</p>
+</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d27723e61 ">REGPROJ</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d27723e64 ">&nbsp;</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d27723e67 ">REGPROJSTRUCT</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d27723e70 ">Values are P = Priority or N = Name</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d27723e58 ">01</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d27723e61 ">CLASS</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d27723e64 ">1</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d27723e67 ">REGPROJSTRUCT</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d27723e70 ">1st year class</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d27723e58 ">02</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d27723e61 ">CLASS</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d27723e64 ">2</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d27723e67 ">REGPROJSTRUCT</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d27723e70 ">2nd year class</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d27723e58 ">03</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d27723e61 ">CLASS</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d27723e64 ">3</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d27723e67 ">REGPROJSTRUCT</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d27723e70 ">3rd year class</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d27723e58 ">04</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d27723e61 ">CLASS</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d27723e64 ">4</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d27723e67 ">REGPROJSTRUCT</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d27723e70 ">4th year class</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d27723e58 ">1, 10 <p class="p">Default is 10</p>
+</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d27723e61 ">PRIADJFAC</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d27723e64 ">&nbsp;</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d27723e67 ">REGPROJSTRUCT</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d27723e70 ">Priority adjust factor 1 or 10</td>
+
+          </tr>
+
+        </tbody>
+</table>
+</div>
+
+  </div>
+
+</div></div></section>
+<section id="t-2670"><h4>Elective course management for Projected Registration</h4><div class="content-locale-en-US content-locale-en"><div id="c_elective_crs_mgt_for_prjct_reg"><div class="body conbody"><p class="shortdesc">The Elective Pool (SSAPOOL) page and Schedule Specific Section Attribute (SSASATR) page work in conjunction to support the elective course management for <span class="keyword">Projected Registration</span>.</p>
+
+    <p class="p">The <span class="ph uicontrol">Section Attribute for Elective Pool</span> added to SOATERM under <span class="keyword">Projected Registration</span> enables you to identify a Degree Program Attribute that you will assign to the pool of electives that will be offered for the term. You also have the ability to hide transferred courses, in progress courses, and passed courses from students when students view their projected registration options.</p>
+
+    <div class="p">Fields in SOATERM under <span class="keyword">Projected Registration</span> also allow you to do the following:<ul class="ul"> <li class="li">Roll the section attribute to Academic History during a manual or mass update.</li>
+ <li class="li">Make an elective active at the time registration begins.</li>
+ <li class="li">Make mandatory classes active at the time registration begins.</li>
+ </ul>
+</div>
+
+    <p class="p">See the online help for SOATERM to find out more about all the fields.</p>
+
+  </div>
+
+</div></div></section>
+<section id="t-2680"><h5>Elective Pool (SSAPOOL) page</h5><div class="content-locale-en-US content-locale-en"><div id="c_elective_pool_ssapool_page"><div class="body conbody"><p class="shortdesc">With the SSAPOOL page, you can add multiple classes to an elective pool at one time.</p>
+
+    <p class="p">Previously, this was a manual process that required you to use SSADETL to enter an attribute for each CRN. See the online help for SSAPOOL to find out more about this page.</p>
+
+  </div>
+
+</div></div></section>
+<section id="t-2690"><h5>Schedule Specific Section Attribute (SSASATR) page</h5><div class="content-locale-en-US content-locale-en"><div id="c_schedule_specific_section_attribute_ssasatr"><div class="body conbody"><p class="shortdesc">Use SSASATR page to assign attributes to a specific group of CRNs.</p>
+
+    <p class="p">This can be used for adding an attribute to an elective pool or adding an attribute to a group of CRNs that match your search criteria. See the online help for SSASATR to find out more about this page.</p>
+
+  </div>
+
+</div></div></section>
+<section id="t-2700"><h4>Use external API for Projected Registration</h4><div class="content-locale-en-US content-locale-en"><div id="c_use_external_api_projected_registration"><p class="shortdesc"><span class="keyword">Projected Registration</span> processing can request data from external third party applications and receive a list of projected courses to be processed in <span class="keyword">Banner</span>. This is done by setting up an external API when <span class="keyword">CAPP</span> is not in use.</p>
+
+</div></div></section>
+<section id="t-2710"><h5>Configure the external API for Projected Registration</h5><div class="content-locale-en-US content-locale-en"><div id="t_configure_external_api_projected_registration"><div class="body taskbody"><p class="shortdesc">Set up the external API used to retrieve <span class="keyword">Projected Registration</span> data from the third party application.</p>
+
+    <div class="tasklabel"><h2 class="sectiontitle tasklabel">Procedure</h2></div><ol class="ol steps"><li class="li step stepexpand" id="t_configure_external_api_projected_registration__pm4_4l3_4z">
+        <span class="ph cmd">Create a new record for the external RESTful API code and description on the<span class="keyword wintitle"> External API Information Validation Page (STVREST)</span>.</span>
+        <div class="itemgroup stepxmp">For example, enter <kbd class="ph userinput">PRG - Third Party Connection for <span class="keyword">Projected Registration</span></kbd>. You will use this code in step <span class="xref ft-internal-link" data-ft-warning="excluded-from-rendering" data-mapid="YrBUkW9_uTki0wEoVn7SaQ" data-tocid="dVc9mj_AU9CAiNQfm9oGtA" data-section="t_configure_external_api_projected_registration__zks_gl3_4z">2</span>.</div>
+      </li>
+<li class="li step stepexpand" id="t_configure_external_api_projected_registration__zks_gl3_4z">
+        <span class="ph cmd">Define the RESTful API controls on the <span class="keyword wintitle">External API Connection Information Page (SOAREST)</span>.</span>
+        <ol type="a" class="ol substeps">
+          <li class="li substep">
+            <span class="ph cmd">Select the code that you created on <span class="keyword wintitle">STVREST</span> in step <span class="xref ft-internal-link" data-ft-warning="excluded-from-rendering" data-mapid="YrBUkW9_uTki0wEoVn7SaQ" data-tocid="dVc9mj_AU9CAiNQfm9oGtA" data-section="t_configure_external_api_projected_registration__pm4_4l3_4z">1</span>.</span>
+          </li>
+
+          <li class="li substep">
+            <span class="ph cmd">Enter the username, password, and URL information used to connect to your third-party APIs.</span>
+          </li>
+
+        </ol>
+
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Update the RESTful API code on <span class="keyword wintitle">SOATERM</span>.</span>
+        <div class="itemgroup info">This step tells your registration process how to collect <span class="keyword">Projected Registration</span> data.</div>
+        <ol type="a" class="ol substeps">
+          <li class="li substep">
+            <span class="ph cmd">Enter the term you want to use.</span>
+          </li>
+
+          <li class="li substep">
+            <span class="ph cmd">Select the <span class="keyword">Projected Registration</span> tab.</span>
+          </li>
+
+          <li class="li substep">
+            <span class="ph cmd">Enter the external API using the code defined on <span class="keyword wintitle">STVREST</span>.</span>
+          </li>
+
+          <li class="li substep">
+            <span class="ph cmd">Save the changes.</span>
+          </li>
+
+        </ol>
+
+      </li>
+</ol>
+
+  </div>
+
+</div></div></section>
+<section id="t-2720"><h5>Use third party service for Projected Registration</h5><div class="content-locale-en-US content-locale-en"><div id="c_use_third_party_service_projected_registration"><p class="shortdesc">The service needs to send all processed data based on the request criteria provided. The following minimum requirements must be met by your third party service provider.</p>
+
+</div></div></section>
+<section id="t-2730"><h6>URL for third party service</h6><div class="content-locale-en-US content-locale-en"><div id="c_url_third_party_service"><p class="shortdesc">Your third party service should be exposed as a RESTful Service on the URL accessible by the <span class="keyword">Banner</span>
+    <span class="ph">9.31.0</span> application.</p>
+
+</div></div></section>
+<section id="t-2740"><h6>Authentication for third party service</h6><div class="content-locale-en-US content-locale-en"><div id="c_authentication_third_party_service"><p class="shortdesc">External API access requires Base64 encoding of the username and password. The third party service is expected to authenticate all incoming requests with the Base64 encoded username and password. The response is returned when the data is successfully validated, based on the credentials entered in SOAREST.</p>
+
+</div></div></section>
+<section id="t-2750"><h6>Request criteria for third party service</h6><div class="content-locale-en-US content-locale-en"><div id="r_request_criteria_third_party_service"><div class="body refbody"><p class="shortdesc">The <span class="keyword">Banner</span>
+    <span class="ph">9.31.0</span> application will provide following criteria for the RESTful request.</p>
+
+    
+<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" id="r_request_criteria_third_party_service__r_request_criteria_third_party_service-utbl1" class="table" frame="hsides" border="1" rules="rows"><colgroup><col><col><col></colgroup><thead class="thead" style="text-align:left;vertical-align:bottom;">
+          <tr class="row">
+            <th class="entry row-nocellborder" style="text-align:left;vertical-align:bottom;" id="d50285e50">Criteria Field</th>
+
+            <th class="entry row-nocellborder" style="text-align:left;vertical-align:bottom;" id="d50285e53">Field Attribute</th>
+
+            <th class="entry row-nocellborder" style="text-align:left;vertical-align:bottom;" id="d50285e56">Description</th>
+
+          </tr>
+
+        </thead>
+<tbody class="tbody">
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d50285e50 ">studentId</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d50285e53 ">String (9 char)</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d50285e56 ">Student's ID, required.</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d50285e50 ">termCode</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d50285e53 ">String (6 char)</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d50285e56 ">Student's term, required.</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d50285e50 ">program</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d50285e53 ">String (12 char)</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d50285e56 ">Student's program, required.</td>
+
+          </tr>
+
+        </tbody>
+</table>
+</div>
+
+  </div>
+
+</div></div></section>
+<section id="t-2760"><h6>Response from third party service</h6><div class="content-locale-en-US content-locale-en"><div id="c_response_from_third_party_service"><p class="shortdesc">A JSON type of response is expected from the third party service. The <span class="keyword">Banner</span> <span class="keyword">Registration Self-Service</span> <span class="ph">9.31.0</span> application will request "application/json" as the acceptToken in the request.</p>
+
+  
+</div></div></section>
+<section id="t-2770"><h6>JSON</h6><div class="content-locale-en-US content-locale-en"><div id="r_json"><div class="body refbody"><p class="shortdesc">Below is the JSON information for criteria field, field attribute, and description.</p>
+
+    
+<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" id="r_json__r_json-utbl1" class="table" frame="hsides" border="1" rules="rows"><colgroup><col><col><col></colgroup><thead class="thead" style="text-align:left;vertical-align:bottom;">
+          <tr class="row">
+            <th class="entry row-nocellborder" style="text-align:left;vertical-align:bottom;" id="d1336e44">Criteria Field</th>
+
+            <th class="entry row-nocellborder" style="text-align:left;vertical-align:bottom;" id="d1336e47">Field Attribute</th>
+
+            <th class="entry row-nocellborder" style="text-align:left;vertical-align:bottom;" id="d1336e50">Description</th>
+
+          </tr>
+
+        </thead>
+<tbody class="tbody">
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d1336e44 ">studentId</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d1336e47 ">String (9 char)</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d1336e50 ">Student's ID, required.</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d1336e44 ">term</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d1336e47 ">String (6 char)</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d1336e50 ">Student's term, required.</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d1336e44 ">mandatoryIndicator</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d1336e47 ">String (1 char) ["Y", "N"]</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d1336e50 ">Mandatory Course Indicator, optional. Default is N.</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d1336e44 ">Program</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d1336e47 ">String (12 char)</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d1336e50 ">Student's program code, required.</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d1336e44 ">elective</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d1336e47 ">String (1 char) <p class="p">["G", "E", null]</p>
+</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d1336e50 ">Elective Course Indicator, optional.<div class="p">Valid values include:<ul class="ul">
+                  <li class="li">G = Generic</li>
+
+                  <li class="li">E = Elective</li>
+
+                  <li class="li">Null = Default</li>
+
+                </ul>
+</div>
+</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d1336e44 ">subject</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d1336e47 ">String (4 char)</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d1336e50 ">Subject Code, optional. Default is Null.</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d1336e44 ">courseNumberLow</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d1336e47 ">String (5 char)</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d1336e50 ">Course number low, optional. Default is Null.</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d1336e44 ">courseNumberHigh</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d1336e47 ">String (5 char)</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d1336e50 ">Course number high, optional. Default is Null. When low and high are both populated, a range is indicated. High cannot exist without low.</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d1336e44 ">attribute</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d1336e47 ">String (4 char)</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d1336e50 ">Attribute Code, optional. Default is Null.</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d1336e44 ">level</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d1336e47 ">String (2 char)</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d1336e50 ">Level Code, optional. Default is Null.</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d1336e44 ">mostProbable</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d1336e47 ">String (1 char) <p class="p">["Y", "N", null]</p>
+</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d1336e50 ">Most Probable Course Indicator, optional. Default is Null.</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d1336e44 ">campus</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d1336e47 ">String (3 char)</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d1336e50 ">Campus Code, optional. Default is Null.</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d1336e44 ">college</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d1336e47 ">String (2 char)</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d1336e50 ">College Code, optional. Default is Null.</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d1336e44 ">department</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d1336e47 ">String (4 char)</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d1336e50 ">Department Code, optional. Default is Null.</td>
+
+          </tr>
+
+        </tbody>
+</table>
+</div>
+
+  </div>
+
+</div></div></section>
+<section id="t-2780"><h6>Sample JSON object</h6><div class="content-locale-en-US content-locale-en"><div id="c_sample_json_object"><div class="body conbody"><p class="shortdesc">Here is an example of request criteria for the third party service.</p>
+
+    <pre class="pre codeblock"><code>
+[{
+"attribute": null,
+"campus": null,
+"college": null,
+"courseNumberHigh": null,
+"courseNumberLow": "101",
+"department": null,
+"elective": null,
+"level": "UG",
+"mandatoryIndicator": "Y",
+"mostProbable": null,
+"program": "BA_LANG",
+"studentId": "PROTEST01",
+"subject": "SPAN",
+"term": "201410"
+},
+{
+"attribute": null,
+"campus": null,
+"college": null,
+"courseNumberHigh": null,
+"courseNumberLow": "102",
+"department": null,
+"elective": null,
+"level": "UG",
+"mandatoryIndicator": "Y",
+"mostProbable": null,
+"program": "BA_LANG",
+"studentId": "PROTEST01",
+"subject": "ACCT",
+"term": "201410"
+}]
+</code></pre>
+    <p class="p">To download the <cite class="cite">Sample JSON Areas.txt</cite>, click <span class="ph uicontrol">Attachments</span> <img class="image" src="images/07-projected-registration-1.png" alt="Attachments" data-ft-asset-display-name="icn_attachments.png" data-ft-resource-id="qPJAJ08_7vY63jvxZcLZ5w-YrBUkW9_uTki0wEoVn7SaQ"> on this page and then select the file.</p>
+
+  </div>
+
+</div></div></section>
+<section id="t-2790"><h6>Processing note</h6><div class="content-locale-en-US content-locale-en"><div id="c_processing_note"><div class="body conbody"><p class="shortdesc">When the Student Projection Process (SFPPROJ) is run and data is retrieved from an external API, sometimes a delay occurs in the generation of the <span class="ph filepath">.lis</span> and <span class="ph filepath">.log</span> files. In that case you will need to wait before you attempt to open those files.</p>
+
+    <p class="p">This delay is caused when a connection timeout exception takes place. This exception is listed in the <span class="ph filepath">.log</span> file. The timeout takes place when SFPPROJ cannot access the URL configured for the external API code on the SOAREST page. The batch process will try to access the URL for a specific amount of time. If it is not successful, the timeout occurs.</p>
+
+  </div>
+
+</div></div></section>
+<section id="t-2800"><h3>Administrative forms</h3><div class="content-locale-en-US content-locale-en"><div id="c_administrative_forms"><div class="body conbody"><p class="shortdesc">The following are used with this functionality.</p>
+
+    <ul class="ul">
+      <li class="li">Projection Configuration by Program page (SFALPRO)</li>
+
+      <li class="li">Projection Maintenance page (SFAPROJ)</li>
+
+    </ul>
+
+    <p class="p">These forms can be accessed from the Course Projections Menu (*PROJECTIONS) on the Student Menu (*STUDENT). Refer to the <cite class="cite"><span class="keyword">Banner Student</span> Online Help</cite> for information on page sections and field definitions.</p>
+
+  </div>
+
+</div></div></section>
+<section id="t-2810"><h4>Projection Configuration by Program (SFALPRO)</h4><div class="content-locale-en-US content-locale-en"><div id="c_projection_configuration_program_form_sfalpro"><div class="body conbody"><p class="shortdesc">This page is used to set up projection filtering by program. It contains several blocks and a secondary window.</p>
+
+    <ul class="ul">
+      <li class="li">The program for the rule is entered in the Key block.</li>
+
+      <li class="li">The parameters used with the rule are defined in the Parameters to Define the Term’s Rule block. The data can be filtered by the projection process.</li>
+
+      <li class="li">Combinations of department, college, and subject are defined in the Parameters to Define First Courses block to identify courses as first courses. <p class="p">First courses are selected for projection without consideration of the limits on maximum levels or maximum areas over student classes. Only the first maximum number of courses is selected for each rule defined in this block. At least one value of department, college, or subject must be defined for each rule.</p>
+</li>
+
+      <li class="li">The most probable attributes for the program are viewed and maintained in the Most Probable Attribute window.<div class="note"><span class="notetitle">Note:</span> When the Most Probable Attribute window is accessed from the Options Menu and a new attribute code is inserted and saved, and then the user performs a Rollback and re-enters the window from the Options Menu, the inserted attribute is not displayed. The window is re-entered in query mode, and you need to perform an Execute Query function to display the record.</div>
+ <p class="p">When the window is accessed using Next Block, the inserted attribute is displayed.</p>
+</li>
+
+    </ul>
+
+  </div>
+
+</div></div></section>
+<section id="t-2820"><h4>Projection Maintenance (SFAPROJ)</h4><div class="content-locale-en-US content-locale-en"><div id="c_projection_maintenance_form_sfaproj"><p class="shortdesc">This page is used to view projection registration results for a student, term, and study path and then modify the returned list of projected courses if needed.</p>
+
+</div></div></section>
+<section id="t-2830"><h3>Reporting in Projected Registration</h3><div class="content-locale-en-US content-locale-en"><div id="c_reporting_projected_registration"><div class="body conbody"><p class="shortdesc">The following process and report are used with <span class="keyword">Projected Registration</span>.</p>
+
+    <ul class="ul">
+      <li class="li">Student Projection Process (SFPPROJ)</li>
+
+      <li class="li">Schedule Planning Report (SFRPRES)</li>
+
+    </ul>
+
+    <p class="p">See the <cite class="cite"><span class="keyword">Banner Student</span> Reports and Processes</cite> documentation for information on parameters and output samples.</p>
+
+  </div>
+
+</div></div></section>
+<section id="t-2840"><h4>Student Projection Process (SFPPROJ)</h4><div class="content-locale-en-US content-locale-en"><div id="c_student_projection_process_sfpproj"><div class="body conbody"><p class="shortdesc">The Student Projection Process (SFPPROJ) is a Java process used to produce projection results based on <span class="keyword">CAPP</span> compliance information. The list of projected courses for a student is used in Self-Service registration.</p>
+
+    <p class="p">This process takes <span class="keyword">CAPP</span> compliance results, generates the list of projected courses, applies filters, verifies prerequisites and corequisites, and marks the most probable courses for registration. Students are selected and processed by ID or population selection when <span class="keyword">CAPP</span> compliance results exist for the term. Only students that match the selected college, major, and student type are selected.</p>
+
+    <p class="p">The <span class="keyword">CAPP</span> compliance results for the primary program are used when study paths are not active. When study paths are active, <span class="keyword">CAPP</span> compliance results are used for each active program that needs to be processed for projections. When the Curriculum parameter is set to P, only primary curriculum records are processed.</p>
+
+    <div class="p">Not-met courses are identified from <span class="keyword">CAPP</span> compliance results from each row of courses attached to areas and rules.<ul class="ul">
+        <li class="li">When the subject and course number are specified, that course is included in the projection.</li>
+
+        <li class="li">When a subject with a range of course numbers is specified, all courses with the subject in the range of course numbers are included in the projection.</li>
+
+        <li class="li">When only the subject is specified, no courses are included in the projection, but the subject is projected.</li>
+
+        <li class="li">When a rule only includes attributes, no courses are included in the projection, but the attribute is projected.</li>
+
+        <li class="li">When a rule only includes the course number, no courses are included in the projection, but the course number is projected.</li>
+
+        <li class="li">When the rule description contains the elective rule key specified on SOATERM, courses are marked as electives in the projection. Rules are designated as elective on the Projection Maintenance page (SFAPROJ). <div class="note"><span class="notetitle">Note:</span> Lists of projected courses generated previously for the term are deleted when the process is run.</div>
+</li>
+
+      </ul>
+</div>
+
+  </div>
+
+</div></div></section>
+<section id="t-2850"><h4>Schedule Planning Report (SFRPRES)</h4><div class="content-locale-en-US content-locale-en"><div id="c_schedule_planning_report_sfrpres"><div class="body conbody"><p class="shortdesc">The Schedule Planning Report (SFRPRES) is a C process that produces a list of courses with the expected number of students to be registered in each active course in the Course Catalog. </p>
+
+    <p class="p">This can assist with schedule planning for the upcoming term. The numbers returned are based on the most probable courses for all available term projections. Historic enrollment data from two previous terms is included in the report, and courses are grouped by college and department.</p>
+
+  </div>
+
+</div></div></section></main></body></html>

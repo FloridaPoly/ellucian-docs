@@ -1,0 +1,805 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Degree Works - Reference — Prerequisite Checking</title><style>body{font-family:-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;line-height:1.55;color:#1a1a1a;max-width:920px;margin:0 auto;padding:24px}header{border-bottom:2px solid #5a16d6;margin-bottom:8px}h1{color:#3a0ca3}h2,h3,h4,h5,h6{margin-top:1.6em}.crumb{color:#666;font-size:13px;margin:0}.meta{color:#888;font-size:12px}nav.toc{background:#f6f4fc;border:1px solid #e3dcf5;border-radius:8px;padding:12px 18px;margin:18px 0}nav.toc h2{margin:.2em 0}nav.toc ul{list-style:none;padding-left:0}nav.toc a{text-decoration:none;color:#5a16d6}section{margin:1.2em 0;padding-top:.4em}img{max-width:100%;height:auto}table{border-collapse:collapse}td,th{border:1px solid #ccc;padding:4px 8px}code,pre{background:#f4f4f4;border-radius:4px}pre{padding:10px;overflow:auto}</style></head><body><header><p class="crumb">Ellucian Degree Works › Degree Works - Reference</p><h1>Degree Works - Reference — Prerequisite Checking</h1><p class="meta">Source: <a href="https://resources.elluciancloud.com/r/bundle/dgrwrks_ref_reference">https://resources.elluciancloud.com/r/bundle/dgrwrks_ref_reference</a> &middot; Retrieved 2026-06-17</p></header><nav class="toc"><h2>Contents</h2><ul><li style="margin-left:0px"><a href="#t-2080">Prerequisite Checking</a></li><li style="margin-left:16px"><a href="#t-2090">Scribing for prerequisite checking</a></li><li style="margin-left:32px"><a href="#t-2100">Elements of a REQUISITE block</a></li><li style="margin-left:32px"><a href="#t-2110">Block sharing considerations</a></li><li style="margin-left:32px"><a href="#t-2120">Block naming considerations</a></li><li style="margin-left:32px"><a href="#t-2130">Scribing for the Requisite Check service</a></li><li style="margin-left:32px"><a href="#t-2140">Scribing for the Requisite Description service</a></li><li style="margin-left:16px"><a href="#t-2150">Student Educational Planner prerequisite checking</a></li><li style="margin-left:16px"><a href="#t-2160">Banner prerequisite checking</a></li></ul></nav><main><section id="t-2080"><h2>Prerequisite Checking</h2><div class="content-locale-en-US content-locale-en"><div id="c_prerequisite_checking_using_dw"><p class="shortdesc">Missing prerequisite requirements in the Degree Works Student Educational Planner and in Banner registration can be identified, and advice to the student for resolving the errors can be provided using REQUISITE blocks in Scribe.</p>
+
+  
+</div></div></section>
+<section id="t-2090"><h3>Scribing for prerequisite checking</h3><div class="content-locale-en-US content-locale-en"><div id="c_scribing_for_prerequisite_checking"><div class="body conbody"><p class="shortdesc">REQUISITE blocks are Scribe blocks that specify and check for course pre-requisites or co-requisites.</p>
+
+    <div class="section"><h2 class="title sectiontitle">REQUISITE blocks</h2>
+      
+      <p class="p">For example, an employee from a university registrar’s office could create a REQUISITE block for an advanced mathematics course. The REQUISITE block might specify a pre-requisite basic mathematics course that must be completed before a student can enroll for the advanced course. A REQUISITE block can specify and check for credit and grade requirements, too.</p>
+
+      <p class="p">To have access to create and update REQUISITE blocks, a user needs the SCRBLREQ Shepherd key. </p>
+
+      <div class="p">Degree Works allows users to scribe REQUISITE blocks that can be used in two services.<ul class="ul">
+        <li class="li">Requisite Check - This is used by the next generation Student Educational Planner (SEP) to verify that prerequisites have been met when creating a plan. Also, Banner can send a request to Degree Works through the Oracle advanced message queues during registration to check if the student has satisfied the requisite requirements. The student must already exist in Degree Works for both of these to work.</li>
+
+        <li class="li">Requisite Description - Banner contacts Degree Works through the Oracle advanced message queues for a description of the requisite requirements while users are reviewing catalog information. </li>
+ </ul>
+</div>
+
+    </div>
+
+    <div class="section"><h2 class="title sectiontitle">Sample REQUISITE block in Scribe</h2>
+      
+      <p class="p">In the following example, the 1 Class rule and the ProxyAdvice are used for the Requisite Check service, while the Remarks are used for the Requisite Description service.</p>
+
+      <pre class="pre codeblock"><code>##REQUISITE = 200610 10285
+##ENGL 523
+
+BEGIN
+StandAloneBlock #share with all blocks
+;
+
+Remark "In addition, the student must take:";
+Remark "PSYC 1000 OR SOC 211.";
+
+  1 Class in PSYC 1000, SOC 211
+    ProxyAdvice "You need to take either PSYC 1000 or SOC 211"
+    Label "This text is ignored because ProxyAdvice was used.";
+
+END.</code></pre>
+    </div>
+
+    <div class="section"><h2 class="title sectiontitle">Banner prerequisite checking mode</h2>
+      
+      <p class="p"><span class="keyword">Degree Works</span> supports two modes for <span class="keyword">Banner</span> prerequisite checking, controlled by the <code class="ph codeph">integration.banner.prereqChecking.mode</code> setting.</p>
+
+      <div class="p">Set the mode to determine which communication protocol is used with <span class="keyword">Banner</span>:<ul class="ul">
+        <li class="li">V1 – Uses the legacy, non-JSON communication protocol.</li>
+
+        <li class="li">V2 – Uses the JSON-based communication protocol.</li>
+
+        </ul>
+</div>
+
+      <div class="note"><span class="notetitle">Note:</span> Version 2 is required to support advanced scribing features such as the following:<ul class="ul">
+        <li class="li">Part-of-term (DWPartOfTerm) checks for newly registered classes.</li>
+
+        <li class="li">Attribute-based conditions for newly registered classes.</li>
+
+        </ul>
+</div>
+
+    </div>
+
+  </div>
+
+</div></div></section>
+<section id="t-2100"><h4>Elements of a REQUISITE block</h4><div class="content-locale-en-US content-locale-en"><div id="c_elements_of_a_requisite_block"><div class="body conbody"><p class="shortdesc">A REQUISITE block can include many elements.</p>
+
+    <div class="section"><h2 class="title sectiontitle">Header qualifiers</h2>
+      
+      <p class="p">Specify the StandAloneBlock header qualifier for all REQUISITE blocks. This allows sharing
+        with other REQUISITE blocks. Otherwise, the class will be used only one time.</p>
+
+      <pre class="pre codeblock"><code>BEGIN
+StandAloneBlock # share with all blocks
+;
+1 Class in MATH 100
+  ProxyAdvice "Before taking MATH 101 you must first take MATH 100."
+  Label "ignored";
+END.</code></pre>
+      <p class="p">When scribing header qualifiers you must use ProxyAdvice. Header qualifiers apply only to
+        the courses found in the rules in a block. In the following example, the pre-requisite check
+        for 10 credits at the 200 level is done only if there are rules in this block that require
+        classes at the 200 level. The header qualifiers do not examine all the classes that the
+        student has taken; they only examine the classes that fit the rules in this block.</p>
+
+      <pre class="pre codeblock"><code>BEGIN
+StandAloneBlock # share with all blocks
+MinCredits 10 in @ 2@
+  ProxyAdvice “You first need at least 10 credits at the 200 level.”
+;
+15 Credits in @
+  ProxyAdvice “You must take 15 credits first.”
+  Label “ignored”;
+END.</code></pre>
+    </div>
+
+    <div class="section"><h2 class="title sectiontitle">Proxy advice</h2>
+      
+      <p class="p">You should use ProxyAdvice on all rules. If ProxyAdvice is not found on a rule the Label
+        text is displayed to the user when a prerequisite is not met. Consider using the
+        &lt;APPLIED&gt; and &lt;NEEDED&gt; tags to display the classes or credits that the user has taken
+        and those that are still required.</p>
+
+      <pre class="pre codeblock"><code>BEGIN
+StandAloneBlock # share with all blocks
+;
+5 Credits in @ 2@
+  ProxyAdvice “You must take 5 credits at the 200 level. You have taken ”
+  ProxyAdvice “&lt;APPLIED&gt; but still need &lt;NEEDED&gt; more.”
+  Label “ignored”;
+END.</code></pre>
+      <p class="p">When building a group rule place the ProxyAdvice at the top-most group level.</p>
+
+      <pre class="pre codeblock"><code>BEGIN
+StandAloneBlock # share with all blocks
+;
+1 Group in
+  (3 Classes in SPAN  @ Label “spanish”) or
+  (3 Classes in FREN  @ Label “french”) or
+  (3 Classes in IRISH @ Label “irish”)
+
+  ProxyAdvice “You must take 3 classes in either Spanish, French or Irish ”
+  ProxyAdvice “before taking this upper division linguistics course.”
+  Label “ignored”;
+END.</code></pre>
+    </div>
+
+    <div class="section"><h2 class="title sectiontitle">References to OTHER blocks</h2>
+      
+      <p class="p">REQUISITE blocks can refer to OTHER blocks in a way similar to academic audits. If the
+        referenced OTHER block cannot be found for the given registration term the Label text on the
+        Block rule is displayed to the user. If the OTHER block is found then the Label is ignored
+        and the ProxyAdvice (or Labels) found in the OTHER block is displayed to the user when a
+        prerequisite is not met, as illustrated in the following example.</p>
+
+      <pre class="pre codeblock"><code>BEGIN
+StandAloneBlock # share with all blocks
+;
+<span class="ph uicontrol">1 Block (OTHER = ENGLTEST)</span>
+  <span class="ph uicontrol">Label</span> “No ENLTEST block was found – please contact the registrar’s office.”;
+
+1 Class in ENGL @ (With Attribute = “WRIT”)
+  ProxyAdvice “You must first take an English writing intensive class.“
+  Label “ignored”;
+END.</code></pre>
+    </div>
+
+    <div class="section"><h2 class="title sectiontitle">Co-requisite check</h2>
+      
+      <p class="p">You can perform a co-requisite check on any course using this scribing.</p>
+
+      <pre class="pre codeblock"><code>1 Class in BIOL 123 (<span class="ph uicontrol">With DWTerm = REGTERM</span>)
+  ProxyAdvice “You must take Biology 123 at the same time as Biology 106.“
+  Label “ignored”;</code></pre>
+      <p class="p">Only if BIOL 123 is part of the current registration process will it pass this check. This
+        means that if BIOL 106, BIOL 123 and ENGL 147 are part of a student’s registration you will
+        be able to check to see that BIOL 123 is a co-requisite to BIOL 106 (or to ENGL 147 of
+        course). You could also use DWPreregistered = Y, however this won’t catch planned courses so
+        cannot be used for SEP prerequisite checking. DWTerm = REGTERM can be used in both SEP and
+        Banner Registration prerequisites.</p>
+
+    </div>
+
+    <div class="section"><h2 class="title sectiontitle">Strict prerequisite check</h2>
+      
+      <p class="p">On any course using this scribing, you can perform a strict prerequisite check, meaning
+        that a course must be taken in a prior term and cannot be taken in the same term.</p>
+
+      <pre class="pre codeblock"><code>1 Class in BIOL 122 (<span class="ph uicontrol">With DWTerm &lt; REGTERM</span>)
+  ProxyAdvice “You must take Biology 122 prior to taking Biology 123.“
+  Label “ignored”;</code></pre>
+      <p class="p">Only if BIOL 122 was taken or planned for in a prior term will it pass this check. This
+        means that if BIOL 123 is planned for in the term before BIOL 122, it will not pass the
+        prerequisite check. Additionally, if BIOL 122 is planned for in the same term as BIOL 123,
+        it will not pass the prerequisite check. If BIOL 122 can be taken as either a co- or a
+        prerequisite for 123, you do not need to use DWTerm at all.</p>
+
+    </div>
+
+    <div class="section"><h2 class="title sectiontitle">Part-of-term check</h2>
+      
+      <p class="p">Some schools offer a part-of-term within a term. For example, the summer term may include Summer Session 1 and Summer Session 2. In certain cases, prerequisite checks must allow a prerequisite course to be completed in an earlier part-of-term within the same STU016 term.</p>
+
+      <div class="note"><span class="notetitle">Note:</span> <span class="keyword">Banner</span> users must set the <code class="ph codeph">integration.banner.prereqChecking.mode</code> to <kbd class="ph userinput">V2</kbd> to support part-of-term processing.</div>
+
+      <p class="p">With the exception of examples 4 and 5, the following example scenarios are based on two summer sessions (part-of-term = 2 and part-of-term = 3). A part-of-term value of 1 generally indicates a full summer term.</p>
+
+      <ul class="ul">
+        <li class="li">Example 1: COMM 105 must be taken in a part-of-term before COMM 106.</li>
+
+        <li class="li">Example 2: COMM 105 must be taken in Summer Session 1 of the same term, serving as a prerequisite for COMM 106.</li>
+
+        <li class="li">Example 3: COMM 106 may be taken in a prior term or in the same term but Summer Session 2.</li>
+
+        <li class="li">Example 4: COMM 106 may be taken in a prior term or in the same term as long as it is taken after COMM 105.</li>
+
+        <li class="li">Example 5: COMM 105 is taken in the full term and cannot satisfy the prerequisite in the same term as COMM 106</li>
+
+      </ul>
+
+      <p class="p">Example 1:</p>
+
+      <p class="p">Ellucian does not recommend scribing as Example 1 states. It states that COMM 106 is always offered in part-of-term 3, and thus COMM 105 must be taken in a part-of-term with a smaller value. This does not allow for COMM 105 to be taken in a prior term (for example, last summer) in part-of-term 3.</p>
+
+      <pre class="pre codeblock"><code># Not recommended
+1 Class in COMM 105 (<strong class="ph b">With DWPartOfTerm &lt; 3</strong>)
+  ProxyAdvice “You must take Communication 105 prior to taking Communication 106.“
+  Label “Example 1”;</code></pre>
+      <p class="p">Example 2:</p>
+
+      <p class="p">To require COMM 105 to be taken in the same term but in a prior part-of-term, you can scribe following Example 2. It states COMM 105 must be taken in the same term, maybe summer, but in a prior part-of-term.</p>
+
+      <pre class="pre codeblock"><code>1 Class in COMM 105 (<strong class="ph b">With DWTerm = REGTERM and DWPartOfTerm &lt; 3</strong>)
+  ProxyAdvice “You must take Communication 105 in the same term but prior to taking Communication 106.“
+  Label “Example 2”;</code></pre>
+      <p class="p">Example 3a:</p>
+
+      <p class="p">To allow COMM 105 to be taken in a prior term or in a prior part-of-term within the same term, you can scribe following Example 3a. It states COMM 105 can be taken in a prior term (in any part-of-term) or in the current term but in a prior part-of-term.</p>
+
+      <pre class="pre codeblock"><code>1 Class in COMM 105 (<strong class="ph b">With DWTerm &lt; REGTERM or DWPartOfTerm &lt; 3</strong>)
+  ProxyAdvice “You must take Communication 105 prior to taking Communication 106.“
+  Label “Example 3a”;</code></pre>
+      <p class="p">Example 3b:</p>
+
+      <p class="p">An alternate way to scribe Example 3a that is easier to understand is shown in Example 3b. It states either COMM 105 must be taken in a prior term, or COMM 105 is taken in the same term as COMM 106 but in a prior part-of-term.</p>
+
+      <pre class="pre codeblock"><code>1 Class in COMM 105 (<strong class="ph b">With DWTerm &lt; REGTERM</strong>), 
+           COMM 105 (<strong class="ph b">With DWTerm = REGTERM and DWPartOfTerm &lt; 3</strong>)
+  ProxyAdvice “You must take Communication 105 prior to taking Communication 106.“
+  Label “Example 3b”;</code></pre>
+      <p class="p">Example 4:</p>
+
+      <p class="p">Examples 1, 2, and 3 assume a fixed part-of-term value for COMM 106. If COMM 106 is consistently offered in part-of-term 3, you can scribe it as shown above, with the value explicitly set to 3. However, if the course is offered across multiple parts-of-term, a variable value may be required instead. In those cases, you can use PARTOFTERM to indicate the part-of-term value to use is the part-of-term of the parent COMM 106 class that is part of the current registration. Example 4 shows the recommended approach to scribing part-of-term prerequisites. COMM 105 must be taken before COMM 106, either in a prior term or, if taken in the same term, before the part-of-term value of COMM 106.</p>
+
+      <pre class="pre codeblock"><code># Recommended
+1 Class in COMM 105 (<strong class="ph b">With DWTerm &lt; REGTERM</strong>), 
+           COMM 105 (With DWTerm = REGTERM and DWTDWPartOfTerm &lt; <strong class="ph b">PARTOFTERM</strong>)
+  ProxyAdvice “You must take Communication 105 prior to taking Communication 106.“
+  Label “Example 4”;</code></pre>
+      <p class="p">Example 5:</p>
+
+      <p class="p">If the institution uses part-of-term 1 to represent a full-term, and the policy requires that COMM 105 must be completed before COMM 106, then the following scribe is recommended:</p>
+
+      <pre class="pre codeblock"><code># Recommended
+1 Class in COMM 105 (With DWTerm &lt; REGTERM),
+           COMM 105 (With DWTerm = REGTERM 
+                      and DWPartOfTerm &lt;&gt; 1 
+                      and DWPartOfTerm &lt; PARTOFTERM)
+  ProxyAdvice "You must take Communication 105 prior to taking Communication 106 and not in part-of-term 1."
+  Label "Example 5";</code></pre>
+    </div>
+
+    <div class="section"><h2 class="title sectiontitle">In-progress classes</h2>
+      
+      <p class="p">Classes that a student is currently taking and classes for which the student is trying to
+        register can be applied to the requisite rules. Consider using the
+          <span class="ph uicontrol">DWInprogress</span> qualifier to ensure that the student has already
+        completed and passed a particular class. Planned classes count as in-progress, so you do not
+        need to set DWInprogress = N for prerequisite checking during registration. Including
+        DWGradeLetter = PLAN, however, helps clarify that planned classes can satisfy prerequisite
+        checking when creating plans in SEP. For example, a student who is taking ENGL 213 in Fall
+        2014 may try, in early December, to register for ENGL 325 for Spring 2015. If the student is
+        required to complete ENGL 213 before registering for ENGL 325 you can use the DWInprogress
+        qualifier to prevent them from registering for ENGL 325 as shown in the following
+        example.</p>
+
+      <pre class="pre codeblock"><code>BEGIN
+StandAloneBlock # share with all blocks
+;
+1 Class in ENGL 2@ (<span class="ph uicontrol">With DWInprogress = “N” or DWGradeLetter = PLAN</span>)
+  ProxyAdvice “You must have completed an English 200 level course.“
+  Label “ignored”;
+END.</code></pre>
+      <p class="p">Note that if a student has planned for both ENGL 213 and ENGL 325 in SEP, then a
+        prerequisite error will not be generated because of the DWGradeLetter qualifier.</p>
+
+      <p class="p">You can also place a qualifier at the top of your block to disallow in-progress classes for
+        all of the rules. By adding the DWGradeLetter &lt;&gt; PLAN you are allowing planned classes in
+        the block; you are telling the auditor to ignore planned classes for this qualifier.</p>
+
+      <pre class="pre codeblock"><code>BEGIN
+StandAloneBlock # share with all blocks
+MaxClasses 0 in @ (<span class="ph uicontrol">With DWInprogress = “Y” and DWGradeLetter &lt;&gt; PLAN</span>)
+;
+1 Class in ENGL 2@ 
+  ProxyAdvice “You must have completed an English 200 level course.“
+  Label “ignored”;
+1 Class in HIST 2@ 
+  ProxyAdvice “You must have completed a History 200 level course.“
+  Label “ignored also”;
+
+END.</code></pre>
+      <p class="p">Alternatively, you could re-run the requisite check for all classes after the fall semester
+        to check for passing grades.</p>
+
+    </div>
+
+    <div class="section"><h2 class="title sectiontitle">Minimum grades</h2>
+      
+      <p class="p">Rules that require a minimum grade can be handled with the DWGrade qualifier. If you're
+        using prerequisite checking in SEP, planned courses will not have a grade. To prevent them
+        from failing the prerequisite check, use the DWGradeLetter qualifier. If using prerequisite
+        checking in both SEP and Banner registration, you can combine these qualifiers on the rule.
+        When DWGrade or DWGradeNumber are used, both in-progress and passed pass-fail classes are
+        given a grade of 4.0.</p>
+
+      <pre class="pre codeblock"><code>BEGIN
+StandAloneBlock
+;
+1 Class in DAN 37058 (<span class="ph uicontrol">With DWGrade &gt; 2.0 or DWGradeLetter = PLAN</span>)
+  ProxyAdvice "Prerequisite: DAN 37058 with a grade of C or "
+  ProxyAdvice "better is required before enrolling in DAN 47156."
+  Label "Not Used";
+
+END.</code></pre>
+    </div>
+
+    <div class="section"><h2 class="title sectiontitle">Prerequisites by major</h2>
+      
+      <p class="p">Prerequisite rules may differ by major. The student's curriculum already in Degree Works is
+        used when the prerequisite check is performed. You can scribe if-statements based on this
+        data. You do need to keep in mind that if the student does not exist in Degree Works
+        (because the student was added to Banner and registered all in the same day) there will be
+        no curriculum information available. You should scribe for this possibility. Determine what
+        should show if the student’s data is not in Degree Works.</p>
+
+      <pre class="pre codeblock"><code>BEGIN
+StandAloneBlock
+;
+# Chemistry majors – or if the student has no majors (ie, doesn’t exist in Degree Works)
+If (Major = CHEM <span class="ph uicontrol">or NumMajors = 0</span>) then
+  1 Class in BIOL 134
+    ProxyAdvice "Prerequisite: Chemistry majors must take BIOL 134"
+    ProxyAdvice "before enrolling in BIOL 206."
+    Label "Not Used";
+
+END.</code></pre>
+      <p class="p">Another option is to give specific advice for students without a major:</p>
+
+      <pre class="pre codeblock"><code>BEGIN
+StandAloneBlock
+;
+If (<span class="ph uicontrol">NumMajors = 0</span>) then
+  RuleIncomplete
+    ProxyAdvice "Prerequisite: You don’t have a major or your curriculum is not known;"
+    ProxyAdvice "you cannot enroll in BIOL 206."
+    Label "Not Used"
+else If (Major = CHEM <span class="ph uicontrol">or NumMajors = 0</span>) then
+  1 Class in BIOL 134
+    ProxyAdvice "Prerequisite: Chemistry majors must take BIOL 134"
+    ProxyAdvice "before enrolling in BIOL 206."
+    Label "Not Used 2";
+END.</code></pre>
+    </div>
+
+    <div class="section"><h2 class="title sectiontitle">Cross-listings check</h2>
+      
+      <p class="p">You may want to scribe part of your prerequisites to ensure the student does not enroll in
+        the class a second time under another name when two classes are cross listed. For example,
+        MATH 108 may be cross listed with BUSN 108. You may want Degree Works to ensure the student
+        cannot enroll in MATH 108 if they have already taken BUSN 108. This is not something that
+        you should be attempting to do in a requisite block in Degree Works. This needs to be
+        handled in Banner as part of the registration setup.</p>
+
+    </div>
+
+    <div class="section"><h2 class="title sectiontitle">Ranges</h2>
+      
+      <p class="p"><span class="keyword">Ellucian</span> does not recommend scribing ranges in a REQUISITE block.
+        When you do a DESCR request, Degree Works sends across all courses referenced in the block
+        to a Banner table called so_dw_desc_reference. The coursenumber field in this table allows
+        only five characters, so when a range such as 1000:1010 is sent across, an error occurs.</p>
+
+    </div>
+
+    <div class="section"><h2 class="title sectiontitle">Examples</h2>
+      
+      <p class="p">The following example illustrates a block in which a student must take 24 credits in Math
+        and cannot have more than 6 credits with a grade of C or worse.</p>
+
+      <pre class="pre codeblock"><code>BEGIN
+StandAloneBlock # share with all blocks
+;
+18 Credits in MATH @ (With DWGrade &gt; 3.0 or DWGradeLetter = PLAN)
+  ProxyAdvice “You must take 18 credits with a grade of B or better. “
+  ProxyAdvice “You have taken &lt;APPLIED&gt; but still need &lt;NEEDED&gt; more.”
+  Label “ignored 1”;
+
+6 Credits in MATH @ (With DWGrade &gt; 2.0 or DWGradeLetter = PLAN)
+  ProxyAdvice “You must take 6 credits with a grade of C or better. “
+  ProxyAdvice “You have taken &lt;APPLIED&gt; but still need &lt;NEEDED&gt; more.”
+  Label “ignored 2”;
+END.</code></pre>
+      <p class="p">The following block uses Attributes and GPA qualifiers.</p>
+
+      <pre class="pre codeblock"><code>BEGIN
+StandAloneBlock # share with all blocks
+<span class="ph uicontrol">MinGPA</span> 3.0 in MATH @ (<span class="ph uicontrol">With Attribute = "WRIT"</span>),
+              ENGL @ (<span class="ph uicontrol">With Attribute = "SCI"</span>)
+;
+3 Classes in MATH @ (<span class="ph uicontrol">With Attribute = "WRIT"</span>),
+             ENGL @ (<span class="ph uicontrol">With Attribute = "SCI"</span>)
+   EXCEPT ENGL 148, 202
+  ProxyAdvice “You must take 3 classes of writing intensive math coursework “
+  ProxyAdvice “or English science related coursework. “
+  ProxyAdvice “Engl 148 and 202 do not count.”
+  Label “ignored 1”;
+
+If (<span class="ph uicontrol">BannerGPA &lt; 2.0</span>) then  
+  RuleIncomplete
+    ProxyAdvice “Your GPA is below a 2.0 – you can’t take this class. “
+    Label “ignored 2”;
+END.</code></pre>
+      <p class="p">The following block illustrates how to scribe a prerequisite based on a placement test
+        score.</p>
+
+      <pre class="pre codeblock"><code>BEGIN
+StandAloneBlock # share with all blocks
+;
+If (<span class="ph uicontrol">WRITEXAM &lt; 68</span>) then  
+  RuleIncomplete
+    ProxyAdvice “You need to achieve a score of 68 or higher in your writing “
+    ProxyAdvice “exam to take this class.”
+    Label “ignored 1”
+Else # good score!
+  RuleComplete
+    Label “ignored 2”;
+END.</code></pre>
+      <p class="p">The following block can be used when a course must be taken in a prior term and a planned
+        course should not be allowed.</p>
+
+      <pre class="pre codeblock"><code>BEGIN
+StandAloneBlock
+;
+    1 Class in ECON 100 (<span class="ph uicontrol">With DWTerm &lt; REGTERM and DWGrade &lt;&gt; PLAN</span>)
+        Proxy-Advice "You must have completed ECON 100 before taking ECON 101 "
+        Proxy-Advice "(and cannot be planning to take it)"
+      Label "Prerequisite";
+END.</code></pre>
+      <p class="p">If a course must be completed or planned for in a prior term, use the following. This
+        example is saying that the student cannot be taking GEOG 2310 right now – it must have been
+        completed. However, when performing the prerequisite check from SEP, it is okay for the
+        course to not have been completed because many future terms are being checked in SEP and all
+        are considered in-progress.</p>
+
+      <pre class="pre codeblock"><code>BEGIN
+StandAloneBlock
+;
+    1 Class in GEOG 2310 (<span class="ph uicontrol">With DWInprogress = "N" or DWGradeLetter = PLAN</span>)
+        Proxy-Advice "You must complete GEOG 2310 before taking GEOG 3340."
+      Label 2 "Prerequisite";
+END.</code></pre>
+      <p class="p">If you are using the <span class="ph uicontrol">Requisite Description</span> service each of your
+        blocks must contain Remarks that explain the requirements, as illustrated in the following
+        example.</p>
+
+      <pre class="pre codeblock"><code>BEGIN
+StandAloneBlock # share with all blocks
+;
+<span class="ph uicontrol">Remark</span> “In order to satisfy a prereq for an internship a student must take: ”;
+<span class="ph uicontrol">Remark</span> “(HIST 110, HIST 111, and HIST 114) OR (ANTH 100, ANTH 101 ”;
+<span class="ph uicontrol">Remark</span> “and ANTH 102) In addition, the student must take: ”;
+<span class="ph uicontrol">Remark</span> “PSYC 100 OR SOC 110.”;
+
+# For group rules you should put ProxyAdvice on the Group itself to 
+# cover all of the options
+  1 Group in
+    (3 Classes in HIST 110 + 111 + 114
+      Label " ignored 1")  OR
+    (3 Classes in ANTH 100, 101, 102
+      Label " ignored 2")
+    ProxyAdvice “You either need 3 classes in xyz or 3 classes in abc.”
+    LABEL "ignored";
+
+  1 Class in PSYC 100, SOC 110
+    ProxyAdvice "You need to take either PSYC 100 or SOC 110";
+    Label "this label is ignored";
+END.</code></pre>
+      <p class="p">As in the following example, you can place your rules inside a subset to control the
+        message displayed to a user. If any of the requirements in the subset are not met, the user
+        sees the same message. </p>
+
+      <pre class="pre codeblock"><code>BEGIN
+StandAloneBlock # share with all blocks
+;
+BeginSub
+  3 Credits in MATH 100, 110, 120, 130
+    ProxyAdvice “this advice is ignored – proxy-advice on subset is used”
+    Label "A";
+  3 Credits in STAT 200, 210, 220, 230
+    ProxyAdvice “this advice is ignored – proxy-advice on subset is used”
+    Label "B";
+  3 Credits in MATH 100, 110, 120, 130, STAT 200, 210, 220, 230
+    ProxyAdvice “this advice is ignored – proxy-advice on subset is used”
+    Label "C";
+EndSub
+    ProxyAdvice “You need 9 credits from the courses you are taking.”
+    Label “ignored”;
+END.</code></pre>
+    </div>
+
+  </div>
+
+</div></div></section>
+<section id="t-2110"><h4>Block sharing considerations</h4><div class="content-locale-en-US content-locale-en"><div id="c_block_sharing_considerations"><div class="body conbody"><p class="shortdesc">Processing multiple REQUISITE blocks could cause a sharing issue.</p>
+
+    <p class="p">When a Requisite Check request is sent to Degree Works from registration, the list of all classes for which the student is attempting to register are passed. When a Requisite Check request is sent from SEP, the list of all planned COURSE and selected CHOICE requirements in terms greater than or equal to the student's active term and classes from terms before the student's active term are passed. Degree Works processes all the requisite blocks together in one audit. In an academic audit, you might have DEGREE, MAJOR, and OTHER blocks comprising the set of requirements. For a Requisite Check request the audit consists of a list of REQUISITE blocks, each one for a different registration class. </p>
+
+    <p class="p">Processing multiple REQUISITE blocks could cause a sharing issue. For example, a student may be registering for or planning to take two classes, both with the same prerequisite. To support this, sharing must be allowed so that the same class can be used to satisfy all requirement blocks. This is accomplished by using the StandAloneBlock header qualifier. The following example shows REQUISITE blocks for two courses, MATH 101 and MATH 105 that have the same pre-requisite course, MATH 100.</p>
+
+    <div class="section"><h2 class="title sectiontitle">REQUISITE=MATH101</h2>
+      
+      <pre class="pre codeblock"><code>BEGIN
+StandAloneBlock # share with all blocks
+;
+1 Class in MATH 100
+  ProxyAdvice "Before taking MATH 101 you must first take MATH 100."
+  Label "ignored";
+END.</code></pre>
+    </div>
+
+    <div class="section"><h2 class="title sectiontitle">REQUISITE=MATH105</h2>
+      
+      <pre class="pre codeblock"><code>Begin
+StandAloneBlock # share with all blocks
+;
+1 Class in MATH 100;
+  ProxyAdvice "Before taking MATH 105 you must first take MATH 100."
+  Label "ignored";
+END.</code></pre>
+      <p class="p">In some cases, using the same class may not be as visible, such as when rules are defined in OTHER blocks. The same sharing considerations exist in the following example where ENGL 100 could be used twice to satisfy the prerequisite requirements for two different classes.</p>
+
+    </div>
+
+    <div class="section"><h2 class="title sectiontitle">REQUISITE=ENGL101</h2>
+      
+      <pre class="pre codeblock"><code>Begin
+StandAloneBlock # share with all blocks
+;
+1 Block (Other=ENGLTEST);
+  Label "Label ignored - Labels/ProxyAdvice in OTHER block are used";
+# But if the OTHER=ENGLTEST block is found that Label text is used
+
+END.</code></pre>
+    </div>
+
+    <div class="section"><h2 class="title sectiontitle">OTHER=ENGLTEST</h2>
+      
+      <pre class="pre codeblock"><code>Begin
+StandAloneBlock # share with all blocks
+;
+if (ENGLTEST &lt; 100) then
+ 1 Class in ENGL 100
+  ProxyAdvice "You did not pass the English test "
+  ProxyAdvice "so you must first take ENGL 100."
+  Label "ignored";
+else # Engl test was passed
+  RuleComplete
+   Label "this too is ignored";
+END.</code></pre>
+    </div>
+
+    <div class="section"><h2 class="title sectiontitle">REQUISITE=ENGL102</h2>
+      
+      <pre class="pre codeblock"><code>Begin
+StandAloneBlock # share with all blocks
+;
+1 Class in ENGL 100
+  ProxyAdvice "Before taking ENGL 102 you must first take ENGL 100."
+  Label "ignored";
+END.</code></pre>
+    </div>
+
+  </div>
+
+</div></div></section>
+<section id="t-2120"><h4>Block naming considerations</h4><div class="content-locale-en-US content-locale-en"><div id="c_block_naming_considerations"><div class="body conbody"><p class="shortdesc">Creating REQUISITE blocks using a term range instead of a catalog year range gives you the flexibility to change requirements in the middle of a catalog year.</p>
+
+    <p class="p">When saving a REQUISITE block in Scribe, you assign it a range of terms instead of catalog years. As soon as you select REQUISITE as the Block Type the form changes from Start Catalog Year to Start Term and from Stop Catalog Year to Stop Term. This allows you to make changes to requisite blocks in the middle of a catalog year – though normally your term range will go from the start of one catalog year to the end of another catalog year. For Banner Prerequisite Checking, the Block Value field can be populated with either the course key or course key and section or with a term and CRN value. For example, the block can be set up for any MATH123 course for the term range specified or with MATH123-A (for section A) or it could be set up for 20152012345 where 201520 is the term and 12345 is the CRN (Course Reference Number). If term+CRN is being used, be sure to set the Start Term and Stop Term to be the same term used in the value. The term in the value only has to be in the range of the Start Term and Stop Term, but it makes sense to make sure all three term values match. Note that for SEP Prerequisite Checking, only the course key can be used as the Block Value because planner courses do not have CRNs. Creating REQUISITE blocks using a term range instead of a catalog year range gives you the flexibility to change requirements in the middle of a catalog year. The simplest way to save a REQUISITE block is to use the entire term range. In the following example, the course's prerequisite rules are constant from term to term. </p>
+
+    <pre class="pre codeblock"><code>REQUISITE=ENGL123
+Start Term=000000
+Stop Term=999999</code></pre>
+    <p class="p">In the next example, the course has a certain prerequisite up to and through the Spring 2015 term, but the prerequisites change after that term. In this case, two different blocks are needed, one with the old term range and one with the new term range. </p>
+
+    <pre class="pre codeblock"><code>REQUISITE=MATH122
+Start Term=000000
+Stop Term=201530
+
+REQUISITE=MATH122
+Start Term=201610
+Stop Term=999999</code></pre>
+    <p class="p">In this example, the requirements for section B are different so we create a special block with the course key, a hyphen followed by the section. The normal MATH122 requirement block will be used for all non-B sections.</p>
+
+    <pre class="pre codeblock"><code>REQUISITE=MATH122-B
+Start Term=000000
+Stop Term=201530</code></pre>
+    <p class="p">However, it is also possible that only one block may be needed. During academic audits students may be audited against old catalogs but with the prerequisite check students should never register for an old term. For this reason, the range may remain as 000000-999999 and you can change the rules in the single block. A prerequisite that is specific to a term can be structured in two different ways. The first is to use the term range values to limit the scope to one single term by setting both the Start Term and Stop Term to the same term value. If you do this ensure that you don’t have other blocks for the same course that include this term in their term-range. The following example shows this approach.</p>
+
+    <pre class="pre codeblock"><code>REQUISITE=CHEM312
+Start Term=201030
+Stop Term=201030</code></pre>
+    <p class="p">The second way to create a REQUISITE block specific to a term is to use the term+crn when saving the block. In the following example the term is Spring 2015 (201530) and the CourseReferenceNumber is 98765. When creating a block specific to this term you should set the Start Term and Stop Term values to the applicable term. In the example, the general block for CHEM 312 is in place for all term values. This is possible because Degree Works always looks for the term+crn block before attempting a search on a block with the course name specified. With these two blocks set up for CHEM 312 the first block will only be used for the Spring 2015 term for the course reference number 98765 while the second block will be used in all other cases.</p>
+
+    <pre class="pre codeblock"><code>REQUISITE=20153098765
+Start Term=201530
+Stop Term=201530
+
+REQUISITE=CHEM312
+Start Term=000000
+Stop Term=999999</code></pre>
+  </div>
+
+</div></div></section>
+<section id="t-2130"><h4>Scribing for the Requisite Check service</h4><div class="content-locale-en-US content-locale-en"><div id="c_requisite_check_service_scribing"><div class="body conbody"><p class="shortdesc">When creating a Scribe block for the Requisite Check service, review the list of considerations.</p>
+
+    <ul class="ul">
+      <li class="li">ProxyAdvice comments are displayed to the user if the conditions of the rule are not met.</li>
+
+      <li class="li">If ProxyAdvice is not specified for a rule, the Label text is used instead.</li>
+
+      <li class="li">You should always use ProxyAdvice and not rely on Labels. ProxyAdvice allows for longer text and for the &lt;APPLIED&gt; and &lt;NEEDED&gt; dynamic values to be inserted.</li>
+
+      <li class="li">The Block rule label is used if the referenced OTHER block is not available. For example, 1 Block (Other=LANGTEST). The Block rule label is ignored if the block is available. The ProxyAdvice or Labels from the referenced OTHER block are used.</li>
+
+      <li class="li">ProxyAdvice is required on Header Min Qualifiers, although this is not enforced by the parser.</li>
+
+      <li class="li">While several lines of ProxyAdvice can be defined, the maximum number of characters that will display is 200.</li>
+
+      <li class="li">To indicate a course is a co-requisite and must be taken in the same term, use <code class="ph codeph">DWTerm = REGTERM</code>. </li>
+
+      <li class="li">To indicate that a course must be taken in a prior term, use <code class="ph codeph">DWTerm &lt; REGTERM</code>.</li>
+
+      <li class="li">To specify that all classes in the block must have been completed you can use this in the header: MaxClasses 0 in @ (With DWTerm &gt;= REGTERM).</li>
+
+      <li class="li">Because the student's degree is not a part of the Requisite Check service request, you should not scribe rules based on the degree. For example, If (Degree = BA) then 1 Class in HUMAN 136.</li>
+
+      <li class="li">The student’s school (Banner level) is not a part of the Requisite Check service request. When a student has degrees from multiple schools, Degree Works obtains a GPA from the rad_term_dtl table, but it may not be the one that you want to use in your Scribe code. For example, when scribing IF (SSGPA &gt; 2.0) THEN, or IF (BannerGPA &gt; 2.0) THEN, you cannot be certain if the required GPA is being used because it could be the GPA for either the undergraduate or graduate school.</li>
+
+    </ul>
+
+  </div>
+
+</div></div></section>
+<section id="t-2140"><h4>Scribing for the Requisite Description service</h4><div class="content-locale-en-US content-locale-en"><div id="c_requisite_description_service_scribing"><div class="body conbody"><p class="shortdesc">When creating a Scribe block for the Requisite Description service, review the list of considerations.</p>
+
+    <ul class="ul">
+      <li class="li">Remarks are displayed to the user as the description of the REQUISITE block.</li>
+
+      <li class="li">You should place all remarks at the top of the block after the first semicolon. All Remarks found throughout the block are displayed as the complete description.</li>
+
+      <li class="li">All courses listed in the rules are also displayed to the user. You can display a list of these courses and provide links to their descriptions in the catalog.</li>
+
+      <li class="li">Remarks should note all courses listed in the rules within the block. For example, if you list "ACCT 101" in a rule you must list the course as "ACCT 101" in the remark as well, and not "Acct 101" or "Accounting 101". As in Banner, your system may match the list of classes from the rules against the remarks and insert a hyperlink, so you should write the remarks text to make it easy to find courses.</li>
+
+      <li class="li">If you are listing classes, repeat the discipline. For example, "HIST 110, HIST 111" instead of "HIST 110, 111".</li>
+
+    </ul>
+
+  </div>
+
+</div></div></section>
+<section id="t-2150"><h3>Student Educational Planner prerequisite checking</h3><div class="content-locale-en-US content-locale-en"><div id="c_sep_prerequisite_checking"><div class="body conbody"><p class="shortdesc">A student's plan can be checked to ensure that all prerequisite courses have been planned for using requirements defined in Scribe REQUISITE blocks.</p>
+
+    <p class="p">Plan changes are automatically saved as changes are made. When the application attempts to save a plan, planned COURSE requirements and selected CHOICE requirements in terms greater than the student’s active term and any actual classes in terms prior or equal to the student’s active term will be audited against matching REQUISITE blocks. If a prerequisite is found to be missing for planned requirements in future terms, a localized message advising the student about these missing requisites will be displayed on the requirement. Requisite warnings for planned requirements in terms prior or equal to the student’s active term will not be returned. Adjustments to the plan must be made to address the errors before the plan can be successfully saved; however, advisors or other power users may be given access to override these warnings.</p>
+
+    <div class="section"><h2 class="title sectiontitle">Configuration</h2>
+      
+      <p class="p">To enable prerequisite checking in SEP, set core.requisite.validate.enable = true. When enabled, if the application attempts a save or save as of any plan, the prerequisite service will be executed. The default action will be that plans cannot be saved until all prerequisite errors have been corrected. Users with the SEPPRQTO key are given the option to save plans without resolving prerequisite errors.</p>
+
+    </div>
+
+    <div class="section"><h2 class="title sectiontitle">Scribing considerations</h2>
+      
+      <div class="p">Prerequisite checking in SEP follows the guidelines for the Requisite Check service. For more information, see the <span class="xref ft-internal-link" title="When creating a Scribe block for the Requisite Check service, review the list of considerations." data-ft-warning="excluded-from-rendering" data-mapid="wHdNO12nCdQSwVaDNcEQrQ" data-tocid="IYls7Hba~K_q9CktoFPghQ">Scribing for the Requisite Check service</span> topic. There are a few additional considerations to keep in mind when scribing REQUISITE blocks for SEP.<ul class="ul">
+        <li class="li">Scribe allows the Block Value in REQUISITE blocks to be either the Course Key or the Term plus CRN. Because SEP requirements do not have CRNs, the Block Value must be the Course Key for SEP prerequisites.</li>
+ <li class="li">Because planner requirements do not have all the data that actual classes do, some Scribe qualifiers might not work as well with SEP as they do with Banner.</li>
+
+        <li class="li">If a planned selected CHOICE requirement has attributes, only the course(s) are sent to the prerequisite service. The attributes are not sent, which means that these courses may not satisfy a prerequisite with class attributes.</li>
+ </ul>
+</div>
+
+      <p class="p">For prerequisites that include a minimum course grade, use (DWGradeLetter = PLAN) along with the DWGrade qualifier you have in a WITH statement. Although planned classes are considered in-progress classes, it is good practice to explicitly state how planned classes are to be handled.</p>
+
+    </div>
+
+  </div>
+
+</div></div></section>
+<section id="t-2160"><h3>Banner prerequisite checking</h3><div class="content-locale-en-US content-locale-en"><div id="c_banner_prerequisite_checking"><div class="body conbody"><p class="shortdesc">You have two options for complex prerequisite checking with Banner, Degree Works or CAPP (in Banner).</p>
+
+    <p class="p">Both systems have capabilities to help you with your Banner prerequisite needs. To decide whether Degree Works or CAPP should be used with registration, determine which system is being used as your academic auditing tool. Because the setup of prerequisites is so similar to the setup needed for degree compliance and academic advising, it makes sense to use one tool for both instead of using two different tools for similar purposes.</p>
+
+    <div class="section"><h2 class="title sectiontitle">Degree Works process configuration</h2>
+      
+      <p class="p">There are two pl/sql packages that must be compiled in the Banner database, one is provided by Degree Works and the other by Banner. The Banner package is called sfkdwaq.</p>
+
+      <p class="p">The Degree Works package is called dw_prerequisite_pkg. The source for this package is in the bannerpreqfunctions.sql file in the app/sql directory. This file should be executed in sqlplus while connected as the Banner user.</p>
+
+      <pre class="pre codeblock"><code>cd $DGWHOME/sql
+dbb
+start bannerpreqfunctions</code></pre>
+      <p class="p">If you are an STP (formerly MEP) institution, there are a couple of extra steps required for setup. The main package should be installed by the main (root) Banner user after which each other entity schema must be granted access to the package. In addition, synonyms must be set up for the package for each of the entities. This can be done by either creating a public synonym by the main schema or creating a synonym for each of the individual entities.</p>
+
+      <pre class="pre codeblock"><code>grant execute on DW_PREREQUISITE_PKG to entity1;
+grant execute on DW_PREREQUISITE_PKG to entity2;
+grant execute on DW_PREREQUISITE_PKG to ...;
+create or replace public synonym dw_prerequisite_pkg for dwmgr.dw_prerequisite_pkg;</code></pre>
+      <p class="p">To start the daemons processes that service Banner registration, you can run the preqrestart script. The preqrestart script simply issues a preqstop followed by a preqstart.</p>
+
+      <p class="p">The preqstart script first starts up the four queues in the Banner database by running the following:</p>
+
+      <pre class="pre codeblock"><code>exec sfkdwaq.p_start_dw_preq_request_q;
+exec sfkdwaq.p_start_dw_preq_response_q;
+exec sfkdwaq.p_start_dw_desc_request_q;
+exec sfkdwaq.p_start_dw_desc_response_q;</code></pre>
+      <p class="p">The preqstart script runs utl01 to start dap61 and dap62. The number of each of these is controlled by these Shepherd settings:</p>
+
+      <pre class="pre codeblock"><code>classic.daemons.dap61.count
+classic.daemons.dap62.count</code></pre>
+      <p class="p">Usually you want more dap61 daemons than dap62. Most requests from Banner will be sent to dap61 because it handles the actual prerequisite requests for classes. dap62 handles getting a description of the prerequisite.</p>
+
+      <p class="p">The preqstart script also issues a preqshow command to show the number and state of daemon processes running in addition to showing the number of Banner prerequisite requests that are currently waiting on the Oracle message queue. Here we see the preqshow output showing the utl01 daemon that created the dap61 and dap62 child processes. We also see how many requests are currently on each of the queues.</p>
+
+      <p class="p">$ preqshow</p>
+
+      <pre class="pre codeblock"><code>OWNER    PID   PPID  STARTED  CPUTIME COMMAND
+======== ===== ===== ======== ======= ==========================================
+dwadmin  16417     1 14:32    00:00:00 utl01x db=dwadmin_prod@ scope=preq
+
+dwadmin  16420 16417 14:32    00:00:00 dap61 db=dwadmin_prod@
+dwadmin  16421 16417 14:32    00:00:00 dap61 db=dwadmin_prod@
+dwadmin  16422 16417 14:32    00:00:00 dap61 db=dwadmin_prod@
+dwadmin  16423 16417 14:32    00:00:00 dap61 db=dwadmin_prod@
+dwadmin  16424 16417 14:32    00:00:00 dap61 db=dwadmin_prod@
+dwadmin  16425 16417 14:32    00:00:00 dap61 db=dwadmin_prod@
+dwadmin  16426 16417 14:32    00:00:00 dap61 db=dwadmin_prod@
+dwadmin  16427 16417 14:32    00:00:00 dap61 db=dwadmin_prod@
+dwadmin  16428 16417 14:32    00:00:00 dap61 db=dwadmin_prod@
+dwadmin  16429 16417 14:32    00:00:00 dap61 db=dwadmin_prod@
+dwadmin  16430 16417 14:32    00:00:00 dap62 db=dwadmin_prod@
+dwadmin  16431 16417 14:32    00:00:00 dap62 db=dwadmin_prod@
+
+
+The number of messages currently waiting on the CHECK REQUEST  queue =        0
+The number of messages currently waiting on the CHECK RESPONSE queue =        0
+The number of messages currently waiting on the DESCR REQUEST  queue =        0
+The number of messages currently waiting on the DESCR RESPONSE queue =        0
+</code></pre>
+      <div class="p">You can use the following scripts:<ul class="ul"> <li class="li">preqrestart – issues a preqstop followed by a preqstart.</li>
+ <li class="li">preqstart – starts utl01 and dap61 and dap62, issues a preqshow, and starts the queues in the Banner database.</li>
+ <li class="li">preqstop – stops all prereq daemon jobs running.</li>
+ <li class="li">preqshow – shows the daemon process currently running and shows the number of messages on the queues.</li>
+ <li class="li">preqpurge – empties the contents of the queues; may be useful during testing/setup.</li>
+
+        </ul>
+</div>
+
+      <p class="p">The dap61 listener is for processing Banner registration prerequisite requests, known as CHECK requests. </p>
+
+      <p class="p">The dap62 listener is for processing requests when a user clicks on a course in the catalog to get a description (pulled from the Remarks in the block), known as DESCR or description requests. </p>
+
+      <p class="p">You need to monitor the number of requests waiting on the message queue. If the number of waiting messages remains high and increases in count, it means that Banner registration is doing a lot of waiting while Degree Works processes the requests. You may need to increase the number of dap61/dap62 processes that are serving your registration prerequisite requests to keep the number of waiting requests low. You can increase the number of processes with the classic.daemons.dap61.count and classic.daemons.dap62.count Shepherd settings. After changing these values, run a preqrestart. However, it is best to do this during times of low or no activity, like during the night. During slow registration periods, such as the drop-add period, it is okay to have many dap61 processes running on your system. Most of them will be waiting for work to do and will not be consuming CPU resources.</p>
+
+      <p class="p">You should also monitor the $ADMIN_HOME/logdebug/preq.log file. You can review this log file to see how many requests are being processed and get a feel for how long each request is taking. However, this log file shows only the time it takes Degree Works to process each request. It does not show how long the requests have been sitting on the Oracle message queue waiting to be processed. This log file will also contain messages about errors that may be occurring so it is good to keep an eye on this file, especially if your users complain of problems with registration.</p>
+
+      <p class="p">Also note that increased activity in Banner prerequisite checking will degrade performance in normal Degree Works activities. That is, with limited CPU/memory resources, your web users running what-if audits may see a slowdown when many Banner prerequisite requests are being processed by these daemons.</p>
+
+      <p class="p"> For the description service, when a prerequisite has no block defined in Degree Works, or a block exists but no remarks are found, the system returns error messages from UCX-CFG098, errors 6201 and 6202.</p>
+
+      <p class="p">For additional information about Oracle advanced message queues for prerequisite checking, see the <a class="xref ft-external-link" href="https://elluciansupport.service-now.com/esc?sys_kb_id=15d5da438797c1102f5a0dc4dabb357a&amp;id=kb_article_view" target="_blank" rel="noopener">Using Oracle Advanced Queue Processing to connect Banner and Degree Works for prerequisite checking</a> article.</p>
+
+    </div>
+
+    <div class="section"><h2 class="title sectiontitle">Banner access configuration</h2>
+      
+      <p class="p">Special grants are needed to allow your Banner DB Degree Works user to access the advanced queues located within the Banner database. This user is listed in $DB_LOGIN_BANNER on the Degree Works classic server. You must assign the USR_DEGREE_WORKS role to this user and then compile the Degree Works software.</p>
+
+    </div>
+
+    <div class="section"><h2 class="title sectiontitle">Scribe Banner prerequisite checking reports</h2>
+      
+      <p class="p">The SCR9X reports help with the management of REQUISITE requirement blocks created with Scribe for use with Banner prerequisite checking.</p>
+
+      <div class="p">The following reports can be run in Transit to help with testing and configuring REQUISITE blocks for Banner prerequisite checking:<ul class="ul"> <li class="li"><span class="xref ft-internal-link" title="Using this form, you can test the data Degree Works will return given mock Banner registration data." data-ft-warning="excluded-from-rendering" data-mapid="wHdNO12nCdQSwVaDNcEQrQ" data-tocid="kMiu_jehv85GhnicaSpICw">SCR91 - Test Banner Prerequisite Checker Service</span></li>
+ <li class="li"><span class="xref ft-internal-link" title="Using this form, you can test the data Degree Works will return given a mock Banner catalog request." data-ft-warning="excluded-from-rendering" data-mapid="wHdNO12nCdQSwVaDNcEQrQ" data-tocid="7yNRMRrF3MSsWe3E~VAcIg">SCR92 - Test Banner Prerequisite Description Service</span></li>
+ <li class="li"><span class="xref ft-internal-link" title="All SCBCRSE records for the specified term are selected that have the Prereq-in-Degree Works flag enabled." data-ft-warning="excluded-from-rendering" data-mapid="wHdNO12nCdQSwVaDNcEQrQ" data-tocid="Wz_lRcYPb3U5xu1YZxULpg">SCR93 - Report by CATALOG</span></li>
+ <li class="li"><span class="xref ft-internal-link" title="All SSBSECT records for the specified term are selected that have the Prereq-in-Degree Works flag enabled." data-ft-warning="excluded-from-rendering" data-mapid="wHdNO12nCdQSwVaDNcEQrQ" data-tocid="9M294g4Py5s0rqTwstxrGw">SCR94 - Report by SCHEDULE</span></li>
+ <li class="li"><span class="xref ft-internal-link" title="If the first 6-bytes are valid in UCX-STU016 we know it is a valid term and thus the REQUISITE value is a term+CRN value. The term+CRN is looked up in SSBSECT to see if the Degree Works prereq flag is turned on." data-ft-warning="excluded-from-rendering" data-mapid="wHdNO12nCdQSwVaDNcEQrQ" data-tocid="f5GcI_P8jq~ncbh5XSZusA">SCR95 - Report by REQUISITE Block</span></li>
+ </ul>
+</div>
+
+    </div>
+
+  </div>
+
+<div class="related-links">
+<div class="linklist relinfo relconcepts" xml:lang="en-US" lang="en-US"><strong>Related concepts</strong><br>
+<ul class="linklist">
+<li class="linklist"><span class="link ft-internal-xlink" data-ft-warning="excluded-from-rendering" data-clusterid="c_prerequisite_service">Prerequisite service</span></li>
+<li class="linklist"><span class="link ft-internal-xlink" data-ft-warning="excluded-from-rendering" data-clusterid="c_registration_prerequisite_checking_using_degreeworks">Registration Prerequisite Checking using DegreeWorks</span></li></ul></div>
+</div></div></div></section></main></body></html>

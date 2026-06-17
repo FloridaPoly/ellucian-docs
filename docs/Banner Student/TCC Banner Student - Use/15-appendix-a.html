@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>TCC Banner Student - Use — Appendix A</title><style>body{font-family:-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;line-height:1.55;color:#1a1a1a;max-width:920px;margin:0 auto;padding:24px}header{border-bottom:2px solid #5a16d6;margin-bottom:8px}h1{color:#3a0ca3}h2,h3,h4,h5,h6{margin-top:1.6em}.crumb{color:#666;font-size:13px;margin:0}.meta{color:#888;font-size:12px}nav.toc{background:#f6f4fc;border:1px solid #e3dcf5;border-radius:8px;padding:12px 18px;margin:18px 0}nav.toc h2{margin:.2em 0}nav.toc ul{list-style:none;padding-left:0}nav.toc a{text-decoration:none;color:#5a16d6}section{margin:1.2em 0;padding-top:.4em}img{max-width:100%;height:auto}table{border-collapse:collapse}td,th{border:1px solid #ccc;padding:4px 8px}code,pre{background:#f4f4f4;border-radius:4px}pre{padding:10px;overflow:auto}</style></head><body><header><p class="crumb">Banner Student › TCC Banner Student - Use</p><h1>TCC Banner Student - Use — Appendix A</h1><p class="meta">Source: <a href="https://resources.elluciancloud.com/r/bundle/banner_stu_tcc_acn_use">https://resources.elluciancloud.com/r/bundle/banner_stu_tcc_acn_use</a> &middot; Retrieved 2026-06-17</p></header><nav class="toc"><h2>Contents</h2><ul><li style="margin-left:0px"><a href="#t-4380">Appendix A</a></li><li style="margin-left:16px"><a href="#t-4390">Gender X support</a></li></ul></nav><main><section id="t-4380"><h2>Appendix A</h2></section>
+<section id="t-4390"><h3>Gender X support</h3><div class="content-locale-en-US content-locale-en"><div id="r_gender_x_support_stu_2024"><div class="body refbody"><p class="shortdesc">The Gender X project, brought about by changes in the IPEDS report, replaces the current options on the SPAPERS, SPAIDEN and the other %AIDEN pages with a drop-down LOV to allow institutions to create their own values for the <span class="ph uicontrol">Legal Sex</span> field, <code class="ph codeph">SPBPERS_SEX</code>. Current values are <code class="ph codeph">F</code>, <code class="ph codeph">M</code>, and <code class="ph codeph">N</code>. </p>
+
+    <div class="section"><h2 class="title sectiontitle">Banner Applications Configurations (GUACONF)</h2>
+      
+      <div class="p">Use the Banner Applications Configurations (GUACONF) page to enable the Gender X changes. <ol class="ol">
+        <li class="li">In the <span class="ph uicontrol">Application ID</span>, enter <kbd class="ph userinput">BAN_GEN</kbd>. </li>
+
+        <li class="li">On the <span class="ph uicontrol">Configurations</span> tab, locate the Configuration Name, <code class="ph codeph">gender.x.enabled</code>.</li>
+
+        <li class="li">Verify that the Configuration Value equals <code class="ph codeph">Y</code>, which indicates that Gender X is enabled.</li>
+
+        <li class="li">
+          <div class="note"><span class="notetitle">Note:</span> You will not have to perform these steps if you installed TCC Banner General 8.15.</div>
+
+        </li>
+
+        </ol>
+</div>
+
+    </div>
+
+    <div class="section"><h2 class="title sectiontitle">Legal Sex Code Validation (GTVLGSX)</h2>
+      
+      <p class="p">To add new values for gender, use the Legal Sex Code Validation (GTVLGSX) page. This will control what entries can be made on the Legal Sex fields of the *IDEN pages and SPAPERS. These are the entries that will be displayed on the list of values (LOV) for the Legal Sex field.</p>
+
+      <ol class="ol">
+        <li class="li">Access <span class="ph uicontrol">GTVLGSX</span>.</li>
+
+        <li class="li">Select <span class="ph uicontrol">Insert</span> and in the <span class="ph uicontrol">Code</span> and <span class="ph uicontrol">Description</span> fields, enter a new alphanumeric code and description. <div class="note"><span class="notetitle">Note:</span> The default gender codes, <code class="ph codeph">F</code>, <code class="ph codeph">M</code>, and <code class="ph codeph">N</code>, delivered by Ellucian, are required as indicated by the selection of the <span class="ph uicontrol">System Required</span> check box.</div>
+</li>
+
+        <li class="li">Click <span class="ph uicontrol">Save</span>.</li>
+
+      </ol>
+
+    </div>
+
+    <div class="section"><h2 class="title sectiontitle">Social Economic Identity Report (GTVSEIR)</h2>
+      
+      <p class="p">To create a crosswalk between the gender codes on GTVLGSX and the values required by various reporting agencies, you must first create a social economic report on GTVSIER. The following values are mandatory for TCC reporting purposes:</p>
+
+      <ul class="ul">
+        <li class="li"> TCC_STU - Gender reporting for Texas CBM reports</li>
+
+        <li class="li">TCC_FAD - Financial Aid database report</li>
+
+        <li class="li">TCC_PZRED01 - Employee Data Report for TEAMs</li>
+
+        <li class="li">TCC_PSRHRS1 - Personnel Report for HRIS</li>
+
+      </ul>
+
+    </div>
+
+    <div class="section"><h2 class="title sectiontitle">Legal Gender Rules Crosswalk (GORWKSX)</h2>
+      
+      <p class="p">To create the gender value crosswalk, access the Legal Gender Rules Crosswalk (GORWKSX). Enter the Social Economic Identity Report Code, such as <code class="ph codeph">TCC_STU</code>. This step is necessary to support reporting, even if your institution is not currently supporting additional gender codes. At a minimum, you'll need entries for Banner values, <code class="ph codeph">F</code>, <code class="ph codeph">M</code>, and <code class="ph codeph">N</code>.</p>
+
+      <ol class="ol">
+        <li class="li">Access <span class="ph uicontrol">GORWKSX</span>.</li>
+
+        <li class="li">In the <span class="ph uicontrol">Key block</span>, enter the Social Economic Identity Report code created in GTVSEIR or click the <span class="ph uicontrol">Lookup</span> button to select the code and click <span class="ph uicontrol">Go</span>. Example: <code class="ph codeph">TCC_PZRED01</code> </li>
+
+        <li class="li">In the <span class="ph uicontrol">Banner Value</span> field, enter a Banner gender code used by the Banner Applications or click the <span class="ph uicontrol">Lookup</span> button to select a code from the <span class="ph uicontrol">GTVLGSX</span> page. Example: <code class="ph codeph">F</code>, <code class="ph codeph">M</code>, or <code class="ph codeph">N</code><div class="note"><span class="notetitle">Note:</span> The Banner value description should auto-fill after you select a Banner value.</div>
+ </li>
+
+        <li class="li">Enter the reporting agency gender code in the <span class="ph uicontrol">External Value</span> field. </li>
+
+        <li class="li">Enter a description in the <span class="ph uicontrol">External Value Description</span> field. This step is optional.</li>
+
+        <li class="li">Select a <span class="ph uicontrol">Start Date</span> and <span class="ph uicontrol">End Date</span>.<div class="note"><span class="notetitle">Note:</span> The Start Date value defaults to the current date but you can change the date if needed.</div>
+</li>
+
+        <li class="li">Click <span class="ph uicontrol">Save</span>.</li>
+
+      </ol>
+
+      <p class="p">Starting in Spring 2024, the Texas Higher Education Coordinating Board only accepts values of F or M for Student reporting while Financial Aid reporting also allows a value of U to be reported for Banner values of N. Any other value for sex is returned as an error. Consider how you will crosswalk new gender codes for reporting purposes before introducing additional gender codes.</p>
+
+    </div>
+
+  </div>
+
+</div></div></section></main></body></html>

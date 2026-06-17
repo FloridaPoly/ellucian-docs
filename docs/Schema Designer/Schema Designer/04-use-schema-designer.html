@@ -1,0 +1,2419 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Schema Designer — Use Schema Designer</title><style>body{font-family:-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;line-height:1.55;color:#1a1a1a;max-width:920px;margin:0 auto;padding:24px}header{border-bottom:2px solid #5a16d6;margin-bottom:8px}h1{color:#3a0ca3}h2,h3,h4,h5,h6{margin-top:1.6em}.crumb{color:#666;font-size:13px;margin:0}.meta{color:#888;font-size:12px}nav.toc{background:#f6f4fc;border:1px solid #e3dcf5;border-radius:8px;padding:12px 18px;margin:18px 0}nav.toc h2{margin:.2em 0}nav.toc ul{list-style:none;padding-left:0}nav.toc a{text-decoration:none;color:#5a16d6}section{margin:1.2em 0;padding-top:.4em}img{max-width:100%;height:auto}table{border-collapse:collapse}td,th{border:1px solid #ccc;padding:4px 8px}code,pre{background:#f4f4f4;border-radius:4px}pre{padding:10px;overflow:auto}</style></head><body><header><p class="crumb">Schema Designer › Schema Designer</p><h1>Schema Designer — Use Schema Designer</h1><p class="meta">Source: <a href="https://resources.elluciancloud.com/r/bundle/ellucian_schema_designer">https://resources.elluciancloud.com/r/bundle/ellucian_schema_designer</a> &middot; Retrieved 2026-06-17</p></header><nav class="toc"><h2>Contents</h2><ul><li style="margin-left:0px"><a href="#t-210">Use Schema Designer</a></li><li style="margin-left:16px"><a href="#t-220">Schema Designer User Interface</a></li><li style="margin-left:32px"><a href="#t-230">Schema Designer Home page</a></li><li style="margin-left:48px"><a href="#t-240">Extended tables and custom tables creation</a></li><li style="margin-left:64px"><a href="#t-250">Create a new extended table</a></li><li style="margin-left:64px"><a href="#t-260">Create a new custom table</a></li><li style="margin-left:48px"><a href="#t-270">View extended table and custom table details</a></li><li style="margin-left:48px"><a href="#t-280">Edit the extended table details</a></li><li style="margin-left:48px"><a href="#t-290">Edit the custom table details</a></li><li style="margin-left:16px"><a href="#t-300">Schema Designer APIs</a></li><li style="margin-left:32px"><a href="#t-310">Extended table and extended table API creation</a></li><li style="margin-left:48px"><a href="#t-320">Extension of Banner schema with your own data and APIs</a></li><li style="margin-left:48px"><a href="#t-330">extension-configurations API</a></li><li style="margin-left:48px"><a href="#t-340">Features of extended table API</a></li><li style="margin-left:48px"><a href="#t-350">Naming conventions</a></li><li style="margin-left:48px"><a href="#t-360">Create an extended table and extended table API</a></li><li style="margin-left:48px"><a href="#t-370">Edit an extended table and extended table API</a></li><li style="margin-left:48px"><a href="#t-380">Provision the extended table API</a></li><li style="margin-left:48px"><a href="#t-390">Business events for extended table</a></li><li style="margin-left:32px"><a href="#t-400">Surface extended data in the More Info section</a></li><li style="margin-left:48px"><a href="#t-410">Establish the mapping of the Banner Admin page</a></li><li style="margin-left:48px"><a href="#t-420">OAuth support for extended table APIs</a></li><li style="margin-left:48px"><a href="#t-430">Configure LOV for extended table data</a></li><li style="margin-left:32px"><a href="#t-440">Custom table and custom API creation</a></li><li style="margin-left:48px"><a href="#t-450">Extension of Banner schema with your own data and APIs</a></li><li style="margin-left:48px"><a href="#t-460">custom-table-configurations API</a></li><li style="margin-left:48px"><a href="#t-470">Features of custom table API</a></li><li style="margin-left:48px"><a href="#t-480">Naming conventions</a></li><li style="margin-left:48px"><a href="#t-490">Create a custom table and custom API</a></li><li style="margin-left:48px"><a href="#t-500">Edit a custom table and custom API</a></li><li style="margin-left:48px"><a href="#t-510">Provision the custom table API</a></li><li style="margin-left:48px"><a href="#t-520">Business events for custom table</a></li><li style="margin-left:32px"><a href="#t-530">Advanced capabilities</a></li><li style="margin-left:48px"><a href="#t-540">Multi-Entity Processing (MEP) support for Schema Designer APIs</a></li><li style="margin-left:48px"><a href="#t-550">Migrate artifacts between tenants: Export/Import process</a></li><li style="margin-left:64px"><a href="#t-560">Export Schema Designer artifacts</a></li><li style="margin-left:48px"><a href="#t-570">Batches enabled APIs for Schema Designer</a></li><li style="margin-left:64px"><a href="#t-580">Enable Batches API for Schema Designer APIs</a></li><li style="margin-left:48px"><a href="#t-590">Supplemental Data Engine (SDE) migration to Schema Designer APIs</a></li><li style="margin-left:64px"><a href="#t-600">Run the migration of Supplemental Data Configurations (GURMSDC) process</a></li><li style="margin-left:64px"><a href="#t-610">Review the GURMSDC process</a></li><li style="margin-left:80px"><a href="#t-620">Error messages</a></li><li style="margin-left:64px"><a href="#t-630">Run the Migration of Supplemental Data Values (GURMSDV) process</a></li><li style="margin-left:64px"><a href="#t-640">Review the GURMSDV process</a></li><li style="margin-left:80px"><a href="#t-650">Error messages</a></li></ul></nav><main><section id="t-210"><h2>Use Schema Designer</h2><div class="content-locale-en-US content-locale-en"><div id="c_schema_desn_use"><div class="body conbody"><p class="shortdesc"><span class="ph">Schema Designer</span> provides a secure, flexible, and SaaS-compliant way to extend the <span class="keyword">Banner</span> data model. </p>
+
+    <p class="p"><span class="ph">Schema Designer</span> features a no-code/low-code interface for functional and administrative users, and offers robust APIs for developers. <span class="ph">Schema Designer</span> ensures safe and compliant extensibility. It supports Multi-Entity Processing (MEP) and allows institutions to manage data across multiple entities with ease. The solution integrates with <span class="keyword">Ellucian Experience</span> and surfaces extended data through components such as More Info cards.</p>
+
+  </div>
+
+</div></div></section>
+<section id="t-220"><h3>Schema Designer User Interface</h3><div class="content-locale-en-US content-locale-en"><div id="c_schema_designer"><div class="body conbody"><p class="shortdesc">The <span class="ph">Schema Designer</span> User Interface provides an intuitive dashboard to build extended and custom tables.</p>
+
+    <div class="section"><h2 class="title sectiontitle">Home page</h2>
+      
+      <p class="p">You can see a grid of all tables, both custom and extended, with details such as Table Name, Description, <span class="keyword">Banner</span> Table, API Name, and Security Object.</p>
+
+      <p class="p">A Search field is available on the Home page, allowing you to quickly find tables by entering their name or description. The search results dynamically update as you type.</p>
+
+    </div>
+
+    <div class="section"><h2 class="title sectiontitle">Table details page</h2>
+      
+      <p class="p">Clicking any table name link from the Home page opens the detailed view of that table. This page provides additional information about the table, including specific field details, data types, and configurations. You can view and manage fields within the table to tailor it according to your business needs.</p>
+
+    </div>
+
+  </div>
+
+</div></div></section>
+<section id="t-230"><h4>Schema Designer Home page</h4><div class="content-locale-en-US content-locale-en"><div id="r_schema_desg_home_page"><div class="body refbody"><p class="shortdesc">The Home page in <span class="ph">Schema Designer</span> serves as the central dashboard for managing both extended and custom tables. You can access, view, and manage table details.</p>
+
+    <div class="section">
+      <p class="p">A <span class="ph uicontrol">Search</span> field is available on the Home page, allowing you to quickly find tables by entering their Name or Description. The search results dynamically update as you type. The <span class="ph uicontrol">Import</span> icon imports a published table that you want to use.</p>
+
+    </div>
+
+    <div class="section"><h2 class="title sectiontitle">Tabs</h2>
+      
+      
+<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" class="table" frame="hsides" border="1" rules="rows"><colgroup><col style="width:28.011204481792717%"><col style="width:71.98879551820728%"></colgroup><thead class="thead" style="text-align:left;vertical-align:bottom;">
+            <tr class="row">
+              <th class="entry row-nocellborder" style="vertical-align:bottom;" id="d11559e69">Extended</th>
+
+              <th class="entry row-nocellborder" style="vertical-align:bottom;" id="d11559e72">Custom</th>
+
+            </tr>
+
+          </thead>
+<tbody class="tbody">
+            <tr class="row">
+              <td class="entry row-nocellborder" style="vertical-align:top;" headers="d11559e69 ">Extended</td>
+
+              <td class="entry row-nocellborder" style="vertical-align:top;" headers="d11559e72 ">Displays extended tables, which enhance the existing baseline <span class="keyword">Banner</span> tables.</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry row-nocellborder" style="vertical-align:top;" headers="d11559e69 ">Custom</td>
+
+              <td class="entry row-nocellborder" style="vertical-align:top;" headers="d11559e72 ">Displays custom tables, which are independently created for unique business requirements.</td>
+
+            </tr>
+
+          </tbody>
+</table>
+</div>
+
+    </div>
+
+    <div class="section"><h2 class="title sectiontitle">Grid view fields for extended tables</h2>
+      
+      
+<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" class="table" frame="hsides" border="1" rules="rows"><colgroup><col style="width:28.011204481792717%"><col style="width:71.98879551820728%"></colgroup><thead class="thead" style="text-align:left;vertical-align:bottom;">
+            <tr class="row">
+              <th class="entry row-nocellborder" style="vertical-align:bottom;" id="d11559e121">Field</th>
+
+              <th class="entry row-nocellborder" style="vertical-align:bottom;" id="d11559e124">Description</th>
+
+            </tr>
+
+          </thead>
+<tbody class="tbody">
+            <tr class="row">
+              <td class="entry row-nocellborder" style="vertical-align:top;" headers="d11559e121 ">Table Name</td>
+
+              <td class="entry row-nocellborder" style="vertical-align:top;" headers="d11559e124 ">Name of the extended table.</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry row-nocellborder" style="vertical-align:top;" headers="d11559e121 ">Description</td>
+
+              <td class="entry row-nocellborder" style="vertical-align:top;" headers="d11559e124 ">Brief description of the  purpose of the table.</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry row-nocellborder" style="vertical-align:top;" headers="d11559e121 "><span class="keyword">Banner</span> Table</td>
+
+              <td class="entry row-nocellborder" style="vertical-align:top;" headers="d11559e124 ">Indicates the extended baseline <span class="keyword">Banner</span> table.</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry row-nocellborder" style="vertical-align:top;" headers="d11559e121 ">API Name</td>
+
+              <td class="entry row-nocellborder" style="vertical-align:top;" headers="d11559e124 ">Name of the extended table API used for integration.</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry row-nocellborder" style="vertical-align:top;" headers="d11559e121 ">Security Object</td>
+
+              <td class="entry row-nocellborder" style="vertical-align:top;" headers="d11559e124 ">Name of the security object name required to access the extended table API.</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry row-nocellborder" style="vertical-align:top;" headers="d11559e121 ">Export</td>
+
+              <td class="entry row-nocellborder" style="vertical-align:top;" headers="d11559e124 ">Export an extended table.</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry row-nocellborder" style="vertical-align:top;" headers="d11559e121 ">Delete</td>
+
+              <td class="entry row-nocellborder" style="vertical-align:top;" headers="d11559e124 ">Quick action to delete the table.</td>
+
+            </tr>
+
+          </tbody>
+</table>
+</div>
+
+    </div>
+
+    <div class="section"><h2 class="title sectiontitle">Grid view fields for custom tables</h2>
+      
+      
+<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" class="table" frame="hsides" border="1" rules="rows"><colgroup><col style="width:28.011204481792717%"><col style="width:71.98879551820728%"></colgroup><thead class="thead" style="text-align:left;vertical-align:bottom;">
+            <tr class="row">
+              <th class="entry row-nocellborder" style="vertical-align:bottom;" id="d11559e221">Field</th>
+
+              <th class="entry row-nocellborder" style="vertical-align:bottom;" id="d11559e224">Description</th>
+
+            </tr>
+
+          </thead>
+<tbody class="tbody">
+            <tr class="row">
+              <td class="entry row-nocellborder" style="vertical-align:top;" headers="d11559e221 ">Table Name</td>
+
+              <td class="entry row-nocellborder" style="vertical-align:top;" headers="d11559e224 ">Name of the custom table.</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry row-nocellborder" style="vertical-align:top;" headers="d11559e221 ">Description</td>
+
+              <td class="entry row-nocellborder" style="vertical-align:top;" headers="d11559e224 ">Brief description of the  purpose of the table.</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry row-nocellborder" style="vertical-align:top;" headers="d11559e221 ">API Name</td>
+
+              <td class="entry row-nocellborder" style="vertical-align:top;" headers="d11559e224 ">Name of the custom table API used for integration.</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry row-nocellborder" style="vertical-align:top;" headers="d11559e221 ">Security Object</td>
+
+              <td class="entry row-nocellborder" style="vertical-align:top;" headers="d11559e224 ">Name of the security object name required to access the custom table API.</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry row-nocellborder" style="vertical-align:top;" headers="d11559e221 ">Export</td>
+
+              <td class="entry row-nocellborder" style="vertical-align:top;" headers="d11559e224 ">Export a custom table.</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry row-nocellborder" style="vertical-align:top;" headers="d11559e221 ">Delete</td>
+
+              <td class="entry row-nocellborder" style="vertical-align:top;" headers="d11559e224 ">Quick action to delete the table.</td>
+
+            </tr>
+
+          </tbody>
+</table>
+</div>
+
+    </div>
+
+  </div>
+
+</div></div></section>
+<section id="t-240"><h5>Extended tables and custom tables creation</h5><div class="content-locale-en-US content-locale-en"><div id="c_create_tables"><p class="shortdesc">You can add new tables by selecting either Extended Table or Custom Table from the <span class="ph uicontrol">Create</span> button. To perform this, you must have access to the <span class="ph">Schema Designer</span> Experience Extension, granted through role setup or individual permissions in <span class="keyword">Experience Setup</span>.</p>
+
+  
+</div></div></section>
+<section id="t-250"><h6>Create a new extended table</h6><div class="content-locale-en-US content-locale-en"><div id="t_create_new_extended_table"><div class="body taskbody"><p class="shortdesc">You can create a new extended table.</p>
+
+    <div class="tasklabel"><h2 class="sectiontitle tasklabel">Procedure</h2></div><ol class="ol steps"><li class="li step stepexpand">
+        <span class="ph cmd">Log in to <span class="keyword">Ellucian Experience</span> as an administrator.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Click the Application menu <span class="ph"><img class="image ell-icon" src="images/04-use-schema-designer-1.png" alt="" data-ft-asset-display-name="grid.png" data-ft-resource-id="rcjHe4WMeJ1jBuw_rGS_uw-cDWfcauMdZCgjyiPeU_naQ"></span> in the global navigation bar, at the top of the <span class="keyword">Experience</span> dashboard.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Click <span class="ph uicontrol">Schema Designer</span> in the <span class="ph uicontrol">Applications</span> menu.</span>
+        <div class="itemgroup stepresult">The <span class="keyword wintitle">Schema Designer Home</span> page appears.</div>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Click <span class="ph uicontrol">Create</span> and select <span class="ph uicontrol">Extended Table</span>.</span>
+        <div class="itemgroup stepresult">The <span class="keyword wintitle">Create Extended Table</span> page appears.</div>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">In the <span class="ph uicontrol">Table Name</span> field, enter the name of the new table.</span>
+        <div class="itemgroup info">The <span class="ph uicontrol">API Name</span> field is auto-populated by default based on the table name entered. You can change the name if required and the name must start with x-. <p class="p">The <span class="ph uicontrol">Security Object Name</span> field is auto-populated by default based on the table name entered, You can change the name if required and the name must start with API_X.</p>
+<p class="p">The <span class="ph uicontrol">Business Event Name</span> field is auto-populated by default based on the table name entered, You can change the name or leave it empty. The name must start with EXTN.ExtendedAPI.</p>
+</div>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">In the <span class="ph uicontrol">Description</span> field, enter a brief overview of the purpose of the table.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Select the <span class="ph uicontrol">One-to-Many Relationship</span> check box if you want to configure relationships to link the extended table with baseline table.</span>
+        <div class="itemgroup info">This means the extended table can have multiple records for each key combination of the baseline table record.</div>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Click <span class="ph uicontrol">Next</span>.</span>
+        <div class="itemgroup stepresult">The <span class="ph uicontrol">Select Banner Table</span> page appears.</div>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Select a <span class="keyword">Banner</span> table from the page to extend its functionality.</span>
+        <div class="itemgroup stepresult">The <span class="keyword wintitle">Extended Schema </span> page appears.<p class="p">This page has a <span class="ph uicontrol">Summary</span> section and a <span class="ph uicontrol">Fields</span> section on the left pane and by default the <span class="ph uicontrol">Summary</span> section is selected. The <span class="ph uicontrol">Fields</span> section lists the existing key fields, with an <span class="ph uicontrol">Add (+)</span> icon. The right pane displays the table with fields configured.</p>
+<p class="p">If the baseline table has any primary keys, they key fields will be added to the <span class="ph uicontrol">Fields</span> section.</p>
+</div>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Add a key field.</span>
+        <ol type="a" class="ol substeps">
+          <li class="li substep substepexpand">
+            <span class="ph cmd">Click the <span class="ph"><img class="image ell-icon" src="images/04-use-schema-designer-2.png" alt="" data-ft-asset-display-name="add.png" data-ft-resource-id="Ts7yiXU6QYd0oI51WmD2Jg-cDWfcauMdZCgjyiPeU_naQ"></span> icon.</span>
+          </li>
+
+          <li class="li substep substepexpand">
+            <span class="ph cmd">Ensure that the <span class="ph uicontrol">Key Field </span> check box is selected.</span>
+            <div class="itemgroup info">The <span class="ph uicontrol">Required Field</span>, <span class="ph uicontrol">Display Field on UI</span>, <span class="ph uicontrol">Unique Field</span>, and <span class="ph uicontrol">Indexed Field</span> check boxes will be selected and disabled.<p class="p">The <span class="ph uicontrol">Prompt Name</span> and <span class="ph uicontrol">Field Name</span> fields are auto-populated with <span class="ph uicontrol">New Field</span> by default, and you can update it if required. The number of characters in the prompt name must not exceed 50 and the number of characters in the field name must not exceed 30.</p>
+<div class="note"><span class="notetitle">Note:</span> <span class="ph uicontrol">Field Name</span> which is named as pidm or &lt;tableName&gt;_pidm are mapped to xbannerId as the primary PIDM field, while all other _pidm columns are exposed by replacing _pidm with bannerId (for example, xcustom_pidm_other → xcustombannerIdother).</div>
+</div>
+          </li>
+
+          <li class="li substep substepexpand">
+            <span class="ph cmd">From the <span class="ph uicontrol">Baseline Field</span> list, select the appropriate column to associate to your key field.</span>
+          </li>
+
+          <li class="li substep substepexpand">
+            <span class="ph cmd">In the <span class="ph uicontrol">Field Data Type</span> field, choose one of the three supported data types (<span class="ph uicontrol">String</span>, <span class="ph uicontrol">Number</span>,  or <span class="ph uicontrol">Date</span>), and configure additional properties based on the selected field data type.</span>
+            <div class="itemgroup info"><span class="ph uicontrol">Field Scale</span> is available only for the <span class="ph uicontrol">Number</span> field type.</div>
+          </li>
+
+          <li class="li substep substepexpand">
+            <span class="ph cmd">In the <span class="ph uicontrol">Field Length</span> fields, enter a numeric value.</span>
+          </li>
+
+          <li class="li substep substepexpand">
+            <span class="ph cmd">In the <span class="ph uicontrol">Attribute Order</span> field, enter a sequence number to control the display order of the extended field in the More Info section of the specific <span class="keyword">Banner</span> page.</span>
+            <div class="itemgroup info">Fields display in the More Info section according to the assigned sequence number.</div>
+            <div class="itemgroup info">
+              <div class="note"><span class="notetitle">Note:</span> <span class="ph uicontrol">Attribute Order</span> is an optional field. When provided, it must contain only unique positive integer values.</div>
+
+            </div>
+          </li>
+
+        </ol>
+
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Add a data field.</span>
+        <ol type="a" class="ol substeps">
+          <li class="li substep substepexpand">
+            <span class="ph cmd">Click the <span class="ph"><img class="image ell-icon" src="images/04-use-schema-designer-2.png" alt="" data-ft-asset-display-name="add.png" data-ft-resource-id="Ts7yiXU6QYd0oI51WmD2Jg-cDWfcauMdZCgjyiPeU_naQ"></span> icon.</span>
+          </li>
+
+          <li class="li substep substepexpand">
+            <span class="ph cmd">Ensure that the <span class="ph uicontrol">Key Field </span> check box is not selected.</span>
+            <div class="itemgroup info">
+              
+              <div class="p">The following check boxes control field behavior:<ul class="ul">
+                <li class="li">Required Field: Indicates whether the extended field is required.</li>
+
+                <li class="li">Display Field on UI: Indicates whether the extended field displays on the UI.</li>
+
+                <li class="li">Unique Field: Indicates whether the extended non-key field must contain unique values. Before the Schema Designer 1.5 release, uniqueness was enforced only on key columns.</li>
+
+                <li class="li">Indexed Field: Indicates whether the extended field is indexed. When selected, the system creates and manages an index on the field to improve query performance.</li>
+
+                </ul>
+</div>
+
+              <div class="note"><span class="notetitle">Note:</span> 
+                <ul class="ul">
+                  <li class="li">Only one non-key column can be marked as Unique within the table.</li>
+
+                  <li class="li">When an extended field is set as Unique, it is automatically indexed.</li>
+
+                </ul>
+
+              </div>
+
+            </div>
+          </li>
+
+          <li class="li substep substepexpand">
+            <span class="ph cmd">In the <span class="ph uicontrol">Prompt Name</span> field, enter the name of the data field.</span>
+            <div class="itemgroup info">The <span class="ph uicontrol">Prompt Name</span> and <span class="ph uicontrol">Field Name</span> fields are auto-populated with <span class="ph uicontrol">New Field</span> by default, and you can update it if required. The number of characters in the prompt name must not exceed 50 and the number of characters in the field name must not exceed 30.</div>
+          </li>
+
+          <li class="li substep substepexpand">
+            <span class="ph cmd">In the <span class="ph uicontrol">Field Data Type</span> field, choose one of the five supported data types (<span class="ph uicontrol">String</span>, <span class="ph uicontrol">Date</span>, <span class="ph uicontrol">Number</span>, <span class="ph uicontrol">Date Time</span>, or <span class="ph uicontrol">Large Object</span>) and configure additional properties based on the selected field data type.</span>
+            <div class="itemgroup info">
+              <div class="note"><span class="notetitle">Note:</span> <span class="ph uicontrol">Large Object</span> stores large amounts of text data, such as documents and lengthy descriptions and <span class="ph uicontrol">Date Time</span> stores both date and time information, including the timezone.</div>
+
+            </div>
+          </li>
+
+          <li class="li substep substepexpand">
+            <span class="ph cmd">In the <span class="ph uicontrol">Field Length</span> fields, enter a numeric value.</span>
+            <div class="itemgroup info"><span class="ph uicontrol">Field Scale</span> is only available for the <span class="ph uicontrol">Number</span> field type.</div>
+          </li>
+
+        </ol>
+
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd"> Select a table to validate the data field’s entries against the selected table.</span>
+        <ol type="a" class="ol substeps">
+          <li class="li substep">
+            <span class="ph cmd">Click <span class="ph uicontrol">Select Source Table</span>.</span>
+          </li>
+
+          <li class="li substep">
+            <span class="ph cmd">Specify the column using the <span class="ph uicontrol">Source Column</span> list.</span>
+          </li>
+
+        </ol>
+
+        <div class="itemgroup info">The entries must match the existing tables or columns for accuracy.</div>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Click <span class="ph uicontrol">Dropdown Configuration</span> to set up the data field’s entry as a drop-down list on the <span class="ph uicontrol">More Info</span> section of the specific <span class="keyword">Banner</span> page.</span>
+        <ol type="a" class="ol substeps">
+          <li class="li substep substepexpand">
+            <span class="ph cmd">In the <span class="ph uicontrol">Source Column Description</span> field, enter the description column of the selected source table.</span>
+            <div class="itemgroup info">The column description publishes when the drop-down values are defined.</div>
+            <div class="itemgroup info">Use this for rendering the table in the <span class="ph uicontrol">More Info</span> section.</div>
+          </li>
+
+          <li class="li substep substepexpand">
+            <span class="ph cmd">In the <span class="ph uicontrol">LOV API Name</span> field, enter the API that provides the values to display as the drop-down list for the entries in this data field.</span>
+          </li>
+
+          <li class="li substep substepexpand">
+            <span class="ph cmd">In the <span class="ph uicontrol">LOV API Code</span> field, enter the property name representing the code of the resource record in the API configured in LOV API Name. </span>
+            <div class="itemgroup info">This code will be saved as a data field in the extended data table.</div>
+          </li>
+
+          <li class="li substep substepexpand">
+            <span class="ph cmd">In the <span class="ph uicontrol">LOV API Description</span> field, enter the property name that represents the description of the resource record in the API configured in LOV API Name. This displays as the description for each value in the drop-down list.</span>
+          </li>
+
+        </ol>
+
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Click the drop-down option next to the table name and click <span class="ph uicontrol">View Table Details</span> to change the Banner table selected before publishing.</span>
+        <div class="itemgroup stepresult">The extended table details appear.</div>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Click the <span class="ph uicontrol">Banner Table</span> button.</span>
+        <div class="itemgroup stepresult">The Select Banner Table page appears and the system automatically updates the key columns to match the new Banner while preserving any additional data fields that you previously added or associated with the original table.</div>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Click <span class="ph uicontrol">Publish</span>.</span>
+      </li>
+</ol>
+
+    <div class="section result"><div class="tasklabel"><h2 class="sectiontitle tasklabel">Results</h2></div>The <span class="keyword">Experience</span> page triggers the <span class="keyword apiname">extension-configurations</span> API to create the new extended table.</div>
+
+  </div>
+
+</div></div></section>
+<section id="t-260"><h6>Create a new custom table</h6><div class="content-locale-en-US content-locale-en"><div id="t_create_new_custom_table"><div class="body taskbody"><p class="shortdesc">You can create a new custom table.</p>
+
+    <div class="tasklabel"><h2 class="sectiontitle tasklabel">Procedure</h2></div><ol class="ol steps"><li class="li step stepexpand">
+        <span class="ph cmd">Log in to <span class="keyword">Ellucian Experience</span> as an administrator.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Click the Application menu <span class="ph"><img class="image ell-icon" src="images/04-use-schema-designer-1.png" alt="" data-ft-asset-display-name="grid.png" data-ft-resource-id="rcjHe4WMeJ1jBuw_rGS_uw-cDWfcauMdZCgjyiPeU_naQ"></span> in the global navigation bar, at the top of the <span class="keyword">Experience</span> dashboard.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Click <span class="ph uicontrol">Schema Designer</span> in the <span class="ph uicontrol">Applications</span> menu.</span>
+        <div class="itemgroup stepresult">The <span class="keyword wintitle">Schema Designer Home</span> page appears.</div>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Click <span class="ph uicontrol">Create</span> and select <span class="ph uicontrol">Custom Table</span>.</span>
+        <div class="itemgroup stepresult">The <span class="keyword wintitle">Create Custom Table</span> page appears.</div>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">In the <span class="ph uicontrol">Table Name</span> field, enter the name of the new table.</span>
+        <div class="itemgroup info">The <span class="ph uicontrol">API Name</span> field is auto-populated by default based on the table name entered. You can change the name if required and the name must start with x-. <p class="p">The <span class="ph uicontrol">Security Object Name</span> field is auto-populated by default based on the table name entered, You can change the name if required and the name must start with API_X.</p>
+<p class="p">The <span class="ph uicontrol">Business Event Name</span> field is auto-populated by default based on the table name entered, You can change the name or leave it empty. The name must start with CSTM.CustomAPI.</p>
+</div>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">In the <span class="ph uicontrol">Description</span> field, enter a brief overview of the purpose of table.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Select the <span class="ph uicontrol">Table Auto Increment</span> check box if you want to set up auto-increment for primary keys.</span>
+        <div class="itemgroup info">This ensures unique identifiers for each record.</div>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Select the <span class="ph uicontrol">MEP Enable</span> check box if you want to enable MEP to support multiple entities within the same table.</span>
+        <div class="itemgroup info">This facilitates data segregation and management.</div>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Click <span class="ph uicontrol">Next</span>.</span>
+        <div class="itemgroup stepresult">The <span class="keyword wintitle">Custom Schema </span> page appears.<p class="p">This page has a <span class="ph uicontrol">Summary</span> section and a <span class="ph uicontrol">Fields</span> section on the left pane and by default the <span class="ph uicontrol">Summary</span> section is selected. The <span class="ph uicontrol">Fields</span> section lists the existing key fields, with a <span class="ph uicontrol">+</span> icon. The right pane displays the table with fields configured.</p>
+</div>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Add a key field.</span>
+        <ol type="a" class="ol substeps">
+          <li class="li substep substepexpand">
+            <span class="ph cmd">Click the <span class="ph uicontrol">+ </span> icon.</span>
+          </li>
+
+          <li class="li substep substepexpand">
+            <span class="ph cmd">Ensure that the <span class="ph uicontrol">Key Field </span> check box is selected.</span>
+            <div class="itemgroup info">The <span class="ph uicontrol">Required Field</span>, <span class="ph uicontrol">Display Field on UI</span>, <span class="ph uicontrol">Unique Field</span>, and <span class="ph uicontrol">Indexed Field</span> check boxes will be selected and disabled.<p class="p">The <span class="ph uicontrol">Prompt Name</span> and <span class="ph uicontrol">Field Name</span> fields are auto-populated with <span class="ph uicontrol">New Field</span> by default, and you can update it if required. The number of characters for both must not exceed 30.</p>
+<div class="note"><span class="notetitle">Note:</span> <span class="ph uicontrol">Field Name</span> which is named as pidm or &lt;tableName&gt;_pidm are mapped to xbannerId as the primary PIDM field, while all other _pidm columns are exposed by replacing _pidm with bannerId (for example, xcustom_pidm_other → xcustombannerIdother).</div>
+</div>
+          </li>
+
+          <li class="li substep substepexpand">
+            <span class="ph cmd">In the <span class="ph uicontrol">Field Data Type</span> field, choose one of the three supported data types (<span class="ph uicontrol">String</span>, <span class="ph uicontrol">Number</span>, or <span class="ph uicontrol">Date</span>), and configure additional properties based on the selected field data type.</span>
+            <div class="itemgroup info"><span class="ph uicontrol">Field Scale</span> is available only for the <span class="ph uicontrol">Number</span> field type.<p class="p">If you select <span class="ph uicontrol">Number</span> as the <span class="ph uicontrol">Field Data Type</span>, a new check box called <strong class="ph b">Field Auto Increment</strong> becomes available.</p>
+</div>
+          </li>
+
+          <li class="li substep substepexpand">
+            <span class="ph cmd">Select the <span class="ph uicontrol">Field Auto Increment</span> check box if you want to set up auto-increment for the number data field.</span>
+            <div class="itemgroup info">The <span class="ph uicontrol">Starting Value</span> and <span class="ph uicontrol">Increment Step</span> fields display, each preconfigured with a default value of 1. You can update these values to any positive, non-decimal integer.</div>
+            <div class="itemgroup info">
+              <div class="note"><span class="notetitle">Note:</span> Only one numeric field can be configured for auto-increment at a given time. When auto-increment is enabled for a numeric field, it cannot be assigned to any other numeric field unless it is first removed from the previous entry. Additionally, field-level auto-increment can be configured only when auto-increment is not already defined at the table level.</div>
+
+            </div>
+          </li>
+
+          <li class="li substep substepexpand">
+            <span class="ph cmd">In the <span class="ph uicontrol">Field Length</span> field, enter a numeric value.</span>
+          </li>
+
+          <li class="li substep substepexpand">
+            <span class="ph cmd">In the <span class="ph uicontrol">Attribute Order</span> field, enter a sequence number to control the display order of the custom field.</span>
+            <div class="itemgroup info">If no value is provided, the Schema Designer assigns a default order.<div class="note"><span class="notetitle">Note:</span> <span class="ph uicontrol">Attribute Order</span> is an optional field. When provided, it must contain only unique positive integer values.</div>
+</div>
+          </li>
+
+        </ol>
+
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Add a data field.</span>
+        <ol type="a" class="ol substeps">
+          <li class="li substep substepexpand">
+            <span class="ph cmd">Click the <span class="ph uicontrol">+ </span> icon.</span>
+          </li>
+
+          <li class="li substep substepexpand">
+            <span class="ph cmd">Ensure that the <span class="ph uicontrol">Key Field </span> check box is not selected.</span>
+            <div class="itemgroup info">
+              
+              <div class="p">The following check boxes control field behavior:<ul class="ul">
+                <li class="li">Required Field: Indicates whether the custom field is required.</li>
+
+                <li class="li">Display Field on UI: Indicates whether the custom field displays on the UI.</li>
+
+                <li class="li">Unique Field: Indicates whether the custom non-key field must contain unique values. Previously, uniqueness was enforced only on key columns.</li>
+
+                <li class="li">Indexed Field: Indicates whether the custom field is indexed. When selected, the system creates and manages an index on the field to improve query performance.</li>
+
+                </ul>
+</div>
+
+              <div class="note"><span class="notetitle">Note:</span> 
+                <ul class="ul">
+                  <li class="li">Only one non-key column can be marked as Unique within the table.</li>
+
+                  <li class="li">When a custom field is set as Unique, it is automatically indexed.</li>
+
+                </ul>
+
+              </div>
+
+            </div>
+          </li>
+
+          <li class="li substep substepexpand">
+            <span class="ph cmd">In the <span class="ph uicontrol">Prompt Name</span> field, enter the name of the data field.</span>
+            <div class="itemgroup info">The <span class="ph uicontrol">Prompt Name</span> and <span class="ph uicontrol">Field Name</span> fields are auto-populated with <span class="ph uicontrol">New Field</span> by default, and you can update it if required. The number of characters in the prompt name must not exceed 50 and the number of characters in the field name must not exceed 30.</div>
+          </li>
+
+          <li class="li substep substepexpand">
+            <span class="ph cmd">In the <span class="ph uicontrol">Field Data Type</span> field, choose one of the five supported data types (<span class="ph uicontrol">String</span>, <span class="ph uicontrol">Date</span>, <span class="ph uicontrol">Number</span>, <span class="ph uicontrol">Date Time</span>, or <span class="ph uicontrol">Large Object</span>) and configure additional properties based on the selected field data type.</span>
+            <div class="itemgroup info">
+              <div class="note"><span class="notetitle">Note:</span> <span class="ph uicontrol">Large Object</span> stores large amounts of text data, such as documents and lengthy descriptions and <span class="ph uicontrol">Date Time</span> stores both date and time information, including the timezone.</div>
+
+            </div>
+          </li>
+
+          <li class="li substep substepexpand">
+            <span class="ph cmd">In the <span class="ph uicontrol">Field Length</span> field, enter a numeric value.</span>
+            <div class="itemgroup info"><span class="ph uicontrol">Field Scale</span> is available only for the <span class="ph uicontrol">Number</span> field type.</div>
+          </li>
+
+        </ol>
+
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Select a table to validate the entries of the fields against the selected table.</span>
+        <ol type="a" class="ol substeps">
+          <li class="li substep">
+            <span class="ph cmd">Click <span class="ph uicontrol">Select Source Table</span>.</span>
+          </li>
+
+          <li class="li substep">
+            <span class="ph cmd">Specify the column using the <span class="ph uicontrol">Source Column</span> list.</span>
+          </li>
+
+        </ol>
+
+        <div class="itemgroup info">The entries must match the existing tables or columns for accuracy.</div>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Click <span class="ph uicontrol">Publish</span>.</span>
+      </li>
+</ol>
+
+    <div class="section result"><div class="tasklabel"><h2 class="sectiontitle tasklabel">Results</h2></div>The system calls the <span class="keyword apiname">custom-table-configurations</span> API to create the new custom table.</div>
+
+  </div>
+
+</div></div></section>
+<section id="t-270"><h5>View extended table and custom table details</h5><div class="content-locale-en-US content-locale-en"><div id="t_view_extended_custom_table_details"><div class="body taskbody"><p class="shortdesc">You can view the data fields of the custom tables and extended tables from the <span class="ph">Schema Designer</span> Home page.</p>
+
+    <div class="tasklabel"><h2 class="sectiontitle tasklabel">Procedure</h2></div><ol class="ol steps"><li class="li step stepexpand">
+        <span class="ph cmd">Select the <span class="ph uicontrol">Custom</span> tab or <span class="ph uicontrol">Extended</span> tab from the Home page and click any table name link to open the detailed view.</span>
+        <div class="itemgroup stepresult">Depending on the tab you select, the <span class="keyword wintitle">Custom Schema </span> page or the <span class="keyword wintitle">Extended Schema </span> page appears.<p class="p">These pages have a <span class="ph uicontrol">Summary</span> section and a <span class="ph uicontrol">Fields</span> section on the left pane and by default the <span class="ph uicontrol">Summary</span> section is selected. The right pane displays the table with fields configured.</p>
+</div>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Click the drop-down option next to the table name and click <span class="ph uicontrol">View Table Details</span>.</span>
+        <div class="itemgroup stepresult">The custom table details or extended table details appear.</div>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Click the drop-down option next to the table name and click <span class="ph uicontrol">View OpenAPI Specification</span>.</span>
+        <div class="itemgroup stepresult">The <span class="keyword wintitle">API Selector</span> page appears with detailed information about the custom table API or extended table API.<p class="p">The API is documented using the industry standard OpenAPI specifications and display using Swagger.</p>
+</div>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Click the drop-down option next to the table name and select <span class="ph uicontrol">Manage Extension Mapping.</span></span>
+        <div class="itemgroup info">The <span class="keyword wintitle">Manage Extension Mapping </span>page displays with detailed information about the linking of the extended table and <span class="keyword">Banner</span> Admin pages. You can add or delete multiple mappings by selecting or deselecting the <span class="keyword">Banner</span> pages in the <span class="ph uicontrol">Map to Banner Pages</span> option.</div>
+      </li>
+</ol>
+
+  </div>
+
+</div></div></section>
+<section id="t-280"><h5>Edit the extended table details</h5><div class="content-locale-en-US content-locale-en"><div id="t_edit_extended_table_details"><div class="body taskbody"><p class="shortdesc">You can view and manage the data fields of extended tables from the <span class="ph">Schema Designer</span> home page.</p>
+
+    <div class="tasklabel"><h2 class="sectiontitle tasklabel">Procedure</h2></div><ol class="ol steps"><li class="li step stepexpand">
+        <span class="ph cmd">Click any table name link from the Home page to open the  detailed view.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">To edit a data or key field, select any field link from the <span class="ph uicontrol">Summary</span> section.</span>
+        <div class="itemgroup info">You can update the <span class="ph uicontrol">Prompt Name</span> and <span class="ph uicontrol">Field Length</span> fields for all field types. You can also update the <span class="ph uicontrol">Field Scale</span> field for the <span class="ph uicontrol">Number</span> field type. You can clear the <span class="ph uicontrol">Display Field on UI</span> check box if the <span class="ph uicontrol">Required Field</span> check box is not selected. You can enable or clear the <span class="ph uicontrol">Unique Field</span> and <span class="ph uicontrol">Indexed Field</span> check boxes for any non-key field.<div class="note"><span class="notetitle">Note:</span> 
+          <ul class="ul">
+            <li class="li">Only one non-key column can be marked as Unique within the table.</li>
+
+            <li class="li">When a extended field is set as Unique, it is automatically indexed.</li>
+
+          </ul>
+
+          </div>
+You can also update the <span class="ph uicontrol">Attribute Order</span> field with a revised sequence number.</div>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Add a data field.</span>
+        <ol type="a" class="ol substeps">
+          <li class="li substep substepexpand">
+            <span class="ph cmd">Click the <span class="ph"><img class="image ell-icon" src="images/04-use-schema-designer-2.png" alt="" data-ft-asset-display-name="add.png" data-ft-resource-id="Ts7yiXU6QYd0oI51WmD2Jg-cDWfcauMdZCgjyiPeU_naQ"></span> icon.</span>
+          </li>
+
+          <li class="li substep substepexpand">
+            <span class="ph cmd">In the <span class="ph uicontrol">Prompt Name</span> field, enter the name of the data field.</span>
+            <div class="itemgroup info">The <span class="ph uicontrol">Prompt Name</span> and <span class="ph uicontrol">Field Name</span> fields are auto-populated with <span class="ph uicontrol">New Field</span> by default, and you can update it if required. The number of characters in the prompt name must not exceed 50 and the number of characters in the field name must not exceed 30.<div class="note"><span class="notetitle">Note:</span> <span class="ph uicontrol">Field Name</span> which is named as pidm or &lt;tableName&gt;_pidm are mapped to xbannerId as the primary PIDM field, while all other _pidm columns are exposed by replacing _pidm with bannerId (for example, xcustom_pidm_other → xcustombannerIdother).</div>
+</div>
+          </li>
+
+          <li class="li substep substepexpand">
+            <span class="ph cmd">In the <span class="ph uicontrol">Field Data Type</span> field, choose one of the five supported data types (<span class="ph uicontrol">String</span>, <span class="ph uicontrol">Date</span>, <span class="ph uicontrol">Number</span>, <span class="ph uicontrol">Date Time</span>, or <span class="ph uicontrol">Large Object</span>) and configure additional properties based on the selected field data type.</span>
+          </li>
+
+          <li class="li substep substepexpand">
+            <span class="ph cmd">In the <span class="ph uicontrol">Field Length</span> fields, enter a numeric value.</span>
+            <div class="itemgroup info">
+              <div class="note"><span class="notetitle">Note:</span> <span class="ph uicontrol">Large Object</span> stores large amounts of text data, such as documents and lengthy descriptions and <span class="ph uicontrol">Date Time</span> sores both date and time information, including the timezone.</div>
+
+            </div>
+            <div class="itemgroup info"><span class="ph uicontrol">Field Scale</span> is only available for the <span class="ph uicontrol">Number</span> field type.</div>
+          </li>
+
+          <li class="li substep substepexpand">
+            <span class="ph cmd">In the <span class="ph uicontrol">Attribute Order</span> field, enter a sequence number to control the display order of the extended field in the More Info section of the specific <span class="keyword">Banner</span> page.</span>
+            <div class="itemgroup info">
+              <p class="p">Fields display in the More Info section according to the assigned sequence number.</p>
+
+              <div class="note"><span class="notetitle">Note:</span> <span class="ph uicontrol">Attribute Order</span> is an optional field. When provided, it must contain only unique positive integer values.</div>
+
+            </div>
+          </li>
+
+        </ol>
+
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">To edit the validation fields for any data field:</span>
+        <ol type="a" class="ol substeps">
+          <li class="li substep">
+            <span class="ph cmd">Select any data field link from the <span class="ph uicontrol">Summary</span> section.</span>
+          </li>
+
+          <li class="li substep">
+            <span class="ph cmd">Select the appropriate table using the <span class="ph uicontrol">Select Source Table</span> button.</span>
+          </li>
+
+          <li class="li substep">
+            <span class="ph cmd">Specify the column using the <span class="ph uicontrol">Source Column</span> list.</span>
+          </li>
+
+        </ol>
+
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Click <span class="ph uicontrol">Dropdown Configuration</span> and edit the drop-down configuration fields.</span>
+        <div class="itemgroup info">
+          
+<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" class="table" frame="hsides" border="1" rules="rows"><colgroup><col style="width:28.011204481792717%"><col style="width:71.98879551820728%"></colgroup><thead class="thead" style="text-align:left;vertical-align:bottom;">
+                <tr class="row">
+                  <th class="entry row-nocellborder" style="vertical-align:bottom;" id="d6321e284">Field</th>
+
+                  <th class="entry row-nocellborder" style="vertical-align:bottom;" id="d6321e287">Description</th>
+
+                </tr>
+
+              </thead>
+<tbody class="tbody">
+                <tr class="row">
+                  <td class="entry row-nocellborder" style="vertical-align:top;" headers="d6321e284 ">Source Column Description</td>
+
+                  <td class="entry row-nocellborder" style="vertical-align:top;" headers="d6321e287 ">Enter the description column of the selected source table to publish when the drop-down values are defined.</td>
+
+                </tr>
+
+                <tr class="row">
+                  <td class="entry row-nocellborder" style="vertical-align:top;" headers="d6321e284 ">LOV API Name</td>
+
+                  <td class="entry row-nocellborder" style="vertical-align:top;" headers="d6321e287 ">Enter the API that provides the values to display as the drop-down list for the entries in this data field.</td>
+
+                </tr>
+
+                <tr class="row">
+                  <td class="entry row-nocellborder" style="vertical-align:top;" headers="d6321e284 ">LOV API Code</td>
+
+                  <td class="entry row-nocellborder" style="vertical-align:top;" headers="d6321e287 ">Enter the property name representing the code of the resource record in the API configured in LOV API Name. </td>
+
+                </tr>
+
+                <tr class="row">
+                  <td class="entry row-nocellborder" style="vertical-align:top;" headers="d6321e284 ">LOV API Description</td>
+
+                  <td class="entry row-nocellborder" style="vertical-align:top;" headers="d6321e287 ">Enter the property name that represents the description of the resource record in the API configured in LOV API Name. This displays as the description for each value in the drop-down list.</td>
+
+                </tr>
+
+              </tbody>
+</table>
+</div>
+
+        </div>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Click <span class="ph uicontrol">Publish</span> to save the modifications to the extended table.</span>
+      </li>
+</ol>
+
+  </div>
+
+</div></div></section>
+<section id="t-290"><h5>Edit the custom table details</h5><div class="content-locale-en-US content-locale-en"><div id="t_edit_custom_table_details"><div class="body taskbody"><p class="shortdesc">You can view and manage the data fields of custom tables from the <span class="ph">Schema Designer</span> Home page.</p>
+
+    <div class="tasklabel"><h2 class="sectiontitle tasklabel">Procedure</h2></div><ol class="ol steps"><li class="li step stepexpand">
+        <span class="ph cmd">Click any table name link from the Home page to open the detailed view.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">To edit a data or key field, select any field link from the <span class="ph uicontrol">Summary</span> section.</span>
+        <div class="itemgroup info">You can update the <span class="ph uicontrol">Prompt Name</span> and <span class="ph uicontrol">Field Length</span> fields for all field types. You can also update the <span class="ph uicontrol">Field Scale</span> field for the <span class="ph uicontrol">Number</span> field type. You can clear the <span class="ph uicontrol">Display Field on UI</span> check box if the <span class="ph uicontrol">Required Field</span> check box is not selected. You can enable or clear the <span class="ph uicontrol">Unique Field</span> and <span class="ph uicontrol">Indexed Field</span> check boxes for any non-key field.<div class="note"><span class="notetitle">Note:</span> 
+          <ul class="ul">
+            <li class="li">Only one non-key column can be marked as Unique within the table.</li>
+
+            <li class="li">When a custom field is set as Unique, it is automatically indexed.</li>
+
+          </ul>
+
+          </div>
+You can also update the <span class="ph uicontrol">Attribute Order</span> field with a revised sequence number.</div>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Add a data field.</span>
+        <ol type="a" class="ol substeps">
+          <li class="li substep substepexpand">
+            <span class="ph cmd">Click the <span class="ph"><img class="image ell-icon" src="images/04-use-schema-designer-2.png" alt="" data-ft-asset-display-name="add.png" data-ft-resource-id="Ts7yiXU6QYd0oI51WmD2Jg-cDWfcauMdZCgjyiPeU_naQ"></span> icon.</span>
+          </li>
+
+          <li class="li substep substepexpand">
+            <span class="ph cmd">In the <span class="ph uicontrol">Prompt Name</span> field, enter the name of the data field.</span>
+            <div class="itemgroup info">The <span class="ph uicontrol">Prompt Name</span> and <span class="ph uicontrol">Field Name</span> fields are auto-populated with <span class="ph uicontrol">New Field</span> by default, and you can update it if required. The number of characters in the prompt name must not exceed 50 and the number of characters in the field name must not exceed 30.<div class="note"><span class="notetitle">Note:</span> <span class="ph uicontrol">Field Name</span> which is named as pidm or &lt;tableName&gt;_pidm are mapped to xbannerId as the primary PIDM field, while all other _pidm columns are exposed by replacing _pidm with bannerId (for example, xcustom_pidm_other → xcustombannerIdother).</div>
+</div>
+          </li>
+
+          <li class="li substep substepexpand">
+            <span class="ph cmd">In the <span class="ph uicontrol">Field Data Type</span> field, choose one of the five supported data types (<span class="ph uicontrol">String</span>, <span class="ph uicontrol">Date</span>, <span class="ph uicontrol">Number</span>, <span class="ph uicontrol">Date Time</span>, or <span class="ph uicontrol">Large Object</span>) and configure additional properties based on the selected field data type.</span>
+          </li>
+
+          <li class="li substep substepexpand">
+            <span class="ph cmd">In the <span class="ph uicontrol">Field Length</span> fields, enter a numeric value.</span>
+            <div class="itemgroup info">
+              <div class="note"><span class="notetitle">Note:</span> <span class="ph uicontrol">Large Object</span> stores large amounts of text data, such as documents and lengthy descriptions and <span class="ph uicontrol">Date Time</span> sores both date and time information, including the timezone.</div>
+
+            </div>
+            <div class="itemgroup info"><span class="ph uicontrol">Field Scale</span> is only available for the <span class="ph uicontrol">Number</span> field type.</div>
+          </li>
+
+          <li class="li substep substepexpand">
+            <span class="ph cmd">In the <span class="ph uicontrol">Attribute Order</span> field, enter a sequence number to control the display order of the custom field.</span>
+            <div class="itemgroup info">Fields display according to the assigned sequence number.<div class="note"><span class="notetitle">Note:</span> <span class="ph uicontrol">Attribute Order</span> is an optional field. When provided, it must contain only unique positive integer values.</div>
+</div>
+          </li>
+
+        </ol>
+
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Click <span class="ph uicontrol">Publish</span> to save the modifications to the custom table.</span>
+      </li>
+</ol>
+
+  </div>
+
+</div></div></section>
+<section id="t-300"><h3>Schema Designer APIs</h3><div class="content-locale-en-US content-locale-en"><div id="c_schema_desgn_apis"><p class="shortdesc"><span class="ph">Schema Designer</span> offers robust, SaaS-safe APIs for creating, managing, and migrating extended and custom tables through RESTful endpoints, enabling secure integration and automation across environments.</p>
+
+  
+</div></div></section>
+<section id="t-310"><h4>Extended table and extended table API creation</h4><div class="content-locale-en-US content-locale-en"><div id="c_create_extend_table_api"><div class="body conbody"><p class="shortdesc"> If you have data requirements to meet your unique business needs to extend an existing <span class="keyword">Banner</span>-delivered table, you can create an extended table in BAN_EXTENSIONS schema.</p>
+
+    <img class="image" alt="Extension config APIs." data-ft-asset-display-name="flw_extension_config.png" src="images/04-use-schema-designer-3.png" data-ft-resource-id="Hkk_VJ4dPOXn27qqWUK3BQ-cDWfcauMdZCgjyiPeU_naQ">
+  </div>
+
+</div></div></section>
+<section id="t-320"><h5>Extension of Banner schema with your own data and APIs</h5><div class="content-locale-en-US content-locale-en"><div id="c_extend_banner_schema"><div class="body conbody"><p class="shortdesc">If you have data requirements that are not part of the delivered <span class="keyword">Banner</span> schema and you need to extend an existing <span class="keyword">Banner</span> table, you can create an extended table in BAN_EXTENSIONS schema.</p>
+
+    <p class="p" id="c_extend_banner_schema__c_extend_banner_schema">You can create an extended table and extended table API and access them through the <span class="keyword">Banner Ethos API</span> Integration application. You can define and configure an extended table without modifying the source code or bringing the system down for updates. The approach through a configuration API enables administrators to define the schema of the extended table and the system creates an extended table in the BAN_EXTENSIONS schema.</p>
+
+    <p class="p">The new extended table definition resides in the GORRSDE <span class="keyword">Banner</span> configuration table and the new extended table API definition resides in the GURASPC <span class="keyword">Banner</span> configuration table. The system also creates a definition of the created extended table API into an API Specification. The table is read and interpreted at run time, executing the specification as defined based out of the schema of the table defined by the administrator, and returning the requested resource.</p>
+
+  </div>
+
+</div></div></section>
+<section id="t-330"><h5>extension-configurations API</h5><div class="content-locale-en-US content-locale-en"><div id="r_extension_config_api"><div class="body refbody"><p class="shortdesc">You can use the <span class="keyword apiname">extension-configurations</span> API to create, modify, or delete an extended table and extended table API.</p>
+
+    <div class="section">
+      <p class="p">You can also use the extension-configurations API to create and manage the extension configurations to create the extended table and a specification-driven API is generated for the extended table. The <span class="keyword apiname">extension-configurations</span> API is available in the <span class="keyword">Banner</span> <span class="keyword">Ethos Integration</span> API application.</p>
+
+      <p class="p">For more information, see <a class="xref ft-external-link" href="https://resources.elluciancloud.com/bundle/banner_api_erp_api_extension_configurations_1.4.0/page/extension-configurations.html" target="_blank" rel="noopener">Extension Configurations: extension-configurations</a>.</p>
+
+    </div>
+
+    <div class="section"><h2 class="title sectiontitle">One-to-Many feature</h2>
+      
+      <div class="p">The <span class="keyword apiname">extension-configurations</span> API includes a property named onetoMany, which indicates if an extended table can establish one-to-many relationships with the baseline table. This helps users define and manage table relationships effectively.<ul class="ul">
+        <li class="li">True: The extended table supports one-to-many relationships with the baseline table.</li>
+
+        <li class="li">False: The extended table does not support one-to-many relationships with the baseline table.</li>
+
+        </ul>
+</div>
+
+    </div>
+
+  </div>
+
+</div></div></section>
+<section id="t-340"><h5>Features of extended table API</h5><div class="content-locale-en-US content-locale-en"><div id="c_extend_api_features"><div class="body conbody"><p class="shortdesc">Extended table APIs support all methods.</p>
+
+    <div class="p">Extended table API functionality supports the following:<ul class="ul"> <li class="li">GET ALL, GET by ID, create (POST), update (PUT) and delete (DELETE) methods.</li>
+ <li class="li">API paging parameters – limit and offset.</li>
+ <li class="li">Semantic versioning standards with multiple major and minor version updates.</li>
+ <li class="li">Filters on all data model schema properties.</li>
+ <li class="li">Properties data types such as string, object, array, date, and date-time.</li>
+ <li class="li">Change notifications in the form of <span class="keyword">Banner Event Publisher</span> events.</li>
+ <li class="li"><span class="keyword">Banner</span> Data Privacy.</li>
+ <li class="li">MEP-enabled institutions.</li>
+ </ul>
+</div>
+
+    <div class="p">The functionality currently does not support the following:<ul class="ul"> <li class="li">Defining a named query for the extended table API.</li>
+ <li class="li">Creating an alternative resource representation on an existing <span class="keyword">Ellucian</span> delivered resource.</li>
+ <li class="li">Defining an array within an array data type.</li>
+ </ul>
+</div>
+
+  </div>
+
+</div></div></section>
+<section id="t-350"><h5>Naming conventions</h5><div class="content-locale-en-US content-locale-en"><div id="c_extend_table_api_name_conventn"><div class="body conbody"><p class="shortdesc">Following a naming convention for your extended resources ensures that they do not conflict with <span class="keyword">Ellucian</span> delivered resources in future releases.</p>
+
+    <div class="section"><h2 class="title sectiontitle">Extended table names</h2>
+      
+      <div class="p"><span class="keyword">Ellucian</span> recommends using one of the following naming conventions when naming your extended table:<ul class="ul">
+        <li class="li">Prefix the name of the extended table with the letter x. For example, xnextofkin.</li>
+
+        <li class="li">Using a prefix to name the extended table ensures that they are unique.<div class="note"><span class="notetitle">Note:</span> The table name can have up to 30 characters. The column names need not be prefixed with extended table name.</div>
+</li>
+
+        </ul>
+</div>
+
+    </div>
+
+    <div class="section"><h2 class="title sectiontitle">API names</h2>
+      
+      <div class="p"><span class="keyword">Ellucian</span> recommends using one of the following naming conventions when naming your extended table API:<ul class="ul"> <li class="li">Prefix the name of the API with the letter x- followed by the extended table name. For example, x-nextofkin.</li>
+ <li class="li">If the name of the API is not provided in the configuration, the system generates the name prefixed with x-, followed by the name of the extended table.</li>
+ </ul>
+</div>
+
+      <p class="p">Without a unique prefix, an API with an identical name could be delivered with a future <span class="keyword">Banner Ethos API</span>
+        release and could overwrite your extended resource.</p>
+
+    </div>
+
+  </div>
+
+</div></div></section>
+<section id="t-360"><h5>Create an extended table and extended table API</h5><div class="content-locale-en-US content-locale-en"><div id="t_create_extend_table_api"><div class="body taskbody"><p class="shortdesc">If you have data requirements to meet your unique business needs to extend an existing <span class="keyword">Banner</span> delivered table, you can create an extended table in BAN_EXTENSIONS schema.</p>
+
+    <div class="section prereq p"><div class="tasklabel"><h2 class="sectiontitle tasklabel">Before you begin</h2></div>The user who needs access to the <span class="keyword apiname">extension-configurations</span> API must be assigned with the security object delivered (API_EXT_CONFIGURATIONS).</div>
+
+    <div class="tasklabel"><h2 class="sectiontitle tasklabel">Procedure</h2></div><ol class="ol steps"><li class="li step stepexpand">
+        <span class="ph cmd">Make a POST call to extension-configurations to create the extended table configurations.</span>
+        <div class="itemgroup info">The API does the following:<ul class="ul">
+          <li class="li">Creates extension configurations to extend the <span class="keyword">Banner</span> baseline tables that the administrator/student can create and deletes the extended data.</li>
+
+          <li class="li">Creates the extended table (which holds the extended data) based on the configurations for the mapping between the baseline table and the custom table/delivered table.</li>
+
+          <li class="li">Creates the spec-based API for the extended table which supports all the methods (GET/POST/PUT/DELETE) with standard validations and additional validations based on the configuration entries.</li>
+
+          <li class="li">Creates the security object for the spec-based API for the extended table.</li>
+
+          <li class="li">Creates a business event if the event name is included in the request.</li>
+
+          </ul>
+</div>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Use your preferred REST API client to send a POST request.</span>
+        <div class="itemgroup info">Example:<pre class="pre codeblock"><code>{
+  
+    "baselineTable": "SSBSECT",
+    "extendedColumns": [
+      {
+        "attributeDataLength": "24",
+        "attributeDataType": "VARCHAR2",
+        "attributeDisplay": "true",
+        "attributePrompt": "termCode",
+        "attributeRequired": "Y",
+        "columnBaseTable": "SSBSECT_TERM_CODE",
+        "columnName": "XMATERIL_TERM_CODE"
+      },
+      {
+        "attributeDataLength": "20",
+        "attributeDataType": "VARCHAR2",
+        "attributeDisplay": "true",
+        "attributePrompt": "crn",
+        "attributeRequired": "Y",
+        "columnBaseTable": "SSBSECT_CRN",
+        "columnName": "XMATERIL_CRN"
+      },
+      {
+        "attributeDataLength": "20",
+        "attributeDataType": "VARCHAR2",
+        "attributeDisplay": "true",
+        "attributePrompt": "Name",
+        "attributeRequired": "Y",
+        "columnName": "XMATERIL_NAME"
+      },
+      {
+        "attributeDataLength": "10",
+        "attributeDataType": "VARCHAR2",
+        "attributeDisplay": "true",
+        "attributePrompt": "Type",
+        "attributeRequired": "N",
+        "columnName": "XMATERIL_TYPE",
+        "validationColumn": "xmatype_code",
+        "validationTable": "xmatype"
+      },
+      {
+        "attributeDataType": "DATE",
+        "attributeDisplay": "true",
+        "attributePrompt": "Publish Date",
+        "attributeRequired": "N",
+        "columnName": "XMATERIL_DATE"
+      }
+    ],
+    "extendedTableAPIName": "x-xmateril",
+...."businessEventName": "EXTN.ExtendedAPI.XMATERIL",
+    "extendedTableDescription": "Course Materials",
+    "extendedTableName": "XMATERIL",
+    "id": "00000000-0000-0000-0000-000000000000",
+    "oneToManyRelationShip": "true"
+  }</code></pre></div>
+        <div class="itemgroup info">You can use the DELETE request of extension-configurations API to delete the following.<ul class="ul">
+          <li class="li">The configurations of the extended baseline table.</li>
+
+          <li class="li">The security object created for the extended table API.</li>
+
+          <li class="li">The extended table API.</li>
+
+          <li class="li">The extended table.</li>
+
+          </ul>
+</div>
+      </li>
+</ol>
+
+  </div>
+
+</div></div></section>
+<section id="t-370"><h5>Edit an extended table and extended table API</h5><div class="content-locale-en-US content-locale-en"><div id="t_edit_extend_table_api"><div class="body taskbody"><p class="shortdesc">If you need to modify specific metadata attributes of an existing extended table, you can use the <span class="keyword apiname">extension-configuration-revisions</span> API. This API allows you to update specific properties of the extended table without deleting it or creating a new one.</p>
+
+    <div class="section prereq p"><div class="tasklabel"><h2 class="sectiontitle tasklabel">Before you begin</h2></div>The user who needs access to the <span class="keyword apiname">extension-configuration-revisions</span> API must be assigned with the security object delivered (API_EXT_CONFIG_REVISIONS).</div>
+
+    <div class="tasklabel"><h2 class="sectiontitle tasklabel">Procedure</h2></div><ol class="ol steps"><li class="li step stepexpand">
+        <span class="ph cmd">Make a PUT call to <span class="keyword apiname">extension-configuration-revisions</span> API to update the extended table configurations.</span>
+        <div class="itemgroup info">The API does the following:<ul class="ul">
+          <li class="li">Allows adding new non-key columns to an existing extended table.</li>
+
+          <li class="li">Updates only the supported metadata attributes of the extended table.<ul class="ul">
+            <li class="li">attributeDataLength: You can increase the length, but cannot reduce it. For numeric datatype columns in Oracle, you can increase it up to 38.</li>
+
+            <li class="li">attributeDataScale: You can increase the scale for numeric fields, but you cannot reduce it.</li>
+
+            <li class="li">attributeDisplay: You can update this value only when the field is not required.</li>
+
+            <li class="li">attributePrompt: You can update the prompt.</li>
+
+            <li class="li">attributeRequired: You cannot change this value from false to true.</li>
+
+            <li class="li">attributeDataType: You cannot change the data type.</li>
+
+            <li class="li">columnName: You cannot change the column name.</li>
+
+            <li class="li">columnBaseTable: You cannot change the base table column.</li>
+
+            <li class="li">attributeOrder: You can change the integer value, provided it remains unique within the table.</li>
+
+            <li class="li">attributeUniqueColumn: You can change this value from false to true or from true to false, provided that only one non-key column is marked as unique.</li>
+
+            <li class="li">attributeIndex: You can change this value.</li>
+
+            </ul>
+</li>
+
+          <li class="li">Regenerates the extended table API specification and the OpenAPI definition.</li>
+
+          </ul>
+</div>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Use your preferred REST API client to send a PUT request.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">In the PUT request, include only the columns you want to update or any new non-key columns you want to add. </span>
+        <div class="itemgroup info">You do not need to include all existing columns.</div>
+        <div class="itemgroup info">
+          <div class="note"><span class="notetitle">Note:</span> When you add a column, the change is permanent and you cannot remove the column.</div>
+
+        </div>
+      </li>
+</ol>
+
+  </div>
+
+</div></div></section>
+<section id="t-380"><h5>Provision the extended table API</h5><div class="content-locale-en-US content-locale-en"><div id="t_provision_extended_table_api"><div class="body taskbody"><p class="shortdesc">Update the owned resources to provision the extended table API in <span class="keyword">Ethos Integration</span>.</p>
+
+    <div class="tasklabel"><h2 class="sectiontitle tasklabel">Procedure</h2></div><ol class="ol steps"><li class="li step stepexpand">
+        <span class="ph cmd">Update the <span class="keyword">Ethos</span> applications for <span class="keyword">Banner</span> with any changes to <span class="keyword">Banner</span>-owned resources.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Depending on your environment, see:</span>
+        <div class="itemgroup info">
+          <ul class="ul">
+            <li class="li"><span class="xref ft-internal-xlink" data-ft-warning="excluded-from-rendering" data-clusterid="id_services/schema_extz_use/t_update_resources_banner_non_mep">Update Banner's owned resources after an Ethos API upgrade (non-MEP).</span></li>
+
+            <li class="li"><span class="xref ft-internal-xlink" data-ft-warning="excluded-from-rendering" data-clusterid="id_services/schema_extz_use/t_update_resources_banner_mep">Update Banner's owned resources after an Ethos API upgrade (MEP)</span>.</li>
+
+          </ul>
+
+        </div>
+      </li>
+</ol>
+
+  </div>
+
+</div></div></section>
+<section id="t-390"><h5>Business events for extended table</h5><div class="content-locale-en-US content-locale-en"><div id="c_extend_api_bep_events"><div class="body conbody"><p class="shortdesc">To publish a business event associated with your extended table API, a new business event is created if the name is included in the creation of extended table.</p>
+
+    <ul class="ul">
+      <li class="li">The event is created in a disabled state by default.</li>
+
+      <li class="li">The created event name generated will be prefixed with <span class="keyword apiname">EXTN.ExtendedAPI</span>.</li>
+
+      <li class="li">If no event name is provided, the system defaults to <span class="keyword apiname">EXTN.ExtendedAPI.{TableName}</span>.</li>
+
+      <li class="li">To start publishing events, you must manually enable it in the Business Events UI.</li>
+
+      <li class="li">Business events are to be consumed by subscribing applications from <span class="keyword">Ethos Integration</span>. To subscribe the newly added business event, see  <span class="xref ft-internal-xlink" data-ft-warning="excluded-from-rendering" data-clusterid="id_services/schema_extz_use/t_subscribe_to_business_events">Subscribe to business events</span>.</li>
+
+    </ul>
+
+  </div>
+
+</div></div></section>
+<section id="t-400"><h4>Surface extended data in the More Info section</h4><div class="content-locale-en-US content-locale-en"><div id="c_surface_extended_data_more_info_section"><div class="body conbody"><p class="shortdesc">After you create the extended data table and the relevant data using the <span class="keyword apiname">extension-configurations</span> API, the next step is to surface this extended data in the <span class="ph uicontrol">More Info</span> section. The <span class="keyword apiname">extension-mappings</span> API becomes a pivotal tool.</p>
+
+    <p class="p">This process ensures a seamless integration of extended data into the <span class="keyword">Banner</span> Admin interface, enriching the user experience and allowing for efficient management of data directly from the<span class="ph uicontrol"> More Info</span> section.</p>
+
+  </div>
+
+</div></div></section>
+<section id="t-410"><h5>Establish the mapping of the Banner Admin page</h5><div class="content-locale-en-US content-locale-en"><div id="t_extended_data_extension_mappings"><div class="body taskbody"><p class="shortdesc">Use the <span class="keyword apiname">extension-mappings</span> API to establish the mapping of the <span class="keyword">Banner</span> Admin page and the extended table you want to view and manage the extended table data through the user interface in the More Info section. The extension-mappings API is available in the <span class="keyword">Banner</span> <span class="keyword">Ethos Integration</span> API application.</p>
+
+    <div class="section context"><div class="tasklabel"><h2 class="sectiontitle tasklabel">About this task</h2></div>When the UI is rendered dynamically, a secure token mechanism is used to maintain the context of the accessed record. This secure token is included in the API calls and validated on the server to ensure authorized access. By using this context to dynamically render the UI, the data is managed securely.<p class="p">You can secure the pages and ensure that access to extended table data is properly controlled and aligned with existing security protocols.</p>
+</div>
+
+    <div class="tasklabel"><h2 class="sectiontitle tasklabel">Procedure</h2></div><ol class="ol steps"><li class="li step stepexpand">
+        <span class="ph cmd">Use the <span class="keyword apiname">extension-mappings</span> API to establish the mapping between a <span class="keyword">Banner</span> Admin page with an extended table.</span>
+        <div class="itemgroup info">When the mapping is made, the system generates a new extended table API which ensures the page is secured, in addition to the extended table API created by the <span class="keyword apiname">extension-configurations</span> API.</div>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Assign the newly created security objects.</span>
+        <div class="itemgroup info">The security object, identified by the supplementalDataResourceSecurityObject property, will be available in the extension-mappings API response and is required for accessing the new extended table API.</div>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Ensure that the admin user has the supplementalDataResourceSecurityObject assigned to access the new extended table API, which ensures the page is secured.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Ensure that the newly created extended table API identified by the supplementalDataResourceName property in the <span class="keyword apiname">extension-mappings</span> API response is provisioned in <span class="keyword">Ethos Integration</span>.</span>
+        <div class="itemgroup info">See <span class="xref ft-internal-link" title="Update the owned resources to provision the extended table API in Ethos Integration." data-ft-warning="excluded-from-rendering" data-mapid="cDWfcauMdZCgjyiPeU_naQ" data-tocid="89fZlkNSHHpel4QP3Ai6Bg">Provision the extended table API</span>.</div>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Ensure that the admin user has access to the <span class="keyword">Banner</span> security object API_EXT_CONFIGURATIONS to enable seamless access to the <span class="ph uicontrol">More Info</span> user interface.</span>
+        <div class="itemgroup info">For more information, see <span class="xref ft-internal-xlink" data-ft-warning="excluded-from-rendering" data-clusterid="id_services/schema_extz_use/banner_api_erp_api_extension_mappings_1.0.0/page/extension-mappings">Extension Mappings: extension-mappings</span>.</div>
+      </li>
+</ol>
+
+  </div>
+
+</div></div></section>
+<section id="t-420"><h5>OAuth support for extended table APIs</h5><div class="content-locale-en-US content-locale-en"><div id="c_oauth_support_extended_table_api"><div class="body conbody"><p class="shortdesc">Enhanced security measures have been incorporated for API access starting from the <span class="keyword">Banner</span> Integration API 9.32 release.</p>
+
+    <p class="p">These security measures are primarily for extended table APIs. To use these APIs through OAuth authentication, you need special authorization and approval for whitelisting purposes.</p>
+
+    <div class="section"><h2 class="title sectiontitle">API Whitelisting</h2>
+      
+      <p class="p">API whitelisting includes the approval and authorization of APIs for OAuth authentication usage. Unauthorized efforts to access non-whitelisted APIs without proper authorization will generate an error message, indicating that the resource is inaccessible through OAuth.</p>
+
+    </div>
+
+    <div class="section"><h2 class="title sectiontitle">Enable OAuth for Extended table API</h2>
+      
+      <p class="p">When creating a new extended table API using the extension-configurations API, the API ensures that the oauthAllowed flag is set to <kbd class="ph userinput">true</kbd> by default always.</p>
+
+      <p class="p">This critical step is necessary for whitelisting the extended table API created for the extended tables, enabling OAuth authentication. This is vital because all API calls through the Experience UI rely on the OAuth mechanism for surfacing the extended data.</p>
+
+      <div class="p">The following APIs are also whitelisted for surfacing the extended data on the <span class="keyword">Banner</span> Admin pages:<ul class="ul">
+        <li class="li">extension-configuration</li>
+
+        <li class="li">custom-table-configurations</li>
+
+        <li class="li">extension-mappings</li>
+
+        </ul>
+</div>
+
+    </div>
+
+  </div>
+
+</div></div></section>
+<section id="t-430"><h5>Configure LOV for extended table data</h5><div class="content-locale-en-US content-locale-en"><div id="c_lov_support_extend_table_data"><div class="body taskbody"><p class="shortdesc">Administrators can create extended tables against <span class="keyword">Banner</span> baseline tables using the Schema Designer APIs and seamlessly integrate extended data into the More Info section of the <span class="keyword">Banner</span> Admin page.</p>
+
+    <div class="section context"><div class="tasklabel"><h2 class="sectiontitle tasklabel">About this task</h2></div>Administrators can use the <span class="keyword apiname">extension-configurations</span> API to manage the extended data columns configured as LOVs, enhancing the user experience with easy selection of LOV values for data entry and validation. Users can use the properties of the <span class="keyword apiname">extension-configurations</span> API to configure the data columns to be rendered as LOVs in the user interface. This allows for seamless integration of the LOV functionality into the extended tables, enhancing the user experience and facilitating efficient data management.<p class="p">Use either a POST request method of extension-configurations when defining a new data column of the extended table to be configured as LOV or use the PUT request method of extension-configurations to update/modify the extended data column of the existing extended table with the properties of the <span class="keyword apiname">extension-configurations</span> API as mentioned below:</p>
+</div>
+
+    <div class="tasklabel"><h2 class="sectiontitle tasklabel">Procedure</h2></div><ol class="ol steps"><li class="li step stepexpand">
+        <span class="ph cmd">Use the <span class="ph uicontrol">LOVAPIName</span> property to specify the list of values to be shown for the extended data column configured as LOV on the UI.</span>
+        <div class="itemgroup info"><span class="keyword">Ellucian</span> recommends configuring Business Processing APIs of validation tables and custom tables APIs.</div>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Use the <span class="ph uicontrol">LOVAPICode</span> property to define the property name which represents the code of the record API resource referred to in the extendedColumns.LOVAPIName property.</span>
+        <div class="itemgroup info">This property's corresponding value will be saved as the data in the extended data column defined as LOV.</div>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Use the <span class="ph uicontrol">LovApiDescription</span> property to specify the property name which represents the description of the resource record of the API referred to in the extendedColumns.LOVAPIName property.</span>
+        <div class="itemgroup info">This property will be displayed as the description on the UI for the corresponding value in the LOV.</div>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Use the <span class="ph uicontrol">validationCodeDesc</span> property to define the baseline table or custom table's column of description that is required published when LOV attributes are defined.</span>
+        <div class="itemgroup info">This property is intended for GRID rendering when the data column is defined to be a LOV for the UI data surfacing.</div>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Use the <span class="ph uicontrol">validationTable</span> property to specify the baseline table or custom table for which the extended data must be validated.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Use the <span class="ph uicontrol">validationColumn</span> property to define the baseline table or custom table's column for which the extended data must be validated.</span>
+        <div class="itemgroup info">The LOV support for extended table data provides a streamlined and efficient way for administrators and students to manage extended data on the <span class="keyword">Banner</span> page. By utilizing the right components and robust error handling, the feature ensures a user-friendly experience with improved data entry and validation processes.</div>
+      </li>
+</ol>
+
+  </div>
+
+</div></div></section>
+<section id="t-440"><h4>Custom table and custom API creation</h4><div class="content-locale-en-US content-locale-en"><div id="c_create_custom_table_api"><div class="body conbody"><p class="shortdesc">If you have data requirements to meet your unique business needs to create a custom table other than the <span class="keyword">Banner</span> delivered table, you can create a custom table in BAN_EXTENSIONS schema.</p>
+
+    <img class="image" alt="Custom table configuration." data-ft-asset-display-name="flw_custom_table_config.png" src="images/04-use-schema-designer-4.png" data-ft-resource-id="PaTYfp9ILWjhK83_EfJ9dA-cDWfcauMdZCgjyiPeU_naQ">
+  </div>
+
+</div></div></section>
+<section id="t-450"><h5>Extension of Banner schema with your own data and APIs</h5><div class="content-locale-en-US content-locale-en"><div id="c_custom_extend_banner_schema"><div class="body conbody"><p class="shortdesc">If you have data requirements that are not part of the delivered <span class="keyword">Banner</span> schema and you need a custom table other than the existing <span class="keyword">Banner</span> tables, you can create a custom table in BAN_EXTENSIONS schema.</p>
+
+    <p class="p">You can create a custom table and the custom table API and access it through the <span class="keyword">Banner Ethos API</span> Integration application. You can define and configure a custom table without modifying the source code or bringing the system down for updates. The approach through a configuration API enables administrators to define the schema of the custom table and the system creates a custom table in BAN_EXTENSIONS schema.</p>
+
+    <p class="p">The new custom table definition resides in the GORCSTT <span class="keyword">Banner</span> configuration table and the new custom table API definition resides in the GURASPC <span class="keyword">Banner</span> configuration table. The system also creates a definition of the created custom table into an API specification. The table is read and interpreted at run time, executing the specification as defined based out of the schema of the table defined by the administrator and returning the requested resource. </p>
+
+  </div>
+
+</div></div></section>
+<section id="t-460"><h5>custom-table-configurations API</h5><div class="content-locale-en-US content-locale-en"><div id="r_custom_table_config_api"><div class="body refbody"><p class="shortdesc">You can use the custom-table-configurations API to create, modify, or delete a custom table and custom table API.</p>
+
+    <div class="section">
+      <p class="p">See the Open API documentation for the supported methods and schema properties of the custom-table- configurations.</p>
+
+      <p class="p">You can also use the custom-table-configurations API to create and manage the custom table configurations to create the custom table and a specification-driven API is generated for the custom table. The custom-table-configurations API is available in the <span class="keyword">Banner</span><span class="keyword">Ethos Integration</span> API application.</p>
+
+    </div>
+
+    <div class="section"><h2 class="title sectiontitle">Table-level Auto-Increment feature</h2>
+      
+      <p class="p">The custom-table-configurations API provides an auto-increment feature for custom tables, which can be enabled by setting the requiresAutoIncrement property to true. This setting is applied during the configuration of the custom table using the custom-table-configurations API.</p>
+
+      <p class="p">After enabling the auto-increment feature, the API automatically adds a new column to the custom table. This column name pattern is &lt;TableName&gt;_SEQUENCE_NUM, where &lt;TableName&gt; is the name of your custom table. The column is specifically designed to hold values in an incremental sequence for each new record inserted into the table, ensuring that each entry is uniquely identified.</p>
+
+      <p class="p">Additionally, this auto-increment column becomes an integral part primary key configuration of the table. It is combined with any other key columns you have specified to form a composite primary key. This ensures data integrity and uniqueness across all records within the custom table.</p>
+
+      <p class="p">You can use the auto-increment feature to streamline data management and enhance the reliability of your custom tables without manual intervention for sequence number generation.</p>
+
+    </div>
+
+    <div class="section"><h2 class="title sectiontitle">Column-level Auto-Increment feature</h2>
+      
+      <p class="p">In addition to table-level support, you can now configure auto-increment at the column level.</p>
+
+      <div class="p">You can mark a specific custom column for auto-increment using the following properties:<ul class="ul">
+        <li class="li">attributeAutoIncrement</li>
+
+        <li class="li">attributeStartingValue</li>
+
+        <li class="li">attributeIncrementStep</li>
+
+        </ul>
+</div>
+
+      <p class="p">This gives more flexibility to generate numbers on any column, making it easier to follow your business rules or match old numbering patterns. If a starting value or increment step is not provided, the system applies the  defaults (start = 1, step = 1).</p>
+
+    </div>
+
+  </div>
+
+</div></div></section>
+<section id="t-470"><h5>Features of custom table API</h5><div class="content-locale-en-US content-locale-en"><div id="c_custom_api_features"><div class="body conbody"><p class="shortdesc">Custom APIs supports all methods.</p>
+
+    <div class="p">Custom table API functionality supports the following:<ul class="ul"> <li class="li">GET ALL, GET by ID, create (POST), update (PUT) and delete (DELETE) methods.</li>
+ <li class="li">API paging parameters – limit and offset.</li>
+ <li class="li">Semantic versioning standards with multiple major and minor version updates.</li>
+ <li class="li">Filters on all data model schema properties.</li>
+ <li class="li">Properties data types such as string, object, array, date, and date-time.</li>
+ <li class="li">Change notifications in the form of <span class="keyword">Banner Event Publisher</span> events.</li>
+ <li class="li"><span class="keyword">Banner</span> Data Privacy.</li>
+ <li class="li">MEP-enabled institutions.</li>
+ </ul>
+</div>
+
+    <div class="p">The functionality currently does not support the following:<ul class="ul"> <li class="li">Defining a named query for the custom table API.</li>
+ <li class="li">Creating an alternative resource representation on an existing <span class="keyword">Ellucian</span> delivered resource.</li>
+ <li class="li">Defining an array within an array data type.</li>
+ </ul>
+</div>
+
+  </div>
+
+</div></div></section>
+<section id="t-480"><h5>Naming conventions</h5><div class="content-locale-en-US content-locale-en"><div id="c_custom_table_api_name_conventn"><div class="body conbody"><p class="shortdesc">Following a naming convention for your custom resources ensures that they do not conflict with <span class="keyword">Ellucian</span> delivered resources in future releases.</p>
+
+    <div class="section"><h2 class="title sectiontitle">Custom table names</h2>
+      
+      <div class="p"><span class="keyword">Ellucian</span> recommends using one of the following naming conventions when naming your custom table:<ul class="ul"> <li class="li">Prefix the name of the custom table with the letter x. For example, xmaterial.</li>
+
+        <li class="li">The second letter of the custom table name must be one of the following characters: [f, g, n, p, r, s, t].</li>
+ <li class="li">Using a prefix to name your custom table ensures that they are unique.</li>
+
+        <li class="li">
+          <div class="note"><span class="notetitle">Note:</span> The table name can have up to 30 characters. The column names need not be prefixed with custom table name.</div>
+
+        </li>
+ </ul>
+</div>
+
+    </div>
+
+    <div class="section"><h2 class="title sectiontitle">API names</h2>
+      
+      <div class="p"><span class="keyword">Ellucian</span> recommends using one of the following naming conventions when naming your custom table API:<ul class="ul"> <li class="li">Prefix the name of the API with the letter x followed by the custom table name. For example, x-xmaterial.</li>
+ <li class="li">If the name of the API is not provided in the configuration, the system generates the name prefixed with x-, followed by the name of the custom table.</li>
+ </ul>
+</div>
+
+      <p class="p">Without a unique prefix, an API with an identical name could be delivered with a future <span class="keyword">Banner Ethos API</span> release and could overwrite your extended resource.</p>
+
+    </div>
+
+  </div>
+
+</div></div></section>
+<section id="t-490"><h5>Create a custom table and custom API</h5><div class="content-locale-en-US content-locale-en"><div id="t_create_custom_table_api"><div class="body taskbody"><p class="shortdesc">The user who needs access to the <span class="keyword apiname">custom-table-configurations</span> API must be assigned with the security object delivered (API_CUSTOM_TABLE_CONFIG).</p>
+
+    <div class="tasklabel"><h2 class="sectiontitle tasklabel">Procedure</h2></div><ol class="ol steps"><li class="li step stepexpand">
+        <span class="ph cmd">Make a POST call to custom-table-configurations to create the custom table configurations.</span>
+        <div class="itemgroup info">The API does the following:<ul class="ul"> <li class="li">Creates configurations into the GORCSTT table to create the custom table so that the administrator/student can create and delete the custom data.</li>
+ <li class="li">Creates the custom table (which holds the custom data) based on the configurations in GORCSTT.</li>
+
+          <li class="li">Creates the spec-based API for the custom table which supports all the methods (GET/POST/PUT/DELETE) with standard validations and additional validations based on the configuration entries in GORCSTT.</li>
+ <li class="li">Creates the security object for the spec-based API for the custom table.</li>
+ </ul>
+</div>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Make the GET request of custom-table-configurations API to retrieve the configuration entries.</span>
+        <div class="itemgroup info">Example:<pre class="pre codeblock"><code>{
+    "MEPIndicator": "N",
+    "customTableAPIName": "x-xmatype",
+    "customTableColumns": [
+      {
+        "attributeDataLength": "10",
+        "attributeDataType": "VARCHAR2",
+        "attributeKeyColumn": "Y",
+        "attributePrompt": "Code",
+        "attributeRequired": "Y",
+        "columnName": "XMATYPE_CODE"
+      },
+      {
+        "attributeDataLength": "10",
+        "attributeDataType": "VARCHAR2",
+        "attributeKeyColumn": "N",
+        "attributePrompt": "Description",
+        "attributeRequired": "N",
+        "columnName": "XMATYPE_DESC"
+      }
+    ],
+    "customTableDescription": "Material Type",
+    "customTableName": "XMATYPE",
+    "customTableSecurityObject": "API_X_XMATYPE",
+    "id": "00000000-0000-0000-0000-000000000000",
+    "requiresAutoIncrement": "N"
+  }</code></pre></div>
+        <div class="itemgroup info">You can use the DELETE request of custom-table-configurations API to delete the following.<ul class="ul">
+          <li class="li">Delete the configurations of the custom table.</li>
+
+          <li class="li">Delete the security object created for the custom table's API.</li>
+
+          <li class="li">Delete the custom table’s API.</li>
+
+          <li class="li">Delete the custom table.</li>
+
+          </ul>
+<div class="note"><span class="notetitle">Note:</span> The PUT request method is not supported. If any updates are needed, you must delete the mapping entries and recreate them.</div>
+</div>
+      </li>
+</ol>
+
+  </div>
+
+</div></div></section>
+<section id="t-500"><h5>Edit a custom table and custom API</h5><div class="content-locale-en-US content-locale-en"><div id="t_edit_custom_table_api"><div class="body taskbody"><p class="shortdesc">If you need to modify specific metadata attributes of an existing custom table, you can use the <span class="keyword apiname">custom-table-configuration-revisions</span> API. This API allows you to update certain properties of the custom table without deleting it or creating a new one.</p>
+
+    <div class="section prereq p"><div class="tasklabel"><h2 class="sectiontitle tasklabel">Before you begin</h2></div>The user who needs access to the <span class="keyword apiname">custom-table-configuration-revisions</span> API must be assigned with the security object delivered (API_CUST_TAB_CONFIG_REVISIONS).</div>
+
+    <div class="tasklabel"><h2 class="sectiontitle tasklabel">Procedure</h2></div><ol class="ol steps"><li class="li step stepexpand">
+        <span class="ph cmd">Make a PUT call to <span class="keyword apiname">custom-table-configuration-revisions</span> API to update the custom table configurations.</span>
+        <div class="itemgroup info">The API does the following:<ul class="ul">
+          <li class="li">Allows adding new non-key columns to an existing custom table.</li>
+
+          <li class="li">Updates only the supported metadata attributes of the custom table.<ul class="ul">
+            <li class="li">attributeDataLength: You can increase the length, but  cannot reduce it. For numeric datatype columns in Oracle, you can increase it up to 38.</li>
+
+            <li class="li">attributeDataScale: You can increase the scale for numeric fields, but you cannot reduce it.</li>
+
+            <li class="li">attributeDisplay: You can update this value only when the field is not required.</li>
+
+            <li class="li">attributePrompt: You can update the prompt.</li>
+
+            <li class="li">attributeRequired: You cannot change this value from false to true.</li>
+
+            <li class="li">attributeDataType: You cannot change the data type.</li>
+
+            <li class="li">columnName: You cannot change the column name.</li>
+
+            <li class="li">columnBaseTable: You cannot change the base table column.</li>
+
+            <li class="li">attributeOrder: You can change the integer value, provided it remains unique within the table.</li>
+
+            <li class="li">attributeUniqueColumn: You can change this value from false to true or from true to false, provided that only one non-key column is marked as unique.</li>
+
+            <li class="li">attributeIndex: You can change this value.</li>
+
+            </ul>
+</li>
+
+          <li class="li">Regenerates the custom table API specification and the OpenAPI definition.</li>
+
+          </ul>
+</div>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Use your preferred REST API client to send a PUT request.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">In the PUT request, include only the columns you want to update or any new non-key columns you want to add. </span>
+        <div class="itemgroup info">You do not need to include all existing columns.</div>
+        <div class="itemgroup info">
+          <div class="note"><span class="notetitle">Note:</span> When you add a column, the change is permanent and you cannot remove the column.</div>
+
+        </div>
+      </li>
+</ol>
+
+  </div>
+
+</div></div></section>
+<section id="t-510"><h5>Provision the custom table API</h5><div class="content-locale-en-US content-locale-en"><div id="t_provision_custom_table_api"><div class="body taskbody"><p class="shortdesc">Update the owned resources to provision the custom table API in <span class="keyword">Ethos Integration</span>.</p>
+
+    <div class="tasklabel"><h2 class="sectiontitle tasklabel">Procedure</h2></div><ol class="ol steps"><li class="li step stepexpand">
+        <span class="ph cmd">Update the <span class="keyword">Ethos</span> applications for <span class="keyword">Banner</span> with any changes to <span class="keyword">Banner</span>-owned resources.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Depending on your environment, see:</span>
+        <div class="itemgroup info">
+          <ul class="ul">
+            <li class="li"><span class="xref ft-internal-xlink" data-ft-warning="excluded-from-rendering" data-clusterid="id_services/schema_extz_use/t_update_resources_banner_non_mep">Update Banner's owned resources after an Ethos API upgrade (non-MEP).</span></li>
+
+            <li class="li"><span class="xref ft-internal-xlink" data-ft-warning="excluded-from-rendering" data-clusterid="id_services/schema_extz_use/t_update_resources_banner_mep">Update Banner's owned resources after an Ethos API upgrade (MEP)</span>.</li>
+
+          </ul>
+
+        </div>
+      </li>
+</ol>
+
+  </div>
+
+</div></div></section>
+<section id="t-520"><h5>Business events for custom table</h5><div class="content-locale-en-US content-locale-en"><div id="c_custom_api_bep_events"><div class="body conbody"><p class="shortdesc">To publish a business event associated with your custom table API,  a new business event is automatically created when the custom table is created.</p>
+
+    <ul class="ul">
+      <li class="li">The event is created in a disabled state by default.</li>
+
+      <li class="li">The automatically created event name generated will be prefixed with <span class="keyword apiname">CSTM.CustomAPI.</span>.</li>
+
+      <li class="li">If no event name is provided, the system defaults to <span class="keyword apiname">CSTM.CustomAPI.{TableName}</span>.</li>
+
+      <li class="li">To start publishing events, you must manually enable it in the Business Events UI.</li>
+
+      <li class="li">Business events are to be consumed by subscribing applications from Ethos Integration. To subscribe the newly added business event, see <span class="xref ft-internal-xlink" data-ft-warning="excluded-from-rendering" data-clusterid="id_services/schema_extz_use/t_subscribe_to_business_events">Subscribe to business events</span>.</li>
+
+    </ul>
+
+  </div>
+
+</div></div></section>
+<section id="t-530"><h4>Advanced capabilities</h4><div class="content-locale-en-US content-locale-en"><div id="c_advanced_capabilities"><p class="shortdesc"><span class="ph">Schema Designer</span> supports advanced features to meet complex institutional needs. It enables Multi-Entity Processing (MEP) to manage data across entities, allows migration of schema configurations across environments using artifact APIs, and provides batch APIs to handle large-scale data creation and updates efficiently.</p>
+
+  
+</div></div></section>
+<section id="t-540"><h5>Multi-Entity Processing (MEP) support for Schema Designer APIs</h5><div class="content-locale-en-US content-locale-en"><div id="c_mep_schema_ext"><div class="body conbody"><p class="shortdesc">The <span class="ph">Schema Designer</span> APIs support Multi-Entity Processing (MEP), also known as Shared Technology Platform (STP).</p>
+
+    <p class="p">If you create an extended table and its corresponding API from a baseline table with MEP enabled, the extended table will automatically be enabled with MEP.</p>
+
+    <p class="p">For more information, see <span class="xref ft-internal-link" title="If you have data requirements to meet your unique business needs to extend an existing Banner delivered table, you can create an extended table in BAN_EXTENSIONS schema." data-ft-warning="excluded-from-rendering" data-mapid="cDWfcauMdZCgjyiPeU_naQ" data-tocid="a1EpDsmimCmvqwjGLQdr4Q">Create an extended table and extended table API.</span></p>
+
+    <p class="p">To enable MEP for a custom table, you can use the optional MEP Indicator whose default value is set to N.</p>
+
+    <p class="p">If you create a custom table and custom API with the MEP Indicator value set to <kbd class="ph userinput">Y</kbd>, the custom table will have the VPDI_CODE column.</p>
+
+    <p class="p">If you create a custom table and custom API with the MEP Indicator value set to <kbd class="ph userinput">N</kbd> or you did not pass the optional property, the custom table will have <code class="ph codeph">tablename_vpdi_code</code>. However, the MEP Indicator value is always null.</p>
+
+    <p class="p">For more information, see <span class="xref ft-internal-link" title="The user who needs access to the custom-table-configurations API must be assigned with the security object delivered (API_CUSTOM_TABLE_CONFIG)." data-ft-warning="excluded-from-rendering" data-mapid="cDWfcauMdZCgjyiPeU_naQ" data-tocid="L~WoLsx11QuIkh30ETeK6Q">Create a custom table and custom API</span>.</p>
+
+  </div>
+
+</div></div></section>
+<section id="t-550"><h5>Migrate artifacts between tenants: Export/Import process</h5><div class="content-locale-en-US content-locale-en"><div id="c_migrate_artifacts_export_import"><div class="body conbody"><p class="shortdesc">Organizations often build and test <span class="ph">Schema Designer</span> configurations such as extended/custom tables, APIs, and extension mappings in a non-production tenant because manually recreating these configurations in production is time-consuming and error-prone.</p>
+
+    <div class="p">The Export/Import workflows solve this by providing a streamlined, repeatable process. <ul class="ul">
+      <li class="li">One-click extraction - A single call to the schema-extensibility-artifacts endpoint gathers all selected artifact types—extension-configurations, custom-table-configurations, and extension-mappings—and returns them as ready-to-use request payloads</li>
+
+      <li class="li">Portable payloads - The exported JSON strictly conforms to the create-batch schema of each target API. No manual transformation is required.</li>
+
+      <li class="li">Batch creation in production - These payloads are posted to each artifact’s/batches endpoint, which automatically recreates:<ul class="ul">
+        <li class="li">All tables and columns</li>
+
+        <li class="li">Security objects and business events</li>
+
+        <li class="li">UI mappings</li>
+
+        <li class="li">OpenAPI specification registration</li>
+
+        </ul>
+</li>
+
+      <li class="li">End-to-end integrity - After import, each artifact behaves exactly as in the test tenant:<ul class="ul">
+        <li class="li">Extended/custom tables are fully created</li>
+
+        <li class="li"> APIs function as expected</li>
+
+        <li class="li"> Extended fields appear in the <span class="ph uicontrol">More Info</span> section of <span class="keyword">Banner</span> admin pages</li>
+
+        <li class="li"> Security objects are active</li>
+
+        <li class="li">Business events are created (in disabled state by default)</li>
+
+        <li class="li">OpenAPI specifications are registered in the API Registry</li>
+
+        </ul>
+</li>
+
+      </ul>
+</div>
+
+    <p class="p">The Export/Import feature offers a repeatable, tenant-agnostic pipeline to migrate all <span class="ph">Schema Designer</span> configurations—including metadata, UI mappings, and security objects—from test to production with no manual edits and minimal downtime. Post-import, all components function exactly as they did in the test environment.</p>
+
+  </div>
+
+</div></div></section>
+<section id="t-560"><h6>Export Schema Designer artifacts</h6><div class="content-locale-en-US content-locale-en"><div id="t_schema_extz_artifacts"><div class="body taskbody"><p class="shortdesc">This task provides guidance on how to use the <span class="keyword apiname">schema-extensibility-artifacts</span> API to export artifact configurations such as custom table configurations, extension configurations, API specifications, and extension mappings from a test tenant. You can import the exported configurations into another environment, such as production, to replicate the <span class="ph">Schema Designer</span> setup.</p>
+
+    <div class="section context"><div class="tasklabel"><h2 class="sectiontitle tasklabel">About this task</h2></div>Use the following steps to export artifact configurations by making POST requests to the schema-extensibility-artifacts API endpoint with the appropriate artifact type and list of identifiers.</div>
+
+    <div class="tasklabel"><h2 class="sectiontitle tasklabel">Procedure</h2></div><ol class="ol steps"><li class="li step stepexpand">
+        <span class="ph cmd">Identify the artifacts to export.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Collect the unique identifiers (GUID) for each artifact you want to export.</span>
+        <div class="itemgroup info">You can fetch these using the respective GET endpoints for:<ul class="ul">
+          <li class="li">custom-table-configurations</li>
+
+          <li class="li">extension-configurations</li>
+
+          <li class="li">extension-mappings</li>
+
+          </ul>
+</div>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Use your preferred REST API client to send a POST request through the <span class="keyword">Banner Ethos API</span> Administration <span class="keyword apiname">schema-extensibility-artifacts</span> resource to extract the artifacts.</span>
+        <div class="itemgroup info">URI: <span class="keyword apiname">POST IntegrationApi/api/schema-extensibility-artifacts/</span><p class="p">HTTP request headers:</p>
+<p class="p">Accept: <span class="keyword apiname">application/json</span></p>
+<p class="p">Content-type: <span class="keyword apiname">application/json</span></p>
+</div>
+        <div class="itemgroup info">You can fetch up to 500 records even without specifying identifiers. For example:<pre class="pre codeblock"><code>{
+  "type": "custom-table-configurations"
+}</code></pre>You can use <code class="ph codeph">max</code> to limit how many results you get, and <code class="ph codeph">offset</code> to skip entries. For example, this returns one record starting after the first 79 records.</div>
+        <div class="itemgroup info">
+          <pre class="pre codeblock"><code>{
+  "type": "custom-table-configurations",
+  "max": "1",
+  "offset": "79"
+}</code></pre>
+          <p class="p">To export specific artifacts by their unique GUIDs. For example:</p>
+
+          <pre class="pre codeblock"><code>{
+  "type": "custom-table-configurations",
+  "identifiers": [
+    "bdbf462f-43b1-4f50-ba3e-4b19d5fb0f32",
+    "d83a6574-0be5-4e89-bafe-667f8fcac016"
+  ]
+}</code></pre>
+        </div>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Receive and use the exported payload for Import.</span>
+        <div class="itemgroup info">The response will be a JSON object or array that is ready for import into production using the following create-batch endpoints:<ul class="ul">
+          <li class="li">/IntegrationApi/api/extension-configurations/batches</li>
+
+          <li class="li">/IntegrationApi/api/custom-table-configurations/batches</li>
+
+          <li class="li">/IntegrationApi/api/extension-mappings/batches</li>
+
+          </ul>
+</div>
+        <div class="itemgroup info">Each payload is production-ready and you need not make any manual edits.</div>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Repeat the export call separately for each artifact type.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Maintain artifact type separation in the export calls.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Ensure the unique identifiers used belong to the correct tenant and environment.</span>
+        <div class="itemgroup info">For more information, see <a class="xref ft-external-link" href="https://resources.elluciancloud.com/bundle/banner_api_erp_api_schema_extensibility_artifacts_1.0.0/page/schema-extensibility-artifacts.html" target="_blank" rel="noopener">Schema Extensibility Artifacts: schema-extensibility-artifacts</a>.</div>
+      </li>
+</ol>
+
+  </div>
+
+</div></div></section>
+<section id="t-570"><h5>Batches enabled APIs for Schema Designer</h5><div class="content-locale-en-US content-locale-en"><div id="c_batch_api_schema_extz"><div class="body conbody"><p class="shortdesc">The <span class="ph">Schema Designer</span> table APIs support a Batches API feature that allows users to perform bulk creation and update operations on custom and extended table APIs through a single synchronous API call.</p>
+
+    <p class="p">Using this feature, you can submit multiple records in one call using the /batches endpoint for the respective custom or extended table API. The API processes each record sequentially and returns a detailed response indicating success or failure per item.</p>
+
+    <p class="p">This approach improves efficiency, simplifies integration logic, and supports a mix of inserts and updates within a single request.</p>
+
+  </div>
+
+</div></div></section>
+<section id="t-580"><h6>Enable Batches API for Schema Designer APIs</h6><div class="content-locale-en-US content-locale-en"><div id="t_enable_batch_api_schema_extz"><div class="body taskbody"><p class="shortdesc">This task provides guidance on enabling the Batches API feature for <span class="ph">Schema Designer</span> table APIs.</p>
+
+    <div class="section context"><div class="tasklabel"><h2 class="sectiontitle tasklabel">About this task</h2></div>The feature is in BETA and must be enabled by a <span class="keyword">Banner</span> Administrator using <span class="keyword">Banner</span> administrative pages.</div>
+
+    <div class="tasklabel"><h2 class="sectiontitle tasklabel">Procedure</h2></div><ol class="ol steps"><li class="li step stepexpand">
+        <span class="ph cmd">Register the Batches feature in <span class="keyword">Banner</span>.</span>
+        <ol type="a" class="ol substeps">
+          <li class="li substep substepexpand">
+            <span class="ph cmd">Open the <span class="keyword wintitle">Banner Applications (GUAAPPL)</span> page.</span>
+          </li>
+
+          <li class="li substep substepexpand">
+            <span class="ph cmd">Insert a new application.</span>
+            <div class="itemgroup info">
+              <ul class="ul">
+                <li class="li">Application ID: CSE_APIBAT</li>
+
+                <li class="li">Application Name: <span class="ph">Schema Designer</span> APIs Batches Beta</li>
+
+              </ul>
+
+            </div>
+          </li>
+
+          <li class="li substep substepexpand">
+            <span class="ph cmd">Click <span class="ph uicontrol">Save</span>.</span>
+          </li>
+
+        </ol>
+
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Enable batch support for the custom or extended API.</span>
+        <ol type="a" class="ol substeps">
+          <li class="li substep substepexpand">
+            <span class="ph cmd">Navigate to the <span class="keyword wintitle">Banner Applications Configurations (GUACONF)</span> page.</span>
+          </li>
+
+          <li class="li substep substepexpand">
+            <span class="ph cmd">In the <span class="ph uicontrol">Application ID</span> field, enter <kbd class="ph userinput">CSE_APIBAT</kbd> and click <span class="ph uicontrol">Go</span>.</span>
+          </li>
+
+          <li class="li substep substepexpand">
+            <span class="ph cmd">For each API that requires batch support, add a configuration entry using the following:</span>
+            <div class="itemgroup info">
+              <ul class="ul">
+                <li class="li">Configuration Name: &lt;tableApiName&gt;:syncBatches</li>
+
+                <li class="li">Configuration Type: string</li>
+
+                <li class="li">Configuration Value: Y</li>
+
+              </ul>
+
+            </div>
+          </li>
+
+          <li class="li substep substepexpand">
+            <span class="ph cmd">Click <span class="ph uicontrol">Save</span>.</span>
+          </li>
+
+        </ol>
+
+        <div class="itemgroup info">After you have created a GUACONF setting to enable batches for the API, the feature is ready. If you have not yet created the custom schema, create it using Schema Designer. The /batches endpoint will be generated along with the API.</div>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">If custom/extended table API already exists, continue with the steps below to regenerate the API which includes batch support.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Collect the unique identifiers (GUID) for each artifact you want to enable the batch support.</span>
+        <div class="itemgroup info"> You can fetch these using the respective GET endpoints for:<ul class="ul">
+          <li class="li">custom-table-configurations</li>
+
+          <li class="li">extension-configurations</li>
+
+          </ul>
+</div>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Use your preferred REST API client to send a POST request through the <span class="keyword">Banner Ethos API</span>Administration schema-extensibility-specifications resource to regenerate the custom/extended table APIs and the /batches endpoint.</span>
+        <div class="itemgroup info">URI: <span class="keyword apiname">POST IntegrationApi/api/schema-extensibility-specifications/</span><p class="p">HTTP request headers:</p>
+<p class="p">Accept: <span class="keyword apiname">application/json</span></p>
+<p class="p">Content-type: <span class="keyword apiname">application/json</span></p>
+<p class="p">Example request body:</p>
+<pre class="pre codeblock"><code> 	{
+  "generateSpecifications": {
+ 	    "type": "LIST",
+ 	    "configurationIdentifiers": [
+ 	     "e9f98934-0202-4980-9c0b-90dfea37c559",
+ 	"54b84a54-1732-4751-b70f-7bdff6701ff7",
+ 	"7fda993b-2d93-48f3-a600-6ae1bb0ce215" 
+}
+</code></pre></div>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Use your preferred REST API client to send a POST request through the <span class="keyword">Banner Ethos API</span> Administration &lt;tableAPIName&gt; resource to make the batch call.</span>
+        <div class="itemgroup info">URI: <span class="keyword apiname">POST IntegrationApi/api/&lt;tableAPI&gt;/batches</span><p class="p">HTTP request headers:</p>
+<p class="p">Accept: <span class="keyword apiname">application/json</span></p>
+<p class="p">Content-type: <span class="keyword apiname">application/json</span></p>
+<p class="p">Example request body:</p>
+<pre class="pre codeblock"><code>{
+  "batch": {
+    "resource": {
+      "name": " x-custble-items",
+      "version": " application/vnd.hedtech.integration.v1+json"
+    },
+    "items": [
+      {
+        "id": "00000000-0000-0000-0000-000000000000",
+        " xcustblematerialType": "Textbook",
+        " xcustblematerialContext": "Required"
+      },
+      {
+        "id": "00000000-0000-0000-0000-000000000000",
+        " xcustblematerialType ": "Reference",
+        "xcustblematerialContext ": "Optional"
+      }
+    ]
+  }
+}</code></pre><div class="note"><span class="notetitle">Note:</span> Make sure to limit the size of the items array request to a maximum of 500 resources.</div>
+</div>
+        <ol type="a" class="ol substeps">
+          <li class="li substep substepexpand">
+            <span class="ph cmd">Use NIL GUID for new records.</span>
+          </li>
+
+          <li class="li substep substepexpand">
+            <span class="ph cmd">Provide a valid ID to update existing records.</span>
+            <div class="itemgroup info">Each successful item returns a new or updated ID and failures return error objects within the items array.</div>
+          </li>
+
+          <li class="li substep substepexpand">
+            <span class="ph cmd">Confirm the changes by sending a GET request of custom/extended table API.</span>
+          </li>
+
+        </ol>
+
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Remove Batch Support for the custom/extended table API.</span>
+        <ol type="a" class="ol substeps">
+          <li class="li substep">
+            <span class="ph cmd">Go to the <span class="keyword wintitle">Banner Applications Configurations (GUACONF)</span> page.</span>
+          </li>
+
+          <li class="li substep">
+            <span class="ph cmd">Either set the configuration value to <kbd class="ph userinput">N</kbd> or delete the configuration entry.</span>
+          </li>
+
+          <li class="li substep">
+            <span class="ph cmd">Regenerate the API again using Step 4 to reflect the change.</span>
+          </li>
+
+        </ol>
+
+        <div class="itemgroup info">For more information, see <span class="xref ft-internal-xlink" data-ft-warning="excluded-from-rendering" data-clusterid="id_services/schema_extz_use/c_batch">Batches</span>.</div>
+      </li>
+</ol>
+
+  </div>
+
+</div></div></section>
+<section id="t-590"><h5>Supplemental Data Engine (SDE) migration to Schema Designer APIs</h5><div class="content-locale-en-US content-locale-en"><div id="c_sde_migrtae_schema_extz"><div class="body conbody"><p class="shortdesc">The migration from the Supplemental Data Engine (SDE) to the <span class="ph">Schema Designer</span> APIs in <span class="keyword">Banner</span> enables institutions to modernize their approach for storing and managing user-defined data.</p>
+
+    <p class="p">The Supplemental Data Engine (SDE) allows you to add user-defined columns to the database and pages without user-maintained modifications. However, it  faces challenges  with Multi-Entity Processing (MEP) support and performance due to its single large table structure.</p>
+
+    <p class="p">This migration enables custom data management, full control over data, and simplified table extensions using Schema Designer UI and Schema Designer APIs. These features enhance user interaction through <span class="keyword">Banner</span> administrative pages.</p>
+
+    <p class="p">Before initiating the migration process, ensure that all required configuration and security prerequisites are properly completed.</p>
+
+    <div class="p">Follow the configuration guidelines outlined in:<ul class="ul">
+      <li class="li"><span class="xref ft-internal-link" title="Users that require access to the Schema Designer application and Schema Designer APIs must have access granted to the Banner security objects on the Banner Security Maintenance (GSASECR) page." data-ft-warning="excluded-from-rendering" data-mapid="cDWfcauMdZCgjyiPeU_naQ" data-tocid="2ErBx7vRzx7U0lqq4s2L6g">Grant access to Banner security objects</span></li>
+
+      <li class="li"><span class="xref ft-internal-link" title="The setup in GUACONF for the Supplementary Data Engine (SDE) migration requires specific configuration values. These configurations are associated with the GLOBAL application ID and are mandatory for enabling secure communication with the Banner Integration API application." data-ft-warning="excluded-from-rendering" data-mapid="cDWfcauMdZCgjyiPeU_naQ" data-tocid="gO_yQQLOsy7nwRWDGu8PhQ">Supplementary Data Engine (SDE) migration configuration</span></li>
+
+      </ul>
+</div>
+
+    <div class="section"><h2 class="title sectiontitle">Before You Begin</h2>
+      
+      <p class="p">Before starting the migration, ensure that you are familiar with the core SDE configuration tables and how your <span class="keyword">Banner</span> SDE data is structured. The migration will succeed only if all eligibility criteria are met.</p>
+
+      
+<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" class="table" frame="hsides" border="1" rules="rows"><caption><span class="tablecap"><span class="table--title-label">Table 1. </span>Banner Supplemental Data Engine Tables</span></caption><colgroup><col style="width:50%"><col style="width:50%"></colgroup><thead class="thead" style="text-align:left;">
+            <tr class="row">
+              <th class="entry row-nocellborder" style="vertical-align:top;" id="d3736e119">Table</th>
+
+              <th class="entry row-nocellborder" style="vertical-align:top;" id="d3736e122">Role in Migration</th>
+
+            </tr>
+
+          </thead>
+<tbody class="tbody">
+            <tr class="row">
+              <td class="entry row-nocellborder" style="vertical-align:top;" headers="d3736e119 ">GOBSDTB</td>
+
+              <td class="entry row-nocellborder" style="vertical-align:top;" headers="d3736e122 ">Defines which <span class="keyword">Banner</span> tables have SDE configurations and their primary key structure.</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry row-nocellborder" style="vertical-align:top;" headers="d3736e119 ">GORSDAM</td>
+
+              <td class="entry row-nocellborder" style="vertical-align:top;" headers="d3736e122 ">Stores attribute-level configuration: discriminators, LOVs, overrides, ranges, validations.</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry row-nocellborder" style="vertical-align:top;" headers="d3736e119 ">GORSDAV</td>
+
+              <td class="entry row-nocellborder" style="vertical-align:top;" headers="d3736e122 ">Holds actual SDE data values per record (deleted during cleanup, not validated pre-migration).</td>
+
+            </tr>
+
+          </tbody>
+</table>
+</div>
+
+      
+<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" class="table" frame="hsides" border="1" rules="rows"><caption><span class="tablecap"><span class="table--title-label">Table 2. </span>Banner Supplemental Data Engine Configuration Pages</span></caption><colgroup><col style="width:50%"><col style="width:50%"></colgroup><thead class="thead" style="text-align:left;">
+            <tr class="row">
+              <th class="entry row-nocellborder" style="vertical-align:top;" id="d3736e177">Table</th>
+
+              <th class="entry row-nocellborder" style="vertical-align:top;" id="d3736e180">Role in Migration</th>
+
+            </tr>
+
+          </thead>
+<tbody class="tbody">
+            <tr class="row">
+              <td class="entry row-nocellborder" style="vertical-align:top;" headers="d3736e177 ">GTVSDTB</td>
+
+              <td class="entry row-nocellborder" style="vertical-align:top;" headers="d3736e180 ">Table setup — define which tables participate in SDE</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry row-nocellborder" style="vertical-align:top;" headers="d3736e177 ">GOASDMD</td>
+
+              <td class="entry row-nocellborder" style="vertical-align:top;" headers="d3736e180 ">Attribute configuration — define SDE attributes, discriminators, LOVs, ranges</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry row-nocellborder" style="vertical-align:top;" headers="d3736e177 ">GOADISC</td>
+
+              <td class="entry row-nocellborder" style="vertical-align:top;" headers="d3736e180 ">Supplemental Data Discriminators — define discriminator codes (Method &amp; Validation)</td>
+
+            </tr>
+
+          </tbody>
+</table>
+</div>
+
+      <div class="note"><span class="notetitle">Note:</span> Review GOASDMD for each table in scope before running GURMSDC. Remove any unsupported feature (LOV, override, range, validation rule) or the the migration process skips the table.</div>
+
+    </div>
+
+    <div class="section"><h2 class="title sectiontitle">Migration Validation Overview</h2>
+      
+      <p class="p">GURMSDC validates each SDE table through three sequential checks. These checks are enforced in the order shown below. A failure at any step blocks migration for that table and displays an error message.</p>
+
+      
+<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" class="table" frame="hsides" border="1" rules="rows"><colgroup><col style="width:50%"><col style="width:50%"></colgroup><thead class="thead" style="text-align:left;">
+            <tr class="row">
+              <th class="entry row-nocellborder" style="vertical-align:top;" id="d3736e242">SDE Table / Object</th>
+
+              <th class="entry row-nocellborder" style="vertical-align:top;" id="d3736e245">What Is Validated</th>
+
+            </tr>
+
+          </thead>
+<tbody class="tbody">
+            <tr class="row">
+              <td class="entry row-nocellborder" style="vertical-align:top;" headers="d3736e242 ">GOBSDTB</td>
+
+              <td class="entry row-nocellborder" style="vertical-align:top;" headers="d3736e245 ">SDE configuration exists AND Primary Key does not use to_char() on non-numeric columns</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry row-nocellborder" style="vertical-align:top;" headers="d3736e242 ">GORSDAM</td>
+
+              <td class="entry row-nocellborder" style="vertical-align:top;" headers="d3736e245 ">Discriminator Method = "I" AND Validation = NULL; no unsupported features present (substitute, override, range, LOV fields, validation rules, GORRSQL Rules)</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry row-nocellborder" style="vertical-align:top;" headers="d3736e242 ">
+                <p class="p">DBA_OBJECTS</p>
+
+                <p class="p">(BAN_EXTENSIONS)</p>
+
+              </td>
+
+              <td class="entry row-nocellborder" style="vertical-align:top;" headers="d3736e245 ">Extension table does not already exist in the BAN_EXTENSIONS schema</td>
+
+            </tr>
+
+          </tbody>
+</table>
+</div>
+
+      <p class="p">When all three steps pass, GURMSDC displays the following message: <samp class="ph msgph">{<var class="keyword varname">TableName</var>} configuration migration validated successfully.</samp></p>
+
+    </div>
+
+    <div class="section"><h2 class="title sectiontitle">Step 1: GOBSDTB Validation</h2>
+      
+      <p class="p">GOBSDTB is the first table checked. It must contain a configuration record for the target table, and the Primary Key definition must comply with the to_char() rule.</p>
+
+      
+<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" class="table" frame="hsides" border="1" rules="rows"><caption><span class="tablecap"><span class="table--title-label">Table 3. </span>Checks and error messages</span></caption><colgroup><col style="width:33.33333333333333%"><col style="width:33.33333333333333%"><col style="width:33.33333333333333%"></colgroup><thead class="thead" style="text-align:left;">
+            <tr class="row">
+              <th class="entry row-nocellborder" style="vertical-align:top;" id="d3736e322">Check</th>
+
+              <th class="entry row-nocellborder" style="vertical-align:top;" id="d3736e325">Requirement</th>
+
+              <th class="entry row-nocellborder" style="vertical-align:top;" id="d3736e328">GURMSDC error if fails</th>
+
+            </tr>
+
+          </thead>
+<tbody class="tbody">
+            <tr class="row">
+              <td class="entry row-nocellborder" style="vertical-align:top;" headers="d3736e322 ">SDE configuration exists</td>
+
+              <td class="entry row-nocellborder" style="vertical-align:top;" headers="d3736e325 ">Table must have a record in GOBSDTB</td>
+
+              <td class="entry row-nocellborder" style="vertical-align:top;" headers="d3736e328 ">SDE configuration not found for table {<var class="keyword varname">TableName</var>}.</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry row-nocellborder" style="vertical-align:top;" headers="d3736e322 ">PK – non-numeric columns</td>
+
+              <td class="entry row-nocellborder" style="vertical-align:top;" headers="d3736e325 ">to_char() must NOT be used on non-numeric PK columns</td>
+
+              <td class="entry row-nocellborder" style="vertical-align:top;" headers="d3736e328 ">{<var class="keyword varname">TableName</var>} cannot be migrated because to_char() function is not allowed in primary key for non-numeric column.</td>
+
+            </tr>
+
+          </tbody>
+</table>
+</div>
+
+    </div>
+
+    <div class="section"><h2 class="title sectiontitle">Step 2: GORSDAM Attribute Metadata Validation</h2>
+      
+      <p class="p">GORSDAM holds all attribute-level configuration. Two sub-checks are performed: discriminator rules and unsupported feature detection.</p>
+
+      <p class="p">Every discriminator on the table must meet these conditions:</p>
+
+      
+<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" class="table" frame="hsides" border="1" rules="rows"><caption><span class="tablecap"><span class="table--title-label">Table 4. </span>Discriminator Rules (GOADISC)</span></caption><colgroup><col style="width:25%"><col style="width:25%"><col style="width:25%"><col style="width:25%"></colgroup><thead class="thead" style="text-align:left;">
+            <tr class="row">
+              <th class="entry row-nocellborder" style="vertical-align:top;" id="d3736e399">Check</th>
+
+              <th class="entry row-nocellborder" style="vertical-align:top;" id="d3736e402">Column</th>
+
+              <th class="entry row-nocellborder" style="vertical-align:top;" id="d3736e405">Requirement</th>
+
+              <th class="entry row-nocellborder" style="vertical-align:top;" id="d3736e408">GURMSDC error if fails</th>
+
+            </tr>
+
+          </thead>
+<tbody class="tbody">
+            <tr class="row">
+              <td class="entry row-nocellborder" style="vertical-align:top;" headers="d3736e399 ">
+                <p class="p">Discriminator Method</p>
+
+                <p class="p">Discriminator Validation</p>
+
+              </td>
+
+              <td class="entry row-nocellborder" style="vertical-align:top;" headers="d3736e402 ">
+                <p class="p">For the GORSDAM_SDDC_CODE, the GOBSDDC_METHOD</p>
+
+                <p class="p">GOBSDDC_VALIDATION</p>
+
+              </td>
+
+              <td class="entry row-nocellborder" style="vertical-align:top;" headers="d3736e405 ">Must equal 'I' (Index)</td>
+
+              <td class="entry row-nocellborder" style="vertical-align:top;" headers="d3736e408 ">{<var class="keyword varname">TableName</var>} cannot be migrated because only SDDC with METHOD = 'I' and VALIDATION = NULL is supported.</td>
+
+            </tr>
+
+          </tbody>
+</table>
+</div>
+
+    </div>
+
+    <div class="section"><h2 class="title sectiontitle">Unsupported Features</h2>
+      
+      <p class="p">If any of the following columns is non-NULL, the table is NOT eligible. Remove the unsupported configuration in GOASDMD before re-running GURMSDC.</p>
+
+      
+<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" class="table" frame="hsides" border="1" rules="rows"><colgroup><col style="width:33.33333333333333%"><col style="width:33.33333333333333%"><col style="width:33.33333333333333%"></colgroup><thead class="thead" style="text-align:left;">
+            <tr class="row">
+              <th class="entry row-nocellborder" style="vertical-align:top;" id="d3736e472">GORSDAM Column</th>
+
+              <th class="entry row-nocellborder" style="vertical-align:top;" id="d3736e475">Description</th>
+
+              <th class="entry row-nocellborder" style="vertical-align:top;" id="d3736e478">GURMSDC error if not NULL</th>
+
+            </tr>
+
+          </thead>
+<tbody class="tbody">
+            <tr class="row">
+              <td class="entry row-nocellborder" style="vertical-align:top;" headers="d3736e472 ">GORSDAM_ATTR_TYPE</td>
+
+              <td class="entry row-nocellborder" style="vertical-align:top;" headers="d3736e475 ">Substitute feature used</td>
+
+              <td class="entry row-nocellborder" style="vertical-align:top;" headers="d3736e478 ">{<var class="keyword varname">TableName</var>} cannot be migrated because substitute is not supported.</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry row-nocellborder" style="vertical-align:top;" headers="d3736e472 ">
+                <p class="p">GORSDAM_LOV_LOW_RANGE</p>
+
+                <p class="p">GORSDAM_LOV_HIGH_RANGE</p>
+
+                <p class="p">GORSDAM_LOV_LOW_SYSDATE_IND</p>
+
+                <p class="p">GORSDAM_LOV_HIGH_SYSDATE_IND</p>
+
+              </td>
+
+              <td class="entry row-nocellborder" style="vertical-align:top;" headers="d3736e475 ">For range validation</td>
+
+              <td class="entry row-nocellborder" style="vertical-align:top;" headers="d3736e478 ">{<var class="keyword varname">TableName</var>} cannot be migrated because range is not supported.</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry row-nocellborder" style="vertical-align:top;" headers="d3736e472 ">
+                <p class="p">GORSDAM_LOV_TABLE_OVRD</p>
+
+                <p class="p">GORSDAM_LOV_ATTR_OVRD</p>
+
+                <p class="p">GORSDAM_LOV_CODE_TITLE</p>
+
+                <p class="p">GORSDAM_LOV_DESC_TITLE</p>
+
+              </td>
+
+              <td class="entry row-nocellborder" style="vertical-align:top;" headers="d3736e475 ">Override for LOV Fields</td>
+
+              <td class="entry row-nocellborder" style="vertical-align:top;" headers="d3736e478 ">{<var class="keyword varname">TableName</var> } cannot be migrated because override is not supported.</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry row-nocellborder" style="vertical-align:top;" headers="d3736e472 ">
+                <p class="p">GORSDAM_GJAPDEF_VALIDATION</p>
+
+                <p class="p">GORSDAM_SQL_SQPR_CODE</p>
+
+                <p class="p">GORSDAM_SQL_SQRU_CODE</p>
+
+              </td>
+
+              <td class="entry row-nocellborder" style="vertical-align:top;" headers="d3736e475 "><p class="p">GJAPDEF validation routine</p>
+<p class="p">SQL process generating validation type</p>
+ SQL rule generating rule type</td>
+
+              <td class="entry row-nocellborder" style="vertical-align:top;" headers="d3736e478 ">{<var class="keyword varname">TableName</var>} cannot be migrated because rules and validations are not supported.</td>
+
+            </tr>
+
+          </tbody>
+</table>
+</div>
+
+    </div>
+
+    <div class="section"><h2 class="title sectiontitle">Step 3: BAN_EXTENSIONS Uniqueness Check</h2>
+      
+      <p class="p">The extension table generated for the SDE table must not already exist in BAN_EXTENSIONS. If it does, GURMSDC will not overwrite it.</p>
+
+      
+<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" class="table" frame="hsides" border="1" rules="rows"><colgroup><col style="width:50%"><col style="width:50%"></colgroup><thead class="thead" style="text-align:left;">
+            <tr class="row">
+              <th class="entry row-nocellborder" style="vertical-align:top;" id="d3736e606">Requirement</th>
+
+              <th class="entry row-nocellborder" style="vertical-align:top;" id="d3736e609">GURMSDC error if fails</th>
+
+            </tr>
+
+          </thead>
+<tbody class="tbody">
+            <tr class="row">
+              <td class="entry row-nocellborder" style="vertical-align:top;" headers="d3736e606 ">Must NOT exist in BAN_EXTENSIONS schema</td>
+
+              <td class="entry row-nocellborder" style="vertical-align:top;" headers="d3736e609 ">The extended table {<var class="keyword varname">extendedTableName</var>} is already present in ban_extensions schema for {<var class="keyword varname">TableName</var>}.</td>
+
+            </tr>
+
+          </tbody>
+</table>
+</div>
+
+    </div>
+
+  </div>
+
+</div></div></section>
+<section id="t-600"><h6>Run the migration of Supplemental Data Configurations (GURMSDC) process</h6><div class="content-locale-en-US content-locale-en"><div id="t_run_gurmsdc_process"><div class="body taskbody"><p class="shortdesc">Migration of Supplemental Data Configurations (GURMSDC) is a <span class="keyword">Banner</span> batch process that migrates Supplemental Data Engine (SDE) configuration metadata to the schema extensibility framework.</p>
+
+    <div class="section prereq p"><div class="tasklabel"><h2 class="sectiontitle tasklabel">Before you begin</h2></div>Before you run GURMSDC:<ul class="ul">
+      <li class="li">Identify the tables to be migrated.</li>
+
+      <li class="li">List all SDE baseline tables that you plan to migrate.</li>
+
+      <li class="li">Confirm whether you will migrate all tables from GOBSDTB, or only specific tables.</li>
+
+      <li class="li">Identify the attributes to be migrated.</li>
+
+      <li class="li">Review the user-defined columns in each SDE table.</li>
+
+      <li class="li">
+        <p class="p">Check that attributes meet eligibility rules (data types, primary key constraints, mapping requirements).</p>
+
+      </li>
+
+      </ul>
+</div>
+
+    <div class="section context"><div class="tasklabel"><h2 class="sectiontitle tasklabel">About this task</h2></div>The GURMSDC process creates the extensibility metadata (custom table definition, API mapping, and security objects) from SDE configuration records. You can run GURMSDC in AUDIT mode and UPDATE mode.</div>
+
+    <div class="tasklabel"><h2 class="sectiontitle tasklabel">Procedure</h2></div><ol class="ol steps"><li class="li step stepexpand">
+        <span class="ph cmd">Log in to <span class="keyword">Banner</span> as a  <span class="keyword">Banner</span> administrator.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Access the <span class="keyword wintitle">Process Submission Controls (GJAPCTL)</span> page.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Enter <kbd class="ph userinput">GURMSDC</kbd> in the <span class="ph uicontrol">Process</span> field.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Select <span class="ph uicontrol">Next Section</span>.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Enter <kbd class="ph userinput">DATABASE</kbd> in the <span class="ph uicontrol">Printer</span> field.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Select <span class="ph uicontrol">Next Section</span>.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Enter the following information:</span>
+        <div class="itemgroup info">
+          
+<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" class="table" frame="hsides" border="1" rules="rows"><colgroup><col><col></colgroup><thead class="thead" style="text-align:left;">
+                <tr class="row" style="vertical-align:bottom;">
+                  <th class="entry row-nocellborder" style="text-align:left;vertical-align:bottom;" id="d1688e155">Parameter</th>
+
+                  <th class="entry row-nocellborder" style="text-align:left;vertical-align:bottom;" id="d1688e158">Value</th>
+
+                </tr>
+
+              </thead>
+<tbody class="tbody">
+                <tr class="row">
+                  <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d1688e155 ">Mode</td>
+
+                  <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d1688e158 ">AUDIT (validate only) or UPDATE (perform migration).</td>
+
+                </tr>
+
+                <tr class="row">
+                  <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d1688e155 ">Tables</td>
+
+                  <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d1688e158 ">Blank (all tables in GOBSDTB), or a specific table name (repeat Param 02 for each table).</td>
+
+                </tr>
+
+              </tbody>
+</table>
+</div>
+
+        </div>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Select <span class="ph uicontrol">Next Section</span>.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Click <span class="ph uicontrol">Save</span> to submit the job.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Make a note of the files created that appear in the message area to review the results.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Exit GJAPCTL.</span>
+      </li>
+</ol>
+
+  </div>
+
+</div></div></section>
+<section id="t-610"><h6>Review the GURMSDC process</h6><div class="content-locale-en-US content-locale-en"><div id="t_review_gurmsdc_process"><div class="body taskbody"><p class="shortdesc">You must review the results of the GURMSDC migration process to verify if the migration was successful.</p>
+
+    <div class="tasklabel"><h2 class="sectiontitle tasklabel">Procedure</h2></div><ol class="ol steps"><li class="li step">
+        <span class="ph cmd">Access the <span class="keyword wintitle">Saved Output Review (GJIREVO)</span> page.</span>
+      </li>
+<li class="li step">
+        <span class="ph cmd">Enter <kbd class="ph userinput">GURMSDC</kbd> in the <span class="ph uicontrol">Process</span> field.</span>
+      </li>
+<li class="li step">
+        <span class="ph cmd">Select a file in the <span class="ph uicontrol">File Name</span> field.</span>
+      </li>
+</ol>
+
+    <div class="section result"><div class="tasklabel"><h2 class="sectiontitle tasklabel">Results</h2></div>The log file contains statistics information and possible error messages from the migration process.</div>
+
+  </div>
+
+</div></div></section>
+<section id="t-620"><h6>Error messages</h6><div class="content-locale-en-US content-locale-en"><div id="r_gurmsdc_error_messages"><div class="body refbody"><p class="shortdesc">A list of error messages and definitions that you can encounter when you run the GURMSDC process.</p>
+
+    
+<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" class="table" frame="hsides" border="1" rules="rows"><colgroup><col style="width:37.3134328358209%"><col style="width:62.68656716417911%"></colgroup><thead class="thead" style="text-align:left;vertical-align:bottom;">
+          <tr class="row">
+            <th class="entry row-nocellborder" style="vertical-align:bottom;" id="d579e49">Error Message</th>
+
+            <th class="entry row-nocellborder" style="vertical-align:bottom;" id="d579e52">Description</th>
+
+          </tr>
+
+        </thead>
+<tbody class="tbody">
+          <tr class="row">
+            <td class="entry row-nocellborder" style="vertical-align:top;" headers="d579e49 ">SDE configuration not found for table {<var class="keyword varname">TableName</var>}.</td>
+
+            <td class="entry row-nocellborder" style="vertical-align:top;" headers="d579e52 ">The Supplemental Data Engine (SDE) configuration for the table is missing, so it cannot be processed in <span class="ph">Schema Designer</span>.</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="vertical-align:top;" headers="d579e49 ">{<var class="keyword varname">TableName</var>} cannot be migrated because substitute is not supported.</td>
+
+            <td class="entry row-nocellborder" style="vertical-align:top;" headers="d579e52 ">There are attributes that use the substitute feature, which is not supported by <span class="ph">Schema Designer</span>.</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="vertical-align:top;" headers="d579e49 ">{<var class="keyword varname">TableName</var>} cannot be migrated because override is not supported.</td>
+
+            <td class="entry row-nocellborder" style="vertical-align:top;" headers="d579e52 ">The override configuration for the attributes defined for table is not supported in <span class="ph">Schema Designer</span>.</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="vertical-align:top;" headers="d579e49 ">{<var class="keyword varname">TableName</var>} cannot be migrated because rules and validations are not supported.</td>
+
+            <td class="entry row-nocellborder" style="vertical-align:top;" headers="d579e52 "><span class="ph">Schema Designer</span> does not support the rules and validations defined for the attributes for the table.</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="vertical-align:top;" headers="d579e49 ">{<var class="keyword varname">TableName</var>} cannot be migrated because range is not supported.</td>
+
+            <td class="entry row-nocellborder" style="vertical-align:top;" headers="d579e52 ">The range feature used in the attributes for the table is not supported by <span class="ph">Schema Designer</span>.</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="vertical-align:top;" headers="d579e49 ">{<var class="keyword varname">TableName</var>} cannot be migrated because only Supplemental Data Discriminator Code (SDDC) with METHOD = ''I'' and VALIDATION = NULL is supported.</td>
+
+            <td class="entry row-nocellborder" style="vertical-align:top;" headers="d579e52 ">Only SDDC records with METHOD = 'I' and no validation value can be migrated.</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="vertical-align:top;" headers="d579e49 ">{<var class="keyword varname">TableName</var>} configuration migration validated successfully.</td>
+
+            <td class="entry row-nocellborder" style="vertical-align:top;" headers="d579e52 ">The configuration for the table has been successfully validated and is compatible with <span class="ph">Schema Designer</span>.</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="vertical-align:top;" headers="d579e49 ">{<var class="keyword varname">TableName</var>} cannot be migrated because to_char() function is not allowed in primary key for non-numeric column.</td>
+
+            <td class="entry row-nocellborder" style="vertical-align:top;" headers="d579e52 ">The use of to_char() in a primary key on a non-numeric column is not allowed for the migration.</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="vertical-align:top;" headers="d579e49 ">The extended table {<var class="keyword varname">extendedTableName</var>} is already present in ban_extensions schema for {<var class="keyword varname">BannerTableName</var>}.</td>
+
+            <td class="entry row-nocellborder" style="vertical-align:top;" headers="d579e52 ">The extended version of the table already exists in the ban_extensions schema for the specified entity, so duplication is not allowed.</td>
+
+          </tr>
+
+        </tbody>
+</table>
+</div>
+
+  </div>
+
+</div></div></section>
+<section id="t-630"><h6>Run the Migration of Supplemental Data Values (GURMSDV) process</h6><div class="content-locale-en-US content-locale-en"><div id="t_run_gurmsdv_process"><div class="body taskbody"><p class="shortdesc">Migration of Supplemental Data Values (GURMSDV) is a <span class="keyword">Banner</span> batch process that migrates Supplemental Data Engine (SDE) data values to the schema extensibility framework tables. This process ensures that existing user-defined data is preserved, accessible through extensible APIs, and available in configurable UI components within <span class="keyword">Banner</span> administrative pages.</p>
+
+    <div class="section prereq p"><div class="tasklabel"><h2 class="sectiontitle tasklabel">Before you begin</h2></div>Before you run GURMSDV:<ul class="ul">
+      <li class="li">Ensure that all required configurations have been migrated using GURMSDC.</li>
+
+      <li class="li">Identify the tables to be migrated.</li>
+
+      <li class="li">List all the SDE baseline tables that you plan to migrate.</li>
+
+      <li class="li">Confirm whether you will migrate all tables from GOBSDTB, or only specific tables.</li>
+
+      <li class="li">Review the attributes and data integrity.</li>
+
+      <li class="li">Check for nullability, data type, and length consistency between SDE and the extensibility tables.</li>
+
+      <li class="li">Verify that primary key structures are intact and match the target tables.</li>
+
+      </ul>
+</div>
+
+    <div class="tasklabel"><h2 class="sectiontitle tasklabel">Procedure</h2></div><ol class="ol steps"><li class="li step stepexpand">
+        <span class="ph cmd">Log in to <span class="keyword">Banner</span> as a  <span class="keyword">Banner</span> administrator.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Access the <span class="keyword wintitle">Process Submission Controls (GJAPCTL)</span> page.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Enter <kbd class="ph userinput">GURMSDV</kbd> in the <span class="ph uicontrol">Process</span> field.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Select <span class="ph uicontrol">Next Section</span>.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Enter <kbd class="ph userinput">DATABASE</kbd> in the <span class="ph uicontrol">Printer</span> field.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Select <span class="ph uicontrol">Next Section</span>.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Enter the following information:</span>
+        <div class="itemgroup info">
+          
+<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" class="table" frame="hsides" border="1" rules="rows"><colgroup><col><col></colgroup><thead class="thead" style="text-align:left;">
+                <tr class="row" style="vertical-align:bottom;">
+                  <th class="entry row-nocellborder" style="text-align:left;vertical-align:bottom;" id="d10641e155">Parameter</th>
+
+                  <th class="entry row-nocellborder" style="text-align:left;vertical-align:bottom;" id="d10641e158">Value</th>
+
+                </tr>
+
+              </thead>
+<tbody class="tbody">
+                <tr class="row">
+                  <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d10641e155 ">Mode</td>
+
+                  <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d10641e158 ">AUDIT (validate only) or UPDATE (perform migration).</td>
+
+                </tr>
+
+                <tr class="row">
+                  <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d10641e155 ">Tables</td>
+
+                  <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d10641e158 ">ALL, % (all tables in GOBSDTB), or a specific table name (repeat Param 02 for each table).</td>
+
+                </tr>
+
+              </tbody>
+</table>
+</div>
+
+        </div>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Select <span class="ph uicontrol">Next Section</span>.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Click <span class="ph uicontrol">Save</span> to submit the job.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Make a note of the files created that appear in the message area to review the results.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Exit GJAPCTL.</span>
+      </li>
+</ol>
+
+  </div>
+
+</div></div></section>
+<section id="t-640"><h6>Review the GURMSDV process</h6><div class="content-locale-en-US content-locale-en"><div id="t_review_gurmsdv_process"><div class="body taskbody"><p class="shortdesc">You must review the results of the GURMSDV migration process to verify if the migration was successful.</p>
+
+    <div class="tasklabel"><h2 class="sectiontitle tasklabel">Procedure</h2></div><ol class="ol steps"><li class="li step">
+        <span class="ph cmd">Access the <span class="keyword wintitle">Saved Output Review (GJIREVO)</span> page.</span>
+      </li>
+<li class="li step">
+        <span class="ph cmd">Enter <kbd class="ph userinput">GURMSDV</kbd> in the <span class="ph uicontrol">Process</span> field.</span>
+      </li>
+<li class="li step">
+        <span class="ph cmd">Select a file in the <span class="ph uicontrol">File Name</span> field.</span>
+      </li>
+</ol>
+
+    <div class="section result"><div class="tasklabel"><h2 class="sectiontitle tasklabel">Results</h2></div>The log file contains statistics information and possible error messages from the migration process.</div>
+
+  </div>
+
+</div></div></section>
+<section id="t-650"><h6>Error messages</h6><div class="content-locale-en-US content-locale-en"><div id="r_gurmsdv_error_messages"><div class="body refbody"><p class="shortdesc">A list of error messages and definitions that you can encounter when you run the GURMSDV process.</p>
+
+    
+<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" class="table" frame="hsides" border="1" rules="rows"><colgroup><col style="width:37.3134328358209%"><col style="width:62.68656716417911%"></colgroup><thead class="thead" style="text-align:left;vertical-align:bottom;">
+          <tr class="row">
+            <th class="entry row-nocellborder" style="vertical-align:bottom;" id="d3569e49">Error Message</th>
+
+            <th class="entry row-nocellborder" style="vertical-align:bottom;" id="d3569e52">Description</th>
+
+          </tr>
+
+        </thead>
+<tbody class="tbody">
+          <tr class="row">
+            <td class="entry row-nocellborder" style="vertical-align:top;" headers="d3569e49 ">SDE Data can not be migrated as SDE configuration not migrated to GORRSDE for the table {<var class="keyword varname">TableName</var>}</td>
+
+            <td class="entry row-nocellborder" style="vertical-align:top;" headers="d3569e52 ">The Supplemental Data Engine configuration for the table has not been migrated to GORRSDE, so the data cannot be processed. First, run the GURMSDC process for the table.</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="vertical-align:top;" headers="d3569e49 ">Total number of records migrated for the table {<var class="keyword varname">TableName</var>}</td>
+
+            <td class="entry row-nocellborder" style="vertical-align:top;" headers="d3569e52 ">Indicates the number of records successfully migrated for the table.</td>
+
+          </tr>
+
+        </tbody>
+</table>
+</div>
+
+  </div>
+
+</div></div></section></main></body></html>

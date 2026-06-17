@@ -1,0 +1,1266 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Ethos Identity - Configure — Configure Ethos Identity with an external identity provider</title><style>body{font-family:-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;line-height:1.55;color:#1a1a1a;max-width:920px;margin:0 auto;padding:24px}header{border-bottom:2px solid #5a16d6;margin-bottom:8px}h1{color:#3a0ca3}h2,h3,h4,h5,h6{margin-top:1.6em}.crumb{color:#666;font-size:13px;margin:0}.meta{color:#888;font-size:12px}nav.toc{background:#f6f4fc;border:1px solid #e3dcf5;border-radius:8px;padding:12px 18px;margin:18px 0}nav.toc h2{margin:.2em 0}nav.toc ul{list-style:none;padding-left:0}nav.toc a{text-decoration:none;color:#5a16d6}section{margin:1.2em 0;padding-top:.4em}img{max-width:100%;height:auto}table{border-collapse:collapse}td,th{border:1px solid #ccc;padding:4px 8px}code,pre{background:#f4f4f4;border-radius:4px}pre{padding:10px;overflow:auto}</style></head><body><header><p class="crumb">Ethos Identity › Ethos Identity - Configure</p><h1>Ethos Identity - Configure — Configure Ethos Identity with an external identity provider</h1><p class="meta">Source: <a href="https://resources.elluciancloud.com/r/bundle/ethos_identity_acn_configure">https://resources.elluciancloud.com/r/bundle/ethos_identity_acn_configure</a> &middot; Retrieved 2026-06-17</p></header><nav class="toc"><h2>Contents</h2><ul><li style="margin-left:0px"><a href="#t-410">Configure Ethos Identity with an external identity provider</a></li><li style="margin-left:16px"><a href="#t-420">Configure Ellucian Ethos Identity with AD FS as an external identity provider</a></li><li style="margin-left:32px"><a href="#t-430">Configure AD FS as an external identity provider</a></li><li style="margin-left:32px"><a href="#t-440">Configure Ellucian Ethos Identity as relying party for AD FS</a></li><li style="margin-left:32px"><a href="#t-450">Configure a service provider to use AD FS as the identity provider</a></li><li style="margin-left:32px"><a href="#t-460">Add ADFS server in whitelist on Ellucian Ethos Identity</a></li><li style="margin-left:16px"><a href="#t-470">Configure Ellucian Ethos Identity with Shibboleth as an external identity provider</a></li><li style="margin-left:32px"><a href="#t-480">Configure Shibboleth as an external identity provider</a></li><li style="margin-left:32px"><a href="#t-490">Configure Ellucian Ethos Identity as relying party for Shibboleth</a></li><li style="margin-left:32px"><a href="#t-500">Configure a service provider to use Shibboleth as the identity provider</a></li><li style="margin-left:32px"><a href="#t-510">Add Shibboleth Server in whitelist on Ellucian Ethos Identity</a></li><li style="margin-left:16px"><a href="#t-520">Configure Ellucian Ethos Identity with Microsoft Azure AD as an external identity provider</a></li><li style="margin-left:32px"><a href="#t-530">Configure Ellucian Ethos Identity as an enterprise application for Microsoft Azure AD</a></li><li style="margin-left:32px"><a href="#t-540">Configure Microsoft Azure AD as an external identity provider</a></li><li style="margin-left:32px"><a href="#t-550">Configure a service provider to use Microsoft Azure AD as the identity provider</a></li><li style="margin-left:32px"><a href="#t-560">Add Microsoft Azure AD server in whitelist on Ellucian Ethos Identity</a></li><li style="margin-left:16px"><a href="#t-570">Configure Ellucian Ethos Identity with Google as an external identity provider</a></li><li style="margin-left:32px"><a href="#t-580">Configure Ellucian Ethos Identity as a SAML application for Google identity provider</a></li><li style="margin-left:32px"><a href="#t-590">Configure Google as an external identity provider</a></li><li style="margin-left:32px"><a href="#t-600">Configure a service provider to use Google as the identity provider</a></li><li style="margin-left:32px"><a href="#t-610">Add Google Server in whitelist on Ellucian Ethos Identity</a></li></ul></nav><main><section id="t-410"><h2>Configure Ethos Identity with an external identity provider</h2><div class="content-locale-en-US content-locale-en"><div id="p_config_eeid_ext_id_provider"><div class="body conbody"><p class="shortdesc">If your institution has an existing identity provider (IDP), you can implement <span class="keyword">Ellucian Ethos Identity</span> to incorporate service providers that require non-standard protocols.</p>
+
+    <p class="p">For example, you can implement <span class="keyword">Ellucian Ethos Identity</span> to support CAS-based service providers with identity providers that natively support SAML 2.0 or WS-Federation. In this type of configuration, <span class="keyword">Ellucian Ethos Identity</span> acts as a service provider (relying party) to an external identity provider — external with respect to itself — delegating authentication to the central IdP.</p>
+
+    <div class="note"><span class="notetitle">Note:</span> <span class="ph">WSO2 Identity Server</span> handles local and federated authenticators differently. To avoid losing a session between these authenticators, the service provider configuration should consistently use local authentication (default) or federated authentication.</div>
+
+    <div class="p">Communication between the application and an external identity provider works as follows:<ol class="ol"> <li class="li">The browser (end user) attempts to access the application.</li>
+ <li class="li">The application redirects the user to <span class="ph">Ellucian Ethos Identity</span> for authentication.</li>
+ <li class="li"><span class="ph">Ellucian Ethos Identity</span> redirects the user to an external identity provider because <span class="ph">Ellucian Ethos Identity</span> is configured to use an external identity provider as the relying party for the application.</li>
+
+      <li class="li">After the user authenticates to an external identity provider, an external identity provider sends the SAML response back to <span class="ph">Ellucian Ethos Identity</span>.</li>
+ <li class="li"><span class="ph">Ellucian Ethos Identity</span>, in turn, generates its own SAML response which it sends back to the application.</li>
+ </ol>
+Note that the application isn't aware of an external identity provider; it knows only about <span class="keyword">Ellucian Ethos Identity</span>.</div>
+
+    <div class="p">You can configure <span class="ph">Ellucian Ethos Identity</span> with any of the following as external identity provider:<ul class="ul"> <li class="li">Active Directory Federation Services (AD FS)</li>
+ <li class="li">Shibboleth</li>
+ <li class="li">Microsoft Azure Active Directory (AD)</li>
+ <li class="li">Google IDP</li>
+ </ul>
+</div>
+
+  </div>
+
+</div></div></section>
+<section id="t-420"><h3>Configure Ellucian Ethos Identity with AD FS as an external identity provider</h3><div class="content-locale-en-US content-locale-en"><div id="c_config_eeid_ad_fs_idp"><div class="body conbody"><p class="shortdesc">These instructions are for AD FS 3.0 and assume that the required identity attributes are available in the primary user store.</p>
+
+    <p class="p">If identity attributes exist in a separate directory, you need to add that directory as a secondary attribute store and create a custom claim to map the attribute. See <cite class="cite">Attribute stores</cite> and <cite class="cite">Configure claim mapping</cite>.</p>
+
+  </div>
+
+</div></div></section>
+<section id="t-430"><h4>Configure AD FS as an external identity provider</h4><div class="content-locale-en-US content-locale-en"><div id="t_config_ad_fs_ext_idp"><div class="body taskbody"><p class="shortdesc">Follow these steps to configure AD FS as an external identity provider.</p>
+
+    <div class="tasklabel"><h2 class="sectiontitle tasklabel">Procedure</h2></div><ol class="ol steps"><li class="li step stepexpand">
+        <span class="ph cmd" id="t_config_ad_fs_ext_idp__d64e132">Log in to the Management Console.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd" id="t_config_ad_fs_ext_idp__d64e148">Click the <span class="ph uicontrol">Main</span> tab. </span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Under<span class="ph uicontrol"> Identity Providers</span>, click <span class="ph uicontrol">Add</span>.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Enter a unique name for both <span class="ph uicontrol">Identity Provider Name</span> and <span class="ph uicontrol">Display Name</span>.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">In the <span class="ph uicontrol">Identity Provider Public Certificate</span> field, click <span class="ph uicontrol">Browse</span> to upload your AD FS Token Signing Certificate.</span>
+      </li>
+<li class="li step stepexpand" id="t_config_ad_fs_ext_idp__uyv_dhy_v1b">
+        <span class="ph cmd">In the <span class="ph uicontrol">Alias</span> field, enter the relying party identifier by which <span class="keyword">Ellucian Ethos Identity</span> will be known in AD FS.</span>
+        <div class="itemgroup stepxmp">Example: <kbd class="ph userinput">https://eis.school.edu/samlsso</kbd></div>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Expand <span class="ph menucascade"><span class="ph uicontrol">Federated Authenticators</span><abbr title="and then"> &gt; </abbr><span class="ph uicontrol">SAML2 Web SSO Configuration</span></span>.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Select the <span class="ph uicontrol">Enable SAML2 Web SSO</span> check box.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">In the <span class="ph uicontrol">Service Provider Entity ID</span> field, enter your <span class="keyword">Ellucian Ethos Identity</span> Server samlsso URL.</span>
+        <div class="itemgroup info">
+          <p class="p">Example: <kbd class="ph userinput">https://eis.school.edu/commonauth</kbd></p>
+
+        </div>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Verify the NameID format used in the SAML request.</span>
+        <div class="itemgroup info">
+          <p class="p">Example: urn:oasis:names:tc:SAML:1.1:nameid-format:unspecified</p>
+
+        </div>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">In the <span class="ph uicontrol">Identity Provider Entity ID</span> field, enter the URL for your AD FS server Federation Server Identifier.</span>
+        <div class="itemgroup info"> You can find the Identifier in <span class="ph uicontrol">AD FS Management Console</span>, right-click <span class="ph uicontrol"> AD FS</span>, <span class="ph menucascade"><span class="ph uicontrol">Edit Federation Service Properties</span><abbr title="and then"> &gt; </abbr><span class="ph uicontrol">Federation Server Identifier </span></span> </div>
+        <div class="itemgroup stepxmp">Example: <kbd class="ph userinput">https://adfs_server_URL/adfs/services/trust</kbd></div>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">In the <span class="ph uicontrol">SSO URL</span> field, enter your AD FS server URL.</span>
+        <div class="itemgroup stepxmp">Example: <kbd class="ph userinput">https://adfs_server_URL/adfs/ls</kbd></div>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Select the <span class="ph uicontrol">Enable Assertion Signing</span> check box.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Select the <span class="ph uicontrol">Enable Logout</span> check box. </span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">In the <span class="ph uicontrol">Logout URL</span> field, enter your AD FS logout URL.</span>
+        <div class="itemgroup stepxmp">Example: <kbd class="ph userinput">https://adfs_server_URL/adfs/ls</kbd></div>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Select the <span class="ph uicontrol">Enable Logout Request Signing</span> check box.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Click <span class="ph uicontrol">Register</span> to save the configuration.</span>
+      </li>
+</ol>
+
+  </div>
+
+</div></div></section>
+<section id="t-440"><h4>Configure Ellucian Ethos Identity as relying party for AD FS</h4><div class="content-locale-en-US content-locale-en"><div id="t_config_eeid_relying_party_ad_fs"><div class="body taskbody"><p class="shortdesc">Follow these steps to configure <span class="keyword">Ellucian Ethos Identity</span> as the relying party for AD FS.</p>
+
+    <div class="tasklabel"><h2 class="sectiontitle tasklabel">Procedure</h2></div><ol class="ol steps"><li class="li step stepexpand">
+        <span class="ph cmd">On your AD FS server, open AD FS Management.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">In the left pane, expand <span class="ph uicontrol">Trust Relationships</span>. </span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Right-click <span class="ph uicontrol">Relying Party Trusts</span> and then click <span class="ph uicontrol">Add Relying Party Trust</span>.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">In the Add Relying Party Trust wizard, click <span class="ph uicontrol">Start</span>. </span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">On the <span class="keyword wintitle">Select Data Source</span> page, select <span class="ph uicontrol">Enter data about the relying party manually</span> and then click <span class="ph uicontrol">Next</span>.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">On the <span class="keyword wintitle">Specify Display Name</span> page, enter a display name for the relying party and then click <span class="ph uicontrol">Next</span>. </span>
+        <div class="itemgroup stepxmp">Example name: <kbd class="ph userinput">Ethos Identity</kbd></div>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">On the <span class="keyword wintitle">Choose Profile</span> page, select <span class="ph uicontrol">AD FS profile</span> and then click <span class="ph uicontrol">Next</span>. </span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">On the <span class="keyword wintitle">Configure Certificate</span> page, accept the defaults and click <span class="ph uicontrol">Next</span>.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">On the <span class="keyword wintitle">Configure URL</span> page, do the following</span>
+        <ol type="a" class="ol substeps">
+          <li class="li substep substepexpand">
+            <span class="ph cmd">Select the <span class="ph uicontrol">Enable support for the SAML 2.0 WebSSO Protocol</span> check box. </span>
+          </li>
+
+          <li class="li substep substepexpand">
+            <span class="ph cmd">In the <span class="ph uicontrol">Relying Party SAML 2.0 SSO service URL</span> field, enter the URL for your <span class="keyword">Ellucian Ethos Identity</span> COMMONAUTH endpoint. </span>
+            <div class="itemgroup stepxmp">Example: <span class="ph filepath">https://eis.school.edu/commonauth </span></div>
+          </li>
+
+          <li class="li substep substepexpand">
+            <span class="ph cmd">Click <span class="ph uicontrol">Next</span>. </span>
+          </li>
+
+        </ol>
+
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">On the <span class="keyword wintitle">Configure Identifiers</span> page, do the following</span>
+        <ol type="a" class="ol substeps">
+          <li class="li substep substepexpand">
+            <span class="ph cmd">In the <span class="ph uicontrol">Relying Party Trust Identifier</span> field, enter the same value that you entered for <code class="ph codeph">Alias</code> in Step 6 in the procedure for <cite class="cite">Configure AD FS as an external identity provider</cite>.</span>
+            <div class="itemgroup stepxmp">Example: <kbd class="ph userinput">https://eis.school.edu/samlsso</kbd></div>
+          </li>
+
+          <li class="li substep substepexpand">
+            <span class="ph cmd">Click <span class="ph uicontrol">Add</span>.</span>
+          </li>
+
+          <li class="li substep substepexpand">
+            <span class="ph cmd">Click <span class="ph uicontrol">Next</span>.</span>
+          </li>
+
+        </ol>
+
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Complete the wizard, accepting the defaults in the remaining pages. On the <span class="keyword wintitle">Finish</span> page, accept the option to <span class="ph uicontrol">Open the Edit Claim Rules dialog for this relying party trust when the wizard closes</span> and click <span class="ph uicontrol">Close</span>.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Add a claim rule for samAccountName as follows:</span>
+        <ol type="a" class="ol substeps">
+          <li class="li substep">
+            <span class="ph cmd">In the <span class="keyword wintitle">Edit Claim Rules</span> dialog box, click <span class="ph uicontrol">Add Rule</span>.</span>
+          </li>
+
+          <li class="li substep">
+            <span class="ph cmd">On the <span class="keyword wintitle">Select Rule Template</span> page, select <span class="ph uicontrol">Send LDAP Attributes as claims</span> and then click <span class="ph uicontrol">Next</span>.</span>
+          </li>
+
+          <li class="li substep">
+            <span class="ph cmd">On the <span class="keyword wintitle">Configure Rule</span> page, enter the values in the table below and then click <span class="ph uicontrol">Finish</span>.</span>
+          </li>
+
+        </ol>
+
+        
+<table border="1" frame="hsides" rules="rows" cellpadding="4" cellspacing="0" summary="" class="simpletable choicetable choicetableborder">
+<colgroup><col style="width:50%"><col style="width:50%"></colgroup><thead><tr class="sthead chhead"><th class="stentry choptionhd" style="vertical-align:bottom;text-align:left;" id="d19809e290-option">Field</th>
+<th class="stentry chdeschd" style="vertical-align:bottom;text-align:left;" id="d19809e290-desc">Entry</th></tr></thead>
+<tbody><tr class="strow chrow">
+            <th style="vertical-align:top;" headers="d19809e290-option" id="d19809e303" class="stentry choption">Claim rule name</th>
+
+            <td style="vertical-align:top;" headers="d19809e290-desc d19809e303" class="stentry chdesc">Enter a name for the claim rule.<p class="p">Example: <kbd class="ph userinput">samAccountName to NameID</kbd></p>
+</td>
+
+          </tr>
+<tr class="strow chrow">
+            <th style="vertical-align:top;" headers="d19809e290-option" id="d19809e316" class="stentry choption">Attribute store</th>
+
+            <td style="vertical-align:top;" headers="d19809e290-desc d19809e316" class="stentry chdesc">Select your attribute store.<p class="p">Example: <span class="ph uicontrol">Active Directory</span></p>
+</td>
+
+          </tr>
+<tr class="strow chrow">
+            <th style="vertical-align:top;" headers="d19809e290-option" id="d19809e329" class="stentry choption">LDAP Attribute column</th>
+
+            <td style="vertical-align:top;" headers="d19809e290-desc d19809e329" class="stentry chdesc">Select <span class="ph uicontrol">SAM-Account-Name</span>.</td>
+
+          </tr>
+<tr class="strow chrow">
+            <th style="vertical-align:top;" headers="d19809e290-option" id="d19809e341" class="stentry choption">Outgoing Claim Type column</th>
+
+            <td style="vertical-align:top;" headers="d19809e290-desc d19809e341" class="stentry chdesc">Select <span class="ph uicontrol">Name ID</span>.</td>
+
+          </tr>
+</tbody></table>
+
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Add claim rules for the service provider claims expected by each of the service providers that you have configured for <span class="keyword">Ellucian Ethos Identity</span>.</span>
+        <div class="itemgroup info">Repeat the steps below to map each claim that is expected by one of your service providers.</div>
+        <ol type="a" class="ol substeps">
+          <li class="li substep substepexpand" id="t_config_eeid_relying_party_ad_fs__sdm_wsj_4bb">
+            <span class="ph cmd">Determine the service provider claim required for the service provider: </span>
+            <div class="itemgroup info">
+              <ol class="ol" type="i">
+                <li class="li">In a browser, log in to the Management Console.</li>
+
+                <li class="li">Click the <span class="ph uicontrol">Main</span> tab.</li>
+
+                <li class="li">Go to <span class="ph menucascade"><span class="ph uicontrol">Service Providers</span><abbr title="and then"> &gt; </abbr><span class="ph uicontrol">List</span></span>.</li>
+
+                <li class="li">In the row for the service provider, click <span class="ph uicontrol">Edit</span>.</li>
+
+                <li class="li">Expand <span class="ph uicontrol">Claim Configuration</span>.</li>
+
+                <li class="li">In the <span class="ph uicontrol">Identity Provider Claim URIs</span> section, copy the value in the <span class="ph uicontrol">Service Provider Claim</span> column.</li>
+
+              </ol>
+
+            </div>
+          </li>
+
+          <li class="li substep substepexpand">
+            <span class="ph cmd">Back in AD FS Management, in the <span class="keyword wintitle">Edit Claim Rules</span> dialog box, click <span class="ph uicontrol">Add Rule</span>.</span>
+          </li>
+
+          <li class="li substep substepexpand">
+            <span class="ph cmd">On the <span class="keyword wintitle">Select Rule Template</span> page, select <span class="ph uicontrol">Send LDAP Attributes as claims</span> and then click <span class="ph uicontrol">Next</span>.</span>
+          </li>
+
+          <li class="li substep substepexpand">
+            <span class="ph cmd">On the <span class="keyword wintitle">Configure Rule</span> page, enter the values in the table below and then click <span class="ph uicontrol">Finish</span>.</span>
+            <div class="itemgroup info">The examples in the table are for a Banner service provider.</div>
+          </li>
+
+        </ol>
+
+        
+<table border="1" frame="hsides" rules="rows" cellpadding="4" cellspacing="0" summary="" class="simpletable choicetable choicetableborder">
+<colgroup><col style="width:50%"><col style="width:50%"></colgroup><thead><tr class="sthead chhead"><th class="stentry choptionhd" style="vertical-align:bottom;text-align:left;" id="d19809e464-option">Field</th>
+<th class="stentry chdeschd" style="vertical-align:bottom;text-align:left;" id="d19809e464-desc">Entry</th></tr></thead>
+<tbody><tr class="strow chrow">
+            <th style="vertical-align:top;" headers="d19809e464-option" id="d19809e477" class="stentry choption">Claim rule name</th>
+
+            <td style="vertical-align:top;" headers="d19809e464-desc d19809e477" class="stentry chdesc">Enter a name for the claim rule.<p class="p">Example: <kbd class="ph userinput">UDCID for Banner</kbd></p>
+</td>
+
+          </tr>
+<tr class="strow chrow">
+            <th style="vertical-align:top;" headers="d19809e464-option" id="d19809e490" class="stentry choption">Attribute store</th>
+
+            <td style="vertical-align:top;" headers="d19809e464-desc d19809e490" class="stentry chdesc">Select your attribute store.<p class="p">Example: <span class="ph uicontrol">Active Directory</span></p>
+</td>
+
+          </tr>
+<tr class="strow chrow">
+            <th style="vertical-align:top;" headers="d19809e464-option" id="d19809e503" class="stentry choption">LDAP Attribute column</th>
+
+            <td style="vertical-align:top;" headers="d19809e464-desc d19809e503" class="stentry chdesc">Select the LDAP attribute that contains the value that maps to the service provider claim.<p class="p">Example: <span class="ph uicontrol">EmailAddresses</span></p>
+</td>
+
+          </tr>
+<tr class="strow chrow">
+            <th style="vertical-align:top;" headers="d19809e464-option" id="d19809e516" class="stentry choption">Outgoing Claim Type column</th>
+
+            <td style="vertical-align:top;" headers="d19809e464-desc d19809e516" class="stentry chdesc">Paste the service provider claim value that you copied in Step <span class="xref ft-internal-link" data-ft-warning="excluded-from-rendering" data-mapid="jNnVA1p5_LJSdqVKFSFQVA" data-tocid="jswUym9qFcd~gbhbXsl49g" data-section="t_config_eeid_relying_party_ad_fs__sdm_wsj_4bb">13.a</span>.</td>
+
+          </tr>
+</tbody></table>
+
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Back in the <span class="keyword wintitle">Edit Claim Rules</span> dialog box, click <span class="ph uicontrol">OK</span>.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Right-click the new relying party that you created and choose <span class="ph uicontrol">Properties</span>.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">In the <span class="keyword wintitle">Properties</span> dialog box, select the <span class="ph uicontrol">Endpoints</span> tab.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Click <span class="ph uicontrol">Add SAML</span>.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">In the <span class="keyword wintitle">Add an Endpoint</span> dialog box, do the following:</span>
+        <ol type="a" class="ol substeps">
+          <li class="li substep">
+            <span class="ph cmd">Enter the following values:</span>
+          </li>
+
+        </ol>
+
+        
+<table border="1" frame="hsides" rules="rows" cellpadding="4" cellspacing="0" summary="" class="simpletable choicetable choicetableborder">
+<colgroup><col style="width:50%"><col style="width:50%"></colgroup><thead><tr class="sthead chhead"><th class="stentry choptionhd" style="vertical-align:bottom;text-align:left;" id="d19809e589-option">Field</th>
+<th class="stentry chdeschd" style="vertical-align:bottom;text-align:left;" id="d19809e589-desc">Entry</th></tr></thead>
+<tbody><tr class="strow chrow">
+            <th style="vertical-align:top;" headers="d19809e589-option" id="d19809e602" class="stentry choption">Endpoint Type</th>
+
+            <td style="vertical-align:top;" headers="d19809e589-desc d19809e602" class="stentry chdesc">Select <span class="ph uicontrol">SAML Logout</span>.</td>
+
+          </tr>
+<tr class="strow chrow">
+            <th style="vertical-align:top;" headers="d19809e589-option" id="d19809e614" class="stentry choption">Binding</th>
+
+            <td style="vertical-align:top;" headers="d19809e589-desc d19809e614" class="stentry chdesc">Select <span class="ph uicontrol">POST</span>.</td>
+
+          </tr>
+<tr class="strow chrow">
+            <th style="vertical-align:top;" headers="d19809e589-option" id="d19809e626" class="stentry choption">Trusted URL</th>
+
+            <td style="vertical-align:top;" headers="d19809e589-desc d19809e626" class="stentry chdesc">Enter your AD FS server URL.<p class="p">Example: <kbd class="ph userinput">https://adfs_server_URL/adfs/ls</kbd></p>
+</td>
+
+          </tr>
+<tr class="strow chrow">
+            <th style="vertical-align:top;" headers="d19809e589-option" id="d19809e639" class="stentry choption">Response URL</th>
+
+            <td style="vertical-align:top;" headers="d19809e589-desc d19809e639" class="stentry chdesc">Enter your <span class="keyword">Ellucian Ethos Identity</span> commonauth URL.<p class="p">Example: <kbd class="ph userinput">https://eis.school.edu/commonauth</kbd></p>
+</td>
+
+          </tr>
+</tbody></table>
+
+        <ol type="a" class="ol substeps">
+          <li class="li substep">
+            <span class="ph cmd">Click <span class="ph uicontrol">OK</span>.</span>
+          </li>
+
+          <li class="li substep">
+            <span class="ph cmd">Back in the <span class="keyword wintitle">Properties</span> dialog box, click <span class="ph uicontrol">OK</span>.</span>
+          </li>
+
+        </ol>
+
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Right-click the new relying party that you created and choose <span class="ph uicontrol">Properties</span>.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">In the <span class="keyword wintitle">Properties</span> dialog box, select the <span class="ph uicontrol">Signature</span> tab and then click <span class="ph uicontrol">Add</span>.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Select and Import your <span class="ph uicontrol">Ethos Identity Signing Certificate</span>.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Click <span class="ph uicontrol">Apply</span>.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Click <span class="ph uicontrol">OK</span>.</span>
+      </li>
+</ol>
+
+  </div>
+
+</div></div></section>
+<section id="t-450"><h4>Configure a service provider to use AD FS as the identity provider</h4><div class="content-locale-en-US content-locale-en"><div id="t_config_serv_prov_use_ad_fs_idp"><div class="body taskbody"><p class="shortdesc"><span class="keyword">Ellucian Ethos Identity</span> allows each service provider to use a different identity provider. Use the following steps to configure a service provider to use AD FS as the identity provider.</p>
+
+    <div class="tasklabel"><h2 class="sectiontitle tasklabel">Procedure</h2></div><ol class="ol steps"><li class="li step">
+        <span class="ph cmd" id="t_config_serv_prov_use_ad_fs_idp__d64e132">Log in to the Management Console.</span>
+      </li>
+<li class="li step">
+        <span class="ph cmd" id="t_config_serv_prov_use_ad_fs_idp__d64e148">Click the <span class="ph uicontrol">Main</span> tab. </span>
+      </li>
+<li class="li step">
+        <span class="ph cmd">Go to <span class="ph menucascade"><span class="ph uicontrol">Service Providers</span><abbr title="and then"> &gt; </abbr><span class="ph uicontrol">List</span></span>.</span>
+      </li>
+<li class="li step">
+        <span class="ph cmd">Click <span class="ph uicontrol">Edit </span>next to the service provider you want to configure to use AD FS.</span>
+      </li>
+<li class="li step">
+        <span class="ph cmd">Expand <span class="ph uicontrol">Local &amp; Outbound Authentication Configuration</span>.</span>
+      </li>
+<li class="li step">
+        <span class="ph cmd">Select <span class="ph uicontrol">Federated Authentication</span>.</span>
+      </li>
+<li class="li step">
+        <span class="ph cmd">Select your AD FS identity provider from the drop-down menu. If you configured more than one federated identity provider, select the appropriate one.</span>
+      </li>
+<li class="li step">
+        <span class="ph cmd">Click <span class="ph uicontrol">Update</span>.</span>
+      </li>
+</ol>
+
+  </div>
+
+</div></div></section>
+<section id="t-460"><h4>Add ADFS server in whitelist on Ellucian Ethos Identity</h4><div class="content-locale-en-US content-locale-en"><div id="t_add_ad_fs_server_whitelist_eeid"><div class="body taskbody"><p class="shortdesc">When you add ADFS server to the <span class="keyword">Ellucian Ethos Identity</span> whitelist, it allows communication between <span class="keyword">Ellucian Ethos Identity</span> and ADFS server.</p>
+
+    <div class="tasklabel"><h2 class="sectiontitle tasklabel">Procedure</h2></div><ol class="ol steps"><li class="li step stepexpand">
+        <span class="ph cmd">Open a command prompt. (For Windows, right-click and run as administrator.)</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Change directories (<span class="keyword cmdname">cd</span>) to the <span class="ph filepath"><var class="keyword varname">EIS_HOME</var></span> directory.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Run the appropriate command for your operating system:</span>
+        <ul class="ul choices">
+          <li class="li choice">Linux/UNIX: <p class="lines"><span class="keyword cmdname">export ANT_HOME=apache-ant/<br>
+apache-ant/bin/ant add-url-to-whitelist -<br>
+Durl=https://&lt;hostname&gt; -buildfile config/build.xml</span><br>
+where &lt;hostname&gt; is your external identity provider hostname.<br>
+Example: adfs.school.edu</p>
+</li>
+
+          <li class="li choice">Windows: <p class="lines"><span class="keyword cmdname">apache-ant\bin\ant add-url-to-whitelist -<br>
+Durl=https://&lt;hostname&gt; -buildfile config\build.xml</span><br>
+where &lt;hostname&gt; is your external identity provider hostname.<br>
+Example: adfs.school.edu</p>
+</li>
+
+        </ul>
+
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Change directories (<span class="keyword cmdname">cd</span>) to the <span class="ph filepath"><var class="keyword varname">EIS_HOME</var>/bin</span> directory.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Stop and restart <span class="keyword">Ellucian Ethos Identity</span>, using the appropriate commands for your operating system:</span>
+        <ul class="ul choices">
+          <li class="li choice">Linux/UNIX: <p class="lines"><span class="keyword cmdname">sh wso2server.sh stop</span></p>
+<p class="lines"><span class="keyword cmdname">sh wso2server.sh start</span></p>
+</li>
+
+          <li class="li choice">Windows: <p class="lines"><span class="keyword cmdname">wso2server.bat stop</span></p>
+<p class="lines"><span class="keyword cmdname">wso2server.bat start</span></p>
+</li>
+
+        </ul>
+
+        <div class="itemgroup info">
+          <p class="p">Changes to the whitelist take effect only after you restart <span class="keyword">Ellucian Ethos Identity</span> server.</p>
+
+        </div>
+      </li>
+</ol>
+
+  </div>
+
+</div></div></section>
+<section id="t-470"><h3>Configure Ellucian Ethos Identity with Shibboleth as an external identity provider</h3><div class="content-locale-en-US content-locale-en"><div id="c_config_eeid_shibboleth_idp"><div class="body conbody"><p class="shortdesc">These configuration instructions are for Shibboleth 2.4.4 and assume that the required identity attributes are available in the primary user store.</p>
+
+    <p class="p">If identity attributes exist in a separate directory, you need to add that directory as a secondary attribute store and create a custom claim to map the attribute. See <cite class="cite">Attribute stores</cite> and <cite class="cite">Configure claim mapping</cite>.</p>
+
+  </div>
+
+</div></div></section>
+<section id="t-480"><h4>Configure Shibboleth as an external identity provider</h4><div class="content-locale-en-US content-locale-en"><div id="t_config_shibboleth_ext_idp"><div class="body taskbody"><p class="shortdesc">Use the following steps to set up Shibboleth as an identity provider in <span class="keyword">Ellucian Ethos Identity</span>.</p>
+
+    <div class="tasklabel"><h2 class="sectiontitle tasklabel">Procedure</h2></div><ol class="ol steps"><li class="li step stepexpand">
+        <span class="ph cmd" id="t_config_shibboleth_ext_idp__d64e132">Log in to the Management Console.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd" id="t_config_shibboleth_ext_idp__d64e148">Click the <span class="ph uicontrol">Main</span> tab. </span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Under Identity Providers, click <span class="ph uicontrol">Add</span>.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Enter a unique name for both <span class="ph uicontrol">Identity Provider Name</span> and <span class="ph uicontrol">Display Name</span>.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Click <span class="ph uicontrol">Browse</span> to upload your Shibboleth IdP certificate. The usual file path and certificate name is <span class="ph filepath">$IDP_HOME/credentials/idp.crt</span>.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Expand <span class="ph menucascade"><span class="ph uicontrol">Federated Authenticators</span><abbr title="and then"> &gt; </abbr><span class="ph uicontrol">SAML2 Web SSO Configuration</span></span>.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Select the <span class="ph uicontrol">Enable SAML2 Web SSO</span> check box.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">In the <span class="ph uicontrol">Service Provider Entity ID</span> field, enter a unique name to identify your <span class="keyword">Ellucian Ethos Identity</span> server on Shibboleth. </span>
+        <div class="itemgroup stepxmp">Example: <kbd class="ph userinput">https://eis.school.edu/samlsso</kbd>.</div>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Verify the NameID format used in the SAML request.</span>
+        <div class="itemgroup info">
+          <p class="p">Example: urn:oasis:names:tc:SAML:1.1:nameid-format:unspecified</p>
+
+        </div>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">In the <span class="ph uicontrol">Identity Provider Entity ID</span> field, enter the URL for your Shibboleth server entityID.</span>
+        <div class="itemgroup info">You can find it by looking in the Shibboleth IdP metadata file located in the <span class="ph filepath">$IDP_HOME/metadata</span> directory.</div>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">In the <span class="ph uicontrol">SSO URL</span> field, enter your Shibboleth server SSO URL.</span>
+        <div class="itemgroup stepxmp">Example: <kbd class="ph userinput">https://shibboleth.school.edu/idp/profile/SAML2/Redirect/SSO</kbd>.</div>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Select the <span class="ph uicontrol">Enable Authentication Request Signing</span> check box.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Select the <span class="ph uicontrol">Enable Assertion Signing</span> check box.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Select the <span class="ph uicontrol">Enable Logout</span> check box.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">In the <span class="ph uicontrol">Logout URL</span> field, enter your Shibboleth logout URL.</span>
+        <div class="itemgroup stepxmp">Example: <kbd class="ph userinput">https://shibboleth.school.edu/idp/profile/SAML2/Redirect/SLO</kbd></div>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Select the <span class="ph uicontrol">Enable Logout Request Signing</span> check box.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Click <span class="ph uicontrol">Register</span> to save the configuration.</span>
+      </li>
+</ol>
+
+  </div>
+
+</div></div></section>
+<section id="t-490"><h4>Configure Ellucian Ethos Identity as relying party for Shibboleth</h4><div class="content-locale-en-US content-locale-en"><div id="t_config_eeid_relying_party_shibboleth"><div class="body taskbody"><p class="shortdesc">Use these steps to configure <span class="keyword">Ellucian Ethos Identity</span> as relying party for Shibboleth.</p>
+
+    <div class="tasklabel"><h2 class="sectiontitle tasklabel">Procedure</h2></div><ol class="ol steps"><li class="li step stepexpand" id="t_config_eeid_relying_party_shibboleth__rm4_m51_v1b">
+        <span class="ph cmd">On the Shibboleth server, create a metadata file for your <span class="keyword">Ellucian Ethos Identity</span> server.</span>
+        <div class="itemgroup info">For an example metadata file, see Article <a class="xref ft-external-link" href="https://ellucian.force.com/clients/s/article/Sample-Shibboleth-Relying-Party-metadata-XML" target="_blank" rel="noopener">000039536</a>, <cite class="cite">Sample Shibboleth Relying Party metadata XML</cite>, in the <span class="ph">Ellucian Customer Center</span>.</div>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Open the new metadata file in a text editor, and modify it as follows:</span>
+        <ol type="a" class="ol substeps">
+          <li class="li substep substepexpand">
+            <span class="ph cmd">Change both the <code class="ph codeph">ID</code> and <code class="ph codeph">entityID</code> to match the <code class="ph codeph">Service Provider Entity ID</code> that you specified in <cite class="cite">Configure Shibboleth as an external identity provider</cite>.</span>
+          </li>
+
+          <li class="li substep substepexpand">
+            <span class="ph cmd">Export your <span class="keyword">Ellucian Ethos Identity</span> signing certificate and open it in a text editor.</span>
+          </li>
+
+          <li class="li substep substepexpand">
+            <span class="ph cmd">Copy the certificate’s x509 value, paste it in the metadata file, and replace the existing x509 value in the metadata file.</span>
+          </li>
+
+          <li class="li substep substepexpand">
+            <span class="ph cmd">Change the values of all <code class="ph codeph">Location</code> attributes within the metadata file to match your <span class="keyword">Ellucian Ethos Identity</span> commonauth URL.</span>
+            <div class="itemgroup info"><p class="p">Example: <kbd class="ph userinput">https://eis.school.edu/ commonauth</kbd></p>
+The <code class="ph codeph">Location</code> attribute is in the &lt;SingleLogoutService&gt; elements (two places) and the &lt;AssertionConsumerService&gt; element.</div>
+          </li>
+
+        </ol>
+
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Open the Shibboleth <span class="ph filepath">relying-party.xml</span> file and reference your <span class="keyword">Ellucian Ethos Identity</span> metadata file as shown in the following sample. Make sure that the metadata is added within the Metadata Configuration section in the <span class="ph filepath">relying-party.xml</span> file.</span>
+        <div class="itemgroup info">
+          <pre class="pre codeblock"><code>***********
+&lt;metadata:MetadataProvider id="eisMD"
+    xsi:type="FilesystemMetadataProvider"
+    xmlns="urn:mace:shibboleth:2.0:metadata"
+    metadataFile="C:\Program Files
+    (x86)\Internet2\Shib2IdP\metadata\eis_metadata.xml"
+    maintainExpiredMetadata="true"/&gt;
+***********</code></pre>
+        </div>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Add Shibboleth as a relying party within the <span class="ph filepath">relying-party.xml</span> file as shown in the following sample.</span>
+        <div class="itemgroup info">
+          <p class="p">Change the <code class="ph codeph">id</code> attribute to match the <code class="ph codeph">Service Provider Entity ID</code> that you specified in <cite class="cite">Configure Shibboleth as an external identity provider</cite>.</p>
+
+          <pre class="pre codeblock"><code>***********
+&lt;rp:RelyingParty id="eis"
+provider="https://shibboleth.school.edu/idp/shibboleth"
+defaultSigningCredentialRef="IdPCredential"&gt;
+&lt;rp:ProfileConfiguration xsi:type="saml:SAML2SSOProfile"
+    encryptAssertions="never" encryptNameIds="never" /&gt;
+&lt;rp:ProfileConfiguration
+    xsi:type="saml:SAML2LogoutRequestProfile"
+    signResponses="always"/&gt;
+&lt;/rp:RelyingParty&gt;
+***********</code></pre>
+        </div>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Edit the Shibboleth <span class="ph filepath">attribute-filter.xml</span> file. Under the Attribute Filter Policy section add a new policy for principal as shown in the following sample:</span>
+        <div class="itemgroup info">
+          <pre class="pre codeblock"><code>***********
+&lt;afp:AttributeRule attributeID="principal"&gt;
+&lt;afp:PermitValueRule xsi:type="basic:ANY"/&gt;
+&lt;/afp:AttributeRule&gt;
+***********</code></pre>
+        </div>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Edit the Shibboleth <span class="ph filepath">attribute-resolver.xml</span> file. Under the Core Schema Attributes section, add a new resolver as shown in the following samples:</span>
+        <div class="itemgroup info">Banner example - substitute your values for the examples in square brackets []:<pre class="pre codeblock"><code>***********
+&lt;!-- Ex: Attribute definition for cn which holds the UDCID--&gt;
+&lt;resolver:AttributeDefinition xsi:type="ad:Simple" id=["commonName"] sourceAttributeID=["cn"]&gt;
+   &lt;resolver:Dependency ref="[myLDAP]" /&gt;
+   &lt;resolver:AttributeEncoder xsi:type="enc:SAML1String" name="urn:mace:dir:attribute-def:[cn]" /&gt;
+   &lt;resolver:AttributeEncoder xsi:type="enc:SAML2String" name="urn:oid:2.5.4.3" friendlyName="UDC_IDENTIFIER" /&gt;
+&lt;/resolver:AttributeDefinition&gt;
+***********</code></pre><p class="p">Colleague example - substitute your values for the examples in square brackets []:</p>
+<pre class="pre codeblock"><code>***********
+&lt;!-- Ex: Attribute definition for cn which holds the colleague_id--&gt;
+&lt;resolver:AttributeDefinition xsi:type="ad:Simple" id=["commonName"] sourceAttributeID=["cn"]&gt;
+   &lt;resolver:Dependency ref="[myLDAP]" /&gt;
+   &lt;resolver:AttributeEncoder xsi:type="enc:SAML1String" name="urn:mace:dir:attribute-def:[cn]" /&gt;
+   &lt;resolver:AttributeEncoder xsi:type="enc:SAML2String" name="urn:oid:2.5.4.3" friendlyName="COLLEAGUE_ID" /&gt;
+&lt;/resolver:AttributeDefinition&gt;
+***********</code></pre></div>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Restart Shibboleth for the changes to take effect.</span>
+      </li>
+</ol>
+
+  </div>
+
+</div></div></section>
+<section id="t-500"><h4>Configure a service provider to use Shibboleth as the identity provider</h4><div class="content-locale-en-US content-locale-en"><div id="t_config_serv_prov_shibboleth_idp"><div class="body taskbody"><p class="shortdesc"><span class="keyword">Ellucian Ethos Identity</span> allows each service provider to use a different identity provider. Use the following steps to configure a service provider to use Shibboleth as the identity provider.</p>
+
+    <div class="tasklabel"><h2 class="sectiontitle tasklabel">Procedure</h2></div><ol class="ol steps"><li class="li step">
+        <span class="ph cmd" id="t_config_serv_prov_shibboleth_idp__d64e132">Log in to the Management Console.</span>
+      </li>
+<li class="li step">
+        <span class="ph cmd" id="t_config_serv_prov_shibboleth_idp__d64e148">Click the <span class="ph uicontrol">Main</span> tab. </span>
+      </li>
+<li class="li step">
+        <span class="ph cmd">Go to <span class="ph menucascade"><span class="ph uicontrol">Service Providers</span><abbr title="and then"> &gt; </abbr><span class="ph uicontrol">List</span></span>.</span>
+      </li>
+<li class="li step">
+        <span class="ph cmd">Click <span class="ph uicontrol">Edit</span> next to the service provider you want to configure to use Shibboleth.</span>
+      </li>
+<li class="li step">
+        <span class="ph cmd">Expand <span class="ph uicontrol">Local &amp; Outbound Authentication Configuration</span>.</span>
+      </li>
+<li class="li step">
+        <span class="ph cmd">Select <span class="ph uicontrol">Federated Authentication</span>.</span>
+      </li>
+<li class="li step">
+        <span class="ph cmd">Select your Shibboleth identity provider from the drop-down menu.</span>
+      </li>
+<li class="li step">
+        <span class="ph cmd">Click <span class="ph uicontrol">Update</span>.</span>
+      </li>
+</ol>
+
+  </div>
+
+</div></div></section>
+<section id="t-510"><h4>Add Shibboleth Server in whitelist on Ellucian Ethos Identity</h4><div class="content-locale-en-US content-locale-en"><div id="t_add_shibboleth_whitelist_eeid"><div class="body taskbody"><p class="shortdesc">When you add Shibboleth server to the <span class="keyword">Ellucian Ethos Identity</span> whitelist, it allows communication between <span class="keyword">Ellucian Ethos Identity</span> and Shibboleth server.</p>
+
+    <div class="tasklabel"><h2 class="sectiontitle tasklabel">Procedure</h2></div><ol class="ol steps"><li class="li step stepexpand">
+        <span class="ph cmd">Open a command prompt. (For Windows, right-click and run as administrator.)</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Change directories (<span class="keyword cmdname">cd</span>) to the <span class="ph filepath"><var class="keyword varname">EIS_HOME</var></span> directory.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Run the appropriate command for your operating system:</span>
+        <ul class="ul choices">
+          <li class="li choice">Linux/UNIX: <p class="lines"><span class="keyword cmdname">export ANT_HOME=apache-ant/<br>
+apache-ant/bin/ant add-url-to-whitelist -<br>
+Durl=https://&lt;hostname&gt; -buildfile config/build.xml</span><br>
+where &lt;hostname&gt; is your external identity provider hostname.<br>
+Example: shibboleth.school.edu</p>
+</li>
+
+          <li class="li choice">Windows: <p class="lines"><span class="keyword cmdname">apache-ant\bin\ant add-url-to-whitelist -<br>
+Durl=https://&lt;hostname&gt; -buildfile config\build.xml</span><br>
+where &lt;hostname&gt; is your external identity provider hostname.<br>
+Example: shibboleth.school.edu</p>
+</li>
+
+        </ul>
+
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Change directories (<span class="keyword cmdname">cd</span>) to the <span class="ph filepath"><var class="keyword varname">EIS_HOME</var>/bin</span> directory.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Stop and restart <span class="keyword">Ellucian Ethos Identity</span>, using the appropriate commands for your operating system:</span>
+        <ul class="ul choices">
+          <li class="li choice">Linux/UNIX: <p class="lines"><span class="keyword cmdname">sh wso2server.sh stop</span></p>
+<p class="lines"><span class="keyword cmdname">sh wso2server.sh start</span></p>
+</li>
+
+          <li class="li choice">Windows: <p class="lines"><span class="keyword cmdname">wso2server.bat stop</span></p>
+<p class="lines"><span class="keyword cmdname">wso2server.bat start</span></p>
+</li>
+
+        </ul>
+
+        <div class="itemgroup info">
+          <p class="p">Changes to the whitelist take effect only after you restart <span class="keyword">Ellucian Ethos Identity</span> server.</p>
+
+        </div>
+      </li>
+</ol>
+
+  </div>
+
+</div></div></section>
+<section id="t-520"><h3>Configure Ellucian Ethos Identity with Microsoft Azure AD as an external identity provider</h3><div class="content-locale-en-US content-locale-en"><div id="c_config_eeid_azure_ad_idp"><div class="body conbody"><p class="shortdesc">These configuration instructions are for Microsoft Azure Active Directory (AD) and assume that the required identity attributes are available in the Azure AD Attribute Store.</p>
+
+    <p class="p">If identity attributes exist in a separate directory, you need to add that directory as a secondary attribute store and create a custom claim to map the attribute. See <cite class="cite">Attribute stores</cite> and <cite class="cite">Configure claim mapping</cite>.</p>
+
+  </div>
+
+</div></div></section>
+<section id="t-530"><h4>Configure Ellucian Ethos Identity as an enterprise application for Microsoft Azure AD</h4><div class="content-locale-en-US content-locale-en"><div id="t_config_eeid_enterprise_app_azure_ad"><div class="body taskbody"><p class="shortdesc">You can use the following steps to set up <span class="ph">Ellucian Ethos Identity</span> as an enterprise application for Microsoft Azure AD.</p>
+
+    <div class="tasklabel"><h2 class="sectiontitle tasklabel">Procedure</h2></div><ol class="ol steps"><li class="li step stepexpand">
+        <span class="ph cmd">Navigate to https://portal.office.com and log in to Azure AD.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Enter your administrator credentials.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Click <span class="ph uicontrol">Admin Centers</span>.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Click <span class="ph uicontrol">Azure Active Directory</span>.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Under <span class="ph uicontrol">All Services</span>, click <span class="ph uicontrol">Enterprise Applications</span>.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Under <span class="ph uicontrol">All Applications</span>, click <span class="ph uicontrol">New Application</span>.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Under <span class="ph uicontrol">Add an application</span>, click <span class="ph uicontrol">Non-gallery application</span>.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Under <span class="ph uicontrol">Name</span>, enter a descriptive name for <span class="ph">Ellucian Ethos Identity</span> Server.</span>
+        <div class="itemgroup info">
+          <p class="p">Example: <span class="ph">Ethos Identity</span></p>
+
+        </div>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Click <span class="ph uicontrol">Add</span>.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">On the newly created Enterprise Application, click <span class="ph uicontrol">Single sign-on</span>.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Under <span class="ph uicontrol">Single sign-on</span> mode, select <span class="ph uicontrol">SAML-based Sign-on</span>.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Under <span class="ph uicontrol">Identifier Entity ID</span>, enter the <span class="ph">Ellucian Ethos Identity</span> identifier as specified in step 6 of <cite class="cite">Configure Microsoft Azure AD as an external identity provider</cite>.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Under <span class="ph uicontrol">Reply URL</span>, enter the commonauth endpoint of your <span class="ph">Ellucian Ethos Identity</span> URL.</span>
+        <div class="itemgroup info">
+          <p class="p">Example: <span class="ph filepath">https://eis.school.edu/commonauth</span></p>
+
+        </div>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">In the list of options, select <span class="ph uicontrol">Show advanced URL settings</span>.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Under <span class="ph uicontrol">Sign on URL</span>, enter the samlsso endpoint of your <span class="ph">Ellucian Ethos Identity</span> URL.</span>
+        <div class="itemgroup info">
+          <p class="p">Example: <span class="ph filepath">https://eis.school.edu/samlsso</span></p>
+
+        </div>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Under <span class="ph uicontrol">User Attributes</span>, enter all required attributes which need to send to <span class="ph">Ellucian Ethos Identity</span>.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Under <span class="ph uicontrol">Download</span>, click <span class="ph filepath">Metadata XML</span> file.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">On the left navigation pane, click <span class="ph uicontrol">Azure Active Directory</span>.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Under <span class="ph uicontrol">Manage</span>, click <span class="ph uicontrol">App Registration</span>.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Open the newly created application.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Click <span class="ph uicontrol">Settings</span>.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Click <span class="ph uicontrol">Properties</span>.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Under <span class="ph uicontrol">Logout URL</span>, enter the samlsso endpoint of your <span class="ph">Ellucian Ethos Identity</span> URL.</span>
+        <div class="itemgroup info">
+          <p class="p">Example: <span class="ph filepath">https://eis.school.edu/samlsso</span></p>
+
+        </div>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Click <span class="ph uicontrol">Save</span>.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Use the downloaded <span class="ph filepath">Metadata XML</span> file in step 12 of <cite class="cite">Configure Microsoft Azure AD as an external identity provider</cite>.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Click <span class="ph uicontrol">Save</span>.</span>
+      </li>
+</ol>
+
+  </div>
+
+</div></div></section>
+<section id="t-540"><h4>Configure Microsoft Azure AD as an external identity provider</h4><div class="content-locale-en-US content-locale-en"><div id="t_config_azure_ad_ext_idp"><div class="body taskbody"><p class="shortdesc">You can use the following steps to set up Microsoft Azure AD as an external identity provider in <span class="ph">Ellucian Ethos Identity</span>.</p>
+
+    <div class="tasklabel"><h2 class="sectiontitle tasklabel">Procedure</h2></div><ol class="ol steps"><li class="li step stepexpand">
+        <span class="ph cmd" id="t_config_azure_ad_ext_idp__d64e132">Log in to the Management Console.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd" id="t_config_azure_ad_ext_idp__d64e148">Click the <span class="ph uicontrol">Main</span> tab. </span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Under <span class="ph uicontrol">Identity Providers</span>, click <span class="ph uicontrol">Add</span>.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Enter a unique name for both <span class="ph uicontrol">Identity Provider Name</span> and <span class="ph uicontrol">Display Name</span>.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">In the <span class="ph uicontrol">Identity Provider Public Certificate</span> field, click <span class="ph uicontrol">Browse</span> to upload your Azure AD signing certificate.</span>
+      </li>
+<li class="li step stepexpand" id="t_config_azure_ad_ext_idp__zlc_d5n_cgb">
+        <span class="ph cmd" id="t_config_azure_ad_ext_idp__bmc_d5n_cgb">In the <span class="ph uicontrol" id="t_config_azure_ad_ext_idp__cmc_d5n_cgb">Alias</span> field, enter the relying party identifier by which <span class="ph" id="t_config_azure_ad_ext_idp__dmc_d5n_cgb">Ellucian Ethos Identity</span> will be known in Azure AD.</span>
+        <div class="itemgroup info">You can get this value from the Azure Active Directory Management console.<p class="p">Example: <kbd class="ph userinput">https://sts.windows.net/48680a22-7321-4928-adfc-e4475d338dd3/</kbd></p>
+</div>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Expand <span class="ph menucascade"><span class="ph uicontrol">Federated Authenticators</span><abbr title="and then"> &gt; </abbr><span class="ph uicontrol">SAML2 Web SSO Configuration</span></span>.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Select the <span class="ph uicontrol">Enable SAML2 Web SSO</span> check box.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">In the <span class="ph uicontrol">Service Provider Entity ID</span> field, enter the identifier for your Azure AD.</span>
+        <div class="itemgroup info">
+          <p class="p">Example: <span class="ph filepath">https://sts.windows.net/48680a22-7321-4928-adfc-e4475d338dd3/</span></p>
+
+        </div>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Verify the NameID format used in the SAML request.</span>
+        <div class="itemgroup info">
+          <p class="p">Example: <code class="ph codeph">urn:oasis:names:tc:SAML:1.1:nameid-format:unspecified</code></p>
+
+        </div>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">In the list of <span class="ph uicontrol">Select Mode</span> options, select <span class="ph uicontrol">Metadata File Configuration</span>.</span>
+      </li>
+<li class="li step stepexpand" id="t_config_azure_ad_ext_idp__l4b_hwm_5hb">
+        <span class="ph cmd" id="t_config_azure_ad_ext_idp__tpb_hwm_5hb">On <span class="ph uicontrol" id="t_config_azure_ad_ext_idp__upb_hwm_5hb">Upload ID Provider From Metadata File</span>, click <span class="ph uicontrol" id="t_config_azure_ad_ext_idp__vpb_hwm_5hb">Choose File</span>, and upload the <span class="ph filepath" id="t_config_azure_ad_ext_idp__dlk_514_cgb">Azure Active Directory metadata XML</span> file. This file can download from the Azure Active Directory Management console.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Click <span class="ph uicontrol">Register</span> to create an Azure AD IDP.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">In the list of Registered Identity Providers, click <span class="ph uicontrol">Edit</span> for the AzureADIdp and expand <span class="ph menucascade"><span class="ph uicontrol">Federated Authenticators</span><abbr title="and then"> &gt; </abbr><span class="ph uicontrol">SAML2 Web SSO Configuration</span></span>.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Select the <span class="ph uicontrol">Enable Logout</span> check box.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Enter <kbd class="ph userinput">https://login.microsoftonline.com/common/wsfederation?wa=wsignout1.0</kbd> as the <span class="ph uicontrol">Logout Url</span>.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Click <span class="ph uicontrol">Register</span> to save the configuration.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Click <span class="ph uicontrol">Update</span>.</span>
+      </li>
+</ol>
+
+  </div>
+
+</div></div></section>
+<section id="t-550"><h4>Configure a service provider to use Microsoft Azure AD as the identity provider</h4><div class="content-locale-en-US content-locale-en"><div id="t_config_serv_prov_azure_ad_idp"><div class="body taskbody"><p class="shortdesc"><span class="keyword">Ellucian Ethos Identity</span> allows each service provider to use a different identity provider.</p>
+
+    <div class="section context"><div class="tasklabel"><h2 class="sectiontitle tasklabel">About this task</h2></div>Use the following steps to configure a service provider to use Microsoft Azure AD as the identity provider.</div>
+
+    <div class="tasklabel"><h2 class="sectiontitle tasklabel">Procedure</h2></div><ol class="ol steps"><li class="li step">
+        <span class="ph cmd" id="t_config_serv_prov_azure_ad_idp__d64e132">Log in to the Management Console.</span>
+      </li>
+<li class="li step">
+        <span class="ph cmd" id="t_config_serv_prov_azure_ad_idp__d64e148">Click the <span class="ph uicontrol">Main</span> tab. </span>
+      </li>
+<li class="li step">
+        <span class="ph cmd">Go to <span class="ph menucascade"><span class="ph uicontrol">Service Providers</span><abbr title="and then"> &gt; </abbr><span class="ph uicontrol">List</span></span>.</span>
+      </li>
+<li class="li step">
+        <span class="ph cmd">Click <span class="ph uicontrol">Edit</span> next to the service provider you want to configure to use Azure AD.</span>
+      </li>
+<li class="li step">
+        <span class="ph cmd">Expand <span class="ph uicontrol">Local &amp; Outbound Authentication Configuration</span>.</span>
+      </li>
+<li class="li step">
+        <span class="ph cmd">Select <span class="ph uicontrol">Federated Authentication</span>.</span>
+      </li>
+<li class="li step">
+        <span class="ph cmd">Select your Azure AD identity provider from the drop-down menu. If you configured more than one federated identity provider, select the appropriate one.</span>
+      </li>
+<li class="li step">
+        <span class="ph cmd">Click <span class="ph uicontrol">Update</span>.</span>
+      </li>
+</ol>
+
+  </div>
+
+</div></div></section>
+<section id="t-560"><h4>Add Microsoft Azure AD server in whitelist on Ellucian Ethos Identity</h4><div class="content-locale-en-US content-locale-en"><div id="t_add_azure_ad_whitelist_eeid"><div class="body taskbody"><p class="shortdesc">When you add Microsoft Azure AD server to the <span class="keyword">Ellucian Ethos Identity</span> whitelist, it allows communication between <span class="keyword">Ellucian Ethos Identity</span> and Microsoft Azure AD server.</p>
+
+    <div class="tasklabel"><h2 class="sectiontitle tasklabel">Procedure</h2></div><ol class="ol steps"><li class="li step stepexpand">
+        <span class="ph cmd">Open a command prompt. (For Windows, right-click and run as administrator.)</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Change directories (<span class="keyword cmdname">cd</span>) to the <span class="ph filepath"><var class="keyword varname">EIS_HOME</var></span> directory.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Run the appropriate command for your operating system:</span>
+        <ul class="ul choices">
+          <li class="li choice">Linux/UNIX: <p class="lines"><span class="keyword cmdname">export ANT_HOME=apache-ant/<br>
+apache-ant/bin/ant add-url-to-whitelist -<br>
+Durl=https://&lt;hostname&gt; -buildfile config/build.xml</span><br>
+where &lt;hostname&gt; is your external identity provider hostname.<br>
+Example: azure.school.edu</p>
+</li>
+
+          <li class="li choice">Windows: <p class="lines"><span class="keyword cmdname">apache-ant\bin\ant add-url-to-whitelist -<br>
+Durl=https://&lt;hostname&gt; -buildfile config\build.xml</span><br>
+where &lt;hostname&gt; is your external identity provider hostname.<br>
+Example: azure.school.edu</p>
+</li>
+
+        </ul>
+
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Change directories (<span class="keyword cmdname">cd</span>) to the <span class="ph filepath"><var class="keyword varname">EIS_HOME</var>/bin</span> directory.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Stop and restart <span class="keyword">Ellucian Ethos Identity</span>, using the appropriate commands for your operating system:</span>
+        <div class="itemgroup stepxmp"></div>
+        <ul class="ul choices">
+          <li class="li choice">Linux/UNIX: <p class="lines"><span class="keyword cmdname">sh wso2server.sh stop</span></p>
+<p class="lines"><span class="keyword cmdname">sh wso2server.sh start</span></p>
+</li>
+
+          <li class="li choice">Windows: <p class="lines"><span class="keyword cmdname">wso2server.bat stop</span></p>
+<p class="lines"><span class="keyword cmdname">wso2server.bat start</span></p>
+</li>
+
+        </ul>
+
+        <div class="itemgroup info">
+          <p class="p">Changes to the whitelist take effect only after you restart <span class="keyword">Ellucian Ethos Identity</span> server.</p>
+
+        </div>
+      </li>
+</ol>
+
+  </div>
+
+</div></div></section>
+<section id="t-570"><h3>Configure Ellucian Ethos Identity with Google as an external identity provider</h3><div class="content-locale-en-US content-locale-en"><div id="c_config_eeid_google_idp"><div class="body conbody"><p class="shortdesc">The configuration instructions are for Google Suite Identity Provider and assume that the required identity attributes are available in the Google G Suite Directory.</p>
+
+    <p class="p">These instructions assume you have an active subscription to Google G Suite which is different from Google account.</p>
+
+    <p class="p">This allows a user to use their managed Google account credentials to sign in to enterprise cloud applications through Single Sign-On (SSO).</p>
+
+    <p class="p">If identity attributes exist in a separate directory, you need to add that directory as a secondary attribute store and create a custom claim to map the attribute. See <cite class="cite">Attribute stores</cite> and <cite class="cite">Configure claim mapping</cite>.</p>
+
+  </div>
+
+</div></div></section>
+<section id="t-580"><h4>Configure Ellucian Ethos Identity as a SAML application for Google identity provider</h4><div class="content-locale-en-US content-locale-en"><div id="t_config_eeid_saml_app_google_idp"><div class="body taskbody"><p class="shortdesc">Follow these steps to configure <span class="keyword">Ellucian Ethos Identity</span> as a SAML application for Google identity provider.</p>
+
+    <div class="tasklabel"><h2 class="sectiontitle tasklabel">Procedure</h2></div><ol class="ol steps"><li class="li step stepexpand">
+        <span class="ph cmd">Navigate to https://admin.google.com and log in to Google Admin Console.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Enter your administrator credentials.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Click <span class="ph uicontrol">Apps</span> and then click <span class="ph uicontrol">SAML Apps</span>.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Click the plus icon <img class="image" src="images/04-configure-ethos-identity-with-an-external-identity-provider-1.png" width="13" alt="Plus icon" data-ft-asset-display-name="i_plus.png" style="aspect-ratio: 13/13;" data-ft-resize-ratio="0.19117647" data-ft-resource-id="50Gq4gp30z_vW1MRbgQChw-jNnVA1p5_LJSdqVKFSFQVA"> to enable SSO for a SAML Application.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Click <span class="ph uicontrol">SETUP MY OWN CUSTOM APP</span> to add a new SAML application.</span>
+      </li>
+<li class="li step stepexpand" id="t_config_eeid_saml_app_google_idp__is2_py2_2gb">
+        <span class="ph cmd" id="t_config_eeid_saml_app_google_idp__js2_py2_2gb">Under <span class="ph uicontrol">Option 2</span>, click <span class="ph uicontrol" id="t_config_eeid_saml_app_google_idp__ks2_py2_2gb">Download</span> to download the <span class="ph filepath">Google Identity Provider Metadata</span> file.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Click <span class="ph uicontrol">Next</span>.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">On the <span class="ph uicontrol">Basic information for your Custom App</span>, under <span class="ph uicontrol">Application Name</span>, enter a descriptive name for SAML application configuration. The users can see an application name and description in Google Admin under SAML Application.</span>
+        <div class="itemgroup stepxmp">Example: <span class="ph">Ellucian Ethos Identity</span></div>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Click <span class="ph uicontrol">Next</span>.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">On the <span class="ph uicontrol">Service Provider Details</span> window, enter the details as follows:</span>
+        <div class="itemgroup info">
+          
+<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" class="table" frame="border" border="1" rules="all"><colgroup><col style="width:28.653295128939828%"><col style="width:71.34670487106017%"></colgroup><thead class="thead" style="text-align:left;">
+                <tr class="row">
+                  <th class="entry cellrowborder" style="text-align:justify;vertical-align:top;" id="d4427e152">Label</th>
+
+                  <th class="entry cellrowborder" style="vertical-align:top;" id="d4427e155">Description</th>
+
+                </tr>
+
+              </thead>
+<tbody class="tbody">
+                <tr class="row">
+                  <td class="entry cellrowborder" style="text-align:justify;vertical-align:top;" headers="d4427e152 ">ACS URL*</td>
+
+                  <td class="entry cellrowborder" style="vertical-align:top;" headers="d4427e155 ">Enter your <span class="ph">Ellucian Ethos Identity</span> common authentication URL.<p class="p">Example: <span class="ph filepath">https://eis.school.edu/commonauth</span></p>
+</td>
+
+                </tr>
+
+                <tr class="row">
+                  <td class="entry cellrowborder" style="text-align:justify;vertical-align:top;" headers="d4427e152 ">Entity ID *</td>
+
+                  <td class="entry cellrowborder" style="vertical-align:top;" headers="d4427e155 ">Enter a value that can uniquely identify <span class="ph">Ellucian Ethos Identity</span>.<p class="p">Example: myEthosIdentity</p>
+<p class="p">This value will be used while configuring Google as IDP in Identity Server Management console.</p>
+</td>
+
+                </tr>
+
+                <tr class="row">
+                  <td class="entry cellrowborder" style="text-align:justify;vertical-align:top;" headers="d4427e152 ">Start URL</td>
+
+                  <td class="entry cellrowborder" style="vertical-align:top;" headers="d4427e155 ">Enter the samlsso endpoint of your <span class="ph">Ellucian Ethos Identity</span> URL.<p class="p">Example: <span class="ph filepath">https://eis.school.edu/samlsso</span></p>
+</td>
+
+                </tr>
+
+                <tr class="row">
+                  <td class="entry cellrowborder" style="text-align:justify;vertical-align:top;" headers="d4427e152 ">Signed Response</td>
+
+                  <td class="entry cellrowborder" style="vertical-align:top;" headers="d4427e155 ">Do not select the <span class="ph uicontrol">Signed Response</span> check box.<p class="p">If only the assertion is signed, do not select the <span class="ph uicontrol">Signed Response</span> check box.</p>
+<p class="p">If the entire response is signed, select the <span class="ph uicontrol">Signed Response</span> check box.</p>
+</td>
+
+                </tr>
+
+                <tr class="row">
+                  <td class="entry cellrowborder" style="text-align:justify;vertical-align:top;" headers="d4427e152 ">Name ID</td>
+
+                  <td class="entry cellrowborder" style="vertical-align:top;" headers="d4427e155 ">Keep the default value.</td>
+
+                </tr>
+
+                <tr class="row">
+                  <td class="entry cellrowborder" style="text-align:justify;vertical-align:top;" headers="d4427e152 ">Name ID Format</td>
+
+                  <td class="entry cellrowborder" style="vertical-align:top;" headers="d4427e155 ">Keep the default value.</td>
+
+                </tr>
+
+              </tbody>
+</table>
+</div>
+
+          <div class="note" id="t_config_eeid_saml_app_google_idp__akt_vj5_2hb"><span class="notetitle">Note:</span> * indicates that the mandatory field to fill.</div>
+
+        </div>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Click <span class="ph uicontrol">Next</span>.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">On the <span class="ph uicontrol">Attribute Mapping</span>, click <span class="ph uicontrol">ADD NEW MAPPING</span> to provide mappings between service provider attributes and available user profile fields in Google Admin account.</span>
+        <div class="itemgroup info">
+          <div class="note"><span class="notetitle">Note:</span> If you do not want map attributes, skip the above step.</div>
+
+        </div>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Click <span class="ph uicontrol">Finish</span>.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Click <span class="ph uicontrol">Attribute Mapping</span> to map all the required attributes to be sent to <span class="ph">Ellucian Ethos Identity</span>.</span>
+      </li>
+</ol>
+
+    <div class="section postreq"><div class="tasklabel"><h2 class="sectiontitle tasklabel">What to do next</h2></div>After application is configured, click <span class="ph uicontrol">Edit Service</span>, change <span class="ph uicontrol">Service status</span> to <span class="ph uicontrol">ON for everyone</span>, and then click <span class="ph uicontrol">Save</span>. You can turn on the service for everyone or for some users as needed.</div>
+
+  </div>
+
+</div></div></section>
+<section id="t-590"><h4>Configure Google as an external identity provider</h4><div class="content-locale-en-US content-locale-en"><div id="t_config_google_ext_idp"><div class="body taskbody"><p class="shortdesc">The steps required to configure to set up Google as an external identity provider in <span class="keyword">Ellucian Ethos Identity</span>.</p>
+
+    <div class="tasklabel"><h2 class="sectiontitle tasklabel">Procedure</h2></div><ol class="ol steps"><li class="li step stepexpand">
+        <span class="ph cmd" id="t_config_google_ext_idp__d64e132">Log in to the Management Console.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd" id="t_config_google_ext_idp__d64e148">Click the <span class="ph uicontrol">Main</span> tab. </span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Under <span class="ph uicontrol">Identity Providers</span>, click <span class="ph uicontrol">Add</span>.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Enter a unique name for <span class="ph uicontrol">Identity Provider Name</span>.</span>
+        <div class="itemgroup stepxmp">Example: GoogleIDP</div>
+      </li>
+<li class="li step stepexpand"><strong>Optional: </strong>
+        <span class="ph cmd">The <span class="ph uicontrol">Alias</span> field might be required to change the default value in some authentication scenarios. If required, enter the relying party identifier by which <span class="ph">Ellucian Ethos Identity</span> is known in Google identity provider. This value should be equal to the value you entered as the <span class="ph uicontrol">Entity ID</span> when configuring Google.</span>
+        <div class="itemgroup stepxmp">Example: myEthosIdentity</div>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Expand <span class="ph menucascade"><span class="ph uicontrol">Federated Authenticators</span><abbr title="and then"> &gt; </abbr><span class="ph uicontrol">SAML2 Web SSO Configuration</span></span>.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Select the <span class="ph uicontrol">Enable SAML2 Web SSO</span> check box.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">In the <span class="ph uicontrol">Service Provider Entity ID</span> field, enter the identifier for your Google identity provider. The Service Provider Entity ID value should be equal to the value you entered as the Entity ID when configuring Google.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Verify the NameID format used in the SAML request.</span>
+        <div class="itemgroup stepxmp">Example: urn:oasis:names:tc:SAML:1.1:nameid-format:unspecified</div>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">In the list of <span class="ph uicontrol">Select Mode</span> options, select <span class="ph uicontrol">Metadata File Configuration</span>.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">On <span class="ph uicontrol">Upload ID Provider From Metadata File</span>, click <span class="ph uicontrol">Choose File</span>, and upload the <span class="ph filepath">GoogleIDPMetadata XML</span> file you downloaded earlier.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Click <span class="ph uicontrol">Register</span> to save the identity provider configurations.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">In the list of <span class="ph uicontrol">Registered Identity Providers</span>, click <span class="ph uicontrol">Edit</span> for the GoogleIdP and expand <span class="ph menucascade"><span class="ph uicontrol">Federated Authenticators</span><abbr title="and then"> &gt; </abbr><span class="ph uicontrol">SAML2 Web SSO Configuration</span></span>.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Select the <span class="ph uicontrol">Enable Logout</span> check box.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Enter <kbd class="ph userinput">https://accounts.google.com/logout</kbd> as the <span class="ph uicontrol">Logout Url</span>.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Click <span class="ph uicontrol">Register</span> to save the configuration.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Click <span class="ph uicontrol">Update</span> to save the changes.</span>
+      </li>
+</ol>
+
+  </div>
+
+</div></div></section>
+<section id="t-600"><h4>Configure a service provider to use Google as the identity provider</h4><div class="content-locale-en-US content-locale-en"><div id="t_config_serv_prov_google_idp"><div class="body taskbody"><p class="shortdesc"><span class="keyword">Ellucian Ethos Identity</span> allows each service provider to use a different identity provider. Use the following steps to configure a service provider to use Google as the identity provider.</p>
+
+    <div class="tasklabel"><h2 class="sectiontitle tasklabel">Procedure</h2></div><ol class="ol steps"><li class="li step">
+        <span class="ph cmd" id="t_config_serv_prov_google_idp__d64e132">Log in to the Management Console.</span>
+      </li>
+<li class="li step">
+        <span class="ph cmd" id="t_config_serv_prov_google_idp__d64e148">Click the <span class="ph uicontrol">Main</span> tab. </span>
+      </li>
+<li class="li step">
+        <span class="ph cmd">Go to <span class="ph menucascade"><span class="ph uicontrol">Service Providers</span><abbr title="and then"> &gt; </abbr><span class="ph uicontrol">List</span></span>.</span>
+      </li>
+<li class="li step">
+        <span class="ph cmd">Click <span class="ph uicontrol">Edit</span> next to the service provider you want to configure to use Google identity provider.</span>
+      </li>
+<li class="li step">
+        <span class="ph cmd">Expand <span class="ph uicontrol">Local &amp; Outbound Authentication Configuration</span>. </span>
+      </li>
+<li class="li step">
+        <span class="ph cmd">Select <span class="ph uicontrol">Federated Authentication</span>.</span>
+      </li>
+<li class="li step">
+        <span class="ph cmd">Select your Google identity provider from the drop-down menu. If you configured more than one federated identity provider, select the appropriate one.</span>
+      </li>
+<li class="li step">
+        <span class="ph cmd">Click <span class="ph uicontrol">Update</span>.</span>
+      </li>
+</ol>
+
+  </div>
+
+</div></div></section>
+<section id="t-610"><h4>Add Google Server in whitelist on Ellucian Ethos Identity</h4><div class="content-locale-en-US content-locale-en"><div id="t_add_google_whitelist_eeid"><div class="body taskbody"><p class="shortdesc">When you add Google server to the <span class="keyword">Ellucian Ethos Identity</span> whitelist, it allows communication between <span class="keyword">Ellucian Ethos Identity</span> and Google server.</p>
+
+    <div class="tasklabel"><h2 class="sectiontitle tasklabel">Procedure</h2></div><ol class="ol steps"><li class="li step stepexpand">
+        <span class="ph cmd">Open a command prompt. (For Windows, right-click and run as administrator.)</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Change directories (<span class="keyword cmdname">cd</span>) to the <span class="ph filepath"><var class="keyword varname">EIS_HOME</var></span> directory.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Run the appropriate command for your operating system:</span>
+        <div class="itemgroup stepxmp"></div>
+        <ul class="ul choices">
+          <li class="li choice">Linux/UNIX: <p class="lines"><span class="keyword cmdname">export ANT_HOME=apache-ant/<br>
+apache-ant/bin/ant add-url-to-whitelist -<br>
+Durl=https://&lt;hostname&gt; -buildfile config/build.xml</span><br>
+where &lt;hostname&gt; is your external identity provider hostname.<br>
+Example: google.school.edu</p>
+</li>
+
+          <li class="li choice">Windows: <p class="lines"><span class="keyword cmdname">apache-ant\bin\ant add-url-to-whitelist -<br>
+Durl=https://&lt;hostname&gt; -buildfile config\build.xml</span><br>
+where &lt;hostname&gt; is your external identity provider hostname.<br>
+Example: google.school.edu</p>
+</li>
+
+        </ul>
+
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Change directories (<span class="keyword cmdname">cd</span>) to the <span class="ph filepath"><var class="keyword varname">EIS_HOME</var>/bin</span> directory.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Stop and restart <span class="keyword">Ellucian Ethos Identity</span>, using the appropriate commands for your operating system:</span>
+        <ul class="ul choices">
+          <li class="li choice">Linux/UNIX: <p class="lines"><span class="keyword cmdname">sh wso2server.sh stop</span></p>
+<p class="lines"><span class="keyword cmdname">sh wso2server.sh start</span></p>
+</li>
+
+          <li class="li choice">Windows: <p class="lines"><span class="keyword cmdname">wso2server.bat stop</span></p>
+<p class="lines"><span class="keyword cmdname">wso2server.bat start</span></p>
+</li>
+
+        </ul>
+
+        <div class="itemgroup info">
+          <p class="p">Changes to the whitelist take effect only after you restart <span class="keyword">Ellucian Ethos Identity</span> server.</p>
+
+        </div>
+      </li>
+</ol>
+
+  </div>
+
+</div></div></section></main></body></html>

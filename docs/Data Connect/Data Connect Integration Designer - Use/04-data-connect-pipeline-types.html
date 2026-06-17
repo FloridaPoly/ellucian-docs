@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Data Connect Integration Designer - Use — Data Connect pipeline types</title><style>body{font-family:-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;line-height:1.55;color:#1a1a1a;max-width:920px;margin:0 auto;padding:24px}header{border-bottom:2px solid #5a16d6;margin-bottom:8px}h1{color:#3a0ca3}h2,h3,h4,h5,h6{margin-top:1.6em}.crumb{color:#666;font-size:13px;margin:0}.meta{color:#888;font-size:12px}nav.toc{background:#f6f4fc;border:1px solid #e3dcf5;border-radius:8px;padding:12px 18px;margin:18px 0}nav.toc h2{margin:.2em 0}nav.toc ul{list-style:none;padding-left:0}nav.toc a{text-decoration:none;color:#5a16d6}section{margin:1.2em 0;padding-top:.4em}img{max-width:100%;height:auto}table{border-collapse:collapse}td,th{border:1px solid #ccc;padding:4px 8px}code,pre{background:#f4f4f4;border-radius:4px}pre{padding:10px;overflow:auto}</style></head><body><header><p class="crumb">Data Connect › Data Connect Integration Designer - Use</p><h1>Data Connect Integration Designer - Use — Data Connect pipeline types</h1><p class="meta">Source: <a href="https://resources.elluciancloud.com/r/bundle/ethos_data_connect_int_design_acn_use">https://resources.elluciancloud.com/r/bundle/ethos_data_connect_int_design_acn_use</a> &middot; Retrieved 2026-06-17</p></header><nav class="toc"><h2>Contents</h2><ul><li style="margin-left:0px"><a href="#t-100">Data Connect pipeline types</a></li><li style="margin-left:16px"><a href="#t-110">Integration pipelines</a></li><li style="margin-left:16px"><a href="#t-120">Data Connect Serverless APIs</a></li></ul></nav><main><section id="t-100"><h2>Data Connect pipeline types</h2></section>
+<section id="t-110"><h3>Integration pipelines</h3><div class="content-locale-en-US content-locale-en"><div id="c_dc_designer_integration_pipelines"><div class="body conbody"><p class="shortdesc">Integration pipelines should be used for long running and scheduled batch jobs.</p>
+
+    <p class="p">They should also be used when integrating external data and applying transforms in Insights. They can also be used to generate and download files from the UI.</p>
+
+    <div class="section"><h2 class="title sectiontitle">Diagnostic logs</h2>
+      
+      <p class="p">A diagnostic log file can be generated when testing an integration pipeline.</p>
+
+      <p class="p">See <span class="xref ft-internal-link" title="Troubleshooting tips are provided." data-ft-warning="excluded-from-rendering" data-mapid="zhfyvwrmd60S_3CkIOx9xA" data-tocid="K6vj6HW0jpKqf_44TTEadg">Troubleshooting: Enable diagnostic logs</span> for more details.</p>
+
+    </div>
+
+    <div class="section"><h2 class="title sectiontitle">Concurrency</h2>
+      
+      <p class="p">Integration pipelines use concurrency, also known as multithreading or parallelism, when a <code class="ph codeph">forEach</code> section is encountered on the pipeline. At that moment, pipelines are automatically divided into one or more phases. Each phase consists of one or more segments, and some phases can be parallel. When a phase runs in parallel, it divides up the work into multiple jobs, one for each message that needs to be processed, to speed up processing time.</p>
+
+      <p class="p">After all the records are processed, the engine will fan-in the results into an array and push each message of the aggregated results to the next phase.</p>
+
+      <div class="note"><span class="notetitle">Note:</span> Consider that multiple partial jobs can be reading or posting data to the APIs at the same time, and that might cause additional load on the client APIs.</div>
+
+      <p class="p">To see the parallel execution plan for your pipeline, you can enable the Diagnostic Log when the pipeline is executed as a job. The zip file will include a plan.json file, indicating which phases will run in parallel (the <code class="ph codeph">runInParallel</code> attribute).</p>
+
+      <p class="p">Max job concurrency can be tuned through the Job page. The default value for concurrency is 10, which means that a maximum of 10 jobs can be consuming APIs at the same time. This value can be turned up or down to tune the performance, from 1 to 50. Greater concurrency will mean a faster processing speed, but a higher load on the target APIs.</p>
+
+      <p class="p">In addition, the default maximum concurrency value can be changed from the Designer. It is still tied to the 1 to 50 range, but this will limit the maximum concurrency value that you can set on a Job screen. The new default maximum value can be set by clicking the drop-down menu aside the pipeline name and then selecting <span class="ph uicontrol">Edit Pipeline Settings</span> in the Designer, selecting the <span class="ph uicontrol">Max Concurrency</span> tab and then turning the <span class="ph uicontrol">Set Max Concurrency</span> switch on. Doing this allows you to adjust the value, just like on the Job Screen.</p>
+
+      <p class="p">This setting will limit the value on the Job creation screen. Consequently, operational users will be able to set a max concurrency value in the New Job or Edit Job screen to anything less than or equal to the max concurrency value set in the Designer.</p>
+
+      <div class="note"><span class="notetitle">Note:</span>  One key difference between testing in the designer and running an integration pipeline as a job, is that parallelism is activated for jobs. Designer test runs are not parallelized.</div>
+
+      <p class="p">See <span class="xref ft-internal-link" title="The following are common patterns to address common problems." data-ft-warning="excluded-from-rendering" data-mapid="zhfyvwrmd60S_3CkIOx9xA" data-tocid="Z5q1Y~u_Uc60YlYq5AkcFQ">Common patterns</span> for more details about concurrency.</p>
+
+    </div>
+
+  </div>
+
+</div></div></section>
+<section id="t-120"><h3>Data Connect Serverless APIs</h3><div class="content-locale-en-US content-locale-en"><div id="c_dc_designer_serverless_apis"><div class="body conbody"><p class="shortdesc">Serverless APIs are pipelines meant to be short-running and cannot run for longer than 60 seconds.</p>
+
+    <p class="p"> Serverless APIs can be called from a custom Experience card without deploying an intermediate authorization proxy. Serverless APIs can also be called by a 3rd party through <span class="keyword">Ethos Integration</span> to fulfill custom JSON data requests.</p>
+
+    <p class="p">For information on how to develop <span class="keyword">Integration Designer</span> serverless APIs, see <span class="xref ft-internal-link" title="After you create a serverless API draft, you can optionally define input or output schemas." data-ft-warning="excluded-from-rendering" data-mapid="zhfyvwrmd60S_3CkIOx9xA" data-tocid="TpbUbrUlUGPqmojoDY8p~Q">Develop serverless APIs</span>.</p>
+
+  </div>
+
+</div></div></section></main></body></html>

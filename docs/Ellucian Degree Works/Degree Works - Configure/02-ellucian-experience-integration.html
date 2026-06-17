@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Degree Works - Configure — Ellucian Experience Integration</title><style>body{font-family:-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;line-height:1.55;color:#1a1a1a;max-width:920px;margin:0 auto;padding:24px}header{border-bottom:2px solid #5a16d6;margin-bottom:8px}h1{color:#3a0ca3}h2,h3,h4,h5,h6{margin-top:1.6em}.crumb{color:#666;font-size:13px;margin:0}.meta{color:#888;font-size:12px}nav.toc{background:#f6f4fc;border:1px solid #e3dcf5;border-radius:8px;padding:12px 18px;margin:18px 0}nav.toc h2{margin:.2em 0}nav.toc ul{list-style:none;padding-left:0}nav.toc a{text-decoration:none;color:#5a16d6}section{margin:1.2em 0;padding-top:.4em}img{max-width:100%;height:auto}table{border-collapse:collapse}td,th{border:1px solid #ccc;padding:4px 8px}code,pre{background:#f4f4f4;border-radius:4px}pre{padding:10px;overflow:auto}</style></head><body><header><p class="crumb">Ellucian Degree Works › Degree Works - Configure</p><h1>Degree Works - Configure — Ellucian Experience Integration</h1><p class="meta">Source: <a href="https://resources.elluciancloud.com/r/bundle/dgrwrks_acn_configure">https://resources.elluciancloud.com/r/bundle/dgrwrks_acn_configure</a> &middot; Retrieved 2026-06-17</p></header><nav class="toc"><h2>Contents</h2><ul><li style="margin-left:0px"><a href="#t-560">Ellucian Experience Integration</a></li><li style="margin-left:16px"><a href="#t-570">Whitelist Ellucian Experience IP addresses</a></li><li style="margin-left:16px"><a href="#t-580">Configure Ellucian Experience access to Degree Works</a></li><li style="margin-left:16px"><a href="#t-590">Set up Degree Works cards in Ellucian Experience</a></li><li style="margin-left:16px"><a href="#t-600">Troubleshooting the integration between Ellucian Experience and Degree Works</a></li></ul></nav><main><section id="t-560"><h2>Ellucian Experience Integration</h2><div class="content-locale-en-US content-locale-en"><div id="c_ellucian_experience_ellucian_experience_integration"><div class="body conbody"><p class="shortdesc">Ellucian Experience users can view academic plans and degree progress information from Degree Works. You must set up both Ellucian Experience and Degree Works to support the integration.</p>
+
+    <p class="p">The table below shows the Ellucian Experience cards that display information from Degree Works.</p>
+
+    
+<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" class="table" frame="hsides" border="1" rules="rows"><colgroup><col style="width:50%"><col style="width:50%"></colgroup><thead class="thead" style="text-align:left;">
+          <tr class="row">
+            <th class="entry row-nocellborder" style="text-align:left;vertical-align:top;" id="d1988e48">Card type</th>
+
+            <th class="entry row-nocellborder" style="text-align:left;vertical-align:top;" id="d1988e51">Description</th>
+
+          </tr>
+
+        </thead>
+<tbody class="tbody">
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d1988e48 ">Academic Plans</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d1988e51 ">Displays active educational plans defined in Degree Works for this student, along with the overall status (On-Track or Off-Track). The student can expand each plan to view the status for each term. The user can also link into a view of the complete plan.</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d1988e48 ">Degree Progress</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d1988e51 ">Displays the GPA, requirements progress, and credits progress for all active degrees defined in Degree Works for this student. The user can also link into a view of the complete audit.</td>
+
+          </tr>
+
+        </tbody>
+</table>
+</div>
+
+    <p class="p">When a user accesses Ellucian Experience with one of the Degree Works cards on the dashboard, Ellucian Experience obtains the data from Degree Works to display in the cards. The data retrieval uses the following information, which you must enter in Ellucian Experience settings. </p>
+
+    <ul class="ul">
+      <li class="li">The full URL of the Degree Works Responsive Dashboard application.</li>
+
+      <li class="li">The username and password for a Degree Works user who has permissions to access the Degree Works data displayed in the Degree Progress and Academic Plans cards. You must create this user in Degree Works and assign the required permissions.</li>
+
+      <li class="li">The RPT036 report format that should be used for configuring audit data shown in the Degree Progress card.</li>
+
+    </ul>
+
+  </div>
+
+</div></div></section>
+<section id="t-570"><h3>Whitelist Ellucian Experience IP addresses</h3><div class="content-locale-en-US content-locale-en"><div id="c_ellucian_experience_whitelist_ellucian_experience_ip_addresses"><div class="body conbody"><p class="shortdesc">Ellucian Experience calls the Responsive Dashboard application to retrieve data. Your firewall rules must allow for inbound requests from the Ellucian Experience IP addresses to the server where you deployed the Degree Works Responsive Dashboard.</p>
+
+    <p class="p">You must whitelist the IP addresses for your region. See <a class="xref ft-external-link" href="https://resources.elluciancloud.com/csh?topicname=r_experience_ip_addresses" target="_blank" rel="noopener">Experience IP addresses</a>.</p>
+
+  </div>
+
+</div></div></section>
+<section id="t-580"><h3>Configure Ellucian Experience access to Degree Works</h3><div class="content-locale-en-US content-locale-en"><div id="t_ellucian_experience_config_ellucian_experience_access_to_dw"><div class="body taskbody"><p class="shortdesc">Ellucian Experience requires a user that is authorized to pull Degree Works information into the Experience cards.</p>
+
+    <div class="tasklabel"><h2 class="sectiontitle tasklabel">Procedure</h2></div><ol class="ol steps"><li class="li step stepexpand">
+        <span class="ph cmd">Configure Responsive Dashboard to allow basic authentication through SHP. In Controller, create a dashboard specification for the core.security.shp.authentication.enabled Shepherd setting and set it to True.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Use the Users function of Controller to set up a user who can access the Responsive Dashboard from Ellucian Experience.</span>
+        <ol type="a" class="ol substeps">
+          <li class="li substep substepexpand">
+            <span class="ph cmd">Assign the user to the API user class.</span>
+          </li>
+
+          <li class="li substep substepexpand">
+            <span class="ph cmd">Assign the user the following Shepherd keys:</span>
+            <div class="itemgroup info">
+              <ul class="ul">
+                <li class="li">SDSTUANY</li>
+
+                <li class="li">NOREFER</li>
+
+                <li class="li">RSAUDIT</li>
+
+                <li class="li">RSPLAN</li>
+
+                <li class="li">SDAUDREV</li>
+
+                <li class="li">SDWORKS</li>
+
+              </ul>
+
+            </div>
+          </li>
+
+        </ol>
+
+        <div class="itemgroup info">
+          <div class="note"><span class="notetitle">Note:</span> This user does not need LDAP or other credentials.</div>
+
+        </div>
+      </li>
+</ol>
+
+  </div>
+
+</div></div></section>
+<section id="t-590"><h3>Set up Degree Works cards in Ellucian Experience</h3><div class="content-locale-en-US content-locale-en"><div id="t_ellucian_experience_set_up_dw_cards_in_ellucian_experience"><div class="body taskbody"><p class="shortdesc">Set up either or both of the Ellucian Experience cards (Academic Plans and Degree Progress) that display information from Degree Works.</p>
+
+    <div class="tasklabel"><h2 class="sectiontitle tasklabel">Procedure</h2></div><ol class="ol steps"><li class="li step stepexpand">
+        <span class="ph cmd">Access Ellucian Experience as a user with the Card Management administrative permission.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Select <span class="ph menucascade"><span class="ph uicontrol">Ellucian Experience</span><abbr title="and then"> &gt; </abbr><span class="ph uicontrol">Configuration</span></span>.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Click <span class="ph uicontrol">Card Management</span>.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">In the <span class="ph uicontrol">Actions</span> column, click <span class="ph uicontrol">Edit</span> next to the card type you want to configure (Academic Plans or Degree Progress).</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">In the Details step of the wizard, enter basic card settings.</span>
+        <ol type="a" class="ol substeps">
+          <li class="li substep substepexpand">
+            <span class="ph cmd">In the Card Information section, enter descriptive information.</span>
+            <div class="itemgroup info">
+              
+<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" class="table" frame="hsides" border="1" rules="rows"><colgroup><col style="width:50%"><col style="width:50%"></colgroup><thead class="thead" style="text-align:left;">
+                    <tr class="row">
+                      <th class="entry row-nocellborder" style="text-align:left;vertical-align:top;" id="d46051e105">Setting</th>
+
+                      <th class="entry row-nocellborder" style="text-align:left;vertical-align:top;" id="d46051e108">Description</th>
+
+                    </tr>
+
+                  </thead>
+<tbody class="tbody">
+                    <tr class="row">
+                      <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d46051e105 ">Card title</td>
+
+                      <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d46051e108 ">This title displays at the top of the card.</td>
+
+                    </tr>
+
+                    <tr class="row">
+                      <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d46051e105 ">Card description</td>
+
+                      <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d46051e108 ">This description does not display on the card, but does factor in to search.</td>
+
+                    </tr>
+
+                    <tr class="row">
+                      <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d46051e105 ">Card tags</td>
+
+                      <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d46051e108 ">Both search and filters use tags in displaying cards on the Discover page. You can enter multiple tags separated by commas.</td>
+
+                    </tr>
+
+                    <tr class="row">
+                      <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d46051e105 ">Mini card icon</td>
+
+                      <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d46051e108 ">This icon represents card content when viewing in smaller view ports.</td>
+
+                    </tr>
+
+                  </tbody>
+</table>
+</div>
+
+            </div>
+            <div class="itemgroup info">Card information helps Ellucian Experience users find cards of interest on the Discover page. Tags appear at the top of the page. Users can click a tag to filter the display to cards only with that tag. When a user searches for cards, the search includes the text that you enter for the title, description, and tags.</div>
+          </li>
+
+          <li class="li substep substepexpand">
+            <span class="ph cmd">In the Card Placement section, choose a category for the card. </span>
+            <div class="itemgroup info">The category groups cards together for ease of access. The category link appears on the Experience main menu and in card management.</div>
+            <div class="itemgroup info">Enable <span class="ph uicontrol">Show as default card on home page</span> if you want this card to be the default for new users. It will automatically appear on the dashboard of new users.</div>
+          </li>
+
+          <li class="li substep substepexpand"><strong>Optional: </strong>
+            <span class="ph cmd">In the External Link section, you can add a link to Degree Works that will display in the card action menu.</span>
+            <div class="itemgroup info">
+              
+<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" class="table" frame="hsides" border="1" rules="rows"><colgroup><col style="width:50%"><col style="width:50%"></colgroup><thead class="thead" style="text-align:left;">
+                    <tr class="row">
+                      <th class="entry row-nocellborder" style="text-align:left;vertical-align:top;" id="d46051e193">Setting</th>
+
+                      <th class="entry row-nocellborder" style="text-align:left;vertical-align:top;" id="d46051e196">Instruction</th>
+
+                    </tr>
+
+                  </thead>
+<tbody class="tbody">
+                    <tr class="row">
+                      <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d46051e193 ">External link label</td>
+
+                      <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d46051e196 ">Enter the text for the link as it will appear in the card.</td>
+
+                    </tr>
+
+                    <tr class="row">
+                      <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d46051e193 ">External link URL</td>
+
+                      <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d46051e196 ">Enter the link target URL.</td>
+
+                    </tr>
+
+                  </tbody>
+</table>
+</div>
+
+            </div>
+          </li>
+
+          <li class="li substep substepexpand">
+            <span class="ph cmd">Click <span class="ph uicontrol">Next</span>.</span>
+          </li>
+
+        </ol>
+
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">In the Configuration step of the wizard, enter the Degree Works parameters for the selected card. There are two types of parameters for each card. </span>
+        <div class="itemgroup info">
+          <ul class="ul">
+            <li class="li">Parameters that allow you to customize the labels on the card.<p class="p">The following labels can be localized on the Degree Works Experience cards by entering a new parameter value.</p>
+<ul class="ul">
+              <li class="li">Degree Progress card: Getting Started Header, Credits, Degree, GPA, and Requirements</li>
+
+              <li class="li">Academic Plans card: Tracking status (NOT EVALUATED, ON TRACK, OFF TRACK), Modified, Getting Started Header</li>
+
+              </ul>
+</li>
+
+            <li class="li">Parameters that allow you to connect with the Degree Works Responsive Dashboard.<p class="p">The following parameters apply to the entire extension and may already have a value if you have previously configured another card.</p>
+</li>
+
+          </ul>
+
+          
+<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" class="table" frame="hsides" border="1" rules="rows"><colgroup><col style="width:50%"><col style="width:50%"></colgroup><thead class="thead" style="text-align:left;">
+                <tr class="row">
+                  <th class="entry row-nocellborder" style="text-align:left;vertical-align:top;" id="d46051e278">Setting</th>
+
+                  <th class="entry row-nocellborder" style="text-align:left;vertical-align:top;" id="d46051e281">Instruction</th>
+
+                </tr>
+
+              </thead>
+<tbody class="tbody">
+                <tr class="row">
+                  <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d46051e278 ">Responsive Dashboard URL</td>
+
+                  <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d46051e281 ">Enter the URL for the Degree Works Responsive Dashboard application located on the Degree Works server. The URL has the form https://{hostname}:{port}/{path}</td>
+
+                </tr>
+
+                <tr class="row">
+                  <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d46051e278 ">Username and Password</td>
+
+                  <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d46051e281 ">Enter the username and password of the Degree Works user that you created who can access Degree Works APIs from Ellucian Experience. For more information, see the <span class="xref ft-internal-link" title="Ellucian Experience requires a user that is authorized to pull Degree Works information into the Experience cards." data-ft-warning="excluded-from-rendering" data-mapid="igXg2AijGFGkGiTrAzay5w" data-tocid="g_AFgTJblVWkvzZsU37SHA">Configure Ellucian Experience access to Degree Works</span> topic.</td>
+
+                </tr>
+
+                <tr class="row">
+                  <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d46051e278 ">Worksheet - RPT036</td>
+
+                  <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d46051e281 ">The report format from RPT036 that should be used to configure the display of the audit information in the Degree Progress card. If blank or not valid, WEB31 will be used as a default. This field is case sensitive.</td>
+
+                </tr>
+
+              </tbody>
+</table>
+</div>
+
+        </div>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Click <span class="ph uicontrol">Next</span>.</span>
+      </li>
+<li class="li step stepexpand" id="t_ellucian_experience_set_up_dw_cards_in_ellucian_experience__fzt_lgd_wvb">
+        <span class="ph cmd">In the Roles step of the wizard, do either of the following to specify which users will see this card.</span>
+        <ul class="ul choices">
+          <li class="li choice">Click <span class="ph uicontrol">Select all users</span> to assign this card to all Ellucian Experience users.</li>
+
+          <li class="li choice">Select roles to assign this card only to users with those roles. Your institution defines the roles available in Ellucian Experience setup.</li>
+
+        </ul>
+
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Select <span class="ph uicontrol">Enable card</span> to specify that the card is available to Ellucian Experience users with the roles you selected to access this card.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Click <span class="ph uicontrol">Finish</span>.</span>
+      </li>
+</ol>
+
+  </div>
+
+<div class="related-links">
+<div class="linklist relinfo reltasks" xml:lang="en-US" lang="en-US"><strong>Related tasks</strong><br>
+<ul class="linklist">
+<li class="linklist"><span class="link ft-internal-xlink" data-ft-warning="excluded-from-rendering" data-clusterid="id_crm/dgrwrks/t_create_secret_token_extension">Create a shared secret and API token for the extension</span></li>
+<li class="linklist"><span class="link ft-internal-xlink" data-ft-warning="excluded-from-rendering" data-clusterid="id_crm/dgrwrks/t_set_up_experience_card">Set up an Experience Card</span></li>
+<li class="linklist"><span class="link ft-internal-xlink" data-ft-warning="excluded-from-rendering" data-clusterid="id_crm/dgrwrks/t_specify_roles_onboarding">Add the roles in Ellucian Experience Setup</span></li></ul></div>
+</div></div></div></section>
+<section id="t-600"><h3>Troubleshooting the integration between Ellucian Experience and Degree Works</h3><div class="content-locale-en-US content-locale-en"><div id="r_troubleshooting_integration_between_ellucian_experience_degree_works"><div class="body refbody"><p class="shortdesc">Troubleshooting the integration between <span class="keyword">Ellucian Experience</span> and <span class="keyword">Degree Works</span> addresses common issues that can occur when performing integration functions.</p>
+
+    
+<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" class="table" frame="hsides" border="1" rules="rows"><colgroup><col style="width:28.011204481792717%"><col style="width:71.98879551820728%"></colgroup><thead class="thead" style="text-align:left;vertical-align:bottom;">
+          <tr class="row">
+            <th class="entry row-nocellborder" style="vertical-align:bottom;" id="d43828e53">Problem</th>
+
+            <th class="entry row-nocellborder" style="vertical-align:bottom;" id="d43828e56">Possible solution</th>
+
+          </tr>
+
+        </thead>
+<tbody class="tbody">
+          <tr class="row">
+            <td class="entry row-nocellborder" style="vertical-align:top;" headers="d43828e53 ">Degree Progress or Academic Plans cards showing errors or not showing data that we know exists for the test student in <span class="keyword">Degree Works</span>.</td>
+
+            <td class="entry row-nocellborder" style="vertical-align:top;" headers="d43828e56 ">
+              <ol class="ol">
+                <li class="li">Make sure you are logged in as a valid student user, as the <span class="keyword">Degree Works</span> integration in <span class="keyword">Experience</span> currently only works for that persona. View your ID in <span class="keyword">Experience</span> on the Profile page by clicking in the top right corner. This is the ID that the <span class="keyword">Degree Works</span> API looks up.</li>
+
+                <li class="li">Check the <span class="keyword">Degree Works</span> API user credentials and access keys.<ul class="ul">
+                  <li class="li">Make sure the user has been assigned the API user class and the required Shepherd keys. For more information, see <span class="xref ft-internal-link" title="Ellucian Experience requires a user that is authorized to pull Degree Works information into the Experience cards." data-ft-warning="excluded-from-rendering" data-mapid="igXg2AijGFGkGiTrAzay5w" data-tocid="g_AFgTJblVWkvzZsU37SHA">Configure Ellucian Experience access to Degree Works</span>.</li>
+
+                  <li class="li">Make sure the user and password you entered in <span class="keyword">Controller</span> are the same as what you entered in the <span class="keyword">Experience</span> card configuration. The system uses the user's <span class="ph uicontrol">Access ID</span> from Controller.</li>
+
+                  </ul>
+</li>
+
+                <li class="li">Check the Responsive Dashboard URL in the <span class="keyword">Experience</span> card configuration. Make sure it matches the correct Responsive Dashboard URL with which you are able to access Responsive Dashboard. There should be no additional path, only your standard Responsive Dashboard URL. The URL has the form <span class="ph filepath">https://<var class="keyword varname">hostname</var>:<var class="keyword varname">port</var>/<var class="keyword varname">path</var></span>.</li>
+
+                <li class="li">Check the core.security.shp.authentication.enabled Shepherd setting to make sure it is set to <span class="ph uicontrol">true</span> for the Responsive Dashboard specification. The applicable specification depends on your version of <span class="keyword">Degree Works</span>.<ul class="ul">
+                  <li class="li">5.1.0 or earlier - newdash</li>
+
+                  <li class="li">5.1.1 or later - dashboard</li>
+
+                  </ul>
+</li>
+
+                <li class="li">Check for referer issues.<ul class="ul">
+                  <li class="li">If you are on <span class="keyword">Degree Works</span> release 5.0.7 or earlier, you should add the Experience dashboard URL values for your region to the core.security.refererAllowableUrls Shepherd setting. In the United States, these URLs are <span class="ph filepath">experience-test.elluciancloud.com</span> and <span class="ph filepath">experience.elluciancloud.com</span>. If you are on <span class="keyword">Degree Works</span> release 5.1.0 or later, you do not need to add those URLs.</li>
+
+                  <li class="li">If you have the ability to view the Responsive Dashboard log, check it for <span class="ph uicontrol">CSRF Attack</span> errors. These errors indicate that an attempt is being made to reach the Responsive Dashboard from a server not listed under core.security.refererAllowableUrls.</li>
+
+                  </ul>
+</li>
+
+                <li class="li">Check whether you have whitelisted the Ellucian Experience IP addresses. For more information, see the <span class="xref ft-internal-link" title="Ellucian Experience calls the Responsive Dashboard application to retrieve data. Your firewall rules must allow for inbound requests from the Ellucian Experience IP addresses to the server where you deployed the Degree Works Responsive Dashboard." data-ft-warning="excluded-from-rendering" data-mapid="igXg2AijGFGkGiTrAzay5w" data-tocid="JxakRKE1NEA8EGA6yyQzeg">Whitelist Ellucian Experience IP addresses</span> topic.</li>
+
+                <li class="li">Test the API endpoints directly through curl or Bruno. This action verifies the app is running, the URL is correct, the credentials are correct, and the data in question is available. Be sure to include the credentials with the request. If you are not sure of the appropriate school (academic level) and degree to test, you can access the student in <span class="keyword">Degree Works</span>, view the Student Data Report, and then look at the Goal-Dtl section. <div class="p">Endpoint patterns:<ul class="ul">
+                  <li class="li"><code class="ph codeph">&lt;resdash-url&gt;/api/students?studentId=XXX</code></li>
+
+                  <li class="li">Degree Progress card endpoint - <code class="ph codeph">&lt;resdash-url&gt;/api/audit?studentId=XXX&amp;school=XX&amp;degree=XX</code></li>
+
+                  <li class="li">Academic Plans card endpoint - <code class="ph codeph">&lt;resdash-url&gt;/api/plans?studentId=XXX</code></li>
+
+                  </ul>
+</div>
+</li>
+
+                <li class="li">Enable access logging on the Responsive Dashboard server to verify that incoming requests are being received. You must have server access to view the generated log files. For more information about setup, see the <a class="xref ft-external-link" href="https://elluciansupport.service-now.com/customer_center?id=kb_article_view&amp;sysparm_article=000040802" target="_blank" rel="noopener">How to get access logging from Spring Boot applications</a> article.</li>
+
+              </ol>
+
+            </td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="vertical-align:top;" headers="d43828e53 ">Plans card does not show any plans.</td>
+
+            <td class="entry row-nocellborder" style="vertical-align:top;" headers="d43828e56 ">The student does not have any plans that are both active and locked (approved), depending on the studentPlanner.planner.planApprovalMethod Shepherd setting. Ensure your student has an active and locked/approved plan with current requirements.</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="vertical-align:top;" headers="d43828e53 ">Plans card shows <samp class="ph msgph">not evaluated</samp>.</td>
+
+            <td class="entry row-nocellborder" style="vertical-align:top;" headers="d43828e56 ">Either there has been no progress after the plan was created, the plan has no trackable requirements, or the requirements are for a future term.</td>
+
+          </tr>
+
+        </tbody>
+</table>
+</div>
+
+  </div>
+
+</div></div></section></main></body></html>

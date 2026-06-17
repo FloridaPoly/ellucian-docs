@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>ISSM DIT - Upgrade</title><style>body{font-family:-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;line-height:1.55;color:#1a1a1a;max-width:920px;margin:0 auto;padding:24px}header{border-bottom:2px solid #5a16d6;margin-bottom:8px}h1{color:#3a0ca3}h2,h3,h4,h5,h6{margin-top:1.6em}.crumb{color:#666;font-size:13px;margin:0}.meta{color:#888;font-size:12px}nav.toc{background:#f6f4fc;border:1px solid #e3dcf5;border-radius:8px;padding:12px 18px;margin:18px 0}nav.toc h2{margin:.2em 0}nav.toc ul{list-style:none;padding-left:0}nav.toc a{text-decoration:none;color:#5a16d6}section{margin:1.2em 0;padding-top:.4em}img{max-width:100%;height:auto}table{border-collapse:collapse}td,th{border:1px solid #ccc;padding:4px 8px}code,pre{background:#f4f4f4;border-radius:4px}pre{padding:10px;overflow:auto}</style></head><body><header><p class="crumb">Data Integration Tool › ISSM DIT - Upgrade</p><h1>ISSM DIT - Upgrade</h1><p class="meta">Source: <a href="https://resources.elluciancloud.com/r/bundle/issm_dit_acn_upgrade">https://resources.elluciancloud.com/r/bundle/issm_dit_acn_upgrade</a> &middot; Retrieved 2026-06-17</p></header><nav class="toc"><h2>Contents</h2><ul><li style="margin-left:0px"><a href="#t-10">Upgrade ISSM Data Integration Tool</a></li><li style="margin-left:16px"><a href="#t-20">Download ISSM DIT for upgrade</a></li><li style="margin-left:16px"><a href="#t-30">Verify the existing ISSM and ISSM DIT Installation</a></li><li style="margin-left:16px"><a href="#t-40">Install the ISSM DIT application files for upgrade</a></li><li style="margin-left:16px"><a href="#t-50">Restore the ISSM DIT configuration and log files</a></li><li style="margin-left:16px"><a href="#t-60">Edit tnsnames.ora (Banner connections only)</a></li><li style="margin-left:16px"><a href="#t-70">Update SMTP settings</a></li><li style="margin-left:16px"><a href="#t-80">Start ISSM DIT</a></li></ul></nav><main><section id="t-10"><h2>Upgrade ISSM Data Integration Tool</h2><div class="content-locale-en-US content-locale-en"><div id="c_upgrade_issm_data_integration_tool"><div class="body conbody"><p class="shortdesc">Before upgrading, confirm you have all required software installed on the ISSM Data Integration Tool server, which is also the ISSM server. </p>
+
+    <p class="p">See <cite class="cite">ISSM Data Integration Tool server requirements</cite> in the <cite class="cite">Getting Started</cite> content. for more information. After verifying you may download the installer from the <span class="ph">Ellucian Customer Center</span> website and begin installation.</p>
+
+    <div class="note"><span class="notetitle">Note:</span> Uninstall older versions of ODAC before installing the new version. Ensure to install ODAC 12.2c R1 on Windows Server 2016 before upgrading to DIT <span class="keyword">2.0.6</span>. The minimum version of DIT required for an upgrade is DIT 2.0.4.</div>
+
+    <div class="note"><span class="notetitle">Note:</span> The process of upgrading from one version of the Data Integration Tool to another is essentially the same as the initial installation process.<p class="p">The upgrade steps follow a base Data Integration Tool installation. You can modify them based on specific configuration modifications you make to the ISSM and the Data Integration Tool application. Review these steps before upgrading the Data Integration Tool application.</p>
+<p class="p">If you are installing the ISSM Data Integration Tool for the first time (not upgrading), see <cite class="cite">Install</cite> content.</p>
+</div>
+
+  </div>
+
+</div></div></section>
+<section id="t-20"><h3>Download ISSM DIT for upgrade</h3><div class="content-locale-en-US content-locale-en"><div id="t_step_1_download_issm_dit_upgrade"><div class="body taskbody"><p class="shortdesc">You need to have an account on the <span class="keyword">Ellucian Customer Center</span>. </p>
+
+    <div class="section context"><div class="tasklabel"><h2 class="sectiontitle tasklabel">About this task</h2></div>You can register for a <span class="keyword">Ellucian Customer Center</span> account at: <a class="xref ft-external-link" href="https://clientapps.ellucian.com/SignUp" target="_blank" rel="noopener">https://clientapps.ellucian.com/SignUp</a>.<p class="p">Steps to download DIT <span class="keyword">2.0.6</span> from the <span class="keyword">Ellucian Customer Center</span>:</p>
+</div>
+
+    <div class="tasklabel"><h2 class="sectiontitle tasklabel">Procedure</h2></div><ol class="ol steps"><li class="li step stepexpand">
+        <span class="ph cmd">Log in to the <span class="keyword">Ellucian Customer Center</span>.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Go to <span class="ph menucascade"><span class="ph uicontrol">Resources</span><abbr title="and then"> &gt; </abbr><span class="ph uicontrol">Downloads</span></span>.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Select <span class="ph menucascade"><span class="ph uicontrol">Find a Download</span><abbr title="and then"> &gt; </abbr><span class="ph uicontrol">Search Downloads</span></span>.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Install International Scholar Dossier, starting with the department portion of the application.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">In the <span class="ph uicontrol">Search For</span> field, type <kbd class="ph userinput">ISSMDataIntegrationTool206.zip</kbd>.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">In the <span class="ph uicontrol">Show Results for</span> field, select <span class="ph uicontrol">Files</span>.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Click <span class="ph uicontrol">Search</span>. </span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">In the <span class="ph uicontrol">File Name</span> column, select <span class="ph uicontrol">ISSMDataIntegrationTool206.zip</span> to download.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Transfer the zip file to the DIT Web server, and extract the files to a temporary directory.</span>
+        <div class="itemgroup info">You can download the <span class="ph filepath">ISSMDataIntegrationTool206.zip</span> file through an alternate method from the <span class="ph">Ellucian Download Center</span>.</div>
+      </li>
+</ol>
+
+  </div>
+
+</div></div></section>
+<section id="t-30"><h3>Verify the existing ISSM and ISSM DIT Installation</h3><div class="content-locale-en-US content-locale-en"><div id="t_step_2_verify_existing_issm_issm_dit_installation"><div class="body taskbody"><p class="shortdesc">Confirm that the current ISSM and ISSM Data Integration Tool applications are running properly. </p>
+
+    <div class="section context"><div class="tasklabel"><h2 class="sectiontitle tasklabel">About this task</h2></div>This step is especially important if you are installing this tool on a test system that has not been used recently.</div>
+
+    <div class="tasklabel"><h2 class="sectiontitle tasklabel">Procedure</h2></div><ol class="ol steps"><li class="li step">
+        <span class="ph cmd">Log onto the ISSM server.</span>
+      </li>
+<li class="li step">
+        <span class="ph cmd">Verify that all prerequisite software is installed.</span>
+      </li>
+<li class="li step">
+        <span class="ph cmd">Open a Web browser and confirm that ISSM is working by starting up the application. </span>
+      </li>
+<li class="li step">
+        <span class="ph cmd">Because you are upgrading an existing version of the ISSM Data Integration Tool, run this tool to confirm that it is running. </span>
+      </li>
+</ol>
+
+  </div>
+
+</div></div></section>
+<section id="t-40"><h3>Install the ISSM DIT application files for upgrade</h3><div class="content-locale-en-US content-locale-en"><div id="t_step_3_install_issm_dit_application_files_upgrade"><div class="body taskbody"><p class="shortdesc">Install the ISSM Data Integration Tool application files for upgrade.</p>
+
+    <div class="section context"><div class="tasklabel"><h2 class="sectiontitle tasklabel">About this task</h2></div>Perform the following steps to install the files on the ISSM server.</div>
+
+    <div class="tasklabel"><h2 class="sectiontitle tasklabel">Procedure</h2></div><ol class="ol steps"><li class="li step stepexpand">
+        <span class="ph cmd">Stop IIS. Open command prompt and enter <span class="ph uicontrol">iisreset/stop</span>.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Back up the <span class="ph filepath">\fsaATLAS\DataIntegrationTool</span> directory and the fsaATLAS database.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Open Windows Explorer and navigate to <span class="ph uicontrol">setup.exe</span> that you extracted from the <span class="ph filepath">ISSMDataIntegrationTool206.zip</span> file.</span>
+        <div class="itemgroup info">
+          <div class="note"><span class="notetitle">Note:</span> Before you begin the upgrade: Make a complete and current backup of the <kbd class="ph userinput">fsaATLAS\DataIntegrationTool</kbd> folder and sub-directories on the ISSM server. Ensure that all users have logged out of ISSM and that they will not attempt to reconnect to the application during the entire upgrade process.</div>
+
+        </div>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Right click <span class="ph uicontrol">setup.exe</span> and select <span class="ph uicontrol">Run as Administrator</span>.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Click <span class="ph uicontrol">Next</span>.</span>
+        <div class="itemgroup info">On the <span class="ph uicontrol">License Agreement</span> review the license agreement in the text box, choose the <kbd class="ph userinput">I accept</kbd> option.</div>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Click <span class="ph uicontrol">Next</span>.</span>
+        <div class="itemgroup info">On the <span class="ph uicontrol">Customer Information window</span> enter your user name and organization. There is an <span class="ph uicontrol">Install this application for:</span> option. By default this is set to <span class="ph uicontrol">Anyone who uses this computer (all users)</span>. Do not change this setting unless you are directed to do so by customer support.</div>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Click <span class="ph uicontrol">Next</span>.</span>
+        <div class="itemgroup info">
+          <p class="p">The default and recommended destination folder for this tool is <code class="ph codeph">fsaATLAS\DataIntegrationTool</code>. Click <span class="ph uicontrol">Change</span> to select a different installation directory.</p>
+
+          <div class="note"><span class="notetitle">Note:</span> If you are changing the installation directory, make sure not to select another directory within the installation directory. For example: If your current installation directory is <span class="ph filepath">C:\fsaATLAS\DataIntegrationTool</span>, then the new directory must not be within <span class="ph filepath">C:\fsaATLAS\DataIntegrationTool</span>.</div>
+
+        </div>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Click <span class="ph uicontrol">Next</span>.</span>
+        <div class="itemgroup info">
+          <p class="p">On the <span class="ph uicontrol">Database Server</span> enter the following information for the database: </p>
+
+          <dl class="dl">
+            
+              <dt class="dt dlterm">Database server name</dt>
+
+              <dd class="dd">Server Name that will host the fsaATLAS database. This name should include the entire server name.</dd>
+
+            
+            
+              <dt class="dt dlterm">Database Login ID</dt>
+
+              <dd class="dd">SQL Login ID that has the privilege to install a new database on the server above.</dd>
+
+            
+            
+              <dt class="dt dlterm">Database Password</dt>
+
+              <dd class="dd">SQL Password for the user above.</dd>
+
+            
+          </dl>
+
+        </div>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Click <span class="ph uicontrol">Next</span> to install the application to the indicated directory.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">On the <span class="ph uicontrol">Ready to Install the Program</span> window check the settings you have made and if they are correct click <span class="ph uicontrol">Install</span>. </span>
+        <div class="itemgroup info">If a setting is incorrect, click <span class="ph uicontrol">Back</span> to return to the appropriate window and change the information.</div>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Click <span class="ph uicontrol">Finish</span> when the installation of the files is complete.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Start IIS. Open command prompt and enter <span class="ph uicontrol">iisreset/start</span>.</span>
+      </li>
+</ol>
+
+  </div>
+
+</div></div></section>
+<section id="t-50"><h3>Restore the ISSM DIT configuration and log files</h3><div class="content-locale-en-US content-locale-en"><div id="t_step_4_restore_issm_dit_configuration_log_files"><div class="body taskbody"><p class="shortdesc">You must restore the Data Integration Tool configuration and log files on the ISSM Server where DIT <span class="keyword">2.0.6</span> is installed.</p>
+
+    <div class="tasklabel"><h2 class="sectiontitle tasklabel">Procedure</h2></div><ol class="ol steps"><li class="li step stepexpand">
+        <span class="ph cmd">Move the backup of the <span class="ph filepath">fsaATLAS\DataIntegrationToo</span>l directory to the ISSM Server where DIT <span class="keyword">2.0.6</span> is installed.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Copy the following files to the <span class="ph filepath">fsaATLAS\DataIntegrationTool\XML</span> directory:</span>
+        <div class="itemgroup info">
+          <ul class="ul">
+            <li class="li">IntegrationConfig.xml</li>
+
+            <li class="li">CommonSettings.config</li>
+
+          </ul>
+
+        </div>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Copy the <span class="ph filepath">Error.log</span> file to the <span class="ph filepath">fsaATLAS\DataIntegrationTool\LogFiles</span> directory.</span>
+        <div class="itemgroup info">
+          <div class="note"><span class="notetitle">Note:</span> If your source data only comes from an XML file, proceed to <cite class="cite">Update SMTP settings</cite> in the <cite class="cite">Install</cite> content. You do not have to follow the steps in <cite class="cite">Edit tnsnames.ora (<span class="keyword">Banner</span> connections only)</cite> in the <cite class="cite">Install</cite> content.</div>
+
+        </div>
+      </li>
+</ol>
+
+  </div>
+
+</div></div></section>
+<section id="t-60"><h3>Edit tnsnames.ora (Banner connections only)</h3><div class="content-locale-en-US content-locale-en"><div id="t_step_5_edit_tnsnames.ora_banner_connections_only"><div class="body taskbody"><p class="shortdesc">The SQL*Net tnsnames.ora configuration file, which is distributed with ODP.NET, must have the correct information to connect to the <span class="keyword">Banner</span> database, and be in the correct location on the ISSM Data Integration Tool server.</p>
+
+    <div class="tasklabel"><h2 class="sectiontitle tasklabel">Procedure</h2></div><ol class="ol steps"><li class="li step stepexpand">
+        <span class="ph cmd">Navigate to the <span class="ph filepath">\oracledirectory\network\ADMIN</span> directory, where <span class="ph filepath">oracledirectory</span> is the directory that contains the Oracle files (for example, OraHome_1) and confirm that the <span class="ph filepath">tnsnames.ora</span> file is located here:</span>
+        <div class="itemgroup info">If the file is in the one of the directories listed above, continue to step <span class="xref ft-internal-link" data-ft-warning="excluded-from-rendering" data-mapid="SAske30av57yY4hWwkqaMQ" data-tocid="t31n26BLGUNpPCqIQqe~qA" data-section="t_step_5_edit_tnsnames.ora_banner_connections_only__step4_upgrade">4</span> in these steps (editing the file). If the file is not in this location, continue to the next item.</div>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Navigate to the default location of the <span class="ph filepath">tnsnames.ora</span> file. By default, this location is <span class="ph filepath">\oracledirectory\network\ADMIN\SAMPLE</span>.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Copy the <span class="ph filepath">tnsnames.ora</span> file and place it in <span class="ph filepath">\oracledirectory\network\ADMIN</span> directory.</span>
+      </li>
+<li class="li step stepexpand" id="t_step_5_edit_tnsnames.ora_banner_connections_only__step4_upgrade">
+        <span class="ph cmd">Edit this file with an editor and enter the connection string and any other information necessary for connecting with the <span class="keyword">Banner</span> Server instance.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Save and close the file.</span>
+      </li>
+</ol>
+
+  </div>
+
+</div></div></section>
+<section id="t-70"><h3>Update SMTP settings</h3><div class="content-locale-en-US content-locale-en"><div id="t_step_6_update_smtp_settings"><div class="body taskbody"><p class="shortdesc">A new feature in v1.1 Hotfix 1 sends an e-mail notification of data processing results to the registered e-mail address. </p>
+
+    <div class="section context"><div class="tasklabel"><h2 class="sectiontitle tasklabel">About this task</h2></div>You must configure the feature to be fully functional.</div>
+
+    <div class="tasklabel"><h2 class="sectiontitle tasklabel">Procedure</h2></div><ol class="ol steps"><li class="li step stepexpand">
+        <span class="ph cmd">Navigate to <span class="ph filepath">[CurrentInstallDrive]:\fsaATLAS\DataIntegrationTool</span> folder, open both <code class="ph codeph">fsaATLASDataIntegrationTool.exe.config</code> and <code class="ph codeph">ExtractRunner.exe.config</code> files.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Look for the following SMTP information section:</span>
+        <div class="itemgroup info">
+          <pre class="pre codeblock"><code>&lt;smtp from=""&gt;
+&lt;network host="smtp.server.com" password="" port="25" userName="" /&gt;
+&lt;/smtp&gt;</code></pre>
+        </div>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Update the SMTP information section above with your institution SMTP server information.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">If your institution SMTP server requires SSL connection, please update the following setting to true in both files mentioned above:</span>
+        <div class="itemgroup info">
+          <pre class="pre codeblock"><code>&lt;appSettings file="xml\commonsettings.config"&gt;
+&lt;add key="IsSSLEnabledForEmail" value="false" /&gt;
+&lt;/appSettings&gt;</code></pre>
+          <p class="p">For additional information about this feature, see <cite class="cite">Work with configurations based on a <span class="keyword">Banner</span> Database</cite> in the <cite class="cite">Config</cite> content.</p>
+
+        </div>
+      </li>
+</ol>
+
+  </div>
+
+</div></div></section>
+<section id="t-80"><h3>Start ISSM DIT</h3><div class="content-locale-en-US content-locale-en"><div id="c_step_7_start_issm_dit"><div class="body conbody"><p class="shortdesc">You can now use ISSM Data Integration Tool.</p>
+
+    <p class="p">From the ISSM Data Integration Tool server (or from a remote connection), select <span class="ph menucascade"><span class="ph uicontrol">Start </span><abbr title="and then"> &gt; </abbr><span class="ph uicontrol">Programs</span><abbr title="and then"> &gt; </abbr><span class="ph uicontrol">ISSM Data Integration Tool (Group)</span><abbr title="and then"> &gt; </abbr><span class="ph uicontrol">ISSM Data Integration Tool</span></span>. You can also navigate to the ISSM Data Integration Tool directory (for example,<span class="ph filepath">\fsaATLAS\DataIntegrationTool</span>) and run <span class="ph filepath">fsaATLASDataIntegrationTool.exe</span>.</p>
+
+    <p class="p">You can now begin using the ISSM Data Integration Tool to access your source data.</p>
+
+    <div class="p">If you do not upgrade Oracle Database Access Component to ODAC 12.2c R1 or ODAC 12c R4, an unhandled exception error displays, and DIT will not work.<br><img class="image" alt="Exception error" data-ft-asset-display-name="dit_error.png" src="images/issm-dit-upgrade-1.png" data-ft-resource-id="UgcQmnkzJKSJxft5U8bCuw-SAske30av57yY4hWwkqaMQ"><br></div>
+
+    <div class="note warning"><span class="warningtitle">Warning:</span> Running the DIT setup.exe again after the successful installation will leave the DIT application in an unstable state.</div>
+
+    <p class="p">To avoid the <cite class="cite">Character length of Foreign Address Line 1 is longer than 60 </cite> error message you must open the configuration and save it again after the successful upgrade.</p>
+
+    <div class="note"><span class="notetitle">Note:</span> If you perform a migration of the system, you must login to DIT and reschedule all the configurations again on the <span class="keyword wintitle">ISSM Data Integration Tool - Task Scheduler</span> window.</div>
+
+  </div>
+
+</div></div></section></main></body></html>

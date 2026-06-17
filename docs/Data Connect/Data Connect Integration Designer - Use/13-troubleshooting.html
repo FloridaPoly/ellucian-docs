@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Data Connect Integration Designer - Use — Troubleshooting</title><style>body{font-family:-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;line-height:1.55;color:#1a1a1a;max-width:920px;margin:0 auto;padding:24px}header{border-bottom:2px solid #5a16d6;margin-bottom:8px}h1{color:#3a0ca3}h2,h3,h4,h5,h6{margin-top:1.6em}.crumb{color:#666;font-size:13px;margin:0}.meta{color:#888;font-size:12px}nav.toc{background:#f6f4fc;border:1px solid #e3dcf5;border-radius:8px;padding:12px 18px;margin:18px 0}nav.toc h2{margin:.2em 0}nav.toc ul{list-style:none;padding-left:0}nav.toc a{text-decoration:none;color:#5a16d6}section{margin:1.2em 0;padding-top:.4em}img{max-width:100%;height:auto}table{border-collapse:collapse}td,th{border:1px solid #ccc;padding:4px 8px}code,pre{background:#f4f4f4;border-radius:4px}pre{padding:10px;overflow:auto}</style></head><body><header><p class="crumb">Data Connect › Data Connect Integration Designer - Use</p><h1>Data Connect Integration Designer - Use — Troubleshooting</h1><p class="meta">Source: <a href="https://resources.elluciancloud.com/r/bundle/ethos_data_connect_int_design_acn_use">https://resources.elluciancloud.com/r/bundle/ethos_data_connect_int_design_acn_use</a> &middot; Retrieved 2026-06-17</p></header><nav class="toc"><h2>Contents</h2><ul><li style="margin-left:0px"><a href="#t-540">Troubleshooting</a></li><li style="margin-left:16px"><a href="#t-550">Common questions</a></li></ul></nav><main><section id="t-540"><h2>Troubleshooting</h2><div class="content-locale-en-US content-locale-en"><div id="c_dc_designer_troubleshooting"><div class="body conbody"><p class="shortdesc">Troubleshooting tips are provided.</p>
+
+    <div class="section"><h2 class="title sectiontitle">Enable diagnostics logs</h2>
+      
+      <p class="p">When testing a pipeline, you can toggle the <span class="ph uicontrol">Enable diagnostic log</span> option to generate a log file after execution. After the test pipeline executes, an icon at the bottom will allow downloading the log file.</p>
+
+      <p class="p">A log file is not generated if the pipeline test exceeds the maximum execution time of 2 minutes.</p>
+
+      <p class="p">A generated log file contains detailed information on the input and output of each pipeline segment, as they are executed. The file information is in JSON format.</p>
+
+      <p class="p">For example, a log file can contain:</p>
+
+      <ul class="ul">
+        <li class="li">Timestamp and type of fitting being executed.</li>
+
+        <li class="li">Values assigned to context during pipeline initialization.</li>
+
+        <li class="li">Output message of a fitting.</li>
+
+      </ul>
+
+      <p class="p">For more information on Diagnostic logging of <span class="ph uicontrol">Integration Packages</span> pipeline jobs, please refer to the <cite class="cite">Integration Packages</cite> documentation.</p>
+
+    </div>
+
+    <div class="section"><h2 class="title sectiontitle">Troubleshooting ideas</h2>
+      
+      <ul class="ul">
+        <li class="li">When testing, be advised that the pipeline may only execute for 60 seconds. Limit your data to a small number of records using filters or other parameters so that the pipeline can complete.</li>
+
+        <li class="li">Disable fittings to find the problem:<p class="p">Whenever there is an issue with a pipeline, Ellucian recommends that you disable all the fittings and start testing one by one.</p>
+<p class="p">By disabling the fittings, the pipeline keeps its form and data. When the test button is used, it will not use the disabled fittings. Enabling the fittings one after another and running a test allows you to identify the fitting that is causing issues.</p>
+</li>
+
+        <li class="li">Always stringify before writing a CSV file:<p class="p">Whenever the pipeline requires output into a CSV file, you need to stringify the JSON response first. There are extra properties in the File Writer fitting, such as Add Newline and Generate Presigned URL, that provide benefits.</p>
+<p class="p">Setting <span class="ph uicontrol">Generate Presigned Url</span> to ON is especially useful if you want to verify the resulted file. The test will provide the URL in the payload so you can download the file.</p>
+</li>
+
+        <li class="li">Use JavaScript Transform to pre-process data:<p class="p">Sometimes it is necessary to create data structures or format the data that you want before processing it. Ellucian recommends using the Javascript Transform fitting for this action. It is the easiest way to add, edit, transform or recreate the structure and the data as needed. The example below shows a simple rename of the properties.</p>
+<pre class="pre codeblock js"><code>function transform (message, context) {
+  const data = message.payload;
+  let newPayload = {};
+  newPayload.firstName = data['First Name'];
+  newPayload.middleName = data['Middle Name'];
+  newPayload.lastName = data['Last Name'];
+  newPayload.fullName = data['Full Name'];
+  newPayload.gender = data['Gender'];
+  newPayload.race = data['Race'];
+  newPayload.ethnicity = data['Ethnicity'];
+
+  newPayload.oldData = data;
+  message.payload = newPayload;
+  return message;
+}</code></pre><p class="p">It is also possible to collect data from the context and use it to modify the payload.</p>
+<pre class="pre codeblock js"><code>function transform (message, context) {
+  const data = message.payload;
+  let newPayload = {};
+  
+  // The date of birth comes in a "month cardinalDay, year" format,
+  // so we are going to transform it into a local String format.
+  let dateStr = data['Date Of Birth'];
+  newPayload.dateOfBirth = '';
+  if(dateStr) {
+    // An example of how to use context values defined as our pipeline parameters.
+    let dateArr = dateStr.split(context.get('dateSeparator'));
+    // Format the date to change from ordinal to cardinal number for the days.
+    let newDate = dateArr[0].substring(0, dateArr[0].length - 2).concat(dateArr[1]);
+    newPayload.dateOfBirthFormated = newDate;
+    newPayload.dateOfBirth = new Date(newDate).toISOString();
+  }
+  
+  newPayload.oldData = data;
+  message.payload = newPayload;
+  return message;
+}</code></pre><p class="p">It is also possible to collect data from the context and use it to modify the payload.</p>
+</li>
+
+      </ul>
+
+    </div>
+
+  </div>
+
+</div></div></section>
+<section id="t-550"><h3>Common questions</h3><div class="content-locale-en-US content-locale-en"><div id="c_dc_designer_common_questions"><div class="body conbody"><p class="shortdesc">Some common questions are answered.</p>
+
+    <ul class="ul">
+      <li class="li">During pipeline execution, after an error occurs, how can I find which fitting the error belongs to?<p class="p">The Errors tab in <span class="keyword">Ethos Integration</span> shows the fitting that caused the error. There is a <span class="ph uicontrol">View Errors</span> link on the job run screen that takes you to an errors page. Or, you can manually search for the error on the Errors page by filtering on the Correlation ID, which is the same as the Job Run ID.</p>
+<p class="p">During the design phase, the <span class="ph uicontrol">TEST</span> button reports the exact fittings that failed.</p>
+</li>
+
+      <li class="li">Why am I receiving a timeout error?<p class="p">When testing, be advised that the pipeline may only execute for 60 seconds. Limit your data to a small number of records using filters or other parameters so that the pipeline can complete.</p>
+</li>
+
+      <li class="li">How do I successfully configure the SFTP Fitting by SFTP key?<div class="p">Make sure you have the following:<ul class="ul"> <li class="li">Create a parameter, for example <code class="ph codeph">sftpKey</code> of type string, with multiline enabled.</li>
+ <li class="li">Copy the value of the key. It should include the comments as well. For example, -----BEGIN OPENSSH PRIVATE KEY----- ...etc.</li>
+ <li class="li">If receiving file errors, make sure the path is correct. For example /home/fileName.txt or /fileName.txt instead of just fileName.txt.</li>
+
+        </ul>
+</div>
+</li>
+
+      <li class="li">When scheduling a job I can set the Hours. What time zone does it use?<p class="p">You can enter the time in your local time zone and it will execute. Behind the scenes, time is stored as coordinated universal time (UTC).</p>
+</li>
+
+      <li class="li">Does the <span class="keyword">Data Connect</span> job rerun again automatically if it fails due to any infrastructure or network issue?<p class="p">There are various levels of retry or resiliency built in:</p>
+<ul class="ul">
+        <li class="li">When you run a job, it goes to a queue. If the <span class="keyword">Data Connect</span> back end is down, it waits there until it can be picked up.</li>
+
+        <li class="li">Individual HTTP calls have retry logic (like retry 10x or so) and timeouts (wait about three minutes on an individual call). After all retries have failed, the overall job in the user interface would be marked as <samp class="ph msgph">TIMED OUT</samp> and could be run again manually or automatically on the next scheduled interval.</li>
+
+        </ul>
+</li>
+
+      <li class="li">How many job runs are retained for a job?<p class="p"><span class="keyword">Data Connect</span> retains the most recent 1000 job runs for a given job.</p>
+</li>
+
+    </ul>
+
+  </div>
+
+</div></div></section></main></body></html>

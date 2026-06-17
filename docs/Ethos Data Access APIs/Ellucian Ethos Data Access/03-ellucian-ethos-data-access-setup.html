@@ -1,0 +1,1179 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Ellucian Ethos Data Access — Ellucian Ethos Data Access setup</title><style>body{font-family:-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;line-height:1.55;color:#1a1a1a;max-width:920px;margin:0 auto;padding:24px}header{border-bottom:2px solid #5a16d6;margin-bottom:8px}h1{color:#3a0ca3}h2,h3,h4,h5,h6{margin-top:1.6em}.crumb{color:#666;font-size:13px;margin:0}.meta{color:#888;font-size:12px}nav.toc{background:#f6f4fc;border:1px solid #e3dcf5;border-radius:8px;padding:12px 18px;margin:18px 0}nav.toc h2{margin:.2em 0}nav.toc ul{list-style:none;padding-left:0}nav.toc a{text-decoration:none;color:#5a16d6}section{margin:1.2em 0;padding-top:.4em}img{max-width:100%;height:auto}table{border-collapse:collapse}td,th{border:1px solid #ccc;padding:4px 8px}code,pre{background:#f4f4f4;border-radius:4px}pre{padding:10px;overflow:auto}</style></head><body><header><p class="crumb">Ethos Data Access APIs › Ellucian Ethos Data Access</p><h1>Ellucian Ethos Data Access — Ellucian Ethos Data Access setup</h1><p class="meta">Source: <a href="https://resources.elluciancloud.com/r/bundle/ethos_data_access">https://resources.elluciancloud.com/r/bundle/ethos_data_access</a> &middot; Retrieved 2026-06-17</p></header><nav class="toc"><h2>Contents</h2><ul><li style="margin-left:0px"><a href="#t-160">Ellucian Ethos Data Access setup</a></li><li style="margin-left:16px"><a href="#t-170">About Data Access configuration</a></li><li style="margin-left:16px"><a href="#t-180">Set up the authoritative source in Ethos Integration</a></li><li style="margin-left:16px"><a href="#t-190">Create a user for proxy API calls</a></li><li style="margin-left:16px"><a href="#t-200">Set up Data Access in Ethos Integration</a></li><li style="margin-left:16px"><a href="#t-210">Set up file bulk loads with Banner</a></li><li style="margin-left:32px"><a href="#t-220">File bulk load security considerations</a></li><li style="margin-left:48px"><a href="#t-230">Security enforcement</a></li><li style="margin-left:32px"><a href="#t-240">Configure Data Access for file bulk loads</a></li><li style="margin-left:16px"><a href="#t-250">Configure Banner for file bulk loads</a></li><li style="margin-left:32px"><a href="#t-260">Prerequisites</a></li><li style="margin-left:32px"><a href="#t-270">Configure Banner to run bulk jobs</a></li><li style="margin-left:48px"><a href="#t-280">Ethos Bulk Load Maintenance (GUAEBLM) parameters</a></li><li style="margin-left:32px"><a href="#t-290">Configure Banner and Ethos Integration</a></li><li style="margin-left:48px"><a href="#t-300">Verify the Ethos Integration application setup</a></li><li style="margin-left:48px"><a href="#t-310">Add application information to Banner</a></li><li style="margin-left:32px"><a href="#t-320">Debug bulk load</a></li><li style="margin-left:32px"><a href="#t-330">Filter bulk load</a></li><li style="margin-left:32px"><a href="#t-340">Bulk load health check</a></li><li style="margin-left:32px"><a href="#t-350">Enable bulk load health check</a></li><li style="margin-left:32px"><a href="#t-360">Initiate the bulk load process with Data Access</a></li><li style="margin-left:32px"><a href="#t-370">Process response and status tracking</a></li><li style="margin-left:32px"><a href="#t-380">Bulk load schema validation</a></li><li style="margin-left:48px"><a href="#t-390">Schema validation parameters</a></li><li style="margin-left:48px"><a href="#t-400">Set schema validation for a resource</a></li><li style="margin-left:32px"><a href="#t-410">Turn off bulk load</a></li></ul></nav><main><section id="t-160"><h2>Ellucian Ethos Data Access setup</h2></section>
+<section id="t-170"><h3>About Data Access configuration</h3><div class="content-locale-en-US content-locale-en"><div id="c_integration_setup"><p class="shortdesc"><span class="keyword">Ellucian Ethos Integration</span> communicates with your <span class="ph">authoritative source</span>, such as <span class="keyword">Ellucian</span> Banner or <span class="keyword">Ellucian</span> Colleague. Complete the required steps to configure <span class="keyword">Ellucian Ethos Data Access</span> so that it can communicate with your <span class="ph">authoritative source</span>.</p>
+
+</div></div></section>
+<section id="t-180"><h3>Set up the authoritative source in Ethos Integration</h3><div class="content-locale-en-US content-locale-en"><div id="c_auth_source_setup"><div class="body conbody"><p class="shortdesc">Configure your <span class="ph">authoritative source</span>, such as Banner or Colleague, to communicate with <span class="keyword">Ellucian Ethos Integration</span>.</p>
+
+    <p class="p">The authoritative source must have assigned resources in <span class="keyword">Ethos Integration</span>, and must be set up to publish changes to those resources. For the procedures, see <span class="xref ft-internal-xlink" data-ft-warning="excluded-from-rendering" data-clusterid="id_ethos/ethos_data_access/c_connect_apps">Connect applications to Ethos Integration</span>.</p>
+
+  </div>
+
+</div></div></section>
+<section id="t-190"><h3>Create a user for proxy API calls</h3><div class="content-locale-en-US content-locale-en"><div id="t_create_user_for_proxy_api_calls"><div class="body taskbody"><p class="shortdesc">Create a user in <span class="keyword">Banner</span> or <span class="keyword">Colleague</span> to support proxy API requests from&nbsp;<span class="keyword">Ellucian Ethos Data Access</span>.</p>
+
+    <div class="section prereq p"><div class="tasklabel"><h2 class="sectiontitle tasklabel">Before you begin</h2></div>
+      <p class="p"><span class="keyword">Ellucian Ethos Data Access</span> makes API requests to <span class="keyword">Banner</span> or <span class="keyword">Colleague</span> through <span class="keyword">Ethos Integration</span>. Each request includes the credentials for a user with permissions to access the data. Use this procedure to create a user in your SIS (<span class="keyword">Banner</span> or <span class="keyword">Colleague</span>) with the required permission on the data models that <span class="ph"><span class="keyword">Ellucian Ethos Data Access</span></span> needs to access.</p>
+
+      <p class="p">You will enter these user credentials when you configure <span class="ph">Data Access</span> to be able to load information from the source.</p>
+
+      <p class="p">In <span class="keyword">Banner</span> or <span class="keyword">Colleague</span>, create a user with Read permissions on all resources owned by <span class="keyword">Banner</span> or <span class="keyword">Colleague</span>.</p>
+
+      <div class="p">For the procedure for creating that user, see:<ul class="ul"> <li class="li">For <span class="keyword">Banner</span>, see the <span class="ph">Banner</span> Ethos APIs section of the <a class="xref ft-external-link" href="https://resources.elluciancloud.com/search?labelkey=category-api&amp;labelkey=owner-banner&amp;rpp=50&amp;sort.field=title&amp;sort.value=asc" target="_blank" rel="noopener">Ellucian API Documentation</a>. In the information for <span class="keyword">Ellucian Ethos Data Model</span> APIs, go to the appropriate domain (such as Foundation APIs or Student APIs for the data model), and then go to the <cite class="cite">Security Overview in the Banner Ethos API Use content</cite> to see the required permissions.</li>
+ <li class="li">For <span class="ph">Colleague</span>, see <span class="xref ft-internal-xlink" data-ft-warning="excluded-from-rendering" data-clusterid="id_ethos/ethos_data_access/c_colleague_api_user_overview">Create Colleague users for proxy API requests</span>.</li>
+ <li class="li"> <div class="note"><span class="notetitle">Note:</span> Some data models do not require that permissions be assigned in <span class="keyword">Colleague</span>. For example, the <span class="keyword">Colleague</span> user can read academic-periods information without having specific permissions assigned. If a data model does not have permissions listed in the <span class="keyword">Colleague</span> documentation, then you do not need to assign permissions for that data model.</div>
+ </li>
+ </ul>
+</div>
+
+    </div>
+
+  </div>
+
+</div></div></section>
+<section id="t-200"><h3>Set up Data Access in Ethos Integration</h3><div class="content-locale-en-US content-locale-en"><div id="t_conf_da_integr"><div class="body taskbody"><p class="shortdesc">Set up <span class="keyword">Data Access</span> within <span class="keyword">Ethos Integration</span> so that it can communicate with your <span class="keyword">authoritative source</span>, such as Banner or Colleague.</p>
+
+    <div class="tasklabel"><h2 class="sectiontitle tasklabel">Procedure</h2></div><ol class="ol steps"><li class="li step stepexpand">
+        <span class="ph cmd">From the <span class="keyword">Ellucian Customer Center</span>, click <span class="ph uicontrol">Tools</span>.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd" id="t_conf_da_integr__d64e118">In the <span class="keyword">Ethos</span> menu, click the <span class="ph uicontrol">Integration</span> link for your region.</span>
+      </li>
+<li class="li step stepexpand" id="t_conf_da_integr__wby_lfn_dhb">
+        <span class="ph cmd">Select the desired environment and tenant (if applicable).</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">On the <span class="keyword">Ethos Integration</span> header bar, click <span class="ph uicontrol">Platform Components</span>.</span>
+        
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Click the <span class="keyword">Data Access</span> tile to add credentials.</span>
+        <div class="itemgroup info">If you do not see the <span class="keyword">Data Access</span> tile, you may need to activate the environment.</div>
+        <ol type="a" class="ol substeps">
+          <li class="li substep substepexpand">
+            <span class="ph cmd">Click <span class="ph uicontrol">Tools</span> from the <span class="keyword">Ellucian Customer Center</span>.</span>
+          </li>
+
+          <li class="li substep substepexpand">
+            <span class="ph cmd">Under the Ethos menu, click the <span class="ph uicontrol"><span class="keyword">Data Access</span></span> link for your region to create the tile for the production environment.</span>
+            <div class="itemgroup info">Alternately click the <span class="ph uicontrol"><span class="keyword">Data Access</span> Preview</span> link for your region to create the tile for your non-production or test environment.</div>
+            <div class="itemgroup stepresult">Clicking the <span class="keyword">Data Access</span> link for the first time activates the environment and creates the corresponding tile on the Manage Ellucian Ethos Platform page.</div>
+          </li>
+
+        </ol>
+
+      </li>
+<li class="li step stepexpand" id="t_conf_da_integr__qvx_wzm_dhb">
+        <span class="ph cmd">On the Credentials tab, click <span class="ph uicontrol">Add Credentials</span>.</span>
+      </li>
+<li class="li step stepexpand" id="t_conf_da_integr__nz5_vzm_dhb">
+        <span class="ph cmd">In the <span class="keyword wintitle">Add Credentials</span> dialog box, do the following:</span>
+        <ol type="a" class="ol substeps">
+          <li class="li substep substepexpand">
+            <span class="ph cmd"><span class="ph">In the <span class="ph uicontrol">Source application</span> field,</span> select the target application (for example, Banner or Colleague).</span>
+            
+            <div class="itemgroup info">
+              <div class="note"><span class="notetitle">Note:</span> For Banner, you will need to perform these steps twice: one time for the Integration API and one time for the Student API.</div>
+
+            </div>
+          </li>
+
+          <li class="li substep substepexpand">
+            <span class="ph cmd">Enter the username and password for the user account that you created in the target software application.</span>
+            
+          </li>
+
+          <li class="li substep substepexpand">
+            <span class="ph cmd">In the <span class="ph uicontrol">Select a resource</span> field, select any <span class="keyword">Ethos</span> resource to which that user account has permissions in the ERP. For example, <code class="ph codeph">persons</code>.</span>
+            <div class="itemgroup info">Ethos Integration uses that resource to validate the user credentials by confirming that the user account has access to at least one resource in the ERP. After the credentials are validated, the application will have access to all resources for which the user account has been granted permissions.</div>
+          </li>
+
+          <li class="li substep substepexpand">
+            <span class="ph cmd">Click <span class="ph uicontrol">Add</span>.</span>
+          </li>
+
+        </ol>
+
+        <div class="itemgroup info">
+          <div class="note"><span class="notetitle">Note:</span> If this is a Shared Technology Platform environment, make sure you define credentials to access the Designated Owner of Shared Data application, and at least two of the application owners. For more information, see <span class="xref ft-internal-xlink" data-ft-warning="excluded-from-rendering" data-clusterid="id_ethos/ethos_data_access/t_create_apps_banner_mep">Create the applications in Ethos Integration for Banner (MEP)</span>.</div>
+
+        </div>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Repeat steps <span class="xref ft-internal-link" data-ft-warning="excluded-from-rendering" data-mapid="biIeTpD~s2DMD68cUGZtOw" data-tocid="sZH5LLZHZGYg1SPRd7jp~A" data-section="t_conf_da_integr__qvx_wzm_dhb">6</span> through <span class="xref ft-internal-link" data-ft-warning="excluded-from-rendering" data-mapid="biIeTpD~s2DMD68cUGZtOw" data-tocid="sZH5LLZHZGYg1SPRd7jp~A" data-section="t_conf_da_integr__nz5_vzm_dhb">7</span> to add credentials, depending on your environment. Use <span class="ph uicontrol"><span class="keyword">Ellucian Ethos Data Access</span> (MH-Preview)</span> for the non-production or Test environment. Use <span class="ph"><span class="ph uicontrol"> Ellucian Ethos Data Access</span></span> for the Production environment.</span>
+      </li>
+</ol>
+
+    <div class="section result"><div class="tasklabel"><h2 class="sectiontitle tasklabel">Results</h2></div>The new credentials display on the Credentials tab.</div>
+
+  </div>
+
+<div class="related-links">
+<div class="linklist relinfo relconcepts" xml:lang="en-US" lang="en-US"><strong>Related concepts</strong><br>
+<ul class="linklist">
+<li class="linklist"><span class="link ft-internal-xlink" data-ft-warning="excluded-from-rendering" data-clusterid="id_ethos/ethos_data_access/c_tenant_env_app">Tenants, environments, and applications </span></li></ul></div>
+</div></div></div></section>
+<section id="t-210"><h3>Set up file bulk loads with Banner</h3><div class="content-locale-en-US content-locale-en"><div id="c_set_up_bulk_load"><div class="body conbody"><p class="shortdesc">The default way for <span class="ph">Data Access</span> to load data from authoritative sources is by extracting records in subsets, referred to as pages.</p>
+
+    <p class="p">For larger or more complex resources, the latest versions of some authoritative sources provide an alternate way for extracting the information, by creating files, and transferring those to the secure cloud locations for <span class="ph">Data Access</span> to consume.</p>
+
+    <p class="p">For loading data into <span class="ph">Data Access</span> using files, instead of the paginated approach, <span class="ph">Data Access</span> automatically detects which sources and resources support this method. The authoritative source and <span class="ph">Data Access</span> communicate with each other to trigger the generation of the files at the source, and define the target location for the files in the cloud. The cloud location for the files is communicated between the applications through the <code class="ph codeph">bulk-request</code> resource, for which <span class="ph">Data Access</span> is authoritative.</p>
+
+    <p class="p"><span class="keyword">Colleague</span> does not support <span class="keyword">Data Access</span> file bulk loads.</p>
+
+  </div>
+
+<div class="related-links">
+<div class="linklist relinfo relconcepts" xml:lang="en-US" lang="en-US"><strong>Related concepts</strong><br>
+<ul class="linklist">
+<li class="linklist"><span class="link ft-internal-link" title="Ellucian has defined how security is enforced for file bulk loads." data-ft-warning="excluded-from-rendering" data-mapid="biIeTpD~s2DMD68cUGZtOw" data-tocid="jTeJVRi7vndDZhHLQXLWRA">Security enforcement</span></li></ul></div>
+
+<div class="linklist relinfo reltasks" xml:lang="en-US" lang="en-US"><strong>Related tasks</strong><br>
+<ul class="linklist">
+<li class="linklist"><span class="link ft-internal-link" title="Data Access provides a large bulk load process, also known as S3 bulk load, to decrease the load time of Ellucian Ethos Data Model resource data for institutions into Data Access. Currently this process is mostly used for large resources." data-ft-warning="excluded-from-rendering" data-mapid="biIeTpD~s2DMD68cUGZtOw" data-tocid="~LibUuXg0A4DEg3kcOH~rQ">File bulk load security considerations</span></li></ul></div>
+</div></div></div></section>
+<section id="t-220"><h4>File bulk load security considerations</h4><div class="content-locale-en-US content-locale-en"><div id="t_file_bulk_load_security_considerations"><div class="body taskbody"><p class="shortdesc"><span class="ph">Data Access</span> provides a large bulk load process, also known as S3 bulk load, to decrease the load time of <span class="ph">Ellucian Ethos Data Model</span> resource data for institutions into <span class="ph">Data Access</span>. Currently this process is mostly used for large resources.</p>
+
+    <div class="section prereq p"><div class="tasklabel"><h2 class="sectiontitle tasklabel">Before you begin</h2></div>
+      <p class="p">See <span class="xref ft-internal-xlink" data-ft-warning="excluded-from-rendering" data-clusterid="id_ethos/ethos_data_access/r_ips_to_whitelist">IPs to Whitelist</span> for whitelisting requirements.</p>
+
+    </div>
+
+    <div class="section context"><div class="tasklabel"><h2 class="sectiontitle tasklabel">About this task</h2></div>
+      <p class="p">To accomplish this task, different technologies and processes are utilized, as compared to the <span class="ph">Data Access</span> paging bulk load workflow. These instructions provide detailed information on the process and include extra information on the data security during the data transfer to <span class="ph">Ellucian Ethos</span>. The data is then stored inside <span class="ph">Data Access</span>. The process used for the request and data flow is:</p>
+
+    </div>
+
+    <div class="tasklabel"><h2 class="sectiontitle tasklabel">Procedure</h2></div><ol class="ol steps"><li class="li step stepexpand">
+        <span class="ph cmd">When the end user invokes a bulk load from the <span class="ph">Data Access</span> Administrator web interface, the <span class="ph">Data Access</span> process invokes the <span class="ph">Ethos Integration</span> <code class="ph codeph">available-resources</code> API. <span class="ph">Data Access</span> indirectly uses the source API resources endpoint to detect whether the <span class="ph">Ellucian Ethos Data Model</span> resource load request is a S3 bulk load execution or a paging bulk load. Paging bulk load is the default.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">When S3 bulk load is detected, <span class="ph">Data Access</span> initiates an <span class="ph">Ethos Integration</span> proxy QAPI call to initiate the S3 bulk load at the source. This QAPI request includes a requestor tracking ID, which is generated by <span class="ph">Data Access</span>.</span>
+        <div class="itemgroup stepresult">As soon as the proxy QAPI call happens, <span class="ph">Data Access</span> starts to poll at interval the source API to get the status of the load, which is the GET Rest API on the requestor tracking ID. If any failures are detected, the S3 bulk load process ends.<div class="note"><span class="notetitle">Note:</span> If the S3 bulk load fails, a S3 bulk load failure displays, and <span class="ph">Data Access</span> retries the load though the default paging bulk load.</div>
+</div>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">The source API executes the data extraction and transformation.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">The source API retrieves the S3-signed URL per file.</span>
+        <div class="itemgroup stepresult">
+          <ol class="ol" type="a">
+            <li class="li">File creation completes, and a list of file names are collected.</li>
+
+            <li class="li">A source API configuration API key value is passed while authenticating to <span class="ph">Ethos Integration</span> to retrieve a JWT token.</li>
+
+            <li class="li">The received JWT token is then used to request the S3-signed URLs through <span class="ph">Ethos Integration</span>, and redirected to <span class="ph">Data Access</span>.</li>
+
+          </ol>
+
+          <div class="note"><span class="notetitle">Note:</span> S3-signed URLS expire in eight hours. There is one URL per file. Signed S3 URLs provide only PUT type operation access.</div>
+
+        </div>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">The source API uploads the files to S3 with the signed URLs from the previous step.</span>
+        <div class="itemgroup info">
+          <div class="note"><span class="notetitle">Note:</span> Job submission needs to provide the ability to upload S3 files to AWS. See <span class="xref ft-internal-link" title="Ellucian has defined how security is enforced for file bulk loads." data-ft-warning="excluded-from-rendering" data-mapid="biIeTpD~s2DMD68cUGZtOw" data-tocid="jTeJVRi7vndDZhHLQXLWRA">Security enforcement</span> for more information.</div>
+
+        </div>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">When the S3 file upload completes, and the final <span class="ph filepath">loading_manifest.json</span> file is uploaded, <span class="ph">Data Access</span> is then triggered and invokes its S3 file ingestion solution.</span>
+        <div class="itemgroup info">
+          <div class="note"><span class="notetitle">Note:</span> No duplicate resource ID is possible in the uploaded data file. If any duplicates are identified, the offending record is reported, the bulk load is canceled, and a rollback operation is performed. The previously loaded data is not affected, and the change notification processing that was paused now resumes.</div>
+
+        </div>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Data is now stored in <span class="ph">Data Access</span> storage. The post-ingestion step is invoked, as it is in the paging bulk loads process, and the S3 bulk load displays as completed, if completed successfully.</span>
+        <div class="itemgroup info">
+          <div class="note"><span class="notetitle">Note:</span> <span class="ph">Data Access</span> does not support manual file upload without initiating the load from the <span class="ph">Data Access</span> Administrator UI. The source API can be invoked with the QAPI endpoint request to test the file creation, but when created manually, the file generated cannot be used to upload into <span class="ph">Data Access</span>.</div>
+
+        </div>
+      </li>
+</ol>
+
+  </div>
+
+<div class="related-links">
+<div class="linklist relinfo relconcepts" xml:lang="en-US" lang="en-US"><strong>Related concepts</strong><br>
+<ul class="linklist">
+<li class="linklist"><span class="link ft-internal-link" title="The default way for Data Access to load data from authoritative sources is by extracting records in subsets, referred to as pages." data-ft-warning="excluded-from-rendering" data-mapid="biIeTpD~s2DMD68cUGZtOw" data-tocid="mBPTaht0eZgwg54qgFJKeQ">Set up file bulk loads with Banner</span></li>
+<li class="linklist"><span class="link ft-internal-link" title="Ellucian has defined how security is enforced for file bulk loads." data-ft-warning="excluded-from-rendering" data-mapid="biIeTpD~s2DMD68cUGZtOw" data-tocid="jTeJVRi7vndDZhHLQXLWRA">Security enforcement</span></li></ul></div>
+</div></div></div></section>
+<section id="t-230"><h5>Security enforcement</h5><div class="content-locale-en-US content-locale-en"><div id="c_security_enforcement"><div class="body conbody"><p class="shortdesc"><span class="keyword">Ellucian</span> has defined how security is enforced for file bulk loads.</p>
+
+    <p class="p">The following information explains how security is enforced when following the steps in <span class="xref ft-internal-link" title="Data Access provides a large bulk load process, also known as S3 bulk load, to decrease the load time of Ellucian Ethos Data Model resource data for institutions into Data Access. Currently this process is mostly used for large resources." data-ft-warning="excluded-from-rendering" data-mapid="biIeTpD~s2DMD68cUGZtOw" data-tocid="~LibUuXg0A4DEg3kcOH~rQ">File bulk load security considerations</span>.</p>
+
+    <div class="section"><h2 class="title sectiontitle">Secured REST API calls</h2>
+      
+      <p class="p">All REST API calls made through <span class="ph">Ethos Integration</span> are secured.</p>
+
+      <p class="p"><span class="ph">Data Access</span> is an <span class="keyword">Ethos</span> component and can be set up to call the <span class="ph">Banner Ethos API</span> through <span class="ph">Ethos Integration</span> platform component configuration with username and password authorization. Those client users can be granted very tailored access. This practice is already established by policies and practices with <span class="ph">Ethos Integration</span> and its use of HTTP basic authentication.</p>
+
+      <p class="p">The communication from <span class="ph">Banner</span> to <span class="ph">Data Access</span> is also done through <span class="ph">Ethos Integration</span> to retrieve S3-signed URLs for the file upload operation. The job submission process for Banner requires the <span class="ph">Ethos Integration</span> Application API key to be stored. This stored value is then used to first authenticate by calling the <span class="ph">Ethos Integration</span> auth endpoint to retrieve the needed JWT. This JWT is then passed in as a header to the bulk-request Rest API call. <span class="ph">Data Access</span> decodes this JWT to identify the caller and returns the signed URL to S3 objects, to prevent data manipulation from non-authorized users.</p>
+
+      <p class="p">The signed URL only allows PUT access to the S3 object.</p>
+
+      <div class="note"><span class="notetitle">Note:</span> The <span class="ph">Data Access</span> platform component Owned Resources of resource name bulk-requests is needed to permit the bulk requests proxy API call to <span class="ph">Data Access</span>. This configuration is now the default value for all clients.</div>
+
+    </div>
+
+    <div class="section"><h2 class="title sectiontitle">Data extraction and transformation</h2>
+      
+      <p class="p">Source API data extraction and transformation is accomplished through the institution server, which <span class="ph">Data Access</span> does not control.</p>
+
+      <p class="p">The process generates files that are appended with data. The files are JSON new line delimited format text files. When the file creation is complete, it is a compressed, .zip file. Each file on the Job Submission server is not individually encrypted.</p>
+
+      <p class="p">The process requires Job Submission to be properly set up and secured and follow <span class="keyword">Ellucian</span> best practices and standards. You can acquire recommendations by creating a case with Action Line for the source database product (<span class="ph">Banner</span>, <span class="ph">Colleague</span>, etc.).</p>
+
+    </div>
+
+    <div class="section"><h2 class="title sectiontitle">Data transfer</h2>
+      
+      <div class="p">Data is transferred to S3 securely in two ways:<ul class="ul"> <li class="li">In transit: The AWS signed URL is a HTTPS request. In transit, the request body is therefore encrypted.</li>
+ <li class="li">At rest: The S3 bucket is encrypted using <span class="keyword">Ellucian</span>-managed keys at AWS. Therefore, when the file loads in S3 its contents are encrypted at rest. The S3 encryption is AES-256. See <a class="xref ft-external-link" href="https://docs.aws.amazon.com/AmazonS3/latest/dev/serv-side-encryption.html" target="_blank" rel="noopener">https://docs.aws.amazon.com/AmazonS3/latest/dev/serv-side-encryption.html</a>.</li>
+ </ul>
+</div>
+
+      <p class="p">Data is deleted from S3 after 90 days.</p>
+
+      <div class="note"><span class="notetitle">Note:</span> Job submission servers locked down by IP require specific IP ranges to be unlocked. The IP ranges are defined when you download and open the JSON document on this AWS web page <a class="xref ft-external-link" href="https://docs.aws.amazon.com/general/latest/gr/aws-ip-ranges.html" target="_blank" rel="noopener">https://docs.aws.amazon.com/general/latest/gr/aws-ip-ranges.html</a> and find the records which are related to your region, network_border_group (usually the same value as region value), and have the service name of value AMAZON or S3.</div>
+
+    </div>
+
+    <div class="section"><h2 class="title sectiontitle">Reading and importing S3 file content</h2>
+      
+      <p class="p">The data ingestion process reads S3 file content and imports its data to the <span class="ph">Data Access</span> database client resource table. </p>
+
+      <p class="p"><span class="ph">Data Access</span> reads the big files by streaming from S3, uncompressing by chunk, and processing each chunk of data. Therefore, the data in transit is only stored in memory for processing (not encrypted) and then written to the <span class="ph">Data Access</span> database.</p>
+
+      <div class="note"><span class="notetitle">Note:</span> The <span class="ph">Data Access</span> servers processing those ingestion requests are located behind a private subnet, which is not reachable by the public and secured by AWS Identity and Access Management (IAM) roles.</div>
+
+    </div>
+
+    <div class="section"><h2 class="title sectiontitle">AWS Key Management Service (KMS)</h2>
+      
+      <div class="p">The <span class="ph">Data Access</span> database cluster storing this loaded data is secured through RDS storage encryption with AWS KMS.<br><img class="image" alt="security image" data-ft-asset-display-name="security_enforcement.PNG" src="images/03-ellucian-ethos-data-access-setup-1.png" data-ft-resource-id="PSXhZ_wc2Ea~KPl1fyojOQ-biIeTpD~s2DMD68cUGZtOw"><br></div>
+
+    </div>
+
+  </div>
+
+<div class="related-links">
+<div class="linklist relinfo relconcepts" xml:lang="en-US" lang="en-US"><strong>Related concepts</strong><br>
+<ul class="linklist">
+<li class="linklist"><span class="link ft-internal-link" title="The default way for Data Access to load data from authoritative sources is by extracting records in subsets, referred to as pages." data-ft-warning="excluded-from-rendering" data-mapid="biIeTpD~s2DMD68cUGZtOw" data-tocid="mBPTaht0eZgwg54qgFJKeQ">Set up file bulk loads with Banner</span></li></ul></div>
+
+<div class="linklist relinfo reltasks" xml:lang="en-US" lang="en-US"><strong>Related tasks</strong><br>
+<ul class="linklist">
+<li class="linklist"><span class="link ft-internal-link" title="Data Access provides a large bulk load process, also known as S3 bulk load, to decrease the load time of Ellucian Ethos Data Model resource data for institutions into Data Access. Currently this process is mostly used for large resources." data-ft-warning="excluded-from-rendering" data-mapid="biIeTpD~s2DMD68cUGZtOw" data-tocid="~LibUuXg0A4DEg3kcOH~rQ">File bulk load security considerations</span></li></ul></div>
+</div></div></div></section>
+<section id="t-240"><h4>Configure Data Access for file bulk loads</h4><div class="content-locale-en-US content-locale-en"><div id="t_configure_bulk_load_data_access"><div class="body taskbody"><p class="shortdesc">Perform the steps below to grant the authoritative source privileges for accessing the <code class="ph codeph">bulk-requests</code> resource owned by <span class="ph">Data Access</span>.</p>
+
+    <div class="tasklabel"><h2 class="sectiontitle tasklabel">Procedure</h2></div><ol class="ol steps"><li class="li step stepexpand">
+        <span class="ph cmd">From the <span class="keyword">Ellucian Customer Center</span>, click <span class="ph uicontrol">Tools</span>.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd" id="t_configure_bulk_load_data_access__d64e118">In the <span class="keyword">Ethos</span> menu, click the <span class="ph uicontrol">Integration</span> link for your region.</span>
+      </li>
+<li class="li step stepexpand" id="t_configure_bulk_load_data_access__wby_lfn_dhb">
+        <span class="ph cmd">Select the desired environment and tenant (if applicable).</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">On the <span class="keyword">Ethos Integration</span> header bar, click <span class="ph uicontrol">Platform Components</span>.</span>
+        
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Click the <span class="keyword">Data Access</span> tile to grant application access. Click <span class="ph uicontrol"><span class="keyword">Ellucian Ethos Data Access</span> (MH-Preview)</span> for the non-Production or Test environment. Click <span class="ph uicontrol"><span class="keyword">Ellucian Ethos Data Access</span></span> for the Production environment.</span>
+        <div class="itemgroup info">If you do not see the <span class="ph uicontrol"><span class="keyword">Data Access</span></span> tile, you may need to activate the environment.</div>
+        <ol type="a" class="ol substeps">
+          <li class="li substep substepexpand">
+            <span class="ph cmd">Click <span class="ph uicontrol">Tools</span> from the <span class="keyword">Ellucian Customer Center</span>.</span>
+          </li>
+
+          <li class="li substep substepexpand">
+            <span class="ph cmd">Under the Ethos menu, click the <span class="ph uicontrol"><span class="keyword">Data Access</span></span> link for your region to create the tile for the production environment.</span>
+            <div class="itemgroup info">Alternately, click the <span class="ph uicontrol"><span class="keyword">Data Access</span> Preview</span> link for your region to create the tile for your non-production or test environment.</div>
+            <div class="itemgroup stepresult">Clicking the <span class="keyword">Data Access</span> link for the first time activates the environment and creates the corresponding tile on the Manage Ellucian Ethos Platform page.</div>
+          </li>
+
+        </ol>
+
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Click the <span class="ph uicontrol">Owned Resources</span> tab, and verify the <code class="ph codeph">bulk-requests</code> resource is listed. If you do not see it available, contact <span class="ph">Ellucian Action Line</span>.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Click the <span class="ph uicontrol">Application Access</span> tab.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">For each authoritative source that supports file loading, perform the following steps.</span>
+        <ol type="a" class="ol substeps">
+          <li class="li substep substepexpand">
+            <span class="ph cmd">Click <span class="keyword wintitle">Add Application Access</span>.</span>
+          </li>
+
+          <li class="li substep substepexpand">
+            <span class="ph cmd">From the <span class="ph uicontrol">Resource Owner </span>drop-down menu, select the application name (such as Banner).</span>
+            <div class="itemgroup info">
+              <div class="note"><span class="notetitle">Note:</span> For Banner, you will need to perform these steps twice: one time for the Integration API and one time for the Student API.</div>
+
+            </div>
+          </li>
+
+          <li class="li substep substepexpand">
+            <span class="ph cmd">Click <span class="ph uicontrol">Add</span>.</span>
+          </li>
+
+        </ol>
+
+      </li>
+</ol>
+
+    <div class="section postreq"><div class="tasklabel"><h2 class="sectiontitle tasklabel">What to do next</h2></div>Configure your ERP (Banner) for file bulk loads.</div>
+
+  </div>
+
+<div class="related-links">
+<div class="linklist relinfo relconcepts" xml:lang="en-US" lang="en-US"><strong>Related concepts</strong><br>
+<ul class="linklist">
+<li class="linklist"><span class="link ft-internal-link" title="Set up Banner to run bulk jobs and configure the communication with Data Access through Ethos Integration." data-ft-warning="excluded-from-rendering" data-mapid="biIeTpD~s2DMD68cUGZtOw" data-tocid="hGHv5w_kjaKqprsaZ4Z1lg">Configure Banner for file bulk loads</span></li></ul></div>
+</div></div></div></section>
+<section id="t-250"><h3>Configure Banner for file bulk loads</h3><div class="content-locale-en-US content-locale-en"><div id="c_bnr_da_config"><div class="body conbody"><p class="shortdesc">Set up <span class="keyword">Banner</span> to run bulk jobs and configure the communication with <span class="keyword">Data Access</span> through <span class="keyword">Ethos Integration</span>.</p>
+
+    <p class="p">File bulk loads provide improved performance for APIs that return a large set of resources.</p>
+
+    <div class="p">The following APIs support S3 file bulk loads:<ul class="ul"> <li class="li">addresses V11</li>
+ <li class="li">contribution-payroll-deductions V8</li>
+ <li class="li">employees V12</li>
+ <li class="li">instructional-events V8</li>
+ <li class="li">ledger-activities V11</li>
+ <li class="li">persons V12</li>
+ <li class="li">restricted-student-financial-aid-awards V11</li>
+ <li class="li">section-instructors V10</li>
+ <li class="li">section-registrations V16</li>
+ <li class="li">sections V16</li>
+ <li class="li">student-academic-periods V1</li>
+ <li class="li">student-academic-programs V17</li>
+ <li class="li">student-financial-aid-awards V11</li>
+
+      <li class="li">student-grade-point-averages V1</li>
+ <li class="li">student-transcript-grades V1</li>
+ </ul>
+</div>
+
+    <p class="p">To support <span class="keyword">Banner</span> file bulk loads, you need to perform both the procedures in this section and the procedure in <span class="xref ft-internal-link" title="Perform the steps below to grant the authoritative source privileges for accessing the bulk-requests resource owned by Data Access." data-ft-warning="excluded-from-rendering" data-mapid="biIeTpD~s2DMD68cUGZtOw" data-tocid="W1Mg0dWVNScg2Sb9ZBF_iA">Configure Data Access for file bulk loads</span>.</p>
+
+    <p class="p">Data loads for the supported resources always use the file bulk load route by default. If the file bulk load route is unavailable for any reason, the data load reverts to the paging method.</p>
+
+    <p class="p"><span class="keyword">Colleague</span> does not support <span class="keyword">Data Access</span> file bulk loads.</p>
+
+  </div>
+
+<div class="related-links">
+<div class="linklist relinfo reltasks" xml:lang="en-US" lang="en-US"><strong>Related tasks</strong><br>
+<ul class="linklist">
+<li class="linklist"><span class="link ft-internal-link" title="Perform the steps below to grant the authoritative source privileges for accessing the bulk-requests resource owned by Data Access." data-ft-warning="excluded-from-rendering" data-mapid="biIeTpD~s2DMD68cUGZtOw" data-tocid="W1Mg0dWVNScg2Sb9ZBF_iA">Configure Data Access for file bulk loads</span></li></ul></div>
+</div></div></div></section>
+<section id="t-260"><h4>Prerequisites</h4><div class="content-locale-en-US content-locale-en"><div id="c_bnr_daload_prereq"><div class="body conbody"><p class="shortdesc">Ensure that the minimum hardware and software requirements are met and complete the prerequisite configurations.</p>
+
+    <div class="section"><h2 class="title sectiontitle">Hardware and software prerequisites</h2>
+      
+      <ul class="ul">
+        <li class="li"><span class="ph"><span class="ph">Banner Ethos API</span></span> 9.18 or higher.</li>
+
+        <li class="li">Java 8 installed on the job submission server.</li>
+
+        <li class="li">At least 50 GB of free disk space on the job submission server. 100 GB free disk space is recommended. Refer to the table sizing estimates in the Ethos Bulk Load Maintenance (GUAEBLM) process report for additional information on space requirements.</li>
+
+      </ul>
+
+    </div>
+
+    <div class="section"><h2 class="title sectiontitle">Configurations</h2>
+      
+      <ul class="ul">
+        <li class="li">Configure job submission to use Oracle Wallet.</li>
+
+        <li class="li">Check the data privacy rules set up on the GORDMSK <span class="ph">Banner</span> administrative page for the resources you are planning to load. Ensure that properties from the data model for a resource are not masked. If you have set up data privacy rules to mask any properties, the file bulk load will not publish those properties in the API response.</li>
+
+        <li class="li">Check the API integration configuration settings before you initiate <span class="ph">Data Access</span> loads. Configure these settings through the Ellucian Ethos API Management Center. See <cite class="cite">API Integration Configuration Settings</cite> under the <cite class="cite">Use</cite> section of the <cite class="cite">Banner Ethos API Administration</cite> documentation for information about these settings. </li>
+
+        <li class="li">Select the institution time zone from the Time Zone drop-down list on the Installation Controls (GUAINST) <span class="ph">Banner</span> administrative page.</li>
+
+        <li class="li">If your institution has campuses located at different time zones and you want to use data load for the <span class="keyword apiname">instructional-events</span> API, specify the time zone for each campus on the STVCAMP <span class="ph">Banner</span> administrative page. If the time zone is not specified on the STVCAMP page, the API uses the time zone configured on the GUAINST page to report the date-time properties.</li>
+
+      </ul>
+
+    </div>
+
+    <div class="section"><h2 class="title sectiontitle">ISO Code Configurations</h2>
+      
+      <p class="p">Use the API Management Center to map country, region, sub region, language, and currency ISO codes.</p>
+
+      
+<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" class="table" frame="border" border="1" rules="all"><colgroup><col style="width:27.47252747252747%"><col style="width:72.52747252747253%"></colgroup><thead class="thead" style="text-align:left;">
+            <tr class="row">
+              <th class="entry nocellnorowborder" style="vertical-align:top;" id="d10791e122"><span class="ph">Banner</span> Administrative Page</th>
+
+              <th class="entry cell-norowborder" style="vertical-align:top;" id="d10791e127">Mapping</th>
+
+            </tr>
+
+          </thead>
+<tbody class="tbody">
+            <tr class="row">
+              <td class="entry nocellnorowborder" style="vertical-align:top;" headers="d10791e122 ">STVNATN</td>
+
+              <td class="entry cell-norowborder" style="vertical-align:top;" headers="d10791e127 ">Map ISO 3166-1 alpha-3 or ISO 3166-1 alpha-2 codes in the ISO code column (STVNATN_SCOD_CODE_ISO database column). If you map ISO 3166-1 alpha-2 country codes, you must enter a value of ‘2’ in the NATION.ISOCODE API configuration setting. If you map ISO 3166-1 alpha-3 country codes, enter a value of ‘3’ in the NATION.ISOCODE API configuration setting.</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry nocellnorowborder" style="vertical-align:top;" headers="d10791e122 ">STVSTAT</td>
+
+              <td class="entry cell-norowborder" style="vertical-align:top;" headers="d10791e127 ">Map ISO 3166-2 codes in the ISO code column ( STVSTAT_SCOD_CODE_ISO database column).</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry nocellnorowborder" style="vertical-align:top;" headers="d10791e122 ">STVCNTY</td>
+
+              <td class="entry cell-norowborder" style="vertical-align:top;" headers="d10791e127 ">Map ISO 3166-2 codes or a user defined code in the ISO code column (STVCNTY_SCOD_CODE_ISO database column). Refer to the addresses data model for the list of ISO 3166-2 codes for sub region codes of the United Kingdom of Great Britain and Northern Ireland country addresses. For other countries, this configuration set up is optional.</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry nocellnorowborder" style="vertical-align:top;" headers="d10791e122 ">STVLANG</td>
+
+              <td class="entry cell-norowborder" style="vertical-align:top;" headers="d10791e127 ">Map ISO 639-3 alpha-3 language codes in the ISO code column (STVLANG_SCOD_CODE_ISO database column).</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry row-nocellborder" style="vertical-align:top;" headers="d10791e122 ">GUACURR</td>
+
+              <td class="entry cellrowborder" style="vertical-align:top;" headers="d10791e127 ">Map the institution base currency configured on the GUAINST page (GUBINST_BASE_CURR_CODE) to a suitable ISO 4217 currency code on the GUACURR page.</td>
+
+            </tr>
+
+          </tbody>
+</table>
+</div>
+
+    </div>
+
+    <div class="section"><h2 class="title sectiontitle">Diagnostics</h2>
+      
+      <p class="p">Run the GUREDIA Ethos Diagnostics job submission process. This process provides a report of all configurations and also provides details of data that may need to be corrected before initiating file bulk loads from <span class="ph">Data Access</span>.</p>
+
+    </div>
+
+  </div>
+
+</div></div></section>
+<section id="t-270"><h4>Configure Banner to run bulk jobs</h4><div class="content-locale-en-US content-locale-en"><div id="t_config_bnr_bulk_job"><div class="body taskbody"><p class="shortdesc">Provide user permissions and configure the <span class="ph">Banner</span> environment variables for the user to run bulk jobs.</p>
+
+    <div class="tasklabel"><h2 class="sectiontitle tasklabel">Procedure</h2></div><ol class="ol steps"><li class="li step stepexpand">
+        <span class="ph cmd">Identify the Oracle IDs of each user that needs access to run and view reports. </span>
+        <div class="itemgroup info">This is the API user that <span class="ph">Data Access</span> uses to call APIs. The ID is the same user name defined in the Platform Component setup of <span class="ph">Data Access</span>.</div>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">On the <span class="keyword wintitle">Oracle/Banner Security Maintenance (GSASECR)</span> <span class="ph">Banner</span> Administrative page, grant access to the GUAEBLK, GUAEBLT, and GUAEBLL objects to each of those users.</span>
+        <div class="itemgroup info">These objects are included in the BAN_ETHOS_C class.</div>
+        <div class="itemgroup info">Ensure that users have access to the GJRJLIS, GURINSO, and GUROUTF objects. Access to these objects is typically granted through other security classes.</div>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">On the <span class="keyword wintitle">GSASECR</span> <span class="ph">Banner</span> Administrative page, grant the <span class="ph">Data Access</span> user the DA_BULK_API_USER security object.</span>
+        <div class="itemgroup info">This indicates that the user can perform Bulk Loads.</div>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Under the <span class="ph uicontrol">Users</span> tab of the <span class="keyword wintitle">GSASECR</span> page, select the <span class="ph uicontrol">Authorize BANJSPROXY</span> check box for the <span class="ph">Data Access</span> user.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Complete this step only if you are using the BAN_SS_USER datasource, that is if the <code class="ph codeph">apiOracleUserProxied</code> setting in the API configuration file (<code class="ph codeph">IntegrationApi_configuration.groovy</code> and <code class="ph codeph">StudentApi_configuration.groovy</code>) is set to <code class="ph codeph">false</code>. If it is set to <code class="ph codeph">false</code>, add the BAN_DEFAULT_M role to <span class="ph">Banner</span> security objects for the BAN_SS_USER.</span>
+        <ol type="a" class="ol substeps">
+          <li class="li substep substepexpand">
+            <span class="ph cmd">From the <span class="ph uicontrol">User</span> tab of the <span class="keyword wintitle">GSASECR</span> page, select the BAN_SS_USER and click <span class="ph uicontrol">Modify</span> to access the <span class="keyword wintitle">User/Class Privilege Maintenance</span> page.</span>
+          </li>
+
+          <li class="li substep substepexpand">
+            <span class="ph cmd">Enter the following objects and add the BAN_DEFAULT_M role for each of them:</span>
+            <div class="itemgroup info">
+              <ul class="ul">
+                <li class="li">GJRJLIS</li>
+
+                <li class="li">GUAEBLK</li>
+
+                <li class="li">GUAEBLL</li>
+
+                <li class="li">GUAEBLT</li>
+
+                <li class="li">GURINSO</li>
+
+                <li class="li">GUROUTF</li>
+
+              </ul>
+
+            </div>
+          </li>
+
+        </ol>
+
+        <div class="itemgroup info">If the <code class="ph codeph">apiOracleUserProxied</code> setting is set to the recommended value of <code class="ph codeph">true</code>, you can skip this step.</div>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">From the <span class="keyword wintitle">Process Submission Controls (GJAPCTL)</span> <span class="ph">Banner</span> Administrative page, run the Ethos Bulk Load Maintenance (GUAEBLM) process with the <span class="keyword parmname">Process Type</span> parameter value set to R.</span>
+        <div class="itemgroup info">This produces a report of the parameters and also generates the estimated sizing requirements.</div>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Review the parameter values as described in <span class="xref ft-internal-link" title="GUAEBLM process parameters determine how the process is run and the details that are displayed in the report. Below parameters should be updated using SQL statements in the GURBOPT table." data-ft-warning="excluded-from-rendering" data-mapid="biIeTpD~s2DMD68cUGZtOw" data-tocid="Wzb19CTg5BPsKCsNWGhhwg">Ethos Bulk Load Maintenance (GUAEBLM) parameters</span>.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">To update parameter values, run the GUAEBLM process with the <span class="keyword parmname">Process Type</span> parameter value set to O.</span>
+      </li>
+</ol>
+
+  </div>
+
+</div></div></section>
+<section id="t-280"><h5>Ethos Bulk Load Maintenance (GUAEBLM) parameters</h5><div class="content-locale-en-US content-locale-en"><div id="r_guaeblm_rpt_param"><div class="body refbody"><p class="shortdesc">GUAEBLM process parameters determine how the process is run and the details that are displayed in the report. Below parameters should be updated using SQL statements in the GURBOPT table.</p>
+
+    
+<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" class="table" frame="hsides" border="1" rules="rows"><colgroup><col style="width:28.011204481792717%"><col style="width:71.98879551820728%"></colgroup><thead class="thead" style="text-align:left;vertical-align:bottom;">
+          <tr class="row">
+            <th class="entry row-nocellborder" style="text-align:left;vertical-align:bottom;" id="d13488e45">Parameter</th>
+
+            <th class="entry row-nocellborder" style="text-align:left;vertical-align:bottom;" id="d13488e48">Description</th>
+
+          </tr>
+
+        </thead>
+<tbody class="tbody">
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d13488e45 ">API KEY</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d13488e48 ">The API keys loaded in the Crosswalk Validation (GTVSDAX) page. See <span class="xref ft-internal-link" title="Add the application IDs and API keys for each application to the GURBOPT Banner table through the GTVSDAX page." data-ft-warning="excluded-from-rendering" data-mapid="biIeTpD~s2DMD68cUGZtOw" data-tocid="aT3Ye~WJgLAplmRcnAXsDg">Add application information to Banner</span>.</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d13488e45 ">BULK AUTH URL</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d13488e48 ">The URL used to retrieve authorization information for bulk loads. For example, https://integrate.elluciancloud.com/auth</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d13488e45 ">BULK ERRORS URL</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d13488e48 ">Blank</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d13488e45 ">BULK FILE REQUEST URL</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d13488e48 ">The URL used to retrieve Amazon Simple Storage Service information for bulk loads. For example, https://integrate.elluciancloud.com/api/bulk-requests</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d13488e45 ">BULK URL REGION</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d13488e48 ">Blank if the location is the United States, should contain a value if the location is outside the US. For example, https://integrate.elluciancloud.com.au/api/bulk-file-requests</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d13488e45 ">DEBUG</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d13488e48 ">Set to N unless you want to display additional output during the process to identify issues.</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d13488e45 ">DELETE JSON AFTER LOAD</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d13488e48 ">Set to Y if you do not want to retain files they have been successfully loaded to <span class="keyword">Data Access</span>. If there is an error, files are retained.</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d13488e45 ">DROP TABLE AFTER LOAD</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d13488e48 ">Set to Y to remove the temporary tables and views that are created during the bulk load process.</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d13488e45 ">ERROR LIMIT</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d13488e48 ">Error information is displayed in reports. This parameter determines the number of errors after which the bulk load process terminates. Set the error count to 100 or less.</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d13488e45 ">ETHOS BULK DIR OVERRIDE</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d13488e48 ">JSON files are created in the default job submission directory unless a different directory is specified in this parameter. Because of the large size of the JSON extracts, you may want to specify a different location. Depending on the DROP JSON AFTER LOAD parameter setting, the JSON files may only be stored temporarily.</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d13488e45 ">ETHOS BULK TABLESPACE</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d13488e48 ">Enter the TABLESPACE where the JSON staging tables from the Ethos Bulk Extract process will be created. If this value is NULL then the standard default TABLESPACE will be used. Identify a unique TABLESAPCE to prevent storage issues. This value is used when new GURBRUL entries are created.</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d13488e45 ">MAX CONCURRENT BULK JOBS</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d13488e48 ">This parameter limits the number of bulk processes that run at the same time. Use this to control the system resources that bulk load processing uses.</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d13488e45 ">MAX GURBTRK ERRORS</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d13488e48 ">This parameter controls the details displayed in the summary of the error report. For example, if this parameter is set to 10, the ERROR LIMIT parameter is set to 100, and 50 errors are encountered when running the process, the guaeblt.lis report lists all 50 errors but the summary report at the end lists the first 10 and indicates that there are 40 more errors.</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d13488e45 ">SCHEMA VALIDATION</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d13488e48 ">Set to Y to validate the JSON against the schema to ensure that all required properties are present and that all enumerated values follow schema rules. Rows failing validation are dropped from the data export. After the schema validation errors are resolved, the standard change notification process updates <span class="keyword">Data Access</span> with the change.<p class="p">Setting the value of this parameter to W also ensures that all source records conform to the schema but will continue to load all the records in <span class="keyword">Data Access</span> without dropping any.</p>
+<p class="p">Setting the value of this parameter to N does reduce the run time of the process, but any errors will be encountered at the data load time.</p>
+<p class="p">Set the parameter value to Y during testing, to verify the data. Set the value to N for subsequent runs.</p>
+</td>
+
+          </tr>
+
+        </tbody>
+</table>
+</div>
+
+  </div>
+
+</div></div></section>
+<section id="t-290"><h4>Configure Banner and Ethos Integration</h4><div class="content-locale-en-US content-locale-en"><div id="c_bnr_integ_da_config"><div class="body conbody"><p class="shortdesc">Configure <span class="ph">Banner</span> to communicate with <span class="ph">Data Access</span> through <span class="ph">Ethos Integration</span>.</p>
+
+    <p class="p"><span class="ph">Banner</span> communicates with <span class="ph">Data Access</span> through <span class="ph">Ethos Integration</span> to get signed URLs from <span class="ph">Data Access</span>. These URLs are used to upload bulk load files.</p>
+
+    <br><div class="imageleft"><img class="image imageleft" alt="Banner Data Access data flow" data-ft-asset-display-name="flw_bnr_da_data_flow.png" src="images/03-ellucian-ethos-data-access-setup-2.png" data-ft-resource-id="UTLbjGA4wsrfYYYF3UxuNg-biIeTpD~s2DMD68cUGZtOw"></div><br>
+    <p class="p">Verify the <span class="ph">Ethos Integration</span> application setup and update the Application IDs and API keys for each application.</p>
+
+  </div>
+
+</div></div></section>
+<section id="t-300"><h5>Verify the Ethos Integration application setup</h5><div class="content-locale-en-US content-locale-en"><div id="t_verify_ethos_app_setup"><div class="body taskbody"><p class="shortdesc">Ensure that a valid QAPI URI is defined for each application and copy the application ID and API keys for each application.</p>
+
+    <div class="section prereq p"><div class="tasklabel"><h2 class="sectiontitle tasklabel">Before you begin</h2></div>Ensure that the required applications are defined. This is required to upload files to <span class="ph">Data Access</span>.</div>
+
+    <div class="tasklabel"><h2 class="sectiontitle tasklabel">Procedure</h2></div><ol class="ol steps"><li class="li step stepexpand">
+        <span class="ph cmd">From the <span class="ph">Ellucian Customer Center</span>, click <span class="ph uicontrol">Tools</span>.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Under the Ethos menu, click the <span class="ph uicontrol">Integration</span> link for your region.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Select the desired environment and tenant (if applicable).</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">On the <span class="ph">Ethos Integration</span> header bar, click <span class="ph uicontrol">Applications</span>.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">On the <span class="keyword wintitle">Applications</span> page, locate the tile for the application and click <span class="ph uicontrol">Edit</span> <img class="image" src="images/03-ellucian-ethos-data-access-setup-3.png" alt="The edit icon" data-ft-asset-display-name="icn_edit.png" data-ft-resource-id="hpObsx4adcSm2eLbnampFQ-biIeTpD~s2DMD68cUGZtOw">.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">On the <span class="keyword wintitle">Applications</span> page, click <span class="ph uicontrol">Owned Resources</span>.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Under Authentication Type, verify that the <span class="ph uicontrol">Base QAPI URI</span> field has a valid entry.</span>
+        <div class="itemgroup stepxmp">
+          <img class="image" alt="Base QAPI URI example entry" data-ft-asset-display-name="scr_tools_apps.png" src="images/03-ellucian-ethos-data-access-setup-4.png" data-ft-resource-id="gk39w2HQBDVovwsgG9hgig-biIeTpD~s2DMD68cUGZtOw">
+        </div>
+        <div class="itemgroup info">
+          <div class="note"><span class="notetitle">Note:</span> If you are using an MEP-enabled environment, use the following URL format: https://server-prod.schooledu/IntegrationApi/MEPCODE/qapi.</div>
+
+        </div>
+        <div class="itemgroup info">Without a valid entry, Data Access will receive a HTTP 500 error for bulk load requests.</div>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">On the <span class="keyword wintitle">Applications</span> page, click <span class="ph uicontrol">API Keys</span>.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Copy the application ID from the top-right corner.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Copy the API keys from the list of API keys.</span>
+        <div class="itemgroup info">Copy the application IDs and API keys for each application defined. Typically there are two, Student and Integration. If the institution is MEP-enabled, there are multiple application IDs and keys.</div>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">On the <span class="ph">Ethos Integration</span> header bar, click <span class="ph uicontrol">Platform Components</span>.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">On the <span class="keyword wintitle">Platform Components</span> page, click <span class="ph uicontrol">Owned Resources</span> and ensure that the 'bulk-requests' entry is present in the list of resources.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">On the <span class="keyword wintitle">Platform Components</span> page, click <span class="ph uicontrol">Application Access</span> and ensure that all applications that can access data from the Ethos platform component are listed.</span>
+      </li>
+</ol>
+
+    
+    <div class="section postreq"><div class="tasklabel"><h2 class="sectiontitle tasklabel">What to do next</h2></div>Add the application IDs and API keys to the GURBOPT table.</div>
+
+  </div>
+
+  <div class="related-links">
+<div class="linklist relinfo reltasks" xml:lang="en-US" lang="en-US"><strong>Related tasks</strong><br>
+<ul class="linklist">
+<li class="linklist"><span class="link ft-internal-link" title="Add the application IDs and API keys for each application to the GURBOPT Banner table through the GTVSDAX page." data-ft-warning="excluded-from-rendering" data-mapid="biIeTpD~s2DMD68cUGZtOw" data-tocid="aT3Ye~WJgLAplmRcnAXsDg">Add application information to Banner</span></li></ul></div>
+</div>
+</div></div></section>
+<section id="t-310"><h5>Add application information to Banner</h5><div class="content-locale-en-US content-locale-en"><div id="t_add_app_info_bulk_load"><div class="body taskbody"><p class="shortdesc">Add the application IDs and API keys for each application to the GURBOPT <span class="ph">Banner</span> table through the GTVSDAX page.</p>
+
+    <div class="tasklabel"><h2 class="sectiontitle tasklabel">Procedure</h2></div><ol class="ol steps"><li class="li step stepexpand">
+        <span class="ph cmd">Access the <span class="keyword wintitle">Crosswalk Validation (GTVSDAX)</span> <span class="ph">Banner</span> page.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">In the Basic Filter section, enter <kbd class="ph userinput">GUAEBLL</kbd> in the <span class="ph uicontrol">Code</span> field and click <span class="ph uicontrol">Go</span>.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">In the Details section, modify the text in the <span class="ph uicontrol">Comments</span> field to update API keys for each application ID in a comma-delimited format.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Replace the <code class="ph codeph">&lt;API Deployment&gt;, &lt;MEP Code&gt;, &lt;APP ID&gt;, &lt;API KEY&gt;, &lt;COMMENTS&gt;</code> information with the application-specific values.</span>
+        <div class="itemgroup stepxmp">Example: Integration, ,d359a3ce-fe3a-40ef-a43f-a1229fa6a63d,5c2f1a15-5f60-4bcb-ba1d-d9483b46977b,Banner Integration</div>
+        <div class="itemgroup info">If the institution does not use a MEP-enabled environment, the &lt;MEP Code&gt; must be a space.</div>
+        <div class="itemgroup info">
+          <div class="note"><span class="notetitle">Note:</span> If you are using an MEP-enabled environment, use the following URL format: https://server-prod.schooledu/IntegrationApi/MEPCODE/qapi.</div>
+
+        </div>
+      </li>
+<li class="li step stepexpand"><strong>Optional: </strong>
+        <span class="ph cmd">Copy the text in the <span class="ph uicontrol">Comments</span> field and save it using a text editor.</span>
+        <div class="itemgroup info">This is recommended so you can update or correct the information later and paste it into the GTVSDAX page again.</div>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">After you have entered all the app IDs and API keys, save the page.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Requery the page and check the top line for the success indicator.</span>
+        <div class="itemgroup stepxmp">
+          <pre class="pre codeblock"><code>* 0 error(s) 6 update(s) on 2019-11-20 14:49
+* &lt;SUCCESS&gt; Integration,MAIN,1d6bd716-7013-49ff-8eea-af694788472e,&lt;encrypted&gt;,Banner Integration Main</code></pre>
+        </div>
+      </li>
+</ol>
+
+    <div class="section result"><div class="tasklabel"><h2 class="sectiontitle tasklabel">Results</h2></div>The keys are encrypted and added to the GURBOPT table.</div>
+
+    <div class="example"><div class="tasklabel"><h2 class="sectiontitle tasklabel">Example</h2></div>
+      <br><img class="image" alt="API keys in the GURBOPT table" data-ft-asset-display-name="scr_bnr_tbl_gurbopt.png" src="images/03-ellucian-ethos-data-access-setup-5.png" data-ft-resource-id="UblvJESclsDt6VPZmqHSOw-biIeTpD~s2DMD68cUGZtOw"><br>
+    </div>
+
+  </div>
+
+</div></div></section>
+<section id="t-320"><h4>Debug bulk load</h4><div class="content-locale-en-US content-locale-en"><div id="t_debug_bulk_load"><div class="body taskbody"><p class="shortdesc">Use these entries to return debug information for any resource requested by the Ethos bulk load API process.</p>
+
+    <div class="tasklabel"><h2 class="sectiontitle tasklabel">Procedure</h2></div><ol class="ol steps"><li class="li step stepexpand">
+        <span class="ph cmd">Navigate to the <span class="keyword wintitle">Crosswalk Validation (GTVSDAX) </span>Banner Administrative Page.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Set the <span class="ph uicontrol">Code</span> = GUAEBLK, <span class="ph uicontrol">Group</span> = BULK LOAD DEBUG, and <span class="ph uicontrol">External Code</span> = Y to indicate that the SQL logic defined below will be used to determine the response from a call to the API from <span class="ph">Data Access</span> to perform a bulk extract. Any other value is ignored.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Enter the resource name for <span class="ph uicontrol">Concept</span>.</span>
+        <div class="itemgroup stepxmp">For example, section-registrations.</div>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Enter a unique <span class="ph uicontrol">SEQUENCE</span> number.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Save the page.</span>
+        <div class="itemgroup info">Refer to <a class="xref ft-external-link" href="https://elluciansupport.service-now.com/esc?id=kb_article_view&amp;sysparm_article=000050338" target="_blank" rel="noopener">Article 000050338</a>, in the <span class="keyword">Ellucian Customer Center</span> for step by step guidance and output examples.</div>
+      </li>
+</ol>
+
+  </div>
+
+</div></div></section>
+<section id="t-330"><h4>Filter bulk load</h4><div class="content-locale-en-US content-locale-en"><div id="t_filter_bulk_load"><div class="body taskbody"><p class="shortdesc">Use these entries to supply filter logic for a resource bulk load initiated from <span class="ph">Data Access</span>. This is typically not used because all rows are desired during a bulk load.</p>
+
+    <div class="section context"><div class="tasklabel"><h2 class="sectiontitle tasklabel">About this task</h2></div>
+      <div class="note"><span class="notetitle">Note:</span> Enter only one rule per resource. If more are entered, they will all be ignored.</div>
+
+    </div>
+
+    <div class="tasklabel"><h2 class="sectiontitle tasklabel">Procedure</h2></div><ol class="ol steps"><li class="li step stepexpand">
+        <span class="ph cmd">Navigate to the <span class="keyword wintitle">Crosswalk Validation (GTVSDAX)</span> Banner Administrative Page.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Set the <span class="ph uicontrol">Code</span> = GUAEBLK, <span class="ph uicontrol">Group</span> = BULK LOAD FILTER, and <span class="ph uicontrol">External Code</span> = Y to indicate that the SQL logic defined below will be used to determine the response from a call to the API from <span class="ph">Data Access</span> to perform a bulk extract. Any other value is ignored.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Enter the resource name for <span class="ph uicontrol">Concept</span>.</span>
+        <div class="itemgroup stepxmp">For example, to extract only ledger-activities for FY 99 and COA B, use the following. <p class="p">The filter logic is all text that follows the ten hash marks, and should be entered within Comments section of the form:</p>
+<p class="p"></p>
+</div>
+        <div class="itemgroup info">
+          <p class="p">##########</p>
+
+          <p class="p">fgbtrnd_fsyr_code = '99'</p>
+
+          <p class="p">and fgbtrnd_coas_code = 'B' </p>
+
+          <div class="note"><span class="notetitle">Note:</span> The values entered must be defined in the view used for extract. The source view is identified in the report, as shown below, or can be identified in GURBRUL_RULE using the following SQL:<pre class="pre codeblock"><code>SELECT GURBRUL_RESOURCE, GURBRUL_RETURNED_MEDIA_TYPE, GURBRUL_KNOWN_MEDIA_TYPES, GURBRUL_RULE FROM GURBRUL.</code></pre><p class="p"> Where GURBRUL_RESOURCE = <code class="ph codeph">'ledger-activities'</code></p>
+<p class="p"> AND GURBRUL_ACTIVE_IND = <code class="ph codeph">'Y'</code></p>
+<p class="p"> AND GURBRUL_TYPE = <code class="ph codeph">'EXTRACT'</code></p>
+<p class="p">Order by 1</p>
+</div>
+
+        </div>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Enter a unique <span class="ph uicontrol">SEQUENCE</span> number.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Set the <span class="ph uicontrol">External Code</span> parameter to Y.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Save the page.</span>
+        <div class="itemgroup info">Refer to <a class="xref ft-external-link" href="https://elluciansupport.service-now.com/esc?id=kb_article_view&amp;sysparm_article=000050338" target="_blank" rel="noopener">Article 000050338</a>, in the <span class="keyword">Ellucian Customer Center</span> for step by step guidance and output examples.</div>
+      </li>
+</ol>
+
+  </div>
+
+</div></div></section>
+<section id="t-340"><h4>Bulk load health check</h4><div class="content-locale-en-US content-locale-en"><div id="t_bulk_load_health_check"><div class="body taskbody"><p class="shortdesc">Use these entries to return 10 rows maximum for a resource bulk load initiated from <span class="ph">Data Access</span>. This is typically used for a quick check of the <span class="ph">Data Access</span> load process. </p>
+
+    <div class="tasklabel"><h2 class="sectiontitle tasklabel">Procedure</h2></div><ol class="ol steps"><li class="li step stepexpand">
+        <span class="ph cmd">Navigate to the <span class="keyword wintitle">Crosswalk Validation (GTVSDAX)</span> Banner Administrative Page.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Set the <span class="ph uicontrol">Code</span> = GUAEBLK, <span class="ph uicontrol">Group</span> = BULK LOAD HEALTH CHK, and <span class="ph uicontrol">External Code</span> = Y to indicate that the response from a call to the API from <span class="ph">Data Access</span> to perform an API bulk extract should only extract a maximum of 10 rows. Any other value is ignored.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Enter the resource name for <span class="ph uicontrol">Concept</span>.</span>
+        <div class="itemgroup stepxmp">For example, ledger-activities. This value may be a wildcard. For example, student%.</div>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Enter a unique <span class="ph uicontrol">SEQUENCE</span> number.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Save the page.</span>
+        <div class="itemgroup info">Refer to <a class="xref ft-external-link" href="https://elluciansupport.service-now.com/esc?sys_kb_id=8f705c9387d745102f5a0dc4dabb3531&amp;id=kb_article_view" target="_blank" rel="noopener">Article 000050338.</a> in the <span class="keyword">Ellucian Customer Center</span> for step by step guidance and output examples.</div>
+      </li>
+</ol>
+
+  </div>
+
+</div></div></section>
+<section id="t-350"><h4>Enable bulk load health check</h4><div class="content-locale-en-US content-locale-en"><div id="t_bnr_blkld_hltchk"><div class="body taskbody"><p class="shortdesc">Use the bulk load health check option to check if the bulk load process works as required.</p>
+
+    <div class="section context"><div class="tasklabel"><h2 class="sectiontitle tasklabel">About this task</h2></div>The health check option extracts ten records for a resource in a bulk load request. Use this option to check if bulk load has been configured correctly and is working as required before running a bulk load for a resource for the first time. Extracting ten records initially saves time and helps identify possible errors faster than running a bulk load with thousands of records. After the ten records are successfully loaded, disable the health check and initiate the full bulk load.</div>
+
+    <div class="tasklabel"><h2 class="sectiontitle tasklabel">Procedure</h2></div><ol class="ol steps"><li class="li step stepexpand">
+        <span class="ph cmd">Navigate to the Crosswalk Validation (GTVSDAX) Banner Administrative Page.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Set the <span class="ph uicontrol">Code</span> = GUAEBLK and <span class="ph uicontrol">Group</span> = BULK LOAD HEALTH CHK filters.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Enter the resource name for <span class="ph uicontrol">Concept</span>.</span>
+        <div class="itemgroup stepxmp">For example, sections.</div>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Set the <span class="ph uicontrol">External Code</span> parameter to <kbd class="ph userinput">Y</kbd>.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Save the page.</span>
+        <div class="itemgroup info">Refer to <a class="xref ft-external-link" href="https://elluciansupport.service-now.com/esc?sys_kb_id=8f705c9387d745102f5a0dc4dabb3531&amp;id=kb_article_view" target="_blank" rel="noopener">Article 000050338.</a> in the <span class="keyword">Ellucian Customer Center</span> for step by step guidance and output examples.</div>
+      </li>
+</ol>
+
+  </div>
+
+</div></div></section>
+<section id="t-360"><h4>Initiate the bulk load process with Data Access</h4><div class="content-locale-en-US content-locale-en"><div id="t_initiate_the_bulk_load_process_with_data_access"><div class="body taskbody"><p class="shortdesc">Initiate a bulk load through <span class="ph">Data Access</span>.</p>
+
+    <div class="tasklabel"><h2 class="sectiontitle tasklabel">Procedure</h2></div><ol class="ol steps"><li class="li step stepexpand">
+        <span class="ph cmd">On the <span class="ph uicontrol">Current Data</span> tab, select the resources you want to load and click <span class="ph uicontrol">Load</span>.</span>
+        <div class="itemgroup info">After the bulk load process is run one time for a resource, the button changes to <span class="ph uicontrol">Reload</span> for that resource.</div>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">View the loaded resources on the <span class="ph uicontrol">Data Loads</span> tab.</span>
+      </li>
+</ol>
+
+  </div>
+
+</div></div></section>
+<section id="t-370"><h4>Process response and status tracking</h4><div class="content-locale-en-US content-locale-en"><div id="c_blkld_status"><div class="body conbody"><p class="shortdesc">API GET calls provide the status of the bulk load process and success or failure responses.</p>
+
+    <div class="section"><h2 class="title sectiontitle">Status tracking</h2>
+      
+      <p class="p">Use an API GET call on the resource to track the status of the bulk load process. </p>
+
+    </div>
+
+    <div class="example">For example: GET http://192.0.2.255:7007/StudentApi/MAIN/api/sections</div>
+
+    <div class="example">Or: GET http://192.0.2.255:7007/StudentApi/MAIN/api/sections?criteria={“requestorTrackingId”:” 4117fa90-186b-45ff-87d1-cd4d4aa923af--previewtest-us-east-1"}<p class="p">The requestorTrackingId is a GUID that <span class="keyword">Data Access</span> sends to the bulk job to correlate its load ingestion with the <span class="keyword">Banner</span> job.</p>
+</div>
+
+    <div class="section"><h2 class="title sectiontitle">Example response</h2>
+      
+    </div>
+
+    <div class="example">
+      <p class="p">Success response: Use the job identifier to track the process.</p>
+
+      <pre class="pre codeblock"><code>[
+    {
+        "resourceName": "student-academic-periods",
+        "representation": "application/vnd.hedtech.integration.v1.0.0+json",
+        "applicationId": "1d61ddc1-ce87-4bab-9b2b-f24ac463bcc8",
+        "requestorTrackingId": "102c26f5",
+        "jobIdentifier": "154326",
+        "processingSteps": [
+            {
+                "step": "EXTRACT.STEP",
+                "seq": "1",
+                "status": "COMPLETED",
+                "startTime": "2020-11-11 00:46:00.07",
+                "elapsedTime": "00:00:00.03",
+                "count": "13517",
+                "jobIdentifier": "154326"
+            },
+            {
+                "step": "EXTRACT.STAGING",
+                "seq": "1",
+                "status": "COMPLETED",
+                "startTime": "2020-11-11 00:46:00.06",
+                "elapsedTime": "00:00:00.05",
+                "count": "13517",
+                "jobIdentifier": "154326"
+            },
+            {
+                "step": "TRANSFORM.STAGING",
+                "seq": "1",
+                "status": "STARTED",
+                "startTime": "2020-11-11 00:46:04.00",
+                "count": "9462",
+                "jobIdentifier": "154327"
+            },
+            {
+                "step": "LOAD.PACKAGE",
+                "seq": "1",
+                "status": "NOT STARTED"
+            }
+        ],
+        "state": "inProgress",
+        "status": "Overall Status - EXTRACT:COMPLETED, TRANSFORM:STARTED, LOAD:NOT STARTED -- Total Elapsed Time:00:00:00.05",
+        "totalSteps": 3,
+        "stepsProgress": {
+            "stepExecuting": 2,
+            "stepDescription": "Transformation",
+            "stepPercentProgress": 70
+        }
+    }
+]</code></pre>
+    </div>
+
+    <div class="example">
+      <p class="p">Process failure response:</p>
+
+      <pre class="pre codeblock"><code>{
+    "errors": [
+        {
+            "code": "Global.SchemaValidation.Error",
+            "description": "Errors parsing input JSON.",
+            "message": "*ERROR* Invalid applicationId; Not found in GURBOPT."
+        }
+    ]
+}</code></pre>
+    </div>
+
+  </div>
+
+</div></div></section>
+<section id="t-380"><h4>Bulk load schema validation</h4><div class="content-locale-en-US content-locale-en"><div id="c_blk_ld_sch_valid"><div class="body conbody"><p class="shortdesc">The schema validation process validates the JSON against the schema.</p>
+
+    <p class="p">If the SCHEMA VALIDATION parameter for the Ethos Bulk Load Maintenance (GUAEBLM) process is set to on, then schema validation errors are captured and processing continues till the maximum number of errors specified. The process aborts after the error limit. </p>
+
+    <p class="p">If the SCHEMA VALIDATION parameter is set to W (for warning), the GUAEBLT process captures schema validation errors up to the same error limit, but the process does not abort after the limit is reached. After the error limit is reached, further schema validation errors are not captured and the process continues to completion. The schema validation errors captured up to the error limit are saved in the GURBTRK table but are not logged to the log file as no exception is thrown. This prevents the size of the log file from becoming excessively large on the <span class="keyword">Banner</span> job submission server.</p>
+
+  </div>
+
+</div></div></section>
+<section id="t-390"><h5>Schema validation parameters</h5><div class="content-locale-en-US content-locale-en"><div id="r_gurbopt_sch_params"><div class="body refbody"><p class="shortdesc">Schema validation parameters determine if validation is enabled or disabled and determine how validation errors are logged.</p>
+
+    
+<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" class="table" frame="hsides" border="1" rules="rows"><colgroup><col style="width:21.978021978021978%"><col style="width:27.032967032967033%"><col style="width:50.989010989010985%"></colgroup><thead class="thead" style="text-align:left;vertical-align:bottom;">
+          <tr class="row">
+            <th class="entry row-nocellborder" colspan="2" style="text-align:left;vertical-align:bottom;" id="d2196e47">GURBOPT Options</th>
+
+            <th class="entry row-nocellborder" style="text-align:left;vertical-align:bottom;" id="d2196e50">Results</th>
+
+          </tr>
+
+        </thead>
+<tbody class="tbody">
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d2196e47 ">ERROR LIMIT = 1000</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d2196e47 ">SCHEMA VALIDATION = N</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d2196e50 ">Schema validation is off.</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d2196e47 ">ERROR LIMIT = 0</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d2196e47 ">SCHEMA VALIDATION = N</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d2196e50 ">Schema validation is off.</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d2196e47 ">ERROR LIMIT = -1</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d2196e47 ">SCHEMA VALIDATION = N</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d2196e50 ">Schema validation is off.</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d2196e47 ">ERROR LIMIT = 1000</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d2196e47 ">SCHEMA VALIDATION = Y</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d2196e50 ">Schema validation captures errors up to the ERROR LIMIT. The Bulk Load Transformation (GUAEBLT) process aborts when the limit is reached.</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d2196e47 ">ERROR LIMIT = 0</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d2196e47 ">SCHEMA VALIDATION = Y</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d2196e50 ">Schema validation captures the first error and the GUAEBLT process aborts.</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d2196e47 ">ERROR LIMIT = -1</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d2196e47 ">SCHEMA VALIDATION = Y</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d2196e50 ">Schema validation captures every error, logging an exception for each one, and the GUAEBLT process continues to completion. View the error report in <span class="keyword">Data Access</span>.<div class="note warning"><span class="warningtitle">Warning:</span> For a large bulk load, this configuration could produce a large GUAEBLT log file and excessive ERROR rows in the GURBTRK table.</div>
+</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d2196e47 ">ERROR LIMIT = 1000</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d2196e47 ">SCHEMA VALIDATION = W</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d2196e50 ">Schema validation captures errors up to the ERROR LIMIT, but no exceptions are logged. The GUAEBLT process continues even after the error limit is reached. View the error report in <span class="keyword">Data Access</span>.</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d2196e47 ">ERROR LIMIT = 0</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d2196e47 ">SCHEMA VALIDATION = W</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d2196e50 ">Schema validation does not occur because it is set to warning without an error limit.</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d2196e47 ">ERROR LIMIT = -1</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d2196e47 ">SCHEMA VALIDATION = W</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d2196e50 ">Schema validation captures every error, but no exceptions are logged, and the GUAEBLT process continues to completion. View the error report in <span class="keyword">Data Access</span>.<div class="note warning"><span class="warningtitle">Warning:</span> For a large bulk load, this configuration could produce a large GUAEBLT log file and excessive ERROR rows in the GURBTRK table.</div>
+</td>
+
+          </tr>
+
+        </tbody>
+</table>
+</div>
+
+  </div>
+
+</div></div></section>
+<section id="t-400"><h5>Set schema validation for a resource</h5><div class="content-locale-en-US content-locale-en"><div id="t_bnr_blkld_schvalidconfig"><div class="body taskbody"><p class="shortdesc">You can set schema validation on, off, or to warning for each resource that supports bulk load.</p>
+
+    <div class="section context"><div class="tasklabel"><h2 class="sectiontitle tasklabel">About this task</h2></div>Use the Crosswalk Validation (GTVSDAX) Banner Administrative Page to turn schema validation on or off for individual resources. The schema validation setting value for a resource in GTVSDAX supersedes the global schema validation parameter setting value in the GURBOPT table. For example, if schema validation is set to N in GURBOPT but is set to Y for a particular resource in GTVSDAX, schema validation still runs for that resource.</div>
+
+    <div class="tasklabel"><h2 class="sectiontitle tasklabel">Procedure</h2></div><ol class="ol steps"><li class="li step stepexpand">
+        <span class="ph cmd">Navigate to the Crosswalk Validation (GTVSDAX) Banner Administrative Page.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Set the <span class="ph uicontrol">Code = GUAEBLK</span> and <span class="ph uicontrol">Group = SCHEMA VALIDATION</span> filters.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Enter the resource name for <span class="ph uicontrol">Concept</span>.</span>
+        <div class="itemgroup stepxmp">For example, student-transcript-grades.</div>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Set the <span class="ph uicontrol">External Code</span> parameter as follows:</span>
+        <div class="itemgroup info">
+          <ul class="ul">
+            <li class="li">Y- To turn on schema validation for a resource.</li>
+
+            <li class="li">N- To turn off schema validation for a resource.</li>
+
+            <li class="li">W- Warning.</li>
+
+          </ul>
+
+        </div>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Save the page.</span>
+      </li>
+</ol>
+
+  </div>
+
+</div></div></section>
+<section id="t-410"><h4>Turn off bulk load</h4><div class="content-locale-en-US content-locale-en"><div id="t_bnr_blkld_off"><div class="body taskbody"><p class="shortdesc">Bulk loading is enabled by default. To load data using the paging method, turn off bulk load. </p>
+
+    <div class="tasklabel"><h2 class="sectiontitle tasklabel">Procedure</h2></div><ol class="ol steps"><li class="li step">
+        <span class="ph cmd">Navigate to the Crosswalk Validation (GTVSDAX) Banner Administrative Page.</span>
+      </li>
+<li class="li step">
+        <span class="ph cmd">Set the <span class="ph uicontrol">Code = GUAEBLK</span> and <span class="ph uicontrol">Group = BULK LOAD AVAILABLE</span> filters.</span>
+      </li>
+<li class="li step">
+        <span class="ph cmd">Enter <kbd class="ph userinput">ALL</kbd> for <span class="ph uicontrol">Concept</span>.</span>
+      </li>
+<li class="li step">
+        <span class="ph cmd">Set the <span class="ph uicontrol">External Code</span> parameter to <kbd class="ph userinput">N</kbd>.</span>
+      </li>
+<li class="li step">
+        <span class="ph cmd">Save the page.</span>
+      </li>
+</ol>
+
+    <div class="section result"><div class="tasklabel"><h2 class="sectiontitle tasklabel">Results</h2></div>The <span class="keyword apiname">resources</span> API end point does not publish the bulk load routes for any of the resources. Because bulk load routes are not published, <span class="keyword">Data Access</span> uses the paging method to load data.</div>
+
+  </div>
+
+</div></div></section></main></body></html>

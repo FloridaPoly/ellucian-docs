@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Degree Works - Configure — Ethos Integration</title><style>body{font-family:-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;line-height:1.55;color:#1a1a1a;max-width:920px;margin:0 auto;padding:24px}header{border-bottom:2px solid #5a16d6;margin-bottom:8px}h1{color:#3a0ca3}h2,h3,h4,h5,h6{margin-top:1.6em}.crumb{color:#666;font-size:13px;margin:0}.meta{color:#888;font-size:12px}nav.toc{background:#f6f4fc;border:1px solid #e3dcf5;border-radius:8px;padding:12px 18px;margin:18px 0}nav.toc h2{margin:.2em 0}nav.toc ul{list-style:none;padding-left:0}nav.toc a{text-decoration:none;color:#5a16d6}section{margin:1.2em 0;padding-top:.4em}img{max-width:100%;height:auto}table{border-collapse:collapse}td,th{border:1px solid #ccc;padding:4px 8px}code,pre{background:#f4f4f4;border-radius:4px}pre{padding:10px;overflow:auto}</style></head><body><header><p class="crumb">Ellucian Degree Works › Degree Works - Configure</p><h1>Degree Works - Configure — Ethos Integration</h1><p class="meta">Source: <a href="https://resources.elluciancloud.com/r/bundle/dgrwrks_acn_configure">https://resources.elluciancloud.com/r/bundle/dgrwrks_acn_configure</a> &middot; Retrieved 2026-06-17</p></header><nav class="toc"><h2>Contents</h2><ul><li style="margin-left:0px"><a href="#t-610">Ethos Integration</a></li><li style="margin-left:16px"><a href="#t-620">Configure Ethos API access to Degree Works</a></li><li style="margin-left:16px"><a href="#t-630">Configure network access for on-premise Degree Works deployments</a></li><li style="margin-left:16px"><a href="#t-640">Configure Degree Works as the authoritative source for API resources</a></li><li style="margin-left:16px"><a href="#t-650">Configure an Ethos credentialing application for external API access</a></li><li style="margin-left:16px"><a href="#t-660">Validate Ethos authentication and Degree Works API access</a></li></ul></nav><main><section id="t-610"><h2>Ethos Integration</h2><div class="content-locale-en-US content-locale-en"><div id="c_ethos_integration_dw_api_access_configure"><div class="body conbody"><p class="shortdesc">Degree Works supports secure API access through Ellucian Ethos Integration. Ethos provides a centralized framework for authentication, authorization, and request routing, allowing external applications to access Degree Works APIs without directly authenticating to Degree Works.</p>
+
+    <p class="p">Ethos Integration acts as an intermediary between external applications and Degree Works. External applications authenticate with Ethos using API keys and receive bearer tokens. Ethos then validates those tokens, enforces permissions, and routes requests to the appropriate Degree Works APIs.</p>
+
+    <div class="p">Ethos uses a separation-of-responsibilities model to manage API access. In this model:<ul class="ul">
+      <li class="li">Authoritative applications represent systems that own data and expose APIs. Degree Works is configured as the authoritative source for its API resources.</li>
+
+      <li class="li">Credentialing applications represent external systems that authenticate with Ethos and initiate API requests.</li>
+
+      </ul>
+This separation ensures that Degree Works credentials are not exposed externally, allows access to be granted or revoked independently of the APIs themselves, and centralizes security and access control within Ethos.</div>
+
+    <p class="p">External applications never authenticate directly to Degree Works. All authentication and authorization are handled through Ethos Integration, which uses stored credentials to securely route requests to the authoritative Degree Works APIs.</p>
+
+    <div class="section"><h2 class="title sectiontitle">Architecture</h2><p class="p">The following diagram illustrates how Ethos-enabled access to Degree Works APIs is structured.</p>
+<p class="p">Ethos Integration sits between external applications and Degree Works. External applications authenticate with Ethos using an API key and receive a bearer token. Ethos validates the token, enforces application permissions, and routes requests to Degree Works using stored credentials. Degree Works validates the request and services it only if the application is authorized for the requested resources.</p>
+<img class="image" alt="Ethos-enabled access to Degree Works APIs" data-ft-asset-display-name="dgm_ethos_enabled_access_dw_api.png" src="images/03-ethos-integration-1.png" data-ft-resource-id="kNB0fO3l6b56yvEvxyIOvw-igXg2AijGFGkGiTrAzay5w"><p class="p">Before configuring Ethos-enabled access to Degree Works APIs, ensure the following requirements are met.</p>
+<ul class="ul">
+      <li class="li">Degree Works is installed and operational.</li>
+
+      <li class="li">Ethos Integration is enabled for the tenant and administrative access is available to create and manage Ethos applications.</li>
+
+      <li class="li">Network access allows Ethos Integration to reach Degree Works API endpoints (on-premise deployments only; no network configuration is required for Degree Works Cloud customers).</li>
+
+      <li class="li">External applications support REST-based APIs, bearer-token authentication, and secure storage of API keys.</li>
+
+      </ul>
+</div>
+
+  </div>
+
+</div></div></section>
+<section id="t-620"><h3>Configure Ethos API access to Degree Works</h3><div class="content-locale-en-US content-locale-en"><div id="c_ethos_api_access_dw"><div class="body conbody"><p class="shortdesc">In this step, you prepare Degree Works to support Ethos-based API access. This includes enabling API authentication and configuring a service user that Ethos will use when routing requests to Degree Works.</p>
+
+    <p class="p">The user and settings configured in this step are used internally by Ethos and are not exposed to external applications.</p>
+
+    <ol class="ol">
+      <li class="li">Enable API Authentication by creating a specification for both Controller and Responsive Dashboard on the core.security.shp.authentication.enabled Shepherd setting.<ol class="ol" type="a">
+        <li class="li">Access <span class="keyword">Controller</span> and click <span class="ph uicontrol">Configuration</span>.</li>
+
+        <li class="li">Search for and click <span class="ph uicontrol">core.security.shp.authentication.enabled</span>.</li>
+
+        <li class="li" id="c_ethos_api_access_dw__oyy_lcz_k3c">Click <span class="ph uicontrol">Add Specification</span>.</li>
+
+        <li class="li">In the <span class="ph uicontrol">Specification</span> field, select <span class="ph uicontrol">dashboard</span>.</li>
+
+        <li class="li">In the <span class="ph uicontrol">Value</span> field, select true.</li>
+
+        <li class="li" id="c_ethos_api_access_dw__grk_ncz_k3c">Click <span class="ph uicontrol">Save</span>.</li>
+
+        <li class="li">If access to the Scribe endpoints is desired, necessary, repeat steps <span class="xref ft-internal-link" data-ft-warning="excluded-from-rendering" data-mapid="igXg2AijGFGkGiTrAzay5w" data-tocid="aw4XzjV3vh8C7QTdqk3Tcw" data-section="c_ethos_api_access_dw__oyy_lcz_k3c">1.c</span> through <span class="xref ft-internal-link" data-ft-warning="excluded-from-rendering" data-mapid="igXg2AijGFGkGiTrAzay5w" data-tocid="aw4XzjV3vh8C7QTdqk3Tcw" data-section="c_ethos_api_access_dw__grk_ncz_k3c">1.f</span>, but select <span class="ph uicontrol">controller</span> in the <span class="ph uicontrol">Specification</span> field.</li>
+
+        </ol>
+</li>
+
+      <li class="li">Create a service user who can access the Responsive Dashboard and Controller APIs from Ethos.<ol class="ol" type="a">
+        <li class="li">Access <span class="keyword">Controller</span> and click <span class="ph uicontrol">Authorization</span>.</li>
+
+        <li class="li">Click <span class="ph uicontrol">Add User</span>.</li>
+
+        <li class="li">Enter the applicable information in the required <span class="ph uicontrol">User name</span>, <span class="ph uicontrol">Access ID</span>, and <span class="ph uicontrol">Password</span> fields.</li>
+
+        <li class="li">User Access: In the <span class="ph uicontrol">User class</span> field, select <span class="ph uicontrol">API Rest Users</span>.</li>
+
+        <li class="li">User Keys: Click <span class="ph uicontrol">Add Key</span> and select the applicable key.<p class="p">Assign user keys based on the APIs that the external application will use, and grant the minimum set of user keys needed for the target API endpoint. Limiting permissions ensures controlled access and aligns with the least privilege security practices. For a list of user keys needed for the Degree works API Endpoints, see <a class="xref ft-external-link" href="https://resources.elluciancloud.com/search?labelkey=category-api&amp;labelkey=owner-degree-works&amp;rpp=50&amp;sort.field=title&amp;sort.value=asc" target="_blank" rel="noopener">Degree Works API Catalog</a>. You may have to log in to the Documentation site.</p>
+</li>
+
+        </ol>
+</li>
+
+    </ol>
+
+  </div>
+
+</div></div></section>
+<section id="t-630"><h3>Configure network access for on-premise Degree Works deployments</h3><div class="content-locale-en-US content-locale-en"><div id="c_network_access_onprem_dw"><div class="body conbody"><p class="shortdesc">This step applies only to on-premise Degree Works deployments. Degree Works SaaS customers do not need to open firewall ports, as network connectivity to Ethos Integration is managed automatically.</p>
+
+    
+<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" class="table" frame="hsides" border="1" rules="rows"><colgroup><col style="width:25%"><col style="width:25%"><col style="width:25%"><col style="width:25%"></colgroup><thead class="thead" style="text-align:left;">
+          <tr class="row">
+            <th class="entry row-nocellborder" style="text-align:left;vertical-align:top;" id="d14607e53">Source</th>
+
+            <th class="entry row-nocellborder" style="text-align:left;vertical-align:top;" id="d14607e56">Destination</th>
+
+            <th class="entry row-nocellborder" style="text-align:left;vertical-align:top;" id="d14607e59">Port</th>
+
+            <th class="entry row-nocellborder" style="text-align:left;vertical-align:top;" id="d14607e62">Purpose</th>
+
+          </tr>
+
+        </thead>
+<tbody class="tbody">
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d14607e53 ">
+              <p class="p">Ethos (AWS Cloud)</p>
+
+              <ul class="ul">
+                <li class="li">52.0.163.27</li>
+
+                <li class="li">50.16.144.60</li>
+
+                <li class="li">52.0.3.106</li>
+
+              </ul>
+
+            </td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d14607e56 ">Degree Works server hosting Responsive Dashboard and Controller.</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d14607e59 ">API Port</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d14607e62 ">For API requests</td>
+
+          </tr>
+
+        </tbody>
+</table>
+</div>
+
+  </div>
+
+</div></div></section>
+<section id="t-640"><h3>Configure Degree Works as the authoritative source for API resources</h3><div class="content-locale-en-US content-locale-en"><div id="c_config_dw_auth_source"><div class="body conbody"><p class="shortdesc">In this step, you configure Degree Works as the authoritative source for its API resources in Ethos Integration.</p>
+
+    <p class="p">The authoritative application defines which APIs and resources Degree Works owns and allows Ethos Integration to route requests correctly. This configuration enables Ethos to connect to Degree Works using trusted internal credentials to discover available endpoints and automatically populate the list of owned resources.</p>
+
+    <p class="p">To create or verify the application from the customer center:</p>
+
+    <ol class="ol">
+      <li class="li">Navigate to <span class="ph menucascade"><span class="ph uicontrol">Tools</span><abbr title="and then"> &gt; </abbr><span class="ph uicontrol">Ethos</span><abbr title="and then"> &gt; </abbr><span class="ph uicontrol">Integration</span></span>.</li>
+
+      <li class="li">Select the appropriate tenant environment.</li>
+
+      <li class="li">From the Ethos Home page select the <span class="ph uicontrol">Applications</span> tab. Create a new application by clicking on the <span class="ph uicontrol">Manually</span> button. </li>
+
+      <li class="li">On the <span class="ph uicontrol">Add Application</span> pop-up dialog select <span class="ph uicontrol">Continue</span> without checking either Configure REST API proxy or GraphQL resources.<p class="p">Add the Application name and Description, if desired (i.e. Degree Works Responsive Dashboard) then click <span class="ph uicontrol">Next</span>.</p>
+</li>
+
+      <li class="li">On the <span class="keyword wintitle">Subscription</span> Page, select <span class="ph uicontrol">Skip</span>.</li>
+
+      <li class="li">On the <span class="keyword wintitle">Finish</span> page click <span class="ph uicontrol">View Application</span> to view the application just created. The system returns you to the API Keys tab.</li>
+
+      <li class="li">On the <span class="ph uicontrol">API Keys</span> tab, key click on edit next to the API key automatically added for the application. In the Add API Key dialog make sure the first radio option labeled <span class="ph uicontrol">Add API key with no IP address restrictions</span> is selected. If not, select this radio option and click <span class="ph uicontrol">Add</span>.</li>
+
+      <li class="li">Click on the <span class="ph uicontrol">Owned Resources</span> tab for the newly created application to enter the Base URI of the Degree Works application you are setting up. <ol class="ol" type="a">
+        <li class="li">Select the Basic Authentication radio option, enter the URI desired and click <span class="ph uicontrol">Save</span>. For example, if setting up the Responsive Dashboard enter https://<var class="keyword varname">hostname:port</var>/<var class="keyword varname">path</var>/dashboard/api</li>
+
+        <li class="li">Click <span class="ph uicontrol">Auto-Configure Resources</span>.</li>
+
+        <li class="li">From the <span class="ph uicontrol">Request Resources from Application</span> dialog enter the username and password of the user set up in Step 1 then select <span class="ph uicontrol">Next</span>. The system will query the API and add the list of Owned Resources to the application. Click <span class="ph uicontrol">Close</span> to exit the dialog and view the resources.</li>
+
+        </ol>
+</li>
+
+      <li class="li">Repeat the above steps for Controller if you want to access the scribe endpoints.</li>
+
+    </ol>
+
+  </div>
+
+</div></div></section>
+<section id="t-650"><h3>Configure an Ethos credentialing application for external API access</h3><div class="content-locale-en-US content-locale-en"><div id="c_config_ethos_credentialing_app"><div class="body conbody"><p class="shortdesc">In this step, you create a credentialing application in Ethos Integration to enable external access to Degree Works APIs.</p>
+
+    <p class="p">The credentialing application represents the calling system and is responsible for authentication and authorization when making API requests. This application does not own any Degree Works resources. Instead, it uses an Ethos API key to authenticate with Ethos and obtain bearer tokens. Ethos then uses the credentials associated with the authoritative Degree Works application to route requests securely.</p>
+
+    <ol class="ol">
+      <li class="li">From the Ethos Home page select the <span class="ph uicontrol">Applications</span> tab. Create a new application by clicking on the <span class="ph uicontrol">Manually</span> button. </li>
+
+      <li class="li">On the Add Application pop-up dialog, select <span class="ph uicontrol">Continue</span> without checking either Configure REST API proxy or GraphQL resources.</li>
+
+      <li class="li">On the Details page add the Application name and Description, if desired (i.e. Degree Works Credentials)</li>
+
+      <li class="li">On the Subscriptions page select the <span class="ph uicontrol">Skip</span> button without adding subscriptions.</li>
+
+      <li class="li">On the Finish page click <span class="ph uicontrol">View Application</span> to view the application just created. </li>
+
+      <li class="li">The system returns you to the API Keys tab. Under Actions for the API key click on edit. In the Add API Key dialog make sure the first radio option for <span class="ph uicontrol">Add API key with no IP address restrictions</span> is selected. If not, select this radio option and click <span class="ph uicontrol">Add</span>.<p class="p">Note: Record the API Key generated for this application.</p>
+</li>
+
+      <li class="li">Click on the <span class="ph uicontrol">Credentials</span> tab for the newly created application and click <span class="ph uicontrol">Add Credentials</span>. <ol class="ol" type="a">
+        <li class="li">In the <span class="ph uicontrol">Source Application</span> dropdown, click the Ethos application created in Step 3.</li>
+
+        <li class="li">The system defaults in the username and password associated with the source application.</li>
+
+        <li class="li">In the <span class="ph uicontrol">Select a resource</span> dropdown, select any of the resources available for the given application. You do not need to add an individual credential for each endpoint in the applications API, but you do need to set up each application. For example, if you created an application for both Responsive Dashboard and Controller in Step 3, you will need to add a credential to at least one resource for each application.</li>
+
+        </ol>
+</li>
+
+    </ol>
+
+  </div>
+
+</div></div></section>
+<section id="t-660"><h3>Validate Ethos authentication and Degree Works API access</h3><div class="content-locale-en-US content-locale-en"><div id="c_validate_ethos_auth"><div class="body conbody"><p class="shortdesc">In this step, you validate that Ethos authentication and routing to Degree Works APIs are configured correctly.</p>
+
+    <p class="p"> This includes confirming that the credentialing application can obtain a bearer token from Ethos and that authenticated requests are successfully routed to Degree Works using the configured authoritative resources and credentials. Completing this step verifies end-to-end connectivity between Ethos and Degree Works and confirms that authentication, authorization, and resource access are functioning as expected.</p>
+
+    <ol class="ol">
+      <li class="li">Use an API client such as Bruno or curl to request a bearer token from Ethos.<ol class="ol" type="a">
+        <li class="li">Endpoint:<p class="p">POST: https://integrate.elluciancloud.com/auth</p>
+</li>
+
+        <li class="li">Authentication:<ul class="ul">
+          <li class="li">Use the API key generated for the credentialing application.</li>
+
+          <li class="li">Send the request as a bearer token authentication request.</li>
+
+          </ul>
+</li>
+
+        </ol>
+<p class="p">A successful response returns a bearer token.</p>
+</li>
+
+      <li class="li">Using the bearer token returned from the authentication request, make a request to a Degree Works API endpoint through Ethos.<p class="p">Example Endpoint:</p>
+<p class="p">GET: https://integrate.elluciancloud.com/api/requirement-blocks</p>
+</li>
+
+    </ol>
+
+    <p class="p">Ethos routes the request to the authoritative Degree Works application using the configured credentials.</p>
+
+    <p class="p">Confirm that the request returns a successful response (HTTP 200) and that the expected data is returned.</p>
+
+  </div>
+
+</div></div></section></main></body></html>

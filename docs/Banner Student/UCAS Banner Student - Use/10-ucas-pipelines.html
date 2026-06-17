@@ -1,0 +1,2944 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>UCAS Banner Student - Use — UCAS Pipelines</title><style>body{font-family:-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;line-height:1.55;color:#1a1a1a;max-width:920px;margin:0 auto;padding:24px}header{border-bottom:2px solid #5a16d6;margin-bottom:8px}h1{color:#3a0ca3}h2,h3,h4,h5,h6{margin-top:1.6em}.crumb{color:#666;font-size:13px;margin:0}.meta{color:#888;font-size:12px}nav.toc{background:#f6f4fc;border:1px solid #e3dcf5;border-radius:8px;padding:12px 18px;margin:18px 0}nav.toc h2{margin:.2em 0}nav.toc ul{list-style:none;padding-left:0}nav.toc a{text-decoration:none;color:#5a16d6}section{margin:1.2em 0;padding-top:.4em}img{max-width:100%;height:auto}table{border-collapse:collapse}td,th{border:1px solid #ccc;padding:4px 8px}code,pre{background:#f4f4f4;border-radius:4px}pre{padding:10px;overflow:auto}</style></head><body><header><p class="crumb">Banner Student › UCAS Banner Student - Use</p><h1>UCAS Banner Student - Use — UCAS Pipelines</h1><p class="meta">Source: <a href="https://resources.elluciancloud.com/r/bundle/banner_student_acn_use_ucas">https://resources.elluciancloud.com/r/bundle/banner_student_acn_use_ucas</a> &middot; Retrieved 2026-06-17</p></header><nav class="toc"><h2>Contents</h2><ul><li style="margin-left:0px"><a href="#t-2710">UCAS Pipelines</a></li><li style="margin-left:16px"><a href="#t-2720">Data connect requirements</a></li><li style="margin-left:32px"><a href="#t-2730">Setup Banner Ethos API access</a></li><li style="margin-left:32px"><a href="#t-2740">Set up GUACONF</a></li><li style="margin-left:32px"><a href="#t-2750">Setup Ethos Application</a></li><li style="margin-left:48px"><a href="#t-2760">Create UCAS Services Resource application</a></li><li style="margin-left:48px"><a href="#t-2770">Create UCAS Services Proxy application</a></li><li style="margin-left:16px"><a href="#t-2780">Create Crosswalks</a></li><li style="margin-left:16px"><a href="#t-2790">Run the UCAS XML LINK pipelines</a></li><li style="margin-left:16px"><a href="#t-2800">Pipelines with UCAS endpoints</a></li><li style="margin-left:16px"><a href="#t-2810">Reset UCASXML password</a></li><li style="margin-left:16px"><a href="#t-2820">Download MCDS data from UCAS LINK</a></li><li style="margin-left:32px"><a href="#t-2830">Create job parameters for MCDS pipelines</a></li><li style="margin-left:32px"><a href="#t-2840">Run MCDS pipelines</a></li><li style="margin-left:32px"><a href="#t-2850">Schedule MCDS pipelines</a></li><li style="margin-left:16px"><a href="#t-2860">Download Personal Statement data from UCAS LINK</a></li><li style="margin-left:32px"><a href="#t-2870">Create job parameters for Personal Statement pipelines</a></li><li style="margin-left:32px"><a href="#t-2880">Run Personal Statement pipelines</a></li><li style="margin-left:32px"><a href="#t-2890">Schedule Personal Statement pipelines</a></li><li style="margin-left:32px"><a href="#t-2900">SOPPSMT Java Process</a></li><li style="margin-left:16px"><a href="#t-2910">UCAS Transaction Details page</a></li><li style="margin-left:16px"><a href="#t-2920">Document Data download from UCAS LINK</a></li><li style="margin-left:32px"><a href="#t-2930">Create job parameters for Document management pipelines</a></li><li style="margin-left:32px"><a href="#t-2940">Run Document Management Pipelines</a></li><li style="margin-left:32px"><a href="#t-2950">Prerequisite before using Document Management</a></li><li style="margin-left:32px"><a href="#t-2960">OAuth Configuration Setup for Banner Applications on GUACONF page</a></li><li style="margin-left:32px"><a href="#t-2970">Required Client Action</a></li></ul></nav><main><section id="t-2710"><h2>UCAS Pipelines</h2><div class="content-locale-en-US content-locale-en"><div id="c_xml_pipelines"><div class="body conbody"><p class="shortdesc">You can use UCAS pipelines in Banner.</p>
+
+    <p class="p">The following is the list of tasks that you need to complete to setup UCAS pipelines:</p>
+
+    <ul class="ul">
+      <li class="li">Setup <span class="ph">Banner</span> Ethos API access</li>
+
+      <li class="li">Setup GUACONF</li>
+
+      <li class="li">Setup Ethos Application</li>
+
+    </ul>
+
+    <div class="note important"><span class="importanttitle">Important:</span> <span class="keyword">Ellucian</span> recommends that you implement the following system configuration updates:<ul class="ul">
+      <li class="li">Ensure sufficient database tablespace when downloading large datasets from UCAS using DC pipelines.</li>
+
+      <li class="li">Firewall update: <ul class="ul">
+        <li class="li">Update firewall configurations as per the security requirements</li>
+
+        <li class="li">Some of the customers have observed an affecting issue even after their IP addresses were whitelisted.  To address this issue, <span class="keyword">Ellucian</span> recommends you to add the https://prod-eu-west-1-integration-service-files.s3.eu-west-1.amazonaws.com URL to the IP whitelisting section and ensure to include in the outbound firewall rules</li>
+
+        </ul>
+</li>
+
+      <li class="li">Transaction Timeout configuration:<ul class="ul">
+        <li class="li">Update the banner.transactionTimeout setting to 600 seconds</li>
+
+        <li class="li">Update banner_configuration.groovy script in both Integration API and Shared Configuration </li>
+
+        </ul>
+</li>
+
+      <li class="li">Validate the Crosswalk and Pipeline configuration:<ul class="ul">
+        <li class="li">Implement validation process to identify and remove trailing spaces in: * Crosswalk configurations (during creation and copying operations) * Pipeline name configurations </li>
+
+        <li class="li">Eliminate (systematically) the trailing spaces to avoid configuration errors </li>
+
+        </ul>
+</li>
+
+      <li class="li">SYSTEMD working directory fix:<ul class="ul">
+        <li class="li">Error Message: {"errors":[{"code":"Global.SchemaValidation.Error","description":"Errors parsing input JSON.","message":"UcasXml.xml"}]} </li>
+
+        <li class="li">Issue: When Tomcat is started as a systemd service, Linux may not identify the current shell's working directory. If the working directory is not set in the systemd unit file, the service starts in the root directory (/). However, Tomcat does not have the write permission to the directory location.  Hence, Tomcat fails to create the temporary UCAS XML file. </li>
+
+        <li class="li">Fix: Add the working directory for Tomcat in systemd configuration files and restart the Tomcat services to solve this issue.</li>
+
+        </ul>
+</li>
+
+      </ul>
+</div>
+
+  </div>
+
+</div></div></section>
+<section id="t-2720"><h3>Data connect requirements</h3></section>
+<section id="t-2730"><h4>Setup Banner Ethos API access</h4><div class="content-locale-en-US content-locale-en"><div id="t_setup_banner_ethos_api_access"><div class="body taskbody"><p class="shortdesc">Assign the applicable <span class="ph">Banner</span> security objects to users who need access to a particular resource.</p>
+
+    <div class="section context"><div class="tasklabel"><h2 class="sectiontitle tasklabel">About this task</h2></div>Setup is required for XML pipelines to work as expected.</div>
+
+    <div class="tasklabel"><h2 class="sectiontitle tasklabel">Procedure</h2></div><ol class="ol steps"><li class="li step">
+        <span class="ph cmd">Access the <span class="keyword wintitle">Oracle/Banner Security Maintenance (GSASECR)</span> page to allocate the security object (API_UCAS_XML) at the user level.</span>
+      </li>
+<li class="li step">
+        <span class="ph cmd"> Verify whether the user has access to the BAN_GENERAL_API_C security class, as it is necessary for Experience and Data connect.</span>
+      </li>
+</ol>
+
+  </div>
+
+</div></div></section>
+<section id="t-2740"><h4>Set up GUACONF</h4><div class="content-locale-en-US content-locale-en"><div id="t_setup_guaconf"><div class="body taskbody"><p class="shortdesc">Modify the configuration values in the GUACONF page.</p>
+
+    <div class="tasklabel"><h2 class="sectiontitle tasklabel">Procedure</h2></div><ol class="ol steps"><li class="li step">
+        <span class="ph cmd">Navigate to the <span class="ph uicontrol">GUACONF</span> page in the Application Navigator and enter <kbd class="ph userinput">BAN_STU</kbd> as the Application ID.</span>
+      </li>
+<li class="li step">
+        <span class="ph cmd">Select the <span class="ph uicontrol">Configurations</span> tab.</span>
+      </li>
+<li class="li step">
+        <span class="ph cmd"> Change the <span class="keyword parmname">ucas-xml-interface</span> parameter value to <span class="keyword parmname">Data Connect</span>. The default value for WINC users is <kbd class="ph userinput">WINC</kbd>.</span>
+      </li>
+</ol>
+
+  </div>
+
+</div></div></section>
+<section id="t-2750"><h4>Setup Ethos Application</h4><div class="content-locale-en-US content-locale-en"><div id="t_setup_ethos_application"><p class="shortdesc">Before you begin to download UCAS XML data through Data Connect, create a proxy application for the ucasxmlset resource in the UCAS Xml Proxy page.</p>
+
+  
+</div></div></section>
+<section id="t-2760"><h5>Create UCAS Services Resource application</h5><div class="content-locale-en-US content-locale-en"><div id="t_create_ucas_services_resource_application"><div class="body taskbody"><p class="shortdesc">In Ellucian Ethos Integration, you must create an application that owns resources.</p>
+
+    <div class="section prereq p"><div class="tasklabel"><h2 class="sectiontitle tasklabel">Before you begin</h2></div>
+      <div class="p">Ensure the following:<ul class="ul">
+        <li class="li">Access to <span class="keyword">Ellucian Ethos Integration</span>. For more information and requesting access, see <span class="xref ft-internal-xlink" data-ft-warning="excluded-from-rendering" data-clusterid="id_ethos/ethos_integration/c_Ellucian_Ethos_Integration_requests">Ellucian Ethos Integration requests</span>.</li>
+
+        <li class="li">You are using the EU environment.</li>
+
+        <li class="li">Whitelist the IP addresses to avoid issues of firewall restricting requests while adding the resources. See <span class="xref ft-internal-xlink" data-ft-warning="excluded-from-rendering" data-clusterid="id_ethos/ethos_integration/r_ips_to_whitelist">IPs to whitelist</span> for the list of IP addresses.</li>
+
+        <li class="li">You will require the base URL of Ethos Integration API.</li>
+
+        </ul>
+</div>
+
+    </div>
+
+    <div class="tasklabel"><h2 class="sectiontitle tasklabel">Procedure</h2></div><ol class="ol steps"><li class="li step stepexpand">
+        <span class="ph cmd">Log in to <span class="keyword">Ellucian Ethos Integration</span>.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">On the Ethos Integration header bar, click the gear button <img class="image" src="images/10-ucas-pipelines-1.png" alt="Environment selection button" data-ft-asset-display-name="btn_choose_env.png" data-ft-resource-id="IXrsVL8blgAQX7lp0uzb4g-L2CnCak1gnQbTCuesPpSaw"> and select the environment where you want to perform this procedure.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">On the Ethos Integration header bar, click <span class="ph uicontrol">APPLICATIONS</span>.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">On the Create New App tab, click <span class="ph uicontrol">MANUALLY</span>.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">On the <span class="ph uicontrol">Add Application</span> dialog box, clear the check boxes, and click <span class="ph uicontrol">CONTINUE</span>.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">On the <span class="keyword wintitle">Application Details</span> page of the wizard, enter the following information, and then click <span class="ph uicontrol">Next</span>.</span>
+        <div class="itemgroup info">
+          
+<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" class="table" frame="hsides" border="1" rules="rows"><colgroup><col style="width:50%"><col style="width:50%"></colgroup><thead class="thead" style="text-align:left;">
+                <tr class="row">
+                  <th class="entry row-nocellborder" style="text-align:left;vertical-align:top;" id="d33879e147">Field</th>
+
+                  <th class="entry row-nocellborder" style="text-align:left;vertical-align:top;" id="d33879e150">Entry</th>
+
+                </tr>
+
+              </thead>
+<tbody class="tbody">
+                <tr class="row">
+                  <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d33879e147 ">Application name</td>
+
+                  <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d33879e150 ">Enter a unique name for this application. For example, <kbd class="ph userinput">ucas Services Resource</kbd>.<p class="p">Ensure that the name uniquely identifies this application. When you need to select an application elsewhere in the Ethos Integration user interface, you need to use the name to select the correct application.</p>
+</td>
+
+                </tr>
+
+                <tr class="row">
+                  <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d33879e147 ">Description</td>
+
+                  <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d33879e150 ">(Optional) Enter a description of this application. For example, <kbd class="ph userinput">ucas Services Resource</kbd>.</td>
+
+                </tr>
+
+              </tbody>
+</table>
+</div>
+
+        </div>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">On the <span class="ph uicontrol">Add Subscriptions</span> page of the wizard, click <span class="ph uicontrol">Skip</span>.</span>
+        <div class="itemgroup stepresult">
+          <p class="p">A message appears as <samp class="ph msgph">ucas Services Resource has been successfully added!</samp>.</p>
+
+        </div>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Click <span class="ph uicontrol">View Application</span>.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Click to open the <span class="ph uicontrol">Owned Resources</span> tab and perform the following:</span>
+        <ol type="a" class="ol substeps">
+          <li class="li substep substepexpand">
+            <span class="ph cmd">Select <span class="ph uicontrol">Authentication Type </span> as <span class="ph uicontrol">Basic Authentication</span>.</span>
+          </li>
+
+          <li class="li substep substepexpand">
+            <span class="ph cmd">In the <span class="ph uicontrol">Base URI</span> field, enter the base URL of the Ethos Integration API.</span>
+          </li>
+
+          <li class="li substep substepexpand">
+            <span class="ph cmd">Click the save icon next to the <span class="ph uicontrol">Base URI</span> field.</span>
+          </li>
+
+          <li class="li substep substepexpand" id="t_create_ucas_services_resource_application__substep_kbv_3lg_p4b">
+            <span class="ph cmd">Click <span class="ph uicontrol">Add Resources</span> to manually configure them.</span>
+            <div class="itemgroup info">
+              <div class="note"><span class="notetitle">Note:</span> Do not click <span class="ph uicontrol">Auto-Configure Resources</span> to automatically configure them.</div>
+
+            </div>
+          </li>
+
+          <li class="li substep substepexpand" id="t_create_ucas_services_resource_application__substep_igj_jlg_p4b">
+            <span class="ph cmd">Select <span class="ph uicontrol">Add A Custom Resource</span> and then click <span class="ph uicontrol">Next</span>.</span>
+          </li>
+
+          <li class="li substep substepexpand">
+            <span class="ph cmd">In the <span class="ph uicontrol">Add Owned Resource (Custom)</span> dialog box, enter the following resource names in the <span class="ph uicontrol">Resource Name</span> field, and then click <span class="ph uicontrol">Add</span>.</span>
+            <div class="itemgroup info">
+              
+<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" class="table" frame="border" border="1" rules="all"><colgroup><col style="width:43.103448275862064%"><col style="width:56.89655172413792%"></colgroup><thead class="thead" style="text-align:left;">
+                    <tr class="row">
+                      <th class="entry cellrowborder" style="vertical-align:top;" id="d33879e317">Resource Name</th>
+
+                      <th class="entry cellrowborder" style="vertical-align:top;" id="d33879e320">Description</th>
+
+                    </tr>
+
+                  </thead>
+<tbody class="tbody">
+                    <tr class="row">
+                      <td class="entry cellrowborder" style="vertical-align:top;" headers="d33879e317 ">ucasxmlset </td>
+
+                      <td class="entry cellrowborder" style="vertical-align:top;" headers="d33879e320 ">UCAS XML Data</td>
+
+                    </tr>
+
+                    <tr class="row">
+                      <td class="entry cellrowborder" style="vertical-align:top;" headers="d33879e317 ">ucaslink-mcds-transactions</td>
+
+                      <td class="entry cellrowborder" style="vertical-align:top;" headers="d33879e320 ">MCDS Data</td>
+
+                    </tr>
+
+                    <tr class="row">
+                      <td class="entry cellrowborder" style="vertical-align:top;" headers="d33879e317 ">ucaslink-transactions</td>
+
+                      <td class="entry cellrowborder" style="vertical-align:top;" headers="d33879e320 ">Personal Statements Data</td>
+
+                    </tr>
+
+                    <tr class="row">
+                      <td class="entry cellrowborder" style="vertical-align:top;" headers="d33879e317 ">ucas-application-transactions-details</td>
+
+                      <td class="entry cellrowborder" style="vertical-align:top;" headers="d33879e320 ">UCAS Transaction Details Page/Card</td>
+
+                    </tr>
+
+                    <tr class="row">
+                      <td class="entry cellrowborder" style="vertical-align:top;" headers="d33879e317 ">ucas-transaction-statuses</td>
+
+                      <td class="entry cellrowborder" style="vertical-align:top;" headers="d33879e320 ">Transaction Status from UCAS to Recruit</td>
+
+                    </tr>
+
+                    <tr class="row">
+                      <td class="entry cellrowborder" style="vertical-align:top;" headers="d33879e317 ">ucas-update-job-statuses</td>
+
+                      <td class="entry cellrowborder" style="vertical-align:top;" headers="d33879e320 ">Transaction Status from UCAS to Recruit</td>
+
+                    </tr>
+
+                  </tbody>
+</table>
+</div>
+
+            </div>
+          </li>
+
+        </ol>
+
+      </li>
+</ol>
+
+  </div>
+
+</div></div></section>
+<section id="t-2770"><h5>Create UCAS Services Proxy application</h5><div class="content-locale-en-US content-locale-en"><div id="t_create_ucas_services_proxy_application"><div class="body taskbody"><p class="shortdesc"> The application record contains basic information about UCAS Services proxy application and how it interacts with Banner through Ethos Integration.</p>
+
+    <div class="section prereq p"><div class="tasklabel"><h2 class="sectiontitle tasklabel">Before you begin</h2></div>The Add Application wizard will prompt you for the user name and password for a user account that supports proxy API requests. Before running the wizard, create the user account.</div>
+
+    <div class="section context"><div class="tasklabel"><h2 class="sectiontitle tasklabel">About this task</h2></div>
+      <ul class="ul">
+        <li class="li">Ethos applications for the Banner Integration API, which is part of setting up Banner in <span class="keyword">Ethos Integration</span>.</li>
+
+        <li class="li">An Ethos application for UCAS Services proxy application process, which you will create using the procedure mentioned in the following step-by-step procedure.</li>
+
+      </ul>
+
+    </div>
+
+    <div class="tasklabel"><h2 class="sectiontitle tasklabel">Procedure</h2></div><ol class="ol steps"><li class="li step">
+        <span class="ph cmd">On the Ethos Integration header bar, click the gear button <img class="image" src="images/10-ucas-pipelines-1.png" alt="gear_button" data-ft-asset-display-name="btn_choose_env.png" data-ft-resource-id="IXrsVL8blgAQX7lp0uzb4g-L2CnCak1gnQbTCuesPpSaw"> and select the Ethos environment where you want to perform this procedure.</span>
+      </li>
+<li class="li step">
+        <span class="ph cmd">On the Ethos Integration header bar, click <span class="ph uicontrol">Applications</span>.</span>
+      </li>
+<li class="li step">
+        <span class="ph cmd">On the <span class="ph uicontrol">Applications</span> page, click <span class="ph uicontrol">Add Application</span>.</span>
+      </li>
+<li class="li step">
+        <span class="ph cmd">In the <span class="ph uicontrol">Add Application</span> dialog box, do the following:</span>
+        <ol type="a" class="ol substeps">
+          <li class="li substep">
+            <span class="ph cmd">Select <span class="ph uicontrol">Manually</span>. </span>
+          </li>
+
+          <li class="li substep">
+            <span class="ph cmd">Select <span class="ph uicontrol">Configure REST API proxy</span>. </span>
+          </li>
+
+          <li class="li substep">
+            <span class="ph cmd">Click <span class="ph uicontrol">Continue</span>.</span>
+          </li>
+
+        </ol>
+
+      </li>
+<li class="li step">
+        <span class="ph cmd">On the <span class="ph uicontrol">Application Details</span> page of the wizard, enter the information described below and click <span class="ph uicontrol">Next</span>.</span>
+        
+<table border="1" frame="hsides" rules="rows" cellpadding="4" cellspacing="0" summary="" class="simpletable choicetable choicetableborder">
+<colgroup><col style="width:33.44481605351171%"><col style="width:66.5551839464883%"></colgroup><thead><tr class="sthead chhead"><th class="stentry choptionhd" style="vertical-align:bottom;text-align:left;" id="d47056e140-option">Field</th>
+<th class="stentry chdeschd" style="vertical-align:bottom;text-align:left;" id="d47056e140-desc">Entry</th></tr></thead>
+<tbody><tr class="strow chrow">
+            <th style="vertical-align:top;" headers="d47056e140-option" id="d47056e153" class="stentry choption">Application name</th>
+
+            <td style="vertical-align:top;" headers="d47056e140-desc d47056e153" class="stentry chdesc">Enter a unique name for this application.<p class="p">Example name: <code class="ph codeph">UCAS Service Proxy</code></p>
+<p class="p">Ensure that the name uniquely identifies this application.</p>
+<p class="p">When you need to select an application elsewhere in the Ethos Integration user interface, you will use the name to select the correct application.</p>
+</td>
+
+          </tr>
+<tr class="strow chrow">
+            <th style="vertical-align:top;" headers="d47056e140-option" id="d47056e170" class="stentry choption">Description</th>
+
+            <td style="vertical-align:top;" headers="d47056e140-desc d47056e170" class="stentry chdesc">(Optional) Enter a description of this application.</td>
+
+          </tr>
+</tbody></table>
+
+      </li>
+<li class="li step">
+        <span class="ph cmd">In the <span class="ph uicontrol">Add Source Applications</span> page of the wizard, set up proxy API requests: </span>
+        <ol type="a" class="ol substeps">
+          <li class="li substep substepexpand">
+            <span class="ph cmd">Click <span class="ph uicontrol">Add Source Application</span> to open the <span class="ph uicontrol">Add Source Application</span> dialog box. </span>
+          </li>
+
+          <li class="li substep substepexpand">
+            <span class="ph cmd">In the <span class="ph uicontrol">Source Application</span> field, select the Ethos application (UCAS Services Resource) that you created for Banner.</span>
+          </li>
+
+          <li class="li substep substepexpand">
+            <span class="ph cmd">Enter the user name and password for the Banner user account that supports proxy API requests. </span>
+          </li>
+
+          <li class="li substep substepexpand">
+            <span class="ph cmd"> In the <span class="ph uicontrol">Select a resource</span> field, select any Ethos resource to which that user account has permissions in the ERP.</span>
+            <div class="itemgroup info">You can select any resource for which you granted that user account permissions in the ERP. For example, persons. Ethos Integration uses that resource to validate the user credentials by confirming that the user account has access to at least one resource in the ERP. After the credentials are validated, the application will have access to all resources for which the user account has been granted permissions.</div>
+          </li>
+
+          <li class="li substep substepexpand">
+            <span class="ph cmd">Click <span class="ph uicontrol">Add</span>. </span>
+          </li>
+
+          <li class="li substep substepexpand">
+            <span class="ph cmd">Click <span class="ph uicontrol">Next</span>. </span>
+          </li>
+
+        </ol>
+
+      </li>
+<li class="li step">
+        <span class="ph cmd">Click <span class="ph uicontrol">View Application</span> if you are ready to configure app-specific settings, or click <span class="ph uicontrol">Back to Applications</span> if you want to just create the app now and configure settings later.</span>
+      </li>
+</ol>
+
+  </div>
+
+</div></div></section>
+<section id="t-2780"><h3>Create Crosswalks</h3><div class="content-locale-en-US content-locale-en"><div id="t_create_crosswalks"><div class="body taskbody"><p class="shortdesc">For Ethos Data connect customers, create a new crosswalk.</p>
+
+    <div class="section prereq p"><div class="tasklabel"><h2 class="sectiontitle tasklabel">Before you begin</h2></div>If there are any existing ucasXml crosswalks, delete them, and then, create a new crosswalk as <code class="ph codeph">ucas</code>.</div>
+
+    <div class="section context"><div class="tasklabel"><h2 class="sectiontitle tasklabel">About this task</h2></div> The following procedure is applicable only for SaaS customers who use <span class="ph">Data Connect</span>.</div>
+
+    <div class="tasklabel"><h2 class="sectiontitle tasklabel">Procedure</h2></div><ol class="ol steps"><li class="li step stepexpand">
+        <span class="ph cmd">Log in to <span class="keyword">Ethos</span> <span class="keyword">Experience</span> for the tenant you have set up the UCAS XML LINK. </span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Select the <span class="ph uicontrol">UCAS XML LINK</span> option from the <span class="keyword wintitle">Integration Packages</span> menu, and click <span class="ph uicontrol">Crosswalks</span>.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Click <span class="ph uicontrol">+</span> to add a new crosswalk.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Enter <kbd class="ph userinput">ucas</kbd> as the name, and click <span class="ph uicontrol">Create</span>.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Create the <span class="ph uicontrol">Mapping Value</span>, <span class="ph uicontrol">Source Value</span>, and <span class="ph uicontrol">Target Value</span> for the crosswalk.</span>
+        <div class="itemgroup info">Run sequences are a way to configure your <span class="keyword">Banner</span> to download the optimal number of records for your individual institution. </div>
+        <div class="itemgroup info">For example, the applicantStatusRunSeqMap name should have a value that allows your daily download of records to be retrieved/1000.  Hence, if you have 1900 records, add the value 2, if 980, add the value as 1.  The value should always be greater than the value of records expected, but only by a small margin.</div>
+        <div class="itemgroup info">This mapping, indicates that the process will run for that many records. Institutions may need to change these settings at certain times in the UCAS cycle, for instance, the first download of a new cycle, or during confirmation/ABL weekend, so the appropriate settings should be discussed and maintained accordingly at your institution. </div>
+        <div class="itemgroup info">In UCAS 8.31 and 9.3.42, new crosswalk is added for Documentation Management. Rest of the crosswalk mappings remain same as UCAS 8.30.1 and 9.3.41.1.
+<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" class="table" frame="border" border="1" rules="all"><colgroup><col style="width:34.61538461538461%"><col style="width:32.05128205128205%"><col style="width:33.33333333333333%"></colgroup><thead class="thead" style="text-align:left;">
+              <tr class="row">
+                <th class="entry cellrowborder" style="vertical-align:top;" id="d1571e141">Mapping Name</th>
+
+                <th class="entry cellrowborder" style="vertical-align:top;" id="d1571e144">Source Value</th>
+
+                <th class="entry cellrowborder" style="vertical-align:top;" id="d1571e147">Target Value</th>
+
+              </tr>
+
+            </thead>
+<tbody class="tbody">
+              <tr class="row">
+                <td class="entry cellrowborder" style="vertical-align:top;" headers="d1571e141 ">asdmUrlMap</td>
+
+                <td class="entry cellrowborder" style="vertical-align:top;" headers="d1571e144 ">https://supplemental-data-ts-ew1.10321.elluciancloud.ie/api</td>
+
+                <td class="entry cellrowborder" style="vertical-align:top;" headers="d1571e147 ">asdmUrl</td>
+
+              </tr>
+
+            </tbody>
+</table>
+</div>
+</div>
+        <div class="itemgroup info">The following table corresponds to UCAS 8.30.1 and 9.3.41.1 versions.
+<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" class="table" frame="border" border="1" rules="all"><colgroup><col style="width:34.61538461538461%"><col style="width:32.05128205128205%"><col style="width:33.33333333333333%"></colgroup><thead class="thead" style="text-align:left;">
+              <tr class="row">
+                <th class="entry cellrowborder" style="vertical-align:top;" id="d1571e186">Mapping Name</th>
+
+                <th class="entry cellrowborder" style="vertical-align:top;" id="d1571e189">Source Value</th>
+
+                <th class="entry cellrowborder" style="vertical-align:top;" id="d1571e192">Target Value</th>
+
+              </tr>
+
+            </thead>
+<tbody class="tbody">
+              <tr class="row">
+                <td class="entry cellrowborder" style="vertical-align:top;" headers="d1571e186 ">institutionCodeMap</td>
+
+                <td class="entry cellrowborder" style="vertical-align:top;" headers="d1571e189 ">institutionCode</td>
+
+                <td class="entry cellrowborder" style="vertical-align:top;" headers="d1571e192 ">Institution code</td>
+
+              </tr>
+
+              <tr class="row">
+                <td class="entry cellrowborder" style="vertical-align:top;" headers="d1571e186 ">institutionCodeMap2</td>
+
+                <td class="entry cellrowborder" style="vertical-align:top;" headers="d1571e189 ">institutionCode2</td>
+
+                <td class="entry cellrowborder" style="vertical-align:top;" headers="d1571e192 ">Second institution code</td>
+
+              </tr>
+
+              <tr class="row">
+                <td class="entry cellrowborder" style="vertical-align:top;" headers="d1571e186 ">urlMap</td>
+
+                <td class="entry cellrowborder" style="vertical-align:top;" headers="d1571e189 ">URL</td>
+
+                <td class="entry cellrowborder" style="vertical-align:top;" headers="d1571e192 ">hep1 URL: <a class="xref ft-external-link" href="https://hep1xmllinkdoc.ucasenvironments.com/xml-link/XmlLinkWSv2.0" target="_blank" rel="noopener">https://hep1xmllinkdoc.ucasenvironments.com/xml-link/XmlLinkWSv2.0</a><p class="p">hep2 URL: <a class="xref ft-external-link" href="https://hep2xmllinkdoc.ucasenvironments.com/xml-link/XmlLinkWSv2.0" target="_blank" rel="noopener">https://hep2xmllinkdoc.ucasenvironments.com/xml-link/XmlLinkWSv2.0</a></p>
+<p class="p">PROD URL: <a class="xref ft-external-link" href="https://xmllinkdoc.ucas.com/xml-link/XmlLinkWSv2.0" target="_blank" rel="noopener">https://xmllinkdoc.ucas.com/xml-link/XmlLinkWSv2.0</a></p>
+</td>
+
+              </tr>
+
+              <tr class="row">
+                <td class="entry cellrowborder" style="vertical-align:top;" headers="d1571e186 ">runSequenceMap</td>
+
+                <td class="entry cellrowborder" style="vertical-align:top;" headers="d1571e189 ">runSequence</td>
+
+                <td class="entry cellrowborder" style="vertical-align:top;" headers="d1571e192 ">Defines the pagination for all end points except the end points/pipelines that is listed in this table after runSequence to fetch data from UCAS to Banner. <div class="p">For example:<ul class="ul">
+                  <li class="li">If the runSequence value is set to 1, the system downloads 1000 records from UCAS to Banner. </li>
+
+                  <li class="li">If set to 2, fetches 2000 records from UCAS to Banner.</li>
+
+                  <li class="li">If you expect 1500 records, set the runSequence to 2. If you expect 4200 records, set the runSequence to 5. Similarly, set the runSequence to one higher value.</li>
+
+                  <li class="li">In the output, if you find that the record count is exactly the number defined (that is, 1 and 1000 records are downloaded), then, run the process again with one higher setting for runSequence (that is, 2), to ensure that you are not missing any records. <p class="p">It is expected that the runSequence number must be set to higher values at certain times, for example, the first new cycle download, after the RBD dates, ABL weekend, etc.</p>
+</li>
+
+                  </ul>
+</div>
+</td>
+
+              </tr>
+
+              <tr class="row">
+                <td class="entry cellrowborder" style="vertical-align:top;" headers="d1571e186 ">applicantContextualDataRunSeqMap</td>
+
+                <td class="entry cellrowborder" style="vertical-align:top;" headers="d1571e189 ">contexualRunSeq</td>
+
+                <td class="entry cellrowborder" style="vertical-align:top;" headers="d1571e192 ">Defines the pagination for getUCASApplicantContextualData end point to fetch data from UCAS to Banner in the Xml-link UCAS Applicant Data GET pipeline. <p class="p">This setting should be set to accommodate the extra data for each application, for example, if you have the runSequence value set to 2, and you expect 5 contextual records per application, then, you should set the contexualRunSeq value to 10.</p>
+</td>
+
+              </tr>
+
+              <tr class="row">
+                <td class="entry cellrowborder" style="vertical-align:top;" headers="d1571e186 ">applicantQualificationsDataRunSeqMap</td>
+
+                <td class="entry cellrowborder" style="vertical-align:top;" headers="d1571e189 ">applicantQualificationsDataRunSeq</td>
+
+                <td class="entry cellrowborder" style="vertical-align:top;" headers="d1571e192 ">Defines the pagination for getUCASApplicantQualifications end point to fetch data from UCAS to Banner in the XML-Link UCAS Applicant Qualifications Data GET v1.0.0 pipeline. <p class="p">This setting should be set to accommodate the extra data for each application, for example, if you have the applicantQualificationsDataRunSeq value set to 2, and you expect 5 qualifications records per application, then, you should set the applicantQualificationsDataRunSeq value to 10.</p>
+</td>
+
+              </tr>
+
+              <tr class="row">
+                <td class="entry cellrowborder" style="vertical-align:top;" headers="d1571e186 ">hesaRunSeqMap</td>
+
+                <td class="entry cellrowborder" style="vertical-align:top;" headers="d1571e189 ">hesaRunSeq </td>
+
+                <td class="entry cellrowborder" style="vertical-align:top;" headers="d1571e192 ">Defines the pagination for getUCASHesaData end point to fetch data from UCAS to Banner in the Xml-link UCAS Applicant Data GET pipeline. <p class="p">This setting should be set to accommodate the extra data for each application, for example, if you have the runSequence value set to 2, and you expect 5 status records per application, then, you should set the hesaRunSeq value to 10.</p>
+</td>
+
+              </tr>
+
+              <tr class="row">
+                <td class="entry cellrowborder" style="vertical-align:top;" headers="d1571e186 ">applicantStatusRunSeqMap</td>
+
+                <td class="entry cellrowborder" style="vertical-align:top;" headers="d1571e189 ">statusRunSeq</td>
+
+                <td class="entry cellrowborder" style="vertical-align:top;" headers="d1571e192 ">Defines the pagination for getUCASApplicantStatus end point to fetch data from UCAS to Banner in the Xml-link UCAS Applicant Data GET pipeline. <p class="p">This setting should be set to accommodate the extra data for each application, for example, if you have the runSequence value set to 2, and you expect 5 status records per application, then, you should set the statusRunSeq value to 10.</p>
+</td>
+
+              </tr>
+
+              <tr class="row">
+                <td class="entry cellrowborder" style="vertical-align:top;" headers="d1571e186 ">applicantEducationRunSeqMap</td>
+
+                <td class="entry cellrowborder" style="vertical-align:top;" headers="d1571e189 ">educationRunSeq</td>
+
+                <td class="entry cellrowborder" style="vertical-align:top;" headers="d1571e192 ">Defines the pagination for getUCASApplicantEducation end point to fetch data from UCAS to Banner in the Xml-Link UCAS Applicant Data GET pipeline. <p class="p">This setting should be set to accommodate the extra data for each application, for example, if you have the runSequence value set to 2, and you expect 5 education records per application, then, you should set the educationRunSeq value to 10.</p>
+</td>
+
+              </tr>
+
+              <tr class="row">
+                <td class="entry cellrowborder" style="vertical-align:top;" headers="d1571e186 ">applicantsResultsRunSeqMap</td>
+
+                <td class="entry cellrowborder" style="vertical-align:top;" headers="d1571e189 ">resultsRunSeq</td>
+
+                <td class="entry cellrowborder" style="vertical-align:top;" headers="d1571e192 ">Defines the pagination for the Xml-link UCAS Results GET. pipeline.</td>
+
+              </tr>
+
+              <tr class="row">
+                <td class="entry cellrowborder" style="vertical-align:top;" headers="d1571e186 ">applicantsUnitsRunSeqMap</td>
+
+                <td class="entry cellrowborder" style="vertical-align:top;" headers="d1571e189 ">unitsRunSeq</td>
+
+                <td class="entry cellrowborder" style="vertical-align:top;" headers="d1571e192 ">Defines the pagination for the Xml-link UCAS Units GET pipeline. </td>
+
+              </tr>
+
+              <tr class="row">
+                <td class="entry cellrowborder" style="vertical-align:top;" headers="d1571e186 ">ResultsMatchStatusRunSeqMap</td>
+
+                <td class="entry cellrowborder" style="vertical-align:top;" headers="d1571e189 ">resultsMatchRunSeq</td>
+
+                <td class="entry cellrowborder" style="vertical-align:top;" headers="d1571e192 ">Defines the pagination for the Xml-link UCAS Results Match GET pipeline. </td>
+
+              </tr>
+
+              <tr class="row">
+                <td class="entry cellrowborder" style="vertical-align:top;" headers="d1571e186 ">ucasLinkAuthenticationMap</td>
+
+                <td class="entry cellrowborder" style="vertical-align:top;" headers="d1571e189 ">ucasLinkAuth</td>
+
+                <td class="entry cellrowborder" style="vertical-align:top;" headers="d1571e192 ">
+                  <ul class="ul">
+                    <li class="li">HEP URL: <a class="xref ft-external-link" href="https://hep-affiliate-auth.ucasenvironments.com/oauth2/token" target="_blank" rel="noopener">https://hep-affiliate-auth.ucasenvironments.com/oauth2/token</a></li>
+
+                    <li class="li">PRODUCTION URL: <a class="xref ft-external-link" href="https://affiliate-auth.ucas.com/oauth2/token" target="_blank" rel="noopener">https://affiliate-auth.ucas.com/oauth2/token</a></li>
+
+                  </ul>
+
+                </td>
+
+              </tr>
+
+              <tr class="row">
+                <td class="entry cellrowborder" style="vertical-align:top;" headers="d1571e186 ">ucasLinkPerformDownloadQueryUrlMap</td>
+
+                <td class="entry cellrowborder" style="vertical-align:top;" headers="d1571e189 ">ucasLinkPerformDownloadQueryUrl</td>
+
+                <td class="entry cellrowborder" style="vertical-align:top;" headers="d1571e192 ">
+                  <ul class="ul">
+                    <li class="li">HEP URL: <a class="xref ft-external-link" href="https://hep-affiliate.ucasenvironments.com/bulk-processor/api/v1/bulkprocessor/perform-download-query" target="_blank" rel="noopener">https://hep-affiliate.ucasenvironments.com/bulk-processor/api/v1/bulkprocessor/perform-download-query</a></li>
+
+                    <li class="li">PRODUCTION URL: <a class="xref ft-external-link" href="https://affiliate.ucas.com/bulk-processor/api/v1/bulkprocessor/perform-download-query" target="_blank" rel="noopener">https://affiliate.ucas.com/bulk-processor/api/v1/bulkprocessor/perform-download-query</a></li>
+
+                  </ul>
+
+                </td>
+
+              </tr>
+
+            </tbody>
+</table>
+</div>
+</div>
+        <div class="itemgroup info">The following table corresponds to UCAS 8.29 and 9.3.40 versions.<div class="note attention"><span class="attentiontitle">Attention:</span> Moved userId, userId2, password, password2, for XML-link pipelines and clientId and clientSecret for UCAS-link pipelines from crosswalk to pipeline parameters, allowing sensitive credentials to be masked and thereby improving security.</div>
+</div>
+        <div class="itemgroup info">
+          
+<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" class="table" frame="border" border="1" rules="all"><colgroup><col style="width:34.61538461538461%"><col style="width:32.05128205128205%"><col style="width:33.33333333333333%"></colgroup><thead class="thead" style="text-align:left;">
+                <tr class="row">
+                  <th class="entry cellrowborder" style="vertical-align:top;" id="d1571e450">Mapping Name</th>
+
+                  <th class="entry cellrowborder" style="vertical-align:top;" id="d1571e453">Source Value</th>
+
+                  <th class="entry cellrowborder" style="vertical-align:top;" id="d1571e456">Target Value</th>
+
+                </tr>
+
+              </thead>
+<tbody class="tbody">
+                <tr class="row">
+                  <td class="entry cellrowborder" style="vertical-align:top;" headers="d1571e450 ">institutionCodeMap</td>
+
+                  <td class="entry cellrowborder" style="vertical-align:top;" headers="d1571e453 ">institutionCode</td>
+
+                  <td class="entry cellrowborder" style="vertical-align:top;" headers="d1571e456 ">Institution code</td>
+
+                </tr>
+
+                <tr class="row">
+                  <td class="entry cellrowborder" style="vertical-align:top;" headers="d1571e450 ">institutionCodeMap2</td>
+
+                  <td class="entry cellrowborder" style="vertical-align:top;" headers="d1571e453 ">institutionCode2</td>
+
+                  <td class="entry cellrowborder" style="vertical-align:top;" headers="d1571e456 ">Second institution code</td>
+
+                </tr>
+
+                <tr class="row">
+                  <td class="entry cellrowborder" style="vertical-align:top;" headers="d1571e450 ">urlMap</td>
+
+                  <td class="entry cellrowborder" style="vertical-align:top;" headers="d1571e453 ">URL</td>
+
+                  <td class="entry cellrowborder" style="vertical-align:top;" headers="d1571e456 ">hep1 URL: <a class="xref ft-external-link" href="https://hep1xmllinkdoc.ucasenvironments.com/xml-link/XmlLinkWS" target="_blank" rel="noopener">https://hep1xmllinkdoc.ucasenvironments.com/xml-link/XmlLinkWS</a><p class="p">hep2 URL: <a class="xref ft-external-link" href="https://hep2xmllinkdoc.ucasenvironments.com/xml-link/XmlLinkWS" target="_blank" rel="noopener">https://hep2xmllinkdoc.ucasenvironments.com/xml-link/XmlLinkWS</a></p>
+<p class="p">PROD URL: <a class="xref ft-external-link" href="https://xmllinkdoc.ucas.com/xml-link/XmlLinkWS" target="_blank" rel="noopener">https://xmllinkdoc.ucas.com/xml-link/XmlLinkWS</a></p>
+</td>
+
+                </tr>
+
+                <tr class="row">
+                  <td class="entry cellrowborder" style="vertical-align:top;" headers="d1571e450 ">runSequenceMap</td>
+
+                  <td class="entry cellrowborder" style="vertical-align:top;" headers="d1571e453 ">runSequence</td>
+
+                  <td class="entry cellrowborder" style="vertical-align:top;" headers="d1571e456 ">Defines the pagination for all end points except the end points/pipelines that is listed in this table after runSequence to fetch data from UCAS to Banner. <div class="p">For example:<ul class="ul">
+                    <li class="li">If the runSequence value is set to 1, the system downloads 1000 records from UCAS to Banner. </li>
+
+                    <li class="li">If set to 2, fetches 2000 records from UCAS to Banner.</li>
+
+                    <li class="li">If you expect 1500 records, set the runSequence to 2. If you expect 4200 records, set the runSequence to 5. Similarly, set the runSequence to one higher value.</li>
+
+                    <li class="li">In the output, if you find that the record count is exactly the number defined (that is, 1 and 1000 records are downloaded), then, run the process again with one higher setting for runSequence (that is, 2), to ensure that you are not missing any records. <p class="p">It is expected that the runSequence number must be set to higher values at certain times, for example, the first new cycle download, after the RBD dates, ABL weekend, etc.</p>
+</li>
+
+                    </ul>
+</div>
+</td>
+
+                </tr>
+
+                <tr class="row">
+                  <td class="entry cellrowborder" style="vertical-align:top;" headers="d1571e450 ">applicantContextualDataRunSeqMap</td>
+
+                  <td class="entry cellrowborder" style="vertical-align:top;" headers="d1571e453 ">contexualRunSeq</td>
+
+                  <td class="entry cellrowborder" style="vertical-align:top;" headers="d1571e456 ">Defines the pagination for getUCASApplicantContextualData end point to fetch data from UCAS to Banner in the Xml-link UCAS Applicant Data GET pipeline. <p class="p">This setting should be set to accommodate the extra data for each application, for example, if you have the runSequence value set to 2, and you expect 5 contextual records per application, then, you should set the contexualRunSeq value to 10.</p>
+</td>
+
+                </tr>
+
+                <tr class="row">
+                  <td class="entry cellrowborder" style="vertical-align:top;" headers="d1571e450 ">applicantQualificationsDataRunSeqMap</td>
+
+                  <td class="entry cellrowborder" style="vertical-align:top;" headers="d1571e453 ">applicantQualificationsDataRunSeq</td>
+
+                  <td class="entry cellrowborder" style="vertical-align:top;" headers="d1571e456 ">Defines the pagination for getUCASApplicantQualifications end point to fetch data from UCAS to Banner in the XML-Link UCAS Applicant Qualifications Data GET v1.0.0 pipeline. <p class="p">This setting should be set to accommodate the extra data for each application, for example, if you have the applicantQualificationsDataRunSeq value set to 2, and you expect 5 qualifications records per application, then, you should set the applicantQualificationsDataRunSeq value to 10.</p>
+</td>
+
+                </tr>
+
+                <tr class="row">
+                  <td class="entry cellrowborder" style="vertical-align:top;" headers="d1571e450 ">hesaRunSeqMap</td>
+
+                  <td class="entry cellrowborder" style="vertical-align:top;" headers="d1571e453 ">hesaRunSeq </td>
+
+                  <td class="entry cellrowborder" style="vertical-align:top;" headers="d1571e456 ">Defines the pagination for getUCASHesaData end point to fetch data from UCAS to Banner in the Xml-link UCAS Applicant Data GET pipeline. <p class="p">This setting should be set to accommodate the extra data for each application, for example, if you have the runSequence value set to 2, and you expect 5 status records per application, then, you should set the hesaRunSeq value to 10.</p>
+</td>
+
+                </tr>
+
+                <tr class="row">
+                  <td class="entry cellrowborder" style="vertical-align:top;" headers="d1571e450 ">applicantStatusRunSeqMap</td>
+
+                  <td class="entry cellrowborder" style="vertical-align:top;" headers="d1571e453 ">statusRunSeq</td>
+
+                  <td class="entry cellrowborder" style="vertical-align:top;" headers="d1571e456 ">Defines the pagination for getUCASApplicantStatus end point to fetch data from UCAS to Banner in the Xml-link UCAS Applicant Data GET pipeline. <p class="p">This setting should be set to accommodate the extra data for each application, for example, if you have the runSequence value set to 2, and you expect 5 status records per application, then, you should set the statusRunSeq value to 10.</p>
+</td>
+
+                </tr>
+
+                <tr class="row">
+                  <td class="entry cellrowborder" style="vertical-align:top;" headers="d1571e450 ">applicantEducationRunSeqMap</td>
+
+                  <td class="entry cellrowborder" style="vertical-align:top;" headers="d1571e453 ">educationRunSeq</td>
+
+                  <td class="entry cellrowborder" style="vertical-align:top;" headers="d1571e456 ">Defines the pagination for getUCASApplicantEducation end point to fetch data from UCAS to Banner in the Xml-Link UCAS Applicant Data GET pipeline. <p class="p">This setting should be set to accommodate the extra data for each application, for example, if you have the runSequence value set to 2, and you expect 5 education records per application, then, you should set the educationRunSeq value to 10.</p>
+</td>
+
+                </tr>
+
+                <tr class="row">
+                  <td class="entry cellrowborder" style="vertical-align:top;" headers="d1571e450 ">applicantsResultsRunSeqMap</td>
+
+                  <td class="entry cellrowborder" style="vertical-align:top;" headers="d1571e453 ">resultsRunSeq</td>
+
+                  <td class="entry cellrowborder" style="vertical-align:top;" headers="d1571e456 ">Defines the pagination for the Xml-link UCAS Results GET. pipeline.</td>
+
+                </tr>
+
+                <tr class="row">
+                  <td class="entry cellrowborder" style="vertical-align:top;" headers="d1571e450 ">applicantsUnitsRunSeqMap</td>
+
+                  <td class="entry cellrowborder" style="vertical-align:top;" headers="d1571e453 ">unitsRunSeq</td>
+
+                  <td class="entry cellrowborder" style="vertical-align:top;" headers="d1571e456 ">Defines the pagination for the Xml-link UCAS Units GET pipeline. </td>
+
+                </tr>
+
+                <tr class="row">
+                  <td class="entry cellrowborder" style="vertical-align:top;" headers="d1571e450 ">ResultsMatchStatusRunSeqMap</td>
+
+                  <td class="entry cellrowborder" style="vertical-align:top;" headers="d1571e453 ">resultsMatchRunSeq</td>
+
+                  <td class="entry cellrowborder" style="vertical-align:top;" headers="d1571e456 ">Defines the pagination for the Xml-link UCAS Results Match GET pipeline. </td>
+
+                </tr>
+
+                <tr class="row">
+                  <td class="entry cellrowborder" style="vertical-align:top;" headers="d1571e450 ">ucasLinkAuthenticationMap</td>
+
+                  <td class="entry cellrowborder" style="vertical-align:top;" headers="d1571e453 ">ucasLinkAuth</td>
+
+                  <td class="entry cellrowborder" style="vertical-align:top;" headers="d1571e456 ">
+                    <ul class="ul">
+                      <li class="li">HEP URL: <a class="xref ft-external-link" href="https://hep-affiliate-auth.ucasenvironments.com/oauth2/token" target="_blank" rel="noopener">https://hep-affiliate-auth.ucasenvironments.com/oauth2/token</a></li>
+
+                      <li class="li">PRODUCTION URL: <a class="xref ft-external-link" href="https://affiliate-auth.ucas.com/oauth2/token" target="_blank" rel="noopener">https://affiliate-auth.ucas.com/oauth2/token</a></li>
+
+                    </ul>
+
+                  </td>
+
+                </tr>
+
+                <tr class="row">
+                  <td class="entry cellrowborder" style="vertical-align:top;" headers="d1571e450 ">ucasLinkPerformDownloadQueryUrlMap</td>
+
+                  <td class="entry cellrowborder" style="vertical-align:top;" headers="d1571e453 ">ucasLinkPerformDownloadQueryUrl</td>
+
+                  <td class="entry cellrowborder" style="vertical-align:top;" headers="d1571e456 ">
+                    <ul class="ul">
+                      <li class="li">HEP URL: <a class="xref ft-external-link" href="https://hep-affiliate.ucasenvironments.com/bulk-processor/api/v1/bulkprocessor/perform-download-query" target="_blank" rel="noopener">https://hep-affiliate.ucasenvironments.com/bulk-processor/api/v1/bulkprocessor/perform-download-query</a></li>
+
+                      <li class="li">PRODUCTION URL: <a class="xref ft-external-link" href="https://affiliate.ucas.com/bulk-processor/api/v1/bulkprocessor/perform-download-query" target="_blank" rel="noopener">https://affiliate.ucas.com/bulk-processor/api/v1/bulkprocessor/perform-download-query</a></li>
+
+                    </ul>
+
+                  </td>
+
+                </tr>
+
+              </tbody>
+</table>
+</div>
+
+        </div>
+        <div class="itemgroup info">The following table corresponds to UCAS 8.28/9.3.39 versions:
+<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" class="table" frame="hsides" border="1" rules="rows"><colgroup><col style="width:33.830845771144276%"><col style="width:24.87562189054726%"><col style="width:41.29353233830845%"></colgroup><thead class="thead" style="text-align:left;vertical-align:bottom;">
+              <tr class="row">
+                <th class="entry row-nocellborder" style="text-align:left;vertical-align:bottom;" id="d1571e710">Mapping Name</th>
+
+                <th class="entry row-nocellborder" style="text-align:left;vertical-align:bottom;" id="d1571e713">Source Value</th>
+
+                <th class="entry row-nocellborder" style="text-align:left;vertical-align:bottom;" id="d1571e716">Target Value</th>
+
+              </tr>
+
+            </thead>
+<tbody class="tbody">
+              <tr class="row">
+                <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d1571e710 ">userIdMap</td>
+
+                <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d1571e713 ">userId</td>
+
+                <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d1571e716 ">User ID of the institution</td>
+
+              </tr>
+
+              <tr class="row">
+                <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d1571e710 ">passwordMap</td>
+
+                <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d1571e713 ">password</td>
+
+                <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d1571e716 ">Password of the institution</td>
+
+              </tr>
+
+              <tr class="row">
+                <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d1571e710 ">institutionCodeMap</td>
+
+                <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d1571e713 ">institutionCode</td>
+
+                <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d1571e716 ">Institution code</td>
+
+              </tr>
+
+              <tr class="row">
+                <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d1571e710 ">userIdMap2</td>
+
+                <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d1571e713 ">userId2</td>
+
+                <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d1571e716 ">User ID of the second institution</td>
+
+              </tr>
+
+              <tr class="row">
+                <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d1571e710 ">passwordMap2</td>
+
+                <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d1571e713 ">password2</td>
+
+                <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d1571e716 ">Password of the second institution</td>
+
+              </tr>
+
+              <tr class="row">
+                <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d1571e710 ">institutionCodeMap2</td>
+
+                <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d1571e713 ">institutionCode2</td>
+
+                <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d1571e716 ">Second institution code</td>
+
+              </tr>
+
+              <tr class="row">
+                <td class="entry row-nocellborder" colspan="3" style="text-align:left;vertical-align:top;" headers="d1571e710 d1571e713 d1571e716 ">
+                  <div class="note"><span class="notetitle">Note:</span> The userIdMap2, passwordMap2, and institutionCodeMap2 are the crosswalk parameters supporting to run UCAS pipelines with multiple institution codes.</div>
+
+                </td>
+
+              </tr>
+
+              <tr class="row">
+                <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d1571e710 ">urlMap</td>
+
+                <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d1571e713 ">URL</td>
+
+                <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d1571e716 ">hep1 URL: <a class="xref ft-external-link" href="https://hep1xmllinkdoc.ucasenvironments.com/xml-link/XmlLinkWS" target="_blank" rel="noopener">https://hep1xmllinkdoc.ucasenvironments.com/xml-link/XmlLinkWS</a><p class="p">hep2 URL: <a class="xref ft-external-link" href="https://hep2xmllinkdoc.ucasenvironments.com/xml-link/XmlLinkWS" target="_blank" rel="noopener">https://hep2xmllinkdoc.ucasenvironments.com/xml-link/XmlLinkWS</a></p>
+<p class="p">PROD URL: <a class="xref ft-external-link" href="https://xmllinkdoc.ucas.com/xml-link/XmlLinkWS" target="_blank" rel="noopener">https://xmllinkdoc.ucas.com/xml-link/XmlLinkWS</a></p>
+<p class="p">April 2026</p>
+</td>
+
+              </tr>
+
+              <tr class="row">
+                <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d1571e710 ">runSequenceMap</td>
+
+                <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d1571e713 ">runSequence</td>
+
+                <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d1571e716 ">Defines the pagination for all end points except the end points/pipelines that is listed in this table after runSequence to fetch data from UCAS to Banner. <div class="p">For example:<ul class="ul">
+                  <li class="li">If the runSequence value is set to 1, the system downloads 1000 records from UCAS to Banner. </li>
+
+                  <li class="li">If set to 2, fetches 2000 records from UCAS to Banner.</li>
+
+                  <li class="li">If you expect 1500 records, set the runSequence to 2. If you expect 4200 records, set the runSequence to 5. Similarly, set the runSequence to one higher value.</li>
+
+                  <li class="li">In the output, if you find that the record count is exactly the number defined (that is, 1 and 1000 records are downloaded), then, run the process again with one higher setting for runSequence (that is, 2), to ensure that you are not missing any records. <p class="p">It is expected that the runSequence number must be set to higher values at certain times, for example, the first new cycle download, after the RBD dates, ABL weekend, etc.</p>
+</li>
+
+                  </ul>
+</div>
+</td>
+
+              </tr>
+
+              <tr class="row">
+                <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d1571e710 ">applicantContextualDataRunSeqMap</td>
+
+                <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d1571e713 ">contexualRunSeq</td>
+
+                <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d1571e716 ">Defines the pagination for getUCASApplicantContextualData end point to fetch data from UCAS to Banner in the Xml-link UCAS Applicant Data GET pipeline. <p class="p">This setting should be set to accommodate the extra data for each application, for example, if you have the runSequence value set to 2, and you expect 5 contextual records per application, then, you should set the contexualRunSeq value to 10.</p>
+</td>
+
+              </tr>
+
+              <tr class="row">
+                <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d1571e710 ">applicantQualificationsDataRunSeqMap</td>
+
+                <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d1571e713 ">applicantQualificationsDataRunSeq</td>
+
+                <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d1571e716 ">Defines the pagination for getUCASApplicantQualifications end point to fetch data from UCAS to Banner in the XML-Link UCAS Applicant Qualifications Data GET v1.0.0 pipeline. <p class="p">This setting should be set to accommodate the extra data for each application, for example, if you have the applicantQualificationsDataRunSeq value set to 2, and you expect 5 qualifications records per application, then, you should set the applicantQualificationsDataRunSeq value to 10.</p>
+</td>
+
+              </tr>
+
+              <tr class="row">
+                <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d1571e710 ">hesaRunSeqMap</td>
+
+                <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d1571e713 ">hesaRunSeq </td>
+
+                <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d1571e716 ">Defines the pagination for getUCASHesaData end point to fetch data from UCAS to Banner in the Xml-Link UCAS Applicant Data GET pipeline. <p class="p">This setting should be set to accommodate the extra data for each application, for example, if you have the runSequence value set to 2, and you expect 5 status records per application, then, you should set the hesaRunSeq value to 10.</p>
+</td>
+
+              </tr>
+
+              <tr class="row">
+                <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d1571e710 ">applicantStatusRunSeqMap</td>
+
+                <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d1571e713 ">statusRunSeq</td>
+
+                <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d1571e716 ">Defines the pagination for getUCASApplicantStatus end point to fetch data from UCAS to Banner in the Xml-link UCAS Applicant Data GET pipeline. <p class="p">This setting should be set to accommodate the extra data for each application, for example, if you have the runSequence value set to 2, and you expect 5 status records per application, then, you should set the statusRunSeq value to 10.</p>
+</td>
+
+              </tr>
+
+              <tr class="row">
+                <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d1571e710 ">applicantEducationRunSeqMap</td>
+
+                <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d1571e713 ">educationRunSeq</td>
+
+                <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d1571e716 ">Defines the pagination for getUCASApplicantEducation end point to fetch data from UCAS to Banner in the Xml-link UCAS Applicant Data GET pipeline. <p class="p">This setting should be set to accommodate the extra data for each application, for example, if you have the runSequence value set to 2, and you expect 5 education records per application, then, you should set the educationRunSeq value to 10.</p>
+</td>
+
+              </tr>
+
+              <tr class="row">
+                <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d1571e710 ">applicantsResultsRunSeqMap</td>
+
+                <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d1571e713 ">resultsRunSeq</td>
+
+                <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d1571e716 ">Defines the pagination for the Xml-link UCAS Results GET. pipeline.</td>
+
+              </tr>
+
+              <tr class="row">
+                <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d1571e710 ">applicantsUnitsRunSeqMap</td>
+
+                <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d1571e713 ">unitsRunSeq</td>
+
+                <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d1571e716 ">Defines the pagination for the Xml-link UCAS Units GET pipeline. </td>
+
+              </tr>
+
+              <tr class="row">
+                <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d1571e710 ">ResultsMatchStatusRunSeqMap</td>
+
+                <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d1571e713 ">resultsMatchRunSeq</td>
+
+                <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d1571e716 ">Defines the pagination for the Xml-link UCAS Results Match GET pipeline. </td>
+
+              </tr>
+
+              <tr class="row">
+                <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d1571e710 ">ucasLinkAuthenticationMap</td>
+
+                <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d1571e713 ">ucasLinkAuth</td>
+
+                <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d1571e716 ">
+                  <ul class="ul">
+                    <li class="li">HEP URL: <a class="xref ft-external-link" href="https://hep-affiliate-auth.ucasenvironments.com/oauth2/token" target="_blank" rel="noopener">https://hep-affiliate-auth.ucasenvironments.com/oauth2/token</a></li>
+
+                    <li class="li">PRODUCTION URL: <a class="xref ft-external-link" href="https://affiliate-auth.ucas.com/oauth2/token" target="_blank" rel="noopener">https://affiliate-auth.ucas.com/oauth2/token</a></li>
+
+                  </ul>
+
+                </td>
+
+              </tr>
+
+              <tr class="row">
+                <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d1571e710 ">clientIdMap</td>
+
+                <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d1571e713 ">clientId</td>
+
+                <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d1571e716 ">Client ID.</td>
+
+              </tr>
+
+              <tr class="row">
+                <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d1571e710 ">clientSecretMap</td>
+
+                <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d1571e713 ">clientSecret</td>
+
+                <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d1571e716 ">Client's secret.</td>
+
+              </tr>
+
+              <tr class="row">
+                <td class="entry row-nocellborder" colspan="3" style="text-align:left;vertical-align:top;" headers="d1571e710 d1571e713 d1571e716 ">
+                  <div class="note"><span class="notetitle">Note:</span> Request UCAS for clientId and clientSecret values/credentials. </div>
+
+                </td>
+
+              </tr>
+
+              <tr class="row">
+                <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d1571e710 ">ucasLinkPerformDownloadQueryUrlMap</td>
+
+                <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d1571e713 ">ucasLinkPerformDownloadQueryUrl</td>
+
+                <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d1571e716 ">
+                  <ul class="ul">
+                    <li class="li">HEP URL: <a class="xref ft-external-link" href="https://hep-affiliate.ucasenvironments.com/bulk-processor/api/v1/bulkprocessor/perform-download-query" target="_blank" rel="noopener">https://hep-affiliate.ucasenvironments.com/bulk-processor/api/v1/bulkprocessor/perform-download-query</a></li>
+
+                    <li class="li">PRODUCTION URL: <a class="xref ft-external-link" href="https://affiliate.ucas.com/bulk-processor/api/v1/bulkprocessor/perform-download-query" target="_blank" rel="noopener">https://affiliate.ucas.com/bulk-processor/api/v1/bulkprocessor/perform-download-query</a></li>
+
+                  </ul>
+
+                </td>
+
+              </tr>
+
+            </tbody>
+</table>
+</div>
+<div class="note"><span class="notetitle">Note:</span> To get the latest pipelines, make your request after you deploy UCAS 8.30.1, UCAS 9.3.41.1, and Integration API 9.41.1 releases in your environments.</div>
+</div>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Click <span class="ph uicontrol">Save</span>.</span>
+        <div class="itemgroup info">
+          <p class="p">The following are the new <span class="keyword">UCAS</span> URL details.</p>
+
+          
+<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" class="table" frame="hsides" border="1" rules="rows"><colgroup><col style="width:20.964360587002094%"><col style="width:32.075471698113205%"><col style="width:23.48008385744235%"><col style="width:23.48008385744235%"></colgroup><thead class="thead" style="text-align:left;vertical-align:bottom;">
+                <tr class="row">
+                  <th class="entry row-nocellborder" style="text-align:left;vertical-align:bottom;" id="d1571e1082">Web Service</th>
+
+                  <th class="entry row-nocellborder" style="text-align:left;vertical-align:bottom;" id="d1571e1085">Old <span class="keyword">UCAS</span> URLs</th>
+
+                  <th class="entry row-nocellborder" style="text-align:left;vertical-align:bottom;" id="d1571e1091">New <span class="keyword">UCAS</span> URLs</th>
+
+                  <th class="entry row-nocellborder" style="text-align:left;vertical-align:bottom;" id="d1571e1097">V2.0 UCAS URLs</th>
+
+                </tr>
+
+              </thead>
+<tbody class="tbody">
+                <tr class="row">
+                  <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d1571e1082 ">XML_LINK_TEST1</td>
+
+                  <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d1571e1085 "><a class="xref ft-external-link" href="https://hep1xmllink.ucasenvironments.com/xml-link/XmlLinkWS" target="_blank" rel="noopener">https://hep1xmllink.ucasenvironments.com/xml-link/XmlLinkWS</a></td>
+
+                  <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d1571e1091 "><a class="xref ft-external-link" href="https://hep1xmllinkdoc.ucasenvironments.com/xml-link/XmlLinkWS" target="_blank" rel="noopener">https://hep1xmllinkdoc.ucasenvironments.com/xml-link/XmlLinkWS</a></td>
+
+                  <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d1571e1097 "><a class="xref ft-external-link" href="https://hep1xmllinkdoc.ucasenvironments.com/xml-link/XmlLinkWSv2.0" target="_blank" rel="noopener">https://hep1xmllinkdoc.ucasenvironments.com/xml-link/XmlLinkWSv2.0</a></td>
+
+                </tr>
+
+                <tr class="row">
+                  <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d1571e1082 ">XML_LINK_TEST2</td>
+
+                  <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d1571e1085 "><a class="xref ft-external-link" href="https://xmllink.ucas.com/xml-link/XmlLinkWS" target="_blank" rel="noopener">https://xmllink.ucas.com/xml-link/XmlLinkWS</a></td>
+
+                  <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d1571e1091 "><a class="xref ft-external-link" href="https://hep2xmllinkdoc.ucasenvironments.com/xml-link/XmlLinkWS" target="_blank" rel="noopener">https://hep2xmllinkdoc.ucasenvironments.com/xml-link/XmlLinkWS</a></td>
+
+                  <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d1571e1097 "><a class="xref ft-external-link" href="https://hep2xmllinkdoc.ucasenvironments.com/xml-link/XmlLinkWSv2.0" target="_blank" rel="noopener">https://hep2xmllinkdoc.ucasenvironments.com/xml-link/XmlLinkWSv2.0</a></td>
+
+                </tr>
+
+                <tr class="row">
+                  <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d1571e1082 ">XML_LINK_PROD</td>
+
+                  <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d1571e1085 "><a class="xref ft-external-link" href="https://xmllink.ucas.com/xml-link/XmlLinkWS" target="_blank" rel="noopener">https://xmllink.ucas.com/xml-link/XmlLinkWS</a></td>
+
+                  <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d1571e1091 "><a class="xref ft-external-link" href="https://xmllinkdoc.ucas.com/xml-link/XmlLinkWS" target="_blank" rel="noopener">https://xmllinkdoc.ucas.com/xml-link/XmlLinkWS</a></td>
+
+                  <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d1571e1097 "><a class="xref ft-external-link" href="https://xmllinkdoc.ucas.com/xml-link/XmlLinkWSv2.0" target="_blank" rel="noopener">https://xmllinkdoc.ucas.com/xml-link/XmlLinkWSv2.0</a></td>
+
+                </tr>
+
+              </tbody>
+</table>
+</div>
+
+        </div>
+      </li>
+</ol>
+
+  </div>
+
+</div></div></section>
+<section id="t-2790"><h3>Run the UCAS XML LINK pipelines</h3><div class="content-locale-en-US content-locale-en"><div id="t_run_the_pipelines"><div class="body taskbody"><p class="shortdesc">Run the UCAS XML Pipelines.</p>
+
+    <div class="section context"><div class="tasklabel"><h2 class="sectiontitle tasklabel">About this task</h2></div> This procedure is only for SaaS customers who use Data Connect.</div>
+
+    <div class="tasklabel"><h2 class="sectiontitle tasklabel">Procedure</h2></div><ol class="ol steps"><li class="li step stepexpand">
+        <span class="ph cmd">Access Ethos Experience and log in with the credentials of the tenant where you've configured the UCAS.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Select <span class="ph uicontrol">UCAS XML LINK</span> from <span class="keyword wintitle">Integration Packages</span>, select the pipeline for which you need to run the job.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Click <span class="ph uicontrol">New Job</span> and enter the parameter details as required for the job run.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">If you want to schedule a job, update the <span class="keyword wintitle">Job Run Details</span> section. </span>
+        <div class="itemgroup stepresult">This runs the same job with the same set of parameters based on a time schedule chosen while creating the job.</div>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Enter the following pipeline parameters:</span>
+        <ol type="a" class="ol substeps">
+          <li class="li substep">
+            <span class="ph cmd">Ethos API Key for the Proxy app</span>
+          </li>
+
+          <li class="li substep">
+            <span class="ph cmd">User Id</span>
+          </li>
+
+          <li class="li substep">
+            <span class="ph cmd">Password</span>
+          </li>
+
+          <li class="li substep">
+            <span class="ph cmd">User Id2</span>
+          </li>
+
+          <li class="li substep">
+            <span class="ph cmd">Password2</span>
+          </li>
+
+        </ol>
+
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Enter the following job parameters:</span>
+        
+<table border="1" frame="hsides" rules="rows" cellpadding="4" cellspacing="0" summary="" class="simpletable choicetable choicetableborder">
+<colgroup><col style="width:36.496350364963504%"><col style="width:63.503649635036496%"></colgroup><thead><tr class="sthead chhead"><th class="stentry choptionhd" style="vertical-align:bottom;text-align:left;" id="d55213e126-option">Job Parameter</th>
+<th class="stentry chdeschd" style="vertical-align:bottom;text-align:left;" id="d55213e126-desc">Description</th></tr></thead>
+<tbody><tr class="strow chrow">
+            <th style="vertical-align:top;" headers="d55213e126-option" id="d55213e139" class="stentry choption">Personal Id</th>
+
+            <td style="vertical-align:top;" headers="d55213e126-desc d55213e139" class="stentry chdesc">The personal id to extract records only for a particular applicant record.</td>
+
+          </tr>
+<tr class="strow chrow">
+            <th style="vertical-align:top;" headers="d55213e126-option" id="d55213e148" class="stentry choption">Since Date</th>
+
+            <td style="vertical-align:top;" headers="d55213e126-desc d55213e148" class="stentry chdesc">The date as of when the records have to be fetched for the corresponding UCAS GET endpoint.<div class="note"><span class="notetitle">Note:</span> Manual Job 'Since Date' Parameter Behavior Issue ISSUE DESCRIPTION: When executing a manual job for the first time, the system correctly honors the 'Since Date' parameter and imports records using this specified value as the 'LastUpdated' timestamp. However, during subsequent executions of the same manual job, the system exhibits inconsistent behavior: The 'Since Date' parameter is no longer respected, regardless of whether it is modified or remains unchanged The system defaults to using the current date and time as the 'LastUpdated' value instead of the configured 'Since Date' This forces users to create a new manual job for each execution to achieve the desired behavior <p class="p">This is an expected behavior.</p>
+</div>
+</td>
+
+          </tr>
+<tr class="strow chrow">
+            <th style="vertical-align:top;" headers="d55213e126-option" id="d55213e161" class="stentry choption">ERP</th>
+
+            <td style="vertical-align:top;" headers="d55213e126-desc d55213e161" class="stentry chdesc">As these pipelines are running for <span class="keyword">Ellucian</span>, this is defaulted to <span class="keyword">Ellucian</span>.</td>
+
+          </tr>
+<tr class="strow chrow">
+            <th style="vertical-align:top;" headers="d55213e126-option" id="d55213e176" class="stentry choption">Multi Institution</th>
+
+            <td style="vertical-align:top;" headers="d55213e126-desc d55213e176" class="stentry chdesc">Allows you to select the first institution or second institution.</td>
+
+          </tr>
+</tbody></table>
+
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Click <span class="ph uicontrol">Save</span>.</span>
+        <div class="itemgroup info"><span class="keyword">Ellucian</span> recommends that  you note the following information.<ul class="ul">
+          <li class="li">Ethos Api Key, User Id, Password, User Id2, and Password2 are the persistent parameters in the pipeline.</li>
+
+          <li class="li">Date picker is available for Since Date Job Parameters while creating new job for UCAS XML LINK pipelines.</li>
+
+          <li class="li">Maximum Concurrency value is set to 1 in the Advanced options, while creating new job for UCAS XML LINK pipelines. Ensure that the <span class="keyword wintitle">Maximum Concurrency</span> slide bar under the <span class="keyword wintitle">Advanced Options </span>section remains as the default value for all pipelines.</li>
+
+          <li class="li">When you run the pipeline for the first time, entering the Since Date job parameter is mandatory when there is no Personal Id job parameter.</li>
+
+          <li class="li">When you enter the Personal Id, the  system will not consider the Since Date job parameter to download/upload data from UCAS to Banner. </li>
+
+          <li class="li">For the Multi Institution parameter, if you select the first inst in crosswalks, the values from the userIdMap, passwordMap, and institutionCodeMap mapping will be used.  If you select the second inst in crosswalks, the values from the userIdMap2, passwordMap2, and institutionCodeMap2 mapping will be used. The Multi Institution parameter allows you to use two institutions to download the UCAS data.</li>
+
+          <li class="li">Following are the ways to handle a few error scenarios in the UCAS XML LINK pipelines.<ul class="ul">
+            <li class="li">Batching of 200,000 records for getUCASApplicantStatus per API call to stop running into <samp class="ph msgph">ORA-31186: Document contains too many nodes</samp> error. </li>
+
+            <li class="li">In the Xml-link UCAS Applicant Data SET pipeline, handled false positive error even though pipeline is successful. </li>
+
+            <li class="li">In Xml-link UCAS Reference Data GET pipeline, removed deprecated end points getReferenceParentalOccupations and getReferenceParentalOccupations2010. </li>
+
+            <li class="li">In Xml-link UCAS Results GET pipeline, Xml-link UCAS Units GET and Xml-link UCAS Results Match GET pipelines, <p class="p">Batching of 200,000 records per api call to stop running in to error ORA-31186: Document contains too many nodes.</p>
+</li>
+
+            </ul>
+</li>
+
+          </ul>
+</div>
+      </li>
+</ol>
+
+  </div>
+
+</div></div></section>
+<section id="t-2800"><h3>Pipelines with UCAS endpoints</h3><div class="content-locale-en-US content-locale-en"><div id="r_pipeline_ucas_endpoint_names"><div class="body refbody"><p class="shortdesc">List of Data Connect pipelines with endpoint names available for <span class="keyword">UCAS</span>.</p>
+
+    <div class="section">
+      <div class="note important"><span class="importanttitle">Important:</span> To see the UCAS Pipeline versions along with required UCAS 8x, 9x and Integration API versions, refer to the Banner_UCAS_Pipeline_Version.zip available as attachments.</div>
+
+      <p class="p">The following Data Connect pipelines are associated with a version number.</p>
+
+    </div>
+
+    
+<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" class="table" frame="hsides" border="1" rules="rows"><colgroup><col style="width:36.42533936651584%"><col style="width:40.950226244343895%"><col style="width:22.624434389140273%"></colgroup><thead class="thead" style="text-align:left;vertical-align:bottom;">
+          <tr class="row">
+            <th class="entry row-nocellborder" style="vertical-align:bottom;" id="d74041e63">Data Connect Pipelines</th>
+
+            <th class="entry row-nocellborder" style="vertical-align:bottom;" id="d74041e66">Endpoints</th>
+
+            <th class="entry row-nocellborder" style="vertical-align:bottom;" id="d74041e69">Run Sequence</th>
+
+          </tr>
+
+        </thead>
+<tbody class="tbody">
+          <tr class="row">
+            <td class="entry row-nocellborder" rowspan="24" style="vertical-align:top;" headers="d74041e63 ">Xml-link UCAS Applicant Data GET v11.0.0</td>
+
+            <td class="entry row-nocellborder" style="vertical-align:top;" headers="d74041e66 ">getUCASApplicantsDetails</td>
+
+            <td class="entry row-nocellborder" rowspan="24" style="vertical-align:top;" headers="d74041e69 ">1 for 1000 records and so on.</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="vertical-align:top;" headers="d74041e66 ">getUCASApplicantsBackground</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="vertical-align:top;" headers="d74041e66 ">getUCASApplicantChoices</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="vertical-align:top;" headers="d74041e66 ">getUCASApplicantActivity</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="vertical-align:top;" headers="d74041e66 ">getUCASApplicantCaringResponsibilities</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="vertical-align:top;" headers="d74041e66 ">getUCASApplicantEstrangedFromParents</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="vertical-align:top;" headers="d74041e66 ">getUCASApplicantFreeSchoolMeals</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="vertical-align:top;" headers="d74041e66 ">getUCASApplicantHigherEducationActivities</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="vertical-align:top;" headers="d74041e66 ">getUCASApplicantLivingWithCondition</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="vertical-align:top;" headers="d74041e66 ">getUCASApplicantParentCarerInArmedForces</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="vertical-align:top;" headers="d74041e66 ">getUCASApplicantParentingResponsibilities</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="vertical-align:top;" headers="d74041e66 ">getUCASApplicantReferees</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="vertical-align:top;" headers="d74041e66 ">getUCASApplicantRefugeeAsylumSeekerStatus</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="vertical-align:top;" headers="d74041e66 ">getUCASApplicantRefugeeAsylumSeekerStatus</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="vertical-align:top;" headers="d74041e66 ">getUCASApplicantStatements</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="vertical-align:top;" headers="d74041e66 ">getUCASApplicantsCancelled</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="vertical-align:top;" headers="d74041e66 ">getUCASApplicantsEmployment</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="vertical-align:top;" headers="d74041e66 ">getUCASApplicantsReinstated</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="vertical-align:top;" headers="d74041e66 ">getUCASAppsCompletelyWithdrawn</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="vertical-align:top;" headers="d74041e66 ">getUCASResultsMatchStatus</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="vertical-align:top;" headers="d74041e66 ">getUCASApplicantsResults</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="vertical-align:top;" headers="d74041e66 ">getUCASApplicantAddressHistory</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="vertical-align:top;" headers="d74041e66 ">getUCASApplicantContextualData (uses contexualRunSeq value from crosswalk)</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="vertical-align:top;" headers="d74041e66 ">getUCASApplicantEducation (uses educationRunSeq value from crosswalk)</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="vertical-align:top;" headers="d74041e63 ">XML-Link UCAS Applicant Qualifications Data v3.0.0</td>
+
+            <td class="entry row-nocellborder" style="vertical-align:top;" headers="d74041e66 ">getUCASApplicantQualifications</td>
+
+            <td class="entry row-nocellborder" style="vertical-align:top;" headers="d74041e69 ">1 for 1000 records and so on.</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="vertical-align:top;" headers="d74041e63 ">Xml-link UCAS Units GET v9.0.0</td>
+
+            <td class="entry row-nocellborder" style="vertical-align:top;" headers="d74041e66 ">getUCASApplicantsUnits (uses unitsRunSeq value from crosswalk)</td>
+
+            <td class="entry row-nocellborder" style="vertical-align:top;" headers="d74041e69 ">1 for 1000 records and so on.</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="vertical-align:top;" headers="d74041e63 ">Xml-link UCAS Results Match GET v9.0.0</td>
+
+            <td class="entry row-nocellborder" style="vertical-align:top;" headers="d74041e66 ">getUCASResultsMatchStatus (uses resultsMatchRunSeq value from crosswalk)</td>
+
+            <td class="entry row-nocellborder" style="vertical-align:top;" headers="d74041e69 ">1 for 1000 records and so on.</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="vertical-align:top;" headers="d74041e63 ">Xml-link UCAS Results GET v9.0.0</td>
+
+            <td class="entry row-nocellborder" style="vertical-align:top;" headers="d74041e66 ">getUCASApplicantsResults (uses resultsRunSeq value from crosswalk)</td>
+
+            <td class="entry row-nocellborder" style="vertical-align:top;" headers="d74041e69 ">1 for 1000 records and so on.</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" rowspan="52" style="vertical-align:top;" headers="d74041e63 ">Xml-link UCAS Reference Data GET v10.0.0</td>
+
+            <td class="entry row-nocellborder" style="vertical-align:top;" headers="d74041e66 ">getRefLocalEducationAuthorities</td>
+
+            <td class="entry row-nocellborder" rowspan="52" style="vertical-align:top;" headers="d74041e69 ">90 for the first run; for the subsequent runs, use 1 for 1000 records, and so on.</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="vertical-align:top;" headers="d74041e66 ">getRefOtherExamQualifications</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="vertical-align:top;" headers="d74041e66 ">getRefParentalHE</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="vertical-align:top;" headers="d74041e66 ">getRefPermanentResidenceAreas</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="vertical-align:top;" headers="d74041e66 ">getRefStandardOfferAbbreviations</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="vertical-align:top;" headers="d74041e66 ">getReferenceActivitySponsorType</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="vertical-align:top;" headers="d74041e66 ">getReferenceApplicantsStatus</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="vertical-align:top;" headers="d74041e66 ">getReferenceAwardingBodies</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="vertical-align:top;" headers="d74041e66 ">getReferenceCare</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="vertical-align:top;" headers="d74041e66 ">getReferenceCountriesOfBirth</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="vertical-align:top;" headers="d74041e66 ">getReferenceDisabilities</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="vertical-align:top;" headers="d74041e66 ">getReferenceErrors</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="vertical-align:top;" headers="d74041e66 ">getReferenceEstablishGroups</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="vertical-align:top;" headers="d74041e66 ">getReferenceEthnics </td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="vertical-align:top;" headers="d74041e66 ">getReferenceExamLevels</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="vertical-align:top;" headers="d74041e66 ">getReferenceFeePayers </td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="vertical-align:top;" headers="d74041e66 ">getReferenceFreeSchoolMeals</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="vertical-align:top;" headers="d74041e66 ">getReferenceGenIdenDiff</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="vertical-align:top;" headers="d74041e66 ">getReferenceHigherEducationActivityProviders </td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="vertical-align:top;" headers="d74041e66 ">getReferenceHigherEducationActivityTypes</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="vertical-align:top;" headers="d74041e66 ">getReferenceJointAdmissions</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="vertical-align:top;" headers="d74041e66 ">getReferenceNationalitys</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="vertical-align:top;" headers="d74041e66 ">getReferenceOfferSubjects</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="vertical-align:top;" headers="d74041e66 ">getReferenceOwnOfferAbbreviations</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="vertical-align:top;" headers="d74041e66 ">getReferenceParentalOccupations</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="vertical-align:top;" headers="d74041e66 ">getReferenceParentalOccupations2010</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="vertical-align:top;" headers="d74041e66 ">getReferenceParentalOccupations2020</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="vertical-align:top;" headers="d74041e66 ">getReferenceRefugeeAsylumSeekerStatuses</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="vertical-align:top;" headers="d74041e66 ">getReferenceReligionBelief</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="vertical-align:top;" headers="d74041e66 ">getReferenceResidentialCategories</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="vertical-align:top;" headers="d74041e66 ">getReferenceSchoolTypes</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="vertical-align:top;" headers="d74041e66 ">getReferenceSchoolYear</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="vertical-align:top;" headers="d74041e66 ">getReferenceSexOrientation</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="vertical-align:top;" headers="d74041e66 ">getReferenceSocialEconomic</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="vertical-align:top;" headers="d74041e66 ">getReferenceTariffs</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="vertical-align:top;" headers="d74041e66 ">getUCASReferenceDelayedConfirmationReasons</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="vertical-align:top;" headers="d74041e66 ">getUCASReferenceInstitutions</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="vertical-align:top;" headers="d74041e66 ">getUCASReferenceNHSRegions</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="vertical-align:top;" headers="d74041e66 ">getReferenceAddressHistoryReason</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="vertical-align:top;" headers="d74041e66 ">getReferenceNoVisaReason</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="vertical-align:top;" headers="d74041e66 ">getReferenceVisaOrImmigrationStatus </td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="vertical-align:top;" headers="d74041e66 ">getReferenceStudyDeliveryMode</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="vertical-align:top;" headers="d74041e66 ">getReferencePreviousStudyLevel</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="vertical-align:top;" headers="d74041e66 ">getReferenceABLSubjects</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="vertical-align:top;" headers="d74041e66 ">getContextualData</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="vertical-align:top;" headers="d74041e66 ">getReferenceSchoolContacts</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="vertical-align:top;" headers="d74041e66 ">getReferenceSchools</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="vertical-align:top;" headers="d74041e66 ">getReferenceResultsRefreshControl</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="vertical-align:top;" headers="d74041e66 ">getReferenceUnits</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="vertical-align:top;" headers="d74041e66 ">getUCASReferenceCourses </td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="vertical-align:top;" headers="d74041e66 ">getReferenceApplicationSections</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="vertical-align:top;" headers="d74041e66 ">getReferenceDocumentCategories </td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="vertical-align:top;" headers="d74041e63 ">Xml-link UCAS Results Refresh GET v9.0.0</td>
+
+            <td class="entry row-nocellborder" style="vertical-align:top;" headers="d74041e66 ">getReferenceResultsRefreshControl</td>
+
+            <td class="entry row-nocellborder" style="vertical-align:top;" headers="d74041e69 ">1</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" rowspan="5" style="vertical-align:top;" headers="d74041e63 ">Xml-link UCAS Unicode Applicant Data GET v10.0.0</td>
+
+            <td class="entry row-nocellborder" style="vertical-align:top;" headers="d74041e66 ">getUCASApplicantReferees_U</td>
+
+            <td class="entry row-nocellborder" rowspan="5" style="vertical-align:top;" headers="d74041e69 ">1 for 1000 records and so on.</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="vertical-align:top;" headers="d74041e66 ">getUCASApplicantsDetails_U</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="vertical-align:top;" headers="d74041e66 ">getUCASApplicantsEmployment_U</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="vertical-align:top;" headers="d74041e66 ">getUCASApplicantStatements_U</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="vertical-align:top;" headers="d74041e66 ">getUCASApplicantAddressHistory_U</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="vertical-align:top;" headers="d74041e63 ">Xml-link UCAS Password Expiry GET v9.0.0</td>
+
+            <td class="entry row-nocellborder" style="vertical-align:top;" headers="d74041e66 ">getPasswordExpiryDate</td>
+
+            <td class="entry row-nocellborder" style="vertical-align:top;" headers="d74041e69 ">1</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="vertical-align:top;" headers="d74041e63 ">Xml-link UCAS Password SET v9.0.0</td>
+
+            <td class="entry row-nocellborder" style="vertical-align:top;" headers="d74041e66 ">updatePassword</td>
+
+            <td class="entry row-nocellborder" style="vertical-align:top;" headers="d74041e69 ">1</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" rowspan="10" style="vertical-align:top;" headers="d74041e63 ">Xml-link UCAS Applicant Data SET v10.0.0</td>
+
+            <td class="entry row-nocellborder" style="vertical-align:top;" headers="d74041e66 ">setAmendedDecisionTransUcas</td>
+
+            <td class="entry row-nocellborder" rowspan="10" style="vertical-align:top;" headers="d74041e69 ">1<div class="note"><span class="notetitle">Note:</span>  The application set pipeline processes up to 1000 decisions in one run. During the testing process, with more than 1,000 decisions (up to 4,500), all decisions are successfully transmitted to UCAS; however, the was an issue during the acknowledgment write-back to <span class="keyword">Banner</span>. The problem was caused by a S3 timeout, that appears to occur when processing more than 1,000 decisions. This S3 timeout issue is under investigation. For now, <span class="keyword">Ellucian</span> recommends a safe limit for a single run to 500 decisions.</div>
+</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="vertical-align:top;" headers="d74041e66 ">setClearingDecisionTransUcas</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="vertical-align:top;" headers="d74041e66 ">setClearingFormRequestUcas</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="vertical-align:top;" headers="d74041e66 ">setConfirmationDecisionTransUcas</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="vertical-align:top;" headers="d74041e66 ">setConfirmationDelayedTransUcas</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="vertical-align:top;" headers="d74041e66 ">setCourseCorrectionTransUcas</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="vertical-align:top;" headers="d74041e66 ">setFirstDecisionTransactionUcas</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="vertical-align:top;" headers="d74041e66 ">setReleaseIntoClearingTransactionUcas</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="vertical-align:top;" headers="d74041e66 ">setUFAmendmentTransactionUcas</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="vertical-align:top;" headers="d74041e66 "> setUFWithdrawalTransactionUcas</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="vertical-align:top;" headers="d74041e63 ">Xml-link UCAS Applicant HESA Data GET v3.0.0</td>
+
+            <td class="entry row-nocellborder" style="vertical-align:top;" headers="d74041e66 ">getUCASHesaData  (uses statusRunSeq value from crosswalk parameter to download up to 1,000,000 records per run)</td>
+
+            <td class="entry row-nocellborder" style="vertical-align:top;" headers="d74041e69 ">1</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="vertical-align:top;" headers="d74041e63 ">Xml-link UCAS Applicant Status GET v3.0.0 </td>
+
+            <td class="entry row-nocellborder" style="vertical-align:top;" headers="d74041e66 ">getUCASApplicantStatus  (uses statusRunSeq value from crosswalk parameter to download up to 1,000,000 records per run)</td>
+
+            <td class="entry row-nocellborder" style="vertical-align:top;" headers="d74041e69 ">1</td>
+
+          </tr>
+
+        </tbody>
+</table>
+</div>
+
+    <div class="section">
+      <p class="p"><span class="keyword">Ellucian</span> recommends that you note the following:</p>
+
+      <p class="p">The following end points are the Confirmation and Clearing pipeline groups. Ensure that you download the results without all the other downloads. You can store the results in separate groups, as one is the reference data/applicant data and other is the results data. </p>
+
+      <div class="p">Similar to the drop-down in the SKAUHPR page, ensure to have a pipeline scheduled to do the full download, and for the Confirmation and Clearing pipelines, with two scheduled downloads, multiple times a day. <ul class="ul">
+        <li class="li">End point Name: getUCASResultsMatchStatusPipeline group: Xml-link UCAS Applicant Data GET, Xml-link UCAS Results Match GET</li>
+
+        <li class="li">End point Name: getUCASApplicantsResultsPipeline group: Xml-link UCAS Applicant Data GET, Xml-link UCAS Results GET</li>
+
+        <li class="li">End point Name: getReferenceResultsRefreshControlPipeline group: Xml-link UCAS Reference Data GET, Xml-link UCAS Results Refresh GET</li>
+
+        </ul>
+</div>
+
+    </div>
+
+  </div>
+
+</div></div></section>
+<section id="t-2810"><h3>Reset UCASXML password</h3><div class="content-locale-en-US content-locale-en"><div id="t_reset_ucasxml_password"><div class="body taskbody"><p class="shortdesc">Reset the UCASXML password using the updatePassword end point.</p>
+
+    <div class="section prereq p"><div class="tasklabel"><h2 class="sectiontitle tasklabel">Before you begin</h2></div>Before you reset the password, ensure that you verify any UCAS end point, for example, getUCASApplicantActivity using current password, which is shown in the passwordMap parameter in the Crosswalks pane. </div>
+
+    <div class="tasklabel"><h2 class="sectiontitle tasklabel">Procedure</h2></div><ol class="ol steps"><li class="li step stepexpand">
+        <span class="ph cmd">In the Integration Packages page, click <span class="ph uicontrol">UCAS XML LINK</span>.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">In the <span class="keyword wintitle">List of Crosswalks</span> pane, select the <kbd class="ph userinput">ucas (vo.0.57)</kbd> option.</span>
+        <div class="itemgroup info">The password that you see in the passwordMap parameter in the Crosswalks pane is used as the current password for the UCAS end points to fetch data from HEP1/HEP2 link.</div>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">To reset password, under the UCAS XML LINK packages list, select the <kbd class="ph userinput">Xml-link UCAS Password SET</kbd> option and click <span class="ph uicontrol">New Job</span>.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">In the <span class="keyword wintitle">Edit Job</span> page, enter the job name in the <span class="keyword wintitle">Basic Details</span> section.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Enter a new password and confirm your password in the <span class="keyword wintitle">Job Parameters</span> section for which you want to reset the password.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">From the <span class="ph uicontrol">ERP</span> drop-down list, select <kbd class="ph userinput">Banner</kbd> or <kbd class="ph userinput">Quercus</kbd>.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Click <span class="ph uicontrol">Run Now</span> in the <span class="keyword wintitle">Job Run Details</span> section.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Select <span class="ph uicontrol">Max Concurrency</span> as <kbd class="ph userinput">1</kbd> and maximum available value for HTTP Request Timeout in the <span class="keyword wintitle">Advanced Options</span> section.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Select <kbd class="ph userinput">Enable Diagnostic Log</kbd>, if you require a log.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Click <span class="ph uicontrol">SAVE</span>.</span>
+        <div class="itemgroup stepresult">After the job run is successfully complete, view the status as Succeeded.<div class="p">Note the following:<ul class="ul">
+          <li class="li">This password change pipeline updates the password for the HEP1/HEP2 UCAS link after the pipeline runs successfully. </li>
+
+          <li class="li">You can test the new password by opening any UCAS end point, for example, getUCASApplicantActivity in your browser using the new password. You can view the data for the end point. </li>
+
+          </ul>
+</div>
+<div class="p">Possible error messages that you may encounter when running the Xml-link UCAS Password SET pipeline.<ul class="ul">
+          <li class="li">After resetting the new password and when you try to access the endpoints data with the old password using the browser/ERP, the system will not display the end point data and will display the <samp class="ph msgph">(HEI0007) Incorrect userId/password</samp> error message.</li>
+
+          <li class="li">When the New Password and Confirm New Password does not match,  the job terminates with a failure status and displays the <samp class="ph msgph">(HEI0014) Your confirmation password is different to your password</samp> error message in the View Errors section.</li>
+
+          <li class="li">When you use an password that is not valid and which does not confirm to password standards to update the New Password and Confirm New Password fields, the job terminates with a failure status and displays the <samp class="ph msgph">(HEI0017) Your password must consist of mixed case letters and numbers with no consecutive characters</samp> message in the View Errors section.</li>
+
+          </ul>
+</div>
+</div>
+      </li>
+</ol>
+
+  </div>
+
+</div></div></section>
+<section id="t-2820"><h3>Download MCDS data from UCAS LINK</h3><div class="content-locale-en-US content-locale-en"><div id="c_download_mcds_data_ucas"><div class="body conbody"><p class="shortdesc">Process to download Modernised Contextual Data Service (MCDS) Data using two sequential pipelines: UCAS MCDS pipeline 1 (UCAS MCDS pipeline 1 (4.0.0) version) and UCAS MCDS pipeline 2 (UCAS MCDS pipeline 2 (4.0.0) version). This pipeline version corresponds to UCAS version 8.30.1/9.3.41.1.</p>
+
+    <div class="note important"><span class="importanttitle">Important:</span> Request UCAS for clientId and clientSecret values/credentials and other pipeline parameters remain similar to pipeline 3.0.0. </div>
+
+    <div class="section"><h2 class="title sectiontitle">UCAS MCDS pipeline 3.0.0</h2>
+      
+      <p class="p">The following are the Pipeline parameters that are used for MCDS data download in the UCAS 8.29/9.3.40 versions that corresponds to UCAS MCDS pipeline 1 3.0.0 version) and UCAS MCDS pipeline 2 (UCAS MCDS pipeline 2 3.0.0 version:</p>
+
+      <div class="note"><span class="notetitle">Note:</span> The Multi-institution option is enabled for MCDS pipeline.</div>
+
+      <div class="p">
+        <ul class="ul">
+          <li class="li">Client Id</li>
+
+          <li class="li">Client Secret</li>
+
+          <li class="li">Client Id2</li>
+
+          <li class="li">Client Secret2</li>
+
+        </ul>
+
+      </div>
+
+    </div>
+
+    <div class="section">
+      <div class="p">The following are the crosswalk parameters that are used for MCDS data download that corresponds to UCAS MCDS pipeline 1 3.0.0 version) and UCAS MCDS pipeline 2 (UCAS MCDS pipeline 2 3.0.0 version:<ul class="ul">
+        <li class="li">institutionCodeMap</li>
+
+        <li class="li">institutionCodeMap2</li>
+
+        <li class="li">ucasLinkAuthenticationMap</li>
+
+        <li class="li">ucasLinkPerformDownloadQueryUrlMap</li>
+
+        </ul>
+</div>
+
+    </div>
+
+    <div class="section"><h2 class="title sectiontitle">UCAS MCDS pipeline 2.0.0</h2>
+      
+    </div>
+
+    <div class="section">
+      <div class="p">The following are the crosswalk parameters that are used for MCDS data download in the UCAS 8.28/9.3.39 versions that corresponds to UCAS MCDS pipeline 1 2.0.0 version) and UCAS MCDS pipeline 2 (UCAS MCDS pipeline 2 2.0.0 version:<ul class="ul">
+        <li class="li">clientIdMap</li>
+
+        <li class="li">clientSecretMap</li>
+
+        <li class="li">institutionCodeMap</li>
+
+        <li class="li">ucasLinkAuthenticationMap</li>
+
+        <li class="li">ucasLinkPerformDownloadQueryUrlMap</li>
+
+        </ul>
+</div>
+
+      <p class="p">To know more about the crosswalk parameters, refer to <cite class="cite">Create Crosswalks</cite> section. Also, refer to the <cite class="cite">MCDS Screen shot Reference Document</cite> available along with the .zip file attachment to know more information about the MCDS download process along with the screen shots.</p>
+
+    </div>
+
+  </div>
+
+</div></div></section>
+<section id="t-2830"><h4>Create job parameters for MCDS pipelines</h4><div class="content-locale-en-US content-locale-en"><div id="t_create_job_parameters_mcds_pipelines"><div class="body taskbody"><p class="shortdesc">Process to create job parameters for MCDS pipelines. </p>
+
+    <div class="section context"><div class="tasklabel"><h2 class="sectiontitle tasklabel">About this task</h2></div> This procedure is only for SaaS customers who use Data Connect.</div>
+
+    <div class="tasklabel"><h2 class="sectiontitle tasklabel">Procedure</h2></div><ol class="ol steps"><li class="li step stepexpand">
+        <span class="ph cmd">Access Ethos Experience and log in with the credentials of the tenant where you've configured the UCAS.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Select <span class="ph uicontrol">UCAS XML LINK</span> from <span class="keyword wintitle">Integration Packages</span>, select the <span class="ph uicontrol">UCAS MCDS pipeline 1</span> or <span class="ph uicontrol">UCAS MCDS pipeline 2</span> for which you need to run the job.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Click <span class="ph uicontrol">New Job</span> and enter the parameter details as required for the job run.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">If you want to schedule a job, update the <span class="keyword wintitle">Job Run Details</span> section. </span>
+        <div class="itemgroup stepresult">This runs the same job with the same set of parameters based on a time schedule chosen while creating the job.</div>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Enter the following pipeline parameters:</span>
+        <ol type="a" class="ol substeps">
+          <li class="li substep">
+            <span class="ph cmd">Ethos Api Key for the Proxy App</span>
+          </li>
+
+          <li class="li substep">
+            <span class="ph cmd">Client Id</span>
+          </li>
+
+          <li class="li substep">
+            <span class="ph cmd">Client Secret</span>
+          </li>
+
+          <li class="li substep">
+            <span class="ph cmd">Client Id2</span>
+          </li>
+
+          <li class="li substep">
+            <span class="ph cmd">Client Secret2</span>
+          </li>
+
+        </ol>
+
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Enter the following job parameters: </span>
+        
+<table border="1" frame="hsides" rules="rows" cellpadding="4" cellspacing="0" summary="" class="simpletable choicetable choicetableborder">
+<colgroup><col style="width:38.75968992248062%"><col style="width:61.240310077519375%"></colgroup><thead><tr class="sthead chhead"><th class="stentry choptionhd" style="vertical-align:bottom;text-align:left;" id="d21715e132-option">Job Parameter</th>
+<th class="stentry chdeschd" style="vertical-align:bottom;text-align:left;" id="d21715e132-desc">Description</th></tr></thead>
+<tbody><tr class="strow chrow">
+            <th style="vertical-align:top;" headers="d21715e132-option" id="d21715e145" class="stentry choption">Since Date</th>
+
+            <td style="vertical-align:top;" headers="d21715e132-desc d21715e145" class="stentry chdesc">The date as of when the records have to be fetched for the corresponding UCAS GET endpoint.</td>
+
+          </tr>
+<tr class="strow chrow">
+            <th style="vertical-align:top;" headers="d21715e132-option" id="d21715e154" class="stentry choption">Cycle Code</th>
+
+            <td style="vertical-align:top;" headers="d21715e132-desc d21715e154" class="stentry chdesc">Cycle year code.</td>
+
+          </tr>
+<tr class="strow chrow">
+            <th style="vertical-align:top;" headers="d21715e132-option" id="d21715e163" class="stentry choption">ERP</th>
+
+            <td style="vertical-align:top;" headers="d21715e132-desc d21715e163" class="stentry chdesc">As these pipelines are running for Banner, this is defaulted to Banner.</td>
+
+          </tr>
+<tr class="strow chrow">
+            <th style="vertical-align:top;" headers="d21715e132-option" id="d21715e172" class="stentry choption">External Id</th>
+
+            <td style="vertical-align:top;" headers="d21715e132-desc d21715e172" class="stentry chdesc">Can be any value, for example, MCDS_001</td>
+
+          </tr>
+<tr class="strow chrow">
+            <th style="vertical-align:top;" headers="d21715e132-option" id="d21715e182" class="stentry choption">Requesting System Id</th>
+
+            <td style="vertical-align:top;" headers="d21715e132-desc d21715e182" class="stentry chdesc">Can be any value, for example, MCDS_Banner</td>
+
+          </tr>
+<tr class="strow chrow">
+            <th style="vertical-align:top;" headers="d21715e132-option" id="d21715e191" class="stentry choption">Action Type</th>
+
+            <td style="vertical-align:top;" headers="d21715e132-desc d21715e191" class="stentry chdesc">201</td>
+
+          </tr>
+</tbody></table>
+
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Click <span class="ph uicontrol">Save</span>.</span>
+        <div class="itemgroup info"><span class="keyword">Ellucian</span> recommends that you note the following information.<ul class="ul">
+          <li class="li">Ethos Api Key, Client Id, Client Secret, Client Id2, and Client Secret2 are the persistent parameters in the pipeline. </li>
+
+          <li class="li">Date picker is available for Since Date Job Parameters while creating new job for MCDS pipelines.</li>
+
+          <li class="li">Maximum Concurrency value is set to 1 in the Advanced options, while creating new job for MCDS pipelines. Ensure that the <span class="keyword wintitle">Maximum Concurrency</span> slide bar under the <span class="keyword wintitle">Advanced Options </span>section remains as the default value for all pipelines.</li>
+
+          </ul>
+</div>
+      </li>
+</ol>
+
+  </div>
+
+</div></div></section>
+<section id="t-2840"><h4>Run MCDS pipelines</h4><div class="content-locale-en-US content-locale-en"><div id="t_run_mcds_pipelines"><div class="body taskbody"><p class="shortdesc">Run and schedule MCDS pipelines.</p>
+
+    <div class="tasklabel"><h2 class="sectiontitle tasklabel">Procedure</h2></div><ol class="ol steps"><li class="li step stepexpand">
+        <span class="ph cmd">Run <span class="ph uicontrol">UCAS MCDS pipeline 1</span>.</span>
+        <div class="itemgroup stepresult">After you successfully complete the run, an UCAS MCDS pipeline 2<span class="ph filepath">RUN.txt</span> file is generated upon successful completion as output.</div>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Read the UCAS MCDS pipeline 2 RUN.txt File </span>
+        <div class="itemgroup info">The file specifies the time difference (that is, Run UCAS MCDS pipeline 2 after, 3 minutes, 59 seconds) after which you must run the UCAS MCDS pipeline 2.</div>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Wait for the specified duration.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Run UCAS MCDS pipeline 2.</span>
+        <div class="itemgroup info">Upon successful completion, the MCDS data is downloaded to the ERP.  If this is the first run of the job: The data from the specified <code class="ph codeph">Since Date</code> parameter is downloaded.  For subsequent runs, the data from the <code class="ph codeph">Last Successful Run Created Date</code> parameter is downloaded.</div>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Repeat the steps whenever new or updated data needs to be downloaded.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">If UCAS MCDS pipeline 1 fails, resolve according to the following example error messages:</span>
+        <ol type="a" class="ol substeps">
+          <li class="li substep">
+            <span class="ph cmd"><samp class="ph msgph">Invalid credentials error</samp>: Correct the credentials and rerun the pipeline.</span>
+          </li>
+
+          <li class="li substep">
+            <span class="ph cmd"><samp class="ph msgph">UCAS server down error</samp>: Ensure the servers are up and operational before rerunning the pipeline.</span>
+          </li>
+
+        </ol>
+
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">If UCAS MCDS pipeline 2 fails, resolve according to the following example error messages:</span>
+        <ol type="a" class="ol substeps">
+          <li class="li substep">
+            <span class="ph cmd"><samp class="ph msgph">Invalid credentials error</samp>: Correct the credentials and rerun the pipeline.</span>
+          </li>
+
+          <li class="li substep">
+            <span class="ph cmd"><samp class="ph msgph">UCAS server down error</samp>: Ensure the servers are up and operational before rerunning the pipeline.</span>
+          </li>
+
+          <li class="li substep">
+            <span class="ph cmd"><code class="ph codeph">No Download Query Result present in ERP for processing Step 3: Monitoring Point Request &amp; Response</code>:  This occurs when attempted to run the pipeline before the specified time duration, retry after the specified duration.</span>
+          </li>
+
+          <li class="li substep">
+            <span class="ph cmd"><code class="ph codeph">No Monitoring Point Result present in ERP for processing Step 4: Query Results Summary Request &amp; Response / No Summary Result present in ERP for processing Step 5: Download Query Detail Response / Any other unresolved error</code>: Create new job for UCAS MCDS pipeline 1 with Since Date equal to last successful run created date of UCAS MCDS pipeline 1 and follow the process flow.</span>
+          </li>
+
+        </ol>
+
+      </li>
+</ol>
+
+  </div>
+
+</div></div></section>
+<section id="t-2850"><h4>Schedule MCDS pipelines</h4><div class="content-locale-en-US content-locale-en"><div id="c_schedule_mcds_pipelines"><div class="body conbody"><p class="shortdesc">Lists the scheduling MCDS pipeline process.</p>
+
+    <div class="section"><h2 class="title sectiontitle">Pipeline 1 Scheduling</h2>
+      
+      <ul class="ul">
+        <li class="li">Schedule Pipeline 1 to run at the required interval (for example, every 12 hours).</li>
+
+        <li class="li">Ensure that the Pipeline 1 is the first pipeline to execute in the sequence.</li>
+
+      </ul>
+
+    </div>
+
+    <div class="section"><h2 class="title sectiontitle">Pipeline 2 Scheduling</h2>
+      
+      <ul class="ul">
+        <li class="li">After the first successful run of Pipeline 1, schedule Pipeline 2 to run at the same interval as Pipeline 1 (for example, every 12 hours).</li>
+
+        <li class="li">Ensure that the timing of Pipeline 2 execution aligns with the completion of Pipeline 1 and specified duration.</li>
+
+      </ul>
+
+    </div>
+
+    <div class="section"><h2 class="title sectiontitle">Failure Handling</h2>
+      
+      <div class="p">If Pipeline 1 succeeds but Pipeline 2 fails:<ul class="ul">
+        <li class="li">Create a new scheduled job for both Pipeline 1 and Pipeline 2.</li>
+
+        <li class="li">Set the Since Date parameter for the new Pipeline 1 job to match the last successfully run creation date of Pipeline 1 to ensure data consistency.</li>
+
+        </ul>
+</div>
+
+      <p class="p">You can see the summary of the data download in UcasTransactionsDetails Experience Card with Input: JobRunId of the UCAS MCDS pipeline 1 successful completed Job.</p>
+
+      <p class="p">If the summary of the data download  are not available for successful completed Job, look for the <span class="ph filepath">File COUNT ZERO FROM UCAS.txt</span> with the text No records to process : count is 0 from UCAS. This indicates that there are no updates or new data from UCAS since the last successful run/since date.</p>
+
+      <p class="p">You can review the MCDS data per applicant in the SKAUMAD page, under the MODERNISED CONTEXUAL DATA DETAILS section.</p>
+
+    </div>
+
+  </div>
+
+</div></div></section>
+<section id="t-2860"><h3>Download Personal Statement data from UCAS LINK</h3><div class="content-locale-en-US content-locale-en"><div id="c_download_personal_statement_data"><div class="body conbody"><p class="shortdesc">Process to download Personal Statement data using the sequential pipelines: UCAS Personal Statement pipeline 1 (3.0.0 version) and UCAS Personal Statement pipeline 2 (4.0.0 version). This pipeline version corresponds to UCAS version 8.30.1/9.3.41.1.</p>
+
+    <div class="note important"><span class="importanttitle">Important:</span> Request UCAS for clientId and clientSecret values/credentials and other pipeline parameters remain similar to pipeline 3.0.0.</div>
+
+    <div class="section"><h2 class="title sectiontitle">Personal Statement pipeline 2.0.0</h2>
+      
+      <p class="p">The following are the Pipeline parameters that are used for Personal Statement data download in the UCAS 8.29/9.3.40 versions that corresponds to UCAS Personal Statement pipeline 1 2.0.0 version) and UCAS Personal Statement pipeline 2 (UCAS Personal Statement pipeline 2 2.0.0 version:</p>
+
+      <div class="note"><span class="notetitle">Note:</span> The Multi-institution option is enabled for Personal Statement pipeline.</div>
+
+      <div class="p">
+        <ul class="ul">
+          <li class="li">Client Id</li>
+
+          <li class="li">Client Secret</li>
+
+          <li class="li">Client Id2</li>
+
+          <li class="li">Client Secret2</li>
+
+        </ul>
+
+      </div>
+
+      <div class="p">The following are the crosswalk parameters that are used for Personal Statement data download that corresponds to (UCAS Personal Statement pipeline 1 2.0.0 version) and UCAS Personal Statement pipeline 2 (UCAS Personal Statement pipeline 2 2.0.0 version:<ul class="ul">
+        <li class="li">institutionCodeMap</li>
+
+        <li class="li">institutionCodeMap2</li>
+
+        <li class="li">ucasLinkAuthenticationMap</li>
+
+        <li class="li">ucasLinkPerformDownloadQueryUrlMap</li>
+
+        </ul>
+</div>
+
+    </div>
+
+    <div class="section"><h2 class="title sectiontitle">Personal Statement pipeline 1.0.0</h2>
+      
+      <p class="p">The following are the crosswalk parameters that are used for Personal Statement data download in the UCAS 8.28/9.3.39 versions that corresponds to UCAS Personal Statement pipeline 1 1.0.0 version) and UCAS Personal Statement pipeline 2 (UCAS Personal Statement pipeline 2 1.0.0 version:</p>
+
+      <div class="p">
+        <ul class="ul">
+          <li class="li">institutionCodeMap</li>
+
+          <li class="li">ucasLinkAuthenticationMap</li>
+
+          <li class="li">clientIdMap</li>
+
+          <li class="li">clientSecretMap</li>
+
+          <li class="li">ucasLinkPerformDownloadQueryUrlMap</li>
+
+        </ul>
+
+      </div>
+
+      <p class="p">To know more about the crosswalk parameters, refer to <span class="xref ft-internal-link" title="For Ethos Data connect customers, create a new crosswalk." data-ft-warning="excluded-from-rendering" data-mapid="L2CnCak1gnQbTCuesPpSaw" data-tocid="WPd7Z3FYQF67o2ZsmMQCWQ">Create Crosswalks</span> section. Also, refer to the <cite class="cite">Personal Statement data Screenshot Reference Document</cite> available along with the .zip file attachment to know more information about the Personal Statement data download process along with the screen shots.</p>
+
+    </div>
+
+  </div>
+
+</div></div></section>
+<section id="t-2870"><h4>Create job parameters for Personal Statement pipelines</h4><div class="content-locale-en-US content-locale-en"><div id="t_create_personal_statement_data_pipeline"><div class="body taskbody"><p class="shortdesc">Process to create job parameters for the Personal Statement pipelines. </p>
+
+    <div class="section context"><div class="tasklabel"><h2 class="sectiontitle tasklabel">About this task</h2></div> This procedure is only for SaaS customers who use Data Connect.</div>
+
+    <div class="tasklabel"><h2 class="sectiontitle tasklabel">Procedure</h2></div><ol class="ol steps"><li class="li step stepexpand">
+        <span class="ph cmd">Access Ethos Experience and log in with the credentials of the tenant where you've configured the UCAS.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Select <span class="ph uicontrol">UCAS XML LINK</span> from <span class="keyword wintitle">Integration Packages</span>, select the <span class="ph uicontrol">UCAS Personal Statement pipeline 1</span> or <span class="ph uicontrol">UCAS Personal Statement pipeline 2</span> for which you need to run the job.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Click <span class="ph uicontrol">New Job</span> and enter the parameter details as required for the job run.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">If you want to schedule a job, update the <span class="keyword wintitle">Job Run Details</span> section. </span>
+        <div class="itemgroup stepresult">This runs the same job with the same set of parameters based on a time schedule chosen while creating the job.</div>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Enter the following pipeline parameters:</span>
+        <ol type="a" class="ol substeps">
+          <li class="li substep">
+            <span class="ph cmd">Ethos Api Key for the Proxy App</span>
+          </li>
+
+          <li class="li substep">
+            <span class="ph cmd">Client Id</span>
+          </li>
+
+          <li class="li substep">
+            <span class="ph cmd">Client Secret</span>
+          </li>
+
+          <li class="li substep">
+            <span class="ph cmd">Client Id2</span>
+          </li>
+
+          <li class="li substep">
+            <span class="ph cmd">Client Secret2</span>
+          </li>
+
+        </ol>
+
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Enter the following job parameters:</span>
+        
+<table border="1" frame="hsides" rules="rows" cellpadding="4" cellspacing="0" summary="" class="simpletable choicetable choicetableborder">
+<colgroup><col style="width:38.75968992248062%"><col style="width:61.240310077519375%"></colgroup><thead><tr class="sthead chhead"><th class="stentry choptionhd" style="vertical-align:bottom;text-align:left;" id="d20857e132-option">Job Parameter</th>
+<th class="stentry chdeschd" style="vertical-align:bottom;text-align:left;" id="d20857e132-desc">Description</th></tr></thead>
+<tbody><tr class="strow chrow">
+            <th style="vertical-align:top;" headers="d20857e132-option" id="d20857e145" class="stentry choption">Since Date</th>
+
+            <td style="vertical-align:top;" headers="d20857e132-desc d20857e145" class="stentry chdesc">The date as of when the records have to be fetched for the corresponding UCAS GET endpoint.</td>
+
+          </tr>
+<tr class="strow chrow">
+            <th style="vertical-align:top;" headers="d20857e132-option" id="d20857e154" class="stentry choption">Cycle Code</th>
+
+            <td style="vertical-align:top;" headers="d20857e132-desc d20857e154" class="stentry chdesc">Cycle year code.</td>
+
+          </tr>
+<tr class="strow chrow">
+            <th style="vertical-align:top;" headers="d20857e132-option" id="d20857e163" class="stentry choption">ERP</th>
+
+            <td style="vertical-align:top;" headers="d20857e132-desc d20857e163" class="stentry chdesc">As these pipelines are running for Banner, this is defaulted to Banner.</td>
+
+          </tr>
+<tr class="strow chrow">
+            <th style="vertical-align:top;" headers="d20857e132-option" id="d20857e172" class="stentry choption">External Id</th>
+
+            <td style="vertical-align:top;" headers="d20857e132-desc d20857e172" class="stentry chdesc">Can be any value, for example, PS_001</td>
+
+          </tr>
+<tr class="strow chrow">
+            <th style="vertical-align:top;" headers="d20857e132-option" id="d20857e182" class="stentry choption">Requesting System Id</th>
+
+            <td style="vertical-align:top;" headers="d20857e132-desc d20857e182" class="stentry chdesc">Can be any value, for example, PS_Banner</td>
+
+          </tr>
+<tr class="strow chrow">
+            <th style="vertical-align:top;" headers="d20857e132-option" id="d20857e191" class="stentry choption">Action Type</th>
+
+            <td style="vertical-align:top;" headers="d20857e132-desc d20857e191" class="stentry chdesc">220</td>
+
+          </tr>
+<tr class="strow chrow">
+            <th style="vertical-align:top;" headers="d20857e132-option" id="d20857e200" class="stentry choption">Personal Id</th>
+
+            <td style="vertical-align:top;" headers="d20857e132-desc d20857e200" class="stentry chdesc">
+              <ul class="ul">
+                <li class="li">Personal Id for the data that you want to download. </li>
+
+                <li class="li">Can be null. </li>
+
+                <li class="li">If you enter the Personal Id , you must also enter the ApplicationSchemeCode value, if the Personal Statement data is required for only for the specific PID.</li>
+
+                <li class="li">If you do not enter a personal ID, the system fetches the data for all PIDs for that cycle code and since date.</li>
+
+              </ul>
+
+            </td>
+
+          </tr>
+<tr class="strow chrow">
+            <th style="vertical-align:top;" headers="d20857e132-option" id="d20857e224" class="stentry choption">Application Scheme Code</th>
+
+            <td style="vertical-align:top;" headers="d20857e132-desc d20857e224" class="stentry chdesc">Application Scheme Code corresponding to Personal Id. Can be null.</td>
+
+          </tr>
+</tbody></table>
+
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Click <span class="ph uicontrol">Save</span>.</span>
+        <div class="itemgroup info"><span class="keyword">Ellucian</span> recommends that you note the following information.<ul class="ul">
+          <li class="li">Ethos Api Key, Client Id, Client Secret, Client Id2, and Client Secret2 are the persistent parameters in the pipeline. </li>
+
+          <li class="li">Date picker is available for Since Date Job Parameters while creating new job for Personal Statement data pipelines.</li>
+
+          <li class="li">Maximum Concurrency value is set to 1 in the Advanced options, while creating new job for Personal Statement data pipelines.  Ensure that the <span class="keyword wintitle">Maximum Concurrency</span> slide bar under the <span class="keyword wintitle">Advanced Options </span>section remains as the default value for all pipelines.</li>
+
+          </ul>
+</div>
+      </li>
+</ol>
+
+  </div>
+
+</div></div></section>
+<section id="t-2880"><h4>Run Personal Statement pipelines</h4><div class="content-locale-en-US content-locale-en"><div id="t_run_personal_statement_pipelines"><div class="body taskbody"><p class="shortdesc">Run Personal Statement pipelines.</p>
+
+    <div class="tasklabel"><h2 class="sectiontitle tasklabel">Procedure</h2></div><ol class="ol steps"><li class="li step stepexpand">
+        <span class="ph cmd">Run <span class="ph uicontrol">UCAS Personal Statement pipeline 1</span>.</span>
+        <div class="itemgroup stepresult">After you successfully complete the run, an UCAS Personal Statement pipeline 2 <span class="ph filepath">RUN.txt</span> file is generated upon successful completion as output.  <ul class="ul">
+          <li class="li">Data is fetched for all PIDs for that cycle code and since date,if no value is provided for run time parameters Personal ID and Application Scheme Code.</li>
+
+          <li class="li">Data is fetched for the Personal ID and Application Schema Code that you enter.  When the job runs by providing values for the  Personal ID and Application Scheme Code run time parameters, the system does not consider Since Date and Last Successful Run Date.</li>
+
+          <li class="li">If a Personal Id is provided, the Application Scheme Code must also be entered to retrieve the Personal Statement data,  specifically for that entered PID. If you do not enter either the Personal ID or the Application Scheme Code, data is fetched for all PIDs for that cycle code and since date.</li>
+
+          </ul>
+</div>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Read the UCAS Personal Statement pipeline 2 <span class="ph filepath">RUN.txt</span> file </span>
+        <div class="itemgroup info">The file specifies the time difference (that is, Run UCAS Personal Statement pipeline 2 after, 3 minutes, 59 seconds) after which you must run the UCAS Personal Statement pipeline 2.</div>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Wait for the specified duration.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Run UCAS Personal Statement pipeline 2.</span>
+        <div class="itemgroup info">Upon successful completion, the Personal Statement data is downloaded to the ERP. If this is the first run of the job: The data from the specified <code class="ph codeph">Since Date</code> parameter is downloaded. For subsequent runs, the data from the <code class="ph codeph">Last Successful Run Created Date</code> parameter is downloaded.</div>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Repeat the steps whenever new or updated data needs to be downloaded.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">If UCAS Personal Statement pipeline 1 fails, resolve according to the following example error messages:</span>
+        <ol type="a" class="ol substeps">
+          <li class="li substep">
+            <span class="ph cmd"><samp class="ph msgph">Invalid credentials error</samp>: Correct the credentials and rerun the pipeline.</span>
+          </li>
+
+          <li class="li substep">
+            <span class="ph cmd"><samp class="ph msgph">UCAS server down error</samp>: Ensure the servers are up and operational before rerunning the pipeline.</span>
+          </li>
+
+        </ol>
+
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">If UCAS Personal Statement pipeline 2 fails, resolve according to the following example error messages:</span>
+        <ol type="a" class="ol substeps">
+          <li class="li substep">
+            <span class="ph cmd"><samp class="ph msgph">Invalid credentials error</samp>: Correct the credentials and rerun the pipeline.</span>
+          </li>
+
+          <li class="li substep">
+            <span class="ph cmd"><samp class="ph msgph">UCAS server down error</samp>: Ensure the servers are up and operational before rerunning the pipeline.</span>
+          </li>
+
+          <li class="li substep">
+            <span class="ph cmd"><code class="ph codeph">No Download Query Result present in ERP for processing Step 3: Monitoring Point Request &amp; Response</code>: This occurs when attempting to run the pipeline before the specified duration, retry after the specified duration.</span>
+          </li>
+
+          <li class="li substep">
+            <span class="ph cmd"><code class="ph codeph">No Monitoring Point Result present in ERP for processing Step 4: Query Results Summary Request &amp; Response / No Summary Result present in ERP for processing Step 5: Download Query Detail Response / Any other unresolved error</code>: Create new job for UCAS Personal Statement pipeline 1 with Since Date equal to last successful run created date of UCAS Personal Statement pipeline 1 and follow the process flow.</span>
+          </li>
+
+        </ol>
+
+      </li>
+</ol>
+
+  </div>
+
+</div></div></section>
+<section id="t-2890"><h4>Schedule Personal Statement pipelines</h4><div class="content-locale-en-US content-locale-en"><div id="c_schedule_personal_statement_pipelines"><div class="body conbody"><p class="shortdesc">Lists the scheduling of the Personal Statement pipeline process.</p>
+
+    <div class="section"><h2 class="title sectiontitle">Pipeline 1 Scheduling</h2>
+      
+      <ul class="ul">
+        <li class="li">Schedule Pipeline 1 to run at the required interval (for example, every 12 hours).</li>
+
+        <li class="li">Ensure that the Pipeline 1 is the first pipeline to execute in the sequence.</li>
+
+      </ul>
+
+    </div>
+
+    <div class="section"><h2 class="title sectiontitle">Pipeline 2 Scheduling</h2>
+      
+      <ul class="ul">
+        <li class="li">After the first successful run of Pipeline 1, schedule Pipeline 2 to run at the same interval as Pipeline 1 (for example, every 12 hours).</li>
+
+        <li class="li">Ensure that the timing of Pipeline 2 execution aligns with the completion of Pipeline 1 and specified duration.</li>
+
+      </ul>
+
+    </div>
+
+    <div class="section"><h2 class="title sectiontitle">Failure Handling</h2>
+      
+      <div class="p">If Pipeline 1 succeeds but Pipeline 2 fails:<ul class="ul">
+        <li class="li">Create a new scheduled job for both Pipeline 1 and Pipeline 2.</li>
+
+        <li class="li">Set the Since Date parameter for the new Pipeline 1 job to match the last successfully run creation date of Pipeline 1 to ensure data consistency.</li>
+
+        </ul>
+</div>
+
+      <p class="p">You can see the summary of the data download in UcasTransactionsDetails Experience Card with Input: JobRunId of the UCAS Personal Statement pipeline 1 successful completed Job.</p>
+
+      <p class="p">If applicant details data in the SKASAIN page is not available for the Personal ID, for example, example PID: 4003217240, then, the <samp class="ph msgph">PID with the Personal Id 4003217240 not found in SKASAIN</samp> error message gets inserted into the SARSDUS table.  You can view the message in the UCAS TRANSACTION DETAILS Experience page. After you download applicant details data, again run the Personal Statement pipeline to get the updated data on the SKAUAST page.</p>
+
+      <p class="p">If the summary of the data download is not available for successful completed Job, look for the <span class="ph filepath">File COUNT ZERO FROM UCAS.txt</span> with the text No records to process: count is 0 from UCAS. This indicates that there are no updates or new data from UCAS since the last successful run/since date.</p>
+
+      <p class="p">You can review the Personal Statement data per applicant on the SKAUAST page.</p>
+
+    </div>
+
+  </div>
+
+</div></div></section>
+<section id="t-2900"><h4>SOPPSMT Java Process</h4><div class="content-locale-en-US content-locale-en"><div id="c_soppsmt_java_process"><div class="body conbody"><p class="shortdesc">To resolve Personal Statement processing failures involving high‑volume datasets, a new Java process has been introduced as a workaround.</p>
+
+    <p class="p">The new process accepts Personal Statement data as file input and performs the necessary updates.</p>
+
+    <div class="note"><span class="notetitle">Note:</span> 
+      <ul class="ul">
+        <li class="li">The new DC pipeline UCAS Interim Personal Statement Pipeline 2 (version 1.0.0) generates a text file with personal statement data. </li>
+
+        <li class="li">File name is based on the Job Run ID. File contains Personal Statement data.</li>
+
+        <li class="li">Transfer this text file to Oracle directory before you run the java process SOPPSMT.</li>
+
+        <li class="li">As per the prior procedure, run the DC pipeline UCAS Interim Personal Statement Pipeline 2 (v1.0.0) following the completion of UCAS Personal Statement Pipeline 1.</li>
+
+      </ul>
+
+    </div>
+
+    <p class="p">The Java process requires the following input parameters:</p>
+
+    <ol class="ol">
+      <li class="li">Oracle Directory Name:<p class="p">Oracle directory where the input file is stored and must be pre-configured and accessible by the process.</p>
+</li>
+
+      <li class="li">File Name:<p class="p">Name of the input file containing Personal Statement data, and it must include the .txt extension.</p>
+<p class="p">Example: 69ce2d5f80082cbf8a746e9d.txt</p>
+</li>
+
+      <li class="li">Run Mode:<p class="p">Defines how the process behaves.</p>
+<ul class="ul">
+        <li class="li">Audit mode – validates and reports data without making updates</li>
+
+        <li class="li">Update mode – applies Personal Statement changes to the system</li>
+
+        </ul>
+</li>
+
+    </ol>
+
+  </div>
+
+</div></div></section>
+<section id="t-2910"><h3>UCAS Transaction Details page</h3><div class="content-locale-en-US content-locale-en"><div id="c_ucas_transcation_details_page"><div class="body conbody"><p class="shortdesc">The <span class="keyword">Banner</span> <span class="keyword">UCAS</span> Transaction Details Summary page displays <span class="keyword">UCAS</span> upload and download data. </p>
+
+    <p class="p">The new <span class="keyword">Experience</span> Card consumes the <span class="ph uicontrol">JOBID</span> field value of the UCASXMLLINK pipeline as the input. Subsequently, the system fetches the new <span class="keyword">Experience</span> page to display the <span class="keyword">UCAS</span> transactions details.</p>
+
+    <p class="p">To know more information about the <span class="keyword">UCAS</span> Transaction Details page display data and how to configure the page, refer to the <span class="ph filepath">Banner_UCAS_Transaction_Details_Page_v1.0.9.docx</span> document available in the attachments.</p>
+
+  </div>
+
+</div></div></section>
+<section id="t-2920"><h3>Document Data download from UCAS LINK</h3><div class="content-locale-en-US content-locale-en"><div id="r_document_data_download_from_ucas_link"><div class="body refbody"><p class="shortdesc">To access applicant documents, pipelines must be run to request them from UCAS and download them into Ellucian storage. When available, these documents can be viewed and individually downloaded from the SKAUDEC page or through the Application Review Center (ARC) Faculty Self-Service.</p>
+
+    <div class="section">
+      <div class="note"><span class="notetitle">Note:</span> Document Management functionality is not available in this release. While related UI elements and entry points may be visible within SKAUDEC and ARC, the associated features are not yet active. Full Document Management support is planned for a future release.</div>
+
+      <p class="p">This pipeline version corresponds to UCAS version 8.31/9.3.42.</p>
+
+      <div class="note"><span class="notetitle">Note:</span> Request UCAS for clientId and clientSecret values/credentials.</div>
+
+    </div>
+
+    <div class="section"><h2 class="title sectiontitle">DM Credentials Update Pipeline (1.0.0 version)</h2>
+      
+      <p class="p">Updates the UCAS OAuth credentials (Client ID and Client Secret) used by the Document Management integration. Run this pipeline whenever UCAS credentials are rotated or first configured for a tenant.</p>
+
+      
+<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" class="table" frame="hsides" border="1" rules="rows"><colgroup><col style="width:16.286644951140065%"><col style="width:41.85667752442997%"><col style="width:41.85667752442997%"></colgroup><thead class="thead" style="text-align:left;vertical-align:bottom;">
+            <tr class="row">
+              <th class="entry row-nocellborder" style="vertical-align:bottom;" id="d51310e75">Pipeline Parameter</th>
+
+              <th class="entry row-nocellborder" style="vertical-align:bottom;" id="d51310e78">Required</th>
+
+              <th class="entry row-nocellborder" style="vertical-align:bottom;" id="d51310e81">Description</th>
+
+            </tr>
+
+          </thead>
+<tbody class="tbody">
+            <tr class="row">
+              <td class="entry row-nocellborder" style="vertical-align:top;" headers="d51310e75 ">clientId</td>
+
+              <td class="entry row-nocellborder" style="vertical-align:top;" headers="d51310e78 ">Yes</td>
+
+              <td class="entry row-nocellborder" style="vertical-align:top;" headers="d51310e81 ">UCAS OAuth Client ID (sensitive, persisted)</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry row-nocellborder" style="vertical-align:top;" headers="d51310e75 ">clientSecret</td>
+
+              <td class="entry row-nocellborder" style="vertical-align:top;" headers="d51310e78 ">Yes</td>
+
+              <td class="entry row-nocellborder" style="vertical-align:top;" headers="d51310e81 ">UCAS OAuth Client Secret (sensitive, persisted)</td>
+
+            </tr>
+
+          </tbody>
+</table>
+</div>
+
+    </div>
+
+    <div class="section"><h2 class="title sectiontitle">DM Import Pipeline (1.0.0 version)</h2>
+      
+      <p class="p">Retrieves applicant documents from UCAS for a given admissions cycle and institution and writes to S3. The pipeline submits a supplemental data job and writes the response for downstream processing. </p>
+
+      <p class="p">This pipeline generates a file named POST_SUPPLEMENTAL_DATA_JOBS_RESPONSE.txt, which contains the supplemental data job ID and its status. Initially, the status will be NOTSTARTED. </p>
+
+      <p class="p">The generated job ID is then used in the <span class="xref ft-internal-link" data-ft-warning="excluded-from-rendering" data-mapid="L2CnCak1gnQbTCuesPpSaw" data-tocid="NuaHlZv65SXxDXSx67Omuw" data-section="r_document_data_download_from_ucas_link__getpipeline">DM Import Status Pipeline</span> to check the job status. When the status changes to DOWNLOADED, it indicates that the documents have been successfully downloaded to S3.</p>
+
+      
+<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" class="table" frame="hsides" border="1" rules="rows"><colgroup><col style="width:16.286644951140065%"><col style="width:41.85667752442997%"><col style="width:41.85667752442997%"></colgroup><thead class="thead" style="text-align:left;vertical-align:bottom;">
+            <tr class="row">
+              <th class="entry row-nocellborder" style="vertical-align:bottom;" id="d51310e148">Job Parameter</th>
+
+              <th class="entry row-nocellborder" style="vertical-align:bottom;" id="d51310e151">Required</th>
+
+              <th class="entry row-nocellborder" style="vertical-align:bottom;" id="d51310e154">Description</th>
+
+            </tr>
+
+          </thead>
+<tbody class="tbody">
+            <tr class="row">
+              <td class="entry row-nocellborder" style="vertical-align:top;" headers="d51310e148 ">multiInstitution </td>
+
+              <td class="entry row-nocellborder" style="vertical-align:top;" headers="d51310e151 ">Yes</td>
+
+              <td class="entry row-nocellborder" style="vertical-align:top;" headers="d51310e154 ">Select institution (1 or 2)</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry row-nocellborder" style="vertical-align:top;" headers="d51310e148 ">cycleCode</td>
+
+              <td class="entry row-nocellborder" style="vertical-align:top;" headers="d51310e151 ">Yes</td>
+
+              <td class="entry row-nocellborder" style="vertical-align:top;" headers="d51310e154 ">Admissions cycle year (for example, 2027)</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry row-nocellborder" style="vertical-align:top;" headers="d51310e148 ">lastUpdated</td>
+
+              <td class="entry row-nocellborder" style="vertical-align:top;" headers="d51310e151 ">No</td>
+
+              <td class="entry row-nocellborder" style="vertical-align:top;" headers="d51310e154 ">Only retrieve documents updated after this date/time. Ignored if lastUpdatedOverride is true. Defaults to the submission time of the most recently completed job.</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry row-nocellborder" style="vertical-align:top;" headers="d51310e148 ">lastUpdatedOverride</td>
+
+              <td class="entry row-nocellborder" style="vertical-align:top;" headers="d51310e151 ">No</td>
+
+              <td class="entry row-nocellborder" style="vertical-align:top;" headers="d51310e154 ">If true, returns all documents for the cycle regardless of last updated date. Default: false</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry row-nocellborder" style="vertical-align:top;" headers="d51310e148 ">sectionId</td>
+
+              <td class="entry row-nocellborder" style="vertical-align:top;" headers="d51310e151 ">No</td>
+
+              <td class="entry row-nocellborder" style="vertical-align:top;" headers="d51310e154 ">Filter by document section</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry row-nocellborder" style="vertical-align:top;" headers="d51310e148 ">categoryId</td>
+
+              <td class="entry row-nocellborder" style="vertical-align:top;" headers="d51310e151 ">No</td>
+
+              <td class="entry row-nocellborder" style="vertical-align:top;" headers="d51310e154 ">Filter by document category</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry row-nocellborder" style="vertical-align:top;" headers="d51310e148 ">personalId</td>
+
+              <td class="entry row-nocellborder" style="vertical-align:top;" headers="d51310e151 ">No</td>
+
+              <td class="entry row-nocellborder" style="vertical-align:top;" headers="d51310e154 ">Comma-separated list of personal IDs (must match count of applicationSchemeCode)</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry row-nocellborder" style="vertical-align:top;" headers="d51310e148 ">applicationSchemeCode</td>
+
+              <td class="entry row-nocellborder" style="vertical-align:top;" headers="d51310e151 ">No</td>
+
+              <td class="entry row-nocellborder" style="vertical-align:top;" headers="d51310e154 ">Comma-separated application scheme codes (must match count of personalId)</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry row-nocellborder" style="vertical-align:top;" headers="d51310e148 ">requestorId</td>
+
+              <td class="entry row-nocellborder" style="vertical-align:top;" headers="d51310e151 ">No</td>
+
+              <td class="entry row-nocellborder" style="vertical-align:top;" headers="d51310e154 ">Identifier of the requestor submitting the job</td>
+
+            </tr>
+
+          </tbody>
+</table>
+</div>
+
+    </div>
+
+    <div class="section" id="r_document_data_download_from_ucas_link__getpipeline"><h2 class="title sectiontitle">DM Import Status Pipeline (1.0.0 version)</h2>
+      
+      <p class="p">Retrieves the status of supplemental data (document management) jobs. Can return a specific job by ID or all jobs for the tenant, with optional date range filtering.</p>
+
+      
+<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" class="table" frame="hsides" border="1" rules="rows"><colgroup><col style="width:16.286644951140065%"><col style="width:41.85667752442997%"><col style="width:41.85667752442997%"></colgroup><thead class="thead" style="text-align:left;vertical-align:bottom;">
+            <tr class="row">
+              <th class="entry row-nocellborder" style="vertical-align:bottom;" id="d51310e296">Job Parameter</th>
+
+              <th class="entry row-nocellborder" style="vertical-align:bottom;" id="d51310e299">Required</th>
+
+              <th class="entry row-nocellborder" style="vertical-align:bottom;" id="d51310e302">Description</th>
+
+            </tr>
+
+          </thead>
+<tbody class="tbody">
+            <tr class="row">
+              <td class="entry row-nocellborder" style="vertical-align:top;" headers="d51310e296 ">id</td>
+
+              <td class="entry row-nocellborder" style="vertical-align:top;" headers="d51310e299 ">No</td>
+
+              <td class="entry row-nocellborder" style="vertical-align:top;" headers="d51310e302 ">Job ID<ul class="ul">
+                <li class="li">If provided, returns the status of that specific job.</li>
+
+                <li class="li">If omitted, returns all jobs.</li>
+
+                </ul>
+</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry row-nocellborder" style="vertical-align:top;" headers="d51310e296 ">fromDate</td>
+
+              <td class="entry row-nocellborder" style="vertical-align:top;" headers="d51310e299 ">No</td>
+
+              <td class="entry row-nocellborder" style="vertical-align:top;" headers="d51310e302 ">Filter jobs created on or after this date (For example, 2026-06-21). Time portion is ignored.</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry row-nocellborder" style="vertical-align:top;" headers="d51310e296 ">toDate</td>
+
+              <td class="entry row-nocellborder" style="vertical-align:top;" headers="d51310e299 ">No</td>
+
+              <td class="entry row-nocellborder" style="vertical-align:top;" headers="d51310e302 ">Filter jobs created on or before this date (For example, 2026-12-31). Time portion is ignored.</td>
+
+            </tr>
+
+          </tbody>
+</table>
+</div>
+
+      <p class="p">The <code class="ph codeph">asdmUrlMap</code> is the crosswalk parameter used for Document Management data download.</p>
+
+    </div>
+
+  </div>
+
+</div></div></section>
+<section id="t-2930"><h4>Create job parameters for Document management pipelines</h4><div class="content-locale-en-US content-locale-en"><div id="t_create_job_parameters_doc_mgmt_pipelines"><div class="body taskbody"><p class="shortdesc">Process to create job parameters for Document management pipelines.</p>
+
+    <div class="section prereq p"><div class="tasklabel"><h2 class="sectiontitle tasklabel">Before you begin</h2></div>This procedure is only for SaaS customers who use Data Connect.</div>
+
+    <div class="tasklabel"><h2 class="sectiontitle tasklabel">Procedure</h2></div><ol class="ol steps"><li class="li step stepexpand">
+        <span class="ph cmd">Access Ethos Experience and log in with the credentials of the tenant where you have configured the UCAS.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Select <span class="ph uicontrol">UCAS XML LINK</span> from <span class="ph uicontrol">Integration Packages</span>, select the <span class="ph uicontrol">Document Management Pipeline</span> for which you need to run the job.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Click <span class="ph uicontrol">New Job</span> and enter the parameter details as required for the job run.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">If you want to schedule a job, update the <span class="ph uicontrol">Job Run Details</span> section.</span>
+        <div class="itemgroup stepresult">This runs the same job with the same set of parameters based on a time schedule chosen while creating the job.</div>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Enter the following job parameters.</span>
+        <div class="itemgroup info">
+          <pre class="pre codeblock"><code>multiInstitution
+cycleCode
+lastUpdated
+lastUpdatedOverride
+sectionId
+categoryId
+personalId
+applicationSchemeCode
+requestorId
+</code></pre>
+        </div>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Click <span class="ph uicontrol">Save</span>.</span>
+        <div class="itemgroup info">
+          <div class="note"><span class="notetitle">Note:</span> <span class="keyword">Ellucian</span> recommends that you note the following information.<ul class="ul">
+            <li class="li">Date picker is available for lastUpdated Job Parameters while creating new job for Document management pipelines.</li>
+
+            <li class="li">Maximum Concurrency value is set to 1 in the Advanced options, while creating new job for Document management pipelines. Ensure that the Maximum Concurrency slide bar under the Advanced Options section remains as the default value for all pipelines.</li>
+
+            </ul>
+</div>
+
+        </div>
+      </li>
+</ol>
+
+  </div>
+
+</div></div></section>
+<section id="t-2940"><h4>Run Document Management Pipelines</h4><div class="content-locale-en-US content-locale-en"><div id="t_run_document_management_pipelines"><div class="body taskbody"><p class="shortdesc">Run and schedule Document management pipelines.</p>
+
+    <div class="tasklabel"><h2 class="sectiontitle tasklabel">Procedure</h2></div><ol class="ol steps"><li class="li step stepexpand">
+        <span class="ph cmd">Run <span class="ph uicontrol">Document Management Pipeline</span>.</span>
+        <div class="itemgroup stepresult">After you successfully complete the run, a <span class="ph filepath">POST_SUPPLEMENTAL_DATA_JOBS_RESPONSE.txt</span> file is generated upon successful completion as output.</div>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Read the <span class="ph filepath">POST_SUPPLEMENTAL_DATA_JOBS_RESPONSE.txt</span> File.</span>
+        <div class="itemgroup info">The file specifies contains the supplemental data job ID and its status. Initially, the status will be NOTSTARTED.<p class="p">The generated job ID is then used in the <span class="xref ft-internal-link" data-ft-warning="excluded-from-rendering" data-mapid="L2CnCak1gnQbTCuesPpSaw" data-tocid="NuaHlZv65SXxDXSx67Omuw" data-section="r_document_data_download_from_ucas_link__getpipeline">DM Import Status Pipeline </span> to check the job status.</p>
+<p class="p">When the status changes to DOWNLOADED, it indicates that the documents have been successfully downloaded to S3.</p>
+</div>
+      </li>
+</ol>
+
+  </div>
+
+</div></div></section>
+<section id="t-2950"><h4>Prerequisite before using Document Management</h4><div class="content-locale-en-US content-locale-en"><div id="r_prereq_before_using_doc_mgmt"><div class="body refbody"><p class="shortdesc">You must meet the prerequisite before using Document Management in Banner Admin pages and ARC Self-Service.</p>
+
+    <div class="section"><h2 class="title sectiontitle">External API Configuration on SOAREST page</h2>
+      
+      <p class="p">Establishes connectivity between Banner and the Supplemental Data Management service (ASDM).</p>
+
+      
+<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" class="table" frame="hsides" border="1" rules="rows"><colgroup><col style="width:28.011204481792717%"><col style="width:71.98879551820728%"></colgroup><thead class="thead" style="text-align:left;vertical-align:bottom;">
+            <tr class="row">
+              <th class="entry row-nocellborder" style="vertical-align:bottom;" id="d65528e61">Field</th>
+
+              <th class="entry row-nocellborder" style="vertical-align:bottom;" id="d65528e64">Value</th>
+
+            </tr>
+
+          </thead>
+<tbody class="tbody">
+            <tr class="row">
+              <td class="entry row-nocellborder" style="vertical-align:top;" headers="d65528e61 ">Code </td>
+
+              <td class="entry row-nocellborder" style="vertical-align:top;" headers="d65528e64 ">ASDM</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry row-nocellborder" style="vertical-align:top;" headers="d65528e61 ">Description</td>
+
+              <td class="entry row-nocellborder" style="vertical-align:top;" headers="d65528e64 ">Application Supplemental Data Management</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry row-nocellborder" style="vertical-align:top;" headers="d65528e61 ">Username</td>
+
+              <td class="entry row-nocellborder" style="vertical-align:top;" headers="d65528e64 ">UPDATE-ME</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry row-nocellborder" style="vertical-align:top;" headers="d65528e61 ">Password</td>
+
+              <td class="entry row-nocellborder" style="vertical-align:top;" headers="d65528e64 ">UPDATE-ME</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry row-nocellborder" style="vertical-align:top;" headers="d65528e61 ">URL</td>
+
+              <td class="entry row-nocellborder" style="vertical-align:top;" headers="d65528e64 ">UPDATE-ME</td>
+
+            </tr>
+
+          </tbody>
+</table>
+</div>
+
+      <div class="note"><span class="notetitle">Note:</span> Seed data provided for Code ASDM. Update the URL value with <span class="ph filepath">https://supplemental-data-ts-ew1.10321.elluciancloud.ie/api</span></div>
+
+    </div>
+
+  </div>
+
+</div></div></section>
+<section id="t-2960"><h4>OAuth Configuration Setup for Banner Applications on GUACONF page</h4><div class="content-locale-en-US content-locale-en"><div id="c_oauth_config_setup_bnr_app_guaconf_page"><div class="body conbody"><p class="shortdesc">To enable secure API communication for Document Management and related services, specific OAuth configuration values must be updated in Banner.</p>
+
+    <p class="p">The required configuration names are pre-seeded in the system. Clients only need to update the corresponding configuration values.</p>
+
+    <p class="p">The following configuration names are already available:</p>
+
+    <pre class="pre codeblock"><code>banner.oauth.clientId
+banner.oauth.clientSecret
+banner.oauth.oauthEndpoint
+banner.oauth.resource
+tenant_id
+</code></pre>
+  </div>
+
+</div></div></section>
+<section id="t-2970"><h4>Required Client Action</h4><div class="content-locale-en-US content-locale-en"><div id="r_required_client_action"><div class="body refbody"><p class="shortdesc">Update the Configuration Value field for each of the above entries with the values provided for your environment.</p>
+
+    
+<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" class="table" frame="hsides" border="1" rules="rows"><caption><span class="tablecap"><span class="table--title-label">Table 1. </span>Configuration Details </span></caption><colgroup><col style="width:16.286644951140065%"><col style="width:41.85667752442997%"><col style="width:41.85667752442997%"></colgroup><thead class="thead" style="text-align:left;vertical-align:bottom;">
+          <tr class="row">
+            <th class="entry row-nocellborder" style="vertical-align:bottom;" id="d76648e58">Configuration Name</th>
+
+            <th class="entry row-nocellborder" style="vertical-align:bottom;" id="d76648e61">Description</th>
+
+            <th class="entry row-nocellborder" style="vertical-align:bottom;" id="d76648e64">Action Required</th>
+
+          </tr>
+
+        </thead>
+<tbody class="tbody">
+          <tr class="row">
+            <td class="entry row-nocellborder" style="vertical-align:top;" headers="d76648e58 ">banner.oauth.clientId</td>
+
+            <td class="entry row-nocellborder" style="vertical-align:top;" headers="d76648e61 ">Unique client identifier used for authentication</td>
+
+            <td class="entry row-nocellborder" style="vertical-align:top;" headers="d76648e64 ">tPHRimcipKb4lgCMC8ouMY5hT-RplfKR-0RB</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="vertical-align:top;" headers="d76648e58 ">banner.oauth.clientSecret</td>
+
+            <td class="entry row-nocellborder" style="vertical-align:top;" headers="d76648e61 ">Secret key used along with client ID</td>
+
+            <td class="entry row-nocellborder" style="vertical-align:top;" headers="d76648e64 ">ZpkQMKSCnMshvgcCa0zcDQm1SJceaXSVlO3zfzHo-foZ2yTKC5enfL1_QrHGOZA7rUKtypuqeNJ98e-t0SemPQ</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="vertical-align:top;" headers="d76648e58 ">banner.oauth.oauthEndpoint</td>
+
+            <td class="entry row-nocellborder" style="vertical-align:top;" headers="d76648e61 ">Token endpoint URL for OAuth authentication</td>
+
+            <td class="entry row-nocellborder" style="vertical-align:top;" headers="d76648e64 ">https://oauth.prod.10005.elluciancloud.ie/token</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="vertical-align:top;" headers="d76648e58 ">banner.oauth.resource</td>
+
+            <td class="entry row-nocellborder" style="vertical-align:top;" headers="d76648e61 ">Resource/audience URL</td>
+
+            <td class="entry row-nocellborder" style="vertical-align:top;" headers="d76648e64 ">https://elluciancloud.com</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="vertical-align:top;" headers="d76648e58 ">tenant_id</td>
+
+            <td class="entry row-nocellborder" style="vertical-align:top;" headers="d76648e61 ">Tenant ID</td>
+
+            <td class="entry row-nocellborder" style="vertical-align:top;" headers="d76648e64 ">Update with your tenant Id</td>
+
+          </tr>
+
+        </tbody>
+</table>
+</div>
+
+    <div class="section"><h2 class="title sectiontitle">Application Review Centre (ARC) Self Service changes</h2>
+      
+      <p class="p">A new <span class="ph uicontrol">Document</span> section has been introduced in ARC. When the <span class="ph uicontrol">Fetch Documents</span> button is selected, documents associated with the Personal ID are retrieved, and their metadata such as Document ID, Document Name, Document Type, and Document Category is displayed in Self-Service. Selecting the hyperlink in the <span class="ph uicontrol">Document ID</span> field opens the corresponding document in the browser or initiates a download.</p>
+
+    </div>
+
+  </div>
+
+</div></div></section></main></body></html>

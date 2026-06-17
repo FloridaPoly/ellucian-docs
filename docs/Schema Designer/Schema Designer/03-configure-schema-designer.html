@@ -1,0 +1,520 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Schema Designer — Configure Schema Designer</title><style>body{font-family:-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;line-height:1.55;color:#1a1a1a;max-width:920px;margin:0 auto;padding:24px}header{border-bottom:2px solid #5a16d6;margin-bottom:8px}h1{color:#3a0ca3}h2,h3,h4,h5,h6{margin-top:1.6em}.crumb{color:#666;font-size:13px;margin:0}.meta{color:#888;font-size:12px}nav.toc{background:#f6f4fc;border:1px solid #e3dcf5;border-radius:8px;padding:12px 18px;margin:18px 0}nav.toc h2{margin:.2em 0}nav.toc ul{list-style:none;padding-left:0}nav.toc a{text-decoration:none;color:#5a16d6}section{margin:1.2em 0;padding-top:.4em}img{max-width:100%;height:auto}table{border-collapse:collapse}td,th{border:1px solid #ccc;padding:4px 8px}code,pre{background:#f4f4f4;border-radius:4px}pre{padding:10px;overflow:auto}</style></head><body><header><p class="crumb">Schema Designer › Schema Designer</p><h1>Schema Designer — Configure Schema Designer</h1><p class="meta">Source: <a href="https://resources.elluciancloud.com/r/bundle/ellucian_schema_designer">https://resources.elluciancloud.com/r/bundle/ellucian_schema_designer</a> &middot; Retrieved 2026-06-17</p></header><nav class="toc"><h2>Contents</h2><ul><li style="margin-left:0px"><a href="#t-110">Configure Schema Designer</a></li><li style="margin-left:16px"><a href="#t-120">Prerequisites</a></li><li style="margin-left:16px"><a href="#t-130">Ethos API configuration checks</a></li><li style="margin-left:16px"><a href="#t-140">Grant access to Schema Designer</a></li><li style="margin-left:32px"><a href="#t-150">Enable access to Schema Designer in Ellucian Experience</a></li><li style="margin-left:32px"><a href="#t-160">Grant access to Banner security objects</a></li><li style="margin-left:16px"><a href="#t-170">API Registry configuration</a></li><li style="margin-left:16px"><a href="#t-180">Supplementary Data Engine (SDE) migration configuration</a></li><li style="margin-left:16px"><a href="#t-190">Configure More Information card</a></li><li style="margin-left:32px"><a href="#t-200">Enable the More Info functionality from the Admin page</a></li></ul></nav><main><section id="t-110"><h2>Configure Schema Designer</h2><div class="content-locale-en-US content-locale-en"><div id="c_schema_desn_config"><div class="body conbody"><p class="shortdesc">All SaaS solutions require specific implementation and configuration of services and applications to enable communication.</p>
+
+    <p class="p">You can use this section to review the prerequisites that are required or recommended for the implementation of <span class="ph">Schema Designer</span>. Use these procedures to either confirm that prerequisites are already installed and configured or implement them if your institution has not yet installed and configured them. This documentation provides the detailed steps that you need to follow and the specific resources that are required for <span class="ph">Schema Designer</span> Every <span class="keyword">Ellucian</span> SaaS solution provides similar procedures, though applications and resources can be different.</p>
+
+  </div>
+
+</div></div></section>
+<section id="t-120"><h3>Prerequisites</h3><div class="content-locale-en-US content-locale-en"><div id="c_prerequites"><div class="body conbody"><p class="shortdesc">You must have the following prerequisites to use <span class="ph">Schema Designer</span>.</p>
+
+    <div class="p">
+      <ul class="ul">
+        <li class="li"><span class="keyword">Ellucian Experience</span> 1.94</li>
+
+        <li class="li"><span class="keyword">Banner</span> Integration 9.40</li>
+
+        <li class="li"><span class="keyword">Banner</span> General 8.26</li>
+
+        <li class="li"><span class="keyword">Banner Common DB Upgrade</span> 9.41</li>
+
+      </ul>
+
+    </div>
+
+  </div>
+
+</div></div></section>
+<section id="t-130"><h3>Ethos API configuration checks</h3><div class="content-locale-en-US content-locale-en"><div id="c_ethos_api_config_checks"><div class="body conbody"><p class="shortdesc">Details about the configuration settings in the Ethos API that <span class="ph">Schema Designer</span> currently supports (<span class="keyword">Banner</span>) that institutions may need to validate or review as they configure and set up <span class="ph">Schema Designer</span>.</p>
+
+    <p class="p">The quartz.autostartup setting must be included in the IntegrationApi_configuration.groovy and the StudentApi_configuration.groovy configuration files and it is set to false. This ensures that any of the API security configuration updates that were made for an extended table API are not lost when the <span class="keyword">Banner</span> job refreshes the formControllerMap. For more information, see <span class="xref ft-internal-xlink" data-ft-warning="excluded-from-rendering" data-clusterid="id_services/schema_extz_use/c_quartz_config_setting">quartz.autostartup</span>.</p>
+
+    <p class="p">The defaultBanEthosTableSpace and defaultClobBanEthosTableSpace settings must be included in the IntegrationApi_configuration.groovy and is set to the tablespace name. See <span class="xref ft-internal-xlink" data-ft-warning="excluded-from-rendering" data-clusterid="id_services/schema_extz_use/c_tablespace_config_setting">Oracle tablespace for BAN_EXTENSIONS schema management</span> for instructions to create a new tablespace.</p>
+
+  </div>
+
+</div></div></section>
+<section id="t-140"><h3>Grant access to Schema Designer</h3><div class="content-locale-en-US content-locale-en"><div id="t_grant_access_schema_desgn"><div class="body taskbody"><p class="shortdesc">Grant access to the <span class="ph">Schema Designer</span> application for an individual user with a <span class="keyword">Banner</span> ID.</p>
+
+    <div class="section prereq p"><div class="tasklabel"><h2 class="sectiontitle tasklabel">Before you begin</h2></div>See <a class="xref ft-external-link" href="https://resources.elluciancloud.com/bundle/ellucian_experience/page/c_experience_application_menu.html" rel="noopener">Set up the Experience Application menu</a> and <span class="ph">Schema Designer</span> <span class="xref ft-internal-link" title="You must have the following prerequisites to use Schema Designer." data-ft-warning="excluded-from-rendering" data-mapid="cDWfcauMdZCgjyiPeU_naQ" data-tocid="TyQd5f7rtHfxiu~8u33atw">Prerequisites</span>.</div>
+
+    <div class="section context"><div class="tasklabel"><h2 class="sectiontitle tasklabel">About this task</h2></div>Complete the following setup tasks to grant access to <span class="ph">Schema Designer</span>.</div>
+
+    <div class="tasklabel"><h2 class="sectiontitle tasklabel">Procedure</h2></div><ol class="ol steps"><li class="li step stepexpand">
+        <span class="ph cmd">Configure permissions in <span class="keyword">Ellucian Experience</span> for users to enable the <span class="ph">Schema Designer</span> application.</span>
+        <div class="itemgroup info">For more information, see <span class="xref ft-internal-link" title="Configure permissions in Ellucian Experience for users to access and use the Schema Designer application." data-ft-warning="excluded-from-rendering" data-mapid="cDWfcauMdZCgjyiPeU_naQ" data-tocid="mJsrXDFCWMjJbzQqd2QwTw">Enable access to Schema Designer in Ellucian Experience</span>.</div>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Use the <span class="keyword wintitle">Banner Security Maintenance (GSASECR)</span> page in <span class="ph">Banner Access Management</span> to grant access to the <span class="ph">Schema Designer</span> application to specific users.</span>
+        <div class="itemgroup info">For more information, see <span class="xref ft-internal-link" title="Users that require access to the Schema Designer application and Schema Designer APIs must have access granted to the Banner security objects on the Banner Security Maintenance (GSASECR) page." data-ft-warning="excluded-from-rendering" data-mapid="cDWfcauMdZCgjyiPeU_naQ" data-tocid="2ErBx7vRzx7U0lqq4s2L6g">Grant access to Banner security objects</span>.</div>
+      </li>
+</ol>
+
+  </div>
+
+</div></div></section>
+<section id="t-150"><h4>Enable access to Schema Designer in Ellucian Experience</h4><div class="content-locale-en-US content-locale-en"><div id="t_schema_desn_config_perms"><div class="body taskbody"><p class="shortdesc">Configure permissions in <span class="keyword">Ellucian Experience</span> for users to access and use the <span class="ph">Schema Designer</span> application.</p>
+
+    <div class="section prereq p"><div class="tasklabel"><h2 class="sectiontitle tasklabel">Before you begin</h2></div>
+      <ul class="ul">
+        <li class="li"><a class="xref ft-external-link" href="https://resources.elluciancloud.com/bundle/ellucian_experience/page/c_experience_application_menu.html" rel="noopener">Set up the Experience Application menu</a>.</li>
+
+        <li class="li"><a class="xref ft-external-link" href="https://resources.elluciancloud.com/bundle/ellucian_experience/page/c_set_up_roles.html" rel="noopener">Set up roles for Ellucian Experience</a>.</li>
+
+      </ul>
+
+    </div>
+
+    <div class="tasklabel"><h2 class="sectiontitle tasklabel">Procedure</h2></div><ol class="ol steps"><li class="li step">
+        <span class="ph cmd">Navigate to and log in to the <span class="keyword">Ellucian Experience</span> application.</span>
+      </li>
+<li class="li step">
+        <span class="ph cmd">Select the <span class="keyword wintitle">Permissions</span> tab.</span>
+      </li>
+<li class="li step">
+        <span class="ph cmd">Select the <span class="ph uicontrol">Environment</span>.</span>
+      </li>
+<li class="li step">
+        <span class="ph cmd">Search for Schema Designer.</span>
+      </li>
+<li class="li step">
+        <span class="ph cmd">Select <span class="ph uicontrol">All Resources</span> in the left pane.</span>
+      </li>
+<li class="li step">
+        <span class="ph cmd">Select the <span class="ph uicontrol">Access</span> check box for users that need to have access to <span class="ph">Schema Designer</span>.</span>
+      </li>
+<li class="li step">
+        <span class="ph cmd">Click <span class="ph uicontrol">Save</span>.</span>
+      </li>
+</ol>
+
+  </div>
+
+</div></div></section>
+<section id="t-160"><h4>Grant access to Banner security objects</h4><div class="content-locale-en-US content-locale-en"><div id="t_extend_api_security"><div class="body taskbody"><p class="shortdesc">Users that require access to the <span class="ph">Schema Designer</span> application and <span class="ph">Schema Designer</span> APIs must have access granted to the <span class="keyword">Banner</span> security objects on the <span class="keyword wintitle">Banner Security Maintenance (GSASECR)</span> page.</p>
+
+    <div class="tasklabel"><h2 class="sectiontitle tasklabel">Procedure</h2></div><ol class="ol steps"><li class="li step stepexpand">
+        <span class="ph cmd">Log in to <span class="ph">Banner Access Management</span>.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Navigate to the <span class="keyword wintitle">Security Maintenance (GSASECR)</span> page.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Assign the following security objects to users:</span>
+        <div class="itemgroup info">
+          <ul class="ul">
+            <li class="li">API_EXT_CONFIGURATIONS to create an extended table.</li>
+
+            <li class="li">API_EXT_CONFIG_REVISIONS to modify an extended table.</li>
+
+            <li class="li">API_EXT_CONFIGURATIONS_DELETE to delete an extended table.</li>
+
+            <li class="li">API_CUSTOM_TABLE_CONFIG to create a custom table.</li>
+
+            <li class="li">API_CUST_TAB_CONFIG_REVISIONS to modify a custom table.</li>
+
+            <li class="li">API_CUSTOM_TABLE_CONFIG_DELETE to delete a custom table.</li>
+
+            <li class="li">BAN_ETHOS_API_OVERRIDE to update or delete an extended table and custom table created by another user.</li>
+
+            <li class="li">API_DESIGNER_QUERY to access <span class="keyword">Banner</span> tables.</li>
+
+            <li class="li">API_EXT_MAPPINGS to create or delete the linking of the extended table and <span class="keyword">Banner</span> Admin page using <span class="keyword apiname">extension-mappings</span> API.</li>
+
+            <li class="li">API_SYSTEM_OBJECTS to view the <span class="keyword">Banner</span> Admin Pages for extension mappings.</li>
+
+            <li class="li">API_SCHEMA_EXT_ARTIFACTS to export the extended/custom artifacts.</li>
+
+            <li class="li">API_EXT_CONFIGURATIONS and API_EXT_MAPPINGS to access the More Information page on the <span class="keyword">Banner</span> Administrative pages.</li>
+
+            <li class="li">GURMSDC and GURMSDV to execute the Supplemental Data Engine (SDE) migration jobs (GURMSDC and GURMSDV).</li>
+
+          </ul>
+
+          <p class="p">For more information, see <span class="xref ft-internal-link" title="The migration from the Supplemental Data Engine (SDE) to the Schema Designer APIs in Banner enables institutions to modernize their approach for storing and managing user-defined data." data-ft-warning="excluded-from-rendering" data-mapid="cDWfcauMdZCgjyiPeU_naQ" data-tocid="CCTU5P4BWrlkRS8GhTXC1Q">Supplemental Data Engine (SDE) migration to Schema Designer APIs</span>.</p>
+
+        </div>
+      </li>
+</ol>
+
+  </div>
+
+</div></div></section>
+<section id="t-170"><h3>API Registry configuration</h3><div class="content-locale-en-US content-locale-en"><div id="r_api_registry_config"><div class="body refbody"><p class="shortdesc">To register OpenAPI specifications generated automatically in the API Registry, you must ensure that the necessary configuration values are set up in the GUACONF page. These configurations are associated with the GLOBAL application ID and are required for enabling secure communication with the API Registry. The following table outlines the required configuration values.</p>
+
+    <div class="section">
+      <p class="p">See <span class="xref ft-internal-xlink" data-ft-warning="excluded-from-rendering" data-clusterid="id_services/schema_extz_use/c_oauth_creds_erp">Provision OAuth credentials in the ERP</span> for the steps to generate the OAuth client ID and secret in <span class="keyword">Banner</span>.</p>
+
+      
+<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" class="table" frame="hsides" border="1" rules="rows"><colgroup><col style="width:20.683453237410067%"><col style="width:17.985611510791365%"><col style="width:61.33093525179856%"></colgroup><thead class="thead" style="text-align:left;vertical-align:bottom;">
+            <tr class="row">
+              <th class="entry row-nocellborder" style="vertical-align:bottom;" id="d1037e63">Name</th>
+
+              <th class="entry row-nocellborder" style="vertical-align:bottom;" id="d1037e66">Type</th>
+
+              <th class="entry row-nocellborder" style="vertical-align:bottom;" id="d1037e69">Description</th>
+
+            </tr>
+
+          </thead>
+<tbody class="tbody">
+            <tr class="row">
+              <td class="entry row-nocellborder" style="vertical-align:top;" headers="d1037e63 ">banner.oauth.clientId</td>
+
+              <td class="entry row-nocellborder" style="vertical-align:top;" headers="d1037e66 ">string </td>
+
+              <td class="entry row-nocellborder" style="vertical-align:top;" headers="d1037e69 ">Client ID for OAuth authentication required to obtain access tokens.</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry row-nocellborder" style="vertical-align:top;" headers="d1037e63 ">banner.oauth.clientSecret</td>
+
+              <td class="entry row-nocellborder" style="vertical-align:top;" headers="d1037e66 ">string </td>
+
+              <td class="entry row-nocellborder" style="vertical-align:top;" headers="d1037e69 ">Client secret for OAuth authentication used along with the client ID to secure API calls.</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry row-nocellborder" style="vertical-align:top;" headers="d1037e63 ">banner.oauth.oauthEndpoint</td>
+
+              <td class="entry row-nocellborder" style="vertical-align:top;" headers="d1037e66 ">string </td>
+
+              <td class="entry row-nocellborder" style="vertical-align:top;" headers="d1037e69 ">The OAuth token URL retrieved from the GUROCFG table where <code class="ph codeph">GUROCFG_NAME = banner.oauth.oauthEndpoint</code>.</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry row-nocellborder" style="vertical-align:top;" headers="d1037e63 ">banner.oauth.resource</td>
+
+              <td class="entry row-nocellborder" style="vertical-align:top;" headers="d1037e66 ">string </td>
+
+              <td class="entry row-nocellborder" style="vertical-align:top;" headers="d1037e69 ">Resource identifier for the API Registry indicating the target application to authorize.</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry row-nocellborder" style="vertical-align:top;" headers="d1037e63 ">banner.api.registry.url</td>
+
+              <td class="entry row-nocellborder" style="vertical-align:top;" headers="d1037e66 ">string </td>
+
+              <td class="entry row-nocellborder" style="vertical-align:top;" headers="d1037e69 ">Base URL for the API Registry service used to register and manage endpoint specifications. Use the URL that corresponds to your geographic region:<ul class="ul">
+                <li class="li">AP: https://registry-ap.api-registry.elluciancloud.com</li>
+
+                <li class="li">CA: https://registry-ca.api-registry.elluciancloud.com</li>
+
+                <li class="li">EU: https://registry-eu.api-registry.elluciancloud.com</li>
+
+                <li class="li">US: https://registry-us.api-registry.elluciancloud.com</li>
+
+                </ul>
+</td>
+
+            </tr>
+
+          </tbody>
+</table>
+</div>
+
+    </div>
+
+  </div>
+
+</div></div></section>
+<section id="t-180"><h3>Supplementary Data Engine (SDE) migration configuration</h3><div class="content-locale-en-US content-locale-en"><div id="r_asde_migration_guaconf_setup"><div class="body refbody"><p class="shortdesc">The setup in GUACONF for the Supplementary Data Engine (SDE) migration requires specific configuration values. These configurations are associated with the GLOBAL application ID and are mandatory for enabling secure communication with the <span class="keyword">Banner Integration API</span> application.</p>
+
+    <div class="section">
+      <p class="p">These configuration values establish the connection between SDE and the <span class="keyword">Banner Integration API</span> application and ensure that requests are authenticated and securely transmitted.</p>
+
+      
+<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" class="table" frame="hsides" border="1" rules="rows"><colgroup><col style="width:20.683453237410067%"><col style="width:17.985611510791365%"><col style="width:61.33093525179856%"></colgroup><thead class="thead" style="text-align:left;vertical-align:bottom;">
+            <tr class="row">
+              <th class="entry row-nocellborder" style="vertical-align:bottom;" id="d1995e62">Name</th>
+
+              <th class="entry row-nocellborder" style="vertical-align:bottom;" id="d1995e65">Type</th>
+
+              <th class="entry row-nocellborder" style="vertical-align:bottom;" id="d1995e68">Description</th>
+
+            </tr>
+
+          </thead>
+<tbody class="tbody">
+            <tr class="row">
+              <td class="entry row-nocellborder" style="vertical-align:top;" headers="d1995e62 ">banner.api.integration.url</td>
+
+              <td class="entry row-nocellborder" style="vertical-align:top;" headers="d1995e65 ">String</td>
+
+              <td class="entry row-nocellborder" style="vertical-align:top;" headers="d1995e68 ">The base URL of the <span class="keyword">Banner Integration API</span> application where API requests are sent.<p class="p">For example, <span class="ph filepath">https://&lt;server&gt;/IntegrationApi</span></p>
+</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry row-nocellborder" style="vertical-align:top;" headers="d1995e62 ">banner.basic.auth.username</td>
+
+              <td class="entry row-nocellborder" style="vertical-align:top;" headers="d1995e65 ">String</td>
+
+              <td class="entry row-nocellborder" style="vertical-align:top;" headers="d1995e68 ">The username used for basic authentication to access the <span class="keyword">Banner Integration API</span> application. For example, ethosapiuser.<div class="note"><span class="notetitle">Note:</span> This user should have access to the <span class="keyword">Banner</span> security object API_EXT_CONFIGURATIONS.</div>
+</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry row-nocellborder" style="vertical-align:top;" headers="d1995e62 ">banner.basic.auth.password</td>
+
+              <td class="entry row-nocellborder" style="vertical-align:top;" headers="d1995e65 ">Encrypted String</td>
+
+              <td class="entry row-nocellborder" style="vertical-align:top;" headers="d1995e68 ">The password associated with banner.basic.auth.username for basic authentication. This value is stored in encrypted format for security. <p class="p">For example, ********.</p>
+</td>
+
+            </tr>
+
+          </tbody>
+</table>
+</div>
+
+      <p class="p">For more information, see <span class="xref ft-internal-link" title="The migration from the Supplemental Data Engine (SDE) to the Schema Designer APIs in Banner enables institutions to modernize their approach for storing and managing user-defined data." data-ft-warning="excluded-from-rendering" data-mapid="cDWfcauMdZCgjyiPeU_naQ" data-tocid="CCTU5P4BWrlkRS8GhTXC1Q">Supplemental Data Engine (SDE) migration to Schema Designer APIs</span>.</p>
+
+    </div>
+
+  </div>
+
+</div></div></section>
+<section id="t-190"><h3>Configure More Information card</h3><div class="content-locale-en-US content-locale-en"><div id="t_setup_more_info_card"><div class="body taskbody"><p class="shortdesc">To access the More Information card through a <span class="keyword">Banner</span> administrative page, you must first configure it in the card setup wizard.</p>
+
+    <div class="section prereq p"><div class="tasklabel"><h2 class="sectiontitle tasklabel">Before you begin</h2></div>The user performing this procedure must have been granted the Card Management administrative permission in <span class="keyword">Ellucian Experience</span> Setup, as described in <span class="xref ft-internal-xlink" data-ft-warning="excluded-from-rendering" data-clusterid="id_services/schema_extz_use/t_grant_admin_permissions_application">Grant Experience application permissions.</span><p class="p">Depending on the browser being used, users may be prompted to acknowledge and allow usage of cookies. This is required to access the <span class="keyword">Banner</span> applications, and different restrictions are imposed by each browser.</p>
+</div>
+
+    <div class="tasklabel"><h2 class="sectiontitle tasklabel">Procedure</h2></div><ol class="ol steps"><li class="li step stepexpand">
+        <span class="ph cmd">Access <span class="keyword">Ellucian Experience</span> as a user with the Card Management administrative permission.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">From the <span class="keyword">Ellucian Experience</span> menu <span class="ph"><img class="image ell-icon" src="images/03-configure-schema-designer-1.png" alt="" data-ft-asset-display-name="menu.png" data-ft-resource-id="WEdF~_f~XTJrsl1ZlZkvDA-cDWfcauMdZCgjyiPeU_naQ"></span>, click <span class="ph uicontrol">Configuration</span> to access the <span class="keyword wintitle">Configuration</span> page.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Click the <span class="ph uicontrol">Card Management</span> tab.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Locate the <span class="ph uicontrol">MoreInfoExtension</span> card.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">In the <span class="ph uicontrol">Actions</span> column, click <span class="ph uicontrol">More</span> <span class="ph"><img class="image ell-icon" src="images/03-configure-schema-designer-2.png" alt="" data-ft-asset-display-name="more_vertical.png" data-ft-resource-id="JREl982P_3CF9HLcM47toQ-cDWfcauMdZCgjyiPeU_naQ"></span> and then click <span class="ph uicontrol">Edit</span> to start the <span class="ph uicontrol">Edit MoreInfoExtension Card </span> wizard.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">In the Details step of the wizard, enter basic card settings.</span>
+        <ol type="a" class="ol substeps">
+          <li class="li substep substepexpand">
+            <span class="ph cmd">In the <span class="ph uicontrol">Card Information</span> section, enter descriptive information:</span>
+            <div class="itemgroup info">
+              
+<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" class="table" frame="hsides" border="1" rules="rows"><colgroup><col style="width:25%"><col style="width:75%"></colgroup><thead class="thead" style="text-align:left;">
+                    <tr class="row">
+                      <th class="entry row-nocellborder" style="vertical-align:top;" id="d10946e158">Setting</th>
+
+                      <th class="entry row-nocellborder" style="vertical-align:top;" id="d10946e161">Description</th>
+
+                    </tr>
+
+                  </thead>
+<tbody class="tbody">
+                    <tr class="row">
+                      <td class="entry row-nocellborder" style="vertical-align:top;" headers="d10946e158 ">Card title</td>
+
+                      <td class="entry row-nocellborder" style="vertical-align:top;" headers="d10946e161 ">This title is displayed at the top of the card. <span class="keyword">Ellucian</span> recommends a title length of 55 characters or less to ensure readability on all devices.</td>
+
+                    </tr>
+
+                    <tr class="row">
+                      <td class="entry row-nocellborder" style="vertical-align:top;" headers="d10946e158 ">Card description</td>
+
+                      <td class="entry row-nocellborder" style="vertical-align:top;" headers="d10946e161 ">This description is not displayed on the card, but is used in search.</td>
+
+                    </tr>
+
+                    <tr class="row">
+                      <td class="entry row-nocellborder" style="vertical-align:top;" headers="d10946e158 ">Card tags</td>
+
+                      <td class="entry row-nocellborder" style="vertical-align:top;" headers="d10946e161 ">Tags are used in search and to filter the cards displayed on the Discover page. You can enter multiple tags, separated by commas.</td>
+
+                    </tr>
+
+                    <tr class="row">
+                      <td class="entry row-nocellborder" style="vertical-align:top;" headers="d10946e158 ">Category</td>
+
+                      <td class="entry row-nocellborder" style="vertical-align:top;" headers="d10946e161 ">Select the content category in which this card will appear on the <span class="keyword">Experience</span> main menu for <span class="keyword">Experience</span> users, and on the <span class="ph uicontrol">Card Management</span> tab for content administrators.</td>
+
+                    </tr>
+
+                  </tbody>
+</table>
+</div>
+
+              <div class="p">This card information helps <span class="keyword">Ellucian Experience</span> users to find cards of interest to them on the Discover page:<ul class="ul">
+                <li class="li">The tags display at the top of the page. Users can click a tag to filter the display to only cards with that tag.</li>
+
+                <li class="li">When a user searches for cards, the search includes the text that you enter for title, description, and tags.</li>
+
+                </ul>
+</div>
+
+            </div>
+          </li>
+
+          <li class="li substep substepexpand"><strong>Optional: </strong>
+            <span class="ph cmd">If you want a link to appear in the card action menu, enter the link information in the <span class="ph uicontrol">External Link</span> section:</span>
+            <div class="itemgroup info">
+              
+<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" class="table" frame="hsides" border="1" rules="rows"><colgroup><col style="width:25%"><col style="width:75%"></colgroup><thead class="thead" style="text-align:left;">
+                    <tr class="row">
+                      <th class="entry row-nocellborder" style="vertical-align:top;" id="d10946e257">Setting</th>
+
+                      <th class="entry row-nocellborder" style="vertical-align:top;" id="d10946e260">Description</th>
+
+                    </tr>
+
+                  </thead>
+<tbody class="tbody">
+                    <tr class="row">
+                      <td class="entry row-nocellborder" style="vertical-align:top;" headers="d10946e257 ">External link label</td>
+
+                      <td class="entry row-nocellborder" style="vertical-align:top;" headers="d10946e260 ">Enter the text for the link as it will appear in the card.</td>
+
+                    </tr>
+
+                    <tr class="row">
+                      <td class="entry row-nocellborder" style="vertical-align:top;" headers="d10946e257 ">External link URL</td>
+
+                      <td class="entry row-nocellborder" style="vertical-align:top;" headers="d10946e260 ">Enter the link target URL.</td>
+
+                    </tr>
+
+                  </tbody>
+</table>
+</div>
+
+            </div>
+          </li>
+
+          <li class="li substep substepexpand">
+            <span class="ph cmd">Enable <span class="ph uicontrol">Show as default card in the home page</span> if you want this card to be saved by default for new users, so that it automatically appears on the dashboard of new users when they first access <span class="keyword">Ellucian Experience</span>.</span>
+          </li>
+
+          <li class="li substep substepexpand">
+            <span class="ph cmd">Click <span class="ph uicontrol">Next</span>.</span>
+          </li>
+
+        </ol>
+
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">In the <span class="ph uicontrol">Configure</span> step of the wizard, enter the domain for <span class="keyword">Banner</span> Administrative pages that are integrated with <span class="keyword">Experience</span>.</span>
+        <div class="itemgroup info">For example, <span class="ph filepath">https://banneradmin.ellucian-university.com:8080</span> or <span class="ph filepath">https://banneradmin.ellucian-university.com</span>.</div>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">In the <span class="ph uicontrol">Roles</span> step of the wizard, do either of the following to specify which users will see this card.</span>
+        <div class="itemgroup info">
+          <ul class="ul">
+            <li class="li">Click <span class="ph uicontrol">Select all users</span> to assign this card to all <span class="keyword">Ellucian Experience</span> users.</li>
+
+            <li class="li">Select roles to assign this card only to users with those roles. The available roles are defined by your institution in <span class="keyword">Ellucian Experience Setup</span>.</li>
+
+          </ul>
+
+        </div>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">If there is a <span class="ph uicontrol">Preview</span> step in the wizard, click <span class="ph uicontrol">Next</span> and continue with step 10.</span>
+        <div class="itemgroup info">If there is no <span class="ph uicontrol">Preview</span> step, click <span class="ph uicontrol">Finish</span>. You are done with this procedure.</div>
+      </li>
+<li class="li step stepexpand" id="t_setup_more_info_card__lcz_1v4_5tb">
+        <span class="ph cmd">In the <span class="ph uicontrol">Preview</span> step of the wizard, use the <span class="ph uicontrol">Enable card</span> toggle switch to specify whether the card will be available now to <span class="keyword">Ellucian Experience</span> users.</span>
+        <div class="itemgroup info">You might disable a card, for example, if you want to create the card now but do not yet want to make it available to users.</div>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Click <span class="ph uicontrol">Finish</span>.</span>
+        <div class="itemgroup stepresult">If you enabled the card, it is now available on the Discover page for users with a role that you assigned to the card.</div>
+      </li>
+</ol>
+
+  </div>
+
+</div></div></section>
+<section id="t-200"><h4>Enable the More Info functionality from the Admin page</h4><div class="content-locale-en-US content-locale-en"><div id="r_config_guaconf_access_more_info"><div class="body refbody"><p class="shortdesc">To enable the More Info functionality from a <span class="keyword">Banner</span> administrative page, you must ensure that the necessary configuration values are set up in the GUACONF table.</p>
+
+    <div class="section">
+      <p class="p">These configurations are associated with the GLOBAL application ID and are required for accessing the <span class="keyword">Experience</span> page.</p>
+
+      
+<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" class="table" frame="hsides" border="1" rules="rows"><colgroup><col style="width:20.683453237410067%"><col style="width:17.985611510791365%"><col style="width:61.33093525179856%"></colgroup><thead class="thead" style="text-align:left;vertical-align:bottom;">
+            <tr class="row">
+              <th class="entry row-nocellborder" style="vertical-align:bottom;" id="d6002e62">Name</th>
+
+              <th class="entry row-nocellborder" style="vertical-align:bottom;" id="d6002e65">Type</th>
+
+              <th class="entry row-nocellborder" style="vertical-align:bottom;" id="d6002e68">Description</th>
+
+            </tr>
+
+          </thead>
+<tbody class="tbody">
+            <tr class="row">
+              <td class="entry row-nocellborder" style="vertical-align:top;" headers="d6002e62 ">banner.experience.sdeExtension.url</td>
+
+              <td class="entry row-nocellborder" style="vertical-align:top;" headers="d6002e65 ">string </td>
+
+              <td class="entry row-nocellborder" style="vertical-align:top;" headers="d6002e68 ">The base URL for the <span class="keyword">Banner</span> <span class="keyword">Experience</span> page.</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry row-nocellborder" style="vertical-align:top;" headers="d6002e62 ">{MEPCode}.banner.experience.sdeExtension.url</td>
+
+              <td class="entry row-nocellborder" style="vertical-align:top;" headers="d6002e65 ">string </td>
+
+              <td class="entry row-nocellborder" style="vertical-align:top;" headers="d6002e68 ">(For MEP institutions) The tenant alias mapping for a specific MEP code to append to the <span class="keyword">Experience</span> URL.</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry row-nocellborder" style="vertical-align:top;" headers="d6002e62 ">banner.mep.configurations</td>
+
+              <td class="entry row-nocellborder" style="vertical-align:top;" headers="d6002e65 ">list</td>
+
+              <td class="entry row-nocellborder" style="vertical-align:top;" headers="d6002e68 ">Possible values:<ul class="ul">
+                <li class="li">[all]</li>
+
+                <li class="li">Comma separated MEP enabled configurations. For example, [EnableLoginAudit,footerFadeAwayTime]</li>
+
+                <li class="li">[]</li>
+
+                <li class="li">Does not exist</li>
+
+                </ul>
+<p class="p">If you set this parameter to [all], and when a parameter value is being looked up by the application, it checks for a MEP code for every parameter.</p>
+<p class="p">If the list of parameters are passed as values (for example, [EnableLoginAudit,footerFadeAwayTime]), then the MEP code is selected only for EnableLoginAudit and footerFadeAwayTime parameters. All other parameters fallback to baseline/default parameter values.</p>
+<p class="p">If the value passed is [] or if the banner.mep.configurations does not exist, then MEP enabled configurations are not considered for any of the parameter.</p>
+</td>
+
+            </tr>
+
+          </tbody>
+</table>
+</div>
+
+    </div>
+
+    <div class="section"><h2 class="title sectiontitle">Example configuration for MEP institutions</h2>
+      
+      <p class="p">For MEP institutions, the <span class="keyword">Experience</span> URL must be appended with a tenant alias. The VPDI code does not directly provide the tenant alias, so an additional GUACONF setting is required to map VPDI codes to their corresponding aliases.</p>
+
+    </div>
+
+    <div class="example">Example:<p class="p">banner.experience.sdeExtension.url = "https://experience-test-internal.elluciancloud.com"</p>
+<p class="p">MEPInstitution01.banner.experience.sdeExtension.url = "https://experience-test-internal.elluciancloud.com/mepinst01-main"</p>
+<p class="p">In addition, the user must be granted access to the <span class="keyword">Banner</span> security objects API_EXT_CONFIGURATIONS and API_EXT_MAPPINGS through the <span class="keyword wintitle">Banner Security Maintenance (GSASECR)</span> page to successfully access and manage the More Info functionality.</p>
+</div>
+
+  </div>
+
+</div></div></section></main></body></html>

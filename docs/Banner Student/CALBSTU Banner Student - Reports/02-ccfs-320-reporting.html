@@ -1,0 +1,879 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>CALBSTU Banner Student - Reports — CCFS-320 Reporting</title><style>body{font-family:-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;line-height:1.55;color:#1a1a1a;max-width:920px;margin:0 auto;padding:24px}header{border-bottom:2px solid #5a16d6;margin-bottom:8px}h1{color:#3a0ca3}h2,h3,h4,h5,h6{margin-top:1.6em}.crumb{color:#666;font-size:13px;margin:0}.meta{color:#888;font-size:12px}nav.toc{background:#f6f4fc;border:1px solid #e3dcf5;border-radius:8px;padding:12px 18px;margin:18px 0}nav.toc h2{margin:.2em 0}nav.toc ul{list-style:none;padding-left:0}nav.toc a{text-decoration:none;color:#5a16d6}section{margin:1.2em 0;padding-top:.4em}img{max-width:100%;height:auto}table{border-collapse:collapse}td,th{border:1px solid #ccc;padding:4px 8px}code,pre{background:#f4f4f4;border-radius:4px}pre{padding:10px;overflow:auto}</style></head><body><header><p class="crumb">Banner Student › CALBSTU Banner Student - Reports</p><h1>CALBSTU Banner Student - Reports — CCFS-320 Reporting</h1><p class="meta">Source: <a href="https://resources.elluciancloud.com/r/bundle/banner_cal_calbstu_ref_reports">https://resources.elluciancloud.com/r/bundle/banner_cal_calbstu_ref_reports</a> &middot; Retrieved 2026-06-17</p></header><nav class="toc"><h2>Contents</h2><ul><li style="margin-left:0px"><a href="#t-2170">CCFS-320 Reporting</a></li><li style="margin-left:16px"><a href="#t-2180">Variable credit hour CRNs/sections</a></li><li style="margin-left:16px"><a href="#t-2190">Evaluating student registrations for apportionment reporting</a></li><li style="margin-left:16px"><a href="#t-2200">Initial setups, ongoing maintenance, and CCFS-320 processing</a></li><li style="margin-left:32px"><a href="#t-2210">Create the CCFS-320 reports using Banner CALBSTU</a></li><li style="margin-left:32px"><a href="#t-2220">Changes impacting the reporting year and contact hours data on SSASECT</a></li><li style="margin-left:32px"><a href="#t-2230">Physical Education concurrent enrollment</a></li><li style="margin-left:48px"><a href="#t-2240">10% concurrent high school enrollment rule (SVRCALP and SVRCALD warning)</a></li><li style="margin-left:48px"><a href="#t-2250">5% concurrent high school enrollment rule (SVRCAL9 Special Admit Full-Time and Part-Time PE Credit FTES Report)</a></li><li style="margin-left:64px"><a href="#t-2260">5% concurrent high school enrollment rule example</a></li><li style="margin-left:48px"><a href="#t-2270">AB 540 report</a></li><li style="margin-left:48px"><a href="#t-2280">Inmates in Correctional Facilities FTES report</a></li><li style="margin-left:32px"><a href="#t-2290">Set up SVRCALS flex calendar reporting</a></li><li style="margin-left:32px"><a href="#t-2300">Flag CRNs with no reporting year</a></li><li style="margin-left:16px"><a href="#t-2310">CCFS-320 Reporting Pages</a></li><li style="margin-left:16px"><a href="#t-2320">CCFS-320 Reporting Self-Service</a></li><li style="margin-left:16px"><a href="#t-2330">CCFS-320 Reporting Tables</a></li><li style="margin-left:16px"><a href="#t-2340">Reports and Processes</a></li></ul></nav><main><section id="t-2170"><h2>CCFS-320 Reporting</h2><div class="content-locale-en-US content-locale-en"><div id="c_ccfs-320_reporting"><div class="body conbody"><p class="shortdesc">This section covers CCFS-320 Reporting localizations for California Community College clients. These localizations allow your institution to generate the CCFS-320 reports that are required by the CCCCO.</p>
+
+    <p class="p">This set of reports is used to determine a California Community College’s apportionment/funding. The reports have highly defined data requirements, content, calculations, and layout. They are run by academic year and submitted three times per year with two extra optional resubmits. The CCFS-320 reports in <span class="keyword">Banner</span>® CALBSTU have been designed to meet these strict requirements.</p>
+
+    <p class="p">The CCFS-320 report data is first extracted into tables that save the report, term, CRN, student, and registration data. At this point, the data is also analyzed for validity, with problem CRNs noted as exceptions. Separate processes create the reports that are submitted and the detailed reports. If problems are found in the data, the data is corrected, and then the extract is repeated, refreshing the stored data. The next run of the detail reports will pick up the changes. The stored data is not viewable on a page or maintainable. It is used only to create the reports.</p>
+
+    <p class="p">To support the reports, certain changes in <span class="keyword">Banner</span> CALBSTU functionality were needed. These include changes to academic year data, terms, courses, CRNs and meetings, and registration overrides.</p>
+
+    <div class="note"><span class="notetitle">Note:</span> The Course Repeats localization altered the baseline registration logic for analyzing and processing course repeats. The CCFS-320 Reporting localizations do not address that need and simply report what exists. The only addition made for the apportionment version of the report is related to using student registration permit-overrides to code registrations that must be excluded from FTES reporting.</div>
+
+  </div>
+
+</div></div></section>
+<section id="t-2180"><h3>Variable credit hour CRNs/sections</h3><div class="content-locale-en-US content-locale-en"><div id="c_variable_credit_hour_crns_sections"><div class="body conbody"><p class="shortdesc">Variable credit hour CRNs can be used within <span class="keyword">Banner</span>, but the credit hours entered during registration will be ignored. For actual CRNs, the entered registration credit hours are ignored by the system's logic because the reported hours are the attendance collected hours. </p>
+
+    <p class="p">With census CRNs (Weekly and Daily of any type), the entered credit hours are ignored because it is assumed that variable unit courses are valid census based sections. (This is based on Ellucian's interpretation of the reporting rules.) Therefore, only the calculated/entered meeting contact hours or the entered meeting credit hours as defined on the Section Page (SSASECT) are used in apportionment reporting.</p>
+
+    <p class="p">Refer to the <cite class="cite">Hour and Date Calculations</cite> topic in the <cite class="cite">CALBSTU Use</cite> documentation on the <span class="keyword">Ellucian Documentation site</span> for detailed information on contact hour calculations.</p>
+
+    <p class="p">To clarify, variable credit hour CRNs are those defined on the Basic Course Information Page (SCACRSE) with the credit hours defined using the <span class="ph uicontrol">Low</span> (SCBCRSE_CREDIT_HR_LOW) and <span class="ph uicontrol">High</span> (SCBCRSE_CREDIT_HR_HIGH) field and the <span class="ph uicontrol">To</span> or <span class="ph uicontrol">Or</span> connector, and that have a null value in the CRN's credit hours (SSBSECT_CREDIT_HRS) on SSASECT. When students register for such a CRN, they have the option to select a credit hour within the defined SCACRSE range, and this entry is the value CCFS-320 reporting ignores.</p>
+
+  </div>
+
+</div></div></section>
+<section id="t-2190"><h3>Evaluating student registrations for apportionment reporting</h3><div class="content-locale-en-US content-locale-en"><div id="c_evaluating_student_registrations_apportionment_reporting"><div class="body conbody"><p class="shortdesc">The output of the student detail version of the CCFS-320 Detail Report (SVRCALD) (the Include Students parameter is set to Y) includes the Aprt Stat statuses (SVRCALR_REG_INCLUDE_CDE) column. </p>
+
+    <p class="p">This column contains one of the following values, as calculated by the 320 Attendance Extract Process (SVRCALX). While this is the explanation of how it appears on SVRCALD, it also explains the impact on the other CCFS-320 reports in their calculations of contact hours and FTES.</p>
+
+    <div class="note"><span class="notetitle">Note:</span> To determine the appropriate registration record for the date being analyzed, the procedure uses the combination of the RSTS date (SFRSTCA_RSTS_DATE), Add Date (SFRSTCA_ADD_DATE) and the sequence number (SFRSTCA_SEQ_NUMBER). The highest SFRSTCA_SEQ_NUMBER record is selected where SFRSTCA_SOURCE_CDE = 'BASE' and (SFRSTCA_RSTS_DATE and SFRSTCA_ADD_DATE) &lt; SSBSECT_CENSUS_ENRL_DATE.</div>
+
+    <ul class="ul">
+      <li class="li"><kbd class="ph userinput">A</kbd>: Auditing. The student Audits the CRN; their registration status code is one where the Audit indicator is checked on STVRSTS.</li>
+
+      <li class="li"><kbd class="ph userinput">C</kbd>: Counted in apportionment. The columns under 'Resident' and 'Non-Resident' on the SVRCALD output include the student in the contact hours, thus impacting all CCFS-320 report contact hours and FTES totals. (No other status code will be counted in contact hours and FTES.) <ul class="ul"> <li class="li">For a positive attendance CRN (<kbd class="ph userinput">ACTUAL</kbd>), students are counted if they have attendance hours and have a grade assigned.</li>
+
+        <li class="li">For census CRNs (<kbd class="ph userinput">WEEKLY</kbd>, <kbd class="ph userinput">DAILY</kbd>, <kbd class="ph userinput">ISWEEK</kbd>, and <kbd class="ph userinput">ISDAY</kbd>), a student is counted if the record has a registration status type code that signifies “registered” by the start of the census-1 date (SSBSECT_CENSUS_ENRL_DATE) and was not dropped before the start of the census-1 date (SSBSECT_CENSUS_ENRL_DATE). If the record has a registration status type code that signifies “registered” by the start of the census-1 date (SSBSECT_CENSUS_ENRL_DATE) and the student drops or withdraws from the CRN on or after the census-1 date they will be counted if they have a grade. (Any registration activity on or after the census-1 date is not considered for the reports.)</li>
+
+        <li class="li">For two-census-average CRNs (<kbd class="ph userinput">ISNC</kbd>) the student's registration is evaluated for both census-1 and census-2 and processed as follows. Census-1 status is determined the same as it is for the single census CRNs. If the census-1 status is not <kbd class="ph userinput">C</kbd> for counted in apportionment, census-2 is not evaluated, not listed on the SVRCALD report, and therefore not included in any report contact hours and FTES. If the census-1 status is <kbd class="ph userinput">C</kbd> for counted in apportionment, the student is counted for census-2 if the record has a registration status type code that signifies “registered” by the start of the census-1 date (SSBSECT_CENSUS_ENRL_DATE) and was not dropped before the start of the census-2 date (SSBSECT_CENSUS_2_DATE). (Any registration activity after the census-2 date is not considered for the reports.)</li>
+
+        </ul>
+</li>
+
+      <li class="li"><kbd class="ph userinput">D</kbd>: Dropped. A drop/withdrawal that was not counted in apportionment. If this is a census class, the student dropped after the start date and before the cutoff for the related census (as explained above for the C value). For census CRNs (<kbd class="ph userinput">WEEKLY</kbd>, <kbd class="ph userinput">DAILY</kbd>, <kbd class="ph userinput">ISWEEK</kbd>, and <kbd class="ph userinput">ISDAY</kbd>), a student is reported as dropped if the record has a registration status type code that signifies “registered” by the start of the census-1 date (SSBSECT_CENSUS_ENRL_DATE) and the student drops or withdraws from the CRN on or after the census-1 date and does not have a grade. (For positive attendance classes, drops will still be coded as C to count the attendance hours, provided the dropped student has attendance hours and has a grade assigned for the CRN.)</li>
+
+      <li class="li"><kbd class="ph userinput">E</kbd>: Excluded. The “Excluded Reg OR” column on SVRCALD is the Student Registration Permit-Override Page (SFASRPO) SFRSRPO_ROVR_CODE that is set up on the Registration Permit-Overrides Control Page (SFAROVR) with SFRROVR_EXCL_APPORT_IND = Y. This information is printed on some of the other reports, too. The user has opted to exclude this registration from apportionment because of course repeat rules, concurrent enrollment rules, or some other institution policy.</li>
+
+      <li class="li"><kbd class="ph userinput">O</kbd>: Other. Some sort of data issue that needs more research. <kbd class="ph userinput">O</kbd> should not occur when all data setup is correct.</li>
+
+    </ul>
+
+  </div>
+
+</div></div></section>
+<section id="t-2200"><h3>Initial setups, ongoing maintenance, and CCFS-320 processing</h3><div class="content-locale-en-US content-locale-en"><div id="c_initial_setups_ongoing_maintenance_ccfs-320_processing"><div class="body conbody"><p class="shortdesc"><span class="ph uicontrol">Start Date</span> and <span class="ph uicontrol">End Date</span> fields were added to the Academic Year Validation Page (STVACYR) in baseline <span class="keyword">Banner</span> Student 8.7.3. However, these fields and several other regulatory date fields were delivered in CALBSTU on the Academic Year Dates Page (SVAACYR).</p>
+
+    <p class="p">At this time, CCFS-320 processing uses only the SVAACYR dates; any start and end dates entered on STVACYR are ignored and have no impact on any CALBSTU functionality.</p>
+
+    <p class="p">The following setups must be reviewed before your first run of the CCFS-320 extract and reports. If you add codes in any of these areas, the same consideration should be given for the noted CCFS-320 settings. Refer to <span class="xref ft-internal-link" title="On the Section Page (SSASECT), normal CRN maintenance altering the dates and attendance method automatically updates the reporting year and contact hours. This includes copying a CRN to a new CRN using the SSASECT copy and SSRROLL." data-ft-warning="excluded-from-rendering" data-mapid="Wi9UeTI7s8pITUaHpb6ZEg" data-tocid="5_SigY2B1Kz6xjb34US30w" data-section="r_changes_impacting_reporting_year_contact_hours_data_ssasect">Changes impacting the reporting year and contact hours data on SSASECT</span>.</p>
+
+    <ul class="ul">
+      <li class="li">Before you run the CCFS-320 extract and reports for the very first time after you install CALBSTU, make sure that the install instructions (Critical setups for CCFS-320 Reporting) were followed regarding the initial settings on SVAACYR, STVTERM, and SSASECT, including the scripts to use after the settings are reviewed (<code class="ph codeph"> ssbsect_daily_upd_acry.sql </code> and <code class="ph codeph"> ssbsect_actual_upd_acyr.sql </code>).</li>
+
+      <li class="li">For each term, review the academic year settings on STVTERM, including the apportionment category, term length multiplier, and independent study term length multiplier, for the terms you will be reporting with CALBSTU CCFS-320 reports.</li>
+
+      <li class="li">Occasionally, as needed when there is a new code, on STVRSTS, update the following check boxes on your registration status codes: <ul class="ul">
+        <li class="li"><span class="ph uicontrol">Audit Indicator</span>: Used only on an RSTS code for students that are auditing the class. You do not need to check the <span class="ph uicontrol">Apportionment Indicator</span> check box on the same code.</li>
+
+        <li class="li"><span class="ph uicontrol">Apportionment Indicator</span>: Check for any RSTS code that could be reported on the CCFS-320 reports (other than codes for <span class="ph uicontrol">Audit Indicator</span>). Typically this check box is not checked for RSTS codes that are used for waitlist, audit, and drops before the class starts. However, if the RSTS code is used in CCFS-320 reporting for any reason, this check box must be checked. It must also be checked for any student with reportable hours in a positive-attendance class. For census classes, in addition to having this checked the analysis of the RSTS date compared to the class dates determines whether the student is included in the apportionment FTES calculations. On SFADROP, codes used in SFBDROP_RSTS_CODE_REG_START, SFBDROP_RSTS_CODE_STU_START or SFBDROP_RSTS_CODE_FSS_START will have this unchecked, but all other field's codes should have this checked.</li>
+
+        </ul>
+</li>
+
+      <li class="li">Occasionally, as needed when there is a new code, on STVATTR, check the <span class="ph uicontrol">Inmate CRN</span> check box for each degree attribute code you want use to identify inmate-only CRNs on SSADETL. This setting affects how the CRN is report on CCFS-320. Inmate-only CRNs are treated as noncredit (regardless of the course credit status) and should have the appropriate attendance method.</li>
+
+      <li class="li">On an ongoing basis, as needed when there are new students or changes in student statuses, make sure that your concurrent high school students have been set up on SGASTDN with student type <kbd class="ph userinput">Y</kbd> (the MIS valid value) for the terms the status is effective.</li>
+
+      <li class="li">Occasionally, as needed when there is a new code, on STVROVR, add new codes for excluding the excess concurrent high school enrollment students for either the 5% or 10% concurrent high school enrollment rules. (Refer to <span class="xref ft-internal-link" title="The following concurrent high school enrollment rules are supported by CALBSTU CCFS-320." data-ft-warning="excluded-from-rendering" data-mapid="Wi9UeTI7s8pITUaHpb6ZEg" data-tocid="QtQzZ2si~bK6hQSukmfEEw" data-section="c_physical_education_concurrent_enrollment">Physical Education concurrent enrollment</span> for more information.) If needed, add a new code for the repeat-overrides that are excluded from apportionment. (You can have one code for repeats that are not excluded from the CCFS-320 report, and a second code for repeats that are excluded.)</li>
+
+      <li class="li">Occasionally, as needed when there is new data, update the <span class="ph uicontrol">Lab</span> check box on the Meeting Type Validation Table (GTVMTYP) for your existing meeting types. (The <span class="ph uicontrol">To Be Arranged</span> check box should be updated, too, but it impacts MIS reporting, not CCFS-320.)</li>
+
+      <li class="li">Occasionally, as needed when there is a new code, define the code for its correct classification of the attendance type in CCFS-320 reporting. If you have or need to add “independent study” STVACCT codes, add them with the both the <span class="ph uicontrol">Independent Study</span> (STVACCT_INDEPENDENT_IND) and one of the following check boxes checked: <ul class="ul">
+        <li class="li"><span class="ph uicontrol">Actual</span> (STVACCT_ACTUAL_IND)</li>
+
+        <li class="li"><span class="ph uicontrol">Daily</span> (STVACCT_DCH)</li>
+
+        <li class="li"><span class="ph uicontrol">Weekly</span> (STVACCT_WCH)</li>
+
+        </ul>
+</li>
+
+      <li class="li">For each term, update your CRNs on SSASECT to use the correct attendance method code. Review the calculated reporting year, and change it if this is a CRN that allows that maintenance by its definitions (certain daily CRNs in summer intersession terms). Lastly, review the CRN's contact hours calculations and meeting setups related to CCFS-320 reporting.</li>
+
+      <li class="li">Occasionally, as needed when there is new data, update SCADETL for the following fields on the existing courses that affect CCFS-320 reporting: <ul class="ul">
+        <li class="li"><span class="ph uicontrol">Occupational Course</span></li>
+
+        <li class="li"><span class="ph uicontrol">Basic Skills</span></li>
+
+        <li class="li"><span class="ph uicontrol">Non Credit Enhanced Funding</span></li>
+
+        <li class="li"><span class="ph uicontrol">In-Service</span></li>
+
+        <li class="li"><span class="ph uicontrol">Sport/Physical Education Course</span></li>
+
+        </ul>
+</li>
+
+      <li class="li">For each new year, if you are processing a period 1 or period 2 CCFS-320 report, calculate the annualizers on the Academic Year Apportionment Annualizer Page (SVAAPIZ), adding overrides if needed.</li>
+
+      <li class="li">Occasionally, as needed when there is a new code, add to the Center Code Validation Table (SVVCENT) codes for your centers.</li>
+
+      <li class="li">Occasionally, as needed when there is a new code, update the Building Definition Page (SLABLDG) for the new center and leased building settings on your existing buildings.</li>
+
+    </ul>
+
+    <div class="p">Throughout an academic year, perform this ongoing maintenance: <ul class="ul">
+      <li class="li">For each term, on the Registration Permit-Overrides Control Page (SFAROVR) for the terms you will be reporting with CALBSTU CCFS-320 reports, add the new STVROVR codes added above with the appropriate apportionment-related setups including Repeat Limit, Repeat Hours, Concurrent Enrollment 10% Rule, Concurrent Enrollment 5% Rule, and Exclude from Apportionment. These setups will dictate how the codes impact contact hours and FTES, especially the SVRCAL9 report. (Refer to <span class="xref ft-internal-link" title="The following concurrent high school enrollment rules are supported by CALBSTU CCFS-320." data-ft-warning="excluded-from-rendering" data-mapid="Wi9UeTI7s8pITUaHpb6ZEg" data-tocid="QtQzZ2si~bK6hQSukmfEEw" data-section="c_physical_education_concurrent_enrollment">Physical Education concurrent enrollment</span> for more information.)</li>
+
+      <li class="li">On an ongoing basis, as needed when there is new student registration data for inmates in correctional facilities, ensure that those students are correctly identified on the MIS Special Term Data (SVAMIST) page for the Term and District/College ID. This will facilitate correct reporting in the Inmates in Correctional Facilities FTES section of the SVRCAL9 report.</li>
+
+      <li class="li">For each term, process and review as needed SVRCALP as discussed in <span class="xref ft-internal-link" title="The following concurrent high school enrollment rules are supported by CALBSTU CCFS-320." data-ft-warning="excluded-from-rendering" data-mapid="Wi9UeTI7s8pITUaHpb6ZEg" data-tocid="QtQzZ2si~bK6hQSukmfEEw" data-section="c_physical_education_concurrent_enrollment">Physical Education concurrent enrollment</span>.</li>
+
+      </ul>
+</div>
+
+    <div class="note"><span class="notetitle">Note:</span> For details on configuring <span class="keyword">Banner</span> for the Standardized Accounting Method (SAAM) for CCFS-320 reporting and MIS Reporting, introduced in 2024-2025, refer to <cite class="cite">Article KB000513620 - SAAM Configuration Guide for CCFS-320 and MIS reporting (Dec 2025)</cite> in the <span class="keyword">Ellucian Customer Center</span>.</div>
+
+  </div>
+
+</div></div></section>
+<section id="t-2210"><h4>Create the CCFS-320 reports using Banner CALBSTU</h4><div class="content-locale-en-US content-locale-en"><div id="t_create_ccfc-320_reports_using_banner_calbstu"><div class="body taskbody"><p class="shortdesc">SVRCALP is the only report using live data. The main purpose of this process is to monitor PE classes early in a term’s registration period for the 10% concurrent high school enrollment rule.</p>
+
+    <div class="tasklabel"><h2 class="sectiontitle tasklabel">Procedure</h2></div><ol class="ol steps"><li class="li step stepexpand">
+        <span class="ph cmd">Run the 320 Attendance Extract Process (SVRCALX).</span>
+        <div class="itemgroup info">This updates the data in the extract tables.</div>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Review the list of terms included and the exception CRNs, and correct the exceptions where necessary. If corrections are made, start again at Step 1.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">If desired, run the PE Concurrent Enrollment Process (SVRCALP) to save for audit purposes.</span>
+        <div class="itemgroup info"><div class="note"><span class="notetitle">Note:</span> You can use SVRCALP at any time during the academic year to prepare for the final SVRCALX extract and CCFS-320 reports that are created from the extract data. (Refer to <cite class="cite">Physical Education concurrent enrollment </cite> for more information.) </div>
+If you are using SVRCALP as a permanent auditor-packet report, <span class="keyword">Ellucian</span> recommends that you run SVRCALP close to the same time that you run SVRCALX. However, SVRCALP is optional because the CCFS-320 Detail Report (SVRCALD) includes the same warning message from the extracted data. For audit purposes, the warnings (or lack thereof) on SVRCALD should be considered to be the proof for the submitted apportionment calculations because this report uses the saved extract data.</div>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">If you want to create the standard version of the CCFS-320 report, continue as follows.</span>
+        <div class="itemgroup info">
+          <ul class="ul">
+            <li class="li">Run the CCFS-320 Detail Report (SVRCALD), entering the following parameters to create the standard report student detail listing:<ul class="ul">
+              <li class="li"><kbd class="ph userinput">S</kbd> for the Standard report.</li>
+
+              <li class="li"><kbd class="ph userinput">Y</kbd> (Include both students and CRNs) for the Include Student Details parameter.</li>
+
+              </ul>
+<p class="p">You can enter the appropriate values for the other parameters, but for this task, you must enter the specified values for these two.</p>
+</li>
+
+            <li class="li">Run SVRCALD again, entering the following parameters to create the standard report CRN summary listing:<ul class="ul">
+              <li class="li"><kbd class="ph userinput">S</kbd> for the Standard report.</li>
+
+              <li class="li"><kbd class="ph userinput">Y</kbd> (Include only CRNs) for the Include Student Details parameter.</li>
+
+              </ul>
+</li>
+
+            <li class="li">Review the standard report CRNs, and the students and warnings listed with each CRN, and correct the data as needed. If corrections are made, start again at Step 1.</li>
+
+          </ul>
+
+          <p class="p">Counts of CRNs with warnings are provided in the summary section at the bottom of the report output for quick reference.</p>
+
+        </div>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">If you want to create the apprenticeship version of the report (to support CCFS-321 - Actual or Positive Attendance CRNs only and CCFS-320 – apprenticeship CRNs with any attendance accounting method), continue as follows.</span>
+        <div class="itemgroup info">
+          <ul class="ul">
+            <li class="li">Run SVRCALD, entering the following parameters to create the apprenticeship report student detail listing:<ul class="ul">
+              <li class="li"><kbd class="ph userinput">A</kbd> for the Apprenticeship Report.</li>
+
+              <li class="li"><kbd class="ph userinput">Y</kbd> (Include both students and CRNs) for the Include Student Details parameter.</li>
+
+              </ul>
+<p class="p">You can enter the appropriate values for the other parameters, but for this task, you must enter the specified values for these two.</p>
+</li>
+
+            <li class="li">Run SVRCALD again, entering the following parameters to create the apprenticeship report CRN summary listing:<ul class="ul">
+              <li class="li"><kbd class="ph userinput">A</kbd> for the Apprenticeship Report.</li>
+
+              <li class="li"><kbd class="ph userinput">N</kbd> (Include only CRNs) for the Include Student Details parameter.</li>
+
+              </ul>
+</li>
+
+            <li class="li">Review the apprenticeship CRNs, and the students and warnings listed with each CRN, and correct the data as needed. If corrections are made, start again at Step 1.</li>
+
+          </ul>
+
+          <p class="p">Counts of CRNs with warnings are provided in the summary section at the bottom of the report output for quick reference.</p>
+
+        </div>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Run the following reports:</span>
+        <div class="itemgroup info">
+          <ul class="ul">
+            <li class="li">CCFS-320 Summary Reports (SVRCALS) </li>
+
+            <li class="li">CCFS-320 Supplemental Reports (SVRCALU)</li>
+
+          </ul>
+
+        </div>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Review the CRNs, and the students and warnings listed with each CRN, and correct the data as needed. If corrections are made, start again at Step 1.</span>
+        <div class="itemgroup info">
+          <div class="note"><span class="notetitle">Note:</span> Counts of CRNs with warnings are provided at the bottom of the reports in the summary sections for quick reference.</div>
+
+        </div>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Repeat steps 1 through 7 for each college (district/college ID on GTVDICD) in your district until the CCFS-320 results are satisfactory for each.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Run the CCFS-320 Part IX Report (SVRCAL9) for the district.</span>
+        <div class="itemgroup info">SVRCAL9 is a district-wide report that includes the AB 540 Headcount Report, the Special Admit Full-Time and Part-Time PE Credit FTES Report and the Inmates in Correctional Facilities FTES Report.</div>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">If adjustments are needed for the SVRCAL9 summary page 5% concurrent high school rule, make the adjustments and repeat steps 1 through 9 for each college impacted with adjustments. (Refer to<cite class="cite"> 5% concurrent high school enrollment rule (5% concurrent high school enrollment rule (SVRCAL9 Special Admit Full-Time and Part-Time PE Credit FTES Report)</cite> for more information.)</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Save any output files or prints that are needed for your records and for audits.</span>
+      </li>
+</ol>
+
+    <div class="section result"><div class="tasklabel"><h2 class="sectiontitle tasklabel">Results</h2></div>When you are done, each college (district/college ID on GTVDICD) in your district should have a set of reports that was created from the same the SVRCALX extract data set. On the report control page of SVRCALD, SVRCALS, and SVRCALU reports, this is listed as<var class="keyword varname"> SVRCALX extracted data (SVBCALP table activity date)</var>. On SVRCAL9, it is listed on the AB540 and the “Special Admit Full-Time and Part-Time PE Credit FTES Report” summary page and the “Inmates in Correctional Facilities FTES Report” summary page. For each college (district/college ID on GTVDICD), this date and time stamp should match across all of these reports.</div>
+
+  </div>
+
+</div></div></section>
+<section id="t-2220"><h4>Changes impacting the reporting year and contact hours data on SSASECT</h4><div class="content-locale-en-US content-locale-en"><div id="r_changes_impacting_reporting_year_contact_hours_data_ssasect"><div class="body refbody"><p class="shortdesc">On the Section Page (SSASECT), normal CRN maintenance altering the dates and attendance method automatically updates the reporting year and contact hours. This includes copying a CRN to a new CRN using the SSASECT copy and SSRROLL.</p>
+
+    <div class="section">
+      <p class="p">Adding new codes to the setup pages (STVTERM, STVACCT, or SVVACYR) and changing their settings before using them on any CRNs do not cause any problems. However, if you perform maintenance on existing data on the setup pages that impact the calculated reporting year and contact hours, these will not automatically update any existing CRN’s data.</p>
+
+      <div class="note"><span class="notetitle">Note:</span> Although <span class="ph uicontrol">Start Date</span> and <span class="ph uicontrol">End Date</span> fields were added to STVACYR in baseline <span class="keyword">Banner</span> Student 8.7.3, CCFS-320 processing uses only the SVAACYR dates; any start and end dates entered on STVACYR are ignored and have no impact on any CALBSTU functionality.</div>
+
+      <p class="p">If the values shown in <span class="xref ft-internal-link" data-ft-warning="excluded-from-rendering" data-mapid="Wi9UeTI7s8pITUaHpb6ZEg" data-tocid="5_SigY2B1Kz6xjb34US30w" data-section="r_changes_impacting_reporting_year_contact_hours_data_ssasect__r_changes_impacting_reporting_year_contact_hours_data_ssasect-tbl5">Table 1</span> are changed on existing codes, depending on how they are changed and how they are used, you might need to re-execute the user-run scripts shown in <span class="xref ft-internal-link" data-ft-warning="excluded-from-rendering" data-mapid="Wi9UeTI7s8pITUaHpb6ZEg" data-tocid="5_SigY2B1Kz6xjb34US30w" data-section="r_changes_impacting_reporting_year_contact_hours_data_ssasect__r_changes_impacting_reporting_year_contact_hours_data_ssasect-tbl6">Table 2</span> from the install instructions.</p>
+
+      
+<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" id="r_changes_impacting_reporting_year_contact_hours_data_ssasect__r_changes_impacting_reporting_year_contact_hours_data_ssasect-tbl5" class="table" frame="hsides" border="1" rules="rows"><caption><span class="tablecap"><span class="table--title-label">Table 1. </span>CCFS-320 setup codes</span></caption><colgroup><col><col></colgroup><thead class="thead" style="text-align:left;vertical-align:bottom;">
+            <tr class="row">
+              <th class="entry row-nocellborder" style="text-align:left;vertical-align:bottom;" id="d15707e80">Page</th>
+
+              <th class="entry row-nocellborder" style="text-align:left;vertical-align:bottom;" id="d15707e83">Field</th>
+
+            </tr>
+
+          </thead>
+<tbody class="tbody">
+            <tr class="row">
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d15707e80 ">STVTERM</td>
+
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d15707e83 ">Apportionment Category:<ul class="ul"> <li class="li">Academic Year</li>
+ <li class="li">Term Start Date</li>
+ <li class="li">Term End Date</li>
+ </ul>
+</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d15707e80 ">SVAACYR</td>
+
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d15707e83 ">Leading Summer:<ul class="ul"> <li class="li">Academic Year Ending</li>
+ <li class="li">Start Date</li>
+ <li class="li">End Date</li>
+ </ul>
+</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d15707e80 ">STVACCT</td>
+
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d15707e83 ">any of the indicators</td>
+
+            </tr>
+
+          </tbody>
+</table>
+</div>
+
+      
+<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" id="r_changes_impacting_reporting_year_contact_hours_data_ssasect__r_changes_impacting_reporting_year_contact_hours_data_ssasect-tbl6" class="table" frame="hsides" border="1" rules="rows"><caption><span class="tablecap"><span class="table--title-label">Table 2. </span>User-run setup scripts for CCFS-320</span></caption><colgroup><col><col><col></colgroup><thead class="thead" style="text-align:left;vertical-align:bottom;">
+            <tr class="row">
+              <th class="entry row-nocellborder" style="text-align:left;vertical-align:bottom;" id="d15707e159">Data affected</th>
+
+              <th class="entry row-nocellborder" style="text-align:left;vertical-align:bottom;" id="d15707e162">Script name</th>
+
+              <th class="entry row-nocellborder" style="text-align:left;vertical-align:bottom;" id="d15707e165">Notes</th>
+
+            </tr>
+
+          </thead>
+<tbody class="tbody">
+            <tr class="row">
+              <td class="entry row-nocellborder" rowspan="2" style="text-align:left;vertical-align:top;" headers="d15707e159 ">Reporting Year field on SSASECT</td>
+
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d15707e162 ">ssbsect_​daily_upd_acry.sql</td>
+
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d15707e165 ">This script updates all records in the database with no option for audit mode. Be extremely careful when running this script.</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d15707e162 ">ssbsect_​actual_upd_acyr.sql</td>
+
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d15707e165 ">This script updates all records in the database with no option for audit mode. Be extremely careful when running this script.</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry row-nocellborder" rowspan="3" style="text-align:left;vertical-align:top;" headers="d15707e159 ">Contact hours fields and columns for a CRN (various fields on SSASECT main &amp; meeting)</td>
+
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d15707e162 ">ssrmeet_​upd_meet_no.sql</td>
+
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d15707e165 ">This script prompts for a term and the choice of audit or update mode.</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d15707e162 ">ssrmeet_​upd_hrs_week.sql</td>
+
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d15707e165 ">This script prompts for a term and the choice of audit or update mode.</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d15707e162 ">ssrmeet_​upd_hrs_total.sql</td>
+
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d15707e165 ">This script updates all records in the database with no option for audit mode. Be extremely careful when running this script.</td>
+
+            </tr>
+
+          </tbody>
+</table>
+</div>
+
+      <p class="p">It is recommended that you test the change and the script results in a test environment first. These scripts should not be relied on as a constant tool and should only be used as an exception.</p>
+
+    </div>
+
+  </div>
+
+</div></div></section>
+<section id="t-2230"><h4>Physical Education concurrent enrollment</h4><div class="content-locale-en-US content-locale-en"><div id="c_physical_education_concurrent_enrollment"><div class="body conbody"><p class="shortdesc">The following concurrent high school enrollment rules are supported by CALBSTU CCFS-320.</p>
+
+    <ul class="ul">
+      <li class="li">10% concurrent high school enrollment rule: This is the limit put on a single sports/PE CRN in a single college (district/college ID on GTVDICD). It is supported by the SVRCALP and SVRCALD reports.</li>
+
+      <li class="li">5% concurrent high school enrollment rule. This is the district-wide limit for the proportion of all sports/PE enrollment in all colleges (district/college ID on GTVDICD) within a district. It is supported by the Special Admit Full-Time and Part-Time PE Credit FTES Report of the SVRCAL9report section.</li>
+
+    </ul>
+
+    <p class="p">When first reviewing the setups for CCFS-320 reporting, check the <span class="ph uicontrol">Sports/Physical Education Course</span> check box on the Supplemental Data tab of the Course Detail Information Page (SCADETL) for all courses that should be monitored for the sports rules (specifically, the 5% or 10% concurrent high school enrollment rule). Only CRNs for courses with this new setting will be considered for the enrollment warnings noted on SVRCALP or SVRCALD and for the analysis on the summary page of the Special Admit Full-Time and Part-Time PE Credit FTES Report section of SVRCAL9.</p>
+
+    <p class="p">All concurrent high school students must have student type of <kbd class="ph userinput">Y</kbd> on the General Student Page (SGASTDN). This is the MIS report value for Concurrent HS K-12. This impacts both the 5% and 10% concurrent high school enrollment rules.</p>
+
+    <p class="p">Your institution needs two registration permit-override codes on the Registration Permit-Override Code Validation Page (STVROVR) to use only for CCFS-320 concurrent high school enrollment reporting purposes. These codes will have no impact in registration and will not be used as a normal registration override. Normal baseline overrides are added to student records before or during the registration process to allow the student CRN registration to bypass an error. The overrides for CCFS-320 reporting are different in that they are used only to exclude prior registrations from the apportionment FTES and are usually added to the student records during the phase the 10% rule and the 5% rules results are analyzed. They are described with their respective reports below.</p>
+
+    <p class="p">None of the physical education concurrent enrollment reports (SVRCAL9 and SVRCALD), include apprenticeship CRNs (SCBSUPP_OCCS_CODE = A for SVRCALP or SVRCALN_OCCS_CODE = A for SVRCAL9).</p>
+
+  </div>
+
+</div></div></section>
+<section id="t-2240"><h5>10% concurrent high school enrollment rule (SVRCALP and SVRCALD warning)</h5><div class="content-locale-en-US content-locale-en"><div id="c_10_concurrent_high_school_enrollment_rule_svrcalp_svrcald_warning"><div class="body conbody"><p class="shortdesc">You must create a registration permit-override code to be used only for the 10 % concurrent high school enrollment rule.</p>
+
+    <p class="p"> It affects a CRN’s 10% warning message on SVRCALP and SVRCALD. Set it up on SFAROVR with the Concurrent Enrollment 10% Rule and Exclude from Apportionment check boxes checked for terms that will be used in the CALBSTU CCFS-320 extract and reports.</p>
+
+    <div class="note warning"><span class="warningtitle">Warning:</span> This code should be used only to manage the 10% warnings and in conjunction with CRNs for sport/PE courses as defined on the Course Detail Information Page (SCADETL). It should not be used in relationship to the SVRCAL9 5% rule calculation.</div>
+
+    <p class="p">After registration starts for a term, use SVRCALP to monitor which CRNs designated on SCADETL as being “sports/physical education courses” have too many concurrent high school students enrolled (above 10% of the total). These CRNs will be listed on the report with the 10% warning message. If nothing is changed, they will also have the same warning on the SVRCALD report later when it is created, but SVRCALP allows for easier monitoring during the registration period.</p>
+
+    <p class="p">To suppress the necessary number of concurrent high school students from the CCFS-320 apportionment reporting (to get to 10% or lower on SVRCALP and eventually on the SVRCALD report), using your new SFAROVR 10% rule code, add an entry to the record on SFASRPO of each selected concurrent high school student that is to be excluded from apportionment. If you are working with SVRCALD, you must rerun SVRCALX before you will see the impact on SVRCALD.</p>
+
+    <p class="p">For example, let’s say you have a PE CRN 4002 that has 21 apportionment-countable students, and three of those students have SGASTDN student type of <kbd class="ph userinput">Y</kbd>. This CRN will be listed on SVRCALP with the warning message because 3 is 14.3% of 21. Select one of the three students, and on this student’s SFAROVR record, add the new 10% rule code to exclude from apportionment. When you rerun SVRCALP, CRN 4002 will no longer have a warning because 2 / 20 = 10%, which is within the 10% rule.</p>
+
+    <p class="p">If you were running SVRCALD with these same numbers, you would follow the same steps and would need to run SVRCALX only to update the extract tables between the SVRCALD runs. You would also need to run new SVRCALS and SVRCALU reports to get the updated FTES and extract time stamps.</p>
+
+    <p class="p">This is just one possible strategy for preventing excessive concurrent high school enrollment; you can also devise other policies and procedure to meet your needs.</p>
+
+  </div>
+
+</div></div></section>
+<section id="t-2250"><h5>5% concurrent high school enrollment rule (SVRCAL9 Special Admit Full-Time and Part-Time PE Credit FTES Report)</h5><div class="content-locale-en-US content-locale-en"><div id="t_5_concurrent_high_school_enrollment_rule_svrcal9_special_admit_full-time_part-time_pe_credit_ftes_report"><div class="body taskbody"><p class="shortdesc">You must create a registration permit-override code that will be used only for the district-wide 5 % concurrent high school enrollment rule.</p>
+
+    <div class="section context"><div class="tasklabel"><h2 class="sectiontitle tasklabel">About this task</h2></div>It affects the percentage calculation, which is calculated from the extract data for all colleges in the district. This impacts the percentage calculation (Percent of Reported FTES of Special Part-Time and Full-Time Students in PE Courses (Col.3/Col.1)) at the end of Special Part-Time and Full-Time Students in PE Courses section at the end of SVRCAL9 (last page of the Special Admit Full-Time and Part-Time PE Credit FTES Report). Set it up on SFAROVR with the Concurrent Enrollment 5% Rule and Exclude from Apportionment check boxes checked for terms that will be used in the CALBSTU CCFS-320 extract and reports.<div class="note warning"><span class="warningtitle">Warning:</span> This code should be used only to manage the 5% warnings and in conjunction with CRNs for sport/PE courses as defined on SCADETL. It should not be used in relationship to the SVRCALP and SVRCALD 10% warnings. If you mix the usage of a code with 5% rule setup, it will affect the accuracy of your SVRCAL9 results and analysis.</div>
+<p class="p">You should first complete each college’s CCFS-320 reporting analysis, including review for the 10% warnings. You should then eliminate the 10% warnings through the 10% override code (or other procedures) and finalize the college reports before starting the work on the 5% rule. After this work is complete for all colleges, run SVRCAL9 to monitor the district-wide sports/PE enrollment percentage for all concurrent high school enrollment students.</p>
+<p class="p">The following sample of SVRCAL9 report output is shown to illustrate the information after it. It is important to understand that the bolded numerals in the Conc Enrl column headings in this sample do not actually appear in the report but are included for reference and clarification as you work through the rest of the information in this section.</p>
+
+<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" id="t_5_concurrent_high_school_enrollment_rule_svrcal9_special_admit_full-time_part-time_pe_credit_ftes_report__t_5_concurrent_high_school_enrollment_rule_svrcal9_special_admit_full-time_part-time_pe_credit_ftes_report-utbl1" class="table" frame="hsides" border="1" rules="rows"><colgroup><col></colgroup><tbody class="tbody">
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;">
+              <pre class="pre codeblock"><code>
+(1)
+Conc Enrl
+(2)
+Conc Enrl
+(3)
+Conc Enrl
+Subj  Crse  Term    CRN    Title                           PE CRN                        FTES       PE FTES   PE FTES Rpt
+----  ----  ------  -----  ------------------------------  ------                ------------ ------------- -------------
+MGMT  1001  200821  41     Business Management             No                            0.10          0.00          0.00
+   Concurrent Enrollment Students in CRN:                                           Conc Enrl     Conc Enrl     Conc Enrl
+       ID          Name                            320 OR Code  5% Rule OR                 CH         PE CH     PE CH Rpt
+       ---------   ------------------------------  -----------  ----------       ------------ ------------- -------------
+       @32000003   Cousins, Karen S.                                                    50.00          0.00          0.00
+       @32000029   Johnson, Kelly A.                                                     0.00          0.00          0.00
+   CRN Total Contact Hours (CH)                                                         50.00          0.00          0.00
+(1)
+Conc Enrl
+(2)
+Conc Enrl
+(3)
+Conc Enrl
+Subj  Crse  Term    CRN    Title                           PE CRN                        FTES       PE FTES   PE FTES Rpt
+----  ----  ------  -----  ------------------------------  ------                ------------ ------------- -------------
+ARCH  1004  200841  9      Archery                         Yes                           0.12          0.12          0.06
+   Concurrent Enrollment Students in CRN:                                           Conc Enrl     Conc Enrl     Conc Enrl
+       ID          Name                            320 OR Code  5% Rule OR                 CH         PE CH     PE CH Rpt
+       ---------   ------------------------------  -----------  ----------       ------------ ------------- -------------
+       @32000003   Cousins, Karen S.                                                    32.00         32.00         32.00
+       @32000022   Harris, Alexander M.            HSPE-5       Yes                     32.00         32.00          0.00
+       @32000019   Knew, Jerome S.                 HSPE-10      No                       0.00          0.00          0.00
+       @32000020   Harvard, Alfred S.              HSPE-10      No                       0.00          0.00          0.00
+       @32000021   Sommer, Aaron S.                HSPE-10      No                       0.00          0.00          0.00
+   CRN Total Contact Hours (CH)                                                         64.00         64.00         32.00
+Summary
+District Concurrent Enrollment Contact Hours (CH) Totals                             2,378.40        683.40        598.90
+         Concurrent Enrollment FTES Totals                                               5.81          1.91          1.75
+                                                                Total Reported FTES of          Percent of Reported FTES
+                                Total FTES of Special Part-     Special Part-Time and Full-     of Special Part-Time and
+Total FTES of Special Part-     Time and Full-Time              Time Students in PE             Full-Time Students in PE
+Time and Full-Time              Students in PE Courses          Courses                         Courses
+Students Col.1                  Col.2                           Col.3                           Col.3/Col.1
+5.81                            1.91                            1.75                            30.12 %
+</code></pre>
+            </td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;">
+              <pre class="pre codeblock"><code>
+Summary
+District Concurrent Enrollment Contact Hours (CH) Totals                               2,378.40       683.40       598.90
+         Concurrent Enrollment FTES Totals                                                 5.81         1.91         1.75
+                                                                Total Reported FTES of          Percent of Reported FTES
+                                Total FTES of Special Part-     Special Part-Time and Full-     of Special Part-Time and
+Total FTES of Special Part-     Time and Full-Time              Time Students in PE             Full-Time Students in PE
+Time and Full-Time              Students in PE Courses          Courses                         Courses
+</code></pre>
+              <p class="p"> <code class="ph codeph"> Student </code>s Col.1 Col.2 Col.3 Col.3/Col.1</p>
+
+              <pre class="pre codeblock"><code>
+5.81                            1.91                            1.75                            30.12 %
+</code></pre>
+            </td>
+
+          </tr>
+
+        </tbody>
+</table>
+</div>
+<p class="p">The three “Conc Enrl” columns work as follows.</p>
+<ul class="ul">
+      <li class="li">Column 1: Within the CRN and student detail portion of the report, this is the Conc Enrl FTES/CH column, and on the final summary page, this is Total FTES of Special Part-Time and Full-Time Students Col.1.</li>
+
+      <li class="li">Column 2: Within the CRN and student detail portion of the report, this is the Conc Enrl PE FTES/CH column, and on the final summary page, this is Total FTES of Special Part-Time and Full-Time Students in PE Courses Col.2.</li>
+
+      <li class="li">Column 3: Within the CRN and student detail portion of the report, this is the Conc Enrl PE FTES/CH Rpt column, and on the final summary page, this is Total Reported FTES of Special Part-Time and Full-Time Students in PE Courses Col.3.</li>
+
+      </ul>
+<p class="p">On the final summary page columns 1 and 3 are used to calculate the percent for the 5% rule, as noted in the column headings (Percent of Reported FTES of Special Part-Time and Full-Time Students in PE Courses (Col.3/Col.1)).</p>
+<p class="p">The report lists all concurrent high school student enrollments in any class of any type on the detail pages. Any CRN that has a concurrent high school student (student type of <kbd class="ph userinput">Y</kbd> on SGASTDN) listed with a counted or excluded status on the SVRCALD report (that is, the value in the <span class="ph uicontrol">Aprt Stat</span> field is <kbd class="ph userinput">C</kbd> or <kbd class="ph userinput">E</kbd>, respectively) is list with those students.</p>
+<p class="p">As shown in the first CRN in the sample output above (MGMT 1001 200821 41), if the CRN is not PE (that is, the <span class="ph uicontrol">Sports/Physical Education Courses</span> check box on SCADETL is unchecked and the CRN heading on the report has No in the PE CRN column), the following apply.</p>
+<ul class="ul">
+      <li class="li">The contact hours and FTES for the students that are counted (that is, the value in the <span class="ph uicontrol">Aprt Stat</span> field is <kbd class="ph userinput">C</kbd>) will be included only in column 1.</li>
+
+      <li class="li">The students that are excluded (that is, the value in the <span class="ph uicontrol">Aprt Stat</span> field is <kbd class="ph userinput">E</kbd>) will be listed for informational purposes. They will not be included in any of the columns for contact hours and FTES. Because this is not a PE CRN, they also should not be using either of the 5% or 10% rule override codes.</li>
+
+      </ul>
+<p class="p">As shown in the second CRN in the sample output above (ARCH 1004 200841 9), if the CRN is PE (that is, the <span class="ph uicontrol">Sports/Physical Education Courses</span> check box on SCADETL is checked and the CRN heading on the report has Yes in the PE CRN column), the following apply.</p>
+<ul class="ul">
+      <li class="li">The contact hours and FTES for the students that are counted (that is, the value in the <span class="ph uicontrol">Aprt Stat</span> field is <kbd class="ph userinput">C</kbd>) will be included in column 1, column 2, and column 3.</li>
+
+      <li class="li">The students that are excluded (that is, the value in the <span class="ph uicontrol">Aprt Stat</span> field is <kbd class="ph userinput">E</kbd>) with any override code that is not for the 5% rule (either a repeat override or a 10% rule override and coded in the extract table as SVRCALO_OVERRIDE_RULE_CDE &lt;&gt; 5) will be listed for informational purposes. They will not be included in any of the columns for contact hours and FTES.</li>
+
+      <li class="li">The students that are excluded (that is, the value in the <span class="ph uicontrol">Aprt Stat</span> field is <kbd class="ph userinput">E</kbd>) with an override code that is for the 5% rule (coded in the extract table as SVRCALO_OVERRIDE_RULE_CDE = 5) will be listed in column 1 and column 2. These are the students that are being used to meet the 5% rule. They are not included in the college's CCFS-320 contact hours and FTES apportionment reporting on SVRCALS and SVRCALD, and they are used in the calculation of the final summary page percent (Percent of Reported FTES of Special Part-Time and Full-Time Students in PE Courses (Col.3/Col.1).</li>
+
+      </ul>
+<p class="p">After you run SVRCAL9, if the percent on the summary page is greater the 5%, you will need to perform the following steps.</p>
+</div>
+
+    <div class="tasklabel"><h2 class="sectiontitle tasklabel">Procedure</h2></div><ol class="ol steps"><li class="li step stepexpand">
+        <span class="ph cmd">To suppress the necessary PE class concurrent high school student enrollments from the CCFS-320 contact hours and FTES apportionment reporting (to get to 5% or lower on SVRCAL9), on the Student Registration Permit-Override Page (SFASRPO) using your new SFAROVR 5% rule code, add an entry to the record of each concurrent high school student that is to be excluded from apportionment.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Rerun SVRCALX for the college that was impacted to update the extract tables.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Rerun SVRCAL9 to view the resulting percent.</span>
+        <div class="itemgroup info">
+          <div class="note"><span class="notetitle">Note:</span> Because this override impacts all of your apportionment reports and FTES, you will need to rerun the full set (SVRCALD, SVRCALS, and SVRCALU) for the college that was impacted. (SVRALU might not be directly impacted, but the extract time stamp on its job control page will not match the other reports if you do not run it.) Refer to <cite class="cite">Create the CCFS-320 reports using Banner CALBSTU</cite> for the complete step-by-step procedure.</div>
+
+        </div>
+      </li>
+</ol>
+
+  </div>
+
+</div></div></section>
+<section id="t-2260"><h6>5% concurrent high school enrollment rule example</h6><div class="content-locale-en-US content-locale-en"><div id="c_5_concurrent_high_school_enrollment_rule_example"><div class="body conbody"><p class="shortdesc">Let's say the first run of SVRCAL9 results in “Percent of Reported FTES of Special Part-Time and Full-Time Students in PE Courses (Col.3/Col.1)” that is 5.05%. This is over the rule limit.</p>
+
+    <p class="p">PE CRN 2002 at your first college has six apportionment-countable students with a student type of <kbd class="ph userinput">Y</kbd> on SGASTDN. None of them have apportionment-exclude override codes. Therefore, they are listed on SVRCAL9 and included in all three “CH/FTES” columns. It is determined that eliminating two of them from apportionment FTES will reduce the percentage to meet the 5% rule. Select two of the students, and on their SFAROVR record, add the new 5% rule code to exclude from apportionment. First rerun SVRCALX for this college. Next rerun SVRCAL9 for the district and review to make sure that the summary page percent is below 5%.</p>
+
+    <p class="p">Repeat until the percent is below the 5% limit.</p>
+
+    <p class="p">Rerun SVRCALD, SVRCALS, and SVRCALU for the college that was impacted.</p>
+
+    <p class="p">This is just one possible strategy for preventing excessive concurrent high school enrollment; you can also devise other policies and procedure to meet your needs.</p>
+
+  </div>
+
+</div></div></section>
+<section id="t-2270"><h5>AB 540 report</h5><div class="content-locale-en-US content-locale-en"><div id="c_ab_540_report"><div class="body conbody"><p class="shortdesc">The first page of the SVRCAL9 output is for the AB 540 report.</p>
+
+    <p class="p">It is another district-wide report (uses data from the extracts of all colleges in the district) and part of the Part IX section of CCFS-320. However, it has no relationship to the concurrent enrollment data within the Special Admit Full-Time and Part-Time PE Credit FTES Report. It uses the AB 540 Resident Code parameter to count unique students (PIDMs) in the district-wide extract data.</p>
+
+  </div>
+
+</div></div></section>
+<section id="t-2280"><h5>Inmates in Correctional Facilities FTES report</h5><div class="content-locale-en-US content-locale-en"><div id="c_inmates_correctional_facilities_ftes_report"><div class="body conbody"><p class="shortdesc">The final section of the SVRCAL9 output is for the Inmates in Correctional Facilities FTES report.</p>
+
+    <p class="p">It is another district-wide report (uses data from the extracts of all colleges in the district) and part of the Part IX section of CCFS-320. However, it has no relationship to the concurrent enrollment data within the Special Admit Full-Time and Part-Time PE Credit FTES Report, nor to the data in the AB 540 Report.</p>
+
+    <p class="p">Students are selected for inclusion in the Inmates in Correctional Facilities FTES report if they have a record in the Incarcerated Students section on the MIS Special Term Data (SVAMIST) page for the Term and District/College ID.</p>
+
+    <p class="p">Each CRN in which an incarcerated student is registered will be included in the report, whether that CRN is recorded as an ‘Inmate CRN’ or not.</p>
+
+  </div>
+
+</div></div></section>
+<section id="t-2290"><h4>Set up SVRCALS flex calendar reporting</h4><div class="content-locale-en-US content-locale-en"><div id="c_set_up_svrcals_flex_calendar_reporting"><div class="body conbody"><p class="shortdesc">Part of CCFS-320 reporting involves analyzing the flexible calendar impact. This section explains how to setup data for the Adjustment to FTES: Part I Faculty Contact Hours (Flex Calendar) section of the CCFS-320 Summary Reports (SVRCALS).</p>
+
+    <p class="p">For the CCFS-320 processing to determine which dates are mandatory flexible calendar days, those dates must be defined on Schedule Exclusion Rules Page (SSAEXCL) and Calendar Day Information Page (SOACALD) every academic year.</p>
+
+    <p class="p">On SSAEXCL, add the dates that are mandatory flexible calendar days. Any date not listed here (SSREXCL table) is not treated as a mandatory flexible calendar day. (Variable flexible calendar days are not listed here.)</p>
+
+    <p class="p">On SOACALD add the dates that are mandatory flexible calendar days with the <span class="ph uicontrol">Flex Status</span> field set to <kbd class="ph userinput">F</kbd> (mandatory flex day) (SOBCALD_ATRB_CODE = F). Any date not listed here with <kbd class="ph userinput">F</kbd> is not a mandatory flexible calendar day.</p>
+
+    
+<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" class="table" frame="border" border="1" rules="all"><caption><span class="tablecap"><span class="table--title-label">Table 1. </span>Codes for implementation of the functionality for SOACALD: Calendar Day Calculation</span></caption><colgroup><col style="width:50%"><col style="width:50%"></colgroup><thead class="thead" style="text-align:left;">
+          <tr class="row">
+            <th class="entry nocellnorowborder" style="vertical-align:top;" id="d71055e70">Validation</th>
+
+            <th class="entry cell-norowborder" style="vertical-align:top;" id="d71055e73">Codes</th>
+
+          </tr>
+
+        </thead>
+<tbody class="tbody">
+          <tr class="row">
+            <td class="entry nocellnorowborder" style="vertical-align:top;" headers="d71055e70 ">STVDAYT-Institutional Type of Day Validation</td>
+
+            <td class="entry cell-norowborder" style="vertical-align:top;" headers="d71055e73 ">
+              <p class="p">A-Fall Semester</p>
+
+              <p class="p">B-Spring Semester</p>
+
+              <p class="p">C-Fall Quarter</p>
+
+              <p class="p">D-Winter Quarter</p>
+
+              <p class="p">E-Spring Quarter</p>
+
+              <p class="p">F-Summer Intersession</p>
+
+              <p class="p">G-Winter Intersession</p>
+
+              <p class="p">H-Other Intersession</p>
+
+              <p class="p">N-Day not part of term/overlap</p>
+
+            </td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry nocellnorowborder" style="vertical-align:top;" headers="d71055e70 ">STVATRA-Day Attribute One Validation</td>
+
+            <td class="entry cell-norowborder" style="vertical-align:top;" headers="d71055e73 ">P-Primary Instruction Day</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry nocellnorowborder" style="vertical-align:top;" headers="d71055e70 ">STVATRB-Day Attribute Two Validation</td>
+
+            <td class="entry cell-norowborder" style="vertical-align:top;" headers="d71055e73 ">N-Not a flex day</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry nocellnorowborder" style="vertical-align:top;" headers="d71055e70 ">STVATRC-Day Attribute Three Validation</td>
+
+            <td class="entry cell-norowborder" style="vertical-align:top;" headers="d71055e73 ">N-Not the terms 1<sup class="ph sup">st</sup> census day</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry nocellnorowborder" style="vertical-align:top;" headers="d71055e70 ">STVATRD-Day Attribute Four Validation</td>
+
+            <td class="entry cell-norowborder" style="vertical-align:top;" headers="d71055e73 ">N-Not a holiday</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="vertical-align:top;" headers="d71055e70 ">STVATRE-Day Attribute Five Validation</td>
+
+            <td class="entry cellrowborder" style="vertical-align:top;" headers="d71055e73 ">N-Not a Final exam day</td>
+
+          </tr>
+
+        </tbody>
+</table>
+</div>
+
+    <div class="note"><span class="notetitle">Note:</span> If the code already exists on each validation table/page, they won’t get inserted or updated.</div>
+
+    <p class="p">Variable flexible calendar days should be listed on SOACALD, too, but they will not directly impact the calculations. They should have the <span class="ph uicontrol">Flex Status</span> field set to <kbd class="ph userinput">V</kbd> (Variable flex day) (SOBCALD_ATRB_CODE = V). As noted above, do not list variable flex days on SSAEXCL.</p>
+
+    <p class="p">After SSAEXCL and SOACALD are set up, the calculation of flex days occurs during the 320 Attendance Extract Process (SVRCALX), and the calculation of the hours impact is reported on the Adjustment to FTES: Part I Faculty Contact Hours (Flex Calendar) of SVRCALS.</p>
+
+    <div class="p">The SVRCALX process looks for CRNs that meet the following conditions: <ul class="ul">
+      <li class="li">Are in any primary term (that is, term category SVRCALT_TCAT_CDE is <kbd class="ph userinput">1</kbd>, <kbd class="ph userinput">2</kbd>, or <kbd class="ph userinput">3</kbd>)</li>
+
+      <li class="li">Are daily or actual including independent study (that is, CRN type SVRCALN_ATTEND_CDE is <kbd class="ph userinput">DAILY</kbd>, <kbd class="ph userinput">ISDAY</kbd>, <kbd class="ph userinput">ISNC</kbd>, or <kbd class="ph userinput">ACTUAL</kbd>)</li>
+
+      <li class="li">Impact flex hours <p class="p">For this, the CRN has a meeting that would have included a specific date by its default meeting setups but whose date is listed in SSAEXCL [SSREXCL table] and has SOBCALD_ATRB_CODE = F. For example, it would have met on September 20, but that date is set up as a mandatory flex day.</p>
+
+        <p class="p">The count of flexible days the CRN would have met but did not is stored with the extracted CRN record (the <span class="ph uicontrol">Flex Days Included</span> field [SVRCALN_FLEX_DAYS_NO]). On SVRCALS, this flex-day-count is multiplied by the CRN’s CCFS-320 contact hours to determine the total contact hours impact.</p>
+</li>
+
+      </ul>
+</div>
+
+    <p class="p">On the SVRCALS Flex Calendar section, the following apply.</p>
+
+    <ul class="ul">
+      <li class="li">The “Total Faculty Contact Hours of Instruction Released for Flex-Time Activities” is the sum from each CRN of the contact hours for these flex days.</li>
+
+      <li class="li">The “Total Faculty Contact Hours of Instruction of All Instructors in the Ac. Year Excl. Intersession” is the sum from each CRN of its normal contact hours (no flex days). This is the sum of all CRNs in this attendance type, even the ones that had no mandatory flex days impact.</li>
+
+      <li class="li">The “F Factor” is obtained by dividing the numbers above and then adding <kbd class="ph userinput">1</kbd>. <p class="p">For example, let’s say you have set up a fall term daily CRN with a meeting of 01-NOV-2010 to 24-NOV-2010, M-T-W. <kbd class="ph userinput">10-NOV-2010</kbd> is loaded in SSAEXCL and is set up in SOACALD as a mandatory flex day. By the meeting pattern, Wednesday, 10-NOV-2010, would have been included in this CRN’s contact hours calculations on SSASECT, but it was excluded (SSAEXCL impact on calculation). Therefore, this CRN is used in the flexible calendar analysis noting one day’s worth of contact hours. If it was the only daily CRN with 4 daily contact hour and 44 total contact hours (4 * 11 meeting days), the factor would be 1.09 (1 + (4 / 44)). If there were more daily CRNs without any flex days, the factor would be 4 divided by the sum of all daily CRN contact hours.</p>
+</li>
+
+    </ul>
+
+  </div>
+
+</div></div></section>
+<section id="t-2300"><h4>Flag CRNs with no reporting year</h4><div class="content-locale-en-US content-locale-en"><div id="t_flag_CRNs_with_no_reporting_year"><div class="body taskbody"><p class="shortdesc">Part of CCFS-320 reporting involves flagging any CRNs with no specified reporting year in the CCFS-320 Summary Reports (SVRCALS).</p>
+
+    <div class="section context"><div class="tasklabel"><h2 class="sectiontitle tasklabel">About this task</h2></div>
+      <p class="p">You can now identify CRNs with no reporting year as an exception in the 320 Attendance Extract Process C3SC (SVRCALX) reports.</p>
+
+    </div>
+
+    <div class="tasklabel"><h2 class="sectiontitle tasklabel">Procedure</h2></div><ol class="ol steps"><li class="li step stepexpand">
+        <span class="ph cmd">Access the Schedule (SSASECT) page. </span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Insert a new record. </span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Enter values for the following parameters in the Key block:</span>
+        <div class="itemgroup info">
+          <ul class="ul">
+            <li class="li">Term</li>
+
+            <li class="li">CRN</li>
+
+            <li class="li">Subject</li>
+
+            <li class="li">Course</li>
+
+            <li class="li">Title</li>
+
+          </ul>
+
+        </div>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Go to the CLASS TYPE section.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Enter values for the following Traditional Class parameters:</span>
+        <div class="itemgroup info">
+          <ul class="ul">
+            <li class="li">Part of Term</li>
+
+            <li class="li">Part-of-Term End Date</li>
+
+            <li class="li">Part of Term Weeks </li>
+
+          </ul>
+
+        </div>
+        <div class="itemgroup info">
+          <p class="p">You must enter a Summer Intersession term with a <code class="ph codeph">Part of Term</code> that crosses the end date of the <code class="ph codeph">Academic Year Code</code> on the Academic Year Dates (SVAACYR) page.</p>
+
+        </div>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Go to the CLASS INDICATORS section.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Select an <span class="ph uicontrol">ID</span> from the <span class="ph uicontrol">Attendance Method</span> field.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Do not enter a value in the <span class="ph uicontrol">Reporting Year</span> field.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Run the 320 Attendance Extract Process C3SC (SVRCALX) process.</span>
+        <div class="itemgroup stepresult">An exception message, <code class="ph codeph">Exception CRNs not valid: No Reporting Year</code>,displays for any CRN where no report year is selected.</div>
+      </li>
+</ol>
+
+  </div>
+
+</div></div></section>
+<section id="t-2310"><h3>CCFS-320 Reporting Pages</h3><div class="content-locale-en-US content-locale-en"><div id="c_ccfs-320_reporting_forms"><div class="body conbody"><p class="shortdesc">The following pages were added or modified for the CCFS-320 Reporting functionality.</p>
+
+    <ul class="ul">
+      <li class="li">Meeting Type Validation Page (GTVMTYP)</li>
+
+      <li class="li">Course Detail Information Page (SCADETL)</li>
+
+      <li class="li">Class Attendance Roster Page (SFAALST)</li>
+
+      <li class="li">Registration Permit-Overrides Control Page (SFAROVR)</li>
+
+      <li class="li">Class Roster Page (SFASLST)</li>
+
+      <li class="li">Student Registration Permit-Override Page (SFASRPO)</li>
+
+      <li class="li">Building Definition Page (SLABLDG)</li>
+
+      <li class="li">Term Control Page (SOATERM)</li>
+
+      <li class="li">Schedule Calendar Page (SSAACCL)</li>
+
+      <li class="li">Section Page (SSASECT)</li>
+
+      <li class="li">Attendance Accounting Method Validation Page (STVACCT)</li>
+
+      <li class="li">Attribute Validation Page (STVATTR)</li>
+
+      <li class="li">Residence Code Validation Page (STVRESD)</li>
+
+      <li class="li">Course Registration Status Code Validation Page (STVRSTS)</li>
+
+      <li class="li">Term Code Validation Page (STVTERM)</li>
+
+      <li class="li">Academic Year Dates Page (SVAACYR)</li>
+
+      <li class="li">Academic Year Apportionment Annualizer Page (SVAAPIZ)</li>
+
+      <li class="li">Course Credit Status Validation Page (SVVCCST)</li>
+
+      <li class="li">Center Code Validation Page (SVVCENT)</li>
+
+    </ul>
+
+    <p class="p">These pages are discussed in the <span class="keyword">Banner</span> CALBSTU Online Help.</p>
+
+  </div>
+
+</div></div></section>
+<section id="t-2320"><h3>CCFS-320 Reporting Self-Service</h3><div class="content-locale-en-US content-locale-en"><div id="c_ccfs-320_reporting_self-service"><div class="body conbody"><p class="shortdesc">The following Self-Service pages were modified for the CCFS-320 Reporting functionality.</p>
+
+    <ul class="ul">
+      <li class="li">Mid Term Grades (bwlkfmgd.P_FacMidGrd)</li>
+
+      <li class="li">Final Grades (bwlkffgd.P_FacFinGrd)</li>
+
+    </ul>
+
+    <p class="p">These pages are discussed in the Self-Service topic in the <cite class="cite">CALBSTU Use</cite> documentation on the <span class="keyword">Ellucian Documentation site</span>.</p>
+
+  </div>
+
+</div></div></section>
+<section id="t-2330"><h3>CCFS-320 Reporting Tables</h3><div class="content-locale-en-US content-locale-en"><div id="c_ccfs-320_reporting_tables"><div class="body conbody"><p class="shortdesc">The following tables were added or modified for the CCFS-320 Reporting functionality.</p>
+
+    <ul class="ul">
+      <li class="li">Meeting Type Validation Table (GTVMTYP)</li>
+
+      <li class="li">Supplemental Course Data Table (SCBSUPP)</li>
+
+      <li class="li">Registration Permit-Overrides Control Table (SFRROVR)</li>
+
+      <li class="li">Student Registration Permit-Override Table (SFRSRPO)</li>
+
+      <li class="li">Building Definition Table (SLBBLDG)</li>
+
+      <li class="li">Part of Term Table (SOBPTRM)</li>
+
+      <li class="li">Section General Information Base Table (SSBSECT)</li>
+
+      <li class="li">Section Meeting Times Repeating Table (SSRMEET)</li>
+
+      <li class="li">Attribute Validation Table (STVATTR)</li>
+
+      <li class="li">Residence Code Validation Table (STVRESD)</li>
+
+      <li class="li">Course Registration Status Code Validation Table (STVRSTS)</li>
+
+      <li class="li">Term Control Table (STVTERM)</li>
+
+      <li class="li">Academic Year Dates Table (SVBACYR)</li>
+
+      <li class="li">Academic Year Apportionment Annualizers Table (SVBAPIZ)</li>
+
+      <li class="li">Report Definition Data Table (SVBCALP)</li>
+
+      <li class="li">Extract CRN Rules Table (SVBCALX)</li>
+
+      <li class="li">CRN Data Table (SVRCALN)</li>
+
+      <li class="li">Student Registration Override Data Table (SVRCALO)</li>
+
+      <li class="li">Student Registration Data Table (SVRCALR)</li>
+
+      <li class="li">Student Data Table (SVRCALS)</li>
+
+      <li class="li">Term Data Table (SVRCALT)</li>
+
+      <li class="li">Course Credit Status Validation Table (SVVCCST)</li>
+
+      <li class="li">Center Code Validation Table (SVVCENT)</li>
+
+    </ul>
+
+  </div>
+
+</div></div></section>
+<section id="t-2340"><h3>Reports and Processes</h3><div class="content-locale-en-US content-locale-en"><div id="c_reports_processes"><div class="body conbody"><p class="shortdesc">The following reports and processes were added for the CCFS-320 Reporting functionality.</p>
+
+    <ul class="ul">
+      <li class="li">CCFS-320 Part IX Report (SVRCAL9)</li>
+
+      <li class="li">PE Concurrent Enrollment Process (SVRCALP)</li>
+
+      <li class="li">CCFS-320 Summary Reports (SVRCALS)</li>
+
+      <li class="li">CCFS-320 Supplemental Reports (SVRCALU)</li>
+
+      <li class="li">320 Attendance Extract Process (SVRCALX)</li>
+
+    </ul>
+
+    <p class="p">These reports and processes are discussed in <span class="xref ft-internal-link" title="This Section discusses the reports and processes created or modified for California localizations." data-ft-warning="excluded-from-rendering" data-mapid="Wi9UeTI7s8pITUaHpb6ZEg" data-tocid="euAIJ3mIlvi8IuGiS3Obbg" data-section="c_reports_process_california_reporting">Reports and Process for California Reporting</span>.</p>
+
+  </div>
+
+</div></div></section></main></body></html>

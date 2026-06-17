@@ -1,0 +1,663 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>TCC Banner Student - Use — Technical Overview</title><style>body{font-family:-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;line-height:1.55;color:#1a1a1a;max-width:920px;margin:0 auto;padding:24px}header{border-bottom:2px solid #5a16d6;margin-bottom:8px}h1{color:#3a0ca3}h2,h3,h4,h5,h6{margin-top:1.6em}.crumb{color:#666;font-size:13px;margin:0}.meta{color:#888;font-size:12px}nav.toc{background:#f6f4fc;border:1px solid #e3dcf5;border-radius:8px;padding:12px 18px;margin:18px 0}nav.toc h2{margin:.2em 0}nav.toc ul{list-style:none;padding-left:0}nav.toc a{text-decoration:none;color:#5a16d6}section{margin:1.2em 0;padding-top:.4em}img{max-width:100%;height:auto}table{border-collapse:collapse}td,th{border:1px solid #ccc;padding:4px 8px}code,pre{background:#f4f4f4;border-radius:4px}pre{padding:10px;overflow:auto}</style></head><body><header><p class="crumb">Banner Student › TCC Banner Student - Use</p><h1>TCC Banner Student - Use — Technical Overview</h1><p class="meta">Source: <a href="https://resources.elluciancloud.com/r/bundle/banner_stu_tcc_acn_use">https://resources.elluciancloud.com/r/bundle/banner_stu_tcc_acn_use</a> &middot; Retrieved 2026-06-17</p></header><nav class="toc"><h2>Contents</h2><ul><li style="margin-left:0px"><a href="#t-4140">Technical Overview</a></li><li style="margin-left:16px"><a href="#t-4150">Triggers</a></li><li style="margin-left:32px"><a href="#t-4160">SGBSTDN</a></li><li style="margin-left:32px"><a href="#t-4170">SSBSECT</a></li><li style="margin-left:32px"><a href="#t-4180">SZRTXSI</a></li><li style="margin-left:32px"><a href="#t-4190">SARADAP</a></li><li style="margin-left:48px"><a href="#t-4200">SARADAP processing notes</a></li><li style="margin-left:16px"><a href="#t-4210">Baseline Options menus</a></li><li style="margin-left:16px"><a href="#t-4220">CBM reports</a></li><li style="margin-left:16px"><a href="#t-4230">Self-Service 8.x configuration</a></li><li style="margin-left:32px"><a href="#t-4240">bzskgstu.P_TxInfo</a></li><li style="margin-left:32px"><a href="#t-4250">bzskgstu.P_SelectTerm</a></li></ul></nav><main><section id="t-4140"><h2>Technical Overview</h2></section>
+<section id="t-4150"><h3>Triggers</h3></section>
+<section id="t-4160"><h4>SGBSTDN</h4><div class="content-locale-en-US content-locale-en"><div id="r_sgbstdn"><div class="body refbody"><p class="shortdesc"><span class="ph">TCC</span> delivered triggers attached to the SGBSTDN table can create records viewable on SZASSTD and SZASDLM and a <span class="ph">TSI</span> Hold viewable through SOAHOLD.</p>
+
+    <div class="section">
+      <p class="p">The trigger processing will create records for a student who is new to the institution and who matches the Level defined by the GTVSDAX rule STUDENTLVL. Additional processing is provided based on the rules defined on the SZASSTD Rules page (SZASSRL).</p>
+
+      <p class="p">One set of triggers fire before a record inserting, updating, or deleting an SGBSTDN record while the second set of triggers fire after a record is inserted, updated, or deleted in SGBSTDN.</p>
+
+      <p class="p">The following triggers fire before or after an SGBSTDN record insert, update, or delete:</p>
+
+      
+<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" class="table" frame="void" border="1" rules="rows"><colgroup><col style="width:31.948881789137378%"><col style="width:68.05111821086261%"></colgroup><tbody class="tbody">
+            <tr class="row">
+              <td class="entry nocellnorowborder" style="vertical-align:top;">
+                <ul class="ul">
+                  <li class="li">
+                    <code class="ph codeph">st_sorlfos_tcc_adiur</code>
+                  </li>
+
+                  <li class="li">
+                    <code class="ph codeph">st_sorlcur_tcc_adiur</code>
+                  </li>
+
+                  <li class="li">
+                    <code class="ph codeph">st_sorlfos_tcc_1_adiur</code>
+                  </li>
+
+                </ul>
+
+              </td>
+
+              <td class="entry nocellnorowborder" style="vertical-align:top;">
+                <ul class="ul">
+                  <li class="li">
+                    <code class="ph codeph">st_sorlcur_tcc_1_bdiur</code>
+                  </li>
+
+                  <li class="li">
+                    <code class="ph codeph">st_sgbstdn_tcc_bdiur</code>
+                  </li>
+
+                  <li class="li">
+                    <code class="ph codeph">st_sgbstdn_tcc_1_adiur</code>
+                  </li>
+
+                </ul>
+
+              </td>
+
+            </tr>
+
+          </tbody>
+</table>
+</div>
+
+    </div>
+
+  </div>
+
+</div></div></section>
+<section id="t-4170"><h4>SSBSECT</h4><div class="content-locale-en-US content-locale-en"><div id="r_ssbsect"><div class="body refbody"><p class="shortdesc">The following <span class="ph">TCC</span> delivered triggers are applied to the SSBSECT table which, when a record is inserted into SSBSECT, will create a record in the SZRSXRF table which is viewable from the SZASXRF form.</p>
+
+    <div class="section">
+      <p class="p">The record is created in SZRSXRF if defaults exist in the SZRCXRF table and are viewable on the SZACXRF form. When a record is inserted into SSBSECT, the trigger will also create a record in the SZRRTSP table which is viewable from the SZATPRQ form. The record is created in SZRRTSP if defaults exist in the SZRCPRQ table and are viewable on the SZACPRQ form. These triggers also delete records from SZRSXRF and SZRRTSP when a record is deleted from SSBSECT.</p>
+
+      <p class="p">Following are the <span class="ph">TCC</span> delivered objects:</p>
+
+      <ul class="ul">
+        <li class="li">
+          <code class="ph codeph">st_ssbsect_tcc_1_adiur</code>
+        </li>
+
+        <li class="li">
+          <code class="ph codeph">st_ssbsect_tcc_1_adir</code>
+        </li>
+
+      </ul>
+
+    </div>
+
+  </div>
+
+</div></div></section>
+<section id="t-4180"><h4>SZRTXSI</h4><div class="content-locale-en-US content-locale-en"><div id="r_szrtxsi"><div class="body refbody"><p class="shortdesc">A <span class="ph">TCC</span> delivered trigger is applied to the SZRTXSI table which will create a Hold record in SPRHOLD when the SZRTXSI table is added, updated, or deleted.</p>
+
+    <div class="section">
+      <p class="p">This record is added only if a <span class="ph">TSI</span> Hold record does not already exist.</p>
+
+      <p class="p">Following is the <span class="ph">TCC</span> delivered object: <code class="ph codeph">st_szrtxsi_tcc_adiur</code>.</p>
+
+    </div>
+
+  </div>
+
+</div></div></section>
+<section id="t-4190"><h4>SARADAP</h4><div class="content-locale-en-US content-locale-en"><div id="r_saradap"><div class="body refbody"><p class="shortdesc">A <span class="ph">TCC</span> delivered trigger is applied to the baseline SARADAP table which will delete records from <span class="ph">TCC</span> tables (SZRCARI, SZACARS, SZACASI) when a corresponding parent record is deleted from SARADAP.</p>
+
+    <div class="section">
+      <p class="p">Following is the <span class="ph">TCC</span> delivered object: <code class="ph codeph">st_saradap_tcc_adr</code>.</p>
+
+    </div>
+
+  </div>
+
+</div></div></section>
+<section id="t-4200"><h5>SARADAP processing notes</h5><div class="content-locale-en-US content-locale-en"><div id="r_saradap_processing_notes"><div class="body refbody"><p class="shortdesc">The SARADAP trigger is called and will remove child records from the TCC tables (SZRCARI, SZRCARS and SZRCASI) when the following processes are performed or run.</p>
+
+    <div class="section">
+      <ul class="ul">
+        <li class="li">SAAADMS: <p class="p">When a record is deleted through the SAAADMS Record Remove option.</p>
+</li>
+
+        <li class="li">SAPADMS:<p class="p">When records are deleted through the Admissions Purge (SAPADMS) process.</p>
+</li>
+
+      </ul>
+
+    </div>
+
+  </div>
+
+</div></div></section>
+<section id="t-4210"><h3>Baseline Options menus</h3><div class="content-locale-en-US content-locale-en"><div id="r_baseline_options_menus"><div class="body refbody"><p class="shortdesc">A <span class="ph">TCC</span> delivered script will add <span class="ph">TCC</span> pages to the Options menu for the following baseline forms.</p>
+
+    <div class="section">
+      <ul class="ul">
+        <li class="li">SCACRSE Basic Course Information – add SZACXRF Course Cross Reference</li>
+
+        <li class="li">SGASTDN General Student – add SZASSTD Supplemental Student Data</li>
+
+        <li class="li">SAAADMS Admissions Application - add SZASSTD Supplemental Student Data</li>
+
+      </ul>
+
+      <p class="p">Institutions have the choice to use the baseline delivered Options Maintenance form (GUAOPTM) to modify the delivered Options menu for baseline delivered forms at their institution. <span class="ph">TCC</span>-delivered forms are added to the Options menu for baseline delivered forms through use of the GUAOPTM form.</p>
+
+    </div>
+
+  </div>
+
+</div></div></section>
+<section id="t-4220"><h3>CBM reports</h3><div class="content-locale-en-US content-locale-en"><div id="r_cbm_reports"><div class="body refbody"><p class="shortdesc">Each time a <span class="ph">TCC</span> <span class="ph">CBM</span> report process is run from <span class="ph">TCC Student</span> the data extracted to the state submission ready data file is also stored in a database table.</p>
+
+    <div class="section">
+      <p class="p"> This data may be used as an historical archive of the data reported to the state and may be used for institutional reporting purposes. Following is information regarding those tables that may be helpful from a technical perspective.</p>
+
+    </div>
+
+    <div class="section"><h2 class="title sectiontitle">Process flow</h2>
+      
+      <p class="p">The wildcard (%) character in the following explanatory text can be substituted by any one of the following characters:</p>
+
+      <p class="p">1, 2, 3, 4, 5, 6, 8, 9, A, B, C, E, E1, M, N, S, T or X</p>
+
+      <p class="p">Exception: The SZRCBE1 process is named using the last 2 characters of the process name.</p>
+
+      <ul class="ul">
+        <li class="li">The <span class="ph filepath">SZRCBM%.pc</span> procedure is run from <span class="ph">TCC Student</span> job submission.</li>
+
+        <li class="li">The Reporting Institution Type parameter determines the <span class="ph filepath">*.sql</span> procedure that is called.<ul class="ul"> <li class="li">If the Reporting Institution Type parameter is equal to C then the SZKCCB% process is called. This procedure processes data as needed for Texas Community, Technical, and State Colleges.</li>
+ <li class="li">If the Reporting Institution Type parameter is equal to U, then the SZKUCB% process is called. This procedure processes data as needed for Texas Public Universities.</li>
+
+          <li class="li">If a Reporting Institution Type parameter is not used then the SZKCBM% process is called.</li>
+ </ul>
+</li>
+
+        <li class="li">A table named SZRCBM% is used to store the data extracted for the CBM00% report which is processed by the SZRCBM% job submission process. <p class="p">Member institutions with <span class="ph">TCC</span> modifications installed before <span class="ph">TCC Student</span> 7.x may include tables named MSPCBM%. These tables were previously used to store data extracted for the CBM00% reports and are no longer in use. For example, table MSPCBM1 is no longer used for storing the CBM0C1 data as the data is now stored in the SZRCBM1 table.</p>
+</li>
+
+        <li class="li">A table named SZRSUMM contains the Summary Report data extracted for each report (<span class="ph filepath">filename_sum.dat</span>).</li>
+
+        <li class="li">A table named SZTERRS contains the Error Report (<span class="ph filepath">filename_err.csv</span>) data extracted for each report (<span class="ph filepath">filename_err.csv</span>).</li>
+
+        <li class="li">Each report delivers the extracted data in the state required text format in a DAT file.</li>
+
+        <li class="li">Each report delivers the extracted data in a comma delimited file with a file type of CSV. Be aware that if any individual data item, such as Last Name or Course Title, is included in the report and contains a comma, the data items for that record will move one spreadsheet cell to the right if the comma delimited file is opened in a spreadsheet. Extra commas will cause the data in that data item to separate into two separate spreadsheet cells, which causes any remaining data items in that individual record to move one data item (or cell) to the right.</li>
+
+      </ul>
+
+      <div class="note"><span class="notetitle">Note:</span> When updating SZRCXRF or SZRSXRF records using an SQL script, flags such as CEU Ind, Course Location Flags or Course Classification flags, may need special consideration. These flags are allowed any of three possible values, Y, N or null. A blank space or numeric value can cause the course to not report correctly through the <span class="ph">TCC</span> delivered SZRCB% processes.</div>
+
+      <p class="p">The <span class="ph">CBM</span> reporting tables are as follows:</p>
+
+      
+<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" class="table" frame="hsides" border="1" rules="rows"><colgroup><col><col><col></colgroup><thead class="thead" style="text-align:left;">
+            <tr class="row">
+              <th class="entry row-nocellborder" style="vertical-align:top;" id="d54410e157">Database Table</th>
+
+              <th class="entry row-nocellborder" style="vertical-align:top;" id="d54410e160">Used by <span class="ph">CBM</span> Reporting Process</th>
+
+              <th class="entry row-nocellborder" style="vertical-align:top;" id="d54410e166">Description</th>
+
+            </tr>
+
+          </thead>
+<tbody class="tbody">
+            <tr class="row">
+              <td class="entry row-nocellborder" style="vertical-align:top;" headers="d54410e157 ">SZRCBE1</td>
+
+              <td class="entry row-nocellborder" style="vertical-align:top;" headers="d54410e160 ">SZRCBE1</td>
+
+              <td class="entry row-nocellborder" style="vertical-align:top;" headers="d54410e166 ">CBM0E1 report table</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry row-nocellborder" style="vertical-align:top;" headers="d54410e157 ">SZRCBM1</td>
+
+              <td class="entry row-nocellborder" style="vertical-align:top;" headers="d54410e160 ">SZRCBM1</td>
+
+              <td class="entry row-nocellborder" style="vertical-align:top;" headers="d54410e166 ">CBM001 report table</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry row-nocellborder" style="vertical-align:top;" headers="d54410e157 ">SZRCBM2</td>
+
+              <td class="entry row-nocellborder" style="vertical-align:top;" headers="d54410e160 ">SZRCBM2</td>
+
+              <td class="entry row-nocellborder" style="vertical-align:top;" headers="d54410e166 ">CBM002 report table</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry row-nocellborder" style="vertical-align:top;" headers="d54410e157 ">SZRCBM3</td>
+
+              <td class="entry row-nocellborder" style="vertical-align:top;" headers="d54410e160 ">SZRCBM3</td>
+
+              <td class="entry row-nocellborder" style="vertical-align:top;" headers="d54410e166 ">CBM003 report table</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry row-nocellborder" style="vertical-align:top;" headers="d54410e157 ">SZRCBM5</td>
+
+              <td class="entry row-nocellborder" style="vertical-align:top;" headers="d54410e160 ">SZRCBM5</td>
+
+              <td class="entry row-nocellborder" style="vertical-align:top;" headers="d54410e166 ">CBM005 report table</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry row-nocellborder" style="vertical-align:top;" headers="d54410e157 ">SZRCBM8</td>
+
+              <td class="entry row-nocellborder" style="vertical-align:top;" headers="d54410e160 ">SZRCBM8</td>
+
+              <td class="entry row-nocellborder" style="vertical-align:top;" headers="d54410e166 ">CBM008 report table </td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry row-nocellborder" style="vertical-align:top;" headers="d54410e157 ">SZRCBM9</td>
+
+              <td class="entry row-nocellborder" style="vertical-align:top;" headers="d54410e160 ">SZRCBM9</td>
+
+              <td class="entry row-nocellborder" style="vertical-align:top;" headers="d54410e166 ">CBM009 report table</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry row-nocellborder" style="vertical-align:top;" headers="d54410e157 ">SZRCBMA</td>
+
+              <td class="entry row-nocellborder" style="vertical-align:top;" headers="d54410e160 ">SZRCBMA</td>
+
+              <td class="entry row-nocellborder" style="vertical-align:top;" headers="d54410e166 ">CBM00A report table</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry row-nocellborder" style="vertical-align:top;" headers="d54410e157 ">SZRCBMB</td>
+
+              <td class="entry row-nocellborder" style="vertical-align:top;" headers="d54410e160 ">SZRCBMB</td>
+
+              <td class="entry row-nocellborder" style="vertical-align:top;" headers="d54410e166 ">CBM00B report table</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry row-nocellborder" style="vertical-align:top;" headers="d54410e157 ">SZRCBMC</td>
+
+              <td class="entry row-nocellborder" style="vertical-align:top;" headers="d54410e160 ">SZRCBMC</td>
+
+              <td class="entry row-nocellborder" style="vertical-align:top;" headers="d54410e166 ">CBM00C report table</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry row-nocellborder" style="vertical-align:top;" headers="d54410e157 ">SZRCBME</td>
+
+              <td class="entry row-nocellborder" style="vertical-align:top;" headers="d54410e160 ">SZRCBME</td>
+
+              <td class="entry row-nocellborder" style="vertical-align:top;" headers="d54410e166 ">CBM00E report table</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry row-nocellborder" style="vertical-align:top;" headers="d54410e157 ">SZRCBMM</td>
+
+              <td class="entry row-nocellborder" style="vertical-align:top;" headers="d54410e160 ">SZRCBMM</td>
+
+              <td class="entry row-nocellborder" style="vertical-align:top;" headers="d54410e166 ">CBM00M report table</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry row-nocellborder" style="vertical-align:top;" headers="d54410e157 ">SZRCBMN</td>
+
+              <td class="entry row-nocellborder" style="vertical-align:top;" headers="d54410e160 ">SZRCBMN</td>
+
+              <td class="entry row-nocellborder" style="vertical-align:top;" headers="d54410e166 ">CBM00N report table</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry row-nocellborder" style="vertical-align:top;" headers="d54410e157 ">SZRCBMS</td>
+
+              <td class="entry row-nocellborder" style="vertical-align:top;" headers="d54410e160 ">SZRCBMS</td>
+
+              <td class="entry row-nocellborder" style="vertical-align:top;" headers="d54410e166 ">CBM00S report table</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry row-nocellborder" style="vertical-align:top;" headers="d54410e157 ">SZRCBMX</td>
+
+              <td class="entry row-nocellborder" style="vertical-align:top;" headers="d54410e160 ">SZRCBMX</td>
+
+              <td class="entry row-nocellborder" style="vertical-align:top;" headers="d54410e166 ">CBM00X report table</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry row-nocellborder" style="vertical-align:top;" headers="d54410e157 ">SZRHEVH</td>
+
+              <td class="entry row-nocellborder" style="vertical-align:top;" headers="d54410e160 ">SZRHEVH</td>
+
+              <td class="entry row-nocellborder" style="vertical-align:top;" headers="d54410e166 ">Hazlewood report table</td>
+
+            </tr>
+
+          </tbody>
+</table>
+</div>
+
+    </div>
+
+    <div class="section"><h2 class="title sectiontitle">Security</h2>
+      
+      <p class="p">Each table in the database requires security assigned which will allow staff to add, read, modify, and delete records from the table. Following are the new tables:</p>
+
+      
+<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" class="table" frame="hsides" border="1" rules="rows"><colgroup><col><col></colgroup><thead class="thead" style="text-align:left;">
+            <tr class="row">
+              <th class="entry row-nocellborder" colspan="2" style="vertical-align:top;" id="d54410e391">Database Tables with Security Assigned</th>
+
+            </tr>
+
+          </thead>
+<tbody class="tbody">
+            <tr class="row">
+              <td class="entry row-nocellborder" style="vertical-align:top;" headers="d54410e391 ">SZRCBE1</td>
+
+              <td class="entry row-nocellborder" style="vertical-align:top;" headers="d54410e391 ">SZRCBMA (Community College only)</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry row-nocellborder" style="vertical-align:top;" headers="d54410e391 ">SZRCBM1</td>
+
+              <td class="entry row-nocellborder" style="vertical-align:top;" headers="d54410e391 ">SZRCBMB (University only)</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry row-nocellborder" style="vertical-align:top;" headers="d54410e391 ">SZRCBM2</td>
+
+              <td class="entry row-nocellborder" style="vertical-align:top;" headers="d54410e391 ">SZRCBMC (Community College only)</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry row-nocellborder" style="vertical-align:top;" headers="d54410e391 ">SZRCBM3 (University only)</td>
+
+              <td class="entry row-nocellborder" style="vertical-align:top;" headers="d54410e391 ">SZRCBME (University only)</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry row-nocellborder" style="vertical-align:top;" headers="d54410e391 ">SZRCBM4</td>
+
+              <td class="entry row-nocellborder" style="vertical-align:top;" headers="d54410e391 ">SZRCBMM (Community College only)</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry row-nocellborder" style="vertical-align:top;" headers="d54410e391 ">SZRCBM5</td>
+
+              <td class="entry row-nocellborder" style="vertical-align:top;" headers="d54410e391 ">SZRCBMN</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry row-nocellborder" style="vertical-align:top;" headers="d54410e391 ">SZRCBM8</td>
+
+              <td class="entry row-nocellborder" style="vertical-align:top;" headers="d54410e391 ">SZRCBMS</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry row-nocellborder" style="vertical-align:top;" headers="d54410e391 ">SZRCBM9</td>
+
+              <td class="entry row-nocellborder" style="vertical-align:top;" headers="d54410e391 ">SZRCBMX (University only)<p class="p">SZRHEVH</p>
+</td>
+
+            </tr>
+
+          </tbody>
+</table>
+</div>
+
+    </div>
+
+    <div class="section"><h2 class="title sectiontitle">Possible performance issue</h2>
+      
+      <p class="p">As time goes on, the amount of data stored in the <span class="ph">TCC Student</span> <span class="ph">CBM</span> report tables (SZRCBM%) will increase. Concerns regarding this increasing number of records include a possible decrease in performance by the <span class="ph">CBM</span> reporting processes. This possible performance issue may cause an increase in the amount of processing time the <span class="ph">CBM</span> reporting processes need to complete the data extraction of <span class="ph">CBM</span> report data.</p>
+
+      <p class="p">The Texas Connection Support Center has been made aware that some member institutions use the archived data in the <span class="ph">CBM</span> report tables for institutional reporting purposes. Thus, it has become the responsibility of each member institution to determine if or when the archived data records are no longer needed and may be deleted from the <span class="ph">CBM</span> report tables to ensure no negative impact on the reporting processes.</p>
+
+    </div>
+
+    <div class="section"><h2 class="title sectiontitle">Technical overview of SZRCBM%.PC</h2>
+      
+      <p class="p">The following figure provides a technical overview of <span class="ph filepath">SZRCBM%.PC</span>.</p>
+
+      <br><img class="image" width="516" alt="SZRCBM%.PC technical flow diagram" data-ft-asset-display-name="szrcbmxflow.PNG" style="aspect-ratio: 516/559;" data-ft-resize-ratio="0.699187" src="images/11-technical-overview-1.png" data-ft-resource-id="H8mFawQKFd4zoh6iPN_6PQ-TBLFPgHynBsCejI2IJBciQ"><br>
+    </div>
+
+  </div>
+
+</div></div></section>
+<section id="t-4230"><h3>Self-Service 8.x configuration</h3><div class="content-locale-en-US content-locale-en"><div id="r_self_service_8_x_configuration"><div class="body refbody"><p class="shortdesc">The <span class="ph">Self-Service</span> procedures delivered allow a student to display their <span class="ph">TSI</span> Status, Drop Limit counts, and Core Curriculum completion status through <span class="ph">Self-Service</span> <span class="ph">TCC Student</span>.</p>
+
+    <div class="section">
+      <p class="p">This functionality is optional, however if chosen, requires configuration through WebTailor Administration of the two delivered procedures. Only one new menu item needs to be configured.</p>
+
+      <p class="p">Following are the <span class="ph">TCC</span> delivered package names:</p>
+
+      
+<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" class="table" frame="hsides" border="1" rules="rows"><colgroup><col style="width:33.33333333333333%"><col style="width:66.66666666666666%"></colgroup><thead class="thead" style="text-align:left;">
+            <tr class="row">
+              <th class="entry row-nocellborder" style="vertical-align:top;" id="d16600e76">Package Name</th>
+
+              <th class="entry row-nocellborder" style="vertical-align:top;" id="d16600e79">Description</th>
+
+            </tr>
+
+          </thead>
+<tbody class="tbody">
+            <tr class="row">
+              <td class="entry row-nocellborder" style="vertical-align:top;" headers="d16600e76 ">
+                <code class="ph codeph">bzskgstu.P_TxInfo</code>
+              </td>
+
+              <td class="entry row-nocellborder" style="vertical-align:top;" headers="d16600e79 ">A procedure that allows display of Texas specific data such as <span class="ph">TSI</span> status, state drop limit counts, and core curriculum completion status.<p class="p">Needs to be configured as a Web Procedure.</p>
+<p class="p">Needs to be attached to a menu as a menu item.</p>
+</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry row-nocellborder" style="vertical-align:top;" headers="d16600e76 ">
+                <code class="ph codeph">bzskgstu.P_SelectTerm</code>
+              </td>
+
+              <td class="entry row-nocellborder" style="vertical-align:top;" headers="d16600e79 ">A procedure which is called by the above <code class="ph codeph">bzskgstu.P_TxInfo</code> package.<p class="p">Requires the student to choose a Term to allow determination of the student level. The student level is then used by the <code class="ph codeph">P_TxInfo</code> package to determine if display of Texas-specific data is allowed.</p>
+<p class="p">Needs to be configured as a Web Procedure.</p>
+<p class="p">Does not need to be attached to a menu item.</p>
+</td>
+
+            </tr>
+
+          </tbody>
+</table>
+</div>
+
+    </div>
+
+  </div>
+
+</div></div></section>
+<section id="t-4240"><h4>bzskgstu.P_TxInfo</h4><div class="content-locale-en-US content-locale-en"><div id="t_bzskgstu_txInfo"><div class="body taskbody"><p class="shortdesc">The following instructions are intended as a Getting Started guide. Please consult baseline Self-Service and WebTailor Administration resources for additional information.</p>
+
+    <div class="tasklabel"><h2 class="sectiontitle tasklabel">Procedure</h2></div><ol class="ol steps"><li class="li step stepexpand">
+        <span class="ph cmd">To enable Term Codes for Web display, select the <span class="ph uicontrol">SOATERM Master Web Term Control</span> flag.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Log into Self-Service with an account that has Web Tailor Administration capability, then select the <span class="ph uicontrol">Web Tailor Administration</span> option.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Select the <span class="ph uicontrol">Web Menus and Procedures</span> option.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Click <span class="ph uicontrol">Create</span> to define a new procedure that displays the Texas specific data.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Enter the following information to create a new procedure for the TCC delivered package:</span>
+        <ol type="a" class="ol substeps">
+          <li class="li substep">
+            <span class="ph cmd">Enter a Page Name.</span>
+          </li>
+
+          <li class="li substep">
+            <span class="ph cmd">Enter a Description. The Description text is the text that displays when using the SSB menu links.</span>
+          </li>
+
+          <li class="li substep">
+            <span class="ph cmd">From the Modules menu, select <span class="ph uicontrol">Student Services</span>.</span>
+          </li>
+
+          <li class="li substep">
+            <span class="ph cmd">Select the check box for Enabled Indicator.</span>
+          </li>
+
+          <li class="li substep">
+            <span class="ph cmd">From the Web Page Caching Override menu, select <span class="ph uicontrol">Use System Setting</span>.</span>
+          </li>
+
+          <li class="li substep">
+            <span class="ph cmd">Enter a Page Name.</span>
+          </li>
+
+        </ol>
+
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Click <span class="ph uicontrol">Submit Changes</span>.</span>
+        <div class="itemgroup info">
+          <div class="note"><span class="notetitle">Note:</span> The changes are made in Local and not in Baseline.</div>
+
+        </div>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Ensure that <span class="keyword wintitle">Associated Roles</span> includes Student.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Select the <span class="ph uicontrol">Web Menus and Procedures</span> option.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Choose the menu from which the new procedure will display for students.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Copy the menu and all items from baseline to local using the following instructions.</span>
+        <ol type="a" class="ol substeps">
+          <li class="li substep substepexpand">
+            <span class="ph cmd">Copy the menu to local:</span>
+            <div class="itemgroup info">
+              <ul class="ul">
+                <li class="li">Scroll to the bottom of the display listing.</li>
+
+                <li class="li">Click <span class="ph uicontrol">Copy Baseline to Local</span>.</li>
+
+              </ul>
+
+            </div>
+          </li>
+
+          <li class="li substep substepexpand">
+            <span class="ph cmd">Copy the menu items to local:</span>
+            <div class="itemgroup info">
+              <ul class="ul">
+                <li class="li">Scroll to the bottom.</li>
+
+                <li class="li">Select <span class="ph uicontrol">Customize Menu Items</span>.</li>
+
+                <li class="li">Select <span class="ph uicontrol">Copy Baseline to Local</span> button.</li>
+
+              </ul>
+
+            </div>
+          </li>
+
+        </ol>
+
+        <div class="itemgroup info">
+          <p class="p">The current items displayed by this menu are listed. This is now a local menu and will not be updated during <span class="ph">TCC Student</span> upgrades.</p>
+
+        </div>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Scroll to the bottom, then click <span class="ph uicontrol">Add a New Menu Item</span>.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">On the Create a new Menu Item window, enter the following information:</span>
+        <ol type="a" class="ol substeps">
+          <li class="li substep">
+            <span class="ph cmd">For <span class="keyword wintitle">Sequence Number</span>, enter 17.</span>
+          </li>
+
+          <li class="li substep">
+            <span class="ph cmd">For <span class="ph uicontrol">URL</span>, enter the procedure name.</span>
+          </li>
+
+          <li class="li substep">
+            <span class="ph cmd">For <span class="ph uicontrol">Link Text</span>, enter details about the new menu. This text is displayed by SSB as Links.</span>
+          </li>
+
+          <li class="li substep">
+            <span class="ph cmd">For <span class="ph uicontrol">Status Bar Text</span>, enter the details that are to appear on the status bar for this menu. This text is displayed by SSB as informational text.</span>
+          </li>
+
+        </ol>
+
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Click <span class="ph uicontrol">Submit Changes</span>.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">If needed, modify the <span class="ph uicontrol">Sequence Number</span> for the Local items. Modify the Sequence Numbers to move the new link to the appropriate place on the menu as determined by your institution.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Scroll to the bottom, then click <span class="ph uicontrol">Reorder these Elements</span>.</span>
+      </li>
+</ol>
+
+  </div>
+
+</div></div></section>
+<section id="t-4250"><h4>bzskgstu.P_SelectTerm</h4><div class="content-locale-en-US content-locale-en"><div id="t_bzskgstu_selectterm"><div class="body taskbody"><p class="shortdesc">The following instructions are intended as a Getting Started guide. Please consult baseline <span class="ph">Self-Service</span> and WebTailor Administration resources for additional information.</p>
+
+    <div class="tasklabel"><h2 class="sectiontitle tasklabel">Procedure</h2></div><ol class="ol steps"><li class="li step stepexpand">
+        <span class="ph cmd">Log into <span class="ph">Self-Service</span> with an account that has Web Tailor Administration capability and select the <span class="ph uicontrol">Web Tailor Administration</span> option.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Select the <span class="ph uicontrol">Web Menus and Procedures</span> option.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Click <span class="ph uicontrol">Create</span> to define a new procedure that requests selection of a Term.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Enter the following information to define the new procedure for the <span class="ph">TCC</span> delivered procedure.</span>
+        <div class="itemgroup info">
+          <br><div class="imageleft"><img class="image imageleft" alt="Page to define new procedure for TCC delivered procedure." data-ft-asset-display-name="selecttermpage.png" src="images/11-technical-overview-2.png" data-ft-resource-id="0bnmCWwoA0~hHFp4~_1_Ww-TBLFPgHynBsCejI2IJBciQ"></div><br>
+          <ul class="ul">
+            <li class="li">The Page Title and Header Text are displayed using SSB when the Term drop-down is displayed and the student selects a term.</li>
+
+            <li class="li">The Associated Roles should include Student.</li>
+
+            <li class="li">Note the changes are made in Local and not in Baseline.</li>
+
+          </ul>
+
+        </div>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Click <span class="ph uicontrol">Submit Changes</span>.</span>
+      </li>
+</ol>
+
+  </div>
+
+</div></div></section></main></body></html>

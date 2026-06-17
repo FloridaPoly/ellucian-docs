@@ -1,0 +1,555 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>AVETMISS Banner Student - Use — USI Processing</title><style>body{font-family:-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;line-height:1.55;color:#1a1a1a;max-width:920px;margin:0 auto;padding:24px}header{border-bottom:2px solid #5a16d6;margin-bottom:8px}h1{color:#3a0ca3}h2,h3,h4,h5,h6{margin-top:1.6em}.crumb{color:#666;font-size:13px;margin:0}.meta{color:#888;font-size:12px}nav.toc{background:#f6f4fc;border:1px solid #e3dcf5;border-radius:8px;padding:12px 18px;margin:18px 0}nav.toc h2{margin:.2em 0}nav.toc ul{list-style:none;padding-left:0}nav.toc a{text-decoration:none;color:#5a16d6}section{margin:1.2em 0;padding-top:.4em}img{max-width:100%;height:auto}table{border-collapse:collapse}td,th{border:1px solid #ccc;padding:4px 8px}code,pre{background:#f4f4f4;border-radius:4px}pre{padding:10px;overflow:auto}</style></head><body><header><p class="crumb">Banner Student › AVETMISS Banner Student - Use</p><h1>AVETMISS Banner Student - Use — USI Processing</h1><p class="meta">Source: <a href="https://resources.elluciancloud.com/r/bundle/banner_student_acn_use_avetmiss">https://resources.elluciancloud.com/r/bundle/banner_student_acn_use_avetmiss</a> &middot; Retrieved 2026-06-17</p></header><nav class="toc"><h2>Contents</h2><ul><li style="margin-left:0px"><a href="#t-1710">USI Processing</a></li><li style="margin-left:16px"><a href="#t-1720">Create USI</a></li><li style="margin-left:32px"><a href="#t-1730">SKKAUSI.P_SKTCUSI_INSERT</a></li><li style="margin-left:32px"><a href="#t-1740">SKKAUSI.P_CREATEUSI_REALTIME</a></li><li style="margin-left:32px"><a href="#t-1750">SKKAUSI.P_CREATEUSI_INTERNAL</a></li><li style="margin-left:32px"><a href="#t-1760">SKKAUSI.P_CREATEUSI_REALTIME</a></li><li style="margin-left:32px"><a href="#t-1770">SKKAUSI.P_PROCESS_CREATEUSI_RESPONSE</a></li><li style="margin-left:32px"><a href="#t-1780">SKKAUSI.P_CREATE_USI_RESPONSE</a></li><li style="margin-left:32px"><a href="#t-1790">SKKAUSI.P_CREATE_USI_RESPONSE_FAULT</a></li><li style="margin-left:32px"><a href="#t-1800">SKKAUSI.P_SET_STATUS_EXPIRED_FAILED</a></li><li style="margin-left:16px"><a href="#t-1810">Bulk Upload</a></li><li style="margin-left:32px"><a href="#t-1820">SKKAUSI.P_BULKUPLOAD_SCHEDULER</a></li><li style="margin-left:32px"><a href="#t-1830">SKKAUSI.P_BULKUPLOAD</a></li><li style="margin-left:32px"><a href="#t-1840">SKKAUSI.P_BULKUPLOAD_SCHEDULER</a></li><li style="margin-left:32px"><a href="#t-1850">SKKAUSI.P_PROCESS_BULKUPLOAD_RESPONSE</a></li><li style="margin-left:32px"><a href="#t-1860">SKKAUSI.P_BULK_UPLOAD_RESPONSE</a></li><li style="margin-left:32px"><a href="#t-1870">SKKAUSI.P_BULK_UPLOAD_RESPONSE_FAULT</a></li><li style="margin-left:32px"><a href="#t-1880">SKKAUSI.P_SET_STATUS_EXPIRED_FAILED</a></li><li style="margin-left:16px"><a href="#t-1890">Bulk Upload Response Retrieve</a></li><li style="margin-left:32px"><a href="#t-1900">SKKAUSI.P_PROCESS_BULKUPDRET_RESPONSE</a></li><li style="margin-left:32px"><a href="#t-1910">SKKAUSI.P_BULKUPLOAD_RETRIEVE_RESPONSE</a></li><li style="margin-left:32px"><a href="#t-1920">SKKAUSI. P_BULK_RETRIEVE_RES_FAULT</a></li><li style="margin-left:32px"><a href="#t-1930">SKKAUSI. P_BULKUPLOAD_RET_STATUS</a></li><li style="margin-left:16px"><a href="#t-1940">Verify USI</a></li><li style="margin-left:32px"><a href="#t-1950">SKKAUSI.P_SKTVUSI_INSERT</a></li><li style="margin-left:32px"><a href="#t-1960">SKKAUSI.P_VERIFYUSI_REALTIME</a></li><li style="margin-left:32px"><a href="#t-1970">SKKAUSI.P_VERIFYUSI_INTERNAL</a></li><li style="margin-left:32px"><a href="#t-1980">SKKAUSI.P_VERIFYUSI_REALTIME</a></li><li style="margin-left:32px"><a href="#t-1990">SKKAUSI.P_PROCESS_VERIFYUSI_RESPONSE</a></li><li style="margin-left:32px"><a href="#t-2000">SKKAUSI.P_VERIFY_USI_RESPONSE</a></li><li style="margin-left:32px"><a href="#t-2010">SKKAUSI.P_VERIFY_USI_RESPONSE_FAULT</a></li><li style="margin-left:32px"><a href="#t-2020">SKKAUSI.P_SET_STATUS_EXPIRED_FAILED</a></li><li style="margin-left:32px"><a href="#t-2030">DELETE_VERIFIED_USI_PROCESS</a></li><li style="margin-left:16px"><a href="#t-2040">Bulk Verify</a></li><li style="margin-left:32px"><a href="#t-2050">SKKAUSI.P_BULK_DATA_CLEANUP</a></li><li style="margin-left:32px"><a href="#t-2060">SKKAUSI.P_BULKVERIFY_SCHEDULER</a></li><li style="margin-left:32px"><a href="#t-2070">SKKAUSI.P_BULKVERIFY</a></li><li style="margin-left:32px"><a href="#t-2080">SKKAUSI.P_BULKVERIFY_SCHEDULER</a></li><li style="margin-left:32px"><a href="#t-2090">SKKAUSI.P_BULKVERIFY_REPONSE</a></li><li style="margin-left:32px"><a href="#t-2100">SKKAUSI.P_BULK_VERIFY_USI_REPONSE</a></li><li style="margin-left:32px"><a href="#t-2110">SKKAUSI.P_BULKVERIFY_USI_RES_FAULT</a></li><li style="margin-left:32px"><a href="#t-2120">SKKAUSI.P_SET_STATUS_EXPIRED_FAILED</a></li></ul></nav><main><section id="t-1710"><h2>USI Processing</h2><div class="content-locale-en-US content-locale-en"><div id="c_usi_process"><p class="shortdesc">The SKKAUSI package in <span class="ph">AVETMISS</span> Reporting contain all functions and procedures used in USI processing. This section provides details on how the USI processes work, referring to functions and procedures in the SKKAUSI package.</p>
+
+<div class="related-links">
+<div class="linklist relinfo relconcepts" xml:lang="en-US" lang="en-US"><strong>Related concepts</strong><br>
+<ul class="linklist">
+<li class="linklist"><span class="link ft-internal-link" title="Banner AVETMISS is capable of supporting requirements for the creation and verification of Unique Student Identifiers (USIs). It includes functionality to store and display the USI and to interact with the USI Registry through web services." data-ft-warning="excluded-from-rendering" data-mapid="JVAVq98_P0uxh4o1Ula8LA" data-tocid="0U7JfUkwaVUf~iGwLF7nDw">Unique Student Identifier</span></li></ul></div>
+</div></div></div></section>
+<section id="t-1720"><h3>Create USI</h3><div class="content-locale-en-US content-locale-en"><div id="c_usi_create_usi"><div class="body conbody"><p class="shortdesc">The CreateUSI web service may be invoked in real time when a record is saved in the Additional ID Verification (GKAADIV) page with no value for the <span class="ph uicontrol">Additional Identification</span> field and an ID Type of 'USI'.</p>
+
+    <p class="p">The web service will only be invoked if the value of the USI-REAL-TIME system parameter is set to either B or F in the Report System Parameters (SKARSYS) page.</p>
+
+    <div class="p">A new trigger has been added to the GKRADIV table called GT_GKRADIV_BIU_ROW and that trigger invokes the <code class="ph codeph">p_createusi_realtime</code> procedure provided the following conditions are satisfied: <ul class="ul"> <li class="li">GKRADIV_CONSENT = 'Y'</li>
+ <li class="li">GKRADIV_ADID_CODE = 'USI'</li>
+ <li class="li">GKRADIV_VERIFIED_DATE IS NULL</li>
+
+      <li class="li">GKRADIV_SOURCE != 'WEB SERVICE' (This condition is written to avoid the trigger from firing CreateUSI when a record is updated into GKRADIV through BulkUploadRetrieve or BulkVerify responses.)</li>
+
+      </ul>
+Also, if any request is already existing in SKRRQST with the status as PENDING then that request status is updated to EXPIRED through the procedure p_set_status_expired_failed so that a fresh web service request can be sent and then the following conditions are checked before invoking the CreateUSI Web service.</div>
+
+    <ul class="ul">
+      <li class="li">There is currently no record in the Request Collector table (SKRRQST) for this PIDM, for a USI request where the status is either PENDING or RECEIVED</li>
+
+      <li class="li">Either GKRADIV_DOC_VERIFICATION_IND = 'N' or GKRADIV_DOC_VERIFICATION_IND = 'Y' and there is an appropriate active and primary record in GKRVDOC for the person</li>
+
+    </ul>
+
+    <p class="p">When a record gets inserted to GKRADIV through the GKAADIV page then Data Origin will be stored in the GKRADIV table as '<span class="keyword">Banner</span>' and when a record gets inserted through self-service then Data Origin will be stored into GKRADIV table as 'SELF-SERVICE'.</p>
+
+    <p class="p">Hence CreateUSI will be invoked if the value for the 'USI-REAL-TIME' system parameter is either B (Both page and Self-Service) or it will be invoked if the value is F (only page) and the Data Origin is '<span class="keyword">Banner</span>'.</p>
+
+  </div>
+
+</div></div></section>
+<section id="t-1730"><h4>SKKAUSI.P_SKTCUSI_INSERT</h4><div class="content-locale-en-US content-locale-en"><div id="c_skkausip_sktcusi_usi"><div class="body conbody"><p class="shortdesc">When a record is created through the GKAADIV page, if :NEW.gkradiv_additional_id IS NULL then a procedure is called which will insert that GKRADIV record into a temporary table SKTCUSI through the procedure skkausi.p_sktcusi_insert.</p>
+
+    <p class="p">This is required because the MDUU activity ASC_CREATE_USI will fetch values for Contact Method and Document Verification Indicator from SKTCUSI table. Because the web service invocation is happening on the 'before insert' trigger, the values will not yet be in the GKRADIV table and hence these details are stored in the temporary table SKTCUSI so that the MDUU activity can pick it up from there.</p>
+
+    <p class="p">After this step, the procedure skkausi.p_createusi_realtime is called.</p>
+
+  </div>
+
+</div></div></section>
+<section id="t-1740"><h4>SKKAUSI.P_CREATEUSI_REALTIME</h4><div class="content-locale-en-US content-locale-en"><div id="c_skkausip_createusi_realtime"><div class="body conbody"><p class="shortdesc">skkausi.p_createusi_realtime(:NEW.gkradiv_pidm,lv_additional_id_out);</p>
+
+<p class="p">It has two parameters. The first parameter is the PIDM which is passed into this procedure from the trigger and the second parameter is the USI (Additional_ID) which is an out parameter. If the result of a real time CreateUSI web service is SUCCESS or MATCH FOUND then lv_additional_id_out will contain the USI created for that student and this will be stored in the GKRADIV table.</p>
+
+<p class="p">This procedure is created as a pragma autonomous transaction because we have commit/rollback written inside this procedure and as per Oracle's restriction the code inside the trigger or the code which is called inside the trigger GT_GKRADIV_BIU_ROW cannot have a commit/rollback. To overcome this restriction we have created this procedure as a pragma autonomous transaction. This same reasoning holds good for other procedures that are created as pragma autonomous transactions and written inside the SKKAUSI package.</p>
+
+<p class="p">The first step in this procedure is to get the value of skbsusi_create_usi_url. This field is present in the USI tab of the External Systems Interaction Control page (SKASYSC). If the URL is not present then an exception is raised and a record is inserted into the Request Exceptions table (SKREXPT) with the message "CreateUSI URL details are not available on USI tab of SKASYSC page." This record can be viewed on the Request Exceptions page (SKAEXPT).</p>
+
+<p class="p">If the URL is present, then the procedure SKKAUSI.p_createusi_internal is called.</p>
+</div>
+</div></div></section>
+<section id="t-1750"><h4>SKKAUSI.P_CREATEUSI_INTERNAL</h4><div class="content-locale-en-US content-locale-en"><div id="c_skkausip_createusi_internal"><div class="body conbody"><p class="shortdesc">SKKAUSI.p_createusi_internal( p_pidm_in , p_request_id_out, p_gkrrlog_seqno_out);</p>
+
+    <p class="p">It has one IN parameter (PIDM) and two OUT parameters Request ID and gkrrlog_seqno.</p>
+
+    <p class="p">The first parameter is the PIDM which is passed into this procedure from the skkausi.p_createusi_realtime procedure.</p>
+
+    <p class="p">The second parameter is the Request ID that is generated using the value of the skbsusi_request_prefix concatenated with the organisation code concatenated with a sequence number.</p>
+
+    <p class="p">The request prefix is present in the USI tab of SKASYSC.</p>
+
+    <p class="p">The organisation code is the value from the Training Organisation ID field on the Organisation Details page (SKATORG) for the <span class="keyword">Banner</span> ID of the organisation that is present in the USI tab of SKASYSC.</p>
+
+    <p class="p">The sequence number is an Oracle sequence.</p>
+
+    <p class="p">The third parameter is the sequence number from the MDUU log table (GKRRLOG) for the CreateUSI MDUU process.</p>
+
+    <p class="p">The process code is present in the USI tab of SKASYSC.</p>
+
+    <p class="p">This skkausi.p_createusi_internal procedure inserts a record into the SKRTRNS table, and the SKRRQST table and executes the CreateUSI MDUU process to populate the SKSCUSI table.</p>
+
+    <p class="p">Control is then passed back to the skkausi.p_createusi_realtime procedure.</p>
+
+  </div>
+
+</div></div></section>
+<section id="t-1760"><h4>SKKAUSI.P_CREATEUSI_REALTIME</h4><div class="content-locale-en-US content-locale-en"><div id="c_usi_process_skkausip_createusi_realtime"><div class="body conbody"><p class="shortdesc">The skkausi.p_createusi_realtime procedure builds the CreateUSI request XML using the data in the SKSCUSI table and sends the request to the USI system.</p>
+
+<p class="p">When the CreateUSI response is received back from the USI system, the procedure SKKAUSI.p_process_createusi_response is called.</p>
+</div>
+</div></div></section>
+<section id="t-1770"><h4>SKKAUSI.P_PROCESS_CREATEUSI_RESPONSE</h4><div class="content-locale-en-US content-locale-en"><div id="c_skkausi_process_createusi_response"><div class="body conbody"><p class="shortdesc">If the CreateUSI response does not include any 'ErrorMessage' node, then the XIGN process ASC_USI_CREATE_RESPONSE will be executed.</p>
+
+<p class="p">The response XML is parsed and data is populated into the SKXCUSI table.</p>
+
+<p class="p">The procedure SKKAUSI.p_create_usi_response is called.</p>
+
+<p class="p">If the CreateUSI response includes an 'ErrorMessage' node, then the XIGN process ASC_USI_CREATE_FAULT_RESPONSE will be executed.</p>
+
+<p class="p">The response XML is parsed and data is populated into the SKXCUSI table.</p>
+
+<p class="p">The procedure SKKAUSI.p_create_usi_response_fault is called.</p>
+</div>
+</div></div></section>
+<section id="t-1780"><h4>SKKAUSI.P_CREATE_USI_RESPONSE</h4><div class="content-locale-en-US content-locale-en"><div id="c_skkausip_create_usi_reponse"><div class="body conbody"><p class="shortdesc">If the result of the CreateUSI request is either Success or MatchFound.</p>
+
+    <p class="p">The generated USI is used to update the Additional ID Verification table (GKRADIV), the Status is updated to 'SUCCESS' and the Verification Date is populated.</p>
+
+    <p class="p">A record is inserted into the Additional Identification table (GORADID).</p>
+
+    <p class="p">The corresponding request records in SKSCUSI, SKRRSQT and SKRTRNS are updated with the status of SUCCESS</p>
+
+    <p class="p">A record is inserted into the SKRSTRN table for the PIDM.</p>
+
+    <p class="p">If the value of the GKRVDOC-PURGE system parameter is 'A', then all records for the person are purged from the Identity Document Details table (GKRVDOC).</p>
+
+    <p class="p">If the value of the GKRVDOC-PURGE system parameter is 'P', then the primary record for the person is purged from the Identity Document Details table (GKRVDOC).</p>
+
+    <p class="p">If the result of the CreateUSI request is Failure:</p>
+
+    <p class="p">The Status on the Additional ID Verification table (GKRADIV) is updated to 'FAILURE'.</p>
+
+    <p class="p">A record is inserted into the Request Exceptions table (SKREXPT) with the details of the error.</p>
+
+    <p class="p">The corresponding request records in SKSCUSI, SKRRSQT and SKRTRNS are updated with the status of COMPLETE</p>
+
+  </div>
+
+</div></div></section>
+<section id="t-1790"><h4>SKKAUSI.P_CREATE_USI_RESPONSE_FAULT</h4><div class="content-locale-en-US content-locale-en"><div id="c_skkausip_create_usi_reponse_fault"><div class="body conbody"><p class="shortdesc">The Status on the Additional ID Verification table (GKRADIV) is updated to 'FAILURE'.</p>
+
+<p class="p">A record is inserted into the Request Exceptions table (SKREXPT) with the details of the error.</p>
+
+<p class="p">The corresponding request records in SKSCUSI, SKRRSQT and SKRTRNS are updated with the status of SOAPFAULT.</p>
+
+<p class="p">If there is any problem in executing SKKAUSI.p_create_usi_response_fault, the SKKAUSI.p_set_status_expired_failed procedure is called.</p>
+</div>
+</div></div></section>
+<section id="t-1800"><h4>SKKAUSI.P_SET_STATUS_EXPIRED_FAILED</h4><div class="content-locale-en-US content-locale-en"><div id="c_skkausip_set_status_expired_failed"><div class="body conbody"><p class="shortdesc">This procedure sets the status of pending requests to EXPIRED in the SKSCUSI, SKRRQST and SKRTRNS tables.</p>
+
+    <p class="p">A record is inserted into the Request Exceptions table (SKREXPT).</p>
+
+  </div>
+
+</div></div></section>
+<section id="t-1810"><h3>Bulk Upload</h3><div class="content-locale-en-US content-locale-en"><div id="c_bulk_upload"><p class="shortdesc">This section discusses the bulk upload processing activities.</p>
+
+</div></div></section>
+<section id="t-1820"><h4>SKKAUSI.P_BULKUPLOAD_SCHEDULER</h4><div class="content-locale-en-US content-locale-en"><div id="c_skkausip_bulkupload_scheduler"><div class="body conbody"><p class="shortdesc">SKKAUSI.P_BULKUPLOAD_SCHEDULER is the procedure that gets invoked through an Oracle job that is scheduled every day.</p>
+
+    <p class="p">First, the procedure gets the count of rows in GKRADIV that need to have a USI requested</p>
+
+    <p class="p">These will be records in GKRADIV that match the following conditions:</p>
+
+    <p class="p">GKRADIV_ADID_CODE = 'USI'</p>
+
+    <p class="p">GKRADIV_ADDTIONAL_ID is null</p>
+
+    <p class="p">GKRADIV_CONSENT_IND = 'Y'</p>
+
+    <p class="p">GKRADIV_VERIFIED_DATE is null</p>
+
+    <p class="p">There is currently no record in the Request Collector table (SKRRQST) for this PIDM, for a USI request where the status is either PENDING or RECEIVED</p>
+
+    <p class="p">Either GKRADIV_DOC_VERIFICATION_IND = 'N' or GKRADIV_DOC_VERIFICATION_IND = 'Y' and there is an appropriate record in GKRVDOC for the person</p>
+
+    <p class="p">The purpose of the count is so that the process can determine how many BulkUpload requests need to be sent.</p>
+
+    <p class="p">The process gets the URL for BulkUpload requests and the Maximum Number of Records in a BulkUpload Request data from SKBSUSI.</p>
+
+    <p class="p">Next skkausi.p_BulkUpload gets the Training Organisation ID for the non-person ID on the USI tab of SKASYSC. The cursor finds the SKBTORG_TRAIN_ORG_ID from the Organisation Details table (SKBTORG) where the SKBTORG_PIDM matches the SKBSUSI_PIDM, and uses the record from SKBTORG that is the latest record (maximum effective term) where the Training Organisation Indicator (SKBTORG_TRAIN_ORG_IND) = 'Y'.</p>
+
+    <p class="p">This Training Organisation ID is used for the OrgCode element in the BulkUpload request.</p>
+
+    <p class="p">If any of the required data from SKBSUSI is missing, then the request cannot be created</p>
+
+    <p class="p">A row is inserted into SKRTRNS with the Request ID of BULKUPLOADDATAnnn (where nnn is a sequence) and with a SKRTRNS_STATUS_MESSAGE of 'BulkUpload data is not available on USI tab of SKASYSC page.'</p>
+
+    <p class="p">If no Training Organisation ID is found, then the request cannot actually be created.</p>
+
+    <p class="p">A row is inserted into SKRTRNS with the Request ID of ORGCODEnnn (where nnn is a sequence) and with a SKRTRNS_STATUS_MESSAGE of 'Organisation Code details are not maintained on SKASYSC/SKATORG page.'</p>
+
+    <p class="p">Next the skkausi.p_BulkUpload is called.</p>
+
+  </div>
+
+</div></div></section>
+<section id="t-1830"><h4>SKKAUSI.P_BULKUPLOAD</h4><div class="content-locale-en-US content-locale-en"><div id="c_skkausip_bulkupload"><div class="body conbody"><p class="shortdesc">SKKAUSI.p_BulkUpload (p_gkrrlog_seqno_out);</p>
+
+    <p class="p">It has one OUT parameter - gkrrlog_seqno.</p>
+
+    <p class="p">This parameter is the sequence number from the MDUU log table (GKRRLOG) for the BulkUpload MDUU process.</p>
+
+    <p class="p">The process code is present in the USI tab of SKASYSC.</p>
+
+    <p class="p">A request ID is generated for each set of records, up to the maximum number of records in a bulk upload request, until all of the PIDMs are covered by a request</p>
+
+    <p class="p">A row for the request ID is inserted into SKRTRNS</p>
+
+    <p class="p">PIDMs are allocated to the request ID, up to the maximum for bulk upload requests and rows are inserted into SKRRQST for each PIDM for the request ID.</p>
+
+    <p class="p">The process loops through these SKRTRNS and SKRRQST steps until each PIDM has been allocated to a request.</p>
+
+    <p class="p">The procedure also executes the BulkUpload MDUU process to populate the SKSBUSI table.</p>
+
+    <p class="p">If the MDUU activity encounters an error, then the details are written to the GKRRLOG table, the status of the relevant request records in SKRTRNS and SKRRQST are set to 'EXPIRED' and a record is inserted into the Request Exceptions table (SKREXPT) for each PIDM in the request, with the following message 'Error during execution of BulkUpload: %01%' - where %01% will be the error message that was also written to GKRRLOG.</p>
+
+    <p class="p">If the MDUU activity was able to successfully populate the SKSBUSI target table, control is then passed back to the skkausi.p_bulkupload_scheduler procedure.</p>
+
+  </div>
+
+</div></div></section>
+<section id="t-1840"><h4>SKKAUSI.P_BULKUPLOAD_SCHEDULER</h4><div class="content-locale-en-US content-locale-en"><div id="c_usi_process_skkausip_bulkupload_scheduler"><div class="body conbody"><p class="shortdesc">The skkausi.p_bulkupload_scheduler procedure builds the BulkUpload request XML using the data in the SKSBUSI table and sends the request to the USI system.</p>
+
+<p class="p">If the XML cannot be created, then a record is inserted into the Request Exceptions table (SKREXPT) for each PIDM in the request, with the following message 'No data is available for processing in MDUU table.'</p>
+
+<p class="p">When the BulkUpload response is received back from the USI system, the procedure SKKAUSI.p_process_bulkupload_response is called.</p>
+</div>
+</div></div></section>
+<section id="t-1850"><h4>SKKAUSI.P_PROCESS_BULKUPLOAD_RESPONSE</h4><div class="content-locale-en-US content-locale-en"><div id="c_skkausip_process_bulkupload_response"><div class="body conbody"><p class="shortdesc">If the BulkUpload response does not include any 'ErrorMessage' node, then the XIGN process ASC_USI_BULK_RESPONSE will be executed.</p>
+
+<p class="p">The response XML is parsed and data is populated into the SKXBUSI table.</p>
+
+<p class="p">The procedure SKKAUSI.p_bulk_upload_response is called.</p>
+
+<p class="p">If the BulkUpload response includes an 'ErrorMessage' node, then the XIGN process ASC_USI_BULK_FAULT_RESPONSE will be executed.</p>
+
+<p class="p">The response XML is parsed and data is populated into the SKXBUSI table.</p>
+
+<p class="p">The procedure SKKAUSI.p_bulk_upload_response_fault is called.</p>
+</div>
+</div></div></section>
+<section id="t-1860"><h4>SKKAUSI.P_BULK_UPLOAD_RESPONSE</h4><div class="content-locale-en-US content-locale-en"><div id="c_skkausip_bulkupload_response"><p class="shortdesc">The corresponding request records in SKSBUSI, SKRRSQT and SKRTRNS are updated with the status of RECEIVED and the Receipt ID in each of these tables is populated.</p>
+
+</div></div></section>
+<section id="t-1870"><h4>SKKAUSI.P_BULK_UPLOAD_RESPONSE_FAULT</h4><div class="content-locale-en-US content-locale-en"><div id="c_skkausip_bulkipload_response_fault"><div class="body conbody"><p class="shortdesc">A record is inserted into the Request Exceptions table (SKREXPT) with the details of the error.</p>
+
+<p class="p">The corresponding request records in SKSBUSI, SKRRSQT and SKRTRNS are updated with the status of SOAPFAULT.</p>
+
+<p class="p">If there is any problem in executing SKKAUSI.p_bulk_upload_response_fault, the SKKAUSI.p_set_status_expired_failed procedure is called.</p>
+</div>
+</div></div></section>
+<section id="t-1880"><h4>SKKAUSI.P_SET_STATUS_EXPIRED_FAILED</h4><div class="content-locale-en-US content-locale-en"><div id="c_bulk_upload_skkausip_set_status_expired_failed"><div class="body conbody"><p class="shortdesc">This procedure sets the status of pending requests to EXPIRED in the SKSBUSI, SKRRQST and SKRTRNS tables.</p>
+
+<p class="p">A record is inserted into the Request Exceptions table (SKREXPT).</p>
+</div>
+</div></div></section>
+<section id="t-1890"><h3>Bulk Upload Response Retrieve</h3><div class="content-locale-en-US content-locale-en"><div id="c_bulk_upload_response_retrive"><div class="body conbody"><p class="shortdesc">SKKAUSI.P_BULKUPDRET_SCHEDULER is the procedure that gets invoked through an Oracle job that is scheduled every day.</p>
+
+    <p class="p">It fetches skbsusi_bulk_retrieve_hours and skbsusi_bulk_retrieve_url, which are stored in the USI tab of the SKASYSC page. If any of them is null then it inserts a record into SKRTRNS(The Transactions Data Table) with the message 'BULK UPLOAD RETRIEVE data is not available on USI tab of SKASYSC page'.</p>
+
+    <p class="p">At the time that the BulkUploadRetrieve request job is scheduled to run, one of the first steps it does is to check all the BulkUploadRequests that are due to get their results retrieved.</p>
+
+    <p class="p">For each of those BulkUpload request IDs, the process checks the timestamp of the bulk upload request.</p>
+
+    <p class="p">It adds the Number of Hours Before Sending Bulk Upload Retrieve to the bulk upload request timestamp for each request.</p>
+
+    <p class="p">Then, if the system date and time is greater than this calculation of "Number of Hours Before Sending Bulk Upload Retrieve plus bulk upload request timestamp", the corresponding BulkUploadRetrieve request will be sent.</p>
+
+    <p class="p">If the results are not ready, then the USI Registry system will send a "Not ready yet" BulkUploadRetrieve response and another BulkUploadRetrieve request will be sent at the next time that the BulkUploadRetrieve job is scheduled.</p>
+
+    <p class="p"><span class="keyword">Banner</span> will keep sending BulkUploadRetrieve requests in this way until a terminating BulkUploadRetrieve response is received.</p>
+
+    <p class="p">That terminating BulkUploadRetrieve response might be success or it might be failure - but it will be a definite response (as opposed to "Not ready yet").</p>
+
+    <p class="p">When the bulk upload retrieve response is received back from the USI system, the procedure SKKAUSI.p_process_bulkupdret_response is called.</p>
+
+  </div>
+
+</div></div></section>
+<section id="t-1900"><h4>SKKAUSI.P_PROCESS_BULKUPDRET_RESPONSE</h4><div class="content-locale-en-US content-locale-en"><div id="c_skkausip_process_bulkupdret_response"><div class="body conbody"><p class="shortdesc">If the bulk upload retrieve response does not include any 'ErrorMessage' node, then the XIGN process ASC_USI_BULKRETRIEVE_RESPONSE will be executed.</p>
+
+<p class="p">The response XML is parsed and data is populated into the SKXRUSI table.</p>
+
+<p class="p">The procedure SKKAUSI.p_bulkupload_retrieve_response is called.</p>
+
+<p class="p">If the bulk upload retrieve response includes an 'ErrorMessage' node, then the XIGN process ASC_USI_BLKRETRIEVE_FAULT_RESP will be executed.</p>
+
+<p class="p">The response XML is parsed and data is populated into the SKXRUSI table.</p>
+
+<p class="p">The procedure SKKAUSI.p_bulk_retrieve_res_fault is called.</p>
+</div>
+</div></div></section>
+<section id="t-1910"><h4>SKKAUSI.P_BULKUPLOAD_RETRIEVE_RESPONSE</h4><div class="content-locale-en-US content-locale-en"><div id="c_skkausip_bulkupload_retrieve_response"><div class="body conbody"><p class="shortdesc">If the result of the bulk upload retrieve response USI request is either Success or MatchFound.</p>
+
+    <p class="p">The generated USI is used to update the Additional ID Verification table (GKRADIV), the Status is updated to 'SUCCESS' and the Verification Date is populated.</p>
+
+    <p class="p">A record is inserted into the Additional Identification table (GORADID).</p>
+
+    <p class="p">The corresponding request records in SKSBUSI, SKRRSQT and SKRTRNS are updated with the status of SUCCESS</p>
+
+    <p class="p">A record is inserted into the SKRSTRN table for the PIDM.</p>
+
+    <p class="p">If the value of the GKRVDOC-PURGE system parameter is 'A', then all records for the person are purged from the Identity Document Details table (GKRVDOC).</p>
+
+    <p class="p">If the value of the GKRVDOC-PURGE system parameter is 'P', then the primary record for the person is purged from the Identity Document Details table (GKRVDOC).</p>
+
+    <p class="p">If the result of the CreateUSI request is Failure:</p>
+
+    <p class="p">The Status on the Additional ID Verification table (GKRADIV) is updated to 'FAILURE'.</p>
+
+    <p class="p">A record is inserted into the Request Exceptions table (SKREXPT) with the details of the error.</p>
+
+    <p class="p">The corresponding request records in SKSBUSI, SKRRSQT and SKRTRNS are updated with the status of COMPLETE</p>
+
+  </div>
+
+</div></div></section>
+<section id="t-1920"><h4>SKKAUSI. P_BULK_RETRIEVE_RES_FAULT</h4><div class="content-locale-en-US content-locale-en"><div id="c_skkausip_bulk_retrieve_res_fault"><div class="body conbody"><p class="shortdesc">The Status on the Additional ID Verification table (GKRADIV) is updated to 'FAILURE'.</p>
+
+<p class="p">A record is inserted into the Request Exceptions table (SKREXPT) with the details of the error.</p>
+
+<p class="p">The corresponding request records in SKSBUSI, SKRRSQT and SKRTRNS are updated with the status of SOAPFAULT.</p>
+
+<p class="p">If there is any problem in executing SKKAUSI.p_bulk_retrieve_res_fault, the procedure SKKAUSI. p_bulkupload_ret_status is called.</p>
+</div>
+</div></div></section>
+<section id="t-1930"><h4>SKKAUSI. P_BULKUPLOAD_RET_STATUS</h4><div class="content-locale-en-US content-locale-en"><div id="c_skkausiap_bulkupload_ret_status"><div class="body conbody"><p class="shortdesc">This procedure sets the status of pending requests to EXPIRED in the SKSBUSI, SKRRQST and SKRTRNS tables.</p>
+
+<p class="p">A record is inserted into the Request Exceptions table (SKREXPT).</p>
+</div>
+</div></div></section>
+<section id="t-1940"><h3>Verify USI</h3><div class="content-locale-en-US content-locale-en"><div id="c_verify_usi"><div class="body conbody"><p class="shortdesc">The VerifyUSI web service may be invoked in real time when a record is saved in the Additional ID Verification (GKAADIV) page with a value entered for the Additional Identification field and with an ID Type of 'USI'.</p>
+
+    <p class="p">The web service will only be invoked if the value of the USI-REAL-TIME system parameter is set to either B or F in the Report System Parameters (SKARSYS) page.</p>
+
+    <div class="p">A new trigger has been added to the GKRADIV table called GT_GKRADIV_BIU_ROW and that trigger invokes the procedure p_verifyusi_realtime provided the following conditions are satisfied: <ul class="ul"> <li class="li">GKRADIV_CONSENT = 'Y'</li>
+ <li class="li">GKRADIV_ADID_CODE = 'USI'</li>
+ <li class="li">GKRADIV_VERIFIED_DATE IS NULL</li>
+
+      <li class="li">GKRADIV_SOURCE != 'WEB SERVICE' (This condition is written to avoid the trigger from firing VerifyUSI when a record is updated into GKRADIV through BulkUploadRetrieve or BulkVerify responses.)</li>
+
+      </ul>
+Also if any request is already existing in SKRRQST with the status as PENDING then that request status is updated to EXPIRED through the procedure p_set_status_expired_failed so that a fresh web service request can be sent and then the following conditions are checked before invoking the VerifyUSI web service.</div>
+
+    <ul class="ul">
+      <li class="li">There is currently no record in the Request Collector table (SKRRQST) for this PIDM, for a USI request where the status is either PENDING or RECEIVED</li>
+
+      <li class="li">When a record gets inserted to GKRADIV through the GKAADIV page then Data Origin will be stored in the GKRADIV table as '<span class="keyword">Banner</span>' and when a record gets inserted through self-service then Data Origin will be stored into GKRADIV table as 'SELF-SERVICE'.</li>
+
+    </ul>
+
+    <p class="p">Hence VerifyUSI will be invoked if the value for the 'USI-REAL-TIME' system parameter is either B (Both page and Self-Service) or it will be invoked if the value is F (only page) and the Data Origin is '<span class="keyword">Banner</span>' or it will be invoked if the value is S (only Self-Service) and the Data Origin is 'SELF-SERVICE'.</p>
+
+  </div>
+
+</div></div></section>
+<section id="t-1950"><h4>SKKAUSI.P_SKTVUSI_INSERT</h4><div class="content-locale-en-US content-locale-en"><div id="c_skkausiap_sktvusi_insert"><div class="body conbody"><p class="shortdesc">When a record is created through GKAADIV page, if :NEW.gkradiv_additional_id IS NOT NULL then a procedure is called which will insert that GKRADIV record into a temporary table SKTVUSI through the procedure skkausi.p_sktvusi_insert.</p>
+
+    <p class="p">This is required because the MDUU activity ASC_VERIFY_USI will fetch values for the USI field from the SKTVUSI table. Because the web service invocation is happening on the 'before insert' trigger the values will not yet be in the GKRADIV table and hence this detail is stored in the temporary table SKTVUSI so that the MDUU activity can pick it up from there.</p>
+
+    <p class="p">After this step the procedure skkausi.p_verifyusi_realtime is called.</p>
+
+  </div>
+
+</div></div></section>
+<section id="t-1960"><h4>SKKAUSI.P_VERIFYUSI_REALTIME</h4><div class="content-locale-en-US content-locale-en"><div id="c_skkausiap_verifyusi_realtime"><div class="body conbody"><p class="shortdesc">skkausi.p_verifyusi_realtime(:NEW.gkradiv_pidm,lv_status_code_out,lv_request_id_out);</p>
+
+    <p class="p">It has three parameters. The first parameter is the PIDM which is passed into this procedure from the trigger and the second parameter is the USI STATUS which is an out parameter and it contains values like VALID or INVALID or DEACTIVATED or it can be null. If it is null then it means there was some issue while invoking a web service request.</p>
+
+    <p class="p">The first step in this procedure is to get the value of skbsusi_verify_usi_url. This field is present in the USI tab of the External Systems Interaction Control (SKASYSC) page. If the URL is not present then an exception is raised and a record is inserted into the Request Exceptions table (SKREXPT) with the message <samp class="ph msgph">VerifyUSI URL details are not available on USI tab of SKASYSC page.</samp> This record can be viewed on the Request Exceptions (SKAEXPT) page.</p>
+
+    <p class="p">If the URL is present then the procedure SKKAUSI.p_verifyusi_internal is called.</p>
+
+  </div>
+
+</div></div></section>
+<section id="t-1970"><h4>SKKAUSI.P_VERIFYUSI_INTERNAL</h4><div class="content-locale-en-US content-locale-en"><div id="c_skkausip_verifyusi_internal"><div class="body conbody"><p class="shortdesc">SKKAUSI.p_verifyusi_internal( p_pidm_in , p_request_id_out, p_gkrrlog_seqno_out);</p>
+
+    <p class="p">It has one IN parameter (PIDM) and two OUT parameters Request ID and gkrrlog_seqno.</p>
+
+    <p class="p">The first parameter is the PIDM which is passed into this procedure from the skkausi.p_verifyusi_realtime procedure.</p>
+
+    <p class="p">The second parameter is the Request ID that is generated using the value of the skbsusi_request_prefix concatenated with the organisation code concatenated with a sequence number.</p>
+
+    <p class="p">The request prefix is present in the USI tab of SKASYSC.</p>
+
+    <p class="p">The organisation code is the value from the Training Organisation ID field on the Organisation Details (SKATORG) page for the <span class="keyword">Banner</span> ID of the organisation that is present in the USI tab of SKASYSC.</p>
+
+    <p class="p">The sequence number is an Oracle sequence.</p>
+
+    <p class="p">The third parameter is the sequence number from the MDUU log table (GKRRLOG) for the VerifyUSI MDUU process.</p>
+
+    <p class="p">The process code is present in the USI tab of SKASYSC.</p>
+
+    <p class="p">This skkausi.p_verifyusi_internal procedure inserts a record into the SKRTRNS table, and the SKRRQST table and executes the VerifyUSI MDUU process to populate the SKSVUSI table. Also it sets the parameter 'USI_REQID' which can be used to refer to the request ID in <span class="keyword">Banner</span> Self-Service.</p>
+
+    <p class="p">Control is then passed back to the skkausi.p_verifyusi_realtime procedure.</p>
+
+  </div>
+
+</div></div></section>
+<section id="t-1980"><h4>SKKAUSI.P_VERIFYUSI_REALTIME</h4><div class="content-locale-en-US content-locale-en"><div id="c_usi_process_skkausip_verifyusi_realtime"><div class="body conbody"><p class="shortdesc">The skkausi.p_verifyusi_realtime procedure builds the VerifyUSI request XML using the data in the SKSVUSI table and sends the request to the USI system.</p>
+
+<p class="p">When the VerifyUSI response is received back from the USI system, the procedure SKKAUSI.p_process_verifyusi_response is called.</p>
+</div>
+</div></div></section>
+<section id="t-1990"><h4>SKKAUSI.P_PROCESS_VERIFYUSI_RESPONSE</h4><div class="content-locale-en-US content-locale-en"><div id="c_skkausip_process_verifyusi_repose"><div class="body conbody"><p class="shortdesc">If the VerifyUSI response does not include any 'ErrorMessage' node, then the XIGN process ASC_USI_VERIFY_RESPONSE will be executed.</p>
+
+<p class="p">The response XML is parsed and data is populated into the SKXVUSI table.</p>
+
+<p class="p">The procedure SKKAUSI.p_verify_usi_response is called.</p>
+
+<p class="p">If the VerifyUSI response includes an 'ErrorMessage' node, then the XIGN process ASC_USI_VERIFY_FAULT_RESPONSE will be executed.</p>
+
+<p class="p">The response XML is parsed and data is populated into the SKXVUSI table.</p>
+
+<p class="p">The procedure SKKAUSI.p_verify_usi_res_fault is called.</p>
+</div>
+</div></div></section>
+<section id="t-2000"><h4>SKKAUSI.P_VERIFY_USI_RESPONSE</h4><div class="content-locale-en-US content-locale-en"><div id="c_skkausip_process_usi_response"><div class="body conbody"><p class="shortdesc">If the USI_STATUS of the VerifyUSI request is VALID and either the first name and last name status = MATCH or Single name status = MATCH and the date of birth status = MATCH then it means the USI is successfully verified and the following inserts and updates are done.</p>
+
+    <p class="p">The verified USI is used to update the Additional ID Verification table (GKRADIV), the Status is updated to 'SUCCESS' and the Verification Date is populated.</p>
+
+    <p class="p">A record is inserted into the Additional Identification table (GORADID).</p>
+
+    <p class="p">The corresponding request records in SKSVUSI, SKRRSQT and SKRTRNS are updated with the status of SUCCESS.</p>
+
+    <p class="p">The corresponding record is deleted from the temporary table SKTVUSI as it is no longer needed.</p>
+
+    <p class="p">A record is inserted into the SKRSTRN table for the PIDM.</p>
+
+    <p class="p">If the value of the GKRVDOC-PURGE system parameter is 'A', then all records for the person are purged from the Identity Document Details table (GKRVDOC).</p>
+
+    <p class="p">If the value of the GKRVDOC-PURGE system parameter is 'P', then the primary record for the person is purged from the Identity Document Details table (GKRVDOC).</p>
+
+    <p class="p">If the USI_STATUS of the VerifyUSI request is either INVALID OR DEACTIVATED or if the USI_STATUS is VALID but the first name status or the last name status or the Single name status or the date of birth status is NOMATCH then it means the transaction is complete but the USI is not successfully verified and the following inserts and updates are done:</p>
+
+    <p class="p">The Status on the Additional ID Verification table (GKRADIV) is updated to with the USI_STATUS that is received as response and the verified date is updated to NULL as the USI is not successfully verified yet.</p>
+
+    <p class="p">A record is inserted into the Request Exceptions table (SKREXPT) with the details of the error.</p>
+
+    <p class="p">The corresponding request records in SKSCUSI, SKRRSQT and SKRTRNS are updated with the status of COMPLETE</p>
+
+  </div>
+
+</div></div></section>
+<section id="t-2010"><h4>SKKAUSI.P_VERIFY_USI_RESPONSE_FAULT</h4><div class="content-locale-en-US content-locale-en"><div id="c_skkausiap_verify_usi_respnse_fault"><div class="body conbody"><p class="shortdesc">The Status on the Additional ID Verification table (GKRADIV) is updated to 'FAILURE'.</p>
+
+<p class="p">A record is inserted into the Request Exceptions table (SKREXPT) with the details of the error.</p>
+
+<p class="p">The corresponding request records in SKSVUSI, SKRRSQT and SKRTRNS are updated with the status of SOAPFAULT.</p>
+
+<p class="p">If there is any problem in executing SKKAUSI.p_verify_usi_response_fault, the SKKAUSI.p_set_status_expired_failed procedure is called.</p>
+</div>
+</div></div></section>
+<section id="t-2020"><h4>SKKAUSI.P_SET_STATUS_EXPIRED_FAILED</h4><div class="content-locale-en-US content-locale-en"><div id="c_usi_process_skkausip_set_status_expired_failed"><div class="body conbody"><p class="shortdesc">This procedure sets the status of pending requests to EXPIRED in the SKSVUSI, SKRRQST and SKRTRNS tables.</p>
+
+<p class="p">A record is inserted into the Request Exceptions table (SKREXPT).</p>
+</div>
+</div></div></section>
+<section id="t-2030"><h4>DELETE_VERIFIED_USI_PROCESS</h4><div class="content-locale-en-US content-locale-en"><div id="c_delete_verfied_usi_process"><div class="body conbody"><p class="shortdesc">This process allow authorised users to delete a verified USI record for a person, so that they can then enter a more recent USI value for that person.</p>
+
+    <p class="p">The DELETE_VERIFIED_USI MDUU activity uses a function to remove the record from the GKRADIV table and from the GORADID table, and to populate a SKRUSIL log table. After the verified record is removed, the user can then go to the GKAADIV page and enter the correct USI for the person.</p>
+
+  </div>
+
+</div></div></section>
+<section id="t-2040"><h3>Bulk Verify</h3><div class="content-locale-en-US content-locale-en"><div id="c_bulk_verify"><p class="shortdesc">SKKAUSI.p_bulkverify_scheduler is the procedure that gets invoked through an oracle job that is scheduled every day.  This procedure,first calls the skkausi.p_bulk_data_cleanup procedure.</p>
+
+</div></div></section>
+<section id="t-2050"><h4>SKKAUSI.P_BULK_DATA_CLEANUP</h4><div class="content-locale-en-US content-locale-en"><div id="c_skkausip_bulk_data_cleanup"><div class="body conbody"><p class="shortdesc">The skkausi.p_bulk_data_cleanup procedure checks whether there are any bulk verify requests that are in a PENDING state.</p>
+
+    <p class="p">Ideally there should be no bulk verify request that should be in PENDING state because the response from the USI system is synchronous for bulk verify requests. Hence if there are any pending bulk verify requests then they need to be updated with the status as EXPIRED before sending a fresh bulk verify request and that's what p_bulk_data_cleanup procedure does.</p>
+
+  </div>
+
+</div></div></section>
+<section id="t-2060"><h4>SKKAUSI.P_BULKVERIFY_SCHEDULER</h4><div class="content-locale-en-US content-locale-en"><div id="c_skkausip_bulkverify_scheduler"><div class="body conbody"><p class="shortdesc">The GKRADIV cursor fetches all the student records from GKRADIV table for whom GKRADIV_ADDITIONAL_ID is not null and GKRADIV_VERIFIED_DATE is null and GKRADIV_CONSENT = 'Y' and GKRADIV_ADID_CODE = 'USI'</p>
+
+    <p class="p">If no records exist in GKRADIV satisfying the above conditions then it means for all the students USI is verified and hence a record is inserted into SKRTRNS with the message "No data is available for processing in GKAADIV page."</p>
+
+    <p class="p">If the Bulk Verify URL is not specified in USI tab of SKASYSC page then it will insert a record into SKRTRNS with the message "BulkVerify URL details are not available on USI tab of SKASYSC page."</p>
+
+    <p class="p">Before sending the Bulk Verify request xml to the USI server it internally processes the MDUU process specified for the field Bulk Verify USI Process on the USI tab of SKASYSC page.</p>
+
+    <p class="p">If the MDUU activity corresponding to the Bulk Verify USI Process fails for any reason and records are not inserted into the USI BulkVerify Request Snapshot Table (SKSBVUS) then a record is inserted into Request Exceptions page with the actual error message generated by MDUU on why the activity failed to execute.</p>
+
+    <p class="p">After this step the procedure skkausi.p_bulkverify is called.</p>
+
+  </div>
+
+</div></div></section>
+<section id="t-2070"><h4>SKKAUSI.P_BULKVERIFY</h4><div class="content-locale-en-US content-locale-en"><div id="c_skkausip_bulkverify"><div class="body conbody"><p class="shortdesc">SKKAUSI.p_bulkverify(lv_gkradiv_pidm_exists, lv_gkrrlog_seqno_out);</p>
+
+<p class="p">It has one IN parameter (PIDM) and one OUT parameter (gkrrlog_seqno).</p>
+
+<p class="p">The first parameter is the PIDM which is passed into this procedure from skkausi.p_bulkverify_scheduler.</p>
+
+<p class="p">The second parameter is the sequence number from the MDUU log table (GKRRLOG) for the BulkVerify USI MDUU process.</p>
+
+<p class="p">The process code is present in the USI tab of SKASYSC.</p>
+
+<p class="p">This skkausi.p_bulkverify procedure inserts a record into the SKRTRNS table, and PIDMs are allocated to the request ID, up to the maximum for bulk verify requests and rows are inserted into SKRRQST for each PIDM for the request ID.</p>
+
+<p class="p">The procedure also executes the Bulk VerifyUSI MDUU process to populate the SKSBVUS table.</p>
+
+<p class="p">Control is then passed back to the skkausi.p_bulkverify_scheduler procedure.</p>
+</div>
+</div></div></section>
+<section id="t-2080"><h4>SKKAUSI.P_BULKVERIFY_SCHEDULER</h4><div class="content-locale-en-US content-locale-en"><div id="c_usi_process_skkausip_bulkverify_scheduler"><div class="body conbody"><p class="shortdesc">The skkausi.p_bulkverify_scheduler procedure builds the BulkVerify request XML using the data in the SKSBVUS table and sends the request to the USI system.</p>
+
+<p class="p">When the BulkVerify response is received back from the USI system, the procedure SKKAUSI.p_process_bulkverify_response is called.</p>
+</div>
+</div></div></section>
+<section id="t-2090"><h4>SKKAUSI.P_BULKVERIFY_REPONSE</h4><div class="content-locale-en-US content-locale-en"><div id="c_skkausip_bulkverify_response"><div class="body conbody"><p class="shortdesc">If the BulkVerify response does not include any 'ErrorMessage' node, then the XIGN process ASC_USI_BULK_VERIFY_RESPONSE will be executed.</p>
+
+<p class="p">The response XML is parsed and data is populated into the SKXBVUS table.</p>
+
+<p class="p">The procedure SKKAUSI.p_bulk_verify_usi_response is called.</p>
+
+<p class="p">If the BulkVerify response includes an 'ErrorMessage' node, then the XIGN process ASC_USI_BULK_VERIFY_FAULT_RESP will be executed.</p>
+
+<p class="p">The response XML is parsed and data is populated into the SKXBVUS table.</p>
+
+<p class="p">The procedure SKKAUSI.p_bulkverify_usi_res_fault is called.</p>
+</div>
+</div></div></section>
+<section id="t-2100"><h4>SKKAUSI.P_BULK_VERIFY_USI_REPONSE</h4><div class="content-locale-en-US content-locale-en"><div id="c_skkausip_bulk_verify_usi_response"><div class="body conbody"><p class="shortdesc">The corresponding request in SKRTRNS is updated with a status of COMPLETE.</p>
+
+<p class="p">If the USI_STATUS of a record in the BulkVerify request is VALID and either the first name and last name status = MATCH or Single name status = MATCH and the date of birth status = MATCH then it means the USI is successfully verified and the following inserts and updates are done:</p>
+
+<p class="p">The verified USI is used to update the Additional ID Verification table (GKRADIV), the Status is updated to 'SUCCESS' and the Verification Date is populated for the PIDM.</p>
+
+<p class="p">A record is inserted into the Additional Identification table (GORADID) for the PIDM.</p>
+
+<p class="p">The corresponding request and PIDM records in SKSBVUS and SKRRSQT are updated with the status of SUCCESS.</p>
+
+<p class="p">The corresponding record is deleted from the temporary table SKTBVUS as it is no longer needed.</p>
+
+<p class="p">A record is inserted into the SKRSTRN table for the PIDM.</p>
+
+<p class="p">If the value of the GKRVDOC-PURGE system parameter is 'A', then all records for the person are purged from the Identity Document Details table (GKRVDOC).</p>
+
+<p class="p">If the value of the GKRVDOC-PURGE system parameter is 'P', then the primary record for the person is purged from the Identity Document Details table (GKRVDOC).</p>
+
+<p class="p">If the USI_STATUS of a record in the BulkVerify request is either INVALID OR DEACTIVATED or if the USI_STATUS is VALID but the first name status or the last name status or the Single name status or the date of birth status is NOMATCH then it means the transaction is complete but the USI is not successfully verified and the following inserts and updates are done:</p>
+
+<p class="p">The Status on the Additional ID Verification table (GKRADIV) is updated to with the USI_STATUS that is received as response and the verified date is updated to NULL as the USI is not successfully verified yet for the PIDM.</p>
+
+<p class="p">A record is inserted into the Request Exceptions table (SKREXPT) with the details of the error for the PIDM.</p>
+
+<p class="p">The corresponding request and PIDM records in SKSBVUS and SKRRSQT are updated with the status of COMPLETE.</p>
+</div>
+</div></div></section>
+<section id="t-2110"><h4>SKKAUSI.P_BULKVERIFY_USI_RES_FAULT</h4><div class="content-locale-en-US content-locale-en"><div id="c_skkausip_bulkverify_usi_res_fault"><div class="body conbody"><p class="shortdesc">The corresponding request record on SKRTRNS is updated with a status of SOAPFAULT.</p>
+
+<p class="p">The Status on the Additional ID Verification table (GKRADIV) is updated to 'FAILURE' for each PIDM in the request.</p>
+
+<p class="p">A record is inserted into the Request Exceptions table (SKREXPT) with the details of the error for each PIDM in the request.</p>
+
+<p class="p">The corresponding request and PIDM records in SKSBVUS and SKRRSQT are updated with the status of SOAPFAULT.</p>
+
+<p class="p">If there is any problem in executing SKKAUSI.p_bulkverify_usi_res_fault, the SKKAUSI.p_set_status_expired_failed procedure is called.</p>
+</div>
+</div></div></section>
+<section id="t-2120"><h4>SKKAUSI.P_SET_STATUS_EXPIRED_FAILED</h4><div class="content-locale-en-US content-locale-en"><div id="c_usi_process_skkausi.p_set_status_expired_failed"><div class="body conbody"><p class="shortdesc">This procedure sets the status of pending requests to EXPIRED in the SKSBVUS, SKRRQST and SKRTRNS tables.</p>
+
+<p class="p">A record is inserted into the Request Exceptions table (SKREXPT) for each PIDM.</p>
+</div>
+</div></div></section></main></body></html>

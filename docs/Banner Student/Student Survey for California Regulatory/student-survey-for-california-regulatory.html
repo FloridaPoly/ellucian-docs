@@ -1,0 +1,1508 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Student Survey for California Regulatory</title><style>body{font-family:-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;line-height:1.55;color:#1a1a1a;max-width:920px;margin:0 auto;padding:24px}header{border-bottom:2px solid #5a16d6;margin-bottom:8px}h1{color:#3a0ca3}h2,h3,h4,h5,h6{margin-top:1.6em}.crumb{color:#666;font-size:13px;margin:0}.meta{color:#888;font-size:12px}nav.toc{background:#f6f4fc;border:1px solid #e3dcf5;border-radius:8px;padding:12px 18px;margin:18px 0}nav.toc h2{margin:.2em 0}nav.toc ul{list-style:none;padding-left:0}nav.toc a{text-decoration:none;color:#5a16d6}section{margin:1.2em 0;padding-top:.4em}img{max-width:100%;height:auto}table{border-collapse:collapse}td,th{border:1px solid #ccc;padding:4px 8px}code,pre{background:#f4f4f4;border-radius:4px}pre{padding:10px;overflow:auto}</style></head><body><header><p class="crumb">Banner Student › Student Survey for California Regulatory</p><h1>Student Survey for California Regulatory</h1><p class="meta">Source: <a href="https://resources.elluciancloud.com/r/bundle/student_vtea_survey">https://resources.elluciancloud.com/r/bundle/student_vtea_survey</a> &middot; Retrieved 2026-06-17</p></header><nav class="toc"><h2>Contents</h2><ul><li style="margin-left:0px"><a href="#t-10">Student Survey for California Regulatory</a></li><li style="margin-left:0px"><a href="#t-20">Prerequisites</a></li><li style="margin-left:16px"><a href="#t-30">Configure Intelligent Processes Component</a></li><li style="margin-left:16px"><a href="#t-40">Configure the Audience Lists</a></li><li style="margin-left:16px"><a href="#t-50">Configure the Forms Component</a></li><li style="margin-left:16px"><a href="#t-60">Configure the Platform Component</a></li><li style="margin-left:0px"><a href="#t-70">Import the Form</a></li><li style="margin-left:16px"><a href="#t-80">Review the Template</a></li><li style="margin-left:16px"><a href="#t-90">Grant Permissions to the Form</a></li><li style="margin-left:0px"><a href="#t-100">Create Actions</a></li><li style="margin-left:16px"><a href="#t-110">Grant Permissions to Actions</a></li><li style="margin-left:0px"><a href="#t-120">Import the Workflow</a></li><li style="margin-left:16px"><a href="#t-130">Configure the Workflow</a></li><li style="margin-left:0px"><a href="#t-140">Set Up the Schedule</a></li><li style="margin-left:0px"><a href="#t-150">Set Up the Events Trigger</a></li><li style="margin-left:16px"><a href="#t-160">Create an Ethos Application</a></li><li style="margin-left:16px"><a href="#t-170">Configure the Platform Component</a></li><li style="margin-left:16px"><a href="#t-180">Import the Workflow</a></li><li style="margin-left:32px"><a href="#t-190">Configure the Workflow</a></li><li style="margin-left:16px"><a href="#t-200">Grant Permissions to the Workflow</a></li><li style="margin-left:16px"><a href="#t-210">Create a New Job for the Pipeline</a></li><li style="margin-left:0px"><a href="#t-220">Test the Student Survey</a></li><li style="margin-left:16px"><a href="#t-230">Mapping Reference</a></li><li style="margin-left:16px"><a href="#t-240">Review Workflow Errors</a></li><li style="margin-left:0px"><a href="#t-250">Add Items to the Survey</a></li></ul></nav><main><section id="t-10"><h2>Student Survey for California Regulatory</h2><div class="content-locale-en-US content-locale-en"><div id="c_vtea_survey_overview"><div class="body conbody"><p class="shortdesc">California community colleges' vocational / career technical education programs depend heavily on the Carl D. Perkins Vocational Technical Education Act (VTEA) dollars as their major funding source. </p>
+
+    <p class="p">The Perkins fund allocation is based on regulatory MIS report data submitted by the college to the state at the end of EVERY academic term. To report student info in the regulatory MIS report to the state, the college needs to collect certain self-identifying info items from students each academic term, and store in the student information system (SIS). </p>
+
+    <p class="p">A survey is presented to each student to gather the self-reported student information to cover VTEA and other California Regulatory (MIS Student Special Populations, AB 1504 Student Representation Fee opt-in opt-out and AB 2248 Cal Grant notification).</p>
+
+  </div>
+
+</div></div></section>
+<section id="t-20"><h2>Prerequisites</h2><div class="content-locale-en-US content-locale-en"><div id="c_vtea_survey_prerequisites"><div class="body conbody"><p class="shortdesc">You must meet the following prerequisites to set up the Student Survey before students and administrators can access its functionality and features in Ellucian Experience.</p>
+
+    <div class="section"><h2 class="title sectiontitle">Banner</h2>
+      
+      <ol class="ol">
+        <li class="li">You need to have district codes correctly associated with campus in STVCAMP.</li>
+
+        <li class="li">You must have an API user that has access to the following resources:<ul class="ul">
+          <li class="li"><code class="ph codeph">persons</code></li>
+
+          <li class="li"><code class="ph codeph">person-filters</code></li>
+
+          <li class="li"><code class="ph codeph">person-hold-types</code></li>
+
+          <li class="li"><code class="ph codeph">person-holds</code></li>
+
+          <li class="li"><code class="ph codeph">ca-economically-disadvantages </code></li>
+
+          <li class="li"><code class="ph codeph">ca-import-mass-special-term-data </code></li>
+
+          <li class="li"><code class="ph codeph">ca-import-mass-student-institutional-requirements</code></li>
+
+          <li class="li"><code class="ph codeph">ca-import-mass-workforce-innovation-opportunity-act</code></li>
+
+          <li class="li"><code class="ph codeph">campus-codes</code></li>
+
+          <li class="li"><code class="ph codeph">district-division-codes</code></li>
+
+          <li class="li"><code class="ph codeph">enrollment-status-control</code></li>
+
+          <li class="li"><code class="ph codeph">registration-additional-fees</code></li>
+
+          <li class="li"><code class="ph codeph">general-student-curricula</code></li>
+
+          <li class="li"><code class="ph codeph">student-term-enrollment-bases</code></li>
+
+          <li class="li"><code class="ph codeph">term-codes</code></li>
+
+          <li class="li"><code class="ph codeph">process-submission-control</code></li>
+
+          </ul>
+</li>
+
+        <li class="li">That user is required in the configuration of platform components. For more information on how to create API users see: <span class="xref ft-internal-xlink" data-ft-warning="excluded-from-rendering" data-clusterid="ID_B_REGS_master_2026-03-09/id_b_regs/stu_cal_calbstu_use/c_create_authorize_banner_users">Create and Authorize a Banner User to Enable Proxy API calls for Ethos Integration</span>.</li>
+
+        <li class="li">You must have the Registration Additional Fees Control Rule configured (SFAAFEE) for the used term.</li>
+
+        <li class="li">You need to configure a HOLD in STVHLDD that prevents student registration.</li>
+
+        <li class="li">You need to have a population selection. For more information about this, go to: <span class="xref ft-internal-xlink" data-ft-warning="excluded-from-rendering" data-clusterid="ID_B_REGS_master_2026-03-09/id_b_regs/stu_cal_calbstu_use/t_building_population_selection">How to build a population selection</span>. This population is required to schedule tasks in <span class="xref ft-internal-xlink" data-ft-warning="excluded-from-rendering" data-clusterid="ID_B_REGS_master_2026-03-09/id_b_regs/stu_cal_calbstu_use/c_eip_workflow_overview">Intelligent Processes</span>.</li>
+
+        <li class="li">Make sure the UTC offset is correctly configured, this is required by Intelligent Processes, see: <span class="xref ft-internal-xlink" data-ft-warning="excluded-from-rendering" data-clusterid="ID_B_REGS_master_2026-03-09/id_b_regs/stu_cal_calbstu_use/c_eip_adjust_timezone">Configure the UTC offset and timezone</span>.</li>
+
+      </ol>
+
+    </div>
+
+    <div class="section"><h2 class="title sectiontitle">Platform</h2>
+      
+      <p class="p">You must have access to:</p>
+
+      <ul class="ul">
+        <li class="li">Ellucian Experience</li>
+
+        <li class="li">Ellucian Experience Setup</li>
+
+        <li class="li">Ellucian Ethos Integration</li>
+
+        <li class="li">Ellucian Communicate</li>
+
+      </ul>
+
+      <p class="p">You must complete the necessary setup for the basic access of the previously mentioned tools.</p>
+
+    </div>
+
+    <div class="section"><h2 class="title sectiontitle">Licenses</h2>
+      
+      <p class="p">You need to have licenses to the following products:</p>
+
+      <ul class="ul">
+        <li class="li">Ellucian Experience Premium</li>
+
+        <li class="li">Ellucian Intelligent Processes Workflow Automation </li>
+
+      </ul>
+
+    </div>
+
+    <div class="section">
+      <p class="p">Continue on the next page, you need to enable the platform components.</p>
+
+    </div>
+
+  </div>
+
+</div></div></section>
+<section id="t-30"><h3>Configure Intelligent Processes Component</h3><div class="content-locale-en-US content-locale-en"><div id="c_vtea_survey_prereq_eip"><div class="body conbody"><p class="shortdesc">You must meet the following prerequisites to set up the Student Survey before students and administrators can access its functionality and features in <span class="keyword">Ellucian Experience</span>.</p>
+
+    <div class="section"><h2 class="title sectiontitle">Set up roles and users</h2>
+      
+      <ol class="ol">
+        <li class="li">Navigate to <span class="keyword">Ellucian Experience Setup</span> → Permissions → <span class="keyword">Intelligent Processes</span>.</li>
+
+        <li class="li">Enable the permissions to the role/user that will configure <span class="keyword">Intelligent Processes</span> (for example: Administrator). These being: <span class="ph uicontrol">Workflow</span> and <span class="ph uicontrol">Actions</span>.<div class="note"><span class="notetitle">Note:</span> Additional roles and permissions will be granted later.</div>
+</li>
+
+      </ol>
+
+      <p class="p">For additional information, see: <span class="xref ft-internal-xlink" data-ft-warning="excluded-from-rendering" data-clusterid="ID_B_REGS_master_2026-03-09/id_b_regs/stu_cal_calbstu_use/c_eip_workflow_permissions">Workflow permissions in Intelligent Processes</span>.</p>
+
+    </div>
+
+    <div class="section"><h2 class="title sectiontitle">Launch Workflow designer</h2>
+      
+      <ol class="ol">
+        <li class="li">Log on to Experience with the user name and password of the role with access to the Workflow designer (Administrator) </li>
+
+        <li class="li">In the dashboard navigate to the <span class="ph uicontrol">Applications</span> <span class="ph"><img class="image ell-icon" src="images/student-survey-for-california-regulatory-1.png" alt="" data-ft-asset-display-name="grid.png" data-ft-resource-id="WwZ8sT7nNmETL4LEgmYhkw-MdmFU8D7B5n5nrGyPvkY0A"></span> icon, the Applications menu should be displayed, select <span class="ph uicontrol">Intelligent Processes</span>.</li>
+
+        <li class="li">Review that the options: <span class="ph uicontrol">Workflow</span>, <span class="ph uicontrol">Workflow Runs</span> and <span class="ph uicontrol">Actions</span> are available.<div class="note"><span class="notetitle">Note:</span> The first time the designer is launched, a warning appears at the top that indicates that additional configuration is required.</div>
+</li>
+
+      </ol>
+
+      <p class="p">For additional information, see: <span class="xref ft-internal-xlink" data-ft-warning="excluded-from-rendering" data-clusterid="ID_B_REGS_master_2026-03-09/id_b_regs/stu_cal_calbstu_use/t_eip_access_home_page">Access the Intelligent Processes Home page</span>.</p>
+
+    </div>
+
+    <div class="section"><h2 class="title sectiontitle">Configure <span class="keyword">Intelligent Processes</span> Platform Component</h2>
+      
+      <p class="p">It is the assumption that the proxy user with access to the required resources is already created.</p>
+
+      <ol class="ol">
+        <li class="li">Open <span class="ph uicontrol"><span class="keyword">Ellucian Ethos Integration</span></span> and navigate to <span class="ph uicontrol">Platform Components</span>.</li>
+
+        <li class="li">In the card including <span class="keyword">Intelligent Processes</span> on its name click on <span class="ph uicontrol">View</span>.</li>
+
+        <li class="li">In the credentials tab, add the proxy user credentials for the resource owner of Integration and Student API.<div class="p">For example: <ul class="ul">
+          <li class="li">Integration API: <code class="ph codeph">persons</code></li>
+
+          <li class="li">Student API: <code class="ph codeph">person-hold-types</code></li>
+
+          </ul>
+</div>
+</li>
+
+        <li class="li">Go to <span class="keyword">Ellucian Experience</span> dashboard and review that the application is displayed correctly.</li>
+
+      </ol>
+
+      <p class="p">For more information, see: <span class="xref ft-internal-xlink" data-ft-warning="excluded-from-rendering" data-clusterid="ID_B_REGS_master_2026-03-09/id_b_regs/stu_cal_calbstu_use/t_eip_add_credentials">Add credentials for proxy API requests</span>.</p>
+
+    </div>
+
+    <div class="section">
+      <p class="p">In case you don't see the changes in Ellucian Experience right away, it is recommended that you logout your session and login again, for a full reload of your profile within the platform.</p>
+
+    </div>
+
+  </div>
+
+</div></div></section>
+<section id="t-40"><h3>Configure the Audience Lists</h3><div class="content-locale-en-US content-locale-en"><div id="c_vtea_survey_prereq_ellucian_comm"><div class="body conbody"><p class="shortdesc">You must meet the following prerequisites to set up the Student Survey before students and administrators can access its functionality and features in Ellucian Experience.</p>
+
+    <div class="section">
+      <div class="note attention"><span class="attentiontitle">Attention:</span> Disclaimer: The Audience Lists new functionality of Ellucian Communicate is currently in beta release for customers to test.</div>
+
+    </div>
+
+    <div class="section"><h2 class="title sectiontitle">Audiences Lists</h2>
+      
+      <p class="p">The Audience Lists card enables you to create lists that you can use to send communications to a targeted population. You build an audience in Ellucian Communicate based on populations created in your ERP using the Banner Population Selection.</p>
+
+      <p class="p">Enable audience lists if you are going to be working with dynamic populations and recurrence.</p>
+
+      <p class="p">For more information about it, see: <span class="xref ft-internal-xlink" data-ft-warning="excluded-from-rendering" data-clusterid="ID_B_REGS_master_2026-03-09/id_b_regs/stu_cal_calbstu_use/c_about_communicate_audience_builder">Audience List</span>.</p>
+
+      <p class="p">Audience Lists need configuration before using the recurrent schedule feature for the Student Survey.</p>
+
+      <p class="p">Ellucian Communicate needs access to: </p>
+
+      <ul class="ul">
+        <li class="li">Banner Integration API (person-filters).</li>
+
+        <li class="li">Banner Student API.</li>
+
+        <li class="li">Banner Business Process APIs (process-submission-control).</li>
+
+      </ul>
+
+      <p class="p">You need to make sure that the application that use an API key, has access to the previous resources. For more information about this, see: <span class="xref ft-internal-xlink" data-ft-warning="excluded-from-rendering" data-clusterid="ID_B_REGS_master_2026-03-09/id_b_regs/stu_cal_calbstu_use/t_exp_comm_config_ethos_app">Create the ethos applications for Communicate</span>.</p>
+
+      <p class="p"><strong class="ph b">Set up roles and users</strong></p>
+
+      <ol class="ol">
+        <li class="li">Navigate to <span class="ph uicontrol">Ellucian Experience Setup</span> → <span class="ph uicontrol">Permissions</span> → <span class="ph uicontrol">Audience Lists</span> </li>
+
+        <li class="li">Enable the following permissions:<ul class="ul">
+          <li class="li">For Audience Queries for the <em class="ph i">administrator</em> role: <ul class="ul">
+            <li class="li">Create: Create an audience list</li>
+
+            <li class="li">Read: View audience list</li>
+
+            <li class="li">Update: To view audience list details </li>
+
+            </ul>
+</li>
+
+          <li class="li">In Static Audiences for the <em class="ph i">administrator</em> role:<ul class="ul">
+            <li class="li">Read: View audience list history</li>
+
+            </ul>
+</li>
+
+          <li class="li">Audience Members for the <em class="ph i">administrator</em> role:<ul class="ul">
+            <li class="li">Static: To view added or total members</li>
+
+            </ul>
+</li>
+
+          <li class="li">Configuration for the <em class="ph i">administrator</em> role: <ul class="ul">
+            <li class="li">Administer</li>
+
+            </ul>
+</li>
+
+          </ul>
+</li>
+
+        <li class="li">Click <span class="ph uicontrol">Save</span>.</li>
+
+      </ol>
+
+      <p class="p">For more information, see: <span class="xref ft-internal-xlink" data-ft-warning="excluded-from-rendering" data-clusterid="ID_B_REGS_master_2026-03-09/id_b_regs/stu_cal_calbstu_use/t_grant_audience_builder_permissions"> Grant Audience List permissions</span>.</p>
+
+      <p class="p"><strong class="ph b">Configure Audience List Card</strong></p>
+
+      <ol class="ol">
+        <li class="li">Open Ellucian Experience as the user with access to configure cards.</li>
+
+        <li class="li">From the Experience main menu <span class="ph"><img class="image ell-icon" src="images/student-survey-for-california-regulatory-2.png" alt="" data-ft-asset-display-name="menu.png" data-ft-resource-id="CvxSLBK_fPg0R2tV95XSLg-MdmFU8D7B5n5nrGyPvkY0A"></span>, click <span class="ph uicontrol">Configuration</span> to access the Configuration page.</li>
+
+        <li class="li">In Card Management search for the card type: <span class="ph uicontrol">Audience List</span>, open the action menu <span class="ph"><img class="image ell-icon" src="images/student-survey-for-california-regulatory-3.png" alt="" data-ft-asset-display-name="more_vertical.png" data-ft-resource-id="ssdRITAR1GSIObAehNEGUg-MdmFU8D7B5n5nrGyPvkY0A"></span>, and select <span class="ph uicontrol">Edit</span>.</li>
+
+        <li class="li">Add a tag and configure the card placement.</li>
+
+        <li class="li">Click <span class="ph uicontrol">Next</span> or click the <span class="ph uicontrol">2 - Configuration</span> step.</li>
+
+        <li class="li">Check <span class="ph uicontrol">Enable Person Filters</span>.</li>
+
+        <li class="li">Select a <span class="ph uicontrol">ERP type</span>.</li>
+
+        <li class="li">Enter the <span class="ph uicontrol">API key</span> of the application that has access to process-submission-control.</li>
+
+        <li class="li">Check <span class="ph uicontrol">Enable Banner Process Submission Control</span> option. </li>
+
+        <li class="li">Enter the <span class="ph uicontrol">API proxy username</span> that has been configured from the application you took the API key.</li>
+
+        <li class="li">Click <span class="ph uicontrol">Next</span> or click the <span class="ph uicontrol">3 - Roles</span> step.</li>
+
+        <li class="li">Assign a role to view the card, (for example: Administrator).</li>
+
+        <li class="li">Click on <span class="ph uicontrol">Enable Card</span>.</li>
+
+        <li class="li">Click <span class="ph uicontrol">Finish</span>.</li>
+
+      </ol>
+
+      <p class="p">For additional information, see: <span class="xref ft-internal-xlink" data-ft-warning="excluded-from-rendering" data-clusterid="ID_B_REGS_master_2026-03-09/id_b_regs/stu_cal_calbstu_use/t_set_up_communicate_roles_users">Set up roles and users for Ellucian Communicate</span> and <span class="xref ft-internal-xlink" data-ft-warning="excluded-from-rendering" data-clusterid="ID_B_REGS_master_2026-03-09/id_b_regs/stu_cal_calbstu_use/c_communicate_permissions">Communicate Permissions</span>. You may also want to see: <span class="xref ft-internal-xlink" data-ft-warning="excluded-from-rendering" data-clusterid="ID_B_REGS_master_2026-03-09/id_b_regs/stu_cal_calbstu_use/t_grant_audience_builder_permissions">Grant Audience List permissions</span>.</p>
+
+      <p class="p"><strong class="ph b">Create an audience list</strong></p>
+
+      <p class="p">Using your previously configured Population Selection, you need to create an audience list, to do so, follow these steps: <span class="xref ft-internal-xlink" data-ft-warning="excluded-from-rendering" data-clusterid="ID_B_REGS_master_2026-03-09/id_b_regs/stu_cal_calbstu_use/t_create_audience_list">Create an audience list</span>.</p>
+
+      <div class="note"><span class="notetitle">Note:</span> You can only use population selections without parameters at this moment.</div>
+
+    </div>
+
+  </div>
+
+</div></div></section>
+<section id="t-50"><h3>Configure the Forms Component</h3><div class="content-locale-en-US content-locale-en"><div id="c_vtea_survey_prereq_ellucian_forms"><div class="body conbody"><p class="shortdesc">You must meet the following prerequisites to set up the Student Survey before students and administrators can access its functionality and features in Ellucian Experience.</p>
+
+    <div class="section"><h2 class="title sectiontitle">Set up roles and users</h2>
+      
+      <p class="p">Navigate to <span class="ph uicontrol">Ellucian Experience Setup</span> → <span class="ph uicontrol">Permissions</span> → <span class="ph uicontrol">Ellucian Forms</span>:</p>
+
+      <p class="p">Form Designer: Assigned to the role/user that will view, create and publish Forms. (e.g. Administrator).</p>
+
+      <div class="note"><span class="notetitle">Note:</span> Additional roles and permissions will be granted later.</div>
+
+      <p class="p">For additional information, see: <span class="xref ft-internal-xlink" data-ft-warning="excluded-from-rendering" data-clusterid="ID_B_REGS_master_2026-03-09/id_b_regs/stu_cal_calbstu_use/c_forms_permissions">User permissions in Forms</span>.</p>
+
+    </div>
+
+    <div class="section"><h2 class="title sectiontitle">Launch the Designer</h2>
+      
+      <ol class="ol">
+        <li class="li">Navigate and authenticate to the Ellucian Experience dashboard with the user that has the access to the Form designer (e.g. Administrator).</li>
+
+        <li class="li">In the dashboard navigate to the <span class="ph uicontrol">Applications</span> <span class="ph"><img class="image ell-icon" src="images/student-survey-for-california-regulatory-1.png" alt="" data-ft-asset-display-name="grid.png" data-ft-resource-id="WwZ8sT7nNmETL4LEgmYhkw-MdmFU8D7B5n5nrGyPvkY0A"></span> icon, the Applications menu should be displayed, select <span class="ph uicontrol">Forms</span>.</li>
+
+        <li class="li">Review if the Forms <span class="ph uicontrol">HomeView</span> page  is available (note: the first time it will show an error).</li>
+
+      </ol>
+
+      <p class="p">For more information, see: <span class="xref ft-internal-xlink" data-ft-warning="excluded-from-rendering" data-clusterid="ID_B_REGS_master_2026-03-09/id_b_regs/stu_cal_calbstu_use/r_forms_homeview_page">HomeView page overview</span>.</p>
+
+    </div>
+
+    <div class="section"><h2 class="title sectiontitle">Configure the Forms Platform Component</h2>
+      
+      <p class="p">It is the assumption that the proxy user with access to the required resources is already created.</p>
+
+      <ol class="ol">
+        <li class="li">Open Ellucian Ethos Integration and navigate to Platform Components.</li>
+
+        <li class="li">In the card Experience Forms, click on <span class="ph uicontrol">View</span>.</li>
+
+        <li class="li">In the credentials tab, add the proxy user credentials for the resource owner of Banner Integration API, and Banner Student API.<div class="p">For example: <ul class="ul">
+          <li class="li">Integration API: <code class="ph codeph">persons</code></li>
+
+          <li class="li">Student API: <code class="ph codeph">person-hold-types</code></li>
+
+          </ul>
+</div>
+</li>
+
+        <li class="li">Go to Ellucian Experience dashboard and review that the application is displayed correctly.</li>
+
+      </ol>
+
+      <p class="p">If you want more information, see: <span class="xref ft-internal-xlink" data-ft-warning="excluded-from-rendering" data-clusterid="ID_B_REGS_master_2026-03-09/id_b_regs/stu_cal_calbstu_use/t_forms_set_up_proxy_requests">Add Credentials for Proxy API requests made by Forms</span>.</p>
+
+    </div>
+
+    <div class="section">
+      <p class="p">In case you don't see the changes in Ellucian Experience right away, it is recommended that you logout your session and login again, for a full reload of your profile within the platform.</p>
+
+    </div>
+
+  </div>
+
+</div></div></section>
+<section id="t-60"><h3>Configure the Platform Component</h3><div class="content-locale-en-US content-locale-en"><div id="c_vtea_survey_prereq_data_connect"><div class="body conbody"><p class="shortdesc">You must meet the following prerequisites to set up the Student Survey before students and administrators can access its functionality and features in Ellucian Experience.</p>
+
+    <div class="section"><h2 class="title sectiontitle">API pipelines</h2>
+      
+      <div class="p">Assuming Ellucian has already shared with you the necessary pipelines, proceed with the following steps. Otherwise enter a case with Action Line through the Ellucian Customer Center.<ol class="ol">
+        <li class="li">Open <span class="ph uicontrol">Ellucian Ethos Integration</span> and navigate to <span class="ph uicontrol">Platform Components</span>.</li>
+
+        <li class="li">Open the card <span class="ph uicontrol">Data Connect.</span></li>
+
+        <li class="li">Navigate to <span class="ph uicontrol">Owned Resources</span>. </li>
+
+        </ol>
+</div>
+
+      <p class="p">You should see the following resources: </p>
+
+      <ul class="ul">
+        <li class="li"><code class="ph codeph">term-details</code></li>
+
+        <li class="li"><code class="ph codeph">student-district-details</code></li>
+
+        <li class="li"><code class="ph codeph">student-survey-records</code></li>
+
+        <li class="li"><code class="ph codeph">survey-registration-additional-fees</code></li>
+
+      </ul>
+
+    </div>
+
+    <div class="section"><h2 class="title sectiontitle">Add the integration package to application</h2>
+      
+      <p class="p">The Data Connect Serverless API pipelines required by Ellucian Intelligent Process use Ethos Token as authentication type, therefore requiring the tag configuration.</p>
+
+      <ol class="ol">
+        <li class="li">Open Ellucian Ethos Integration and navigate to Applications.</li>
+
+        <li class="li">Select the application from which the API Key will be used. This application should have access to the resources previously mentioned in the prerequisites section. You can either use an existing one that meets the requirements or create one, for reference on how to create an application see: <span class="xref ft-internal-xlink" data-ft-warning="excluded-from-rendering" data-clusterid="ID_B_REGS_master_2026-03-09/id_b_regs/stu_cal_calbstu_use/t_create_app_ethos_experience">Create an application in Ethos Integration for Ellucian Experience</span>, for reference on how to add the user credentials to the application see: <span class="xref ft-internal-xlink" data-ft-warning="excluded-from-rendering" data-clusterid="ID_B_REGS_master_2026-03-09/id_b_regs/stu_cal_calbstu_use/t_add_creds_experience_ethos_app">Add credentials to the Experience application </span>.</li>
+
+        <li class="li">Navigate to the tag tab and click on <span class="ph uicontrol">Add Tag</span>.</li>
+
+        <li class="li">Enter the integration package name, example:<p class="p"><code class="ph codeph">integration-package: studentSurveyPackage</code></p>
+</li>
+
+        <li class="li">The package name, should always be <em class="ph i">camel case</em>.</li>
+
+        <li class="li"><span class="ph uicontrol">Save</span> changes.</li>
+
+      </ol>
+
+      <div class="note"><span class="notetitle">Note:</span> Take note of the name of the application, it will be used later.</div>
+
+      <p class="p">For more information, go to: <span class="xref ft-internal-xlink" data-ft-warning="excluded-from-rendering" data-clusterid="ID_B_REGS_master_2026-03-09/id_b_regs/stu_cal_calbstu_use/c_data_connect_permissions">Ethos Data Connect permissions</span> and <span class="xref ft-internal-xlink" data-ft-warning="excluded-from-rendering" data-clusterid="ID_B_REGS_master_2026-03-09/id_b_regs/stu_cal_calbstu_use/t_dc_designer_ethos_token_configuration">Authentication type Ethos token configuration.</span>.</p>
+
+    </div>
+
+    <div class="section"><h2 class="title sectiontitle">Configure the Platform Component</h2>
+      
+      <ol class="ol">
+        <li class="li">Open Ellucian <span class="keyword">Ethos Integration</span> and navigate to Platform Components.</li>
+
+        <li class="li">In the card Data Connect click on <span class="ph uicontrol">View</span>.</li>
+
+        <li class="li">In the application access tab, add the application previously configured with the tag (authoritative source).</li>
+
+        <li class="li">Click on the owned resources tab and make sure the shared pipelines are listed.</li>
+
+      </ol>
+
+      <p class="p">For additional information, have a look at the step 7 here: <span class="xref ft-internal-xlink" data-ft-warning="excluded-from-rendering" data-clusterid="ID_B_REGS_master_2026-03-09/id_b_regs/stu_cal_calbstu_use/t_dc_designer_ethos_token_configuration">Authentication type Ethos token configuration </span>.</p>
+
+    </div>
+
+    <div class="section">
+      <p class="p">After enabling the platform components, you can continue with the import of the form.</p>
+
+    </div>
+
+  </div>
+
+</div></div></section>
+<section id="t-70"><h2>Import the Form</h2><div class="content-locale-en-US content-locale-en"><div id="t_student_survey_import_the_form"><div class="body taskbody"><p class="shortdesc">You need to download the template of the Student Survey Form, then import it into the Forms application.</p>
+
+    <div class="tasklabel"><h2 class="sectiontitle tasklabel">Procedure</h2></div><ol class="ol steps"><li class="li step">
+        <span class="ph cmd">Click <span class="ph"><img class="image ell-icon" src="images/student-survey-for-california-regulatory-4.png" alt="" data-ft-asset-display-name="paperclip_vertical.png" data-ft-resource-id="tZRpMnsTLxDrh8ix0KYPBw-MdmFU8D7B5n5nrGyPvkY0A"></span> <span class="ph uicontrol">Attachment</span> on the upper right side of this page to download the template of the Form and the Workflow (a <span class="ph filepath">JSON</span> and a <span class="ph filepath">YAML</span> files inside a zip container) and save it to a directory.</span>
+      </li>
+<li class="li step">
+        <span class="ph cmd">In the pop-up, select <span class="ph filepath">Student_Survey_Templates.zip</span>.</span>
+      </li>
+<li class="li step">
+        <span class="ph cmd">Click <span class="ph uicontrol">Download</span> button.</span>
+      </li>
+<li class="li step">
+        <span class="ph cmd">Then, extract the <span class="ph filepath">JSON</span> file from the zip file.</span>
+      </li>
+<li class="li step">
+        <span class="ph cmd">Navigate to <span class="ph uicontrol">Ellucian Experience</span> dashboard .</span>
+      </li>
+<li class="li step">
+        <span class="ph cmd">Click the <span class="ph uicontrol">Applications</span> <span class="ph"><img class="image ell-icon" src="images/student-survey-for-california-regulatory-1.png" alt="" data-ft-asset-display-name="grid.png" data-ft-resource-id="WwZ8sT7nNmETL4LEgmYhkw-MdmFU8D7B5n5nrGyPvkY0A"></span> icon, and select <span class="ph uicontrol">Forms</span>.</span>
+      </li>
+<li class="li step">
+        <span class="ph cmd">In the Form dashboard, click the <span class="ph uicontrol">Import form by uploading a JSON file</span> <span class="ph"><img class="image ell-icon" src="images/student-survey-for-california-regulatory-5.png" alt="" data-ft-asset-display-name="file_import.png" data-ft-resource-id="ueYW12TAD6z68r7YvR1IHQ-MdmFU8D7B5n5nrGyPvkY0A"></span> button.</span>
+      </li>
+<li class="li step">
+        <span class="ph cmd">In the open dialog box that appears, select the <span class="ph filepath">JSON</span> file that you extracted.</span>
+      </li>
+</ol>
+
+    <div class="section result"><div class="tasklabel"><h2 class="sectiontitle tasklabel">Results</h2></div>A message appears that confirms that the file was imported successfully. </div>
+
+  </div>
+
+</div></div></section>
+<section id="t-80"><h3>Review the Template</h3><div class="content-locale-en-US content-locale-en"><div id="c_student_survey_review_the_template"><div class="body conbody"><p class="shortdesc">You are now at the Forms <span class="ph uicontrol">HomeView</span> page on the <span class="ph uicontrol">Active</span> tab.</p>
+
+    <ol class="ol">
+      <li class="li">Click on the template which appears as <span class="ph uicontrol">Student Survey (Template)</span>.</li>
+
+      <li class="li">The <span class="ph uicontrol">HomeView</span> page opens on the <span class="ph uicontrol">Active</span> tab.</li>
+
+      <li class="li">Now inside Forms, click the <span class="ph uicontrol">Designer</span> tab.</li>
+
+      <li class="li">You can review or modify the survey by using the right side panel. <p class="p">For more information, see the step 2 of the: <span class="xref ft-internal-xlink" data-ft-warning="excluded-from-rendering" data-clusterid="ID_B_REGS_master_2026-03-09/id_b_regs/stu_cal_calbstu_use/t_forms_details">Enter form details</span></p>
+</li>
+
+      <li class="li">Make your form available for use, click <span class="ph uicontrol">Publish</span>.</li>
+
+    </ol>
+
+  </div>
+
+</div></div></section>
+<section id="t-90"><h3>Grant Permissions to the Form</h3><div class="content-locale-en-US content-locale-en"><div id="t_student_survey_grant_permissions_to_the_form"><div class="body taskbody"><p class="shortdesc">After the form was imported and published, you need to provide the right permissions.</p>
+
+    <div class="section prereq p"><div class="tasklabel"><h2 class="sectiontitle tasklabel">Before you begin</h2></div>Form Responses: You need to give permissions to the imported Form.<ul class="ul">
+      <li class="li">The Submit permission should be given to the role that will be answering the Form and therefore submitting it (e.g. Student).</li>
+
+      <li class="li">The View Response permission should be given to the role that will review any information submitted. (This option will become available in the Designer) [e.g. Administrator].</li>
+
+      </ul>
+</div>
+
+    <div class="tasklabel"><h2 class="sectiontitle tasklabel">Procedure</h2></div><ol class="ol steps"><li class="li step stepexpand">
+        <span class="ph cmd">Navigate to <span class="ph uicontrol">Ellucian Experience Setup → Permissions → Forms.</span></span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">In the Ellucian Forms Permissions page, select <span class="ph uicontrol">Forms Responses</span>, then select the Form you are working with.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">In the right table, in the role that will be associated to the student, check the permissions of <span class="ph uicontrol">Submit</span>.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">For the role that will be associated to the employee (for example: administrator), check <span class="ph uicontrol">View Response Data</span>.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Click <span class="ph uicontrol">Save</span>.</span>
+        <div class="itemgroup info">
+          <p class="p">For more information, see: <span class="xref ft-internal-xlink" data-ft-warning="excluded-from-rendering" data-clusterid="ID_B_REGS_master_2026-03-09/id_b_regs/stu_cal_calbstu_use/t_forms_set_up_permissions">Set up forms permissions</span></p>
+
+        </div>
+      </li>
+</ol>
+
+  </div>
+
+</div></div></section>
+<section id="t-100"><h2>Create Actions</h2><div class="content-locale-en-US content-locale-en"><div id="t_student_survey_create_actions"><div class="body taskbody"><p class="shortdesc">Continue with the creation of the needed actions.</p>
+
+    <div class="tasklabel"><h2 class="sectiontitle tasklabel">Procedure</h2></div><ol><li class="li step stepexpand">
+        <span class="ph cmd">Navigate to <span class="ph uicontrol">Ellucian Experience</span> dashboard </span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Click the <span class="ph uicontrol">Applications</span> <span class="ph"><img class="image ell-icon" src="images/student-survey-for-california-regulatory-1.png" alt="" data-ft-asset-display-name="grid.png" data-ft-resource-id="WwZ8sT7nNmETL4LEgmYhkw-MdmFU8D7B5n5nrGyPvkY0A"></span> icon, and select <span class="ph uicontrol">Intelligent Processes</span>.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">In the <span class="ph uicontrol">Intelligent Processes Workflows</span> page, select <span class="ph uicontrol">Actions</span> in the navigation panel.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">On the <span class="ph uicontrol">All Actions</span> page, click <span class="ph uicontrol">+ New</span> button.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">On <span class="ph uicontrol">Action Detail</span>, enter an action name, for example: <em class="ph i">Obtain term details</em>.</span>
+        <div class="itemgroup stepresult">With that name, in the field <span class="ph uicontrol">code</span>, a unique code is generated, and it is needed to import the workflow.</div>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Then, enter a description, for example: <em class="ph i">Obtain term details given a certain code</em>.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">On <span class="ph uicontrol">Pipeline Name</span>, enter a unique name for the pipeline, for example: <code class="ph codeph">term-details</code>.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">On <span class="ph uicontrol">API Key</span> enter the key from the previously configured application. Refer to the next step for guidance on how to obtain the API key:</span>
+        <ol type="a" class="ol substeps">
+          <li class="li substep">
+            <span class="ph cmd">Open a new browser tab and enter to <span class="ph uicontrol">Ellucian Ethos Integration → Applications → All Application</span> tab, select the application you configured in the step <em class="ph i">Add the integration package to application</em> in the prerequisites, then, in the API Keys tab you will find the key, click on the <span class="ph uicontrol">copy</span> button.</span>
+          </li>
+
+        </ol>
+
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Click <span class="ph uicontrol">Save</span> to save your action.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Click <span class="ph uicontrol">Publish</span>.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Repeat the process three more times, each for one of the pipelines required. Here's a table with the details for each pipeline:</span>
+      </li>
+</ol><p class="li stepsection">
+        
+</p><div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" class="table" frame="border" border="1" rules="all"><colgroup><col style="width:25%"><col style="width:25%"><col style="width:25%"><col style="width:25%"></colgroup><thead class="thead" style="text-align:left;">
+              <tr class="row">
+                <th class="entry nocellnorowborder" style="vertical-align:top;" id="d5500e206">Action Name</th>
+
+                <th class="entry nocellnorowborder" style="vertical-align:top;" id="d5500e209">Description</th>
+
+                <th class="entry nocellnorowborder" style="vertical-align:top;" id="d5500e212">Unique Code</th>
+
+                <th class="entry cell-norowborder" style="vertical-align:top;" id="d5500e215">Pipeline Name</th>
+
+              </tr>
+
+            </thead>
+<tbody class="tbody">
+              <tr class="row">
+                <td class="entry nocellnorowborder" style="vertical-align:top;" headers="d5500e206 ">Obtain term details</td>
+
+                <td class="entry nocellnorowborder" style="vertical-align:top;" headers="d5500e209 ">Obtain term details given a certain code</td>
+
+                <td class="entry nocellnorowborder" style="vertical-align:top;" headers="d5500e212 "><code class="ph codeph">OBTAINTERMDETAILS</code></td>
+
+                <td class="entry cell-norowborder" style="vertical-align:top;" headers="d5500e215 "><code class="ph codeph">term-details</code></td>
+
+              </tr>
+
+              <tr class="row">
+                <td class="entry nocellnorowborder" style="vertical-align:top;" headers="d5500e206 ">Obtain district details</td>
+
+                <td class="entry nocellnorowborder" style="vertical-align:top;" headers="d5500e209 ">Obtain district details from records of a given student ID</td>
+
+                <td class="entry nocellnorowborder" style="vertical-align:top;" headers="d5500e212 "><code class="ph codeph">OBTAINDISTRICTSDETAILS</code></td>
+
+                <td class="entry cell-norowborder" style="vertical-align:top;" headers="d5500e215 "><code class="ph codeph">student-district-details</code></td>
+
+              </tr>
+
+              <tr class="row">
+                <td class="entry nocellnorowborder" style="vertical-align:top;" headers="d5500e206 ">Create survey records</td>
+
+                <td class="entry nocellnorowborder" style="vertical-align:top;" headers="d5500e209 ">Create the corresponding records from the data collected in the survey</td>
+
+                <td class="entry nocellnorowborder" style="vertical-align:top;" headers="d5500e212 "><code class="ph codeph">CREATESURVEYRECORDS</code></td>
+
+                <td class="entry cell-norowborder" style="vertical-align:top;" headers="d5500e215 "><code class="ph codeph">student-survey-records</code></td>
+
+              </tr>
+
+              <tr class="row">
+                <td class="entry row-nocellborder" style="vertical-align:top;" headers="d5500e206 ">Add additional fees </td>
+
+                <td class="entry row-nocellborder" style="vertical-align:top;" headers="d5500e209 ">Create the additional fees</td>
+
+                <td class="entry row-nocellborder" style="vertical-align:top;" headers="d5500e212 "><code class="ph codeph">ADDADDITIONALFEES</code></td>
+
+                <td class="entry cellrowborder" style="vertical-align:top;" headers="d5500e215 "><code class="ph codeph">survey-registration-additional-fees</code></td>
+
+              </tr>
+
+            </tbody>
+</table>
+</div>
+
+      <ol start="12"><li class="li step stepexpand">
+        <span class="ph cmd">Click <span class="ph uicontrol">Save</span> and <span class="ph uicontrol">Publish</span>.</span>
+      </li>
+</ol>
+    <div class="section result"><div class="tasklabel"><h2 class="sectiontitle tasklabel">Results</h2></div>When entering the pipeline details, all the parameters that the pipelines requires are brought up; the user does not have to modify anything.<p class="p">The four actions should be visible in the All Actions list.</p>
+<p class="p">For more information, see the step 2 of the: <span class="xref ft-internal-xlink" data-ft-warning="excluded-from-rendering" data-clusterid="ID_B_REGS_master_2026-03-09/id_b_regs/stu_cal_calbstu_use/t_eip_create_action_task">Create actions</span></p>
+</div>
+
+  </div>
+
+</div></div></section>
+<section id="t-110"><h3>Grant Permissions to Actions</h3><div class="content-locale-en-US content-locale-en"><div id="t_student_survey_grant_permissions_to_actions"><div class="body taskbody"><p class="shortdesc">After you created and configured the actions, you need to provide the right permissions.</p>
+
+    <div class="tasklabel"><h2 class="sectiontitle tasklabel">Procedure</h2></div><ol class="ol steps"><li class="li step">
+        <span class="ph cmd">Navigate to <span class="ph uicontrol">Ellucian Experience Setup → Permissions → Intelligence Process.</span></span>
+      </li>
+<li class="li step">
+        <span class="ph cmd">In the Intelligence Process Permissions page, select <span class="ph uicontrol">All Actions</span> to see all the previously configured actions.</span>
+      </li>
+<li class="li step">
+        <span class="ph cmd">In the first action <span class="ph uicontrol">Obtain term details</span>, check the <span class="ph uicontrol">Use</span> attribute for the administrator role you already configured.</span>
+      </li>
+<li class="li step">
+        <span class="ph cmd">Click <span class="ph uicontrol">Save</span>.</span>
+      </li>
+<li class="li step">
+        <span class="ph cmd">Repeat the process for the rest of the actions: (Obtain district details, Create survey records, Add additional fees ).</span>
+      </li>
+<li class="li step">
+        <span class="ph cmd">Click <span class="ph uicontrol">Save</span>.</span>
+      </li>
+</ol>
+
+    <div class="section result"><div class="tasklabel"><h2 class="sectiontitle tasklabel">Results</h2></div>Now that you have created the actions and granted permissions, the workflow can be imported in Intelligent Processes.</div>
+
+  </div>
+
+</div></div></section>
+<section id="t-120"><h2>Import the Workflow</h2><div class="content-locale-en-US content-locale-en"><div id="t_student_survey_import_the_workflow"><div class="body taskbody"><p class="shortdesc">Now you need to import the workflow into Intelligence Processes.</p>
+
+    <div class="tasklabel"><h2 class="sectiontitle tasklabel">Procedure</h2></div><ol class="ol steps"><li class="li step">
+        <span class="ph cmd">Extract the <span class="ph filepath">YAML</span> file from the zip file you previously downloaded in the <em class="ph i">Import the Form</em> section into a directory.</span>
+      </li>
+<li class="li step">
+        <span class="ph cmd">Navigate to <span class="ph uicontrol">Ellucian Experience </span>.</span>
+      </li>
+<li class="li step">
+        <span class="ph cmd">Click the <span class="ph uicontrol">Applications</span> <span class="ph"><img class="image ell-icon" src="images/student-survey-for-california-regulatory-1.png" alt="" data-ft-asset-display-name="grid.png" data-ft-resource-id="WwZ8sT7nNmETL4LEgmYhkw-MdmFU8D7B5n5nrGyPvkY0A"></span> icon, in the Applications menu, select <span class="ph uicontrol">Intelligent Processes</span>.</span>
+      </li>
+<li class="li step">
+        <span class="ph cmd">In the Workflows dashboard, click the <span class="ph uicontrol">Import workflow</span> <span class="ph"><img class="image ell-icon" src="images/student-survey-for-california-regulatory-6.png" alt="" data-ft-asset-display-name="upload.png" data-ft-resource-id="3AniJzReo_9sF_xBxApxxw-MdmFU8D7B5n5nrGyPvkY0A"></span> button.</span>
+      </li>
+<li class="li step">
+        <span class="ph cmd">In the open dialog box up that appears, select the <span class="ph filepath">YAML</span> file that you extracted.</span>
+      </li>
+</ol>
+
+    <div class="section result"><div class="tasklabel"><h2 class="sectiontitle tasklabel">Results</h2></div>A message appears that confirms that the file was imported successfully. <p class="p">For more information, see: <span class="xref ft-internal-xlink" data-ft-warning="excluded-from-rendering" data-clusterid="ID_B_REGS_master_2026-03-09/id_b_regs/stu_cal_calbstu_use/t_eip_upload_download_workflows">Import and export workflows</span>.</p>
+<p class="p">You may also want to see: <span class="xref ft-internal-xlink" data-ft-warning="excluded-from-rendering" data-clusterid="ID_B_REGS_master_2026-03-09/id_b_regs/stu_cal_calbstu_use/r_eip_yaml_errors">Troubleshoot upload errors</span>.</p>
+</div>
+
+  </div>
+
+</div></div></section>
+<section id="t-130"><h3>Configure the Workflow</h3><div class="content-locale-en-US content-locale-en"><div id="c_student_survey_configure_the_workflow"><div class="body conbody"><p class="shortdesc">You now need to configure the workflow before it can be assigned to the students.</p>
+
+    <p class="p">After importing the workflow, you enter automatically to the Designer page of it. Now you need to fix any issues that appear with a red dot. </p>
+
+    <p class="p">For the action <span class="ph uicontrol">Add Person Hold</span>.</p>
+
+    <ol class="ol">
+      <li class="li">Click the action <span class="ph uicontrol">Add Person Hold</span>.</li>
+
+      <li class="li">In the right panel, go to the <span class="ph uicontrol">Hold Type</span> section.</li>
+
+      <li class="li">Then in the <span class="ph uicontrol">Search Hold Type</span> field, search for a hold you previously configured that prevents student registration.</li>
+
+    </ol>
+
+    <p class="p">For the action <span class="ph uicontrol">Obtain term details</span>.</p>
+
+    <ol class="ol">
+      <li class="li">Click the action <span class="ph uicontrol">Obtain term details</span>.</li>
+
+      <li class="li">In the right panel, go to the <span class="ph uicontrol">Query Parameter Setup</span> section, and click on the <span class="ph uicontrol">edit</span> button.<p class="p">The <span class="ph uicontrol">Query Parameter Setup</span> modal appears. </p>
+</li>
+
+      <li class="li">In the <span class="ph uicontrol">Add Data</span> field of the <span class="ph uicontrol">Term Code</span> row, add the code of the term.<p class="p">You can find the code in the Banner <span class="ph uicontrol">STVTERM</span> page. </p>
+<p class="p">For more details about the code, see: <span class="xref ft-internal-xlink" data-ft-warning="excluded-from-rendering" data-clusterid="ID_B_REGS_master_2026-03-09/id_b_regs/stu_cal_calbstu_use/t_eip_create_action_task">Term Code Validation (STVTERM)</span> page.</p>
+</li>
+
+    </ol>
+
+    <p class="p">For the action <span class="ph uicontrol">Add additional fees</span>.</p>
+
+    <ol class="ol">
+      <li class="li">Click the action <span class="ph uicontrol">Add additional fees</span>.</li>
+
+      <li class="li">In the right panel, go to the <span class="ph uicontrol">Input Setup</span> section, and click on the <span class="ph uicontrol">edit</span> button.<p class="p">The <span class="ph uicontrol">Input Setup</span> modal appears.</p>
+</li>
+
+      <li class="li">In the <span class="ph uicontrol">Add Data</span> field of the <span class="ph uicontrol">Detail Code</span> row, enter the configured code.<p class="p">You can find the code in the Banner <span class="ph uicontrol">SFAAFEE</span> page, this code is same associated with the term mentioned in a previous step.</p>
+<p class="p">For more details about the code, see: <span class="xref ft-internal-xlink" data-ft-warning="excluded-from-rendering" data-clusterid="ID_B_REGS_master_2026-03-09/id_b_regs/stu_cal_calbstu_use/r_sfaafee_registration_additional_fees_control">Registration Additional Fees Control (SFAAFEE)</span> page.</p>
+</li>
+
+    </ol>
+
+    <p class="p">Click <span class="ph uicontrol">Save</span> and then <span class="ph uicontrol">Publish</span>.</p>
+
+  </div>
+
+</div></div></section>
+<section id="t-140"><h2>Set Up the Schedule</h2><div class="content-locale-en-US content-locale-en"><div id="t_student_survey_configure_the_schedule"><div class="body taskbody"><p class="shortdesc">Now you need to set the time when you want to assign the survey to the students.</p>
+
+    <div class="tasklabel"><h2 class="sectiontitle tasklabel">Procedure</h2></div><ol class="ol steps"><li class="li step stepexpand">
+        <span class="ph cmd">In the same Designer page of the configured workflow, click on the <span class="ph uicontrol">drop down</span> icon next to the workflow name: <em class="ph i">Student Survey - Template</em>, then select <span class="ph uicontrol">Schedules</span>.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">In the <span class="ph uicontrol">Schedules</span> page, click on the <span class="ph uicontrol">Schedules</span> button.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Select the <span class="ph uicontrol">Audience List</span> or <span class="ph uicontrol">Person Filter</span> option according to the type of population you are working with: dynamic for the first and fixed for the latter.</span>
+        <div class="itemgroup info">
+          <p class="p">If you are using an audience list, make sure to have that configuration enabled using your population selection. If using person filters you can use the population selection directly. </p>
+
+        </div>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">For this workflow, type the name of your Population Selection or Audience List previously configured.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">In <span class="ph uicontrol">Recurrence</span> section, you can setup a time that better suits your needs, for example for an on-demand approach select <span class="ph uicontrol">One time</span> and <span class="ph uicontrol">Schedule Now</span>.</span>
+        <div class="itemgroup info"><p class="p"></p>
+For more details about scheduling a workflow, see: <span class="xref ft-internal-xlink" data-ft-warning="excluded-from-rendering" data-clusterid="ID_B_REGS_master_2026-03-09/id_b_regs/stu_cal_calbstu_use/t_eip_create_schedule">Create a workflow schedule</span> page.</div>
+      </li>
+</ol>
+
+  </div>
+
+</div></div></section>
+<section id="t-150"><h2>Set Up the Events Trigger</h2><div class="content-locale-en-US content-locale-en"><div id="t_setup_for_student_survey_events_trigger"><div class="body taskbody"><p class="shortdesc">Now you need to set up the events trigger.</p>
+
+    <div class="tasklabel"><h2 class="sectiontitle tasklabel">Procedure</h2></div><ol class="ol steps"><li class="li step">
+        <span class="ph cmd">Click <span class="ph"><img class="image ell-icon" src="images/student-survey-for-california-regulatory-4.png" alt="" data-ft-asset-display-name="paperclip_vertical.png" data-ft-resource-id="tZRpMnsTLxDrh8ix0KYPBw-MdmFU8D7B5n5nrGyPvkY0A"></span> <span class="ph uicontrol">Attachment</span> on the upper right side of this page to download the <code class="ph codeph">student-general-record-created</code> and the <code class="ph codeph">student-registration-group-created</code> events and save them to a directory.</span>
+      </li>
+<li class="li step">
+        <span class="ph cmd">In the pop-up, select <span class="ph filepath">Student_Survey_Event_Trigger.zip</span>.</span>
+      </li>
+<li class="li step">
+        <span class="ph cmd">Click <span class="ph uicontrol">Download</span> button.</span>
+      </li>
+<li class="li step">
+        <span class="ph cmd">Extract the <span class="ph filepath">JSON</span> file from the zip file.</span>
+      </li>
+<li class="li step">
+        <span class="ph cmd">Navigate to <span class="keyword">Banner Event Publisher</span> dashboard.</span>
+      </li>
+<li class="li step">
+        <span class="ph cmd">Go to the <span class="ph uicontrol">Events</span> tab.</span>
+      </li>
+<li class="li step">
+        <span class="ph cmd">Click the <span class="ph uicontrol">Import</span> button.</span>
+      </li>
+<li class="li step">
+        <span class="ph cmd">In the open dialog box up that appears, select the <span class="ph filepath">JSON</span> files that you extracted.</span>
+      </li>
+<li class="li step">
+        <span class="ph cmd">Verify that both events have been uploaded successfully and appear in the Events table.</span>
+      </li>
+</ol>
+
+  </div>
+
+</div></div></section>
+<section id="t-160"><h3>Create an Ethos Application</h3><div class="content-locale-en-US content-locale-en"><div id="t_student_survey_create_a_ethos_app"><div class="body taskbody"><p class="shortdesc">Now you need to create an application in <span class="keyword">Ethos Integration</span>.</p>
+
+    <div class="tasklabel"><h2 class="sectiontitle tasklabel">Procedure</h2></div><ol class="ol steps"><li class="li step">
+        <span class="ph cmd">Open Ellucian <span class="keyword">Ethos Integration</span> and navigate to Applications.</span>
+      </li>
+<li class="li step">
+        <span class="ph cmd">Click the <span class="ph uicontrol">Manually</span> button in the Create New App section.</span>
+      </li>
+<li class="li step">
+        <span class="ph cmd">In the Add Application pop up, click <span class="ph uicontrol">Continue</span>.</span>
+      </li>
+<li class="li step">
+        <span class="ph cmd">In the Add Application page, fill the <span class="ph uicontrol">Application name</span> field with <span class="ph filepath">student-survey</span>.</span>
+      </li>
+<li class="li step">
+        <span class="ph cmd">Click <span class="ph uicontrol">Next</span>.</span>
+      </li>
+<li class="li step">
+        <span class="ph cmd">In the Subscriptions page, select <span class="ph uicontrol">Skip</span>.</span>
+      </li>
+<li class="li step">
+        <span class="ph cmd">After the application was created, click <span class="ph uicontrol">View Application</span>.</span>
+      </li>
+<li class="li step">
+        <span class="ph cmd">In the Application Overview page, go to <span class="ph uicontrol">Event Subscriptions</span> tab.</span>
+      </li>
+<li class="li step">
+        <span class="ph cmd">Click <span class="ph uicontrol">Add Event</span>.</span>
+      </li>
+<li class="li step">
+        <span class="ph cmd">In the Add Events pop up, select <span class="ph uicontrol"><span class="keyword">Banner</span> Integration API</span> or equivalent, as the application.</span>
+      </li>
+<li class="li step">
+        <span class="ph cmd">Type the name of the event <code class="ph codeph">student-general-record-created</code> you uploaded in the previous step.</span>
+      </li>
+<li class="li step">
+        <span class="ph cmd">Repeat the process to add the second event: <code class="ph codeph">student-registration-group-created</code>, using the same application.</span>
+      </li>
+</ol>
+
+  </div>
+
+</div></div></section>
+<section id="t-170"><h3>Configure the Platform Component</h3><div class="content-locale-en-US content-locale-en"><div id="t_student_survey_config_ip_proc_plat_comp"><div class="body taskbody"><p class="shortdesc">You now need to configure <span class="keyword">Intelligence Processes</span> Platform Component.</p>
+
+    <div class="tasklabel"><h2 class="sectiontitle tasklabel">Procedure</h2></div><ol class="ol steps"><li class="li step">
+        <span class="ph cmd">Open <span class="keyword">Ellucian</span> <span class="keyword">Ethos Integration</span> and navigate to Platform Components.</span>
+      </li>
+<li class="li step">
+        <span class="ph cmd">Review that under Owned Resources you can see <code class="ph codeph">workflow-external-tasks</code> and <code class="ph codeph">workflow-instances</code>.</span>
+      </li>
+<li class="li step">
+        <span class="ph cmd">Go to <span class="ph uicontrol">Application Access</span> tab.</span>
+      </li>
+<li class="li step">
+        <span class="ph cmd">Click <span class="ph uicontrol">Add Application Access</span>.</span>
+      </li>
+<li class="li step">
+        <span class="ph cmd">In the Add Application Access pop up, in the <span class="ph uicontrol">Resource Owner</span> drop down, select the Ethos application that was just created.</span>
+      </li>
+<li class="li step">
+        <span class="ph cmd">Click <span class="ph uicontrol">Add</span>.</span>
+      </li>
+<li class="li step">
+        <span class="ph cmd">Go back and open <span class="keyword">Ethos Integration</span> → Platform Components and navigate to <span class="keyword">Ellucian Experience</span>. </span>
+      </li>
+<li class="li step">
+        <span class="ph cmd">Add the Ethos Application that was just created.</span>
+      </li>
+<li class="li step">
+        <span class="ph cmd">Go to Data Connect → Owned Resources.</span>
+      </li>
+<li class="li step">
+        <span class="ph cmd">Review that you have listed the pipeline <code class="ph codeph">student-survey-trigger</code>, this is shared by <span class="keyword">Ellucian</span> to clients.</span>
+      </li>
+</ol>
+
+  </div>
+
+</div></div></section>
+<section id="t-180"><h3>Import the Workflow</h3><div class="content-locale-en-US content-locale-en"><div id="t_student_survey_import_the_trigger_workflow"><div class="body taskbody"><p class="shortdesc">Now you need to import the trigger workflow into <span class="keyword">Intelligence Processes</span>.</p>
+
+    <div class="tasklabel"><h2 class="sectiontitle tasklabel">Procedure</h2></div><ol class="ol steps"><li class="li step">
+        <span class="ph cmd">Extract the <span class="ph filepath">YAML</span> file from the zip file you previously downloaded in the <em class="ph i">Import the Form</em> section into a directory.</span>
+      </li>
+<li class="li step">
+        <span class="ph cmd">Navigate to <span class="ph uicontrol">Ellucian Experience </span>.</span>
+      </li>
+<li class="li step">
+        <span class="ph cmd">Click the <span class="ph uicontrol">Applications</span> <span class="ph"><img class="image ell-icon" src="images/student-survey-for-california-regulatory-1.png" alt="" data-ft-asset-display-name="grid.png" data-ft-resource-id="WwZ8sT7nNmETL4LEgmYhkw-MdmFU8D7B5n5nrGyPvkY0A"></span> icon, in the Applications menu, select <span class="ph uicontrol">Intelligent Processes</span>.</span>
+      </li>
+<li class="li step">
+        <span class="ph cmd">In the Workflows dashboard, click the <span class="ph uicontrol">Import workflow</span> <span class="ph"><img class="image ell-icon" src="images/student-survey-for-california-regulatory-6.png" alt="" data-ft-asset-display-name="upload.png" data-ft-resource-id="3AniJzReo_9sF_xBxApxxw-MdmFU8D7B5n5nrGyPvkY0A"></span> button.</span>
+      </li>
+<li class="li step">
+        <span class="ph cmd">In the open dialog box up that appears, select the Student Survey API  <span class="ph filepath">YAML</span> file that you extracted.</span>
+      </li>
+</ol>
+
+    <div class="section result"><div class="tasklabel"><h2 class="sectiontitle tasklabel">Results</h2></div>A message appears that confirms that the file was imported successfully. <p class="p">You need to configure the workflow you just uploaded, please see <span class="xref ft-internal-link" data-ft-warning="excluded-from-rendering" data-mapid="MdmFU8D7B5n5nrGyPvkY0A" data-tocid="rYWty7hBATj7wNVccRRj0Q">Configure the Workflow</span> and then continue with the process.</p>
+<p class="p">At last, click <span class="ph uicontrol">Save</span> and then <span class="ph uicontrol">Publish</span>.</p>
+</div>
+
+    <div class="section tasktroubleshooting">
+      <p class="p">For more information, see: <span class="xref ft-internal-xlink" data-ft-warning="excluded-from-rendering" data-clusterid="ID_B_REGS_master_2026-03-09/id_b_regs/stu_cal_calbstu_use/t_eip_upload_download_workflows">Import and export workflows</span>.</p>
+
+      <p class="p">You may also want to see: <span class="xref ft-internal-xlink" data-ft-warning="excluded-from-rendering" data-clusterid="ID_B_REGS_master_2026-03-09/id_b_regs/stu_cal_calbstu_use/r_eip_yaml_errors">Troubleshoot upload errors</span>.</p>
+
+    </div>
+
+  </div>
+
+</div></div></section>
+<section id="t-190"><h4>Configure the Workflow</h4><div class="content-locale-en-US content-locale-en"><div id="c_student_survey_tr_configure_the_workflow"><div class="body conbody"><p class="shortdesc">You now need to configure the workflow before it can be assigned to the students.</p>
+
+    <p class="p">After importing the workflow, you enter automatically to the Designer page of it. Now you need to fix any issues that appear with a red dot. </p>
+
+    <p class="p">For the action <span class="ph uicontrol">Add Person Hold</span>.</p>
+
+    <ol class="ol">
+      <li class="li">Click the action <span class="ph uicontrol">Add Person Hold</span>.</li>
+
+      <li class="li">In the right panel, go to the <span class="ph uicontrol">Hold Type</span> section.</li>
+
+      <li class="li">Then in the <span class="ph uicontrol">Search Hold Type</span> field, search for a hold you previously configured that prevents student registration.</li>
+
+    </ol>
+
+    <p class="p">For the action <span class="ph uicontrol">Add additional fees</span>.</p>
+
+    <ol class="ol">
+      <li class="li">Click the action <span class="ph uicontrol">Add additional fees</span>.</li>
+
+      <li class="li">In the right panel, go to the <span class="ph uicontrol">Input Setup</span> section, and click on the <span class="ph uicontrol">edit</span> button.<p class="p">The <span class="ph uicontrol">Input Setup</span> modal appears.</p>
+</li>
+
+      <li class="li">In the <span class="ph uicontrol">Add Data</span> field of the <span class="ph uicontrol">Detail Code</span> row, enter the configured code.<p class="p">You can find the code in the Banner <span class="ph uicontrol">SFAAFEE</span> page, this code is same associated with the term mentioned in a previous step.</p>
+<p class="p">For more details about the code, see: <span class="xref ft-internal-xlink" data-ft-warning="excluded-from-rendering" data-clusterid="ID_B_REGS_master_2026-03-09/id_b_regs/stu_cal_calbstu_use/r_sfaafee_registration_additional_fees_control">Registration Additional Fees Control (SFAAFEE)</span> page.</p>
+</li>
+
+    </ol>
+
+    <p class="p">Click <span class="ph uicontrol">Save</span> and then <span class="ph uicontrol">Publish</span>.</p>
+
+  </div>
+
+</div></div></section>
+<section id="t-200"><h3>Grant Permissions to the Workflow</h3><div class="content-locale-en-US content-locale-en"><div id="t_student_survey_grant_perm_trigger_workflow"><div class="body taskbody"><p class="shortdesc">After the workflow was imported and published, you need to provide the right permissions.</p>
+
+    <div class="section prereq p"><div class="tasklabel"><h2 class="sectiontitle tasklabel">Before you begin</h2></div>Form Responses: You need to give permissions to the imported workflow.</div>
+
+    <div class="tasklabel"><h2 class="sectiontitle tasklabel">Procedure</h2></div><ol class="ol steps"><li class="li step stepexpand">
+        <span class="ph cmd">Navigate to <span class="ph uicontrol"><span class="keyword">Ellucian Experience Setup</span> → Permissions.</span></span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Type <span class="keyword">Intelligent Processes</span>.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Select <span class="ph uicontrol">All Workflows</span>.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Select <span class="ph uicontrol">Student Survey API</span>.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Select in the <span class="ph uicontrol">Execute</span> column, the permissions to the <span class="keyword">Ethos</span> Application you previously created.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Click <span class="ph uicontrol">Save</span>.</span>
+        <div class="itemgroup info">
+          <p class="p">For more information, see: <span class="xref ft-internal-xlink" data-ft-warning="excluded-from-rendering" data-clusterid="ID_B_REGS_master_2026-03-09/id_b_regs/stu_cal_calbstu_use/t_forms_set_up_permissions">Set up forms permissions</span></p>
+
+        </div>
+      </li>
+</ol>
+
+  </div>
+
+</div></div></section>
+<section id="t-210"><h3>Create a New Job for the Pipeline</h3><div class="content-locale-en-US content-locale-en"><div id="t_student_survey_create_new_job_pipeline"><div class="body taskbody"><p class="shortdesc">After the workflow has the right permissions, you need to create a new job for it.</p>
+
+    <div class="tasklabel"><h2 class="sectiontitle tasklabel">Procedure</h2></div><ol class="ol steps"><li class="li step">
+        <span class="ph cmd">Navigate to <span class="ph uicontrol"><span class="keyword">Ellucian Experience</span></span> dashboard.<span class="ph uicontrol"> → Integration Packages.</span></span>
+      </li>
+<li class="li step">
+        <span class="ph cmd">Select the package <span class="ph uicontrol">Student Survey Package</span>.</span>
+      </li>
+<li class="li step">
+        <span class="ph cmd">Select the pipeline <code class="ph codeph">student-survey-trigger</code> and click on <span class="ph uicontrol">New Job</span>.</span>
+      </li>
+<li class="li step">
+        <span class="ph cmd">Fill the parameters: </span>
+        <ol type="a" class="ol substeps">
+          <li class="li substep">
+            <span class="ph cmd">For <span class="keyword">Ethos</span> API Key, use the one from the <span class="keyword">Ethos</span> Application previously created.</span>
+          </li>
+
+          <li class="li substep">
+            <span class="ph cmd">For Term Code, use the desired term you want students to receive the survey. </span>
+          </li>
+
+          <li class="li substep">
+            <span class="ph cmd">For Workflow ID, go to <span class="keyword">Intelligent Processes</span> in another tab, and select<span class="ph uicontrol"> More Options</span> on the Student Survey API workflow and select <span class="ph uicontrol">Settings</span>; here, copy the <span class="ph uicontrol">Workflow ID</span> and paste it in that field in the Job Parameters section.</span>
+          </li>
+
+          <li class="li substep">
+            <span class="ph cmd">Under <span class="ph uicontrol">Job Run Details</span>, select the option <span class="ph uicontrol">Triggered by Event</span> and setup the notifications you need.</span>
+          </li>
+
+        </ol>
+
+      </li>
+<li class="li step">
+        <span class="ph cmd">Click <span class="ph uicontrol">Save</span>.</span>
+      </li>
+</ol>
+
+  </div>
+
+</div></div></section>
+<section id="t-220"><h2>Test the Student Survey</h2><div class="content-locale-en-US content-locale-en"><div id="c_student_survey_test_the_student_survey"><div class="body conbody"><p class="shortdesc">Now its time to test if the Student Survey works properly.</p>
+
+    <div class="p">After the schedule has been executed and the workflow has been assigned, you can see that a task has been allocated, and that is the Student survey, now, to validate it: <ol class="ol">
+      <li class="li">Log in as a student to the <span class="ph uicontrol">Experience</span> dashboard.</li>
+
+      <li class="li">In the right side panel you now see that a task has been assigned and that is the survey.</li>
+
+      <li class="li">Answer the survey with a test data.</li>
+
+      <li class="li">Click <span class="ph uicontrol">Next</span> and continue with the survey until you see the <span class="ph uicontrol">Submit</span> button.</li>
+
+      <li class="li">Click the <span class="ph uicontrol">Complete Form Task</span> button to finish the survey.</li>
+
+      </ol>
+</div>
+
+    <p class="p">After the completion of the Student Survey, you can see the responses in the following pages in Banner: <em class="ph i">MIS Special Term Data (SVAMIST), Student Institutional Reporting Requirements (SGAUSDF)</em> and <em class="ph i">Workforce Innovation and Opportunity Act (WIOA) Data (SVAWIOA)</em>. If the student opt-in for additional fees, you can validate in <em class="ph i">Registration Additional Fees (SFAEFEE)</em>.</p>
+
+    <div class="note"><span class="notetitle">Note:</span> The Student Survey configuration needs to be completed only one time. After that, you only need to complete the steps to <em class="ph i">Configure the workflow</em> and <em class="ph i">Configure the schedule</em> each time you want to release it.</div>
+
+  </div>
+
+</div></div></section>
+<section id="t-230"><h3>Mapping Reference</h3><div class="content-locale-en-US content-locale-en"><div id="c_student_survey_mapping_reference"><div class="body conbody"><p class="shortdesc">The following table shows the mapping of each question in the Student Survey form to a validation code.</p>
+
+    
+<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" class="table" frame="border" border="1" rules="all"><caption><span class="tablecap"><span class="table--title-label">Table 1. </span>Mapping Reference </span></caption><colgroup><col style="width:20%"><col style="width:20%"><col style="width:20%"><col style="width:20%"><col style="width:20%"></colgroup><thead class="thead" style="text-align:left;">
+          <tr class="row">
+            <th class="entry nocellnorowborder" style="vertical-align:top;" id="d1340e65">Banner Page</th>
+
+            <th class="entry nocellnorowborder" style="vertical-align:top;" id="d1340e68">Validation table</th>
+
+            <th class="entry nocellnorowborder" style="vertical-align:top;" id="d1340e71">Form Question</th>
+
+            <th class="entry nocellnorowborder" style="vertical-align:top;" id="d1340e74">Form Options</th>
+
+            <th class="entry cell-norowborder" style="vertical-align:top;" id="d1340e77">Validation code value</th>
+
+          </tr>
+
+        </thead>
+<tbody class="tbody">
+          <tr class="row">
+            <td class="entry nocellnorowborder" rowspan="17" style="vertical-align:middle;" headers="d1340e65 ">Student Institutional Reporting Requirements (SGAUSDF)</td>
+
+            <td class="entry nocellnorowborder" rowspan="5" style="vertical-align:middle;" headers="d1340e68 ">STVSUDC - Student Element Three Validation</td>
+
+            <td class="entry nocellnorowborder" rowspan="5" style="vertical-align:top;" headers="d1340e71 ">VTEA Economically Disadvantaged</td>
+
+            <td class="entry nocellnorowborder" style="vertical-align:top;" headers="d1340e74 ">Receiving CalWORKs /TANF Benefits</td>
+
+            <td class="entry cell-norowborder" style="vertical-align:top;" headers="d1340e77 ">1A - CalWORKs/TANF/AFDC Othr Source</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry nocellnorowborder" style="vertical-align:top;" headers="d1340e74 ">Receiving SSI Benefits</td>
+
+            <td class="entry cell-norowborder" style="vertical-align:top;" headers="d1340e77 ">2A - SSI Recipient Other Source</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry nocellnorowborder" style="vertical-align:top;" headers="d1340e74 ">Receiving General Assistance</td>
+
+            <td class="entry cell-norowborder" style="vertical-align:top;" headers="d1340e77 ">3A - General Assist GA Other Source</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry nocellnorowborder" style="vertical-align:top;" headers="d1340e74 ">Other economically Disadvantaged - Including Section 8 Housing Assistance</td>
+
+            <td class="entry cell-norowborder" style="vertical-align:top;" headers="d1340e77 ">4A - Other econ disadv Other Source</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry nocellnorowborder" style="vertical-align:top;" headers="d1340e74 ">None of the above </td>
+
+            <td class="entry cell-norowborder" style="vertical-align:top;" headers="d1340e77 ">NN - None of the above</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry nocellnorowborder" rowspan="2" style="vertical-align:top;" headers="d1340e68 ">STVSUDD - Student Element Four Validation</td>
+
+            <td class="entry nocellnorowborder" rowspan="2" style="vertical-align:top;" headers="d1340e71 ">Are you a single parent?</td>
+
+            <td class="entry nocellnorowborder" style="vertical-align:top;" headers="d1340e74 ">Yes</td>
+
+            <td class="entry cell-norowborder" style="vertical-align:top;" headers="d1340e77 ">P - Identified as a single parent</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry nocellnorowborder" style="vertical-align:top;" headers="d1340e74 ">No</td>
+
+            <td class="entry cell-norowborder" style="vertical-align:top;" headers="d1340e77 ">N - Not identified single parent</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry nocellnorowborder" rowspan="2" style="vertical-align:top;" headers="d1340e68 ">STVSUDE - Student Element Five Validation</td>
+
+            <td class="entry nocellnorowborder" rowspan="2" style="vertical-align:top;" headers="d1340e71 ">Are you a displaced homemaker?</td>
+
+            <td class="entry nocellnorowborder" style="vertical-align:top;" headers="d1340e74 ">Yes</td>
+
+            <td class="entry cell-norowborder" style="vertical-align:top;" headers="d1340e77 ">D - Identified displaced homemaker</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry nocellnorowborder" style="vertical-align:top;" headers="d1340e74 ">No</td>
+
+            <td class="entry cell-norowborder" style="vertical-align:top;" headers="d1340e77 ">N - Not a displaced homemaker</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry nocellnorowborder" rowspan="3" style="vertical-align:top;" headers="d1340e68 ">STVSUDF - Student Element Six Validation</td>
+
+            <td class="entry nocellnorowborder" rowspan="3" style="vertical-align:top;" headers="d1340e71 ">Are you participating in a cooperative work experience education?</td>
+
+            <td class="entry nocellnorowborder" style="vertical-align:top;" headers="d1340e74 ">Occupational Cooperative Work Experience Education</td>
+
+            <td class="entry cell-norowborder" style="vertical-align:top;" headers="d1340e77 ">O - Occupational Coop ExperienceEd</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry nocellnorowborder" style="vertical-align:top;" headers="d1340e74 ">General Cooperative Work Experience Education</td>
+
+            <td class="entry cell-norowborder" style="vertical-align:top;" headers="d1340e77 ">G - Gen. Coop Work Experience Ed</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry nocellnorowborder" style="vertical-align:top;" headers="d1340e74 ">Not Applicable</td>
+
+            <td class="entry cell-norowborder" style="vertical-align:top;" headers="d1340e77 ">N - Not coop work exp participant</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry nocellnorowborder" rowspan="2" style="vertical-align:top;" headers="d1340e68 ">N/A is a checkbox</td>
+
+            <td class="entry nocellnorowborder" rowspan="2" style="vertical-align:top;" headers="d1340e71 ">Are you a vocational migrant worker or child of a migrant worker?</td>
+
+            <td class="entry nocellnorowborder" style="vertical-align:top;" headers="d1340e74 ">Yes</td>
+
+            <td class="entry cell-norowborder" style="vertical-align:top;" headers="d1340e77 ">Y</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry nocellnorowborder" style="vertical-align:top;" headers="d1340e74 ">No</td>
+
+            <td class="entry cell-norowborder" style="vertical-align:top;" headers="d1340e77 ">N</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry nocellnorowborder" rowspan="3" style="vertical-align:top;" headers="d1340e68 ">SVVWIAV - Workforce Investment Act Veteran Status Validation</td>
+
+            <td class="entry nocellnorowborder" rowspan="3" style="vertical-align:top;" headers="d1340e71 ">Do you qualify for a veteran status under the Workforce Investment Act (WIA)?</td>
+
+            <td class="entry nocellnorowborder" style="vertical-align:top;" headers="d1340e74 ">WIA eligible veteran</td>
+
+            <td class="entry cell-norowborder" style="vertical-align:top;" headers="d1340e77 ">1 - WIA eligible veteran</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry nocellnorowborder" style="vertical-align:top;" headers="d1340e74 ">WIA eligible spouse of a veteran</td>
+
+            <td class="entry cell-norowborder" style="vertical-align:top;" headers="d1340e77 ">2 - WIA eligible spouse of veteran</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry nocellnorowborder" style="vertical-align:top;" headers="d1340e74 ">Not Applicable</td>
+
+            <td class="entry cell-norowborder" style="vertical-align:top;" headers="d1340e77 ">3 - Not a WIA eligible veteran</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry nocellnorowborder" rowspan="19" style="vertical-align:top;" headers="d1340e65 ">Workforce Innovation and Opportunity Act (WIOA) Data (SVAWIOA)</td>
+
+            <td class="entry nocellnorowborder" rowspan="9" style="vertical-align:top;" headers="d1340e68 ">SVVECDV- Student Economically Disadvantaged Status Validation</td>
+
+            <td class="entry nocellnorowborder" rowspan="9" style="vertical-align:top;" headers="d1340e71 ">Do you identify with an economically disadvantaged status?</td>
+
+            <td class="entry nocellnorowborder" style="vertical-align:top;" headers="d1340e74 ">Receiving CalWORKs/TANF/AFDC.</td>
+
+            <td class="entry cell-norowborder" style="vertical-align:top;" headers="d1340e77 ">1A - Auditable recipient of CalWORKs/TANF/AFDC</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry nocellnorowborder" style="vertical-align:top;" headers="d1340e74 ">Receiving Supplemental Security Income program (SSI).</td>
+
+            <td class="entry cell-norowborder" style="vertical-align:top;" headers="d1340e77 ">2A - Auditable recipient of Supplemental Security Income program (SSI)</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry nocellnorowborder" style="vertical-align:top;" headers="d1340e74 ">Receiving general assistance program (GA).</td>
+
+            <td class="entry cell-norowborder" style="vertical-align:top;" headers="d1340e77 ">3A - Auditable recipient of a general assistance program (GA)</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry nocellnorowborder" style="vertical-align:top;" headers="d1340e74 ">Receiving supplemental nutrition assistance program under the Food and Nutrition Act.</td>
+
+            <td class="entry cell-norowborder" style="vertical-align:top;" headers="d1340e77 ">4A - Auditable recipient of supplemental nutrition assistance</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry nocellnorowborder" style="vertical-align:top;" headers="d1340e74 ">I am in a family with total family income that does not exceed the higher of the poverty line or 70% of the lower living standard income level.</td>
+
+            <td class="entry cell-norowborder" style="vertical-align:top;" headers="d1340e77 ">5A - Auditable low total family income</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry nocellnorowborder" style="vertical-align:top;" headers="d1340e74 ">I am an individual with a disability whose own income is below the poverty line but who is a member of a family whose income does not meet this requirement.</td>
+
+            <td class="entry cell-norowborder" style="vertical-align:top;" headers="d1340e77 ">6A - Auditable individual low income but not low total family income</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry nocellnorowborder" style="vertical-align:top;" headers="d1340e74 ">I am a homeless individual or homeless child or youth or runaway youth.</td>
+
+            <td class="entry cell-norowborder" style="vertical-align:top;" headers="d1340e77 ">7A - Auditable homeless individual or homeless child or youth or runaway youth.</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry nocellnorowborder" style="vertical-align:top;" headers="d1340e74 ">Another economically disadvantaged status.</td>
+
+            <td class="entry cell-norowborder" style="vertical-align:top;" headers="d1340e77 ">8A - Auditable as Other economically disadvantaged</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry nocellnorowborder" style="vertical-align:top;" headers="d1340e74 ">Not Applicable</td>
+
+            <td class="entry cell-norowborder" style="vertical-align:top;" headers="d1340e77 ">NN - None of the above</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry nocellnorowborder" rowspan="2" style="vertical-align:top;" headers="d1340e68 ">SVVEXOF - Ex-Offender Status Validation</td>
+
+            <td class="entry nocellnorowborder" rowspan="2" style="vertical-align:top;" headers="d1340e71 ">Formerly Incarcerated Status</td>
+
+            <td class="entry nocellnorowborder" style="vertical-align:top;" headers="d1340e74 ">No</td>
+
+            <td class="entry cell-norowborder" style="vertical-align:top;" headers="d1340e77 ">0 - Student is not identified as an ex-offender</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry nocellnorowborder" style="vertical-align:top;" headers="d1340e74 ">Yes</td>
+
+            <td class="entry cell-norowborder" style="vertical-align:top;" headers="d1340e77 ">1 - Student is identified as an ex-offender</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry nocellnorowborder" rowspan="2" style="vertical-align:top;" headers="d1340e68 ">SVVUNEM - Student Long Term Unemployment Status Validation</td>
+
+            <td class="entry nocellnorowborder" rowspan="2" style="vertical-align:top;" headers="d1340e71 ">You identify yourself in a situation of long-term unemployment?</td>
+
+            <td class="entry nocellnorowborder" style="vertical-align:top;" headers="d1340e74 ">No</td>
+
+            <td class="entry cell-norowborder" style="vertical-align:top;" headers="d1340e77 ">0 - Student is not identified as long-term unemployed</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry nocellnorowborder" style="vertical-align:top;" headers="d1340e74 ">Yes</td>
+
+            <td class="entry cell-norowborder" style="vertical-align:top;" headers="d1340e77 ">1 - Student is identified as long-term unemployed</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry nocellnorowborder" rowspan="2" style="vertical-align:top;" headers="d1340e68 ">SVVCLTB - Student Cultural Barrier Status Validation</td>
+
+            <td class="entry nocellnorowborder" rowspan="2" style="vertical-align:top;" headers="d1340e71 ">You experience cultural barriers?</td>
+
+            <td class="entry nocellnorowborder" style="vertical-align:top;" headers="d1340e74 ">No</td>
+
+            <td class="entry cell-norowborder" style="vertical-align:top;" headers="d1340e77 ">0 - Student is not identified as having cultural barriers to employment</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry nocellnorowborder" style="vertical-align:top;" headers="d1340e74 ">Yes</td>
+
+            <td class="entry cell-norowborder" style="vertical-align:top;" headers="d1340e77 ">1 - Student is identified as having cultural barriers to employm</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry nocellnorowborder" rowspan="2" style="vertical-align:top;" headers="d1340e68 ">SVVFARM - Student Seasonal Farm Work Status Validation</td>
+
+            <td class="entry nocellnorowborder" rowspan="2" style="vertical-align:top;" headers="d1340e71 ">Are you a seasonal farm worker?</td>
+
+            <td class="entry nocellnorowborder" style="vertical-align:top;" headers="d1340e74 ">No</td>
+
+            <td class="entry cell-norowborder" style="vertical-align:top;" headers="d1340e77 ">0 - Student is not a seasonal farm worker</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry nocellnorowborder" style="vertical-align:top;" headers="d1340e74 ">Yes</td>
+
+            <td class="entry cell-norowborder" style="vertical-align:top;" headers="d1340e77 ">1 - Seasonal farm worker </td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry nocellnorowborder" rowspan="2" style="vertical-align:top;" headers="d1340e68 ">SVVLITR - Student Literacy Status Validation</td>
+
+            <td class="entry nocellnorowborder" rowspan="2" style="vertical-align:top;" headers="d1340e71 ">Identifies with low literacy level?</td>
+
+            <td class="entry nocellnorowborder" style="vertical-align:top;" headers="d1340e74 ">No</td>
+
+            <td class="entry cell-norowborder" style="vertical-align:top;" headers="d1340e77 ">0 - Student is not identified as having a low level of literacy</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry nocellnorowborder" style="vertical-align:top;" headers="d1340e74 ">Yes</td>
+
+            <td class="entry cell-norowborder" style="vertical-align:top;" headers="d1340e77 ">1 - Student is identified as having a low level of literacy</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry nocellnorowborder" rowspan="4" style="vertical-align:top;" headers="d1340e65 ">MIS Special Term Data (SVAMIST)</td>
+
+            <td class="entry nocellnorowborder" rowspan="4" style="vertical-align:top;" headers="d1340e68 ">SVVWBLN - Work-based Learning Status</td>
+
+            <td class="entry nocellnorowborder" rowspan="4" style="vertical-align:top;" headers="d1340e71 ">Are you participating in a work-based learning?</td>
+
+            <td class="entry nocellnorowborder" style="vertical-align:top;" headers="d1340e74 ">Participating in work-based learning preparing the student for employment in a specific range of occupations, such as internships, work experience, and capstone projects </td>
+
+            <td class="entry cell-norowborder" style="vertical-align:top;" headers="d1340e77 ">A - Student participated in work-based learning - employment preparation</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry nocellnorowborder" style="vertical-align:top;" headers="d1340e74 ">Participating in work-based learning allowing the student to apply learning through practical experience and interaction with professionals from industry and the community outside of school, such as job shadows, service learning, class projects or challenges, and mentorships</td>
+
+            <td class="entry cell-norowborder" style="vertical-align:top;" headers="d1340e77 ">B - Student participated in work-based learning - apply learning</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry nocellnorowborder" style="vertical-align:top;" headers="d1340e74 ">Participating in work-based learning allowing the student to build awareness of the variety of careers available, begin identifying areas of interest, and explore career options, such as guest speakers, company tours, field trips, career fairs, and mock interviews</td>
+
+            <td class="entry cell-norowborder" style="vertical-align:top;" headers="d1340e77 ">C - Student participated in work-based learning - build awareness</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="vertical-align:top;" headers="d1340e74 ">Not participating in work-based learning</td>
+
+            <td class="entry cellrowborder" style="vertical-align:top;" headers="d1340e77 ">N - Student did not participate in work-based learning</td>
+
+          </tr>
+
+        </tbody>
+</table>
+</div>
+
+  </div>
+
+</div></div></section>
+<section id="t-240"><h3>Review Workflow Errors</h3><div class="content-locale-en-US content-locale-en"><div id="c_student_survey_errors_reports"><div class="body conbody"><p class="shortdesc">The Errors report helps you to view the workflow errors page in Ethos Integration. You can then select the Errors, Warning, or Info tab for more error information. </p>
+
+    <ol class="ol">
+      <li class="li">Open <span class="ph uicontrol">Ellucian Ethos Integration</span> and hover on <span class="ph uicontrol">Reports</span>.</li>
+
+      <li class="li">In the drop down menu, click on <span class="ph uicontrol">Errors</span>.</li>
+
+      <li class="li">In the Errors tab, you can see the history about errors.</li>
+
+      <li class="li">Click the info icon<span class="ph"><img class="image ell-icon" src="images/student-survey-for-california-regulatory-7.png" alt="" data-ft-asset-display-name="info.png" data-ft-resource-id="I1vxVD7orLRf30Yc2XRIgA-MdmFU8D7B5n5nrGyPvkY0A"></span> to open the details pop up.<div class="p">You can see the error details, for example: <ul class="ul">
+        <li class="li">Date / Time</li>
+
+        <li class="li">Severity</li>
+
+        <li class="li">Application / Platform Component / Packages</li>
+
+        <li class="li">Response code</li>
+
+        <li class="li">Resource ID</li>
+
+        <li class="li">Description</li>
+
+        <li class="li">Details</li>
+
+        <li class="li">Correlation ID</li>
+
+        </ul>
+</div>
+</li>
+
+    </ol>
+
+    <p class="p">Also, you can see the error details in Ellucian Intelligence Processes.</p>
+
+    <ol class="ol">
+      <li class="li">Log on to Experience with the user name and password of the role with access to the Workflow designer (Administrator) </li>
+
+      <li class="li">In the dashboard navigate to the <span class="ph uicontrol">Applications</span> <span class="ph"><img class="image ell-icon" src="images/student-survey-for-california-regulatory-1.png" alt="" data-ft-asset-display-name="grid.png" data-ft-resource-id="WwZ8sT7nNmETL4LEgmYhkw-MdmFU8D7B5n5nrGyPvkY0A"></span> icon, the Applications menu should be displayed, select <span class="ph uicontrol">Intelligent Processes</span>.</li>
+
+      <li class="li">Select <span class="ph uicontrol">Workflow Runs</span>.</li>
+
+      <li class="li">From the list of workflow runs, you can see the date and time, name, and the status of them. Click on one element that has the status of <span class="ph uicontrol">Error</span>.</li>
+
+      <li class="li">On the detailed page, in the right section, scroll down and click <span class="ph uicontrol">View Error</span>.</li>
+
+      <li class="li">In the pop up, you can review the details of the error.</li>
+
+    </ol>
+
+    <div class="p">You can also see the details when a Student Survey ran with errors when it was scheduled:<ol class="ol">
+      <li class="li">Click the button to go back to <span class="ph uicontrol">Intelligent Processes</span>.</li>
+
+      <li class="li">Select <span class="ph uicontrol">Workflow</span>.</li>
+
+      <li class="li">From the list, select <span class="ph uicontrol">Student Survey - Template</span> to enter the Designer.</li>
+
+      <li class="li">In the upper section Student Survey - Template, click the button to display the drop down.</li>
+
+      <li class="li">Select <span class="ph uicontrol">Schedules</span>.</li>
+
+      <li class="li">You can see the list of the survey schedules and the occurrences that failed.</li>
+
+      </ol>
+</div>
+
+    <p class="p">For more details about the code, see: <span class="xref ft-internal-xlink" data-ft-warning="excluded-from-rendering" data-clusterid="ID_B_REGS_master_2026-03-09/id_b_regs/stu_cal_calbstu_use/t_use_error_reporting">Use error reporting</span> and <span class="xref ft-internal-xlink" data-ft-warning="excluded-from-rendering" data-clusterid="ID_B_REGS_master_2026-03-09/id_b_regs/stu_cal_calbstu_use/t_eip_workflow_runs">View and manage workflow runs</span>.</p>
+
+  </div>
+
+</div></div></section>
+<section id="t-250"><h2>Add Items to the Survey</h2><div class="content-locale-en-US content-locale-en"><div id="c_vtea_survey_add_items_to_the_survey"><div class="body conbody"><p class="shortdesc">In case it is necessary to add new elements to the survey, follow these steps. </p>
+
+    <div class="section">
+      <div class="p">
+        <ol class="ol">
+          <li class="li">Before making any modifications, create a backup of the survey and the workflow, to ensure data integrity and avoid accidental data loss.</li>
+
+          <li class="li">Add the additional questions or sections your institution requires.<p class="p">To learn more about the items that can be added to the forms, see: <span class="xref ft-internal-xlink" data-ft-warning="excluded-from-rendering" data-clusterid="ID_B_REGS_master_2026-03-09/id_b_regs/stu_cal_calbstu_use/t_forms_details">Enter form details</span>.</p>
+</li>
+
+          <li class="li">To connect the new item, a serverless API must be developed to store the information collected from the added item. It is important to know the Banner API endpoints that the new pipeline will use.<p class="p">For more information on the steps to follow on how to develop a serverless API, see: <span class="xref ft-internal-xlink" data-ft-warning="excluded-from-rendering" data-clusterid="ID_B_REGS_master_2026-03-09/id_b_regs/stu_cal_calbstu_use/t_dc_designer_create_serverless_api">Create a serverless API</span>.</p>
+</li>
+
+          <li class="li">After the pipeline has been tested locally, it needs to be added as an additional step into the workflow as an action. It's recommended to add it after the existing objects. <p class="p">To know how to develop an action item, go to: <span class="xref ft-internal-xlink" data-ft-warning="excluded-from-rendering" data-clusterid="ID_B_REGS_master_2026-03-09/id_b_regs/stu_cal_calbstu_use/t_eip_create_action_task">Create action</span>.</p>
+</li>
+
+        </ol>
+
+      </div>
+
+    </div>
+
+    <div class="section">
+      <p class="p">This process will have to be repeated every time that Ellucian releases a new version of the form and the workflow.</p>
+
+    </div>
+
+  </div>
+
+</div></div></section></main></body></html>

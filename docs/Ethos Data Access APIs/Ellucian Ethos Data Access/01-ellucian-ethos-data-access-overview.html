@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Ellucian Ethos Data Access — Ellucian Ethos Data Access overview</title><style>body{font-family:-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;line-height:1.55;color:#1a1a1a;max-width:920px;margin:0 auto;padding:24px}header{border-bottom:2px solid #5a16d6;margin-bottom:8px}h1{color:#3a0ca3}h2,h3,h4,h5,h6{margin-top:1.6em}.crumb{color:#666;font-size:13px;margin:0}.meta{color:#888;font-size:12px}nav.toc{background:#f6f4fc;border:1px solid #e3dcf5;border-radius:8px;padding:12px 18px;margin:18px 0}nav.toc h2{margin:.2em 0}nav.toc ul{list-style:none;padding-left:0}nav.toc a{text-decoration:none;color:#5a16d6}section{margin:1.2em 0;padding-top:.4em}img{max-width:100%;height:auto}table{border-collapse:collapse}td,th{border:1px solid #ccc;padding:4px 8px}code,pre{background:#f4f4f4;border-radius:4px}pre{padding:10px;overflow:auto}</style></head><body><header><p class="crumb">Ethos Data Access APIs › Ellucian Ethos Data Access</p><h1>Ellucian Ethos Data Access — Ellucian Ethos Data Access overview</h1><p class="meta">Source: <a href="https://resources.elluciancloud.com/r/bundle/ethos_data_access">https://resources.elluciancloud.com/r/bundle/ethos_data_access</a> &middot; Retrieved 2026-06-17</p></header><nav class="toc"><h2>Contents</h2><ul><li style="margin-left:0px"><a href="#t-10">Ellucian Ethos Data Access overview</a></li><li style="margin-left:16px"><a href="#t-20">Data privacy</a></li></ul></nav><main><section id="t-10"><h2>Ellucian Ethos Data Access overview</h2><div class="content-locale-en-US content-locale-en"><div id="c_ethos_data_access_overview"><div class="body conbody"><p class="shortdesc"><span class="keyword">Ellucian Ethos Data Access</span> combines the power of the <span class="keyword">Ellucian Ethos Data Model</span> and <span class="keyword">Ellucian Ethos Integration</span> to store data from multiple tenants in the cloud-based <span class="keyword">cloud data storage</span>. Other applications can then consume that data through <span class="ph">Ellucian Ethos Integration</span>.</p>
+
+    <div class="section"><h2 class="title sectiontitle">Data loads</h2>
+      
+      <p class="p"><span class="keyword">Ellucian Ethos Data Access</span> extracts data from authoritative sources, whether they are deployed on-premises, such as <span class="keyword">Ellucian</span> Banner or <span class="keyword">Ellucian</span> Colleague, or whether they are deployed in the cloud, and stores it in secure multi-tenant <span class="ph">cloud data storage</span>. </p>
+
+      <div class="p"><span class="keyword">Ellucian Ethos Data Access</span> loads, reloads, and updates the <span class="keyword">cloud data storage</span> in three ways:<ul class="ul">
+        <li class="li">Loading data for the initial population of the <span class="keyword">cloud data storage</span></li>
+
+        <li class="li">Updating data after the <span class="ph">authoritative source</span> sends <span class="keyword">change notification</span> through <span class="keyword">Ellucian Ethos Integration</span> for up-to-date data.</li>
+
+        <li class="li">Reloading the data from the <span class="ph">authoritative source</span> due to a change to the <span class="keyword">Ellucian Ethos Data Model</span>.</li>
+
+        </ul>
+</div>
+
+      <p class="p">After the system has stored data to the <span class="keyword">cloud data storage</span>, solutions can access and use this real-time data. Depending on the type of data request and how the applications were configured, <span class="ph"> Ethos Integration</span> may forward the request to <span class="ph">Data Access</span>, or to the authoritative source. Refer to <span class="xref ft-internal-xlink" data-ft-warning="excluded-from-rendering" data-clusterid="id_ethos/ethos_data_access/t_add_graphql_resources_single_owner">Add GraphQL resources to an application (single owner)</span> and <span class="xref ft-internal-xlink" data-ft-warning="excluded-from-rendering" data-clusterid="id_ethos/ethos_data_access/c_graphql_requests">GraphQL requests</span>.</p>
+
+    </div>
+
+    <div class="section"><h2 class="title sectiontitle">Data model extensibility</h2>
+      
+      <p class="p">Data Access supports the extensibility capabilities of <span class="keyword">Ellucian Ethos</span> Data Models. <span class="ph">Data Access</span> data models are only accessible through GraphQL integrations orchestrated through Ethos Integrations.</p>
+
+      <p class="p"><span class="ph">Data Access</span> supports semantic versioning of Ellucian Ethos Data Models to help institutions quickly identify and understand changes made to an Ethos Data Models across multiple versions.</p>
+
+      <p class="p">The <span class="ph">Data Access</span> tenant for your institution contains multiple <span class="ph">Data Access</span> environments (that is Test, Production, and potentially others), and each environment contains its own view of Ethos Data Models and their extensions.</p>
+
+      <p class="p">Within <span class="ph">Data Access</span>, each institution has its own tenant. Multi-campus institutions might have multiple tenants, one for each campus.</p>
+
+      <p class="p">Each tenant initially contains two <span class="ph">Data Access</span> environments: Test and Production. The number of environments present depends on the number of environments licensed for Ethos Integration. You can license additional environments if needed to support your Ethos Integration implementation. Environments are independent of each other and contain extended and Institutional Ethos Data Models.</p>
+
+      <p class="p">Within an environment, you can create new or extend existing Ethos Data Models; which define how you want to share data through Ethos Integration within a particular environment. For example, during testing in the test environment, you can extend the Persons data model with an additional property, such as the LDAP user id.</p>
+
+      <div class="p">Data Access extensibility features include:<ul class="ul">
+        <li class="li">Extend existing Ethos Data Models in support of specific application integration needs.</li>
+
+        <li class="li">Extend existing data models without modifying their baseline definition.</li>
+
+        <li class="li">Create custom data models in support of specific application integration needs.</li>
+
+        <li class="li">View properties of data models by version.</li>
+
+        </ul>
+</div>
+
+      <div class="p">Data model extensibility can be accomplished in the following ways:<ul class="ul">
+        <li class="li">By creating new institutional data models.</li>
+
+        <li class="li">By extending existing <span class="ph">Ellucian Ethos Data Models</span>.</li>
+
+        </ul>
+</div>
+
+      <p class="p">See <span class="xref ft-internal-link" title="Ellucian Ethos Data Access enables data model extensibility. Data model extensibility allows Ethos Integration to support the variable and dynamic nature of application integration, without modifying enterprise level systems." data-ft-warning="excluded-from-rendering" data-mapid="biIeTpD~s2DMD68cUGZtOw" data-tocid="q5kZC98yV0VckVoa2W9b7w">Data model extensibility</span>.</p>
+
+    </div>
+
+    <div class="section"><h2 class="title sectiontitle">Change notifications</h2>
+      
+      <p class="p"><span class="ph">change notifications</span> communicate to <span class="keyword">Ellucian Ethos Integration</span> that a data change occurred in the <span class="ph">authoritative source</span>.</p>
+
+      <p class="p"><span class="keyword">Ellucian Ethos Integration</span> stores the <span class="ph">change notifications</span> in a queue. <span class="keyword">Data Access</span> checks this queue for <span class="ph">change notifications</span>. When found, <span class="keyword">Data Access</span> retrieves the changes and updates the <span class="keyword">cloud data storage</span>.</p>
+
+      <p class="p"><span class="keyword">Data Access</span> pauses <span class="keyword">change notification</span> updates for only the resources that are loading. The rest of the resources will consume changes as they come in.</p>
+
+      <p class="p">For example, <span class="ph">Data Access</span> has addresses, persons, and students loaded. The administrator decides to reload persons. <span class="ph">change notifications</span> come in for the three resources. Addresses and students are updated as the <span class="keyword">change notifications</span> come in for them. <span class="ph">Data Access</span> queues the ones for persons, for them to resume consuming when the resource finishes bulk loading.</p>
+
+      <p class="p">Unlike the initial data load and data reloads, updates to records in the authoritative sources are retrieved to the <span class="ph">cloud data storage</span> during background processing. </p>
+
+      <p class="p">The initial data load and data reloads require you to initiate the data pull.</p>
+
+    </div>
+
+    <div class="section"><h2 class="title sectiontitle">Recommended web browsers</h2>
+      
+      <p class="p"><span class="keyword">Ellucian Ethos Data Access</span> is certified for the latest two versions of Google Chrome.</p>
+
+      <p class="p">You can also use Mozilla Firefox, Apple Safari, and Microsoft Internet Explorer. However, these browsers are not certified for use with <span class="keyword">Data Access</span>.</p>
+
+    </div>
+
+  </div>
+
+<div class="related-links">
+<div class="linklist relinfo relconcepts" xml:lang="en-US" lang="en-US"><strong>Related concepts</strong><br>
+<ul class="linklist">
+<li class="linklist"><span class="link ft-internal-xlink" data-ft-warning="excluded-from-rendering" data-clusterid="id_ethos/ethos_data_access/c_ems_ema">test--Banner and Colleague messaging components</span></li>
+<li class="linklist"><span class="link ft-internal-xlink" data-ft-warning="excluded-from-rendering" data-clusterid="id_ethos/ethos_data_access/c_api_dm_change_notification">Ellucian Ethos Data Model Change Notification</span></li></ul></div>
+</div></div></div></section>
+<section id="t-20"><h3>Data privacy</h3><div class="content-locale-en-US content-locale-en"><div id="c_data_privacy"><div class="body conbody"><p class="shortdesc"><span class="ph">Ellucian Ethos Data Access</span> supports data privacy by allowing you to limit the data sent to <span class="ph">Data Access</span> from an authoritative source and the data retrieved from <span class="ph">Data Access</span> by requesting applications.</p>
+
+    <div class="section"><h2 class="title sectiontitle">Limiting data sent from the authoritative source</h2>
+      
+      <p class="p"><span class="ph">Ellucian Ethos Data Access</span> honors the privacy rules that you establish in your <span class="ph">authoritative source</span> such as <span class="keyword">Banner</span> or <span class="ph">Colleague</span>. During the initial data load and subsequent reloads, <span class="keyword">Data Access</span> retrieves the authorized portion of the resource records according to the content privacy rules defined by the <span class="ph">authoritative source</span>. The authorized portion may be either the full or partial resource record.</p>
+
+      <p class="p">In order for <span class="ph">Data Access</span> to be the information source to data consuming applications, <span class="keyword">Ellucian</span> recommends that <span class="ph">Data Access</span> stores the full representation of the data models as available in the <span class="ph">authoritative source</span>. Also see <cite class="cite">Limiting data retrieved by requesting applications</cite> for more information.</p>
+
+      <div class="note"><span class="notetitle">Note:</span> <span class="keyword">Data Access</span> detects partial data using the <code class="ph codeph">X-Content-Restricted</code> HTTP header in the <span class="ph">authoritative source</span> API's response. Refer to the <cite class="cite"><span class="keyword">Ellucian Ethos Data Model</span> API HTTP Status Codes</cite> for more information on the API responses.</div>
+
+      <p class="p">Refer to the data privacy section of  the <cite class="cite">Banner Ethos API Use content</cite> from your <span class="keyword">authoritative source</span> for more information about enabling data privacy.</p>
+
+      <div class="note warning"><span class="warningtitle">Warning:</span> You must reload data in <span class="keyword">Data Access</span> when permissions are modified at the <span class="ph">authoritative source</span>. This ensures that any previously loaded private data is removed from <span class="keyword">Data Access</span> or that any newly unrestricted data is made available to <span class="ph">Data Access</span>, so that all the data is in sync.</div>
+
+    </div>
+
+    <div class="section"><h2 class="title sectiontitle">Data Privacy Change Notifications</h2>
+      
+      <p class="p">Change notifications for resources with data privacy typically contain the most restricted data version. If <span class="keyword">Data Access</span> detects a <span class="keyword">change notification</span> with partial content, <span class="keyword">Data Access</span> requests the data version it is authorized to receive. The <span class="ph">authoritative source</span> may return the full or partial content representation. If the <span class="ph">authoritative source</span> is down during the request, <span class="keyword">Data Access</span> reports an error on the <span class="ph uicontrol">Change Notifications</span> tab and stores the original partial record as is.</p>
+
+      <div class="note"><span class="notetitle">Note:</span> <span class="keyword">Data Access</span> detects partial data by the Content Type within the <span class="keyword">change notification</span> message.</div>
+
+    </div>
+
+    <div class="section"><h2 class="title sectiontitle">Limiting data retrieved by requesting applications</h2>
+      
+      <p class="p">You define data privacy rules on an application by application basis in <span class="ph">Ethos Integration</span>, to control what information <span class="keyword">Data Access</span> reveals to the consuming applications. Applications can request data from <span class="keyword">Data Access</span> by making GraphQL requests through <span class="ph">Ethos Integration</span>. When you set up those GraphQL requests, you can limit the resources and properties to which each application has access. Refer to <span class="xref ft-internal-xlink" data-ft-warning="excluded-from-rendering" data-clusterid="id_ethos/ethos_data_access/t_add_graphql_resources_single_owner">Add GraphQL resources to an application (single owner)</span></p>
+
+    </div>
+
+  </div>
+
+<div class="related-links">
+<div class="linklist relinfo relconcepts" xml:lang="en-US" lang="en-US"><strong>Related concepts</strong><br>
+<ul class="linklist">
+<li class="linklist"><span class="link ft-internal-xlink" data-ft-warning="excluded-from-rendering" data-clusterid="id_ethos/ethos_data_access/c_api_dm_status_codes">Ellucian Ethos Data Model API HTTP status codes standards</span></li>
+<li class="linklist"><span class="link ft-internal-xlink" data-ft-warning="excluded-from-rendering" data-clusterid="id_ethos/ethos_data_access/c_api_dm_change_notification">Ellucian Ethos Data Model change notification standards</span></li></ul></div>
+</div></div></div></section></main></body></html>

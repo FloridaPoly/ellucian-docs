@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Ellucian Insights — Connect your reporting tool to the Insights Data Warehouse</title><style>body{font-family:-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;line-height:1.55;color:#1a1a1a;max-width:920px;margin:0 auto;padding:24px}header{border-bottom:2px solid #5a16d6;margin-bottom:8px}h1{color:#3a0ca3}h2,h3,h4,h5,h6{margin-top:1.6em}.crumb{color:#666;font-size:13px;margin:0}.meta{color:#888;font-size:12px}nav.toc{background:#f6f4fc;border:1px solid #e3dcf5;border-radius:8px;padding:12px 18px;margin:18px 0}nav.toc h2{margin:.2em 0}nav.toc ul{list-style:none;padding-left:0}nav.toc a{text-decoration:none;color:#5a16d6}section{margin:1.2em 0;padding-top:.4em}img{max-width:100%;height:auto}table{border-collapse:collapse}td,th{border:1px solid #ccc;padding:4px 8px}code,pre{background:#f4f4f4;border-radius:4px}pre{padding:10px;overflow:auto}</style></head><body><header><p class="crumb">Ellucian Insights › Ellucian Insights</p><h1>Ellucian Insights — Connect your reporting tool to the Insights Data Warehouse</h1><p class="meta">Source: <a href="https://resources.elluciancloud.com/r/bundle/ellucian_insights">https://resources.elluciancloud.com/r/bundle/ellucian_insights</a> &middot; Retrieved 2026-06-17</p></header><nav class="toc"><h2>Contents</h2><ul><li style="margin-left:0px"><a href="#t-1920">Connect your reporting tool to the Insights Data Warehouse</a></li></ul></nav><main><section id="t-1920"><h2>Connect your reporting tool to the Insights Data Warehouse</h2><div class="content-locale-en-US content-locale-en"><div id="t_connect_reporting_tools"><div class="body taskbody"><p class="shortdesc">You can connect existing reporting tools to the <span class="keyword">Insights</span> <span class="keyword">Data Warehouse</span> using the <span class="keyword">Insights</span> Data Gateway. The Data Gateway provides a single JDBC/ODBC connection using a site-to-site Virtual Private Network (VPN) between the <span class="keyword">Ellucian Cloud</span> and your network. With this functionality, you can leverage your previously built reports with the <span class="keyword">Insights</span> data models.</p>
+
+        <div class="section prereq p"><div class="tasklabel"><h2 class="sectiontitle tasklabel">Before you begin</h2></div>
+            <div class="note"><span class="notetitle">Note:</span> The <span class="keyword">Insights</span> Data Gateway is intended for connecting business intelligence and reporting tools directly to the <span class="keyword">Insights</span> <span class="keyword">Data Warehouse</span> only for reporting purposes. It is not intended for data integrations or database backups. </div>
+
+            <div class="p">Complete these prerequisites before connecting your reporting tool to the <span class="keyword">Insights</span> Data Gateway. <ol class="ol">
+                <li class="li">Ensure you have the <span class="keyword">Insights</span> Data Gateway connection details from the <span class="keyword">Ellucian Cloud</span> team:<ul class="ul">
+                    <li class="li">Server: <var class="keyword varname">&lt;Database IP Address&gt;</var></li>
+
+                    <li class="li">Port: <var class="keyword varname">&lt;Database Port&gt;</var></li>
+
+                    <li class="li">Database: <var class="keyword varname">&lt;Database Name&gt;</var></li>
+
+                    <li class="li">Username: <var class="keyword varname">&lt;username&gt;</var></li>
+
+                    <li class="li">Password: <var class="keyword varname">&lt;password&gt;</var></li>
+
+                    </ul>
+</li>
+
+                <li class="li">Ingest your data to the <span class="keyword">Insights</span> <span class="keyword">Data Lake</span>. </li>
+
+                <li class="li">Ensure that the most recent load to the <span class="keyword">Data Warehouse</span> successfully completed. </li>
+
+                <li class="li">You have configured your display rules successfully.</li>
+
+                </ol>
+</div>
+
+            <p class="p">For more information on these prerequisites, refer to the <cite class="cite"><span class="keyword">Insights</span> administrator setup</cite> section of <span class="xref ft-internal-link" title="To configure Insights, follow this checklist to properly set up your administrators so they can manage the Insights environment and users." data-ft-warning="excluded-from-rendering" data-mapid="rbEOZGKJGXHGODqu~~Iz7g" data-tocid="18dZZlIS8Y~yk5TnWK4OaA">Ellucian Insights setup checklist</span>.</p>
+
+        </div>
+
+        <div class="section context"><div class="tasklabel"><h2 class="sectiontitle tasklabel">About this task</h2></div>
+            <div class="p">
+                <br><img class="image" alt="Data flow overview for Ellucian Insights" data-ft-asset-display-name="flw_insights_data_nlbls.png" src="images/05-connect-your-reporting-tool-to-the-insights-data-warehouse-1.png" data-ft-resource-id="tlH8kaQ0uv4kT3zfTSUeTw-rbEOZGKJGXHGODqu~~Iz7g"><br>
+            </div>
+
+            <p class="p">The following steps outline the high-level process for creating a connection from your institution’s reporting tool to the <span class="keyword">Insights</span> <span class="keyword">Data Warehouse</span>. </p>
+
+            <p class="p">Refer to your reporting tool's documentation for the detailed steps required to create a connection in your reporting tool.</p>
+
+        </div>
+
+        <div class="tasklabel"><h2 class="sectiontitle tasklabel">Procedure</h2></div><ol class="ol steps"><li class="li step">
+                <span class="ph cmd">Complete these steps, as required by your reporting tool, on your reporting tool server. </span>
+                <ol type="a" class="ol substeps">
+                    <li class="li substep">
+                        <span class="ph cmd">Download and install the PostgreSQL ODBC or JDBC drivers (or both). Some reporting tools may require the installation of both the 32-bit and 64-bit versions of the PostgreSQL ODBC drivers. </span>
+                    </li>
+
+                    <li class="li substep">
+                        <span class="ph cmd">Create a new PostgreSQL ODBC Data Source (32-bit, 64-bit, or both). </span>
+                    </li>
+
+                    <li class="li substep">
+                        <span class="ph cmd">Copy the PostgreSQL JDBC driver (*.jar) to the proper directory in your reporting tool's installation directory. </span>
+                    </li>
+
+                </ol>
+
+            </li>
+<li class="li step">
+                <span class="ph cmd">Complete these steps in your reporting tool's administrative dashboard or application.</span>
+                <ol type="a" class="ol substeps">
+                    <li class="li substep">
+                        <span class="ph cmd">Create a new PostgreSQL data source connection.</span>
+                    </li>
+
+                    <li class="li substep">
+                        <span class="ph cmd">Enable the PostgreSQL data source connection. </span>
+                    </li>
+
+                    <li class="li substep">
+                        <span class="ph cmd">Grant users and groups access to the PostgreSQL data source connection. </span>
+                    </li>
+
+                </ol>
+
+            </li>
+</ol>
+
+        <div class="section postreq"><div class="tasklabel"><h2 class="sectiontitle tasklabel">What to do next</h2></div>
+            <p class="p">Refer to this <span class="keyword">Ellucian Customer Center</span> article for an example of how to connect your reporting tool to the <span class="keyword">Insights</span> <span class="keyword">Data Warehouse</span>: <a class="xref ft-external-link" href="https://elluciansupport.service-now.com/esc?id=kb_article_view&amp;sysparm_article=KB000500582" target="_blank" rel="noopener">Connecting Evisions Argos to the Ellucian Insights Data Warehouse</a>.</p>
+
+            
+            
+        </div>
+
+    </div>
+
+<div class="related-links">
+<div class="linklist relinfo relconcepts" xml:lang="en-US" lang="en-US"><strong>Related concepts</strong><br>
+<ul class="linklist">
+<li class="linklist"><span class="link ft-internal-link" title="Your data flows securely from your institution's source databases to the Ellucian Insights Data Lake and Data Warehouse where your data can then be accessed using your reporting tool." data-ft-warning="excluded-from-rendering" data-mapid="rbEOZGKJGXHGODqu~~Iz7g" data-tocid="7f7E6jaapmMsu3JvxuHtnw">Ellucian Insights data flow overview</span></li></ul></div>
+</div></div></div></section></main></body></html>

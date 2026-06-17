@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>CALBSTU Banner Student - Use — Hour and Date Calculations</title><style>body{font-family:-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;line-height:1.55;color:#1a1a1a;max-width:920px;margin:0 auto;padding:24px}header{border-bottom:2px solid #5a16d6;margin-bottom:8px}h1{color:#3a0ca3}h2,h3,h4,h5,h6{margin-top:1.6em}.crumb{color:#666;font-size:13px;margin:0}.meta{color:#888;font-size:12px}nav.toc{background:#f6f4fc;border:1px solid #e3dcf5;border-radius:8px;padding:12px 18px;margin:18px 0}nav.toc h2{margin:.2em 0}nav.toc ul{list-style:none;padding-left:0}nav.toc a{text-decoration:none;color:#5a16d6}section{margin:1.2em 0;padding-top:.4em}img{max-width:100%;height:auto}table{border-collapse:collapse}td,th{border:1px solid #ccc;padding:4px 8px}code,pre{background:#f4f4f4;border-radius:4px}pre{padding:10px;overflow:auto}</style></head><body><header><p class="crumb">Banner Student › CALBSTU Banner Student - Use</p><h1>CALBSTU Banner Student - Use — Hour and Date Calculations</h1><p class="meta">Source: <a href="https://resources.elluciancloud.com/r/bundle/banner_cal_calbstu_acn_use">https://resources.elluciancloud.com/r/bundle/banner_cal_calbstu_acn_use</a> &middot; Retrieved 2026-06-17</p></header><nav class="toc"><h2>Contents</h2><ul><li style="margin-left:0px"><a href="#t-30">Hour and Date Calculations</a></li><li style="margin-left:16px"><a href="#t-40">Note on the Independent Study Lab check box on SSASECT</a></li><li style="margin-left:16px"><a href="#t-50">Contact hour calculations</a></li><li style="margin-left:32px"><a href="#t-60">Contact hours in the SSASECT main window</a></li><li style="margin-left:32px"><a href="#t-70">Contact hours in the SSASECT Meeting Times window</a></li><li style="margin-left:32px"><a href="#t-80">Meeting contact hours calculations explained</a></li><li style="margin-left:32px"><a href="#t-90">Contact hours for CCFS-320 reporting</a></li></ul></nav><main><section id="t-30"><h2>Hour and Date Calculations</h2><div class="content-locale-en-US content-locale-en"><div id="c_hour_date_calculations"><div class="body conbody"><p class="shortdesc">This section discusses modifications to baseline hour (including contact hour) and date calculations to support CCFS-320 Reporting functionality.</p>
+
+    <p class="p">The calculations for the Enhanced Academic Calendar are based on <cite class="cite">The California Community Colleges Student Attendance Accounting Manual (AAM)</cite> and the regulatory revisions to it. Because the AAM definitions can be interpreted differently from college to college, various override settings are included to allow your college to achieve the results that best fits your practices and interpretations.</p>
+
+  </div>
+
+</div></div></section>
+<section id="t-40"><h3>Note on the Independent Study Lab check box on SSASECT</h3><div class="content-locale-en-US content-locale-en"><div id="c_note_the_independent_study_lab_check_box_ssasect"><div class="body conbody"><p class="shortdesc">The Independent Study Lab check box on the Schedule Page (SSASECT) is difficult to set up properly to meet the regulatory requirements for CCFS-320 contact hour reporting. </p>
+
+    <p class="p">Replacing it with a combination of values in the Weekly and Independent Study check boxes setting up the meetings appropriately results in more accurate CCFS-320 reporting.</p>
+
+    <p class="p">Therefore, the Independent Study Lab check box should no longer be used, although it has not been removed from the page and has not been removed from any underlying logic that references it for contact hour calculations and attendance type classification. To prevent problems with a code for which the Independent Study Lab check box checked, if a user now tries to save a record with this field checked, the system displays a warning message.</p>
+
+    <p class="p">The <span class="ph filepath"> independent_lab_crns.sql </span> script will list the CRNs currently using this field.</p>
+
+    <div class="note warning"><span class="warningtitle">Warning:</span> The calculations on SSASECT or on the CCFS-320 processes (SVRCALX and the related reporting on SVRCAL% reports) have not yet been revised to support this change, although they will be in a future release. Therefore, when release 8.6 is installed, the optional <span class="ph filepath"> independent_lab_crns.sql </span> script identifies records that need to be changed so that SSASECT and SVRCAL% report contact hour calculations and attendance type classification will not be incorrect. CRN records using the Independent Study Lab check box should be changed to the combination of Weekly and Independent Study with meetings that are identified as lab and class meeting types (in GTVMTYP) as appropriate.</div>
+
+  </div>
+
+</div></div></section>
+<section id="t-50"><h3>Contact hour calculations</h3><div class="content-locale-en-US content-locale-en"><div id="c_contact_hour_calculations"><div class="body conbody"><p class="shortdesc">All contact hour calculations are made on an individual CRN meeting (SSRMEET). </p>
+
+    <p class="p">The result is saved in the Hours Per Day and Hours Per Week fields on the Meeting Location and Credit sub-tab of the of the Time and Instructors tab of the in the Meeting Times and Instructor window of the Schedule Page (SSASECT). </p>
+
+    <p class="p">With single or multiple meeting entries, how the combination of these Meetings hours is displayed for the CRN in the main window of SSASECT depends on the value in the <span class="ph uicontrol">Attendance Method</span> field (SSBSECT_ACCT_CODE) and the attendance method code’s settings in the Attendance Account Method Validation Page (STVACCT).</p>
+
+    <p class="p">In <span class="keyword">Banner</span>® CALBSTU, a contact hour is calculated and saved on each CRN Meeting SSRMEET record. This value is summed and displayed in fields in the main window of SSASECT, but it is not saved with the SSBSECT records. These values are based on the meeting days and hours and how the CRN is set up. However, for apportionment reporting, some CRNs use credit hours from the SSASECT Meeting record instead of the contact hours. This difference is explained in <span class="xref ft-internal-link" title="The number of contact hours reported for CCFS-320 is determined by the CRN setups as follows. For CCFS-320 purposes, number-of-days calculations are limited to a maximum of two years." data-ft-warning="excluded-from-rendering" data-mapid="jL2UUBTQJR5uipmMJVsX5g" data-tocid="4lfTr3QUSxYAbJFbf9DD5g" data-section="c_contact_hours_ccfs-320_reporting">Contact hours for CCFS-320 reporting</span>.</p>
+
+  </div>
+
+</div></div></section>
+<section id="t-60"><h4>Contact hours in the SSASECT main window</h4><div class="content-locale-en-US content-locale-en"><div id="c_contact_hours_the_ssasect_main_window"><div class="body conbody"><p class="shortdesc">To accommodate contact hour calculations, the <span class="ph uicontrol">Attendance Method</span> field is a required field. For all new and updated CRNs, a valid value must be entered. Existing CRNs for which an attendance method has not been entered will be treated as ineligible for apportionment until they are updated.</p>
+
+    <div class="p">The value in the CRN's <span class="ph uicontrol">Weekly Contact Hours</span> field is the sum of all meetings' <span class="ph uicontrol">Hours per Week</span> values if the attendance method code is defined as one of the following: <ul class="ul"> <li class="li"><kbd class="ph userinput">Weekly</kbd></li>
+ <li class="li"><kbd class="ph userinput">Independent Study</kbd> combined with <kbd class="ph userinput">Weekly</kbd></li>
+ <li class="li"><kbd class="ph userinput">Independent Study Lab</kbd> (see <span class="xref ft-internal-link" title="The Independent Study Lab check box on the Schedule Page (SSASECT) is difficult to set up properly to meet the regulatory requirements for CCFS-320 contact hour reporting." data-ft-warning="excluded-from-rendering" data-mapid="jL2UUBTQJR5uipmMJVsX5g" data-tocid="IivQMIE78Vz0JmFivNzkBw" data-section="c_note_the_independent_study_lab_check_box_ssasect">Note on the Independent Study Lab check box on SSASECT</span> for information about this check box)</li>
+ <li class="li"><kbd class="ph userinput">Actual</kbd></li>
+ <li class="li"><kbd class="ph userinput">Independent Study</kbd> combined with <kbd class="ph userinput">Actual</kbd></li>
+ <li class="li">Non-apportionment-reported (all accounting method check boxes are unchecked on STVACCT)</li>
+ </ul>
+</div>
+
+    <p class="p">Any 'TBA' meeting (a meeting with all of the day fields (SSRMEET_xxx_DAY) unchecked) is added to the value in the <span class="ph uicontrol">Weekly Contact Hours</span>. With the other attendance method code settings (daily types), the <span class="ph uicontrol">Weekly Contact Hours</span> field is left blank.</p>
+
+    <div class="p">The value in the CRN's <span class="ph uicontrol">Daily Contact Hours</span> field is the total meeting time that occurs on the first meeting date of the CRN if the attendance method code is defined as one of the following (assuming that all meeting days have the same hours/day to be coded as <kbd class="ph userinput">Daily</kbd>): <ul class="ul"> <li class="li"><kbd class="ph userinput">Daily</kbd></li>
+ <li class="li"><kbd class="ph userinput">Independent Study</kbd> combined with <kbd class="ph userinput">Daily</kbd></li>
+ <li class="li"><kbd class="ph userinput">Actual</kbd></li>
+
+      <li class="li"><kbd class="ph userinput">Independent Study</kbd> combined with <kbd class="ph userinput">Actual</kbd></li>
+ <li class="li">Non-apportionment-reported (all accounting method check boxes are unchecked on STVACCT)</li>
+ </ul>
+</div>
+
+    <p class="p">Any TBA meeting (a meeting with all of the day fields (SSRMEET_xxx_DAY) unchecked) is added to the value in the <span class="ph uicontrol">Daily Contact Hours</span> field. With the other attendance method code settings (weekly types), the <span class="ph uicontrol">Daily Contact Hours</span> field is left blank.</p>
+
+    <p class="p">The value in the <span class="ph uicontrol">Total Contact Hours</span> field is a display-only calculated. This is the total contact hours for all meetings and is the sum of the values in the <span class="ph uicontrol">Total Meeting Hours</span> field (SSRMEET_HRS_TOTAL) for the meeting.</p>
+
+  </div>
+
+</div></div></section>
+<section id="t-70"><h4>Contact hours in the SSASECT Meeting Times window</h4><div class="content-locale-en-US content-locale-en"><div id="c_contact_hours_the_ssasect_meeting_times_window"><div class="body conbody"><p class="shortdesc">The contact hour calculations use the following fields from the CRN’s meeting record, as specified in the Meeting Time window of SSASECT.</p>
+
+    <ul class="ul">
+      <li class="li">Start Time (SSRMEET_BEGIN_TIME) and End Time (SSRMEET_END_TIME) (user updateable)</li>
+
+      <li class="li">Day fields (SSRMEET_xxx_DAY) (user updateable) <p class="p">If no days are selected as with a TBA meeting, the calculated contact hours will be null. In this case, select the Override Hours Indicator check box and manually enter the appropriate values for the three hour fields.</p>
+ <p class="p">The Hours Per Day field (SSRMEET_HRS_DAY) is multiplied by the number of checked Day fields to calculate the Hours Per Week field (SSRMEET_HRS_WEEK).</p>
+</li>
+
+      <li class="li">Include Break Time (SSRMEET_BREAK_IND) (user updateable) <p class="p">This field works as follows.</p>
+<ul class="ul"> <li class="li">If you wanted a meeting scheduled from 8:00 to 10:25 without any breaks to have 2.90 contact hours per day, you would clear the Include Break Time check box. The value 2.90 is the total duration minutes divided by 50 class minutes per hour: 145 / 50.</li>
+
+        <li class="li">If you wanted this meeting to include one 10-minute break to have 2.70 contact hours, you would check the Include Break Time check box. This calculates the 10 minutes of break in Calculated Break Minutes per Day field and considers this time in the contact hours calculation following the partial hour rule. You can also use the Override Break Minutes per Day field to change the break value from the default value. <p class="p">If the Override Hours Indicator check box is checked, this value is nulled and not updateable. If it is unchecked, this field is updateable.</p>
+</li>
+
+        </ul>
+</li>
+
+      <li class="li">Calculated Break Minutes per Day (system-calculated) <p class="p">This is the system-calculated total break time within one meeting day displayed when the Include Break Time check box is checked. This calculation is based on the follow assumptions: the “last partial hour” rule is used to skip a break in the last partial hour, and the number of 10-minute breaks included is based on the whole hours.</p>
+
+        <p class="p">If the Override Hours Indicator check box is checked, this value is nulled and not calculated. If it is unchecked and the Include Break Time check box is checked, this field displays the calculated value.</p>
+</li>
+
+      <li class="li">Override Break Minutes per Day (SSRMEET_BREAK_MIN_ADJUST) (user updateable) <p class="p">This is an optional field you can use in special circumstances when the calculated break is not correct, for example, when a continuous class time is split into multiple meetings for contract or pay purposes. In the 8:00 to 10:25 example above (under Include Break Time), if you enter 20 in the Override Break Minutes per Day field, the contact hours changes to 2.50.</p>
+
+        <p class="p">If the Override Hours Indicator check box is checked or the Include Break Time check box is unchecked, this value is nulled and not updateable. If it is unchecked and the Include Break Time check box is checked, this field is updateable.</p>
+</li>
+
+      <li class="li">Override Hours Indicator (SSRMEET_HRS_OVER_IND) (user updateable) <div class="p">This field controls the use of the following fields: <ul class="ul"> <li class="li">Hours Per Day</li>
+ <li class="li">Hours Per Week</li>
+ <li class="li">Total Contact Hours</li>
+ <li class="li">Include Break Time</li>
+ <li class="li">Calculated Break Minutes per Day</li>
+ <li class="li">Override Break Minutes per Day</li>
+
+        <li class="li">Number of Days <p class="p">If the Override Hours Indicator check box is unchecked, all break fields are accessible and used in the calculations, and the Hours Per Day and Hours Per Week fields are not updateable.</p>
+
+        <p class="p">If the Override Hours Indicator check box is checked, all break fields are nulled and inaccessible, and Hours Per Day, Hours Per Week, and Total Contact Hours fields are updateable. All calculations of the hours are suppressed, and the values must be entered (nulls not allowed). The system validates for reasonableness between the day and week hours entered. This setting can be used with any meeting but is most important with TBA meetings that have no set schedule but do have reportable contact hours.</p>
+</li>
+
+        </ul>
+</div>
+</li>
+
+      <li class="li">Hours per Day (SSRMEET_HRS_DAY) (system-calculated or user updateable) <p class="p">This is the one-day contact-hour value (before multiplying by the number of Day fields checked).</p>
+
+        <p class="p">If the Override Hours Indicator check box is unchecked, this value is calculated from the meeting times and break settings, and it is display-only and not updateable. The calculation uses the AAM-defined 50-class-minute hour and partial-hour rules unless the Include Break Time check box is unchecked, in which case the calculation is simply duration minutes / 50. Additionally, if breaks are included, a user-entered Override Break Minutes per Day will alter the calculation from the rules.</p>
+
+        <p class="p">If the Override Hours Indicator check box is checked, this field is updateable and must be manually updated with the daily contact hours value of this meeting.</p>
+</li>
+
+      <li class="li">Hours per Week (SSRMEET_HRS_WEEK) (system-calculated or user updateable) <p class="p">This is the contact-hour value for the number of days selected on the meeting.</p>
+ <p class="p">If the Override Hours Indicator check box is unchecked, this value is calculated from the meeting times and break settings, and it is display-only and not updateable.</p>
+
+        <p class="p">If the Override Hours Indicator check box is checked, this field is updateable and must be manually updated with the daily contact hours value of this meeting.</p>
+</li>
+
+      <li class="li">Total Contact Hours (SSRMEET_HRS_TOTAL) (system-calculated or user updateable) <p class="p">This is the total contact-hour value for the meeting. This field is display-only and cannot be changed by the user unless the Override Hours Indicator check box is checked, in which case, the value can be entered. A calculated value will replace the manually entered value if the user changes the meeting again by unchecking the Override Hours Indicator check box.</p>
+
+        <p class="p">When the Override Hours Indicator check box is unchecked, values are calculated in one of the following ways.</p>
+ <ul class="ul">
+        <li class="li">If the CRN attendance method code is Weekly OR Independent Study combined with Weekly or Independent Study Lab, the value in the Term Length Multiplier field on STVTERM for the CRN’s term is multiplied by the value in the Hours per Week field on SSASECT (STVTERM_TERM_LEN_MULT * SSRMEET_HRS_WEEK). (See Note on the Independent Study Lab check box on SSASECT on page 14 for information about this check box.)</li>
+
+        <li class="li">If the CRN attendance method code is any other, the value in the Number of Days field on SSASECT is multiplied by the value in the Hours per Day field on SSASECT (SSRMEET_MEET_NO * SSRMEET_HRS_DAY).</li>
+ </ul>
+</li>
+
+      <li class="li">Number of Days (SSRMEET_MEET_NO) (system-calculated) <p class="p">This is the count of meeting-days for the meeting. The Start Date field (SSRMEET_START_DATE), the End Date field (SSRMEET_END_DATE), and the selected days are used to determine the actual number of calendar dates this meeting will hold class. If any of the selected dates are excluded on SSAEXCL (matching the calendar year and CRN’s part of term), it is removed and not counted.</p>
+</li>
+
+    </ul>
+
+  </div>
+
+</div></div></section>
+<section id="t-80"><h4>Meeting contact hours calculations explained</h4><div class="content-locale-en-US content-locale-en"><div id="c_meeting_contact_hours_calculations_explained"><div class="body conbody"><p class="shortdesc">In the following explanation of how the calculations work, the phrase passing time refers only to the time between classes, and break refers to a time within a class’s start and end times (that is, a break from instruction within the class time).</p>
+
+    <ul class="ul">
+      <li class="li">If the <span class="ph uicontrol">Override Hours Indicator</span> check box is checked, the user enters the contact hours; system calculations are suppressed. This allows the user to add or adjust contact hours for “TBA” and other special situations.</li>
+
+      <li class="li">If the <span class="ph uicontrol">Override Hours Indicator</span> check box is unchecked, the contact hours calculation uses the following information from the CRN’s meeting record: <ul class="ul"> <li class="li">Times, which are the values in the <span class="ph uicontrol">Start Time</span> (SSRMEET_BEGIN_TIME) and <span class="ph uicontrol">End Time</span> (SSRMEET_END_TIME) fields of the Meeting Time window on SSASECT</li>
+
+        <li class="li">Days, which are the seven day of the week indicators on a CRN Meeting record (SSASECT Meeting Time window, SSRMEET_xxx_DAY fields).</li>
+ </ul>
+</li>
+
+      <li class="li">Passing time (for example, 10 minutes) before or after a CRN’s meeting time is always excluded from the entered times. Including this 10-minute period in the CRN’s meeting times might result in an incorrect calculation.</li>
+
+      <li class="li">Meetings defined for less than 50-minute durations (for example, 8:00 - 8:49) are still calculated for contact hours even though they are not valid and, according to the AAM should be zero. Saving such an entry will trigger a warning, but the entry can be saved. This allows complex setups and flexibility for CRNs with multiple meetings. In this situation, the actual duration is divided by 60 minutes instead of 50. (Entering <kbd class="ph userinput">8:00</kbd> - <kbd class="ph userinput">8:30</kbd> returns <kbd class="ph userinput">0.50</kbd>.)</li>
+
+      <li class="li">Meetings that are defined for whole hours have 1 contact hour per whole hour and 10 minutes per whole hour of calculated break minutes per day.</li>
+
+      <li class="li">Meetings that are defined with the final hour that is 50 to 59 clock minutes are calculated as whole contact hours. For the final hour, the net minutes in excess of 50 are included in the calculated break minutes per day.</li>
+
+      <li class="li">All other meeting durations include partial hours less than 50 minutes. The extra minutes in the partial hour are converted and added to the contact hours value.</li>
+
+    </ul>
+
+    <div class="p">Using this logic, all examples found in the <cite class="cite">California Community Colleges Student Attendance Accounting Manual</cite> can be set up to calculate the correct results. More complex examples involving multiple meetings can also be setup to obtain correct results. Thus, for example: <ul class="ul"> <li class="li">A one-plus hour course from 0800 to 0915 calculates to 1.5 contact hours with 0 minutes calculated break</li>
+
+      <li class="li">A two-full-hour course from 0800 to 1000 (including passing time and one 10-minute break) calculates to 2 contact hours</li>
+ <li class="li">A two-plus hour course from 0800 to 1015 (excluding passing time at the end of class and including one 10-minute break) calculates to 2.5 contact hours</li>
+ </ul>
+</div>
+
+    <p class="p">When a CRN is loaded into SSASECT, or if the page is refreshed after changes are made, the calculated values are recalculated. If a CRN is defined with an attendance method of Daily, the system checks the consistency of the meeting patterns for each day for which a session is selected. If any day that the class has a session has a total meeting hours (totaled from all of its meetings) that is different than the rest, the following warning is displayed when an attempt is made to save any meeting: *WARNING* This section is Daily, but all meeting days do not have equal contact hours. If all of the days have equal meeting hours, the warning is not display. </p>
+
+    <p class="p">The following is an example of CRN with two meetings that would trigger the “Daily” warning, because 07-SEP-2007 has 1 class-hour while 03-SEP-2007 and 05-SEP-2007 have 2 class-hours.</p>
+
+    
+<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" id="c_meeting_contact_hours_calculations_explained__c_meeting_contact_hours_calculations_explained-utbl1" class="table" frame="hsides" border="1" rules="rows"><colgroup><col><col><col><col><col></colgroup><thead class="thead" style="text-align:left;vertical-align:bottom;">
+          <tr class="row">
+            <th class="entry row-nocellborder" style="text-align:left;vertical-align:bottom;" id="d4643e133">Meeting</th>
+
+            <th class="entry row-nocellborder" style="text-align:left;vertical-align:bottom;" id="d4643e136">Start Date</th>
+
+            <th class="entry row-nocellborder" style="text-align:left;vertical-align:bottom;" id="d4643e139">End Date</th>
+
+            <th class="entry row-nocellborder" style="text-align:left;vertical-align:bottom;" id="d4643e142">Days</th>
+
+            <th class="entry row-nocellborder" style="text-align:left;vertical-align:bottom;" id="d4643e145">Times</th>
+
+          </tr>
+
+        </thead>
+<tbody class="tbody">
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d4643e133 ">Meeting 1</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d4643e136 ">02-SEP-2007</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d4643e139 ">08-SEP-2007</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d4643e142 ">MWF</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d4643e145 ">0800-0850</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d4643e133 ">Meeting 2</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d4643e136 ">02-SEP-2007</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d4643e139 ">08-SEP-2007</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d4643e142 ">MW</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d4643e145 ">1000-1050</td>
+
+          </tr>
+
+        </tbody>
+</table>
+</div>
+
+    <p class="p">For CRNs with TBA meetings (that is, no day check boxes are selected), the value in the Daily Contact Hours field is calculated as follows.</p>
+
+    <ul class="ul">
+      <li class="li">If the CRN has only SSRMEET records that have no days selected (that is, the CRN has only TBA meetings), the Daily Contact Hours field displays the sum of all SSRMEET_HRS_DAY.</li>
+
+      <li class="li">If the CRN has at least one SSRMEET with days selected and any or none SSRMEET with no DAYS selected, the system calculates the value for the Daily Contact Hours field taking into account all of the following. <ul class="ul"> <li class="li">A function builds a “matrix” of all calendar dates on which the CRN has meetings.</li>
+
+        <li class="li">For all SSRMEET records with at least one day selected, using each SSRMEET record’s definitions, add each SSRMEET_HRS_DAY to the appropriate calendar entry of the matrix.</li>
+ <li class="li">After processing all SSRMEET records with at least one day selected, it processes the TBA meetings with no days selected by adding each record’s SSRMEET_HRS_DAY to all calendar entries for the CRN.</li>
+
+        <li class="li">The system selects the first calendar meeting day for the CRN and enters that day’s total hours in the Daily Contact Hours field.</li>
+ </ul>
+</li>
+
+    </ul>
+
+  </div>
+
+</div></div></section>
+<section id="t-90"><h4>Contact hours for CCFS-320 reporting</h4><div class="content-locale-en-US content-locale-en"><div id="c_contact_hours_ccfs-320_reporting"><div class="body conbody"><p class="shortdesc">The number of contact hours reported for CCFS-320 is determined by the CRN setups as follows. For CCFS-320 purposes, number-of-days calculations are limited to a maximum of two years.</p>
+
+    <p class="p">Weekly census contact hours are determined as follows.</p>
+
+    <ul class="ul">
+      <li class="li">The CRN has an attendance method of <kbd class="ph userinput">Weekly</kbd>.</li>
+
+      <li class="li">The CRN must be a credit course (SCACRSE Credit Status).</li>
+
+      <li class="li">The number of contact hours is based on the value in the <span class="ph uicontrol">Weekly Contact Hours</span> field in the main window of SSASECT, which is the sum of all values in the <span class="ph uicontrol">Hours per Week</span> field in the Meeting Time window. This value is multiplied by the value in the <span class="ph uicontrol">Term Length Multiplier</span> field for CRN's term to obtain the total contact hours.</li>
+
+      <li class="li">The reported total contact hours equals the weekly contact hours multiplied by the value in the <span class="ph uicontrol">Term Length Multiplier</span> field for the CRN's term. This might be different from what is displayed in the main window of SSASECT, such as if the manual entry of meeting contact hours produced a warning that was ignored by the user.</li>
+
+    </ul>
+
+    <p class="p">Independent Study Weekly Credit census contact hours are determined as follows.</p>
+
+    <ul class="ul">
+      <li class="li">The CRN has an attendance method of either <kbd class="ph userinput">Independent Study Lab</kbd> or <kbd class="ph userinput">Independent Study</kbd> combined with <kbd class="ph userinput">Weekly</kbd>.</li>
+
+      <li class="li">The CRN must be a credit course (SCACRSE Credit Status).</li>
+
+      <li class="li">The number of contact hours is dependent on the meeting type of each of the CRN's meetings as follows. <ul class="ul"> <li class="li">For all meetings with a meeting type of <kbd class="ph userinput">Lab</kbd> (that is, the <span class="ph uicontrol">Lab</span> check box on GTVMTYP is checked), the values of all of the meetings' <span class="ph uicontrol">Hours Per Week</span> fields are summed.</li>
+
+        <li class="li">For all meetings with a meeting type that is a not <kbd class="ph userinput">Lab</kbd> (that is, the <span class="ph uicontrol">Lab</span> check box on GTVMTYP is unchecked), the values of all of the meetings' <span class="ph uicontrol">Session Credit Hours</span> fields are summed.</li>
+ <li class="li">The sum of these two values is the contact hours for the CRN.</li>
+ </ul>
+</li>
+
+      <li class="li">The reported total contact hours equals the calculated contact hours multiplied by the value in the <span class="ph uicontrol">Term Length Multiplier</span> field for the CRN's term.</li>
+
+    </ul>
+
+    <p class="p">Independent Study Weekly Non-Credit census (two-census-averaging) contact hours are determined as follows.</p>
+
+    <ul class="ul">
+      <li class="li">The CRN has an attendance method of <kbd class="ph userinput">Independent Study</kbd> combined with <kbd class="ph userinput">Weekly</kbd>.</li>
+
+      <li class="li">The CRN is defined as noncredit either by being for a noncredit course (SCACRSE Credit Status).</li>
+
+      <li class="li">The number of contact hours is based on the value in the <span class="ph uicontrol">Weekly Contact Hours</span> field in the main window of SSASECT, which is the sum of all values in the <span class="ph uicontrol">Hours per Week</span> field in the Meeting Time window. This value is multiplied by the value in the <span class="ph uicontrol">Number of Weeks</span> calculated as [( SSRMEET End Date minus Start Date ) divided by 7] to obtain the total contact hours.</li>
+
+      <li class="li">The reported total contact hours equals the WSCH Factor calculated as Total Contact Hours for the CRN (calculated as described just above) divided by the Instructional Measure for noncredit distance education (as specified by the CCC Chancellor’s Office, currently this value is 54) which can be stored in GTVSDAX with code = ‘320PartVII’, and Group = ‘CALGEN’.</li>
+
+      <li class="li">The two-census-averaging is accomplished by evaluating the enrollment status at both census dates, multiplying the number of students enrolled at each census by the WSCH Factor (calculated as described just above), and averaging these counts.</li>
+
+    </ul>
+
+    <p class="p">Daily census contact hours are determined as follows.</p>
+
+    <ul class="ul">
+      <li class="li">The CRN has an attendance method of <kbd class="ph userinput">Daily</kbd>.</li>
+
+      <li class="li">The CRN must be a credit course (SCACRSE Credit Status).</li>
+
+      <li class="li">The number of contact hours is based on the value in the <span class="ph uicontrol">Daily Contact Hours</span> field in the main window of SSASECT, which is the sum of all values in the <span class="ph uicontrol">Hours per Day</span> field in the Meeting Time window for the first calendar meeting day as defined on all meeting records. The value of the <span class="ph uicontrol">Total Contact Hours</span> field in the main window is the sum of each meeting's <span class="ph uicontrol">Total Contact Hours</span> values in the Meeting Time window, which is based on each meeting's <span class="ph uicontrol">Number of Days</span> times <span class="ph uicontrol">Hours per Day</span> values.</li>
+
+      <li class="li">The reported total contact hours equals the result of the function for the <span class="ph uicontrol">Total Contact Hours</span> field on SSASECT (that is, the sum of all SSRMEET_HRS_TOTAL values for the record).</li>
+
+    </ul>
+
+    <p class="p">Independent Study Daily Credit census contact hours are determined as follows.</p>
+
+    <ul class="ul">
+      <li class="li">The CRN has an attendance method of <kbd class="ph userinput">Independent Study</kbd> combined with <kbd class="ph userinput">Daily</kbd>.</li>
+
+      <li class="li">The CRN is a credit course (SCACRSE Credit Status).</li>
+
+      <li class="li">The reported total contact hours is dependent on the meeting type of each of the CRN's meetings as follows. <ul class="ul"> <li class="li">For all meetings with a meeting type of <kbd class="ph userinput">Lab</kbd> (that is, the <span class="ph uicontrol">Lab</span> check box on GTVMTYP is checked), the values of all of the meetings' <span class="ph uicontrol">Total Contact Hours</span> fields are summed. (An independent study lab is reported by weekly hours.)</li>
+
+        <li class="li">For all meetings with a meeting type that is a not <kbd class="ph userinput">Lab</kbd> (that is, the <span class="ph uicontrol">Lab</span> check box on GTVMTYP is unchecked), the values of all of the meetings' <span class="ph uicontrol">Session Credit Hours</span> fields are summed. This sum is then multiplied by the value in the <span class="ph uicontrol">Term Length Multiplier</span> field for the CRN's term.</li>
+ <li class="li">The sum of these two values from the two meeting types is the total contact hours for the CRN.</li>
+
+        </ul>
+</li>
+
+    </ul>
+
+    <p class="p">Actual (positive attendance) contact hours are determined as follows.</p>
+
+    <ul class="ul">
+      <li class="li">The CRN has an attendance method of <kbd class="ph userinput">Actual</kbd> either with or without <kbd class="ph userinput">Independent Study</kbd>.</li>
+
+      <li class="li">The CRN is credit or not as defined by the course (SCACRSE Credit Status).</li>
+
+      <li class="li">The reported contact hours are summed from the student attendance hours entered on SFAALST or the Self-Service pages, as long as the student has a grade assigned.</li>
+
+      <li class="li">The reported total contact hours equals the sum of these student hours.</li>
+
+    </ul>
+
+  </div>
+
+</div></div></section></main></body></html>

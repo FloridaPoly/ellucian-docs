@@ -1,0 +1,749 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Degree Works - Configure — Transit Administration</title><style>body{font-family:-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;line-height:1.55;color:#1a1a1a;max-width:920px;margin:0 auto;padding:24px}header{border-bottom:2px solid #5a16d6;margin-bottom:8px}h1{color:#3a0ca3}h2,h3,h4,h5,h6{margin-top:1.6em}.crumb{color:#666;font-size:13px;margin:0}.meta{color:#888;font-size:12px}nav.toc{background:#f6f4fc;border:1px solid #e3dcf5;border-radius:8px;padding:12px 18px;margin:18px 0}nav.toc h2{margin:.2em 0}nav.toc ul{list-style:none;padding-left:0}nav.toc a{text-decoration:none;color:#5a16d6}section{margin:1.2em 0;padding-top:.4em}img{max-width:100%;height:auto}table{border-collapse:collapse}td,th{border:1px solid #ccc;padding:4px 8px}code,pre{background:#f4f4f4;border-radius:4px}pre{padding:10px;overflow:auto}</style></head><body><header><p class="crumb">Ellucian Degree Works › Degree Works - Configure</p><h1>Degree Works - Configure — Transit Administration</h1><p class="meta">Source: <a href="https://resources.elluciancloud.com/r/bundle/dgrwrks_acn_configure">https://resources.elluciancloud.com/r/bundle/dgrwrks_acn_configure</a> &middot; Retrieved 2026-06-17</p></header><nav class="toc"><h2>Contents</h2><ul><li style="margin-left:0px"><a href="#t-3190">Transit Administration</a></li><li style="margin-left:16px"><a href="#t-3200">Initial Transit setup and configuration</a></li><li style="margin-left:32px"><a href="#t-3210">Authentication</a></li><li style="margin-left:32px"><a href="#t-3220">Transit user access</a></li><li style="margin-left:32px"><a href="#t-3230">Shepherd settings</a></li><li style="margin-left:32px"><a href="#t-3240">Transit user interface deployment</a></li><li style="margin-left:48px"><a href="#t-3250">Transit environment settings</a></li><li style="margin-left:32px"><a href="#t-3260">Transit Batch Executor</a></li><li style="margin-left:32px"><a href="#t-3270">Transit Batch Executor configuration</a></li><li style="margin-left:16px"><a href="#t-3280">Job parameters</a></li><li style="margin-left:16px"><a href="#t-3290">Job scheduling</a></li><li style="margin-left:16px"><a href="#t-3300">Job sequences</a></li><li style="margin-left:16px"><a href="#t-3310">The tbeshow script</a></li><li style="margin-left:16px"><a href="#t-3320">The tbestart script</a></li><li style="margin-left:16px"><a href="#t-3330">The tbestop script</a></li><li style="margin-left:16px"><a href="#t-3340">The tberestart script</a></li><li style="margin-left:16px"><a href="#t-3350">The launchjob script</a></li><li style="margin-left:16px"><a href="#t-3360">The jobstatus script</a></li><li style="margin-left:16px"><a href="#t-3370">The tbedelete script</a></li><li style="margin-left:16px"><a href="#t-3380">Job request flow through Transit</a></li><li style="margin-left:16px"><a href="#t-3390">Debug Transit</a></li><li style="margin-left:32px"><a href="#t-3400">Debug the Transit user interface</a></li><li style="margin-left:32px"><a href="#t-3410">Debug the Transit Executor</a></li></ul></nav><main><section id="t-3190"><h2>Transit Administration</h2><div class="content-locale-en-US content-locale-en"><div id="c_transit_introduction"><div class="body conbody"><p class="shortdesc"><span class="ph">Transit</span> is a tool <span class="ph">Degree Works</span> administrators use to launch and manage batch processes.</p>
+
+    <p class="p"><span class="ph">Transit</span> consists of two primary elements: The <span class="ph">Transit</span> UI (User Interface) and a <span class="ph">Transit</span> Batch Executor. Both must be deployed and running to successfully launch <span class="ph">Degree Works</span> jobs.</p>
+
+    <p class="p">The <span class="ph">Transit</span> UI contains both the frontend (browser-based) application and the backend API that is used by the client code. The API is also used by the batch executor. It is deployed as a jar on any supported Unix server and is independent of the classic software. It includes an embedded container. A separate Java container like Tomcat is not required.</p>
+
+    <p class="p">The Transit Batch Executor is also deployed as a standalone jar file, but it must be deployed into the same environment as the classic software. It is automatically included when the installation script (dwdeploy) is run during the software installation and update process.</p>
+
+    <p class="p">Transit requires its own schema separate from the primary <span class="ph">Degree Works</span> schema. The <span class="ph">Degree Works</span> install and update process creates and populates the schema into the same database as the existing primary schema. Only the Transit API, deployed in the <span class="ph">Degree Works</span> UI jar, accesses the database.</p>
+
+    <p class="p">The following diagram shows the deployment and relation of the various <span class="ph">Transit</span> pieces.</p>
+
+    <img class="image" alt="Transit deployment" data-ft-asset-display-name="dgm_transit_deployment.png" src="images/08-transit-administration-1.png" data-ft-resource-id="d3wCrafOeCWu2f7fqdxtGA-igXg2AijGFGkGiTrAzay5w">
+  </div>
+
+</div></div></section>
+<section id="t-3200"><h3>Initial Transit setup and configuration</h3></section>
+<section id="t-3210"><h4>Authentication</h4><div class="content-locale-en-US content-locale-en"><div id="c_transit_authentication"><p class="shortdesc">The <span class="ph">Transit</span> user interface supports SHP, CAS, and SAML authentication methods, and external access managers such as Oracle Access Manager. For more information, please see the <span class="xref ft-internal-xlink" title="Logon authentication determines if the user is who they say they are." data-ft-warning="excluded-from-rendering" data-clusterid="id_crm/dgrwrks/c_authentication_security">Authentication security</span> topic.</p>
+
+  
+</div></div></section>
+<section id="t-3220"><h4>Transit user access</h4><div class="content-locale-en-US content-locale-en"><div id="c_grand_user_access_transit"><div class="body conbody"><p class="shortdesc">User access to Transit and its features is managed with a set of Shepherd keys and groups.</p>
+
+    <p class="p">The Shepherd keys required for normal Transit users are TRANSIT and TRANRUN. To run a specific job, a user needs either the Shepherd key for that job (for example, TRDAP22 to run DAP22 for generating batch audits) or TRANALL, which grants access to all reports and processors.</p>
+
+    <p class="p">Users with the TRANSQL Shepherd key have the option to provide an SQL statement as selection criteria in jobs that support this feature. To delete completed jobs and their associated artifacts, users need the TRANDEL Shepherd key.</p>
+
+    <p class="p">TRANPARM allows a user to save the selection criteria and responses to questions for frequently run jobs and to use these saved job parameters when running the job again in the future. TRANSCHD allows users to schedule jobs to run one time at a future date. Users with TRANSEQ are able to create sequences of saved job parameters that can either be launched immediately or scheduled to run in the future. TRANRCUR grants users access to saved job parameters, scheduling jobs to run one time in the future, creating recurring schedules for jobs, and creating job sequences.</p>
+
+    <p class="p">The TRANREG and TRANBAN Shepherd groups can be used to assign job access to users. The Users function of Controller or the core.security.rules.shpcfg Shepherd setting can be used to assign keys or groups to users. The list of all Transit keys and groups is available in the <span class="xref ft-internal-xlink" title="Each user has a keyring with one or more keys." data-ft-warning="excluded-from-rendering" data-clusterid="id_crm/dgrwrks/c_keys_keyrings">Keys and keyrings</span> topic.</p>
+
+    <p class="p">The Transit Batch Executor requires credentials to access the API. A default user, TRANSITAPI, was created during the update or installation process, but you need to set a password for this user through the Users function in Controller or with the changepassword script. After setting the password for the TRANSITAPI user, use the Settings function of Controller to update the core.security.transit.username and core.security.transit.password settings. The TRANSITAPI user requires and has been delivered with the TRANSIT, TRANART, DEBUG, and NOREFER keys.</p>
+
+    <p class="p">The launchjob script uses the TRANSITBAT user to access the API when launching jobs. This user was created during the update or installation process, but you need to set a password for this user through the Users function in Controller or with the changepassword script. After setting the password for the TRANSITBAT user, use the Settings function of Controller to update the core.security.transit.batch.username and core.security.transit.batch.password settings. The TRANSITBAT user is delivered with the minimum keys required for Transit. You must assign appropriate keys to the TRANSITBAT user for the jobs you want to run. For example, if you want to run the Banner student extract using a list of IDs or the default SQL file bannerstudents.sql, you must add the TRRAD30 key to the TRANSITBAT user.</p>
+
+    <p class="p">MEP clients should set the TRANSITAPI and TRANSITBAT passwords for each MEP entity.</p>
+
+  </div>
+
+</div></div></section>
+<section id="t-3230"><h4>Shepherd settings</h4><div class="content-locale-en-US content-locale-en"><div id="c_shepherd_settings_transit"><div class="body conbody"><p class="shortdesc">Most configurations to manage the behavior of <span class="ph">Transit</span> can be maintained using the Settings function of Controller.</p>
+
+    <p class="p">To make any setting specific to just <span class="ph">Transit</span>, use the spec value <span class="ph uicontrol">transit</span>.</p>
+
+    <p class="p">The following settings should be configured before you deploy <span class="ph">Transit</span> UI and the <span class="ph">Transit</span> executor:</p>
+
+    <pre class="pre codeblock"><code>transit.api.url</code></pre>
+    <p class="p"><code class="ph codeph">core.security.cas.callbackUrl</code> spec=transit (if you use CAS authentication)</p>
+
+    <pre class="pre codeblock"><code>core.amqp.exchange.transit
+core.security.transit.batch.password
+core.security.transit.batch.username
+core.security.transit.password
+core.security.transit.username
+core.week.startingDay
+transit.ban62.workerCount
+transit.cleanup.completed.maxDays
+transit.cleanup.incomplete.maxDays
+transit.dap16.workerCount
+transit.dap22.workerCount
+transit.dap24.workerCount
+transit.dap26.workerCount
+transit.dap27.workerCount
+transit.dap28.workerCount
+transit.rad11.workerCount
+transit.rad30.workerCount</code></pre>
+  </div>
+
+</div></div></section>
+<section id="t-3240"><h4>Transit user interface deployment</h4><div class="content-locale-en-US content-locale-en"><div id="c_deploy_transit_ui"><div class="body conbody"><p class="shortdesc">TransitUI is designed to deploy equally well in on-premise and cloud-hosted scenarios on all supported platforms. It provides a mobile-ready, responsive user interface communicating with the servers using lightweight, stateless, restful API over HTTP SSL.</p>
+
+    <p class="p">The deployment artifacts are two JAR files, which are executable using java and include an embedded container: TransitUI and Transit Batch Executor.</p>
+
+    <div class="section"><h2 class="title sectiontitle">Prerequisites</h2>
+      
+      <p class="p">Transfer Equivalency Admin requires prerequisites in its setup.</p>
+
+      <ul class="ul">
+        <li class="li">Java: <p class="p">Java version 17 is the only third-party dependency required to run this application. Oracle Java and OpenJDK are supported.</p>
+</li>
+
+        <li class="li">SSL: <p class="p"><span class="keyword">Ellucian</span> recommends SSL, because the security implementation uses stateless tokens. Using signed certificates is recommended for all deployment scenarios, including test or development environments. Self-signed certificates, even for internal test deployments, can be problematic because of browser requirements and warnings. The SSL certificate needs to be configured in a keystore, and that keystore needs to be accessible in the deployment environment. There are various options for how to do this, for example using Java's keytool command.</p>
+</li>
+
+      </ul>
+
+    </div>
+
+    <div class="section"><h2 class="title sectiontitle">Deployment examples</h2><p class="p">After the prerequisites and configuration are in place, start the application using a java -jar command.</p>
+<code class="ph codeph">java $JAVA_OPTIONS -jar TransitUI.jar</code>
+<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" class="table" frame="hsides" border="1" rules="rows"><colgroup><col style="width:50%"><col style="width:50%"></colgroup><thead class="thead" style="text-align:left;">
+          <tr class="row">
+            <th class="entry row-nocellborder" style="vertical-align:top;" id="d30351e81">Example</th>
+
+            <th class="entry row-nocellborder" style="vertical-align:top;" id="d30351e84">Description</th>
+
+          </tr>
+
+        </thead>
+<tbody class="tbody">
+          <tr class="row">
+            <td class="entry row-nocellborder" style="vertical-align:top;" headers="d30351e81 ">Transit example startup script</td>
+
+            <td class="entry row-nocellborder" style="vertical-align:top;" headers="d30351e84 ">You can employ a shell script to start the application.<p class="p">The <var class="keyword varname">TransitUI.jar</var> file must be staged at the DEPLOY_LOCATION.</p>
+<pre class="pre codeblock"><code>#!/bin/ksh
+export DW_DATASOURCE_URL="jdbc:oracle:thin:@MyServer:1521/service_name"
+export DW_DATASOURCE_USERNAME="my-dw-user"
+export DW_DATASOURCE_PASSWORD="my-dw-password"
+export TRANSIT_DATASOURCE_URL="jdbc:oracle:thin:@MyServer:1521/service_name"
+export TRANSIT_DATASOURCE_USERNAME="my-transit-user"
+export TRANSIT_DATASOURCE_PASSWORD="my-transit-password"
+export SERVER_PORT="8481"
+export SERVER_SERVLET_CONTEXT_PATH=""
+export SERVER_SSL_KEY_STORE="/usr/local/my-keystore.jks"
+export SERVER_SSL_KEY_STORE_PASSWORD="my-key-password"
+export SERVER_SSL_KEYSTORETYPE="jks"
+export SERVER_SSL_KEY_ALIAS="my-keystore-alias"
+export DW_DATAPOOL_INITIAL_SIZE=10
+export DW_DATAPOOL_MIN_IDLE=10
+export DW_DATAPOOL_MAX_IDLE=10
+export DW_DATAPOOL_MAX_TOTAL=300
+#------------------------------------------------------------------
+# Set the MAX_ARTIFACT_SIZE to the size, in bytes, of the largest
+# artifact that may be uploaded.
+export MAX_ARTIFACT_SIZE=2147483648 # 2048 MB, 2 GB
+# Threshold beyond which the server will write file data out to disk, saving memory.
+export SPRING_SERVLET_MULTIPART_FILESIZETHRESHOLD=1000
+# The next three settings are based on MAX_ARTIFACT_SIZE and should not
+# be set independently
+export SPRING_SERVLET_MULTIPART_MAXFILESIZE=$MAX_ARTIFACT_SIZE
+export SPRING_SERVLET_MULTIPART_MAXREQUESTSIZE=$(($MAX_ARTIFACT_SIZE+10000))
+export SERVER_TOMCAT_MAXHTTPFORMPOSTSIZE=$(($MAX_ARTIFACT_SIZE+10000))
+export DEPLOY_LOCATION="/path/to/jarfile"
+export JAVA_OPTIONS="-Xms1536m -Xmx1536m";
+export DEBUG="false"
+# To enable full-time debug log output, remove the # from the line below
+#export LOG_DEFAULT_THRESHOLD=DEBUG
+java -jar $JAVA_OPTIONS DEPLOY_LOCATION/TransitUi.jar &gt; startup-log-file.log &amp;</code></pre></td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="vertical-align:top;" headers="d30351e81 ">Transit example stop script</td>
+
+            <td class="entry row-nocellborder" style="vertical-align:top;" headers="d30351e84 ">If you use a start script, you must use a corresponding stop script.<pre class="pre codeblock"><code>#!/bin/ksh
+pkill -f TransitUI</code></pre></td>
+
+          </tr>
+
+        </tbody>
+</table>
+</div>
+</div>
+
+  </div>
+
+</div></div></section>
+<section id="t-3250"><h5>Transit environment settings</h5><div class="content-locale-en-US content-locale-en"><div id="c_environment_settings_transit"><div class="body conbody"><p class="shortdesc">Several environment variables are required to be configured before running the application.</p>
+
+    <p class="p">Depending on the desired deployment platform there are many options for how these environment variables can be configured. The only requirement is that they are available in the environment where the product's JAR file will be executed. For example, it may be desirable to configure them in a shell script, in a specific user's profile, a startup instruction like init.d, or in a continuous deployment tool like Jenkins.</p>
+
+    <p class="p">The minimum required variables are documented here. But many optional variables are provided in the Spring Boot platform, for example tuning the embedded container. Please refer to Spring documentation for those: <a class="xref ft-external-link" href="http://docs.spring.io/spring-boot/appendix/application-properties/index.html" target="_blank" rel="noopener">http://docs.spring.io/spring-boot/appendix/application-properties/index.html</a>.</p>
+
+    <p class="p">Environment Variables are the recommended method to configure these properties. But there are various other ways these can be configured. Please refer to this documentation for more information: <a class="xref ft-external-link" href="https://docs.spring.io/spring-boot/reference/features/external-config.html" target="_blank" rel="noopener">https://docs.spring.io/spring-boot/reference/features/external-config.html</a>.</p>
+
+    <div class="section"><h2 class="title sectiontitle">Required environment variables for TransitUI</h2>
+      
+      <ul class="ul">
+        <li class="li">DW_DATASOURCE_URL: A JDBC connection string for the Degree Works database. For example: <code class="ph codeph">jdbc:oracle:thin:@{SERVER}:{PORT}/{SERVICE_NAME}</code> where <code class="ph codeph">{SERVER}</code> is the address, <code class="ph codeph">{PORT}</code> is the port of the listener, and <code class="ph codeph">{SERVICE_NAME}</code> is the service name of the database. This is the same database and schema used by the classic Degree Works software.</li>
+
+        <li class="li">DW_DATASOURCE_USERNAME: The Degree Works database username.</li>
+
+        <li class="li">DW_DATASOURCE_PASSWORD: The Degree Works database password. This can be encoded. To get the encoded value, use the <code class="ph codeph">showdbpasswords --password</code> command in the classic environment. It will display the encoded value to place here (e.g. <code class="ph codeph">ENC(skdfjldjs)</code>).</li>
+
+        <li class="li">TRANSIT_DATASOURCE_URL: A JDBC connection string for the Transit schema in the Degree Works database. For example:<code class="ph codeph"> jdbc:oracle:thin:@{SERVER}:{PORT}/{SERVICE_NAME}</code> where <code class="ph codeph">{SERVER}</code> is the address, <code class="ph codeph">{PORT}</code> is the port of the listener, and <code class="ph codeph">{SERVICE_NAME}</code> is the service name of the database.</li>
+
+        <li class="li">TRANSIT_DATASOURCE_USERNAME: The Transit schema username.</li>
+
+        <li class="li">TRANSIT_DATASOURCE_PASSWORD: The Transit schema password. This can be encoded. To get the encoded value, use the <code class="ph codeph">showdbpasswords --transitpassword</code> command in the classic environment. It will display the encoded value to place here (e.g.<code class="ph codeph"> ENC(skdfjldjs)</code>).</li>
+
+        <li class="li">SERVER_PORT: The desired port for Transit. This must be different from the ports used by other applications on this server.</li>
+
+        <li class="li">SERVER_SERVLET_CONTEXT_PATH: An optional context path. If this is blank, the application will be deployed at the root URL like https://myserver.edu:NNNN (where NNNN is the SERVER_PORT). If a value is specified like /my-context-path, the application would be accessible at a URL like https://myserver.edu:NNNN/my-context-path (where NNNN is the SERVER_PORT).</li>
+
+        <li class="li">SERVER_SSL_KEY_STORE: The path to a keystore file you created to contain your SSL certificate.</li>
+
+        <li class="li">SERVER_SSL_KEY_STORE_PASSWORD: The password for your keystore file.</li>
+
+        <li class="li">SERVER_SSL_KEYSTORETYPE: The type of your keystore. JKS is the default.</li>
+
+        <li class="li">SERVER_SSL_KEY_ALIAS: The alias of the key you created.</li>
+
+        <li class="li">MAX_ARTIFACT_SIZE: The size, in bytes, of the largest job artifact that may be uploaded. This value may be set as high as 2 GB (2147483648 bytes). A size too small may prevent large reports from uploading to the database after a job has completed. A value too large may cause an out-of-memory error when uploading large reports. This variable is used as a basis for the SPRING_SERVLET_MULTIPART_MAXFILESIZE, SPRING_SERVLET_MULTIPART_MAXREQUESTSIZE, and SERVER_TOMCAT_MAXHTTPFORMPOSTSIZE variables. For an example, see the <span class="xref ft-internal-link" title="TransitUI is designed to deploy equally well in on-premise and cloud-hosted scenarios on all supported platforms. It provides a mobile-ready, responsive user interface communicating with the servers using lightweight, stateless, restful API over HTTP SSL." data-ft-warning="excluded-from-rendering" data-mapid="igXg2AijGFGkGiTrAzay5w" data-tocid="Qm65fegsaSbJmOux0uTIqQ">Transit user interface deployment</span> topic.</li>
+
+        <li class="li">SPRING_SERVLET_MULTIPART_MAXFILESIZE, SPRING_SERVLET_MULTIPART_MAXREQUESTSIZE, and SERVER_TOMCAT_MAXHTTPFORMPOSTSIZE: These variables are based on the MAX_ARTIFACT_SIZE value. For an example, see the <span class="xref ft-internal-link" title="TransitUI is designed to deploy equally well in on-premise and cloud-hosted scenarios on all supported platforms. It provides a mobile-ready, responsive user interface communicating with the servers using lightweight, stateless, restful API over HTTP SSL." data-ft-warning="excluded-from-rendering" data-mapid="igXg2AijGFGkGiTrAzay5w" data-tocid="Qm65fegsaSbJmOux0uTIqQ">Transit user interface deployment</span> topic.</li>
+
+        <li class="li">SPRING_SERVLET_MULTIPART_FILESIZETHRESHOLD: The threshold beyond which the server will write file data out to disk as opposed to putting it all in memory. A somewhat slower operation, but saves on memory.</li>
+
+      </ul>
+
+    </div>
+
+    <div class="section"><h2 class="title sectiontitle">Optional environment variables</h2>
+      
+      <ul class="ul">
+        <li class="li">JAVA_OPTIONS: The memory allocation for the application can be defined using this variable, and is recommended. The value defines the initial heap size and max heap size and is in the following format: -Xms1536m -Xmx1536m. The heap size values should be adjusted as appropriate for your server.</li>
+
+        <li class="li">SERVER_MAX_HTTP_HEADER_SIZE: This setting allows you to set the maximum size of the HTTP message header. By default, this is 8KB, and for some users with a large number of Shepherd access keys, this can be too small. It’s recommended to use this variable and set it to at least 12KB. For example:export SERVER_MAX_HTTP_HEADER_SIZE=12288</li>
+
+        <li class="li">SERVER_TOMCAT_REDIRECT_CONTEXT_ROOT: Embedded Tomcat for Spring Boot has a default behavior to redirect a request without a trailing slash to one with a trailing slash. However, that redirect happens without evaluating forward headers like X-Forwarded-Proto. So, when SSL offloading is in place, the redirect happens to http instead of https. This can be an issue especially for load balanced environments. To disable the default behavior, set this variable to false.<div class="note warning"><span class="warningtitle">Warning:</span> You should do this only if the default behavior is not working. If you are offloading SSL at a proxy or load balancer, make sure to follow the instructions in the <span class="xref ft-internal-xlink" title="Load balancing Java applications such as Responsive Dashboard and Transfer Equivalency Self-Service is straightforward, as generally nothing special is required." data-ft-warning="excluded-from-rendering" data-clusterid="id_crm/dgrwrks/c_standalone_java_application_load_balancing">Java application load balancing</span> topic. Then, if you have problems accessing the application in the browser when you do not include a trailing slash at the end of the request, try setting this variable to <span class="ph uicontrol">false</span>.</div>
+</li>
+
+        <li class="li">DEBUG: A boolean true or false which will enable or disable debug logging. The log file is by default named Transit.log. But, the location and name of that file can be customized by setting the LOGGING_PATH and LOGGING_FILE environment variables.</li>
+
+        <li class="li">DEPLOY_LOCATION: the location of the TransitUI.jar file. This location should be set then referenced in the java -jar command that starts the application.</li>
+
+        <li class="li">LOGGING_FILE: the name of the file including the path location. If this is specified, LOG_PATH variable should not be used.</li>
+
+        <li class="li">LOG_PATH: the location of the log file. The default PATH location is the Java temporary java folder from the Java property java.io.tmpdir. This is usually /tmp. The file name will consist of this value plus transitAPI.log.</li>
+
+        <li class="li">LOG_DEFAULT_THRESHOLD: If set to DEBUG, the application will output more verbose logging. Debug output will be sent to the log during the startup process and for all requests thereafter. Warning: this will result in very large log files. If not set, the debug threshold is INFO.</li>
+
+        <li class="li">DW_ENABLE_MONITOR - This environment variable can be set to enable /health, /metrics, /prometheus, and /status endpoints for health and monitoring metrics. By default, this monitoring functionality is not enabled. Adding this variable to an application's startup script and setting it to true would enable these endpoints for the application. See individual API documentation in the API Catalog for additional information.</li>
+
+        <li class="li">DW_RABBITMQ_SSLALGORITHM: Specify the SSL algorithm to use when connecting to the RabbitMQ broker using SSL. If not specified, it uses the current RabbitMQ driver's default (at least TLSv1.2). This is only considered if the Shepherd setting core.amqp.useSsl is set to true.</li>
+
+        <li class="li">TRANSIT_CLEANUP_INPUT_ENABLED: This environment variable can be set to disable the cleanup of orphaned input files, Transit input files that have been uploaded but were never associated with a Transit job. This will rarely, if ever, happen. It should only be set upon instruction by Ellucian to troubleshoot an issue with the functionality. Setting this variable to 0 (zero) would disable the cleanup.</li>
+
+        <li class="li">TRANSIT_CLEANUP_SCHEDULER: By default, the Transit job cleanup process runs every day at noon and at midnight. This schedule can be changed by setting this variable. The value is a crontab expression following the format defined in <a class="xref ft-external-link" href="https://docs.spring.io/spring-framework/docs/current/javadoc-api/org/springframework/scheduling/support/CronExpression.html#parse(java.lang.String" target="_blank" rel="noopener">https://docs.spring.io/spring-framework/docs/current/javadoc-api/org/springframework/scheduling/support/CronExpression.html#parse(java.lang.String)</a>. For example, export TRANSIT_CLEANUP_SCHEDULER=0 15 10 * * * would set the job cleanup process to run every day at 10:15 am. A dash or negative sign (-) would totally disable the cleanup.</li>
+
+      </ul>
+
+    </div>
+
+    <div class="section"><h2 class="title sectiontitle">Database pooling configuration</h2>
+      
+      <p class="p">For production deployments, you can configure the size of the database connection pool through environment variables. The variables start with DW_DATAPOOL_ for the <span class="keyword">Degree Works</span> database and TRANSIT_DATAPOOL for the <span class="keyword">Transit</span> database. They end with the name of the datasource pooling attribute you want to control. The following attributes are the most common:</p>
+
+      <div class="p">
+        <ul class="ul">
+          <li class="li">INITIAL_SIZE: The initial number of connections that are created when the pool is started.</li>
+
+          <li class="li">MIN_IDLE: The minimum number of active connections that can remain idle in the pool, without extra ones being created.</li>
+
+          <li class="li">MAX_IDLE: The maximum number of connections that can remain idle in the pool, without extra ones being released.</li>
+
+          <li class="li">MAX_TOTAL: The maximum number of active connections that can be allocated from this pool at the same time.</li>
+
+        </ul>
+
+      </div>
+
+      <p class="p">The name of the attribute should be all uppercase with an underscore separating the words. To set the maximum number of active connections in the <span class="keyword">Degree Works</span> database pool, for example, put the following line in your startup script:</p>
+
+      <pre class="pre codeblock"><code>export DW_DATAPOOL_MAX_TOTAL=10</code></pre>
+      <p class="p">For more information, see the <span class="xref ft-internal-xlink" title="Java programs obtain a database connection from a pool of open connections." data-ft-warning="excluded-from-rendering" data-clusterid="id_crm/dgrwrks/c_java_database_pooling_configuration">Java database pooling configuration</span> topic.</p>
+
+    </div>
+
+    <div class="section"><h2 class="title sectiontitle">SSL offloading</h2>
+      
+      <p class="p">When SSL offloading is in use (SSL is terminated before to reaching the application) with a load balancer, proxy server, and so on, some additional configuration needs to be done to make sure Degree Works applications behave as expected. See the <span class="xref ft-internal-xlink" title="Load balancing Java applications such as Responsive Dashboard and Transfer Equivalency Self-Service is straightforward, as generally nothing special is required." data-ft-warning="excluded-from-rendering" data-clusterid="id_crm/dgrwrks/c_standalone_java_application_load_balancing">Java application load balancing</span> topic for more information about this setup.</p>
+
+    </div>
+
+  </div>
+
+</div></div></section>
+<section id="t-3260"><h4>Transit Batch Executor</h4><div class="content-locale-en-US content-locale-en"><div id="c_transit_batch_executor"><div class="body conbody"><p class="shortdesc">Transit Batch Executor is delivered to your Classic server environment as $DWJAVA_HOME/transitexecutor.jar. Transit Batch Executor can be managed with the tbestart and tbestop commands. These commands use the dwinit.tbe script located in $DGWHOME/initd.</p>
+
+    <p class="p">Transit executes the appropriate job script located in the $DGWHOME/jobs directory. Artifacts (logs files, pdf or xml audits, and reports) are initially written to the $ADMIN_HOME/jobdata directory and are uploaded to the Transit database when the job completes, and then the files are removed. When Transit Batch Executor is started, all prior job artifacts are removed from the jobdata directory, as they are now accessible for viewing or download from the Transit User Interface.</p>
+
+    <p class="p">When Transit Batch Executor is started, a log file is created in the logdebug directory with today’s date appended. For example, transitexecutor.log_2019-05-31. Start and stop job events are noted there, and any errors. This log is automatically rolled over to a new file each day.</p>
+
+    <p class="p">TransitUI and RabbitMQ must be started and running before starting Transit Batch Executor.</p>
+
+  </div>
+
+</div></div></section>
+<section id="t-3270"><h4>Transit Batch Executor configuration</h4><div class="content-locale-en-US content-locale-en"><div id="c_configuring_batch_executor"><div class="body conbody"><p class="shortdesc">Transit Batch Executor requires specific application environment and user configuration.</p>
+
+    <p class="p">The <span class="ph filepath">$DGWBASE/dwenv.config</span> file must be configured with the following variables:</p>
+
+    <pre class="pre codeblock"><code>DB_LOGIN_TRANSIT
+TRANSIT_EXECUTOR_ID
+TRANSIT_EXECUTOR_PORT
+SERVER_SSL_KEY_STORE
+SERVER_SSL_KEY_STORE_PASSWORD
+SERVER_SSL_KEYALIAS
+SERVER_SSL_KEYSTORETYPE</code></pre>
+    
+<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" class="table" frame="hsides" border="1" rules="rows"><colgroup><col style="width:50%"><col style="width:50%"></colgroup><thead class="thead" style="text-align:left;">
+          <tr class="row">
+            <th class="entry row-nocellborder" style="text-align:left;vertical-align:top;" id="d8487e56">Variable</th>
+
+            <th class="entry row-nocellborder" style="text-align:left;vertical-align:top;" id="d8487e59">Description</th>
+
+          </tr>
+
+        </thead>
+<tbody class="tbody">
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d8487e56 ">DB_LOGIN_TRANSIT</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d8487e59 ">Contains the Transit schema name and service. This is used by the tbedelete script and the update process.</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d8487e56 ">TRANSIT_EXECUTOR_ID</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d8487e59 ">Contains a value that will be recorded as the MODIFY_WHAT column on the TRANSIT_JOB_INSTANCE table. In a load-balanced environment, this value should be configured with a different value for each instance, for example, EXEC-PROD001. This value has a maximum length of 14 characters.</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d8487e56 ">TRANSIT_EXECUTOR_PORT</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d8487e59 ">Contains the TCP/IP port to be used by Transit Batch Executor's REST API. It should not conflict with another service on its server.</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d8487e56 ">SERVER_SSL_KEY_STORE</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d8487e59 ">Contains the path to a keystore file you created to contain your SSL certificate.</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d8487e56 ">SERVER_SSL_KEY_STORE_PASSWORD</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d8487e59 ">Contains the password for your keystore file.</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d8487e56 ">SERVER_SSL_KEY_ALIAS</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d8487e59 ">Contains the alias of the key you created.</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d8487e56 ">SERVER_SSL_KEYSTORETYPE</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d8487e59 ">Contains the type of your keystore. JKS is the default.</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d8487e56 ">JDBC_PROPERTIES_PATH</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d8487e59 ">Optional. It contains the fully qualified file system path to the jdbc.properties file if it is stored in a directory other than the default of $DGWBASE/admin/common.</td>
+
+          </tr>
+
+        </tbody>
+</table>
+</div>
+
+    <div class="note"><span class="notetitle">Note:</span> The above SSL variables are similar to the SSL variables created for the other <span class="keyword">Degree Works</span> Java applications in their startup scripts.</div>
+
+    <p class="p">In addition to the data source URI, user name, and password, you can set other data source configuration parameters specific to Transit Batch Executor in jdbc.properties. They should be prefixed with <span class="ph uicontrol">tbe.dbcp2.</span> followed by the property name (for example, tbe.dbcp2.maxTotal=40). This requires some technical knowledge of data source pooling. Please consult with the <span class="keyword">Ellucian Action Line</span> before making any changes. Some of the properties that can be changed are:</p>
+
+    
+<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" class="table" frame="hsides" border="1" rules="rows"><colgroup><col style="width:50%"><col style="width:50%"></colgroup><thead class="thead" style="text-align:left;">
+          <tr class="row">
+            <th class="entry row-nocellborder" style="vertical-align:top;" id="d8487e170">Property</th>
+
+            <th class="entry row-nocellborder" style="vertical-align:top;" id="d8487e173">Description</th>
+
+          </tr>
+
+        </thead>
+<tbody class="tbody">
+          <tr class="row">
+            <td class="entry row-nocellborder" style="vertical-align:top;" headers="d8487e170 ">initialSize</td>
+
+            <td class="entry row-nocellborder" style="vertical-align:top;" headers="d8487e173 ">The initial size of the connection pool.</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="vertical-align:top;" headers="d8487e170 ">maxConnLifetimeMillis</td>
+
+            <td class="entry row-nocellborder" style="vertical-align:top;" headers="d8487e173 ">The maximum permitted lifetime of a connection in milliseconds.</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="vertical-align:top;" headers="d8487e170 ">maxIdle</td>
+
+            <td class="entry row-nocellborder" style="vertical-align:top;" headers="d8487e173 ">The maximum number of connections that can remain idle in the pool. A negative value indicates there is no limit.</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="vertical-align:top;" headers="d8487e170 ">maxTotal</td>
+
+            <td class="entry row-nocellborder" style="vertical-align:top;" headers="d8487e173 ">The maximum number of poolable connections. A negative value indicates there is no limit.</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="vertical-align:top;" headers="d8487e170 ">minIdle</td>
+
+            <td class="entry row-nocellborder" style="vertical-align:top;" headers="d8487e173 ">The minimum number of idle connections in the pool.</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="vertical-align:top;" headers="d8487e170 ">removeAbandonedOnBorrow</td>
+
+            <td class="entry row-nocellborder" style="vertical-align:top;" headers="d8487e173 ">Set to true to remove abandoned connections if they exceed the removeAbandonedTimeout when borrowObject is invoked.</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="vertical-align:top;" headers="d8487e170 ">removeAbandonedTimeout</td>
+
+            <td class="entry row-nocellborder" style="vertical-align:top;" headers="d8487e173 ">The timeout in seconds before an abandoned connection can be removed.</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="vertical-align:top;" headers="d8487e170 ">testOnBorrow</td>
+
+            <td class="entry row-nocellborder" style="vertical-align:top;" headers="d8487e173 ">Set to true to validate the connection before it is borrowed from the pool.</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="vertical-align:top;" headers="d8487e170 ">testWhileIdle</td>
+
+            <td class="entry row-nocellborder" style="vertical-align:top;" headers="d8487e173 ">Set to true to validate connections when an eviction run is conducted.</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="vertical-align:top;" headers="d8487e170 ">timeBetweenEvictionRunsMillis</td>
+
+            <td class="entry row-nocellborder" style="vertical-align:top;" headers="d8487e173 ">Set the time between eviction runs in milliseconds.</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="vertical-align:top;" headers="d8487e170 ">validationQueryTimeout</td>
+
+            <td class="entry row-nocellborder" style="vertical-align:top;" headers="d8487e173 ">The validation query timeout, the amount of time, in seconds, that connection validation will wait for a response from the database when executing a validation query. Use a value less than or equal to 0 (zero) for no timeout.</td>
+
+          </tr>
+
+        </tbody>
+</table>
+</div>
+
+    <p class="p">Additional properties are available. Consult the Java documentation for the appropriate version of Apache BasicDataSource.</p>
+
+    <p class="p">Transit Batch Executor requires memory up to as much as 2 GB. The memory for Transit Batch Executor defaults to 1536MB but can be overridden with the optional environment variable TBE_MEMORY.</p>
+
+    <p class="p">Transit Batch Executor uses credentials stored in the core.security.transit.username and core.security.transit.password Shepherd settings to contact the Transit UI. This user must be granted the TRANSIT key to access the API, the TRANART key to upload artifacts, and the NOREFER key to avoid the referrer check in the API. See <span class="xref ft-internal-link" title="User access to Transit and its features is managed with a set of Shepherd keys and groups." data-ft-warning="excluded-from-rendering" data-mapid="igXg2AijGFGkGiTrAzay5w" data-tocid="N2k_0E7ew0lIIS7pDeZGiQ">Transit user access</span> for more information.</p>
+
+    <p class="p">Transit Batch Executor receives job requests from the RabbitMQ broker and contacts the Transit UI while executing jobs on your Classic server. Access through firewalls to these deployments is required. The URL for the Transit UI application must be found in the Shepherd setting transit.api.url.</p>
+
+    <p class="p">After completing the Transit Batch Executor configuration, start Transit Batch Executor:</p>
+
+    <pre class="pre codeblock"><code>$ tbestart</code></pre>
+    <p class="p">The TRANSIT_START_PAUSE_MILLIS environment variable should be added only on instruction from Ellucian. The variable specifies the amount of time, in milliseconds, that Transit Batch Executor will pause after receiving a request to run a new job and before it queries the Transit API for details on the job. This pause is necessary to allow the API to finalize the job. The default value is 5000 milliseconds (5 seconds).</p>
+
+    <p class="p">The TRANSIT_EXECUTOR_OPTIONS environment variable may be set in dwenv.config to add Java virtual machine (JVM) options in addition to the TBE_MEMORY variable. This should be done only on advice from the <span class="keyword">Ellucian Action Line</span>.</p>
+
+    <p class="p">Updating the TRANSIT_ENABLE_MONITOR environment variable in dwenv.config and setting it to true enables /health, /metrics, /prometheus, and /status endpoints in Transit Batch Executor for health and monitoring metrics. By default, this monitoring functionality is not enabled.</p>
+
+  </div>
+
+</div></div></section>
+<section id="t-3280"><h3>Job parameters</h3><div class="content-locale-en-US content-locale-en"><div id="c_transit_job_parameters_saving"><div class="body conbody"><p class="shortdesc">The selection criteria and responses to processing questions for frequently run jobs can be saved for reuse. </p>
+
+    <p class="p">If users have the TRANPARM or TRANRCUR Shepherd key, they will see a saved job parameters drop-drown on the Run Jobs tab. After selecting a report or processor, users have the option of not using saved job parameters, creating a new set of saved job parameters, or using an existing set of saved job parameters.</p>
+
+    <p class="p">Selecting <span class="ph uicontrol">None</span> will allow the user to enter a new set of selection criteria and responses to processing questions. These will not be saved, and if this specific set of job parameters is needed for a future job, they will need to be manually entered again.</p>
+
+    <p class="p">Selecting <span class="ph uicontrol">New</span> will prompt users for a description of these saved job parameters, and when launching or scheduling the job, this set of job parameters will be saved for reuse. Users can also just save this set of job parameters without launching or scheduling the job. If the <span class="ph uicontrol">Enable debugging?</span> option is selected, this will not be included in the saved job parameter. This is a runtime-only option.</p>
+
+    <p class="p">Any previously created sets of parameters for a specific job will display in the Saved job parameters drop-down. Selecting one of these saved job parameter sets will preload the selection criteria and responses to processing questions. Users can then launch or schedule this job using these parameters. If users makes modifications to these job parameters, they will have the option to update the existing job parameters or save these changes as a new set of job parameters. </p>
+
+    <p class="p">All saved job parameter sets created by any user can be viewed in the Saved Jobs tab. Clicking the <span class="ph uicontrol">Description</span> will load that set of job parameters in the Run Jobs tab. Users can then edit the job parameter set, or launch, or schedule a job using these parameters. Changes made to existing saved job parameters will apply to any scheduled job using those saved job parameters.</p>
+
+    <p class="p">If a saved job parameter is in use in a scheduled job or job sequence, its row in Saved Jobs can be expanded to show additional details about those scheduled jobs and sequences. Users with the TRANSCHD or TRANRCUR Shepherd key can click the link to view or edit the scheduled job. Users with the TRANSEQ or TRANRCUR Shepherd key can click on the link to view or edit the job sequence.</p>
+
+    <p class="p">Saved job parameters can be deleted from the saved jobs by clicking the <span class="ph uicontrol">Delete</span> icon. If saved job parameters are being used by a scheduled or recurring job or in a job sequence, they cannot be deleted. After the scheduled job runs, all recurring scheduled instances complete or the saved job parameters are no longer part of a sequence, the saved job parameters can be deleted.</p>
+
+    <p class="p">Some functionality, such as launching, editing, and deleting saved job parameters, may be limited if users are not authorized to run that specific job, either because they do not have the TRANALL or job-specific Shepherd key, like TRDAP22.</p>
+
+    <div class="section"><h2 class="title sectiontitle">Configuration</h2>
+      
+      <p class="p">Access to saving job parameters is granted if the user has the TRANPARM or TRANRCUR Shepherd key.</p>
+
+    </div>
+
+  </div>
+
+</div></div></section>
+<section id="t-3290"><h3>Job scheduling</h3><div class="content-locale-en-US content-locale-en"><div id="c_transit_job_scheduling"><div class="body conbody"><p class="shortdesc">Users can schedule individual jobs and job sequences to run one time at a future date and time, or on a recurring daily, weekly, monthly, or yearly basis.</p>
+
+    <p class="p">If users have the TRANSCHD or TRANRCUR Shepherd key, they will see the <span class="ph uicontrol">Schedule</span> button on the Run Jobs tab. Clicking on this button opens the Schedule a job dialog. Users with the TRANSEQ or TRANRCUR Shepherd key will see the <span class="ph uicontrol">Schedule</span> button on the Create job sequence dialog.</p>
+
+    <p class="p">To schedule an individual job or job sequence to run one time in the future, users select the desired <span class="ph uicontrol">Schedule date</span> and <span class="ph uicontrol">Schedule time</span> in the dialog and click the <span class="ph uicontrol">Schedule</span> button to schedule this job.</p>
+
+    <p class="p">To create a recurring job schedule or sequence, users click the <span class="ph uicontrol">Schedule recurring job</span> link in the dialog. Only users with the TRANRCUR Shepherd key will see this link. They can select the desired <span class="ph uicontrol">Start date</span> and <span class="ph uicontrol">Start time</span> for the recurrence, the frequency (daily, weekly, monthly, or yearly), and when the recurrence should end, and then click the <span class="ph uicontrol">Schedule</span> button to create the recurrence. </p>
+
+    <p class="p">The <span class="ph uicontrol">Enable debugging?</span> option cannot be selected when scheduling individual jobs. This is a runtime-only option.</p>
+
+    <p class="p">There are some jobs such as those that require an input file (for example, DAP41) that cannot be scheduled to run on a recurring basis. For these jobs, the <span class="ph uicontrol">Schedule recurring job</span> link in the Schedule a job dialog will not display, even if the user has TRANRCUR.</p>
+
+    <p class="p">The schedule and start dates and times are displayed in Transit in the user's time zone, while the next scheduled time for scheduled and recurring jobs is stored in UTC (GMT) in the database. The time zone of users who create or last modified the recurring schedule is also stored in the database. This is necessary to ensure that date and time calculations are done according to the user's time zone.</p>
+
+    <p class="p">Scheduled and recurring individual jobs and job sequences can be viewed in the Scheduled Jobs tab. Clicking <span class="ph uicontrol">Type</span> will open the Edit a job schedule dialog. The user can then edit or delete the job schedule, or save the changes as a new job schedule. For job sequences, the row in Scheduled Jobs can be expanded to show the saved job parameters used in the sequence. Users with the TRANSEQ or TRANRCUR Shepherd key can click the link to view or edit the job sequence.</p>
+
+    <p class="p">Scheduled and recurring jobs can be deleted from the Scheduled Jobs by clicking the <span class="ph uicontrol">Delete</span> icon.</p>
+
+    <p class="p">Some functionality, such as editing and deleting scheduled and recurring jobs, may be limited if users are not authorized to run that specific job, either because they do not have the TRANALL or job-specific Shepherd key, like TRDAP22.</p>
+
+    <div class="section"><h2 class="title sectiontitle">Configuration</h2>
+      
+      <p class="p">Review the core.week.startingDay Shepherd setting to ensure it is configured correctly.</p>
+
+      <p class="p">Access to scheduling jobs is granted if the user has the TRANSCHD or TRANRCUR Shepherd key.</p>
+
+    </div>
+
+  </div>
+
+</div></div></section>
+<section id="t-3300"><h3>Job sequences</h3><div class="content-locale-en-US content-locale-en"><div id="c_transit_job_sequences"><div class="body conbody"><p class="shortdesc">Users can group saved job parameters together to run in sequence, similar to using launchjob in cron.</p>
+
+    <p class="p">If users have the TRANSEQ or TRANRCUR Shepherd key, they will have access to the Sequences tab and can create a sequence of two or more saved job parameters. These can be launched to run immediately or, if the user has the TRANSCHED or TRANRCUR keys, be scheduled to run one time or on a recurring basis in the future. For more information, see the <span class="xref ft-internal-link" title="You can use the launchjob script to launch and schedule jobs through cron." data-ft-warning="excluded-from-rendering" data-mapid="igXg2AijGFGkGiTrAzay5w" data-tocid="6uIKIJ7EOFiLMjTUbv2kow">The launchjob script</span> topic.</p>
+
+    <p class="p">Clicking the <span class="ph uicontrol">Create New Sequence</span> button will open the Create job sequence dialog. The user will be prompted to enter a sequence description and to select at least two saved job parameters to be in the sequence. Additional saved job parameters can be added by clicking the <span class="ph uicontrol">+</span> button. The user should also specify whether the sequence should continue if a particular job fails. When the <span class="ph uicontrol">Continue if job fails?</span> option is selected, all subsequent jobs in the sequence will not be launched if that job fails. The order of the jobs in the sequence can be rearranged with the drag icon.</p>
+
+    <p class="p">If users have the TRANSCHD or TRANRCUR Shepherd key, they will see the <span class="ph uicontrol">Schedule</span> button on the Create job sequence dialog. Clicking this button will display the scheduling fields. To schedule the job sequence to run one time in the future, users select the desired <span class="ph uicontrol">Schedule date</span> and <span class="ph uicontrol">Schedule time</span> in the dialog and click the <span class="ph uicontrol">Schedule</span> button to schedule the job. To create a recurring job sequence, users click the <span class="ph uicontrol">Schedule recurring job</span> link. Only users with the TRANRCUR Shepherd key will see this link.</p>
+
+    <p class="p">The job sequence will be saved for reuse when it is launched or scheduled. Users can also just save the job sequence without launching or scheduling it.</p>
+
+    <div class="section"><h2 class="title sectiontitle">Configuration</h2>
+      
+      <p class="p">Access to creating job sequences is granted if the user has the TRANSEQ or TRANRCUR Shepherd key.</p>
+
+    </div>
+
+  </div>
+
+</div></div></section>
+<section id="t-3310"><h3>The tbeshow script</h3><div class="content-locale-en-US content-locale-en"><div id="c_tbeshow_script"><p class="shortdesc">This script shows the transitexecutor process.</p>
+
+  
+</div></div></section>
+<section id="t-3320"><h3>The tbestart script</h3><div class="content-locale-en-US content-locale-en"><div id="c_tbestart_script"><p class="shortdesc">This script starts the Transit Batch Executor and is needed to run any Transit jobs. The Transit UI application must be running before starting the executor, as should the RabbitMQ broker.</p>
+
+  
+</div></div></section>
+<section id="t-3330"><h3>The tbestop script</h3><div class="content-locale-en-US content-locale-en"><div id="c_tbestop_script"><div class="body conbody"><p class="shortdesc">This script stops the Transit Batch Executor by sending a message to the executor using its API. </p>
+
+    <p class="p">After the executor receives the request to stop, it will normally wait for all jobs to complete before shutting down. It may take the executor some time to stop after this command has finished. You can use the <code class="ph codeph">tbeshow</code> command to see if the executor has stopped. Use the <code class="ph codeph">--wait</code> option to force the <code class="ph codeph">tbestop</code> command to pause until the executor has completely shut down.  To force the executor to shut down immediately, use the <code class="ph codeph">--immediate</code> flag on the <code class="ph codeph">tbestop</code> command. This will terminate all running jobs before the executor shuts down and updates the job statuses to Terminated.</p>
+
+    <p class="p">The <code class="ph codeph">--wait</code> and <code class="ph codeph">--immediate</code> options are independent and may both be used together. The <code class="ph codeph">--wait</code> option applies to the <code class="ph codeph">tbestop</code> command itself, and the <code class="ph codeph">--immediate</code> option applies to the executor. If both are used, for example, it causes the executor to terminate all jobs and shut down while the <code class="ph codeph">tbestop</code> command waits for this to finish.</p>
+
+  </div>
+
+</div></div></section>
+<section id="t-3340"><h3>The tberestart script</h3><div class="content-locale-en-US content-locale-en"><div id="c_tberestart_script"><div class="body conbody"><p class="shortdesc">This script restarts the Transit Batch Executor by first stopping the currently running executor and then starting a new one. </p>
+
+    <p class="p">Normally, it will wait for existing jobs to stop before it starts the new executor. You can use the <code class="ph codeph">--immediate</code> option to force the script to terminate all running jobs immediately before starting the new executor. This is the same as executing a <code class="ph codeph">tbestop --wait</code> followed by a <code class="ph codeph">tbestart</code>.</p>
+
+  </div>
+
+</div></div></section>
+<section id="t-3350"><h3>The launchjob script</h3><div class="content-locale-en-US content-locale-en"><div id="c_launchjob_script"><div class="body conbody"><p class="shortdesc">You can use the launchjob script to launch and schedule jobs through cron.</p>
+
+    <p class="p">For most scenarios, you can use Transit to schedule an individual job or a sequence of jobs to run at a future date or on a recurring basis. However, there may be times when you need to launch a job in a scripted or automated setting that makes using the user interface impossible. This includes scheduling jobs through cron. The launchjob script is available for these purposes. It submits a job to the Transit queue using parameters provided by a parameter file. The job is not run by the script but is run by one of the executors that also run jobs submitted by the Transit UI. This may be on the same server as the launchjob script, but it may also be on another server if you have Transit executors running on multiple machines.</p>
+
+    <p class="p">The format of the command is:</p>
+
+    <pre class="pre codeblock"><code>launchjob --help
+launchjob [--debug | --verbose] [--wait] parameterFile</code></pre>
+    <p class="p">The first form of the command (with --help) just displays a brief help message. The second form submits the job and displays the job number. More progress information is displayed if the optional --verbose option is used. The --debug option also displays additional information and producing a debug log file that may be used by Ellucian support to resolve issues.</p>
+
+    <p class="p">The --wait parameter instructs the command to wait until the newly launched job has completed. When used, the command will not return immediately, but will poll the Transit API continuously for the job’s status and will only exit when the status changes to DONE or FAILED. By default, the command will poll the API every 5 seconds. This can be changed by setting the environment variable JOBREQUEST_WAIT_MILLIS to the desired number of milliseconds. The default value is 5000 (5 seconds). By default, the launchjob command does not wait for the job to finish.</p>
+
+    <p class="p">This command must be run in an environment that has been initialized by the dwenv command (a normal Degree Works installed environment). If run by cron, the environment must be initialized before the launchjob command is used.</p>
+
+    <p class="p">The parameter file is a JSON data file. Some example parameter files can be found in the $DGWHOME/samples subdirectory on the classic server. Please copy any of the sample files into your own directory and modify as needed. It is recommended that you create a new myjobs directory under $ADMIN_HOME and manage your JSON files there. Before running launchjob, you should first cd into the myjobs directory so launchjob can find your json file, or you should supply the full pathname to the json file.</p>
+
+    <p class="p">The Transit user interface uses the same JSON format to submit jobs to the queue. Another way to get the JSON parameter data is to use the developer tools provided by your browser. Using Chrome, by inspecting the network submissions to the API, you can find the POST request sent to the API to launch the job: The name of the API call will be <code class="ph codeph">instances</code>. Go to the Headers tab, Request Payload section, click <span class="ph uicontrol">view source</span> to see the JSON that the API sent for the job. This JSON data can be copied and pasted into the file used by the launchjob command.</p>
+
+    <p class="p">In case launchjob encounters an error executing, be sure to redirect launchjob output to a log. Also be sure that stderr is redirected to stdout, either on the same line or elsewhere. For example:</p>
+
+    <pre class="pre codeblock"><code>launchjob --wait $ADMIN_HOME/myjobs/rad30.currentSql.json &gt;&gt; $LOGFILE 2&gt;&amp;1</code></pre>
+    <p class="p">The Transit UI application (which contains the API) must be running to run launchjob.</p>
+
+    <p class="p">The script uses the TRANSITBAT user, which must be configured before use. See the <span class="xref ft-internal-link" title="User access to Transit and its features is managed with a set of Shepherd keys and groups." data-ft-warning="excluded-from-rendering" data-mapid="igXg2AijGFGkGiTrAzay5w" data-tocid="N2k_0E7ew0lIIS7pDeZGiQ">Transit user access</span> topic.</p>
+
+  </div>
+
+</div></div></section>
+<section id="t-3360"><h3>The jobstatus script</h3><div class="content-locale-en-US content-locale-en"><div id="c_jobstatus_script"><div class="body conbody"><p class="shortdesc">The jobstatus script gets the status of a previously launched job. It might be used in a shell script to wait for a job to complete, or to find out if it was successful.</p>
+
+    <p class="p">The format of the command is:</p>
+
+    <pre class="pre codeblock"><code>jobstatus --help
+jobstatus [--debug | --verbose] [--wait] job
+</code></pre>
+    <div class="p">
+      <div class="div">
+        <p class="p">The first form of the command (with <code class="ph codeph">--help</code>) just displays a brief help message. The second form checks the job and displays the status. More progress information is displayed if the optional <code class="ph codeph">--verbose</code> option is used. The <code class="ph codeph">--debug</code> option also displays additional information in addition to producing a debug log file that may be used by Ellucian support to resolve issues.</p>
+
+        <p class="p">This command must be run in an environment that has been initialized by the dwenv command (a normal Degree Works installed environment). If run by cron, the environment must be initialized before the jobstatus command is used.</p>
+
+        <p class="p">The job parameter may be the job number as shown in Transit or displayed by the launchjob command. It may also be the internal job ID.</p>
+
+        <p class="p">Normally, the command does not wait for the job to complete, it simply tells you the current status. If run with the <code class="ph codeph">--wait</code> option, it waits for the job to reach either the “DONE’ or “FAILED” status before it returns. The wait option polls the Transit API every 5 seconds to check on the job status. The polling interval can be changed by setting the environment variable JOBREQUEST_WAIT_MILLIS to the desired number of milliseconds. The default value is 5000 (5 seconds).</p>
+
+        <p class="p">The jobstatus command will normally exit with a zero status if successful. If there was a problem getting the job status, the command will return a status of 1. If it was able to get the job status and the <code class="ph codeph">--wait</code> option was used and the job finished with a “FAILED” status, the command will return a status of 2.</p>
+
+      </div>
+    </div>
+
+  </div>
+
+</div></div></section>
+<section id="t-3370"><h3>The tbedelete script</h3><div class="content-locale-en-US content-locale-en"><div id="c_tbedelete_script"><div class="body conbody"><p class="shortdesc">Transit job metadata (start and stop times, and so on) are stored in the Transit database along with job artifacts (reports, action list, and so on).</p>
+
+    <p class="p">By default, this job data will be deleted from the database on a schedule defined in the transit.cleanup.completed.maxDays and transit.cleanup.incomplete.maxDays Shepherd settings. Optionally, the tbedelete script could be used by an administrator to delete transit job data in batch.</p>
+
+    <p class="p">The tbedelete script removes job data based on age. It is available in the classic Degree Works environment. The DB_LOGIN_TRANSIT must be set correctly in order for this script to operate. It may be run through cron so long as the classic environment is initialized.</p>
+
+    <p class="p">You pass a number to the tbedelete script that represents how old, in days, a job must be to be deleted. It will only delete jobs that are in a DONE or FAILED status.</p>
+
+    <p class="p">It will list the jobs deleted, and the jobs that were not deleted because they are not DONE or FAILED.</p>
+
+    <pre class="pre codeblock"><code>$ tbedelete 30
+tbedelete - Tue Jun 25 11:52:33 EDT 2019
+Deleting jobs that are 30 days old with status DONE or FAILED
+JOB_NUMBER JOB_NAME
+---------- ----------------
+2 dap27
+3 dap27
+4 dap27
+5 rad30
+6 rad30
+7 rad30
+8 scr92
+9 scr91
+8 rows selected.
+Deleting artifacts that are 30 days old
+12 rows deleted.
+Deleting job instances that are 30 days old
+8 rows deleted.
+The following jobs will not be deleted due to their STATUS
+JOB_NUMBER JOB_NAME STATUS
+---------- ---------------- ----------------
+1 dap27 PENDING</code></pre>
+  </div>
+
+</div></div></section>
+<section id="t-3380"><h3>Job request flow through Transit</h3><div class="content-locale-en-US content-locale-en"><div id="c_transit_job_request_flow"><div class="body conbody"><p class="shortdesc">The Transit UI runs on the Java application server. </p>
+
+    <p class="p">The Transit API is in the transit.jar along with the Transit UI. It is not deployed separately. The Transit Batch Executor is in the transitexecutor.jar that runs on the classic server. All three are required to successfully launch and run a Transit job.</p>
+
+    <div class="p">Process:<ol class="ol"> <li class="li">User clicks Launch on a job in the Transit UI.</li>
+ <li class="li">Transit UI sends the request to the Transit API.</li>
+
+      <li class="li">Transit API processes the request, creates a job instance in the Transit database with a status of PENDING, and places a new request on the Rabbit MQ message exchange. If a job is scheduled to be run at a specified time, or with a specified recurrence, the Transit API creates a scheduled request. The system then checks after every interval specified (default is 5 seconds) and creates a job instance with a status of PENDING at the scheduled time.</li>
+
+      <li class="li">Transit Batch Executor reads the request from the queue and retrieves the parameters from the API. The status of the job is changed to RUNNING.</li>
+ <li class="li">The job is executed by a shell script from the $DGWHOME/jobs directory.</li>
+ <li class="li">When the job is complete the executor contacts the Transit API to attach the job’s artifacts to the job instance and to update its status.</li>
+ <li class="li">A this point the Transit UI is able to view the job's artifacts (reports).</li>
+ </ol>
+</div>
+
+  </div>
+
+</div></div></section>
+<section id="t-3390"><h3>Debug Transit</h3><div class="content-locale-en-US content-locale-en"><div id="c_debugging_transit"><div class="body conbody"><p class="shortdesc">There are two distinct types of debugging available in the Transit user interface, the Transit application itself and the jobs run by Transit. </p>
+
+    <p class="p">There are two different ways to enable these debugging modes and they can be used separately or together. Transit users can enable either mode to troubleshoot issues for their session from the user interface.</p>
+
+    <p class="p">Additionally, debugging for the Transit Batch Executor can be enabled on the classic server, if needed.</p>
+
+  </div>
+
+</div></div></section>
+<section id="t-3400"><h4>Debug the Transit user interface</h4><div class="content-locale-en-US content-locale-en"><div id="c_debug_transit_ui"><div class="body conbody"><p class="shortdesc">With the applicable permissions, users can debug the Transit application as a whole and individual Transit jobs.</p>
+
+    <div class="section"><h2 class="title sectiontitle">Transit debug access</h2>
+      
+      <p class="p">To access the debugging functionality, users should be assigned the DEBUG key either through the Users function of Controller or in the core.security.rules.shpcfg Shepherd setting.</p>
+
+    </div>
+
+    <div class="section"><h2 class="title sectiontitle">Debug the Transit application</h2>
+      
+      <p class="p">Users with the DEBUG key will see the Debug option under the User Profile image in the upper right corner of the screen. Clicking on Debug image will take the user to the Debug page. There they can toggle the Enable Debug switch to turn debugging on for the Transit application. A random Debug Tag will be generated, and the user can copy this to their clipboard by clicking on the page icon. This Debug Tag will be appended to each line of debug in the log file so that the user can easily identify which lines are from their session, as opposed to other users using the application at the same time.</p>
+
+      <p class="p">After enabling debug, the user can then resume using Transit and execute the steps to duplicate the issue they are experiencing. Debug should be turned off by going back to the Debug page and toggling the Enable Debug switch when the issue has been duplicated. Debug for this user’s session will also be turned off when they log out of the application.</p>
+
+      <p class="p">Debug will appear in the TransitUI log file on the application server. This is typically defined by the $LOGGING_FILE environment variable in the TransitUI start script.</p>
+
+      <p class="p">Searching for the user’s Debug Tag will isolate the lines of debug specific to their actions. For example:</p>
+
+      <pre class="pre codeblock"><code>2017-10-24 16:22:23,144 68b4e19d-3fb4-4975-9815-83eea01266ff DEBUG [41-exec-17] .h.d.s.s.StatelessPreAuthenticatedFilter : Checking secure context token: null</code></pre>
+      <p class="p">The packdebug script can be used to collect the log files generated for a user session’s Debug Tag. For more information on using this script, refer to the <span class="xref ft-internal-xlink" title="The packdebug script can be used to collect debug files from the server when a user has enabled debugging from the Java applications running on the Java Application Servers." data-ft-warning="excluded-from-rendering" data-clusterid="id_crm/dgrwrks/c_packdebug_script">packdebug script</span> topic.</p>
+
+    </div>
+
+    <div class="section"><h2 class="title sectiontitle">Debug the Transit jobs</h2>
+      
+      <p class="p">Users who have the DEBUG key can run any job or processor for which they have access in debug mode. In the Transit UI, an Enable debugging? check box will display as the final question for users with the DEBUG key. When debug has been enabled, jobs such as dap22 or rad30 will generate debug files which are available as job artifacts.</p>
+
+      <p class="p">Debugging cannot be enabled when scheduling jobs. To schedule a job, deselect the <span class="ph uicontrol">Enable debugging?</span> check box and click the <span class="ph uicontrol">Schedule</span> button.</p>
+
+    </div>
+
+  </div>
+
+</div></div></section>
+<section id="t-3410"><h4>Debug the Transit Executor</h4><div class="content-locale-en-US content-locale-en"><div id="c_debugging_transit_executor"><div class="body conbody"><p class="shortdesc">The Transit Batch Executor can also be run with debugging enabled.</p>
+
+    <p class="p">When the Transit Executor is started, a log file is created in the logdebug directory with today’s date appended, for example, transitexecutor.log_2019-05-31. In addition, if a java exception should occur, the stack trace will be written to the $DW_LOGDEBUG_DIR/transitexecutorError.log.</p>
+
+    <p class="p">Debug can be enabled when starting the Transit Executor on the classic server by passing the --<code class="ph codeph">debug</code> option:</p>
+
+    <pre class="pre codeblock"><code>tbestart --debug</code></pre>
+    <p class="p">In addition, JMX Monitoring can be enabled with the --<code class="ph codeph">jmx</code> option:</p>
+
+    <pre class="pre codeblock"><code>tbestart --jmx</code></pre>
+    <p class="p">You can also increase the memory allocated to the executor by passing the value you want to use:</p>
+
+    <pre class="pre codeblock"><code>tbestart –memory 1536m</code></pre>
+    <p class="p">If you choose to permanently change the memory allocated, you can set the following in dwenv.config:</p>
+
+    <p class="p"><code class="ph codeph">export TBE_MEMORY=1536m </code> (substituting the value you want to use with 1536m)</p>
+
+  </div>
+
+</div></div></section></main></body></html>

@@ -1,0 +1,478 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>INTTRACKAUS Banner Student - Use — International student compliance</title><style>body{font-family:-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;line-height:1.55;color:#1a1a1a;max-width:920px;margin:0 auto;padding:24px}header{border-bottom:2px solid #5a16d6;margin-bottom:8px}h1{color:#3a0ca3}h2,h3,h4,h5,h6{margin-top:1.6em}.crumb{color:#666;font-size:13px;margin:0}.meta{color:#888;font-size:12px}nav.toc{background:#f6f4fc;border:1px solid #e3dcf5;border-radius:8px;padding:12px 18px;margin:18px 0}nav.toc h2{margin:.2em 0}nav.toc ul{list-style:none;padding-left:0}nav.toc a{text-decoration:none;color:#5a16d6}section{margin:1.2em 0;padding-top:.4em}img{max-width:100%;height:auto}table{border-collapse:collapse}td,th{border:1px solid #ccc;padding:4px 8px}code,pre{background:#f4f4f4;border-radius:4px}pre{padding:10px;overflow:auto}</style></head><body><header><p class="crumb">Banner Student › INTTRACKAUS Banner Student - Use</p><h1>INTTRACKAUS Banner Student - Use — International student compliance</h1><p class="meta">Source: <a href="https://resources.elluciancloud.com/r/bundle/banner_student_acn_use_inttrackaus">https://resources.elluciancloud.com/r/bundle/banner_student_acn_use_inttrackaus</a> &middot; Retrieved 2026-06-17</p></header><nav class="toc"><h2>Contents</h2><ul><li style="margin-left:0px"><a href="#t-180">International student compliance</a></li><li style="margin-left:16px"><a href="#t-190">International Student Status Changes</a></li><li style="margin-left:16px"><a href="#t-200">International Student Early Completion</a></li><li style="margin-left:16px"><a href="#t-210">International Student No Shows</a></li><li style="margin-left:16px"><a href="#t-220">International Students with Other Changes</a></li><li style="margin-left:16px"><a href="#t-230">Monitoring International Student Progression</a></li><li style="margin-left:16px"><a href="#t-240">Monitoring International Student Attendance</a></li><li style="margin-left:16px"><a href="#t-250">Program Attendance Tracking</a></li></ul></nav><main><section id="t-180"><h2>International student compliance</h2><div class="content-locale-en-US content-locale-en"><div id="c_international_student_compliance"><div class="body conbody"><p class="shortdesc">Australian ESOS compliance requirements have been used as the model for International Student Compliance reporting.</p>
+
+    <p class="p">Most of the ESOS snapshot activities update a single snapshot table and this table is used as the source for an extract activity. Only one extract activity is needed to pull the data needed for ESOS reporting for the combination of effective term and since date values.</p>
+
+  </div>
+
+</div></div></section>
+<section id="t-190"><h3>International Student Status Changes</h3><div class="content-locale-en-US content-locale-en"><div id="r_international_student_status_changes"><div class="body refbody"><p class="shortdesc">International student status changes cover the following scenarios.</p>
+
+    <div class="section">
+      <ul class="ul">
+        <li class="li">Student applies for and is granted a leave of absence</li>
+
+        <li class="li">Student's enrolment is suspended by the institution</li>
+
+        <li class="li">Student's enrolment is terminated by the institution</li>
+
+        <li class="li">Student chooses to withdraw from their program of studies</li>
+
+        <li class="li">Student transfers to another institution</li>
+
+      </ul>
+
+      <p class="p">The following table describes the activities for this file.</p>
+
+      
+<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" id="r_international_student_status_changes__r_international_student_status_changes-utbl1" class="table" frame="hsides" border="1" rules="rows"><colgroup><col><col><col></colgroup><thead class="thead" style="text-align:left;vertical-align:bottom;">
+            <tr class="row">
+              <th class="entry row-nocellborder" style="text-align:left;vertical-align:bottom;" id="d1641e67">Activity Type</th>
+
+              <th class="entry row-nocellborder" style="text-align:left;vertical-align:bottom;" id="d1641e70">Activity Name</th>
+
+              <th class="entry row-nocellborder" style="text-align:left;vertical-align:bottom;" id="d1641e73">Description</th>
+
+            </tr>
+
+          </thead>
+<tbody class="tbody">
+            <tr class="row">
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d1641e67 ">Snapshot</td>
+
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d1641e70 ">
+                <code class="ph codeph">SC_SNA_ESOS_STATUS</code>
+              </td>
+
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d1641e73 ">This activity pulls data from various <span class="keyword">Banner</span> baseline tables to populate the ESOS Data Snapshot (SKRSESO) table. The activity uses the PIDM, program code, tracking code, academic year, report period, submission number, and since date as populate keys.</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d1641e67 ">Data Extract</td>
+
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d1641e70 ">
+                <code class="ph codeph">SC_EXT_ESOS_DATA</code>
+              </td>
+
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d1641e73 ">This activity pulls data from the ESOS Data Snapshot (SKRSESO) table to populate the ESOS Data Extract (SKREESO) table. The activity uses the PIDM, program code, tracking code, academic year, report period, submission number, and since date as populate keys.</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d1641e67 ">Data Export</td>
+
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d1641e70 ">
+                <code class="ph codeph">SC_EXP_ESOS_DATA</code>
+              </td>
+
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d1641e73 ">This activity pulls data from the ESOS Data Extract (SKREESO) table to populate the ESOS Data Export (SKRXESO) table.</td>
+
+            </tr>
+
+          </tbody>
+</table>
+</div>
+
+    </div>
+
+  </div>
+
+</div></div></section>
+<section id="t-200"><h3>International Student Early Completion</h3><div class="content-locale-en-US content-locale-en"><div id="r_international_student_early_completion"><div class="body refbody"><p class="shortdesc">International Student Early Completion selects students where their actual completion date is more than one month earlier than their expected completion date.</p>
+
+    <div class="section">
+      <p class="p">The following table describes the activities for this file.</p>
+
+      
+<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" id="r_international_student_early_completion__r_international_student_early_completion-utbl1" class="table" frame="hsides" border="1" rules="rows"><colgroup><col><col><col></colgroup><thead class="thead" style="text-align:left;vertical-align:bottom;">
+            <tr class="row">
+              <th class="entry row-nocellborder" style="text-align:left;vertical-align:bottom;" id="d5013e49">Activity Type</th>
+
+              <th class="entry row-nocellborder" style="text-align:left;vertical-align:bottom;" id="d5013e52">Activity Name</th>
+
+              <th class="entry row-nocellborder" style="text-align:left;vertical-align:bottom;" id="d5013e55">Description</th>
+
+            </tr>
+
+          </thead>
+<tbody class="tbody">
+            <tr class="row">
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d5013e49 ">Snapshot</td>
+
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d5013e52 ">
+                <code class="ph codeph">SC_SNA_ESOS_EARLY</code>
+              </td>
+
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d5013e55 ">This activity pulls data from various <span class="keyword">Banner</span> baseline tables to populate the ESOS Data Snapshot (SKRSESO) table. The activity uses the PIDM, program code, tracking code, academic year, report period, submission number, and since date as populate keys.</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d5013e49 ">Data Extract</td>
+
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d5013e52 ">
+                <code class="ph codeph">SC_EXT_ESOS_DATA</code>
+              </td>
+
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d5013e55 ">This activity pulls data from the ESOS Data Snapshot (SKRSESO) table to populate the ESOS Data Extract (SKREESO) table. The activity uses the PIDM, program code, tracking code, academic year, report period, submission number, and since date as populate keys.</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d5013e49 ">Data Export</td>
+
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d5013e52 ">
+                <code class="ph codeph">SC_EXP_ESOS_DATA</code>
+              </td>
+
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d5013e55 ">This activity pulls data from the ESOS Data Extract (SKREESO) table to populate the ESOS Data Export (SKRXESO) table.</td>
+
+            </tr>
+
+          </tbody>
+</table>
+</div>
+
+    </div>
+
+  </div>
+
+</div></div></section>
+<section id="t-210"><h3>International Student No Shows</h3><div class="content-locale-en-US content-locale-en"><div id="r_international_student_no_shows"><div class="body refbody"><p class="shortdesc">Students who are considered to be "No Shows" will be categorised under one of the following scenarios.</p>
+
+    <div class="section">
+      <ul class="ul">
+        <li class="li">A new student has accepted the offer of a place and has paid fees but has not attended enrolment and registration.</li>
+
+        <li class="li">A continuing student has not re-enrolled.</li>
+
+      </ul>
+
+      <p class="p">The following table describes the activities for this file.</p>
+
+      
+<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" id="r_international_student_no_shows__r_international_student_no_shows-utbl1" class="table" frame="hsides" border="1" rules="rows"><colgroup><col><col><col></colgroup><thead class="thead" style="text-align:left;vertical-align:bottom;">
+            <tr class="row">
+              <th class="entry row-nocellborder" style="text-align:left;vertical-align:bottom;" id="d4565e58">Activity Type</th>
+
+              <th class="entry row-nocellborder" style="text-align:left;vertical-align:bottom;" id="d4565e61">Activity Name</th>
+
+              <th class="entry row-nocellborder" style="text-align:left;vertical-align:bottom;" id="d4565e64">Description</th>
+
+            </tr>
+
+          </thead>
+<tbody class="tbody">
+            <tr class="row">
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d4565e58 ">Snapshot</td>
+
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d4565e61 ">
+                <code class="ph codeph">SC_SNA_ESOS_NOSHOW</code>
+              </td>
+
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d4565e64 ">This activity pulls data from various <span class="keyword">Banner</span> baseline tables to populate the ESOS Data Snapshot (SKRSESO) table. The activity uses the PIDM, program code, tracking code, academic year, report period, submission number, and since date as populate keys.</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d4565e58 ">Data Extract</td>
+
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d4565e61 ">
+                <code class="ph codeph">SC_EXT_ESOS_DATA</code>
+              </td>
+
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d4565e64 ">This activity pulls data from the ESOS Data Snapshot (SKRSESO) table to populate the ESOS Data Extract (SKREESO) table. The activity uses the PIDM, program code, tracking code, academic year, report period, submission number, and since date as populate keys.</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d4565e58 ">Data Export</td>
+
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d4565e61 ">
+                <code class="ph codeph">SC_EXP_ESOS_DATA</code>
+              </td>
+
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d4565e64 ">This activity pulls data from the ESOS Data Extract (SKREESO) table to populate the ESOS Data Export (SKRXESO) table.</td>
+
+            </tr>
+
+          </tbody>
+</table>
+</div>
+
+    </div>
+
+  </div>
+
+</div></div></section>
+<section id="t-220"><h3>International Students with Other Changes</h3><div class="content-locale-en-US content-locale-en"><div id="r_international_students_other_changes"><div class="body refbody"><p class="shortdesc">Students with other changes will be categorised under one of the following scenarios.</p>
+
+    <div class="section">
+      <ul class="ul">
+        <li class="li">Student has received transfer credit after their enrolment that is sufficient to shorten their course/program</li>
+
+        <li class="li">Student needs to extend their completion date</li>
+
+        <li class="li">Student needs to change their program/course and this affects their completion date</li>
+
+        <li class="li">Student needs to change their program/course and this does not affect the completion date.</li>
+
+      </ul>
+
+      <p class="p">The following table describes the activities for this file.</p>
+
+      
+<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" id="r_international_students_other_changes__r_international_students_other_changes-utbl1" class="table" frame="hsides" border="1" rules="rows"><colgroup><col><col><col></colgroup><thead class="thead" style="text-align:left;vertical-align:bottom;">
+            <tr class="row">
+              <th class="entry row-nocellborder" style="text-align:left;vertical-align:bottom;" id="d2153e64">Activity Type</th>
+
+              <th class="entry row-nocellborder" style="text-align:left;vertical-align:bottom;" id="d2153e67">Activity Name</th>
+
+              <th class="entry row-nocellborder" style="text-align:left;vertical-align:bottom;" id="d2153e70">Description</th>
+
+            </tr>
+
+          </thead>
+<tbody class="tbody">
+            <tr class="row">
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d2153e64 ">Snapshot (Transfer Credit received after Enrolment)</td>
+
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d2153e67 ">
+                <code class="ph codeph">SC_SNA_ESOS_CREDIT</code>
+              </td>
+
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d2153e70 ">This activity pulls data from various <span class="keyword">Banner</span> baseline tables to populate the ESOS Data Snapshot (SKRSESO) table. The activity uses the PIDM, program code, tracking code, academic year, report period, submission number, and since date as populate keys.</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d2153e64 ">Snapshot (Extending Completion Date)</td>
+
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d2153e67 ">
+                <code class="ph codeph">SC_SNA_ESOS_EXTEND</code>
+              </td>
+
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d2153e70 ">This activity pulls data from various <span class="keyword">Banner</span> baseline tables to populate the ESOS Data Snapshot (SKRSESO) table. The activity uses the PIDM, program code, tracking code, academic year, report period, submission number, and since date as populate keys.</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d2153e64 ">Snapshot (Curriculum Changes)</td>
+
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d2153e67 ">
+                <code class="ph codeph">SC_SNA_ESOS_ CURRIC</code>
+              </td>
+
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d2153e70 ">This activity pulls data from various <span class="keyword">Banner</span> baseline tables to populate the ESOS Data Snapshot (SKRSESO) table. The activity uses the PIDM, program code, tracking code, academic year, report period, submission number, and since date as populate keys.</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d2153e64 ">Data Extract</td>
+
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d2153e67 ">
+                <code class="ph codeph">SC_EXT_ESOS_DATA</code>
+              </td>
+
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d2153e70 ">This activity pulls data from the ESOS Data Snapshot (SKRSESO) table to populate the ESOS Data Extract (SKREESO) table. The activity uses the PIDM, program code, tracking code, academic year, report period, submission number, and since date as populate keys.</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d2153e64 ">Data Export</td>
+
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d2153e67 ">
+                <code class="ph codeph">SC_EXP_ESOS_DATA</code>
+              </td>
+
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d2153e70 ">This activity pulls data from the ESOS Data Extract (SKREESO) table to populate the ESOS Data Export (SKRXESO) table.</td>
+
+            </tr>
+
+          </tbody>
+</table>
+</div>
+
+      <div class="note"><span class="notetitle">Note:</span> The data extract feature can create a data extract that can be used in Excel. The CLOB text can be converted to columns within Excel. You can use an ODBC connection to import data directly into Excel to import the contents of the ESOS Data Extract (SKREESO) table or the ESOS Data Export (SKRXESO) table directly into an excel workbook.</div>
+
+    </div>
+
+  </div>
+
+</div></div></section>
+<section id="t-230"><h3>Monitoring International Student Progression</h3><div class="content-locale-en-US content-locale-en"><div id="r_monitoring_international_student_progression"><div class="body refbody"><p class="shortdesc">The international students whose grades and academic standing indicate a progression issue or a potential progression issue will be included in the snapshot.</p>
+
+    <div class="section">
+      <p class="p">The following table describes the activities for this file.</p>
+
+      
+<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" id="r_monitoring_international_student_progression__r_monitoring_international_student_progression-utbl1" class="table" frame="hsides" border="1" rules="rows"><colgroup><col><col><col></colgroup><thead class="thead" style="text-align:left;vertical-align:bottom;">
+            <tr class="row">
+              <th class="entry row-nocellborder" style="text-align:left;vertical-align:bottom;" id="d3348e49">Activity Type</th>
+
+              <th class="entry row-nocellborder" style="text-align:left;vertical-align:bottom;" id="d3348e52">Activity Name</th>
+
+              <th class="entry row-nocellborder" style="text-align:left;vertical-align:bottom;" id="d3348e55">Description</th>
+
+            </tr>
+
+          </thead>
+<tbody class="tbody">
+            <tr class="row">
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d3348e49 ">Snapshot</td>
+
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d3348e52 ">
+                <code class="ph codeph">SC_SNA_ESOS_PROGRESS</code>
+              </td>
+
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d3348e55 ">This activity pulls data from various <span class="keyword">Banner</span> baseline tables to populate the ESOS Progression Data Snapshot (SKRSEPR) table. The activity uses the PIDM, program code, CRN, tracking code, academic year, report period, submission number, and as the date as populate keys.</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d3348e49 ">Data Extract</td>
+
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d3348e52 ">
+                <code class="ph codeph">SC_EXT_ESOS_PROGRESS</code>
+              </td>
+
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d3348e55 ">This activity pulls data from the ESOS Progression Data Snapshot (SKRSEPR) table to populate the ESOS Progression Data Extract (SKREEPR) table. The activity uses the PIDM, program code, CRN, tracking code, academic year, report period, submission number, and as the date as populate keys.</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d3348e49 ">Data Export</td>
+
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d3348e52 ">
+                <code class="ph codeph">SC_EXP_ESOS_PROGRESS</code>
+              </td>
+
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d3348e55 ">This activity pulls data from the ESOS Progression Data Extract (SKREEPR) table to populate the ESOS Progression Data Export (SKRXEPR) table.</td>
+
+            </tr>
+
+          </tbody>
+</table>
+</div>
+
+    </div>
+
+  </div>
+
+</div></div></section>
+<section id="t-240"><h3>Monitoring International Student Attendance</h3><div class="content-locale-en-US content-locale-en"><div id="r_monitoring_international_student_attendance"><div class="body refbody"><p class="shortdesc">The international students whose attendance is below the minimum requirement will be included in the snapshot.</p>
+
+    <div class="section">
+      <p class="p">The following table describes the activities that track attendance by CRN.</p>
+
+      
+<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" id="r_monitoring_international_student_attendance__r_monitoring_international_student_attendance-utbl1" class="table" frame="hsides" border="1" rules="rows"><colgroup><col><col><col></colgroup><thead class="thead" style="text-align:left;vertical-align:bottom;">
+            <tr class="row">
+              <th class="entry row-nocellborder" style="text-align:left;vertical-align:bottom;" id="d4413e49">Activity Type</th>
+
+              <th class="entry row-nocellborder" style="text-align:left;vertical-align:bottom;" id="d4413e52">Activity Name</th>
+
+              <th class="entry row-nocellborder" style="text-align:left;vertical-align:bottom;" id="d4413e55">Description</th>
+
+            </tr>
+
+          </thead>
+<tbody class="tbody">
+            <tr class="row">
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d4413e49 ">Snapshot</td>
+
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d4413e52 ">
+                <code class="ph codeph">SC_SNA_ESOS_ATTEND</code>
+              </td>
+
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d4413e55 ">This activity pulls data from various <span class="keyword">Banner</span> baseline tables, and either the <span class="keyword">Banner</span> Attendance Tracking view (SVQ_ATTENDANCE) or the <span class="keyword">Banner</span> Attendance Tracking (SKRATTR) table to populate the ESOS Progression Data Snapshot (SKRSEPR) table. The activity uses the PIDM, program code, CRN, tracking code, term code, academic year, report period, submission and since date as populate keys.</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d4413e49 ">Data Extract</td>
+
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d4413e52 ">
+                <code class="ph codeph">SC_EXT_ESOS_ATTEND</code>
+              </td>
+
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d4413e55 ">This activity pulls data from the ESOS Progression Data Snapshot (SKRSEPR) table to populate the ESOS Progression Data Extract (SKREEPR) table. The activity uses the PIDM, program code, CRN, tracking code, term code, academic year, report period, submission, and since date as populate keys.</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d4413e49 ">Data Export</td>
+
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d4413e52 ">
+                <code class="ph codeph">SC_EXP_ESOS_ATTEND</code>
+              </td>
+
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d4413e55 ">This activity pulls data from the ESOS Progression Data Extract (SKREEPR) table to populate the ESOS Progression Data Export (SKRXEPR) table.</td>
+
+            </tr>
+
+          </tbody>
+</table>
+</div>
+
+    </div>
+
+  </div>
+
+</div></div></section>
+<section id="t-250"><h3>Program Attendance Tracking</h3><div class="content-locale-en-US content-locale-en"><div id="r_program_attendance_tracking"><div class="body refbody"><p class="shortdesc">The following table describes the activities that track attendance by program.</p>
+
+    
+<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" id="r_program_attendance_tracking__r_program_attendance_tracking-utbl1" class="table" frame="hsides" border="1" rules="rows"><colgroup><col><col><col></colgroup><thead class="thead" style="text-align:left;vertical-align:bottom;">
+          <tr class="row">
+            <th class="entry row-nocellborder" style="text-align:left;vertical-align:bottom;" id="d1839e44">Activity Type</th>
+
+            <th class="entry row-nocellborder" style="text-align:left;vertical-align:bottom;" id="d1839e47">Activity Name</th>
+
+            <th class="entry row-nocellborder" style="text-align:left;vertical-align:bottom;" id="d1839e50">Description</th>
+
+          </tr>
+
+        </thead>
+<tbody class="tbody">
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d1839e44 ">Snapshot</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d1839e47 ">
+              <code class="ph codeph">SC_SNA_PROGRAM_ATTEND</code>
+            </td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d1839e50 ">This activity pulls data from various <span class="keyword">Banner</span> baseline tables to populate the ESOS Program Attendance Data Snapshot (SKRSEPA) table. The activity uses the PIDM, program code, CRN, program code, term code, academic year, report period, submission, and since date as populate keys.</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d1839e44 ">Data Extract</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d1839e47 ">
+              <code class="ph codeph">SC_EXT_PROGRAM_ATTEND</code>
+            </td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d1839e50 ">This activity pulls data from the ESOS Program Attendance Data Snapshot (SKRSEPA) table to populate the ESOS Program Attendance Data Extract (SKREEPA) table. The activity uses the PIDM, program code, CRN, program code, academic year, term code, report period, submission, and since date as populate keys.</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d1839e44 ">Data Export</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d1839e47 ">
+              <code class="ph codeph">SC_EXP_PROGRAM_ATTEND</code>
+            </td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d1839e50 ">This activity pulls data from the ESOS Program Attendance Data Extract (SKREEPA) table to populate the ESOS Progression Data Export (SKRXEPR) table.</td>
+
+          </tr>
+
+        </tbody>
+</table>
+</div>
+
+  </div>
+
+</div></div></section></main></body></html>

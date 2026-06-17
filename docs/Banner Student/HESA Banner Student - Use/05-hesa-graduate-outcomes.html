@@ -1,0 +1,1014 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>HESA Banner Student - Use — HESA Graduate Outcomes</title><style>body{font-family:-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;line-height:1.55;color:#1a1a1a;max-width:920px;margin:0 auto;padding:24px}header{border-bottom:2px solid #5a16d6;margin-bottom:8px}h1{color:#3a0ca3}h2,h3,h4,h5,h6{margin-top:1.6em}.crumb{color:#666;font-size:13px;margin:0}.meta{color:#888;font-size:12px}nav.toc{background:#f6f4fc;border:1px solid #e3dcf5;border-radius:8px;padding:12px 18px;margin:18px 0}nav.toc h2{margin:.2em 0}nav.toc ul{list-style:none;padding-left:0}nav.toc a{text-decoration:none;color:#5a16d6}section{margin:1.2em 0;padding-top:.4em}img{max-width:100%;height:auto}table{border-collapse:collapse}td,th{border:1px solid #ccc;padding:4px 8px}code,pre{background:#f4f4f4;border-radius:4px}pre{padding:10px;overflow:auto}</style></head><body><header><p class="crumb">Banner Student › HESA Banner Student - Use</p><h1>HESA Banner Student - Use — HESA Graduate Outcomes</h1><p class="meta">Source: <a href="https://resources.elluciancloud.com/r/bundle/banner_student_acn_use_hesa">https://resources.elluciancloud.com/r/bundle/banner_student_acn_use_hesa</a> &middot; Retrieved 2026-06-17</p></header><nav class="toc"><h2>Contents</h2><ul><li style="margin-left:0px"><a href="#t-2560">HESA Graduate Outcomes</a></li><li style="margin-left:16px"><a href="#t-2570">Graduate Outcomes Overview</a></li><li style="margin-left:16px"><a href="#t-2580">Graduate Outcomes Data Collection</a></li><li style="margin-left:32px"><a href="#t-2590">System parameters setup</a></li><li style="margin-left:32px"><a href="#t-2600">LOV data support</a></li><li style="margin-left:16px"><a href="#t-2610">Cohort Processing</a></li><li style="margin-left:32px"><a href="#t-2620">Load POPXML</a></li><li style="margin-left:32px"><a href="#t-2630">Populate Cohort Data</a></li><li style="margin-left:32px"><a href="#t-2640">Purge Cohort Exception Table</a></li><li style="margin-left:32px"><a href="#t-2650">Cohort Exception Report - Unmatched Records</a></li><li style="margin-left:32px"><a href="#t-2660">Cohort Exception Report - Non-Matching HUSID</a></li><li style="margin-left:32px"><a href="#t-2670">Cohort Exception Report - Non-Matching Names</a></li><li style="margin-left:16px"><a href="#t-2680">Pre-Run Processing</a></li><li style="margin-left:16px"><a href="#t-2690">Snapshot and Extract Processing</a></li><li style="margin-left:16px"><a href="#t-2700">Export Processing</a></li><li style="margin-left:16px"><a href="#t-2710">Tasks</a></li><li style="margin-left:32px"><a href="#t-2720">Create cohort records</a></li><li style="margin-left:32px"><a href="#t-2730">Export Graduate Outcomes data to HESA</a></li><li style="margin-left:32px"><a href="#t-2740">View student contact details from POPXML</a></li><li style="margin-left:32px"><a href="#t-2750">Add student contact details</a></li></ul></nav><main><section id="t-2560"><h2>HESA Graduate Outcomes</h2><div class="content-locale-en-US content-locale-en"><div id="c_lnd_hesa_graduate_outcomes"><div class="body conbody"><p class="shortdesc"><span class="keyword">®</span> <span class="keyword">HESA</span>, the central body responsible for collecting and compiling statistical data on Higher Education establishments in the UK, supports the collection of statistical data for transmission to <span class="keyword">HESA</span>.</p>
+
+    <div class="note"><span class="notetitle">Note:</span> This 9x version corresponds to the <span class="keyword">Banner</span> <span class="keyword">HESA</span> <span class="keyword">Graduate Outcomes</span> 8.20.3 release version.</div>
+
+  </div>
+
+</div></div></section>
+<section id="t-2570"><h3>Graduate Outcomes Overview</h3><div class="content-locale-en-US content-locale-en"><div id="c_graduate_outcomes_return"><div class="body conbody"><p class="shortdesc">The Graduate Outcomes Use content provides information for producing your <span class="keyword">HESA</span> <span class="keyword">Graduate Outcomes</span> return using the <span class="keyword">Banner</span> <span class="keyword">HESA</span> module. It includes details about using the Used optionally throughout the document to single source the product name. <span class="keyword">Banner</span> <span class="keyword">HESA</span> Mass Data Update Utility (MDUU) for processing these returns. </p>
+
+    <p class="p">The <span class="keyword">Graduate Outcomes</span> return includes a survey of graduates around 15 months after they complete their studies. To undertake this survey, providers will need to return accurate and comprehensive contact details for all of their graduates who fall into the target population. </p>
+
+    <p class="p">The <span class="keyword">HESA</span> Graduate Outcomes (SKAHGRO) page in 9x version and the SKADLHE page in 8x version are used to maintain the data needed for the <span class="keyword">Graduate Outcomes</span> return.</p>
+
+    <ul class="ul">
+      <li class="li">Process: This represents a set of tasks sharing a common business area. MDUU security allows you to associate users and user classes to a given process. If this functionality is activated, only users assigned to a given process will be able to execute this process.</li>
+
+      <li class="li">Task: This is a job that is carried out as part of a process, such as creating a <span class="keyword">HESA</span> cohort or taking a snapshot of data from the original data sources and gathering them in more synthetic (eventually generated) tables.</li>
+
+      <li class="li">Activity: This is a job that is carried out as part of a task, such as a stage in cohort creation, a data copy, or a data transformation. An activity updates a single table.</li>
+
+    </ul>
+
+    <div class="section"><h2 class="title sectiontitle">Data collected</h2>
+      
+      <p class="p">All <span class="keyword">HESA</span> records are collected on the basis of the <span class="keyword">HESA</span> reporting period, which determines the period of time the data being returned relates to. This ensures consistency across the data streams collected.</p>
+
+    </div>
+
+    <div class="section"><h2 class="title sectiontitle">Process flow</h2>
+      
+      <p class="p">The typical top-level process flow for <span class="keyword">HESA</span> <span class="keyword">Graduate Outcomes</span> return is shown in the following diagram.</p>
+
+      <div class="fig fignone"><span class="figcap"><span class="fig--title-label">Figure 1. </span><span class="keyword">HESA</span> <span class="keyword">Graduate Outcomes</span> Process Flow Diagram</span>
+        
+        <img class="image" alt="go_processflow" data-ft-asset-display-name="graduate_outcomes_process_flow.jpg" src="images/05-hesa-graduate-outcomes-1.jpeg" data-ft-resource-id="Q9Ng8WipZ8sNVkkhAfWxiw-LAN8O7o7OM3x1Gb8ZjmpNQ">
+      </div>
+
+    </div>
+
+    <div class="section"><h2 class="title sectiontitle">Process tree</h2>
+      
+      <p class="p">Institutions can use the ESC_HGO process tree for the <span class="ph">HESA</span> <span class="keyword">Graduate Outcomes</span> return for the year 2017/18 onwards.</p>
+
+    </div>
+
+  </div>
+
+</div></div></section>
+<section id="t-2580"><h3>Graduate Outcomes Data Collection</h3><div class="content-locale-en-US content-locale-en"><div id="c_graduate_outcomes_data_collection"><div class="body conbody"><p class="shortdesc">Processing the <span class="keyword">HESA</span> <span class="keyword">Graduate Outcomes</span> return consists of the following tasks.</p>
+
+    <ul class="ul">
+      <li class="li">Create the <span class="keyword">HESA</span> Cohort from the population target file to return student contact details</li>
+
+      <li class="li">Process the snapshot and the extract</li>
+
+      <li class="li">Export the <span class="keyword">Graduate Outcomes</span> returns</li>
+
+    </ul>
+
+  </div>
+
+</div></div></section>
+<section id="t-2590"><h4>System parameters setup</h4><div class="content-locale-en-US content-locale-en"><div id="r_system_parameters_setup"><div class="body refbody"><p class="shortdesc">You can use the seed data/system parameters listed in this section for <span class="keyword">HESA</span> </p>
+
+    <div class="section"><h2 class="title sectiontitle">System Parameter (GKAKSYS) table</h2>
+      
+      <p class="p">The following system parameters are available in the GKAKSYS table.</p>
+
+    </div>
+
+    
+<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" class="table" frame="hsides" border="1" rules="rows"><colgroup><col style="width:29.5774647887324%"><col style="width:28.169014084507044%"><col style="width:42.25352112676057%"></colgroup><thead class="thead" style="text-align:left;vertical-align:bottom;">
+          <tr class="row">
+            <th class="entry row-nocellborder" style="text-align:left;vertical-align:bottom;" id="d38429e56">Field</th>
+
+            <th class="entry row-nocellborder" style="text-align:left;vertical-align:bottom;" id="d38429e59">&nbsp;</th>
+
+            <th class="entry row-nocellborder" style="text-align:left;vertical-align:bottom;" id="d38429e61">Description</th>
+
+          </tr>
+
+        </thead>
+<tbody class="tbody">
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d38429e56 ">HESA_GO_ADDR_TYPE</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d38429e59 ">Value of the <span class="ph uicontrol">Address Type Code</span> field in the STVATYP page</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d38429e61 ">Type of address that the institutions want to return to <span class="keyword">HESA</span> for student's address. Institutions can add only one address type value, else, system will throw an error while processing the activities.</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d38429e56 ">HESA_GO_EMAIL_TYPE</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d38429e59 ">Value of the <span class="ph uicontrol">Email Type/s</span> field in the GTVEMAL page</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d38429e61 ">Type of email address/es that the institutions want to return to <span class="keyword">HESA</span> for student's email address. Institutions can add only up to 10 email address type values, else, system will throw an error while processing the activities.</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d38429e56 ">HESA_GO_INTTEL</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d38429e59 ">Value of the <span class="ph uicontrol">Telephone Type Code/s</span> field in the STVTELE page</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d38429e61 ">Type of international telephone number that the institutions want to return to <span class="keyword">HESA</span> for student's international telephone number/s. Institutions can add only up to 10 telephone type values, else, system will throw an error while processing the activities.</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d38429e56 ">HESA_GO_UKMOB</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d38429e59 ">Value of the <span class="ph uicontrol">Telephone Type Code/s</span> field in the STVTELE page</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d38429e61 ">Type of UK mobile telephone number that the institutions want to return to <span class="keyword">HESA</span> for student's UK mobile number/s. Institutions can add only up to 10 telephone type values, else, system will throw an error while processing the activities.</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d38429e56 ">HESA_GO_UKTEL</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d38429e59 ">Value of the <span class="ph uicontrol">Telephone Type Code/s</span> field in the STVTELE page</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d38429e61 ">Type of UK telephone number that the institutions want to return to <span class="keyword">HESA</span> for student's UK telephone number/s. Institutions can add only up to 10 telephone type values, else, system will throw an error while processing the activities.</td>
+
+          </tr>
+
+        </tbody>
+</table>
+</div>
+
+  </div>
+
+</div></div></section>
+<section id="t-2600"><h4>LOV data support</h4><div class="content-locale-en-US content-locale-en"><div id="r_grad_outcome_lov_support"><div class="body refbody"><p class="shortdesc">List Of Values (LOV) data is loaded in the SKAHGRO page for the LOV fields from the <span class="keyword">HESA</span> XML Schema Definition for the appropriate Graduate Outcomes data collection and year using the ESC_HSD_LOV process tree.</p>
+
+    
+<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" class="table" frame="hsides" border="1" rules="rows"><colgroup><col style="width:18.348623853211006%"><col style="width:33.02752293577982%"><col style="width:26.60550458715596%"><col style="width:22.01834862385321%"></colgroup><thead class="thead" style="text-align:left;vertical-align:bottom;">
+          <tr class="row">
+            <th class="entry row-nocellborder" style="text-align:left;vertical-align:bottom;" id="d7022e49">Task Code</th>
+
+            <th class="entry row-nocellborder" style="text-align:left;vertical-align:bottom;" id="d7022e52">Task Description</th>
+
+            <th class="entry row-nocellborder" style="text-align:left;vertical-align:bottom;" id="d7022e55">Activity Code</th>
+
+            <th class="entry row-nocellborder" style="text-align:left;vertical-align:bottom;" id="d7022e58">Activity Description</th>
+
+          </tr>
+
+        </thead>
+<tbody class="tbody">
+          <tr class="row">
+            <td class="entry row-nocellborder" rowspan="5" style="text-align:justify;vertical-align:middle;" headers="d7022e49 ">ESC_HSD_​LOV_HGO</td>
+
+            <td class="entry row-nocellborder" rowspan="5" style="text-align:left;vertical-align:middle;" headers="d7022e52 ">Generates the LOV seed data for HGO, which gets displayed for the LOV fields in the SKAHGRO page in 9x version and SKADLHE in 8x version.</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d7022e55 ">ESC_HSD_LOV_​HLOV_PURGE</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d7022e58 ">Purges SKRHLOV table</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d7022e55 ">
+              <p class="p">ESC_HSD_LOV_​XSD_REG</p>
+
+            </td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d7022e58 ">Registers the XSD, the file given by <span class="keyword">HESA</span> for the list of expected values.</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d7022e55 ">
+              <p class="p">ESC_HSD_LOV​_XSD</p>
+
+            </td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d7022e58 ">Populates the SKRHLOV table from the XSD</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d7022e55 ">
+              <p class="p">ESC_HSD_LOV_​HGO_FDS</p>
+
+            </td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d7022e58 ">Generates SKRUFDS data for the HGO fields</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d7022e55 ">ESC_HSD_LOV_​HGO_SSDT</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d7022e58 ">Generate SKVSSDT LOV data for HGO fields</td>
+
+          </tr>
+
+        </tbody>
+</table>
+</div>
+
+    <div class="section">
+      <p class="p">Refer to the <cite class="cite">MDUU Processing for <span class="keyword">Banner</span> <span class="keyword">HESA</span></cite> chapter of the <cite class="cite"><span class="keyword">Banner</span> <span class="keyword">HESA</span> Use</cite> content to learn more about the ESC_HSD_LOV processing tree.</p>
+
+    </div>
+
+  </div>
+
+</div></div></section>
+<section id="t-2610"><h3>Cohort Processing</h3><div class="content-locale-en-US content-locale-en"><div id="r_go_cohort_processing"><div class="body refbody"><p class="shortdesc">Cohort Processing refreshes or updates a cohort for a <span class="keyword">HESA</span> reporting period. <span class="keyword">Graduate Outcomes</span> cohort processing performed by the <span class="keyword">Banner</span> Mass Data Update Utility (MDUU) supports the use of the population target file only in XML format.</p>
+
+    <div class="section">Cohort processing consists of the following activities in the ESC_HGO process tree.</div>
+
+    
+<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" class="table" frame="hsides" border="1" rules="rows"><colgroup><col style="width:43.859649122807014%"><col style="width:56.14035087719298%"></colgroup><thead class="thead" style="text-align:left;vertical-align:bottom;">
+          <tr class="row">
+            <th class="entry row-nocellborder" style="text-align:left;vertical-align:bottom;" id="d31272e54">Cohort Activity Name</th>
+
+            <th class="entry row-nocellborder" style="text-align:left;vertical-align:bottom;" id="d31272e57">Description</th>
+
+          </tr>
+
+        </thead>
+<tbody class="tbody">
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d31272e54 ">ESC_HGO_COHORT_XML</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d31272e57 ">Loads data from the POPGO XML document into the the SKRHDGO holding table and finds the matching the SPRIDEN table record to establish the PIDM.</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d31272e54 ">ESC_HGO_COHORT</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d31272e57 ">Groups all the students, provided by <span class="keyword">Banner</span> <span class="keyword">HESA</span> in the POPXML file, and lists them on the SKAHCOH page.</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d31272e54 ">ESC_HGO_CHRT_EXC_PURG </td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d31272e57 ">Deletes the records from the back end exception table (for cleanup purposes).</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d31272e54 ">ESC_HGO_COHORT_EXC1 </td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d31272e57 ">Lists all the students from the POPXML target file to into the exception table, if their IDs do not match with the existing <span class="keyword">Banner</span> IDs.</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d31272e54 ">ESC_HGO_COHORT_EXC2 </td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d31272e57 ">Lists all the students from the POPXML target file to into the exception table if their HUSIDs do not match with the existing <span class="keyword">Banner</span> HUSIDs.</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d31272e54 ">ESC_HGO_COHORT_EXC3 </td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d31272e57 ">Lists all the students from the POPXML target file to into the exception table if their names do not match with the existing <span class="keyword">Banner</span> names.</td>
+
+          </tr>
+
+        </tbody>
+</table>
+</div>
+
+    <div class="section">
+      <p class="p">Records that are already in the cohort are ignored; this means that a record already in the cohort will not be updated.</p>
+
+      <p class="p">The following MDUU activities support <span class="keyword">Graduate Outcomes</span> cohort processing.</p>
+
+    </div>
+
+  </div>
+
+</div></div></section>
+<section id="t-2620"><h4>Load POPXML</h4><div class="content-locale-en-US content-locale-en"><div id="r_go_load_popxml"><div class="body refbody"><p class="shortdesc">This activity calls the SKKHXML.FN_LOAD_SKRHDGO function, which parses the <span class="keyword">HESA</span> population target XML document and loads the contents into PRGNREP.SKRHDGO ready to be used by the remaining cohort activities. </p>
+
+    <div class="section">The activity always inserts new rows into the target table (SKRHDGO). To avoid reprocessing existing records and for the sake of efficient execution, you should always run this activity with purge enabled.</div>
+
+    <div class="section"><h2 class="title sectiontitle">Activity details</h2>
+      
+    </div>
+
+    
+<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" class="table" frame="hsides" border="1" rules="rows"><colgroup><col style="width:28.011204481792717%"><col style="width:71.98879551820728%"></colgroup><tbody class="tbody">
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;">Process</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;">ESC_HGO</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;">Task</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;">ESC_HGO_CHRT</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;">Activity</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;">ESC_HGO_COHORT_XML</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;">Source Table</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;">DUAL</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;">Target Table</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;">SKRHDGO</td>
+
+          </tr>
+
+        </tbody>
+</table>
+</div>
+
+  </div>
+
+</div></div></section>
+<section id="t-2630"><h4>Populate Cohort Data</h4><div class="content-locale-en-US content-locale-en"><div id="r_populate_cohort_data"><div class="body refbody"><p class="shortdesc">This activity inserts all matched records from the SKRHDGO table (where the PIDM is not null) into the cohort. This activity does not overwrite existing cohort records. </p>
+
+    <div class="section"><h2 class="title sectiontitle">Activity details</h2>
+      
+    </div>
+
+    
+<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" class="table" frame="hsides" border="1" rules="rows"><colgroup><col style="width:28.011204481792717%"><col style="width:71.98879551820728%"></colgroup><tbody class="tbody">
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;">Process</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;">ESC_HGO</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;">Task</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;">ESC_HGO_CHRT</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;">Activity</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;">ESC_HGO_COHORT</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;">Source Table</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;">SKRHDGO</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;">Target Table</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;">SKRHCOH</td>
+
+          </tr>
+
+        </tbody>
+</table>
+</div>
+
+    <div class="section">
+      <div class="note"><span class="notetitle">Note:</span> If the PURGEBEFOREPOPULATE run-time parameter is set to Y for the ESC_HGO_COHORT activity, the existing records from the SKRHCOH table will be removed and the new set of records will be added to the target table from the source table.</div>
+
+    </div>
+
+  </div>
+
+</div></div></section>
+<section id="t-2640"><h4>Purge Cohort Exception Table</h4><div class="content-locale-en-US content-locale-en"><div id="r_purge_cohort"><div class="body refbody"><p class="shortdesc">This activity removes records from the SKRHDE1 table.</p>
+
+    <div class="section"><h2 class="title sectiontitle">Activity details</h2>
+      
+    </div>
+
+    
+<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" class="table" frame="hsides" border="1" rules="rows"><colgroup><col style="width:28.011204481792717%"><col style="width:71.98879551820728%"></colgroup><tbody class="tbody">
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;">Process</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;">ESC_HGO</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;">Task</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;">ESC_HGO_CHRT</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;">Activity</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;">ESC_HGO_CHRT_EXC_PURG</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;">Source Table</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;">SKRHDE1</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;">Target Table</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;">SKRHDE1</td>
+
+          </tr>
+
+        </tbody>
+</table>
+</div>
+
+  </div>
+
+</div></div></section>
+<section id="t-2650"><h4>Cohort Exception Report - Unmatched Records</h4><div class="content-locale-en-US content-locale-en"><div id="r_cohort_exception_report"><div class="body refbody"><p class="shortdesc">This activity inserts exception reporting records into the SKRHDE1 table for non-matched records (where the PIDM is null). You can view the contents of this table using the MDUU Universal View (GKAPUNV) page.</p>
+
+    <div class="section"><h2 class="title sectiontitle">Activity details</h2>
+      
+    </div>
+
+    
+<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" class="table" frame="hsides" border="1" rules="rows"><colgroup><col style="width:28.011204481792717%"><col style="width:71.98879551820728%"></colgroup><tbody class="tbody">
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;">Process</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;">ESC_HGO</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;">Task</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;">ESC_HGO_CHRT</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;">Activity</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;">ESC_HGO_CHRT_EXC1</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;">Source Table</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;">SKRHDGO</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;">Target Table</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;">SKRHDE1</td>
+
+          </tr>
+
+        </tbody>
+</table>
+</div>
+
+  </div>
+
+</div></div></section>
+<section id="t-2660"><h4>Cohort Exception Report - Non-Matching HUSID</h4><div class="content-locale-en-US content-locale-en"><div id="r_cohort_exception_report_nonmatch"><div class="body refbody"><p class="shortdesc">This activity inserts exception reporting records into the SKRHDE1 table for matched records where the HUSID in the population target file is not the same as the matching SKASPIN record. You can view the contents of this table using the MDUU Universal View  (GKAPUNV) page.</p>
+
+    <div class="section"><h2 class="title sectiontitle">Activity details</h2>
+      
+    </div>
+
+    
+<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" class="table" frame="hsides" border="1" rules="rows"><colgroup><col style="width:28.011204481792717%"><col style="width:71.98879551820728%"></colgroup><tbody class="tbody">
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;">Process</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;">ESC_HGO</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;">Task</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;">ESC_HGO_CHRT</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;">Activity</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;">ESC_HGO_CHRT_EXC2</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;">Source Table</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;">SKRHDGO<p class="p">SKBSPIN</p>
+</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;">Target Table</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;">SKRHDE1</td>
+
+          </tr>
+
+        </tbody>
+</table>
+</div>
+
+  </div>
+
+</div></div></section>
+<section id="t-2670"><h4>Cohort Exception Report - Non-Matching Names</h4><div class="content-locale-en-US content-locale-en"><div id="r_cohort_exception_report_nonmatch_names"><div class="body refbody"><p class="shortdesc">This activity inserts exception reporting records into the SKRHDE1 table for matched records where the name in the population target table is not the same as a matching the SPAIDEN table record. You can view the contents of this table using the MDUU Universal View (GKAPUNV) page.</p>
+
+    <div class="section"><h2 class="title sectiontitle">Activity details</h2>
+      
+    </div>
+
+    
+<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" class="table" frame="hsides" border="1" rules="rows"><colgroup><col style="width:28.011204481792717%"><col style="width:71.98879551820728%"></colgroup><tbody class="tbody">
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;">Process</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;">ESC_HGO</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;">Task</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;">ESC_HGO_CHRT</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;">Activity</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;">ESC_HGO_CHRT_EXC3</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;">Source Table</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;">SKRHDGO<p class="p">SPRIDEN</p>
+</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;">Target Table</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;">SKRHDE1</td>
+
+          </tr>
+
+        </tbody>
+</table>
+</div>
+
+  </div>
+
+</div></div></section>
+<section id="t-2680"><h3>Pre-Run Processing</h3><div class="content-locale-en-US content-locale-en"><div id="r_prerun_processing"><div class="body refbody"><p class="shortdesc">This activity checks for the student records in the SKRHDGO and SKRHCOH tables and populates the student data received from the population target file to the SKAHGRO page in 9x and SKADLHE in 8x versions. </p>
+
+    <div class="section"><h2 class="title sectiontitle">Pre-run activity details</h2>
+      
+    </div>
+
+    
+<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" class="table" frame="hsides" border="1" rules="rows"><colgroup><col style="width:28.011204481792717%"><col style="width:71.98879551820728%"></colgroup><tbody class="tbody">
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;">Process</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;">ESC_HGO</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;">Task</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;">ESC_HGO_PRERUN</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;">Activity</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;">ESC_HGO_PRE_CONTACT_DET</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;">Source Table</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;">SKRHDGO<p class="p">SKRHCOH</p>
+</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;">Target Table</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;">SKRHDGO</td>
+
+          </tr>
+
+        </tbody>
+</table>
+</div>
+
+    <div class="section">
+      <div class="note"><span class="notetitle">Note:</span> When <span class="keyword">Graduate Outcomes</span> data is loaded from POPXML using Pre-run activity then, the activity will create only one record with highest degree sequence of the Graduate in the SKAHGRO page. </div>
+
+    </div>
+
+  </div>
+
+</div></div></section>
+<section id="t-2690"><h3>Snapshot and Extract Processing</h3><div class="content-locale-en-US content-locale-en"><div id="r_snapshot_extract_processing"><div class="body refbody"><p class="shortdesc">The MDUU activities described in this section support <span class="keyword">Graduate Outcomes</span> snapshot and extract processing activities. You can use the MDUU Universal View (GKAPUNV) page to view or update data in any of the snapshot or extract target tables mentioned in this chapter.</p>
+
+    <div class="section"><h2 class="title sectiontitle">Snapshot activity details</h2>
+      
+    </div>
+
+    
+<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" class="table" frame="hsides" border="1" rules="rows"><colgroup><col style="width:28.011204481792717%"><col style="width:71.98879551820728%"></colgroup><tbody class="tbody">
+          <tr class="row">
+            <td class="entry row-nocellborder" colspan="2" style="text-align:left;vertical-align:top;">Finds SKRHDGO records and matching SKBSPIN records that match the cohort.</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;">Process</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;">ESC_HGO</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;">Task</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;">ESC_HGO_SNAPSHOT</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;">Activity</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;">ESC_HGO_SNA_CONTACT_DET</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;">Source Table</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;">SKRHGRO <p class="p">SKRHCOH </p>
+<p class="p">SKBHMPD</p>
+ SPRIDEN</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;">Target Table</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;">SKRHSGO</td>
+
+          </tr>
+
+        </tbody>
+</table>
+</div>
+
+    <div class="section">
+      <div class="note"><span class="notetitle">Note:</span> When users manually save multiple records of a student (with different degree sequences of the student) in the SKAHGRO page, then, the activity will pick data from the record with highest degree sequence available in the page for the student. </div>
+
+    </div>
+
+    <div class="section"><h2 class="title sectiontitle">Extract activity details</h2>
+      
+    </div>
+
+    
+<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" class="table" frame="hsides" border="1" rules="rows"><colgroup><col style="width:28.011204481792717%"><col style="width:71.98879551820728%"></colgroup><tbody class="tbody">
+          <tr class="row">
+            <td class="entry row-nocellborder" colspan="2" style="text-align:left;vertical-align:top;">Finds snapshot records for the current cohort.</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;">Process</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;">ESC_HGO</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;">Task</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;">ESC_HGO_EXTRACT</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;">Activity</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;">ESC_HGO_EXT_CONTACT_DET</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;">Source Table</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;">SKRHSGO</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;">Target Table</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;">SKRHEGO</td>
+
+          </tr>
+
+        </tbody>
+</table>
+</div>
+
+  </div>
+
+</div></div></section>
+<section id="t-2700"><h3>Export Processing</h3><div class="content-locale-en-US content-locale-en"><div id="r_export_processing"><div class="body refbody"><p class="shortdesc">The <span class="keyword">Graduate Outcomes</span> export processing using the ESC_HGO_EXP_CONTACT_DET activity populates the student data into the extract data table (SKRHEXM). </p>
+
+    <div class="section">This process allows you to export the extract data to an XML document for validation outside of <span class="keyword">Banner</span> using the <span class="keyword">HESA</span> validation kit. You may use the MDUU Universal View (GKAPUNV) page to view and export the XML document.  Export processing consists of the following activities in the ESC_HGO process tree.</div>
+
+    
+<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" class="table" frame="hsides" border="1" rules="rows"><colgroup><col style="width:43.859649122807014%"><col style="width:56.14035087719298%"></colgroup><thead class="thead" style="text-align:left;vertical-align:bottom;">
+          <tr class="row">
+            <th class="entry row-nocellborder" style="text-align:left;vertical-align:bottom;" id="d52245e54">Cohort Activity Name</th>
+
+            <th class="entry row-nocellborder" style="text-align:left;vertical-align:bottom;" id="d52245e57">Description</th>
+
+          </tr>
+
+        </thead>
+<tbody class="tbody">
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d52245e54 ">ESC_HGO_EXP_PURGE</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d52245e57 ">Purges the SKRHEXM table records previously created by the export process. This is used at the start of the task to remove data from previous executions.</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d52245e54 ">ESC_HGO_EXP_START</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d52245e57 ">Starts the export by defining the header for the export file.</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d52245e54 ">ESC_HGO_EXP_CONTACT_DET</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d52245e57 ">Defines the body for the export file based on the data collected from the extract activities.</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d52245e54 ">ESC_HGO_EXP_END</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d52245e57 ">Defines the footer for the export file (XML file).</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d52245e54 ">ESC_HGO_EXP_SAVE_FILE</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d52245e57 ">Gathers the data from the previous export activities (from the SKRHEXM table) into one XML file.</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d52245e54 ">ESC_HGO_EXP_POST_PURGE</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d52245e57 ">Remove multiple rows being created in the export XML file.</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d52245e54 ">ESC_HGO_EXP_SAVETOCLOB</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d52245e57 ">Loads the XML file into the SKRHEXM table.</td>
+
+          </tr>
+
+        </tbody>
+</table>
+</div>
+
+    <div class="section"><h2 class="title sectiontitle">Export activity details</h2>
+      
+    </div>
+
+    
+<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" class="table" frame="hsides" border="1" rules="rows"><colgroup><col style="width:28.011204481792717%"><col style="width:71.98879551820728%"></colgroup><tbody class="tbody">
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;">Process</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;">ESC_HGO</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;">Task</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;">ESC_HGO_EXPORT</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;">Activities</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;">ESC_HGO_EXP_PURGE<p class="p">ESC_HGO_EXP_START</p>
+<p class="p">ESC_HGO_EXP_CONTACT_DET</p>
+<p class="p">ESC_HGO_EXP_END</p>
+<p class="p">ESC_HGO_EXP_SAVE_FILE</p>
+<p class="p">ESC_HGO_EXP_SAVETOCLOB</p>
+</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;">Source Table</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;">DUAL</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;">Target Table</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;">SKRHEXM</td>
+
+          </tr>
+
+        </tbody>
+</table>
+</div>
+
+  </div>
+
+</div></div></section>
+<section id="t-2710"><h3>Tasks</h3><div class="content-locale-en-US content-locale-en"><div id="c_graduate_outcome_tasks"><p class="shortdesc">A list of tasks performed using the Graduate Outcomes return.</p>
+
+</div></div></section>
+<section id="t-2720"><h4>Create cohort records</h4><div class="content-locale-en-US content-locale-en"><div id="t_grad_outcome_create_cohort_record"><div class="body taskbody"><p class="shortdesc">Create a student cohort record.</p>
+
+    <div class="tasklabel"><h2 class="sectiontitle tasklabel">Procedure</h2></div><ol class="ol steps"><li class="li step stepexpand">
+        <span class="ph cmd">Access the <span class="keyword wintitle">Cohort Code Validation (STVCHRT) page</span>.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Define the cohort.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Save your changes.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Access the <span class="keyword wintitle">HESA Reporting Reference Data (SKAHRFD) page</span>.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Enter the cohort code in the <span class="ph uicontrol">Cohort</span> field, then go to the next block.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Define the reporting data for the cohort.</span>
+        <div class="itemgroup info">Cohort Processing for Graduate Outcome is based on the set of students in population target file, and the additional set of students added to the cohort in the SKAHCOH page. For the cohort processing, you must maintain a valid term code, HUSID year, and <span class="ph">Banner</span> record ID in this page.</div>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Save your changes.</span>
+      </li>
+</ol>
+
+  </div>
+
+</div></div></section>
+<section id="t-2730"><h4>Export Graduate Outcomes data to HESA</h4><div class="content-locale-en-US content-locale-en"><div id="t_export_go_data_tohesa"><div class="body taskbody"><p class="shortdesc">When the snapshot and extract processes are completed successfully, export the <span class="keyword">Graduate Outcomes</span> data to <span class="keyword">HESA</span>.</p>
+
+    <div class="tasklabel"><h2 class="sectiontitle tasklabel">Procedure</h2></div><ol class="ol steps"><li class="li step stepexpand">
+        <span class="ph cmd">Access the <span class="keyword wintitle">MDUU Universal Viewer (GKAPUNV) page</span>.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Enter <kbd class="ph userinput">SKRHEXM</kbd> in the <span class="ph uicontrol">Table</span> field.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Enter <kbd class="ph userinput">SKRHEXM_CHRT_CODE</kbd> in one of the <span class="ph uicontrol">Filter Column</span> fields, and enter the desired cohort code(s) in the associated <span class="ph uicontrol">Filter Value</span> field.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Enter <kbd class="ph userinput">SKRHEXM_TERM_CODE</kbd> in another of the <span class="ph uicontrol">Filter Column</span> fields, and enter the desired term code(s) in the associated<span class="ph uicontrol"> Filter Value</span> field.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Go to the next block.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Double-click the first <span class="ph uicontrol">DOCUMENT</span> field.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">When the Export Data window is displayed, do the following:</span>
+        <ol type="a" class="ol substeps">
+          <li class="li substep">
+            <span class="ph cmd">Select the desired Oracle directory in the Direc<span class="ph uicontrol"></span>tory field.</span>
+          </li>
+
+          <li class="li substep">
+            <span class="ph cmd">Enter the desired file name in the <span class="ph uicontrol">Filename</span> field.</span>
+          </li>
+
+          <li class="li substep">
+            <span class="ph cmd">Click <span class="ph uicontrol">Export CELL Data</span>.</span>
+          </li>
+
+        </ol>
+
+        <div class="itemgroup info">This saves the file to the selected directory and, depending on how your <span class="keyword">Banner</span> preferences and desktop are configured, also saves the file to your desktop.</div>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">If the file was saved only to the Oracle directory, copy it to your desktop.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Use the validation kit supplied by <span class="keyword">HESA</span> to validate the data in the <span class="keyword">Graduate Outcomes</span> extract.</span>
+        <div class="itemgroup info">Review any errors reported as a result of applying the <span class="keyword">HESA</span> validation kit or are reported on the error report sent by <span class="keyword">HESA</span>, and, if necessary, modify the <span class="keyword">Graduate Outcomes</span> data by repeating the necessary procedures and recreating the <span class="keyword">Graduate Outcomes</span> record.</div>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Notify <span class="keyword">HESA</span> that you are ready to commit the <span class="keyword">Graduate Outcomes</span> data.</span>
+      </li>
+</ol>
+
+  </div>
+
+</div></div></section>
+<section id="t-2740"><h4>View student contact details from POPXML</h4><div class="content-locale-en-US content-locale-en"><div id="t_view_student_contact_details"><div class="body taskbody"><p class="shortdesc">View student data from the POPXML target file.</p>
+
+    <div class="tasklabel"><h2 class="sectiontitle tasklabel">Procedure</h2></div><ol class="ol steps"><li class="li step stepexpand">
+        <span class="ph cmd">Access the <span class="keyword wintitle">HESA Graduate Outcomes (SKAHGRO) page</span>.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Enter the student details in the Key block.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Click <span class="ph uicontrol">GO</span>.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">In the Contact Details page, view the details populated from the <span class="keyword">HESA</span> <span class="keyword">Graduate Outcomes</span> POPXML target file.</span>
+        <div class="itemgroup info">You can add contact details such as address, email, and telephone, if necessary. If you do not enter this information, the student data that already exists in the SPAIDEN table will be used for the snapshot, extract, and export activities.</div>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Save your changes in the page.</span>
+      </li>
+</ol>
+
+  </div>
+
+</div></div></section>
+<section id="t-2750"><h4>Add student contact details</h4><div class="content-locale-en-US content-locale-en"><div id="t_add_stu_contact_details"><div class="body taskbody"><p class="shortdesc">Add student records that are not in the POPXML target file.</p>
+
+    <div class="tasklabel"><h2 class="sectiontitle tasklabel">Procedure</h2></div><ol class="ol steps"><li class="li step stepexpand">
+        <span class="ph cmd">Access the <span class="keyword wintitle">HESA Graduate Outcomes (SKAHGRO) page</span>.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Enter the student details in the Key block.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Click <span class="ph uicontrol">GO</span>.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">In the Contact Details page, enter the student’s address information, email, and telephone, if needed.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Save your changes in the page.</span>
+        <div class="itemgroup info">Institutions must have a record for all students in the SKAHGRO page in 9x version or SKADLHE form in 8x version to be processed by the snapshot, extract, and export activities.</div>
+      </li>
+</ol>
+
+  </div>
+
+</div></div></section></main></body></html>

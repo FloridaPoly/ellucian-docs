@@ -1,0 +1,506 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>VETiS Banner Student - Use</title><style>body{font-family:-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;line-height:1.55;color:#1a1a1a;max-width:920px;margin:0 auto;padding:24px}header{border-bottom:2px solid #5a16d6;margin-bottom:8px}h1{color:#3a0ca3}h2,h3,h4,h5,h6{margin-top:1.6em}.crumb{color:#666;font-size:13px;margin:0}.meta{color:#888;font-size:12px}nav.toc{background:#f6f4fc;border:1px solid #e3dcf5;border-radius:8px;padding:12px 18px;margin:18px 0}nav.toc h2{margin:.2em 0}nav.toc ul{list-style:none;padding-left:0}nav.toc a{text-decoration:none;color:#5a16d6}section{margin:1.2em 0;padding-top:.4em}img{max-width:100%;height:auto}table{border-collapse:collapse}td,th{border:1px solid #ccc;padding:4px 8px}code,pre{background:#f4f4f4;border-radius:4px}pre{padding:10px;overflow:auto}</style></head><body><header><p class="crumb">Banner Student › VETiS Banner Student - Use</p><h1>VETiS Banner Student - Use</h1><p class="meta">Source: <a href="https://resources.elluciancloud.com/r/bundle/banner_student_acn_use_vetis">https://resources.elluciancloud.com/r/bundle/banner_student_acn_use_vetis</a> &middot; Retrieved 2026-06-17</p></header><nav class="toc"><h2>Contents</h2><ul><li style="margin-left:0px"><a href="#t-10">Overview</a></li><li style="margin-left:16px"><a href="#t-20">VETiS Academic History</a></li><li style="margin-left:16px"><a href="#t-30">Functions and features</a></li><li style="margin-left:16px"><a href="#t-40">Processing data collection</a></li><li style="margin-left:32px"><a href="#t-50">Snapshot processing</a></li><li style="margin-left:32px"><a href="#t-60">Extract processing</a></li><li style="margin-left:16px"><a href="#t-70">File details</a></li><li style="margin-left:32px"><a href="#t-80">VETiS Data</a></li><li style="margin-left:16px"><a href="#t-90">Result File data import</a></li><li style="margin-left:16px"><a href="#t-100">Prerequisites</a></li><li style="margin-left:0px"><a href="#t-110">Procedures</a></li><li style="margin-left:16px"><a href="#t-120">Import VETiS Results File</a></li><li style="margin-left:16px"><a href="#t-130">Process imported files</a></li><li style="margin-left:32px"><a href="#t-140">ASC_VETIS_RESULTS_UP</a></li><li style="margin-left:32px"><a href="#t-150">ASC_VETIS_RESULTS_ERR</a></li><li style="margin-left:16px"><a href="#t-160">Process VETiS data</a></li><li style="margin-left:32px"><a href="#t-170">ASC_VETIS_PROCESSING</a></li><li style="margin-left:16px"><a href="#t-180">Extract VETiS data</a></li></ul></nav><main><section id="t-10"><h2>Overview</h2><div class="content-locale-en-US content-locale-en"><div id="c_introduction"><div class="body conbody"><p class="shortdesc">The <cite class="cite">Vocational Education and Training in Schools Use</cite> (<span class="keyword">VETiS</span>) provides information on procedures for using the <span class="keyword">Banner</span>® Vocational Education and Training in Schools (<span class="keyword">VETiS</span>) results management process to extract registered student data and to upload the corresponding results.</p>
+
+    <div class="note"><span class="notetitle">Note:</span> This 9x version corresponds to the <span class="keyword">Banner</span> <span class="keyword">VETiS</span> 8.0 release version.</div>
+
+    <div class="p">Technical and Further Education (TAFE) clients perform the following tasks:<ul class="ul"> <li class="li">Enrol and register students</li>
+ <li class="li">Provide the registered student data to schools that run the <span class="keyword">VETiS</span> programs with key identifying information about each student such as IDs and Subject Codes.</li>
+ </ul>
+</div>
+
+    <div class="p">The schools, after receiving the key information from an authorising TAFE institution, perform the following tasks:<ul class="ul"> <li class="li">Deliver and assess training</li>
+ <li class="li">Enter results against Subject Codes</li>
+ <li class="li">Submit results to the authorising TAFE, periodically, to update the TAFE student system.</li>
+ </ul>
+</div>
+
+  </div>
+
+</div></div></section>
+<section id="t-20"><h3>VETiS Academic History</h3><div class="content-locale-en-US content-locale-en"><div id="c_vetis_academic_history"><div class="body conbody"><p class="shortdesc"><span class="keyword">VETiS</span> 8.0 provides a reliable base of information to schools about registered students and the subjects. This information ensures that the results returned from the schools can be readily understood and loaded back into <span class="keyword">Banner</span>.</p>
+
+    <p class="p"><span class="keyword">VETiS</span> 8.0 provides the following means to schools.</p>
+
+    <ul class="ul">
+      <li class="li">Producing CSV extracts of <span class="keyword">VETiS</span> students for distribution to schools</li>
+
+      <li class="li">Uploading results from the extracted CSV files, after the schools complete the assessments</li>
+
+    </ul>
+
+    <p class="p">The <span class="keyword">VETiS</span> extract process provides the following features.</p>
+
+    <ul class="ul">
+      <li class="li">A convenient way of identifying <span class="keyword">VETiS</span> students and group the students according to schools for distribution</li>
+
+      <li class="li">A stable and a known file format for uploading results back into <span class="keyword">Banner</span></li>
+
+      <li class="li">Ensure that schools have all necessary information to make the results upload as error-free as possible.</li>
+
+    </ul>
+
+    <p class="p" id="c_vetis_academic_history__c_vetis_academic_history-p1">The following is a typical process flow of the <span class="keyword">VETiS</span> Academic History.</p>
+
+    <div class="fig fignone" id="c_vetis_academic_history__c_vetis_academic_history-fig1">
+      <br><img class="image" alt="Typical process flow of the VETIS Academic History" data-ft-asset-display-name="VETiSprocessflowdiagram.JPG" src="images/vetis-banner-student-use-1.jpeg" data-ft-resource-id="mgjZqZCd6Lenk_36nfQ87g-AtlHPkkIC~Q6WJYG6BXWgw"><br>
+    </div>
+
+  </div>
+
+</div></div></section>
+<section id="t-30"><h3>Functions and features</h3><div class="content-locale-en-US content-locale-en"><div id="c_functions_features"><div class="body conbody"><p class="shortdesc"><span class="keyword">VETiS</span> is made up of various steps and processes. These are organised as follows.</p>
+
+    <ul class="ul">
+      <li class="li">Set up <span class="keyword">VETiS</span> 8.0: Procedures and pages are used to define elements, values, and processes that are required to produce the <span class="keyword">VETiS</span> extracts.</li>
+
+      <li class="li">Extract, Import, and Upload the <span class="keyword">VETiS</span> Student Data: Importing and processing file procedures are used to take data from the <span class="keyword">VETiS</span> Results File. This step includes placing data into <span class="keyword">Banner</span> Mass Data Update Utility (MDUU) tables, updating baseline registration tables, and producing reports on any errors encountered in the process.</li>
+
+      <li class="li">View Data: The MDUU Universal Viewer is used to view the data produced by the import and extract processes.<div class="note"><span class="notetitle">Note:</span> Configuring the <span class="keyword">VETiS</span> module requires knowledge of the underlying database tables and is usually carried out with the assistance of technical staff within your institution or Professional Services.</div>
+</li>
+
+    </ul>
+
+  </div>
+
+</div></div></section>
+<section id="t-40"><h3>Processing data collection</h3><div class="content-locale-en-US content-locale-en"><div id="c_processing_data_collection"><div class="body conbody"><p class="shortdesc">The <span class="keyword">VETiS</span> module uses rule sets in the MDUU to extract <span class="keyword">VETiS</span> student information and upload corresponding results.</p>
+
+    <p class="p">To understand how the <span class="keyword">VETiS</span> files are built, you must understand the process, task, and activity elements of MDUU. Refer to the <cite class="cite"><span class="keyword">Banner</span> Mass Data Update Utility Use</cite> for a complete explanation of tasks and activities, and how these elements work to support <span class="keyword">VETiS</span> requirements.</p>
+
+    <div class="p">This document uses the following key terms:<ul class="ul"> <li class="li">Process: This represents a set of tasks sharing a common business area. The MDUU security allows you to associate users and user classes to a given process. If this functionality is activated, only users assigned to a given process will be able to execute this process</li>
+
+      <li class="li">Task: This is a set of activities that is carried out as part of a process, such as taking a snapshot of data from the original data sources and gathering them in more synthetic (eventually generated) tables.</li>
+ <li class="li">Activity: This is a processing element that is carried out as part of a task, such as a data copy, or a data transformation. An activity updates a single table and can be reused in several tasks.</li>
+ </ul>
+</div>
+
+  </div>
+
+</div></div></section>
+<section id="t-50"><h4>Snapshot processing</h4><div class="content-locale-en-US content-locale-en"><div id="c_snapshot_processing"><div class="body conbody"><p class="shortdesc">The snapshot process populates the student results data from baseline tables. The process allows selected target tables in the snapshot data structure to be populated. It can refresh (remove and insert) or update (add new rows and update existing rows) the snapshot.</p>
+
+    <p class="p">The structure of the snapshot tables is maintained by the MDUU under a schema called MDUUREP. (Refer to the <cite class="cite"><span class="keyword">Banner</span> Mass Data Update Utility Use</cite> for more information).</p>
+
+    <p class="p">When running the snapshot, you can select which snapshot tables to populate. You can also purge the selected snapshot tables before re-inserting rows.</p>
+
+    <div class="p">This process allows you to do the following:<ul class="ul"> <li class="li">Create snapshot data</li>
+ <li class="li">Define the column mappings for the snapshot</li>
+ <li class="li">Define the rules to generate the snapshot population</li>
+ <li class="li">Initialise the snapshot</li>
+ <li class="li">Populate the snapshot</li>
+ <li class="li">Increment the snapshot (add or remove records without refreshing the snapshot from scratch).</li>
+ </ul>
+</div>
+
+  </div>
+
+</div></div></section>
+<section id="t-60"><h4>Extract processing</h4><div class="content-locale-en-US content-locale-en"><div id="c_extract_processing"><div class="body conbody"><p class="shortdesc">After the initial student results data snapshot activity has taken place, it is transformed and organised to produce a student extract file, which is saved in the CSV format.</p>
+
+    <p class="p">The extract process populates the extract based on snapshot data and, where necessary, it transforms the snapshot data into the format needed for the extract. The process allows selected target tables in the extract data structure to be populated. It can refresh (remove and insert) or update (add new rows and update existing rows) the extract.</p>
+
+    <div class="p">This process allows you to do the following:<ul class="ul"> <li class="li">Create extract data</li>
+ <li class="li">Define the column mappings for the extract</li>
+ <li class="li">Define the rules to generate the extract population</li>
+ <li class="li">Use expressions, functions or both to derive values based on the contents of the snapshot</li>
+ <li class="li">Initialise the extract</li>
+ <li class="li">Populate the extract</li>
+ <li class="li">Increment the extract (add or remove records without refreshing the cohort from scratch).</li>
+ </ul>
+</div>
+
+  </div>
+
+</div></div></section>
+<section id="t-70"><h3>File details</h3><div class="content-locale-en-US content-locale-en"><div id="c_file_details"><div class="body conbody"><p class="shortdesc"><span class="keyword">VETiS</span> uses the imported file processing activity, where files of student results are processed and uploaded. The following tasks are carried out during this process.</p>
+
+    <ul class="ul">
+      <li class="li">Import files and extract data from them</li>
+
+      <li class="li">Define the mappings for the imported data columns</li>
+
+      <li class="li">Define the rules to generate the import population</li>
+
+      <li class="li">Initialise the import</li>
+
+      <li class="li">Populate the import</li>
+
+      <li class="li">Increment the import</li>
+
+      <li class="li">View the import</li>
+
+      <li class="li">Update baseline and ASC tables with the imported data.</li>
+
+    </ul>
+
+  </div>
+
+</div></div></section>
+<section id="t-80"><h4>VETiS Data</h4><div class="content-locale-en-US content-locale-en"><div id="r_vetis_student_data"><div class="body refbody"><p class="shortdesc">The following table describes the activities for the <span class="keyword">VETiS</span> <span class="keyword">VETiS</span> Data file.</p>
+
+    
+<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" id="r_vetis_student_data__r_vetis_student_data-tbl1.1" class="table" frame="hsides" border="1" rules="rows"><colgroup><col><col><col></colgroup><thead class="thead" style="text-align:left;vertical-align:bottom;">
+          <tr class="row">
+            <th class="entry row-nocellborder" style="text-align:left;vertical-align:bottom;" id="d623e50">Activity Type</th>
+
+            <th class="entry row-nocellborder" style="text-align:left;vertical-align:bottom;" id="d623e53">Activity Name</th>
+
+            <th class="entry row-nocellborder" style="text-align:left;vertical-align:bottom;" id="d623e56">Description</th>
+
+          </tr>
+
+        </thead>
+<tbody class="tbody">
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d623e50 ">Snapshot <span class="keyword">VETiS</span> <span class="keyword">VETiS</span> Data</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d623e53 ">
+              <pre class="pre codeblock"><code>
+ASC_VETIS_STUDENT_SNA
+</code></pre>
+            </td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d623e56 ">This activity pulls data from various <span class="keyword">VETiS</span> request tables to populate the VETIS Student Data Snapshot (SKRSVIS) table. The activity uses the student ID, PIDM and CRN as the populate keys.</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d623e50 ">Extract <span class="keyword">VETiS</span> <span class="keyword">VETiS</span> Data</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d623e53 ">
+              <pre class="pre codeblock"><code>
+ASC_VETIS_STUDENT_EXT
+</code></pre>
+            </td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d623e56 ">This activity pulls data from the VETIS Student Data Snapshot (SKRSVIS) table to populate the VETIS Student Data Extract (SKREVIS) table. The activity uses PIDM and CRN as populate keys.</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d623e50 ">Upload <span class="keyword">VETiS</span> Results</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d623e53 ">
+              <pre class="pre codeblock"><code>
+ASC_VETIS_RESULTS_UP
+</code></pre>
+            </td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d623e56 ">This activity pulls data from the VETIS Grade Data (SKRIVIS) table and the Student Course Registration Repeating (SFRSTCR) table to populate the Student Course Registration Repeating (SFRSTCR) table. The activity uses the PIDM, CRN, and effective term as populate keys.</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d623e50 ">Identify <span class="keyword">VETiS</span> Result Errors</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d623e53 ">
+              <pre class="pre codeblock"><code>
+ASC_VETIS_RESULTS_ERR
+</code></pre>
+            </td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d623e56 ">This activity pulls data from the VETIS Grade Data (SKRIVIS) table to populate the VETIS Results Error (SKRERVS) table. The activity uses the student ID and subject code as populate keys.</td>
+
+          </tr>
+
+        </tbody>
+</table>
+</div>
+
+  </div>
+
+</div></div></section>
+<section id="t-90"><h3>Result File data import</h3><div class="content-locale-en-US content-locale-en"><div id="c_result_file_data_import"><div class="body conbody"><p class="shortdesc">The <span class="keyword">VETiS</span> Results File matches the extract file format and provides information about the student's grade in each subject, in addition to the date on which the grade was awarded.</p>
+
+    <p class="p">The Results File format is defined by the CSV file which contains the student data. In addition to this, the Results File format is specified when the CSV file is registered as an external table in the External File Registration (GKAPEXS) page. The following appropriate format for the file must be entered in the <span class="ph uicontrol">Fields</span> field:</p>
+
+    <pre class="pre codeblock"><code>
+<kbd class="ph userinput">SKRIVIS_PIDM(8),SKRIVIS_CRN(5),SKRIVIS_RESULT(6),SKRIVIS_RESULT_DATE(11),SKRIVIS_SUBJ_CODE(9),SKRIVIS_STUDENT_ID(9),SKRIVIS_SITE_CODE(3),SKRIVIS_SURNAME(60),SKRIVIS_FIRST_NAME(60),SKRIVIS_BIRTH_DATE(11),SKRIVIS_PROGRAM(12),SKRIVIS_YEAR(4),SKRIVIS_CAMPUS(3),SKRIVIS_FUND_CODE(5),SKRIVIS_COST_CENTRE(6),SKRIVIS_ACTIVITY_CODE(6).</kbd>
+</code></pre>
+    <p class="p">After the file is imported, the <code class="ph codeph">ASC_VETIS_RESULTS_UP</code> activity an activity is run to extract results from the external tables and update baseline registration. The extract results runs the conventional grade roll process, ensuring to create the appropriate academic history. An <code class="ph codeph">ASC_VETIS_RESULTS_ERR</code> activity is run to identify results from the CSV file that were not uploaded. These results are identified with error messages, which list the reasons of why the activity failed to load the academic history data.</p>
+
+  </div>
+
+</div></div></section>
+<section id="t-100"><h3>Prerequisites</h3><div class="content-locale-en-US content-locale-en"><div id="c_prerequisites"><div class="body conbody"><p class="shortdesc"><span class="keyword">Banner</span> <span class="keyword">VETiS</span> 8.0 works with or depends on the following releases.</p>
+
+    <ul class="ul">
+      <li class="li"><span class="keyword">Banner</span> General 8.0 or later</li>
+
+      <li class="li"><span class="keyword">Banner</span> <span class="keyword">VETiS</span> 8.0 or later</li>
+
+      <li class="li">MDUU 8.0 or later</li>
+
+      <li class="li">DEEWR 8.0 or later (optional)</li>
+
+      <li class="li">AVETMISS 8.0 or later (optional).</li>
+
+    </ul>
+
+  </div>
+
+</div></div></section>
+<section id="t-110"><h2>Procedures</h2><div class="content-locale-en-US content-locale-en"><div id="c_procedures"><p class="shortdesc">This chapter explains the procedures.</p>
+
+</div></div></section>
+<section id="t-120"><h3>Import VETiS Results File</h3><div class="content-locale-en-US content-locale-en"><div id="t_import_vetis_results_file"><div class="body taskbody"><p class="shortdesc">Use this procedure to import the Results File generated by <span class="keyword">VETiS</span>.</p>
+
+    <div class="tasklabel"><h2 class="sectiontitle tasklabel">Procedure</h2></div><ol class="ol steps"><li class="li step stepexpand">
+        <span class="ph cmd">Retrieve the Results File.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Load the text file to a directory that is accessible to MDUU.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Access the <span class="keyword wintitle">Execution Tree Set-up (GKAPEXS)</span> page.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Enter <kbd class="ph userinput">ASC_VETIS_PROCESSING</kbd> in the <span class="ph uicontrol">Process Code</span> field.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Select Next Block.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Customise the execution tree to meet your local requirements.</span>
+        <div class="itemgroup info">For example, you could change the status of tree nodes using <span class="ph uicontrol">Change Status</span>. If desired, you can customise the activities and add these to the execution tree, or you can create your own execution tree. If you customise the activities, you need to create local copies of the baseline activities first.</div>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Select the activity that you want to import on the <span class="keyword wintitle">Tree Set-up</span> window.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Go to the <span class="ph uicontrol">Import</span> tab.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Enter <kbd class="ph userinput">SKRIVIS</kbd> in the <span class="ph uicontrol">External Table Name</span> field.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Enter the directory where the import file is located in the <span class="ph uicontrol">Directory Name</span> field.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Enter the file name to be imported in the <span class="ph uicontrol">File Name</span> field.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Enter <kbd class="ph userinput">NEWLINE</kbd> in the <span class="ph uicontrol">Record Delimiter</span> field.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Enter the following string in the <span class="ph uicontrol">Fields</span> field:</span>
+        <div class="itemgroup info">
+          <pre class="pre codeblock"><code>
+<kbd class="ph userinput">SKRIVIS_STUDENT_ID(9),SKRIVIS_SURNAME(60),SKRIVIS_FIRST_NAME(60),SKRIVIS_BIRTH_DATE(10),SKRIVIS_PROGRAM(12),SKRIVIS_SUBJ_CODE(9),SKRIVIS_RESULT(6),SKRIVIS_RESULT_DATE(10),SKRIVIS_YEAR(4),SKRIVIS_CAMPUS(3),SKRIVIS_SITE_CODE(3),SKRIVIS_FUND_CODE(5),SKRIVIS_COST_CENTRE(6),SKRIVIS_ACTIVITY_CODE(6),SKRIVIS_PIDM(8),SKRIVIS_CRN(6)</kbd>
+</code></pre>
+          <div class="note"><span class="notetitle">Note:</span> The Date fields should be in DD/MM/YYYY format.</div>
+
+        </div>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Enter a comma (,) in the <span class="ph uicontrol">Field Delimiter</span> field.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Click <span class="ph uicontrol">Register File</span>.</span>
+      </li>
+</ol>
+
+  </div>
+
+</div></div></section>
+<section id="t-130"><h3>Process imported files</h3><div class="content-locale-en-US content-locale-en"><div id="c_process_imported_files"><p class="shortdesc">Discusses the process imported files.</p>
+
+</div></div></section>
+<section id="t-140"><h4>ASC_VETIS_RESULTS_UP</h4><div class="content-locale-en-US content-locale-en"><div id="t_asc_vetis_results_up"><div class="body taskbody"><p class="shortdesc">The ASC_VETIS_RESULTS_UP activity extract records from the external table registered on MDUU to store the incoming results data and update the corresponding records in the Student Course Registration (SFRSTCR) table.</p>
+
+    <div class="section context"><div class="tasklabel"><h2 class="sectiontitle tasklabel">About this task</h2></div>Use this procedure to process the updated results generated by <span class="keyword">VETiS</span>.</div>
+
+    <div class="tasklabel"><h2 class="sectiontitle tasklabel">Procedure</h2></div><ol class="ol steps"><li class="li step stepexpand">
+        <span class="ph cmd">Access the <span class="keyword wintitle">Execution Tree Set-up (GKAPEXS)</span> page.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Enter <kbd class="ph userinput">ASC_VETIS_PROCESSING</kbd> in the <span class="ph uicontrol">Process Code</span> field.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Select Next Block.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Customise the execution tree to meet your local requirements.</span>
+        <div class="itemgroup info">For example, you could change the status of tree nodes using <span class="ph uicontrol">Change Status</span>. If desired, you can customise the activities and add these to the execution tree, or you can create your own execution tree. If you customise the activities, you need to create local copies of the baseline activities first.</div>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Access the <span class="keyword wintitle">Process Tree Execution (GKAPEXE)</span> page.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Enter <kbd class="ph userinput">ASC_VETIS_PROCESSING</kbd> in the <span class="ph uicontrol">Process Code</span> field.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Select Next Block.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Select <kbd class="ph userinput">ASC_VETIS_RESULTS_UP</kbd> on the <span class="keyword wintitle">Execution Tree Set-up</span> window.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Go to the <span class="keyword wintitle">Execution</span> window.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Enter values for the parameters, if necessary.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Change the value in the <span class="ph uicontrol">Execution Mode</span> field to <kbd class="ph userinput">Update</kbd>.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Select either the <span class="ph uicontrol">Run from Jobsub</span> or <span class="ph uicontrol">Run Now</span>, to execute the process as necessary.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Review the results by selecting the View SQL log.</span>
+      </li>
+</ol>
+
+  </div>
+
+</div></div></section>
+<section id="t-150"><h4>ASC_VETIS_RESULTS_ERR</h4><div class="content-locale-en-US content-locale-en"><div id="t_asc_vetis_results_err"><div class="body taskbody"><p class="shortdesc">The ASC_VETIS_RESULTS_ERR activity examines the records on the results upload table and attempt to determine whether the results on the upload table have failed to update the registration records in the Student Course Registration (SFRSTCR) table.</p>
+
+    <div class="section context"><div class="tasklabel"><h2 class="sectiontitle tasklabel">About this task</h2></div>Use this procedure to process the results error detection files generated by <span class="keyword">VETiS</span>.</div>
+
+    <div class="tasklabel"><h2 class="sectiontitle tasklabel">Procedure</h2></div><ol class="ol steps"><li class="li step stepexpand">
+        <span class="ph cmd">Access the <span class="keyword wintitle">Execution Tree Set-up (GKAPEXS)</span> page.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Enter <kbd class="ph userinput">ASC_VETIS_PROCESSING</kbd> in the <span class="ph uicontrol">Process Code</span> field.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Select Next Block.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Customise the execution tree to meet your local requirements.</span>
+        <div class="itemgroup info">For example, you could change the status of tree nodes using <span class="ph uicontrol">Change Status</span>. If desired, you can customise the activities and add these to the execution tree, or you can create your own execution tree. If you customise the activities, you need to create local copies of the baseline activities first.</div>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Access the <span class="keyword wintitle">Process Tree Execution (GKAPEXE)</span> page.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Enter <kbd class="ph userinput">ASC_VETIS_PROCESSING</kbd> in the <span class="ph uicontrol">Process Code</span> field.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Select Next Block.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Select <kbd class="ph userinput">ASC_VETIS_RESULTS_ERR</kbd> on the <span class="keyword wintitle">Execution Tree Set-up</span> window.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Go to the <span class="keyword wintitle">Execution</span> window.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Enter values for the parameters, if necessary.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Change the value in the <span class="ph uicontrol">Execution Mode</span> field to <kbd class="ph userinput">Update</kbd>.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Select either the <span class="ph uicontrol">Run from Jobsub</span> or <span class="ph uicontrol">Run Now</span> to execute the process as necessary.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Review the results by selecting the View SQL log.</span>
+      </li>
+</ol>
+
+  </div>
+
+</div></div></section>
+<section id="t-160"><h3>Process VETiS data</h3><div class="content-locale-en-US content-locale-en"><div id="c_process_vetis_data"><div class="body conbody"><p class="shortdesc">The processed Results File data is updated to student records on the basis of <span class="keyword">VETiS</span> results. You can control the execution of each process to run specific activities or tasks separately, or to run all tasks and activities immediately after producing the Request File.</p>
+
+    <p class="p">However, we recommend you run each task separately, evaluating the data each time. This results in better processing time and allows you to do any data cleaning. In the case of processing incoming data processing from the response or rejection files, run the import activity before any other activity.</p>
+
+    <p class="p">Refer to the <cite class="cite"> <span class="keyword">Banner</span> Mass Data Update Utility Use</cite> for more information about the pages used in configuring and executing each activity.</p>
+
+    <p class="p">The “ASC_VETIS_PROCESSING process is used to produce “ASC_VETIS_PROCESSING Results File. This process contains snapshot and extract activities.</p>
+
+  </div>
+
+</div></div></section>
+<section id="t-170"><h4>ASC_VETIS_PROCESSING</h4><div class="content-locale-en-US content-locale-en"><div id="t_asc_vetis_processing"><div class="body taskbody"><p class="shortdesc">Use this procedure to generate the ASC_VETIS_PROCESSING data.</p>
+
+    <div class="tasklabel"><h2 class="sectiontitle tasklabel">Procedure</h2></div><ol class="ol steps"><li class="li step stepexpand">
+        <span class="ph cmd">Access the <span class="keyword wintitle">Execution Tree Set-up (GKAPEXS)</span> page.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Enter <kbd class="ph userinput">ASC_VETIS_PROCESSING</kbd> in the <span class="ph uicontrol">Process Code</span> field.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Select Next Block.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Customise the execution tree to meet your local requirements.</span>
+        <div class="itemgroup info">For example, you could change the status of tree nodes using <span class="ph uicontrol">Change Status</span>. If desired, you can customise the activities and add these to the execution tree, or you can create your own execution tree. If you customise the activities, you need to create local copies of the baseline activities first.</div>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Access the <span class="keyword wintitle">Process Tree Execution (GKAPEXE)</span> page.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Enter <kbd class="ph userinput">ASC_VETIS_PROCESSING</kbd> in the <span class="ph uicontrol">Process Code</span> field.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Select Next Block.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Select the required stages on the <span class="keyword wintitle">Execution Tree Set-up</span> window.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Go to the <span class="keyword wintitle">Execution</span> window.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Enter values for the parameters, if necessary.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Change the value in the <span class="ph uicontrol">Execution Mode</span> field to <kbd class="ph userinput">Update</kbd>.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Select either the <span class="ph uicontrol">Run for Jobsub</span> or <span class="ph uicontrol">Run Now</span>, to execute the process as necessary.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Review the results by selecting the View SQL log.</span>
+      </li>
+</ol>
+
+  </div>
+
+</div></div></section>
+<section id="t-180"><h3>Extract VETiS data</h3><div class="content-locale-en-US content-locale-en"><div id="t_extract_vetis_data"><div class="body taskbody"><p class="shortdesc">The snapshot and extract processing procedures help obtain student information for each file.</p>
+
+    <div class="section context"><div class="tasklabel"><h2 class="sectiontitle tasklabel">About this task</h2></div>The following process flow takes place when the recording happens.<ul class="ul"> <li class="li">Run the snapshot activity</li>
+ <li class="li">Run the data extract activity</li>
+ </ul>
+<p class="p">As a result of this process, all parts of the file are stored in the same extract table in the CLOB column.</p>
+<p class="p">The final stage of <span class="keyword">VETiS</span> results loading is to extract the data to an external document. This process allows you to export the extract data to a flat file document. The Extract <span class="keyword">VETiS</span> Student Data activity pulls data from the VETIS Student Data Snapshot (SKRSVIS) table to populate the VETIS Student Data Extract (SKREVIS) table.</p>
+<p class="p">Use the following procedure to extract the <span class="keyword">VETiS</span> data.</p>
+</div>
+
+    <div class="tasklabel"><h2 class="sectiontitle tasklabel">Procedure</h2></div><ol class="ol steps"><li class="li step">
+        <span class="ph cmd">Access the <span class="keyword wintitle">Universal Viewer (GKAPUNV)</span> page.</span>
+      </li>
+<li class="li step">
+        <span class="ph cmd">Enter the seven-character name of the extract table (for example, <kbd class="ph userinput">SKREVIS</kbd>) in the <span class="ph uicontrol">Table Name</span> field.</span>
+      </li>
+<li class="li step">
+        <span class="ph cmd">Use the <span class="ph uicontrol">Filter Column</span> and <span class="ph uicontrol">Filter Value</span> fields to filter the data. (For example, you can filter for a particular academic year or term).</span>
+      </li>
+<li class="li step">
+        <span class="ph cmd">Select Next Block.</span>
+      </li>
+<li class="li step">
+        <span class="ph cmd">Double-click in any cell of the CLOB column.</span>
+      </li>
+<li class="li step">
+        <span class="ph cmd">Extract the <span class="keyword">VETiS</span> results data.</span>
+      </li>
+<li class="li step">
+        <span class="ph cmd">Enter the name of the directory to which the file will be exported in the <span class="ph uicontrol">Directory Name</span> field.</span>
+      </li>
+<li class="li step">
+        <span class="ph cmd">Enter the name of the exported flat file in the <span class="ph uicontrol">Filename</span> field, ensuring that the file extension is <kbd class="ph userinput">.txt</kbd>.</span>
+      </li>
+<li class="li step">
+        <span class="ph cmd">Click <span class="ph uicontrol">Export Column Data</span>.</span>
+      </li>
+</ol>
+
+  </div>
+
+</div></div></section></main></body></html>

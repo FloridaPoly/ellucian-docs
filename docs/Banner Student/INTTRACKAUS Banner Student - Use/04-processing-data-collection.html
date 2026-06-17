@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>INTTRACKAUS Banner Student - Use — Processing data collection</title><style>body{font-family:-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;line-height:1.55;color:#1a1a1a;max-width:920px;margin:0 auto;padding:24px}header{border-bottom:2px solid #5a16d6;margin-bottom:8px}h1{color:#3a0ca3}h2,h3,h4,h5,h6{margin-top:1.6em}.crumb{color:#666;font-size:13px;margin:0}.meta{color:#888;font-size:12px}nav.toc{background:#f6f4fc;border:1px solid #e3dcf5;border-radius:8px;padding:12px 18px;margin:18px 0}nav.toc h2{margin:.2em 0}nav.toc ul{list-style:none;padding-left:0}nav.toc a{text-decoration:none;color:#5a16d6}section{margin:1.2em 0;padding-top:.4em}img{max-width:100%;height:auto}table{border-collapse:collapse}td,th{border:1px solid #ccc;padding:4px 8px}code,pre{background:#f4f4f4;border-radius:4px}pre{padding:10px;overflow:auto}</style></head><body><header><p class="crumb">Banner Student › INTTRACKAUS Banner Student - Use</p><h1>INTTRACKAUS Banner Student - Use — Processing data collection</h1><p class="meta">Source: <a href="https://resources.elluciancloud.com/r/bundle/banner_student_acn_use_inttrackaus">https://resources.elluciancloud.com/r/bundle/banner_student_acn_use_inttrackaus</a> &middot; Retrieved 2026-06-17</p></header><nav class="toc"><h2>Contents</h2><ul><li style="margin-left:0px"><a href="#t-90">Processing data collection</a></li><li style="margin-left:16px"><a href="#t-100">Snapshot processing</a></li><li style="margin-left:16px"><a href="#t-110">Extract processing</a></li><li style="margin-left:16px"><a href="#t-120">Export processing</a></li></ul></nav><main><section id="t-90"><h2>Processing data collection</h2><div class="content-locale-en-US content-locale-en"><div id="c_processing_data_collection"><div class="body conbody"><p class="shortdesc">This release provides data reporting and extract functionality to meet the needs of <span class="keyword">INTTRACKAUS</span>.</p>
+
+    <p class="p">The <span class="keyword">INTTRACKAUS</span> module uses rule sets in the <span class="keyword">Banner Mass Data Update Utility</span> (MDUU) to generate the snapshot, extract, and export files for the reports. We have delivered seed data to enable you to begin designing your reporting processes.</p>
+
+    <p class="p">To understand how the reports are built, you must understand the process, task, and activity elements of MDUU. Refer to the <cite class="cite"><span class="keyword">Banner</span> Mass Data Update Utility Use</cite> for a complete explanation of tasks and activities, and how these elements work to support <span class="keyword">INTTRACKAUS</span> reporting requirements.</p>
+
+    <p class="p">This document uses the following key terms.</p>
+
+    <ul class="ul">
+      <li class="li">Process: This represents a set of tasks sharing a common business area. The MDUU security allows you to associate users and user classes to a given process. If this functionality is activated, only users assigned to a given process will be able to execute this process</li>
+
+      <li class="li">Task: This is a set of activities that is carried out as part of a process, such as taking a snapshot of data from the original data sources and gathering them in more synthetic (eventually generated) tables.</li>
+
+      <li class="li">Activity: This is a processing element that is carried out as part of a task, such as a data copy, or a data transformation. An activity updates a single table and can be reused in several tasks.</li>
+
+    </ul>
+
+  </div>
+
+</div></div></section>
+<section id="t-100"><h3>Snapshot processing</h3><div class="content-locale-en-US content-locale-en"><div id="c_snapshot_processing"><div class="body conbody"><p class="shortdesc">This process populates snapshot data from baseline tables, Solution Centre tables, locally developed tables, and tables from third-party applications. The process allows selected target tables in the snapshot data structure to be populated. It can refresh (remove and insert) or update (add new rows and update existing rows) the snapshot.</p>
+
+    <p class="p">The structure of the snapshot tables is maintained by the MDUU under a schema called PRGNREP. (Refer to the <cite class="cite"><span class="keyword">Banner</span> Mass Data Update Utility Use</cite> for more information.)</p>
+
+    <p class="p">When running the snapshot, you can select which snapshot tables to populate. You can also purge the selected snapshot tables before re-inserting rows.</p>
+
+    <div class="p">This process allows you to do the following:<ul class="ul"> <li class="li">Create snapshot data</li>
+ <li class="li">Define the column mappings for the snapshot</li>
+ <li class="li">Define the rules to generate the snapshot population</li>
+ <li class="li">Initialise the snapshot</li>
+ <li class="li">Populate the snapshot</li>
+ <li class="li">Increment the snapshot (add or remove records without refreshing the snapshot from scratch).</li>
+ </ul>
+</div>
+
+  </div>
+
+</div></div></section>
+<section id="t-110"><h3>Extract processing</h3><div class="content-locale-en-US content-locale-en"><div id="c_extract_processing"><div class="body conbody"><p class="shortdesc">This process populates the extract based on snapshot data and, where necessary, it transforms the snapshot data into the format needed for the extract.</p>
+
+    <p class="p">The process allows selected target tables in the extract data structure to be populated. It can refresh (remove and insert) or update (add new rows and update existing rows) the extract.</p>
+
+    <div class="p">This process allows you to do the following:<ul class="ul"> <li class="li">Create extract data</li>
+ <li class="li">Define the column mappings for the extract</li>
+ <li class="li">Define the rules to generate the extract population</li>
+ <li class="li">Use expressions and functions to derive values based on the contents of the snapshot</li>
+ <li class="li">Initialise the extract</li>
+ <li class="li">Populate the extract</li>
+ <li class="li">Increment the extract (add or remove records without refreshing the cohort from scratch).</li>
+ </ul>
+</div>
+
+  </div>
+
+</div></div></section>
+<section id="t-120"><h3>Export processing</h3><div class="content-locale-en-US content-locale-en"><div id="c_export_processing"><div class="body conbody"><p class="shortdesc">This process populates the export based on extract data. The process allows selected target tables in the export data structure to be populated. It can refresh (remove and insert) or update (add new rows and update existing rows) the export.</p>
+
+    <div class="p">This process allows you to do the following:<ul class="ul"> <li class="li">Create export data</li>
+ <li class="li">Define the mappings for the CLOB export column</li>
+ <li class="li">Define the rules to generate the export population</li>
+ <li class="li">Initialise the export</li>
+ <li class="li">Populate the export</li>
+ <li class="li">Increment the export (add and remove records without refreshing the cohort from scratch)</li>
+ <li class="li">View the export.</li>
+ </ul>
+</div>
+
+  </div>
+
+</div></div></section></main></body></html>

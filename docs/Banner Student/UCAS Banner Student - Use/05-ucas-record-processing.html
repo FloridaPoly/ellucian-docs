@@ -1,0 +1,2198 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>UCAS Banner Student - Use — UCAS Record Processing</title><style>body{font-family:-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;line-height:1.55;color:#1a1a1a;max-width:920px;margin:0 auto;padding:24px}header{border-bottom:2px solid #5a16d6;margin-bottom:8px}h1{color:#3a0ca3}h2,h3,h4,h5,h6{margin-top:1.6em}.crumb{color:#666;font-size:13px;margin:0}.meta{color:#888;font-size:12px}nav.toc{background:#f6f4fc;border:1px solid #e3dcf5;border-radius:8px;padding:12px 18px;margin:18px 0}nav.toc h2{margin:.2em 0}nav.toc ul{list-style:none;padding-left:0}nav.toc a{text-decoration:none;color:#5a16d6}section{margin:1.2em 0;padding-top:.4em}img{max-width:100%;height:auto}table{border-collapse:collapse}td,th{border:1px solid #ccc;padding:4px 8px}code,pre{background:#f4f4f4;border-radius:4px}pre{padding:10px;overflow:auto}</style></head><body><header><p class="crumb">Banner Student › UCAS Banner Student - Use</p><h1>UCAS Banner Student - Use — UCAS Record Processing</h1><p class="meta">Source: <a href="https://resources.elluciancloud.com/r/bundle/banner_student_acn_use_ucas">https://resources.elluciancloud.com/r/bundle/banner_student_acn_use_ucas</a> &middot; Retrieved 2026-06-17</p></header><nav class="toc"><h2>Contents</h2><ul><li style="margin-left:0px"><a href="#t-1200">UCAS Record Processing</a></li><li style="margin-left:16px"><a href="#t-1210">*N - Name details</a></li><li style="margin-left:16px"><a href="#t-1220">*A - Applicant address/telephone details</a></li><li style="margin-left:32px"><a href="#t-1230">Actions</a></li><li style="margin-left:48px"><a href="#t-1240">Create SPRADDR</a></li><li style="margin-left:48px"><a href="#t-1250">Create SPRTELE</a></li><li style="margin-left:48px"><a href="#t-1260">Create GOREMAL</a></li><li style="margin-left:16px"><a href="#t-1270">*C and *G - Choice data</a></li><li style="margin-left:32px"><a href="#t-1280">Baseline application and curriculum records</a></li><li style="margin-left:32px"><a href="#t-1290">Joint institution/UTT Schools Direct choices</a></li><li style="margin-left:32px"><a href="#t-1300">Processing a change of course</a></li><li style="margin-left:32px"><a href="#t-1310">Processing a change of term</a></li><li style="margin-left:32px"><a href="#t-1320">Processing a new Choice 7</a></li><li style="margin-left:32px"><a href="#t-1330">Processing residential category</a></li><li style="margin-left:16px"><a href="#t-1340">*P and *R - Results data</a></li><li style="margin-left:32px"><a href="#t-1350">Results Refresh Control view/method</a></li><li style="margin-left:32px"><a href="#t-1360">Downloading results data</a></li><li style="margin-left:32px"><a href="#t-1370">Timestamps</a></li><li style="margin-left:32px"><a href="#t-1380">Reference Data</a></li><li style="margin-left:48px"><a href="#t-1390">ABL subject codes</a></li><li style="margin-left:48px"><a href="#t-1400">Subject codes</a></li><li style="margin-left:48px"><a href="#t-1410">Examination levels</a></li><li style="margin-left:48px"><a href="#t-1420">Awarding bodies</a></li><li style="margin-left:16px"><a href="#t-1430">getUCASApplicantUnitResults Data</a></li><li style="margin-left:16px"><a href="#t-1440">*J data</a></li><li style="margin-left:16px"><a href="#t-1450">*K data</a></li><li style="margin-left:16px"><a href="#t-1460">*H - HESA Sensitive Fields</a></li><li style="margin-left:16px"><a href="#t-1470">*W data</a></li><li style="margin-left:32px"><a href="#t-1480">In Banner UCAS applicant data</a></li><li style="margin-left:32px"><a href="#t-1490">In Baseline Admissions data</a></li><li style="margin-left:16px"><a href="#t-1500">PAC – Applicant activities data</a></li><li style="margin-left:32px"><a href="#t-1510">Manage the reference data</a></li><li style="margin-left:32px"><a href="#t-1520">Map Higher Education activity types</a></li><li style="margin-left:32px"><a href="#t-1530">Manage Higher Education applicant activities</a></li><li style="margin-left:32px"><a href="#t-1540">View the HE activities data</a></li><li style="margin-left:16px"><a href="#t-1550">HESA mappings</a></li><li style="margin-left:16px"><a href="#t-1560">UCAS Schools data</a></li></ul></nav><main><section id="t-1200"><h2>UCAS Record Processing</h2><div class="content-locale-en-US content-locale-en"><div id="c_appendix_ucas_record_processing"><p class="shortdesc">This chapter explains the processing of the following records.</p>
+
+</div></div></section>
+<section id="t-1210"><h3>*N - Name details</h3><div class="content-locale-en-US content-locale-en"><div id="c_n_name_details"><div class="body conbody"><p class="shortdesc"><span class="ph">Banner</span> <span class="ph">UCAS</span> uses the applicant number as the unique identifier for an applicant although this value is no longer supplied by <span class="ph">UCAS</span>. The *N contains getUCASApplicantDetails and getGTTRApplicantDetails XML end points.</p>
+
+    <p class="p">The function delivered with <span class="ph">UCAS</span> 8.0 version invokes when a record is downloaded from XML-Link without an applicant number, and it populates the applicant number columns on the <span class="ph">Banner</span> interim tables (SKBUSTA, SKBUSTN, SKBUSTC, and so on). The generated applicant number is then processed into the <span class="ph">Banner</span> <span class="ph">UCAS</span> tables (SKRUDAP, SKRSAIN, SKRUCCR, and so on) in the same way as an applicant number originating from UCAS.</p>
+
+    <p class="p">For XML-Link, when the MDUU rules are run, <span class="ph">Banner</span> finds all new applicant records waiting to be processed into the interim tables that do not already exist on SKRSAIN or SKBUGAN. Then, it generates an applicant number for each of the new applicant records and stores them in SKBUGAN.</p>
+
+    <p class="p">The SKAUHNC process, which loads raw UCAS data received through XML-Link into <span class="ph">Banner</span> baseline, calls the P_CREATE and P_UPDATE procedures within the GB_COMMON and GB_IDENTIFICATION APIs, which create PIDMs and SPRIDEN records.</p>
+
+    <p class="p">The f_generate_id and f_generate_pidm functions in the gb_common package are called by the P_CREATE procedure in the gb_identification package. The P_CREATE procedure is called by all pages and processes that create new SPRIDEN records. The gb_identification package uses Oracle sequences to determine the next available number for the ID or PIDM instead of using the SOBSEQN table. The <code class="ph codeph"> gos_id_seq.sql </code> script creates the ID_SEQUENCE that generates unique identification numbers such as SPRIDEN_ID. The <code class="ph codeph"> gos_pidm_seq.sql </code> script creates the PIDM_SEQUENCE that generates unique internal identification numbers such as SPRIDEN_PIDM.</p>
+
+    <p class="p">The P_CREATE and P_UPDATE procedures within the GB_ADDRESS, GB_TELEPHONE, GB_EMAIL, and GB_BIO APIs are also called to create SPRADDR, SPRTELE, GOREMAL and SPBPERS records.</p>
+
+    <p class="p">Create SPRIDEN Increment PIDM Populate soundex from <span class="ph">Banner</span> function Populate SPBPERS_LEGAL_NAME with Forenames and Surname. If Forename is greater than 15 characters, then an attempt will be made to break the name between FIRST_NAME and MI.</p>
+
+    <p class="p">Create SPBPERS PIDM LEGAL_NAME NAME_PREFIX</p>
+
+    <p class="p">For <span class="ph">UCAS</span> applicants there is a system parameter POPULATE LEGAL NAME, which controls whether the SPBPERS_LEGAL_NAME column should be populated.</p>
+
+    <p class="p">For XML-Link, you can download Unicode versions of applicant names. Both ASCII and Unicode versions of applicant name data are stored so that ASCII data is available to be passed to other systems downstream from <span class="ph">Banner</span>. Unicode names are stored as alternate names (SPRIDEN_CHANGE_IND = N). The value specified in the UNICODE NAME TYPE system parameter defines the name type to store with the Unicode data, and the value specified in the UNICODE LEGAL NAME system parameter defines whether the SPBPERS_LEGAL_NAME column is to be loaded in ASCII or Unicode format.</p>
+
+    <p class="p">When SKAUHNC has completed loading records into <span class="ph">Banner</span>, all SKBUGAN records are deleted.</p>
+
+  </div>
+
+</div></div></section>
+<section id="t-1220"><h3>*A - Applicant address/telephone details</h3><div class="content-locale-en-US content-locale-en"><div id="c_applicant_address"><p class="shortdesc">The *A data contains the getUCASApplicantDetails and getGTTRApplicantDetails) XML end points.</p>
+
+  
+</div></div></section>
+<section id="t-1230"><h4>Actions</h4><div class="content-locale-en-US content-locale-en"><div id="c_actions"><p class="shortdesc">You can do the following actions </p>
+
+</div></div></section>
+<section id="t-1240"><h5>Create SPRADDR</h5><div class="content-locale-en-US content-locale-en"><div id="c_create_spraddr"><div class="body conbody"><p class="shortdesc">Take the last not null address line. If it is line 4, then put the first 20 characters into SPRADDR_CITY.</p>
+
+    <p class="p">If it is longer than 20, then also put an error for the *A record into SKRUREC_BANNER_ERRORS (Marvin) or SKBUHTS_ERROR (ODBC-Link). Then put all other not null lines into the SPRADDR_STREET_LINE# columns.</p>
+
+    <p class="p">Put the Mail Sort Code into SPRADDR_GST_TAX_ID.</p>
+
+    <p class="p">Place a full stop into the SPRADDR_CITY if it is still empty.</p>
+
+    <p class="p">If the postcode is not null, put the system parameter value for UCAS STATE CODE DEFAULT into SPRADDR_STAT_CODE, and set SPRADDR_NATN_CODE to null. If the postcode is null, put the system parameter value for UCAS NATION CODE DEFAULT into SPRADDR_NATN_CODE and set SPRADDR_STAT_CODE to null. When an existing address is updated, the state code and nation code are always reprocessed according to these rules to ensure there are no API errors.</p>
+
+    <p class="p">SPRADDR_ATYP_CODE will be set to the value specified for the UCAS ATYP CODE DEFAULT system parameter.</p>
+
+    <p class="p">For XML-Link, you can download Unicode versions of applicant addresses. Both ASCII and Unicode versions of applicant address data are stored so that ASCII data is available to be passed to other systems downstream from <span class="ph">Banner</span>. The values specified for the UNICODE HOME ADDRESS TYPE and UNICODE UCAS ADDRESS TYPE system parameters define the address types to store with the Unicode data. They must be different from those used for the ASCII versions of both addresses, otherwise they will simply supersede the ASCII addresses.</p>
+
+    <p class="p">In XML-Link, records are sent with hyphens in the address fields of getUCASApplicantsDetails and getGTTRApplicantsDetails when the applicant has not supplied address data. <span class="ph">Banner</span> <span class="ph">UCAS</span> ignores these records and they are not loaded to SPRADDR.</p>
+
+  </div>
+
+</div></div></section>
+<section id="t-1250"><h5>Create SPRTELE</h5><div class="content-locale-en-US content-locale-en"><div id="c_create_sprtele"><div class="body conbody"><p class="shortdesc">SPRTELE_ATYP_CODE will be set to the UCAS ATYP CODE DEFAULT system parameter.  SPRTELE_TELE_CODE will be set to the UCAS TELE CODE DEFAULT system parameter.</p>
+
+    <div class="p">The following options are provided using system parameters: <ul class="ul"> <li class="li">Strip out non-numeric characters and place in SPRTELE_PHONE_AREA, SPRTELE_PHONE_NUMBER and SPRTELE_PHONE_EXT. Put the rest in SPRTELE_COMMENT.<p class="p">-OR-</p>
+</li>
+ <li class="li">Strip out non-numeric characters and place in SKRTELE_INTL_ACCESS. If length is still greater than 16 characters, then put number in SPRTELE_COMMENT and flag an error in SKRUREC_BANNER_ERRORS. Enter “.” in SPRTELE_INTL_ACCESS.<p class="p">- OR -</p>
+</li>
+
+      <li class="li">For all telephone numbers, store in SPRTELE_COMMENT and put enter "." in SPRTELE_INTL_ACCESS.</li>
+ </ul>
+</div>
+
+    <p class="p">Place the MAILSORT code in SKRTELE_GST_TAX_ID.</p>
+
+    <p class="p">In XML-Link, records are sent with hyphens in the telephone number fields of getUCASApplicantsDetails and getGTTRApplicantsDetails when the applicant has not supplied telephone number data. <span class="ph">Banner</span> <span class="ph">UCAS</span> ignores these records and they are not loaded to SPRTELE.</p>
+
+  </div>
+
+</div></div></section>
+<section id="t-1260"><h5>Create GOREMAL</h5><div class="content-locale-en-US content-locale-en"><div id="c_create_goremal"><div class="body conbody"><p class="shortdesc">GOREMAL_EMAL_CODE will be set to the UCAS EMAIL CODE DEFAULT system parameter.</p>
+
+    <p class="p">GOREMAL_PREFERRED_IND will be set to the MAKE EMAIL ADRESS PREFERRED system parameter.</p>
+
+    <p class="p">GOREMAL_DISP_WEB_IND will be set to the DISPLAY EMAIL ON WEB DEFAULT system parameter.</p>
+
+    <p class="p">When a new e-mail address is processed for an applicant, the <span class="ph uicontrol">Preferred</span> indicator will be set to <kbd class="ph userinput">null</kbd> on any existing GOREMAL records (regardless of EMAL_CODE). This allows the new address to be set as the preferred address when the previous preferred e-mail address had a different EMAL_CODE.</p>
+
+    <p class="p">When a new record is inserted with the same EMAL_CODE and address as an existing record, the existing record will be set to <kbd class="ph userinput">Inactive</kbd> to avoid a unique-constraint violation.</p>
+
+    <p class="p">In XML-Link, records are sent with hyphens in the e-mail address field of getUCASApplicantsDetails and getGTTRApplicantsDetails when the applicant has not supplied e-mail address data. <span class="ph">Banner</span> <span class="ph">UCAS</span> ignores these records and they are not loaded to GOREMAL.</p>
+
+  </div>
+
+</div></div></section>
+<section id="t-1270"><h3>*C and *G - Choice data</h3><div class="content-locale-en-US content-locale-en"><div id="c_c_g_choice_data"><p class="shortdesc">contains the getUCASApplicantChoices and getGTTRApplicantChoices XML end points.</p>
+
+  
+</div></div></section>
+<section id="t-1280"><h4>Baseline application and curriculum records</h4><div class="content-locale-en-US content-locale-en"><div id="c_baseline_application_curriculum_records"><div class="body conbody"><p class="shortdesc">Baseline application (SARADAP) records are created only for choices that belong to your institution and for which a decision is to be entered.</p>
+
+    <p class="p">The SARADAP records are created by a call to the SAKMODS package (from within the SKAUHNC script), which calls the P_CREATE_APPLICANT procedure, which in turn calls the SB_ADMISSIONSAPPLICATION API, which creates SARADAP records (minus curriculum columns).</p>
+
+    <p class="p">The SAKMODS package also calls the SB_CURRICULUM and SB_FIELDOFSTUDY APIs to populate the SORLCUR and SORLFOS curriculum tables, and the P_BACKLOAD_CURR back-load procedure, which populates the curriculum columns in the SARADAP table.</p>
+
+    <p class="p">The SAKMODS package also creates checklist items and communication plans for applicants.</p>
+
+    <div class="note"><span class="notetitle">Note:</span> The SAKMODS p_insert_commplans procedure populates the Communication Plan Collector (SORCCOL) table and not the SOBCPLN table. You must, therefore, run the Communication Plan Processing (SORCPLN) report to assign communication plans to <span class="ph">UCAS</span> applicants.</div>
+
+    <p class="p">When the admissions SORLCUR record is created, curriculum error checking will be enforced according to the Admissions settings on the SOACURR Module tab (SORMCRL_ADM_IND) and on SOACTRL (SOBCTRL_ADM_ERRLVL_IND). Records that cannot be loaded due to a fatal curriculum error will be set to OH (On Hold) and the error message stored to SKBUSTC_ERROR_MSG or SKBUSTG_ERROR_MSG. Where a warning message is produced, the record will be loaded and the status set to PM (Processed with messages) and the warning message stored to SKBUSTC_ERROR_MSG or SKBUSTG_ERROR_MSG.</p>
+
+    <p class="p">When a Choice record is loaded that creates a Learner (General Student) record, curriculum error checking will be enforced according to the Student settings on the SOACURR Module tab (SORMCRL_STU_IND) and SOACTRL (SOBCTRL_STU_ERRVL_IND). Records that cannot be loaded due to a fatal curriculum error will be set to OH (On Hold) and the error message stored to SKBUSTC_ERROR_MSG or SKBUSTG_ERROR_MSG. Where a warning message is produced the record will be loaded and the status set to PM (Processed with messages) and the warning message stored to SKBUSTC_ERROR_MSG or SKBUSTG_ERROR_MSG.</p>
+
+    <p class="p">When a change of <span class="ph">UCAS</span> course is received from <span class="ph">UCAS</span>, the existing SORLCUR and SORLFOS are made inactive and new records are created for the new curriculum details.</p>
+
+    <div class="p">The existing records are made inactive in the following way: <ul class="ul"> <li class="li">The SORLCUR_CACT_CODE field is set to INACTIVE.</li>
+ <li class="li">The SORLFOS_CACT_CODE is set to INACTIVE and the SORLFOS_CSTS_CODE field is set to CHANGED.</li>
+ <li class="li">The SARDSCL_STATUS_IND field is set to INACTIVE.</li>
+ <li class="li">The SARCHKL, SOBCLPN, SKRUDAP, SARAPPD, and SARCHRT records are deleted.</li>
+ </ul>
+When a change of <span class="ph">UCAS</span> year of entry is received from <span class="ph">UCAS</span>, resulting in a change of admissions term code, the existing SARADAP, SKRUDAP, SARAPPD, SARCHRT, SARDSCL, SORLCUR, and SORLFOS are made inactive and new records are created for the new curriculum details.</div>
+
+    <p class="p">The existing records are made inactive in the following way:</p>
+
+    <ul class="ul">
+      <li class="li">The SORLCUR_CACT_CODE field is set to INACTIVE.</li>
+
+      <li class="li">The SORLFOS_CACT_CODE is set to INACTIVE and the SORLFOS_CSTS_CODE field is set to CHANGED.</li>
+
+      <li class="li">The SARADAP_APST_CODE field is set to W (Withdrawn).<div class="note"><span class="notetitle">Note:</span> W is not a system required code, so clients must ensure W (Withdrawn) is on the STVAPST page.</div>
+</li>
+
+    </ul>
+
+    <p class="p">The APIs will create new SARADAP, SORLCUR and SOLRFOS records in the same way that the old records were created.</p>
+
+    <p class="p">For more information about the APIs, see the <em class="ph i">Banner Student TRM</em>.</p>
+
+  </div>
+
+</div></div></section>
+<section id="t-1290"><h4>Joint institution/UTT Schools Direct choices</h4><div class="content-locale-en-US content-locale-en"><div id="c_joint_institution_utt_schools_direct_choices"><div class="body conbody"><p class="shortdesc">If your institution operates joint admissions processing or is a <span class="ph">UCAS</span> Teacher Training (UTT, formerly GTTR) institution acting as an accrediting provider for one or more schools, choices for these secondary institutions are loaded into baseline <span class="ph">Banner</span> in the same way as those for your own primary institution.</p>
+
+    <p class="p">The above holds good as long as the institution codes for these choices are listed in the INSTITUTE CODE system parameter in the GKAKSYS page.</p>
+
+    <p class="p">For UTT choices, the accrediting provider code must also be listed in the INSTITUTE CODE system parameter for a SARADAP record to be created.</p>
+
+  </div>
+
+</div></div></section>
+<section id="t-1300"><h4>Processing a change of course</h4><div class="content-locale-en-US content-locale-en"><div id="c_processing_change_course"><div class="body conbody"><p class="shortdesc">When a change of course is processed by loading a new Choice record, the system does the following.</p>
+
+    <ul class="ul">
+      <li class="li">Keeps the existing SARADAP record</li>
+
+      <li class="li">Inactivates the old SORLCUR record by inserting a new row set to inactive</li>
+
+      <li class="li">Inserts a new SORLCUR record set to active for the new program</li>
+
+      <li class="li">Inactivates the old SORLFOS record by inserting a new row set to inactive</li>
+
+      <li class="li">Inserts a new SORLFOS record set to active for the new major</li>
+
+      <li class="li">Inserts a new communication plan collector record SOBCPLN</li>
+
+      <li class="li">Leaves the existing communication plan record unchanged</li>
+
+      <li class="li">Deletes the existing checklist items except where SARCHKL_RECEIVE_DATE is not null</li>
+
+      <li class="li">Inserts new checklist items into SARCHKL</li>
+
+      <li class="li">Leaves the existing SARAPPD records unchanged</li>
+
+      <li class="li">Leaves the existing SARCHRT and SARDSCL records unchanged</li>
+
+    </ul>
+
+  </div>
+
+</div></div></section>
+<section id="t-1310"><h4>Processing a change of term</h4><div class="content-locale-en-US content-locale-en"><div id="c_processing_change_term"><div class="body conbody"><p class="shortdesc">The system does the following when a change of term is processed by loading a new Choice record.</p>
+
+    <ul class="ul">
+      <li class="li">Changes SARADAP_APST_CODE on the existing SARADAP record to the value in the INACTIVE SARADAP APST CODE system parameter, to indicate superseded/inactive.</li>
+
+      <li class="li">Leaves the SORLCUR and SORLFOS records on the old SARADAP record unchanged (still active)</li>
+
+      <li class="li">Leaves the checklist items, communication plans, and other ‘child’ records attached to the old SARADAP unchanged</li>
+
+      <li class="li">Inserts a new SARADAP record (and associated decision, curriculum, checklist and communication plan records) for the new term</li>
+
+    </ul>
+
+    <p class="p">When a change of year and course are sent in the same transaction, the change of year is processed first so that the old SARADAP record shows the old course and the new SARADAP record shows the new course.</p>
+
+  </div>
+
+</div></div></section>
+<section id="t-1320"><h4>Processing a new Choice 7</h4><div class="content-locale-en-US content-locale-en"><div id="c_processing_new_choice_7"><div class="body conbody"><p class="shortdesc">UCAS use Choice number 7 for both Extra and Clearing.</p>
+
+    <p class="p">A new choice 7 is defined as one with a different course to the previous choice 7, or one with the same course but a decision of REF (that is, the applicant applies for the same course through both Extra and Clearing). Users need to be able to enter a new decision for the new choice 7. When a new choice 7 is processed by loading a new Choice record, the system does the following:</p>
+
+    <ul class="ul">
+      <li class="li">Changes SARADAP_APST_CODE on the existing SARADAP record to the value in the INACTIVE SARADAP APST CODE system parameter, to indicate superseded/inactive</li>
+
+      <li class="li">Leaves the SORLCUR and SORLFOS records on the old SARADAP record unchanged (still active)</li>
+
+      <li class="li">Leaves the checklist items, communication plans, and other 'child' records attached to the old SARADAP unchanged</li>
+
+      <li class="li">Inserts a new SARADAP record (and associated decision, curriculum, checklist and communication plan records) for the new choice</li>
+
+      <li class="li">Changes SKRUCCR_SSDT_CODE_DECN and SKRUCCR_SSDT_CODE_CF_DECN on the existing SKRUCCR record to null</li>
+
+      <li class="li">Sets the existing SKRUDEC record for Choice 7 to a status of SU (Superseded choice 7)</li>
+
+    </ul>
+
+  </div>
+
+</div></div></section>
+<section id="t-1330"><h4>Processing residential category</h4><div class="content-locale-en-US content-locale-en"><div id="c_processing_residential_category"><div class="body conbody"><p class="shortdesc">There are rules defined in SKASSDT to control the loading of the *C - RESCAT (Residential Category) data. You can also create your own additional rules.</p>
+
+    <p class="p">The *C - RESCAT rules are used to control the updating of the SKRSAIN_SSDT_CODE_RESCAT and the SARADAP_RESD_CODE columns. The rules are used in *K, *A, and *C record processing.</p>
+
+    <p class="p">Options 1 and 3 can contain an actual value, a wildcard (%) matching any value (including null values) or the word <kbd class="ph userinput">NULL</kbd> when a null-only match is required.</p>
+
+    <p class="p">The value <kbd class="ph userinput">U</kbd> used for options 1 and 3 for ‘Data’ item 2 will be the value from the RESD DEFAULT system parameter on GKAKSYS. You will need to change it if your default value is different.</p>
+
+    <p class="p">*K records are loaded before *C records so these rules will be executed after the *K RESCAT rules. If no rules are found in SKASSDT, the value in the *C-RESCAT system parameter will be used to determine how records will be updated.</p>
+
+    
+<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" id="c_processing_residential_category__c_processing_residential_category-utbl1" class="table" frame="hsides" border="1" rules="rows"><colgroup><col style="width:11.463844797178131%"><col style="width:11.463844797178131%"><col style="width:11.463844797178131%"><col style="width:11.463844797178131%"><col style="width:8.818342151675484%"><col style="width:10.052910052910052%"><col style="width:26.278659611992943%"><col style="width:8.994708994708995%"></colgroup><thead class="thead" style="text-align:left;vertical-align:bottom;">
+          <tr class="row">
+            <th class="entry row-nocellborder" style="text-align:left;vertical-align:bottom;" id="d19067e75">Attribute</th>
+
+            <th class="entry row-nocellborder" style="text-align:left;vertical-align:bottom;" id="d19067e78">Option 1</th>
+
+            <th class="entry row-nocellborder" style="text-align:left;vertical-align:bottom;" id="d19067e81">Option 2</th>
+
+            <th class="entry row-nocellborder" style="text-align:left;vertical-align:bottom;" id="d19067e84">Option 3</th>
+
+            <th class="entry row-nocellborder" style="text-align:left;vertical-align:bottom;" id="d19067e87">Data</th>
+
+            <th class="entry row-nocellborder" style="text-align:left;vertical-align:bottom;" id="d19067e91">Status</th>
+
+            <th class="entry row-nocellborder" style="text-align:left;vertical-align:bottom;" id="d19067e94">Title</th>
+
+            <th class="entry row-nocellborder" style="text-align:left;vertical-align:bottom;" id="d19067e97">Short Title</th>
+
+          </tr>
+
+        </thead>
+<tbody class="tbody">
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d19067e75 ">*C - RESCAT</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d19067e78 ">NULL</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d19067e81 ">Y</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d19067e84 ">%</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d19067e87 ">1</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d19067e91 ">A</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d19067e94 ">SARADAP_RESD_​CODE is mandatory so always store a *C - RESCAT​ value when creating an admissions record.</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d19067e97 ">Store any Rescat for new SARADAP</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d19067e75 ">*C - RESCAT</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d19067e78 ">U</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d19067e81 ">Y</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d19067e84 ">%</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d19067e87 ">2</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d19067e91 ">A</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d19067e94 ">If the current SARADAP_RESD_CODE ​value is the same as the RESD DEFAULT system parameter value then overwrite it with whatever the incoming *C - RESCAT value is.</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d19067e97 ">Replace default residency</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d19067e75 ">*C - RESCAT</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d19067e78 ">%</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d19067e81 ">N</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d19067e84 ">U</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d19067e87 ">3</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d19067e91 ">A</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d19067e94 ">Do not update the SARADAP_RESD_​CODE value with any other *K - RESCAT value when processing a *C record.</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d19067e97 ">Ignore other residency values</td>
+
+          </tr>
+
+        </tbody>
+</table>
+</div>
+
+  </div>
+
+</div></div></section>
+<section id="t-1340"><h3>*P and *R - Results data</h3><div class="content-locale-en-US content-locale-en"><div id="c_p_r_results_data"><p class="shortdesc">The *P and *R data contains getUCASApplicantsResults XML end points.</p>
+
+  
+</div></div></section>
+<section id="t-1350"><h4>Results Refresh Control view/method</h4><div class="content-locale-en-US content-locale-en"><div id="c_results_refresh_control_view_method"><div class="body conbody"><p class="shortdesc">When a download is executed, <span class="ph">Banner</span> <span class="ph">UCAS</span> always downloads from getReferenceResultsRefreshControl. This indicates when UCAS are refreshing the data in the following.</p>
+
+    <ul class="ul">
+      <li class="li">getUCASResultsMatchStatus method</li>
+
+      <li class="li">getUCASApplicantResults method</li>
+
+      <li class="li">getUCASApplicantsUnits method</li>
+
+    </ul>
+
+    <p class="p">If the Results Refresh Control method indicates either that results data is being refreshed or that the refresh failed, <span class="ph">Banner</span> will not download data from the results methods. The Download Summary tab on SKAUHPR and the .lis file output by the SKPUHER process will display messages indicating the status of the results refresh and whether results data has been downloaded. If Results Refresh Control indicates that the results refresh is not running, <span class="ph">Banner</span> will continue as described in the following sections.</p>
+
+  </div>
+
+</div></div></section>
+<section id="t-1360"><h4>Downloading results data</h4><div class="content-locale-en-US content-locale-en"><div id="c_downloading_results_data"><div class="body conbody"><p class="shortdesc">Changes to result data are determined from the getUCASResultsMatchStatus timestamps and those on getUCASApplicantsResults are ignored. getUCASResultsMatchStatus is always downloaded before getUCASApplicantsResults, and if the getUCASResultsMatchStatus timestamp indicates that the result data has changed for an applicant, all existing UCAS SORTEST records are deleted and all result records then inserted.</p>
+
+    <p class="p">Results data in XML-Link is normally downloaded on an applicant-by-applicant basis. However, this method of retrieving the data can be very time consuming when data is available for a very large number of applicants. As an alternative, it is recommended that you re-download all results data on days when there are many records to download. XML-Link processing will switch between the two methods automatically by identifying the number of applicants for which changed results data is available and switching to the full download method when the limit identified by this parameter is reached.</p>
+
+    <p class="p">You must determine the switchover limit suitable for your institution because this is likely to vary based on the number of applicants applying. Analysis determined that results data for up to 10,000 applicants is available to download on ABL Sunday for smaller institutions. For larger institutions, the figure is up to 35,000 applicants. The limit must be entered in the value field for the XMLLINK RESULTS DOWNLOAD LIMIT system parameter. We do not advise setting this parameter to a value of less than <kbd class="ph userinput">1000</kbd>.</p>
+
+  </div>
+
+</div></div></section>
+<section id="t-1370"><h4>Timestamps</h4><div class="content-locale-en-US content-locale-en"><div id="c_timestamps"><div class="body conbody"><p class="shortdesc">When <span class="ph">UCAS</span> do a mass update to results data on getUCASApplicantsResults, the timestamps for all affected applicants are set to the same date and time.</p>
+
+    <p class="p">For some applicants, this might be earlier than the latest timestamp held on <span class="ph">Banner</span>. It is, therefore, advised that whenever <span class="ph">UCAS</span> announce a mass update to results data, you should reset the timestamp for getUCASResultsMatchStatus to a date and time earlier than the timestamp given by <span class="ph">UCAS</span> to the mass update. This will ensure that you download all the latest changes.</p>
+
+  </div>
+
+</div></div></section>
+<section id="t-1380"><h4>Reference Data</h4><div class="content-locale-en-US content-locale-en"><div id="c_reference_data"><div class="body conbody"><p class="shortdesc"><span class="ph">UCAS</span> provide the codes for all the results data that is downloaded through getUCASApplicantsResults.</p>
+
+    <p class="p">It is important that all the reference data is updated before you try to download results from getUCASApplicantsResults, as missing codes will result in applicant result records not being loaded.</p>
+
+    <p class="p">All the scripts listed in this section are available on the Customer Download Centre in the SC-Europe-UCAS folder. Full instructions for executing the scripts are provided in the same location. The scripts are reviewed and updated if necessary each year before the ABL weekend.</p>
+
+    <p class="p">The details for obtaining this data and loading it into the required <span class="ph">Banner</span> tables are in the following sections.</p>
+
+  </div>
+
+</div></div></section>
+<section id="t-1390"><h5>ABL subject codes</h5><div class="content-locale-en-US content-locale-en"><div id="c_abl_subject_codes"><div class="body conbody"><p class="shortdesc">To obtain the latest ABL/EBL subject ID codes from <span class="ph">UCAS</span>, download the data from getReferenceABLSubjects. </p>
+
+    <p class="p">These are stored in the interim SKBUEBL table and are used to map subject IDs on getUCASApplicantsResults to subject codes held in getReferenceOfferSubject. getReferenceABLSubjects also provides the exam level, sitting, year, and awarding body for each subject ID. This data is used when processing getUCASApplicantsResults records into <span class="ph">Banner</span>.</p>
+
+  </div>
+
+</div></div></section>
+<section id="t-1400"><h5>Subject codes</h5><div class="content-locale-en-US content-locale-en"><div id="c_subject_codes"><div class="body conbody"><p class="shortdesc">To obtain the latest subject codes from <span class="ph">UCAS</span>, download the data from getReferenceOfferSubject. These are initially stored in the interim SKBUSUB table, and you use the following scripts to transfer the data to the STVTESC and SKBUSBJ tables.</p>
+
+    <ul class="ul">
+      <li class="li"> <code class="ph codeph"> stvtesc1.sql </code>, which inserts new codes into STVTESC</li>
+
+      <li class="li"> <code class="ph codeph"> stvtesc2.sql </code>, which updates descriptions for existing codes in STVTESC</li>
+
+      <li class="li"> <code class="ph codeph"> skvusbj1.sql </code>, which inserts new codes into SKVUSBJ</li>
+
+      <li class="li"> <code class="ph codeph"> skvusbj2.sql </code>, which updates descriptions for existing codes in SKVUSBJ</li>
+
+    </ul>
+
+    <p class="p">The codes are used in SORTEST_TESC_CODE.</p>
+
+  </div>
+
+</div></div></section>
+<section id="t-1410"><h5>Examination levels</h5><div class="content-locale-en-US content-locale-en"><div id="c_examination_levels"><div class="body conbody"><p class="shortdesc">To obtain the latest examination level codes from <span class="ph">UCAS</span>, download the data from getReferenceExamLevel. These are stored in the interim SKBUEXA table, and you use the following scripts to transfer the data to the SKVSSDT and STVTADM tables.</p>
+
+    <ul class="ul">
+      <li class="li"> <code class="ph codeph"> stvtadm1.sql </code>, which inserts new codes into STVTADM</li>
+
+      <li class="li"> <code class="ph codeph"> stvtadm2.sql </code>, which updates descriptions for existing codes in STVTADM</li>
+
+      <li class="li"> <code class="ph codeph"> stvtadm_map1.sql </code>, which inserts new codes into SKVSSDT</li>
+
+      <li class="li"> <code class="ph codeph"> stvtadm_map2.sql </code>, which updates descriptions for existing codes in SKVSSDT</li>
+
+    </ul>
+
+    <p class="p">The codes are used in SORTEST_TADM_CODE.</p>
+
+  </div>
+
+</div></div></section>
+<section id="t-1420"><h5>Awarding bodies</h5><div class="content-locale-en-US content-locale-en"><div id="c_awarding_bodies"><div class="body conbody"><p class="shortdesc">To obtain the latest awarding body codes from <span class="ph">UCAS</span>, download the data from getReferenceAwardingBody. These are stored in the interim SKBUAWB table, and you use the following scripts to transfer the data to the STVTSRC table.</p>
+
+    <ul class="ul">
+      <li class="li"> <code class="ph codeph"> skbuawb1.sql </code>, which updates descriptions in SKBUAWB (replace the ampersand symbol with a plus symbol and remove quotes)</li>
+
+      <li class="li"> <code class="ph codeph"> stvtsrc1.sql </code>, which inserts new codes into STVTSRC</li>
+
+      <li class="li"> <code class="ph codeph"> stvtsrc2.sql </code>, which updates descriptions for existing codes in STVTSRC</li>
+
+    </ul>
+
+    <p class="p">The codes are used in SORTEST_TSRC_CODE.</p>
+
+  </div>
+
+</div></div></section>
+<section id="t-1430"><h3>getUCASApplicantUnitResults Data</h3><div class="content-locale-en-US content-locale-en"><div id="c_getucasapplicantunitresults_data"><div class="body conbody"><p class="shortdesc">Unit result data is subject to the Results Refresh Control view/method as described in “Results Refresh Control view/method”.</p>
+
+    <p class="p">Unit result data is processed from the SKBUUGD interim table into SKRUAUG. SubjectID is joined to cvEBLSubject/getReferenceABLSubjects to identify the subject code that is stored to SKRUAUG_TESC_SCORE. Unit results are provided only when by <span class="ph">UCAS</span>. SKAUHNC therefore only inserts to SKRUAUG and there is no processing in SKAUHNC for updating records in SKRUAUG.</p>
+
+  </div>
+
+</div></div></section>
+<section id="t-1440"><h3>*J data</h3><div class="content-locale-en-US content-locale-en"><div id="r_j_data_getucashesadata_getgttrhesadata"><div class="body refbody"><p class="shortdesc">SKAUHNC processes the *J data from the SKBUSTJ interim table into Banner UCAS, Banner HESA, and baseline tables. The *J data contains getUCASHESAData XML data end points.</p>
+
+    
+<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" class="table" frame="border" border="1" rules="all"><caption><span class="tablecap"><span class="table--title-label">Table 1. </span></span></caption><colgroup><col style="width:18.795620437956202%"><col style="width:21.532846715328464%"><col style="width:21.8978102189781%"><col style="width:19.525547445255473%"><col style="width:18.248175182481752%"></colgroup><thead class="thead" style="text-align:left;">
+          <tr class="row">
+            <th class="entry cellrowborder" style="vertical-align:top;" id="d66934e58">SKBUSTJ column</th>
+
+            <th class="entry cellrowborder" style="vertical-align:top;" id="d66934e61">System Parameters</th>
+
+            <th class="entry cellrowborder" style="vertical-align:top;" id="d66934e64">Parameter Values</th>
+
+            <th class="entry cellrowborder" style="vertical-align:top;" id="d66934e67">Banner UCAS column</th>
+
+            <th class="entry cellrowborder" style="vertical-align:top;" id="d66934e70">Banner HESA column</th>
+
+          </tr>
+
+        </thead>
+<tbody class="tbody">
+          <tr class="row">
+            <td class="entry cellrowborder" style="vertical-align:top;" headers="d66934e58 ">APPNO</td>
+
+            <td class="entry cellrowborder" style="vertical-align:top;" headers="d66934e61 ">N/A</td>
+
+            <td class="entry cellrowborder" style="vertical-align:top;" headers="d66934e64 ">N/A</td>
+
+            <td class="entry cellrowborder" style="vertical-align:top;" headers="d66934e67 ">Not transferred</td>
+
+            <td class="entry cellrowborder" style="vertical-align:top;" headers="d66934e70 ">Not transferred</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry cellrowborder" style="vertical-align:top;" headers="d66934e58 ">ATTAINED​QUALENT3</td>
+
+            <td class="entry cellrowborder" style="vertical-align:top;" headers="d66934e61 ">*J - ATTAINED​QUALENT3</td>
+
+            <td class="entry cellrowborder" style="vertical-align:top;" headers="d66934e64 ">UPDATE, UPDATE IF NULL, IGNORE</td>
+
+            <td class="entry cellrowborder" style="vertical-align:top;" headers="d66934e67 ">SKRSAIN_​ATTAINED​QUALENT3</td>
+
+            <td class="entry cellrowborder" style="vertical-align:top;" headers="d66934e70 ">&nbsp;</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry cellrowborder" style="vertical-align:top;" headers="d66934e58 ">BIRTHDTE</td>
+
+            <td class="entry cellrowborder" style="vertical-align:top;" headers="d66934e61 ">N/A</td>
+
+            <td class="entry cellrowborder" style="vertical-align:top;" headers="d66934e64 ">N/A</td>
+
+            <td class="entry cellrowborder" style="vertical-align:top;" headers="d66934e67 ">Not transferred</td>
+
+            <td class="entry cellrowborder" style="vertical-align:top;" headers="d66934e70 ">Not transferred</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry cellrowborder" style="vertical-align:top;" headers="d66934e58 ">CARELEAVER</td>
+
+            <td class="entry cellrowborder" style="vertical-align:top;" headers="d66934e61 ">*J - CARELEAVER</td>
+
+            <td class="entry cellrowborder" style="vertical-align:top;" headers="d66934e64 ">UPDATE, UPDATE IF NULL, IGNORE</td>
+
+            <td class="entry cellrowborder" style="vertical-align:top;" headers="d66934e67 ">&nbsp;</td>
+
+            <td class="entry cellrowborder" style="vertical-align:top;" headers="d66934e70 ">SKBSPIN_​CARELEAVER<p class="p">SORENEP_SSDT_​CODE_​CARELEAVER</p>
+</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry cellrowborder" style="vertical-align:top;" headers="d66934e58 ">CARER</td>
+
+            <td class="entry cellrowborder" style="vertical-align:top;" headers="d66934e61 ">*J - CARER<p class="p">CARER</p>
+</td>
+
+            <td class="entry cellrowborder" style="vertical-align:top;" headers="d66934e64 ">UPDATE, UPDATE IF NULL, IGNORE<p class="p">GOAPSID, SKASPIN, BOTH, NEITHER</p>
+</td>
+
+            <td class="entry cellrowborder" style="vertical-align:top;" headers="d66934e67 ">&nbsp;</td>
+
+            <td class="entry cellrowborder" style="vertical-align:top;" headers="d66934e70 ">SKBSPIN_CARER<p class="p">GORPSID_​SEID_VALUE</p>
+</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry cellrowborder" style="vertical-align:top;" headers="d66934e58 ">DISABLE</td>
+
+            <td class="entry cellrowborder" style="vertical-align:top;" headers="d66934e61 ">*J - DISABILITY</td>
+
+            <td class="entry cellrowborder" style="vertical-align:top;" headers="d66934e64 ">UPDATE, UPDATE IF NULL, IGNORE</td>
+
+            <td class="entry cellrowborder" style="vertical-align:top;" headers="d66934e67 ">N/A</td>
+
+            <td class="entry cellrowborder" style="vertical-align:top;" headers="d66934e70 ">SPRMEDI_​MEDI_CODE</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry cellrowborder" style="vertical-align:top;" headers="d66934e58 ">DOMICILE</td>
+
+            <td class="entry cellrowborder" style="vertical-align:top;" headers="d66934e61 ">*J - DOMICILE</td>
+
+            <td class="entry cellrowborder" style="vertical-align:top;" headers="d66934e64 ">UPDATE, UPDATE IF NULL, IGNORE</td>
+
+            <td class="entry cellrowborder" style="vertical-align:top;" headers="d66934e67 ">SKRSAIN_NATION_​CODE_ <p class="p">DOMICILE</p>
+</td>
+
+            <td class="entry cellrowborder" style="vertical-align:top;" headers="d66934e70 ">SKBHINS_SSDT_​CODE_​DOMICILE</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry cellrowborder" style="vertical-align:top;" headers="d66934e58 ">ESTRANGED</td>
+
+            <td class="entry cellrowborder" style="vertical-align:top;" headers="d66934e61 ">*J - ESTRANGED<p class="p">ESTRANGED</p>
+</td>
+
+            <td class="entry cellrowborder" style="vertical-align:top;" headers="d66934e64 ">UPDATE, UPDATE IF NULL, IGNORE<p class="p">ALL, GOAPSID, SKAHINS, SOAENRE, NONE</p>
+</td>
+
+            <td class="entry cellrowborder" style="vertical-align:top;" headers="d66934e67 ">N/A</td>
+
+            <td class="entry cellrowborder" style="vertical-align:top;" headers="d66934e70 ">SKBHSII_SSDT_​CODE_​ESTRANGED<p class="p">SORENEP_SSDT_​CODE_​ESTRANGED GORPSID_SEID_​VALUE</p>
+</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry cellrowborder" style="vertical-align:top;" headers="d66934e58 ">ETHNIC</td>
+
+            <td class="entry cellrowborder" style="vertical-align:top;" headers="d66934e61 ">*J - ETHNIC ORIGIN<p class="p">ETHNIC</p>
+</td>
+
+            <td class="entry cellrowborder" style="vertical-align:top;" headers="d66934e64 ">UPDATE, UPDATE IF NULL, IGNORE<p class="p">GOAPSID, NEITHER</p>
+</td>
+
+            <td class="entry cellrowborder" style="vertical-align:top;" headers="d66934e67 ">N/A</td>
+
+            <td class="entry cellrowborder" style="vertical-align:top;" headers="d66934e70 ">GORPSID_​SEID_VALUE</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry cellrowborder" style="vertical-align:top;" headers="d66934e58 ">EXPECTEDU​QALENT3</td>
+
+            <td class="entry cellrowborder" style="vertical-align:top;" headers="d66934e61 ">*J - EXPECTED​QUALENT3</td>
+
+            <td class="entry cellrowborder" style="vertical-align:top;" headers="d66934e64 ">UPDATE, UPDATE IF NULL, IGNORE</td>
+
+            <td class="entry cellrowborder" style="vertical-align:top;" headers="d66934e67 ">SKRSAIN_​EXPECTED​QUALENT3</td>
+
+            <td class="entry cellrowborder" style="vertical-align:top;" headers="d66934e70 ">&nbsp;</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry cellrowborder" style="vertical-align:top;" headers="d66934e58 ">FNAMES</td>
+
+            <td class="entry cellrowborder" style="vertical-align:top;" headers="d66934e61 ">N/A</td>
+
+            <td class="entry cellrowborder" style="vertical-align:top;" headers="d66934e64 ">N/A</td>
+
+            <td class="entry cellrowborder" style="vertical-align:top;" headers="d66934e67 ">Not transferred</td>
+
+            <td class="entry cellrowborder" style="vertical-align:top;" headers="d66934e70 ">Not transferred</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry cellrowborder" style="vertical-align:top;" headers="d66934e58 ">GENDER</td>
+
+            <td class="entry cellrowborder" style="vertical-align:top;" headers="d66934e61 ">N/A</td>
+
+            <td class="entry cellrowborder" style="vertical-align:top;" headers="d66934e64 ">N/A</td>
+
+            <td class="entry cellrowborder" style="vertical-align:top;" headers="d66934e67 ">Not transferred</td>
+
+            <td class="entry cellrowborder" style="vertical-align:top;" headers="d66934e70 ">Not transferred</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry cellrowborder" style="vertical-align:top;" headers="d66934e58 ">NATION</td>
+
+            <td class="entry cellrowborder" style="vertical-align:top;" headers="d66934e61 ">*J - NATIONALITY</td>
+
+            <td class="entry cellrowborder" style="vertical-align:top;" headers="d66934e64 ">UPDATE, UPDATE IF NULL, IGNORE</td>
+
+            <td class="entry cellrowborder" style="vertical-align:top;" headers="d66934e67 ">N/A</td>
+
+            <td class="entry cellrowborder" style="vertical-align:top;" headers="d66934e70 ">SKBSPIN_​NATION_​CODE_LEGAL</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry cellrowborder" style="vertical-align:top;" headers="d66934e58 ">NATIOND</td>
+
+            <td class="entry cellrowborder" style="vertical-align:top;" headers="d66934e61 ">*J - NATIOND</td>
+
+            <td class="entry cellrowborder" style="vertical-align:top;" headers="d66934e64 ">UPDATE, UPDATE IF NULL, IGNORE</td>
+
+            <td class="entry cellrowborder" style="vertical-align:top;" headers="d66934e67 ">N/A</td>
+
+            <td class="entry cellrowborder" style="vertical-align:top;" headers="d66934e70 ">SKBSPIN_​NATIOND1</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry cellrowborder" style="vertical-align:top;" headers="d66934e58 ">OCCBACK​GROUND</td>
+
+            <td class="entry cellrowborder" style="vertical-align:top;" headers="d66934e61 ">*J - OCCUPATION CODE</td>
+
+            <td class="entry cellrowborder" style="vertical-align:top;" headers="d66934e64 ">UPDATE, UPDATE IF NULL, IGNORE</td>
+
+            <td class="entry cellrowborder" style="vertical-align:top;" headers="d66934e67 ">SKRSAIN_SOC2000</td>
+
+            <td class="entry cellrowborder" style="vertical-align:top;" headers="d66934e70 ">SKBHINS_​SSDT_CODE_​SOC2000</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry cellrowborder" style="vertical-align:top;" headers="d66934e58 ">PARED</td>
+
+            <td class="entry cellrowborder" style="vertical-align:top;" headers="d66934e61 ">*J - PARED</td>
+
+            <td class="entry cellrowborder" style="vertical-align:top;" headers="d66934e64 ">UPDATE, UPDATE IF NULL, IGNORE</td>
+
+            <td class="entry cellrowborder" style="vertical-align:top;" headers="d66934e67 ">SKRSAIN_SSDT_​CODE_PARED</td>
+
+            <td class="entry cellrowborder" style="vertical-align:top;" headers="d66934e70 ">SKBHINS_SSDT_​CODE_PARED</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry cellrowborder" style="vertical-align:top;" headers="d66934e58 ">PERSONALID</td>
+
+            <td class="entry cellrowborder" style="vertical-align:top;" headers="d66934e61 ">N/A</td>
+
+            <td class="entry cellrowborder" style="vertical-align:top;" headers="d66934e64 ">N/A</td>
+
+            <td class="entry cellrowborder" style="vertical-align:top;" headers="d66934e67 ">Not transferred</td>
+
+            <td class="entry cellrowborder" style="vertical-align:top;" headers="d66934e70 ">Not transferred</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry cellrowborder" style="vertical-align:top;" headers="d66934e58 ">POSTCODE</td>
+
+            <td class="entry cellrowborder" style="vertical-align:top;" headers="d66934e61 ">*J - POSTCODE</td>
+
+            <td class="entry cellrowborder" style="vertical-align:top;" headers="d66934e64 ">UPDATE, UPDATE IF NULL, IGNORE</td>
+
+            <td class="entry cellrowborder" style="vertical-align:top;" headers="d66934e67 ">SKRSAIN_​POSTCODE</td>
+
+            <td class="entry cellrowborder" style="vertical-align:top;" headers="d66934e70 ">SKBHINS_​POSTCODE</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry cellrowborder" rowspan="2" style="vertical-align:top;" headers="d66934e58 ">PREVINST</td>
+
+            <td class="entry cellrowborder" style="vertical-align:top;" headers="d66934e61 ">*J - PREVINST</td>
+
+            <td class="entry cellrowborder" style="vertical-align:top;" headers="d66934e64 ">UPDATE, UPDATE IF NULL, IGNORE</td>
+
+            <td class="entry cellrowborder" rowspan="2" style="vertical-align:top;" headers="d66934e67 ">SKRSAIN_​PREVINST</td>
+
+            <td class="entry cellrowborder" rowspan="2" style="vertical-align:top;" headers="d66934e70 ">SKBHINS_​SSDT_CODE_​PREVINST<p class="p">SORENEP_SSDT_​CODE_​PREV_PROV</p>
+</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry cellrowborder" style="vertical-align:top;" headers="d66934e61 ">PREVINST</td>
+
+            <td class="entry cellrowborder" style="vertical-align:top;" headers="d66934e64 ">SKAHINS, SOAENRE, BOTH, NEITHER</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry cellrowborder" style="vertical-align:top;" headers="d66934e58 ">QUALENT3</td>
+
+            <td class="entry cellrowborder" style="vertical-align:top;" headers="d66934e61 ">*J - QUALENT3</td>
+
+            <td class="entry cellrowborder" style="vertical-align:top;" headers="d66934e64 ">UPDATE, UPDATE IF NULL, IGNORE</td>
+
+            <td class="entry cellrowborder" style="vertical-align:top;" headers="d66934e67 ">SKRSAIN_​SSDT_CODE_ <p class="p">QUALENT3</p>
+</td>
+
+            <td class="entry cellrowborder" style="vertical-align:top;" headers="d66934e70 ">SKBHINS_​SSDT_CODE_​QUALENT3<p class="p">SORENEP_SSDT_​CODE_HIGH_​QUAL</p>
+</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry cellrowborder" style="vertical-align:top;" headers="d66934e58 ">QUALGRADE1 - 30</td>
+
+            <td class="entry cellrowborder" style="vertical-align:top;" headers="d66934e61 ">*J - QUALGRADE</td>
+
+            <td class="entry cellrowborder" style="vertical-align:top;" headers="d66934e64 ">UPDATE, UPDATE IF NULL, IGNORE</td>
+
+            <td class="entry cellrowborder" style="vertical-align:top;" headers="d66934e67 ">SKRSAIN_​QUALGRADE1 - 30</td>
+
+            <td class="entry cellrowborder" style="vertical-align:top;" headers="d66934e70 ">&nbsp;</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry cellrowborder" style="vertical-align:top;" headers="d66934e58 ">QUALSBJ1 - 30</td>
+
+            <td class="entry cellrowborder" style="vertical-align:top;" headers="d66934e61 ">*J - QUALSBJ</td>
+
+            <td class="entry cellrowborder" style="vertical-align:top;" headers="d66934e64 ">UPDATE, UPDATE IF NULL, IGNORE</td>
+
+            <td class="entry cellrowborder" style="vertical-align:top;" headers="d66934e67 ">SKRSAIN_​QUALSBJ1 - 30</td>
+
+            <td class="entry cellrowborder" style="vertical-align:top;" headers="d66934e70 ">&nbsp;</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry cellrowborder" style="vertical-align:top;" headers="d66934e58 ">QUALSIT1 - 30</td>
+
+            <td class="entry cellrowborder" style="vertical-align:top;" headers="d66934e61 ">*J - QUALSIT</td>
+
+            <td class="entry cellrowborder" style="vertical-align:top;" headers="d66934e64 ">UPDATE, UPDATE IF NULL, IGNORE</td>
+
+            <td class="entry cellrowborder" style="vertical-align:top;" headers="d66934e67 ">SKRSAIN_​QUALSIT1 - 30</td>
+
+            <td class="entry cellrowborder" style="vertical-align:top;" headers="d66934e70 ">&nbsp;</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry cellrowborder" style="vertical-align:top;" headers="d66934e58 ">QUALTYPE1 - 30</td>
+
+            <td class="entry cellrowborder" style="vertical-align:top;" headers="d66934e61 ">*J - QUALTYPE</td>
+
+            <td class="entry cellrowborder" style="vertical-align:top;" headers="d66934e64 ">UPDATE, UPDATE IF NULL, IGNORE</td>
+
+            <td class="entry cellrowborder" style="vertical-align:top;" headers="d66934e67 ">SKRSAIN_​QUALTYPE1 - 30</td>
+
+            <td class="entry cellrowborder" style="vertical-align:top;" headers="d66934e70 ">&nbsp;</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry cellrowborder" style="vertical-align:top;" headers="d66934e58 ">QYALYEAR1 - 30</td>
+
+            <td class="entry cellrowborder" style="vertical-align:top;" headers="d66934e61 ">*J - QUALYEAR</td>
+
+            <td class="entry cellrowborder" style="vertical-align:top;" headers="d66934e64 ">UPDATE, UPDATE IF NULL, IGNORE</td>
+
+            <td class="entry cellrowborder" style="vertical-align:top;" headers="d66934e67 ">SKRSAIN_​QUALYEAR1 - 30</td>
+
+            <td class="entry cellrowborder" style="vertical-align:top;" headers="d66934e70 ">&nbsp;</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry cellrowborder" rowspan="2" style="vertical-align:top;" headers="d66934e58 ">RELIGIOUSBELIEF</td>
+
+            <td class="entry cellrowborder" style="vertical-align:top;" headers="d66934e61 ">*J - RELIGIOUSBELIEF</td>
+
+            <td class="entry cellrowborder" style="vertical-align:top;" headers="d66934e64 ">UPDATE, UPDATE IF NULL, IGNORE</td>
+
+            <td class="entry cellrowborder" rowspan="2" style="vertical-align:top;" headers="d66934e67 ">N/A</td>
+
+            <td class="entry cellrowborder" rowspan="2" style="vertical-align:top;" headers="d66934e70 ">SORENEP_SSDT_​CODE_​REL_BGROUD<p class="p">GORPSID_​SEID_VALUE</p>
+ </td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry cellrowborder" style="vertical-align:top;" headers="d66934e61 ">RELGBELJ</td>
+
+            <td class="entry cellrowborder" style="vertical-align:top;" headers="d66934e64 ">GOAPSID, SOAENRE, BOTH, NEITHER</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry cellrowborder" style="vertical-align:top;" headers="d66934e58 ">SBJPCT1</td>
+
+            <td class="entry cellrowborder" style="vertical-align:top;" headers="d66934e61 ">*J - SBJPCT1</td>
+
+            <td class="entry cellrowborder" style="vertical-align:top;" headers="d66934e64 ">UPDATE, UPDATE IF NULL, IGNORE</td>
+
+            <td class="entry cellrowborder" style="vertical-align:top;" headers="d66934e67 ">SKRSAIN_SBJPCT1</td>
+
+            <td class="entry cellrowborder" style="vertical-align:top;" headers="d66934e70 ">&nbsp;</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry cellrowborder" style="vertical-align:top;" headers="d66934e58 ">SBJPCT2</td>
+
+            <td class="entry cellrowborder" style="vertical-align:top;" headers="d66934e61 ">*J - SBJPCT2</td>
+
+            <td class="entry cellrowborder" style="vertical-align:top;" headers="d66934e64 ">UPDATE, UPDATE IF NULL, IGNORE</td>
+
+            <td class="entry cellrowborder" style="vertical-align:top;" headers="d66934e67 ">SKRSAIN_SBJPCT2</td>
+
+            <td class="entry cellrowborder" style="vertical-align:top;" headers="d66934e70 ">&nbsp;</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry cellrowborder" style="vertical-align:top;" headers="d66934e58 ">SBJPCT3</td>
+
+            <td class="entry cellrowborder" style="vertical-align:top;" headers="d66934e61 ">*J - SBJPCT3</td>
+
+            <td class="entry cellrowborder" style="vertical-align:top;" headers="d66934e64 ">UPDATE, UPDATE IF NULL, IGNORE</td>
+
+            <td class="entry cellrowborder" style="vertical-align:top;" headers="d66934e67 ">SKRSAIN_SBJPCT3</td>
+
+            <td class="entry cellrowborder" style="vertical-align:top;" headers="d66934e70 ">&nbsp;</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry cellrowborder" style="vertical-align:top;" headers="d66934e58 ">SBJQA1</td>
+
+            <td class="entry cellrowborder" style="vertical-align:top;" headers="d66934e61 ">*J - SBJQA1</td>
+
+            <td class="entry cellrowborder" style="vertical-align:top;" headers="d66934e64 ">UPDATE, UPDATE IF NULL, IGNORE</td>
+
+            <td class="entry cellrowborder" style="vertical-align:top;" headers="d66934e67 ">SKRSAIN_SBJAQ1</td>
+
+            <td class="entry cellrowborder" style="vertical-align:top;" headers="d66934e70 ">&nbsp;</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry cellrowborder" style="vertical-align:top;" headers="d66934e58 ">SBJQA2</td>
+
+            <td class="entry cellrowborder" style="vertical-align:top;" headers="d66934e61 ">*J - SBJQA2</td>
+
+            <td class="entry cellrowborder" style="vertical-align:top;" headers="d66934e64 ">UPDATE, UPDATE IF NULL, IGNORE</td>
+
+            <td class="entry cellrowborder" style="vertical-align:top;" headers="d66934e67 ">SKRSAIN_SBJAQ2</td>
+
+            <td class="entry cellrowborder" style="vertical-align:top;" headers="d66934e70 ">&nbsp;</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry cellrowborder" style="vertical-align:top;" headers="d66934e58 ">SBJQA3</td>
+
+            <td class="entry cellrowborder" style="vertical-align:top;" headers="d66934e61 ">*J - SBJQA3</td>
+
+            <td class="entry cellrowborder" style="vertical-align:top;" headers="d66934e64 ">UPDATE, UPDATE IF NULL, IGNORE</td>
+
+            <td class="entry cellrowborder" style="vertical-align:top;" headers="d66934e67 ">SKRSAIN_SBJAQ3</td>
+
+            <td class="entry cellrowborder" style="vertical-align:top;" headers="d66934e70 ">&nbsp;</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry cellrowborder" style="vertical-align:top;" headers="d66934e58 ">SCOTVEC</td>
+
+            <td class="entry cellrowborder" style="vertical-align:top;" headers="d66934e61 ">*J - SCOT CAND. NO</td>
+
+            <td class="entry cellrowborder" style="vertical-align:top;" headers="d66934e64 ">UPDATE, UPDATE IF NULL, IGNORE</td>
+
+            <td class="entry cellrowborder" style="vertical-align:top;" headers="d66934e67 ">N/A</td>
+
+            <td class="entry cellrowborder" style="vertical-align:top;" headers="d66934e70 ">SKBSPIN_​SCOTVEC<p class="p">GORPSID_SEID_​VALUE </p>
+</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry cellrowborder" style="vertical-align:top;" headers="d66934e58 ">SEC</td>
+
+            <td class="entry cellrowborder" style="vertical-align:top;" headers="d66934e61 ">*J - SOCIO ECON CLASS</td>
+
+            <td class="entry cellrowborder" style="vertical-align:top;" headers="d66934e64 ">UPDATE, UPDATE IF NULL, IGNORE</td>
+
+            <td class="entry cellrowborder" style="vertical-align:top;" headers="d66934e67 ">SKRSAIN_​SOCIO_​ECON_CLASS</td>
+
+            <td class="entry cellrowborder" style="vertical-align:top;" headers="d66934e70 ">SKBHINS_SSDT_​CODE_SEC<p class="p">SORENEP_SSDT_​CODE_SEC</p>
+</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry cellrowborder" style="vertical-align:top;" headers="d66934e58 ">SEC2010</td>
+
+            <td class="entry cellrowborder" style="vertical-align:top;" headers="d66934e61 ">*J - SEC2010</td>
+
+            <td class="entry cellrowborder" style="vertical-align:top;" headers="d66934e64 ">UPDATE, UPDATE IF NULL, IGNORE</td>
+
+            <td class="entry cellrowborder" style="vertical-align:top;" headers="d66934e67 ">SKRSAIN_SEC2010</td>
+
+            <td class="entry cellrowborder" style="vertical-align:top;" headers="d66934e70 ">SKBHINS_SSDT_​CODE_SEC</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry cellrowborder" style="vertical-align:top;" headers="d66934e58 ">SEXUAL​ORIENTATION</td>
+
+            <td class="entry cellrowborder" style="vertical-align:top;" headers="d66934e61 ">*J - SEXUAL​ORIENTATION</td>
+
+            <td class="entry cellrowborder" style="vertical-align:top;" headers="d66934e64 ">UPDATE, UPDATE IF NULL, IGNORE</td>
+
+            <td class="entry cellrowborder" style="vertical-align:top;" headers="d66934e67 ">SKRSAIN_SEXORT</td>
+
+            <td class="entry cellrowborder" style="vertical-align:top;" headers="d66934e70 ">SKBSPIN_​SEXORT</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry cellrowborder" style="vertical-align:top;" headers="d66934e58 ">SOC2010</td>
+
+            <td class="entry cellrowborder" style="vertical-align:top;" headers="d66934e61 ">*J - SOC2010</td>
+
+            <td class="entry cellrowborder" style="vertical-align:top;" headers="d66934e64 ">UPDATE, UPDATE IF NULL, IGNORE</td>
+
+            <td class="entry cellrowborder" style="vertical-align:top;" headers="d66934e67 ">SKRSAIN_POC2010</td>
+
+            <td class="entry cellrowborder" style="vertical-align:top;" headers="d66934e70 ">SKBHINS_​SOC2010<p class="p">SORENEP_SSDT_​CODE_SOC2010</p>
+</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry cellrowborder" style="vertical-align:top;" headers="d66934e58 ">SOC2020</td>
+
+            <td class="entry cellrowborder" style="vertical-align:top;" headers="d66934e61 ">*J - SOC2020</td>
+
+            <td class="entry cellrowborder" style="vertical-align:top;" headers="d66934e64 ">UPDATE, UPDATE IF NULL, IGNORE</td>
+
+            <td class="entry cellrowborder" style="vertical-align:top;" headers="d66934e67 ">SKRSAIN_POC2010 </td>
+
+            <td class="entry cellrowborder" style="vertical-align:top;" headers="d66934e70 ">SKBHINS_​SOC2010<p class="p">SORENEP_SSDT_​CODE_SOC2010</p>
+ </td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry cellrowborder" style="vertical-align:top;" headers="d66934e58 ">SURNAME</td>
+
+            <td class="entry cellrowborder" style="vertical-align:top;" headers="d66934e61 ">N/A</td>
+
+            <td class="entry cellrowborder" style="vertical-align:top;" headers="d66934e64 ">N/A</td>
+
+            <td class="entry cellrowborder" style="vertical-align:top;" headers="d66934e67 ">Not transferred</td>
+
+            <td class="entry cellrowborder" style="vertical-align:top;" headers="d66934e70 ">Not transferred</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry cellrowborder" style="vertical-align:top;" headers="d66934e58 ">ULN</td>
+
+            <td class="entry cellrowborder" style="vertical-align:top;" headers="d66934e61 ">*J - ULN</td>
+
+            <td class="entry cellrowborder" style="vertical-align:top;" headers="d66934e64 ">UPDATE, UPDATE IF NULL, IGNORE</td>
+
+            <td class="entry cellrowborder" style="vertical-align:top;" headers="d66934e67 ">N/A</td>
+
+            <td class="entry cellrowborder" style="vertical-align:top;" headers="d66934e70 ">SKBSPIN_ULN<p class="p">GORPSID_SEID_​VALUE</p>
+</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry cellrowborder" style="vertical-align:top;" headers="d66934e58 ">WELBACC</td>
+
+            <td class="entry cellrowborder" style="vertical-align:top;" headers="d66934e61 ">*J - WELBACC</td>
+
+            <td class="entry cellrowborder" style="vertical-align:top;" headers="d66934e64 ">UPDATE, UPDATE IF NULL, IGNORE</td>
+
+            <td class="entry cellrowborder" style="vertical-align:top;" headers="d66934e67 ">SKRSAIN_​SSDT_​CODE_WELBACC</td>
+
+            <td class="entry cellrowborder" style="vertical-align:top;" headers="d66934e70 ">SKBHINS_SSDT_​CODE_WELBACC</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry cellrowborder" style="vertical-align:top;" headers="d66934e58 ">YRLLINST</td>
+
+            <td class="entry cellrowborder" style="vertical-align:top;" headers="d66934e61 ">*J - YR LEFT LAST INST</td>
+
+            <td class="entry cellrowborder" style="vertical-align:top;" headers="d66934e64 ">UPDATE, UPDATE IF NULL, IGNORE</td>
+
+            <td class="entry cellrowborder" style="vertical-align:top;" headers="d66934e67 ">SKRSAIN_​LEAVE_YR</td>
+
+            <td class="entry cellrowborder" style="vertical-align:top;" headers="d66934e70 ">SKBHINS_​YRLLINST</td>
+
+          </tr>
+
+        </tbody>
+</table>
+</div>
+
+    <div class="section">
+      <div class="p">The identification of the correct HESA instance (SKBHINS) records to update with *J data, is accomplished as follows:<ol class="ol">
+        <li class="li">Match SKRSAIN_APPLICANT_NO to SKBHINS_APPLICANT_NO<p class="p">This match uses the UCAS applicant number to find the right SKBHINS record; the applicant number is inserted into SKBHINS when it is created by the SKKHINS trigger.</p>
+</li>
+
+        <li class="li">Match SARADAP_APPLNO to SORLCUR_APPL_SEQNO<p class="p">This match starts with the UCAS choice that is UFA, joins first to SKRUDAP and then to SARADAP, identifies the application number on SARADAP, and finally finds this on SORLCUR, which leads it to the related SKBHINS record.</p>
+</li>
+
+        </ol>
+<ul class="ul">
+        <li class="li">If a match is found using the applicant number, the second method of matching is not used. </li>
+
+        <li class="li">If no match is found or if multiple matches are found using the applicant number, the second method is then used. </li>
+
+        <li class="li">If that method finds no SKBHINS or multiple SKBHINS records, the *J record is put on hold (OH) and the following error message is displayed: Found zero or multiple NUMHUS for same UCAS Application Number.</li>
+
+        </ul>
+</div>
+
+      <p class="p">Processing of data from SKBUSTJ into Banner UCAS and baseline tables is subject to the above system parameters on the System Parameter Maintenance (GKAKSYS) page.</p>
+
+      <div class="p">Each system parameter can have a value of UPDATE, UPDATE IF NULL, or IGNORE, as follows.<ul class="ul">
+        <li class="li">If the system parameter is set to UPDATE, any existing data in the HESA AND UCAS column is always updated by the data in SKBUSTJ.</li>
+
+        <li class="li">If the system parameter is set to UPDATE IF NULL, the destination column is populated with the data from SKBUSTJ only if it was null.</li>
+
+        <li class="li">If the system parameter is set to IGNORE, the existing data is not updated by the data in SKBUSTJ.</li>
+
+        </ul>
+</div>
+
+      <p class="p">The system parameters that affect storage to both SKRSAIN and SKBHINS (for example, *J DOMICILE) behave as follows:</p>
+
+      <p class="p">Each system parameter can have a value of <code class="ph codeph">U</code>PDATE, <code class="ph codeph">U</code>PDATE IF N<code class="ph codeph">U</code>LL, or IGNORE. If the system parameter is set to UPDATE, the system checks the value of the *J UPDATES RULE parameter.</p>
+
+      <div class="p">
+        <ul class="ul">
+          <li class="li">If this is set to SKBHINS, the system updates only the SKBHINS columns with the *J data.</li>
+
+          <li class="li">If this is set to SKRSAIN, the system updates only the SKRSAIN columns with the *J data.</li>
+
+          <li class="li">If this is set to BOTH, the system updates both SKBHINS and SKRSAIN columns.</li>
+
+        </ul>
+
+      </div>
+
+      <div class="p">If the system parameter is set to UPDATE IF NULL, the system checks the value of the *J UPDATES RULE parameter. <ul class="ul">
+        <li class="li">If this is set to SKBHINS, the system checks whether SKBHINS data exists and updates the SKBHINS column only if no data already exists. It does not update SKRSAIN.</li>
+
+        <li class="li">If this is set to SKRSAIN, the system checks whether SKRSAIN data exists and updates the SKRSAIN column only if no data already exists. It does not update SKBHINS.</li>
+
+        <li class="li">If this is set to BOTH, the system checks whether SKBHINS data exists and updates the SKBHINS column only if no data already exists. It also checks whether SKRSAIN data exists and updates the SKRSAIN column only if no data exists.</li>
+
+        </ul>
+If the system parameter is set to IGNORE, the existing data will not be updated by the data in SKBUSTJ.</div>
+
+      <p class="p">HESA Data Futures *J data</p>
+
+      <p class="p">The RELGBELJ, PREVINST, ETHNIC, ESTRANGED, and CARER are the *J system parameters that indicate which table to be updated with *J data. </p>
+
+      <p class="p">For example, </p>
+
+      <div class="p">If the system parameter *J - RELIGIOUSBELIEF is set to UPDATE, the system checks the value of the *J UPDATES RULE parameter.<ul class="ul">
+        <li class="li">If system parameter RELGBELJ is set to GORPSID, the system updates only the GORPSID columns with the *J data.<ul class="ul">
+          <li class="li">If system parameter HESACOUNTRY is set to England, the system updates the GOAPSID - &gt; HESA_ENGLAND report and GOAPSID -&gt; UCAS_SEID report with the *J data.</li>
+
+          <li class="li">If system parameter HESACOUNTRY is set to Northern Ireland, the system updates the GOAPSID -&gt; HESA_NORTHERNIRELAND_reports and GOAPSID -&gt; UCAS_SEID with the *J data.</li>
+
+          <li class="li">If system parameter HESACOUNTRY is set to Scotland, the system updates the GOAPSID -&gt; HESA_SCOTLAND reports and GOAPSID -&gt; UCAS_SEID with the *J data.</li>
+
+          <li class="li">If system parameter HESACOUNTRY is set to Wales, the system updates the GOAPSID -&gt; HESA_WALES reports and GOAPSID -&gt; UCAS_SEID with the *J data.</li>
+
+          </ul>
+</li>
+
+        <li class="li">If system parameter RELGBELJ is set to SORENEP, the system updates only the SORENEP columns with the *J data.</li>
+
+        <li class="li">If system parameter RELGBELJ is set to BOTH, the system updates both GORPSID and SORENEP columns.<p class="p">If the system parameter *J - RELIGIOUSBELIEF is set to UPDATE IF NULL, the system checks the value of the *J UPDATES RULE parameter.</p>
+</li>
+
+        <li class="li">If system parameter RELGBELJ is set to GORPSID, the system checks whether GORPSID data exists and updates the GORPSID column only if no data already exists. It does not update SORENEP.<ul class="ul">
+          <li class="li">If system parameter HESACOUNTRY is set to England, the system updates the GOAPSID - &gt; HESA_ENGLAND report and GOAPSID -&gt; UCAS_SEID report with the *J data.</li>
+
+          <li class="li">If system parameter HESACOUNTRY is set to Northern Ireland, the system updates the GOAPSID -&gt; HESA_NORTHERNIRELAND_reports and GOAPSID -&gt; UCAS_SEID with the *J data.</li>
+
+          <li class="li">If system parameter HESACOUNTRY is set to Scotland, the system updates the GOAPSID -&gt; HESA_SCOTLAND reports and GOAPSID -&gt; UCAS_SEID with the *J data.</li>
+
+          <li class="li">If system parameter HESACOUNTRY is set to Wales, the system updates the GOAPSID -&gt; HESA_WALES reports and GOAPSID -&gt; UCAS_SEID with the *J data.</li>
+
+          </ul>
+</li>
+
+        <li class="li">If system parameter RELGBELJ is set to SORENEP, the system checks whether SORENEP data exists and updates the SORENEP column only if no data already exists. It does not update GORPSID.</li>
+
+        <li class="li">If system parameter RELGBELJ is set to BOTH, the system checks whether GORPSID data exists and updates the GORPSID column only if no data already exists. It also checks whether SORENEP data exists and updates the SORENEP column only if no data exists.<p class="p">If the system parameter *J - RELIGIOUSBELIEF is set to IGNORE, the existing data will not be updated by the data in SKBUSTJ.</p>
+<p class="p">You can choose whether or not to load data based on specific criteria when loading *J data, as shown in the following table. The records are defined in the SKASSDT page, and the following apply to all data downloaded from XML-Link.</p>
+</li>
+
+        </ul>
+</div>
+
+      <ul class="ul">
+        <li class="li">The entity is <kbd class="ph userinput">ODBCLINK</kbd>.</li>
+
+        <li class="li">Option 1 is the existing <span class="ph">Banner</span> value.</li>
+
+        <li class="li">Option 2 is the indicator to determine if field values matching the row should be updated. Valid values are Y or N.</li>
+
+        <li class="li">Option 3 is the incoming *J value mapped to the required <span class="ph">Banner</span> value.</li>
+
+        <li class="li">The delivered data value is <kbd class="ph userinput">99</kbd>. This is a numeric value indicating the order in which rows are processed. Only the first matching row is actually processed. Specific value matches should be processed first.</li>
+
+        <li class="li">The delivered status value is <kbd class="ph userinput">A</kbd> (active).</li>
+
+      </ul>
+
+      <p class="p">The rules for *J - Disability are displayed in the following table. The seed data delivered for all other *J fields are not required; they are delivered to give an example of the data required for each *J field (particularly the entity/attribute values). Each of these records ensures that the incoming *J value for the appropriate field (regardless of what the existing <span class="ph">Banner</span> value is) will always be updated. These rows can safely be deleted because, if no records are present for a particular *J field, by default all updating is still allowed (depending on the values entered in GKAKSYS for the relevant system parameter).</p>
+
+    </div>
+
+    
+<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" id="r_j_data_getucashesadata_getgttrhesadata__c_j_data_getucashesadata_getgttrhesadata-utbl3" class="table" frame="hsides" border="1" rules="rows"><colgroup><col><col><col><col><col><col></colgroup><thead class="thead" style="text-align:left;vertical-align:bottom;">
+          <tr class="row">
+            <th class="entry row-nocellborder" style="text-align:left;vertical-align:bottom;" id="d66934e1110">Attribute</th>
+
+            <th class="entry row-nocellborder" style="text-align:left;vertical-align:bottom;" id="d66934e1113">Option 1</th>
+
+            <th class="entry row-nocellborder" style="text-align:left;vertical-align:bottom;" id="d66934e1116">Option 2</th>
+
+            <th class="entry row-nocellborder" style="text-align:left;vertical-align:bottom;" id="d66934e1119">Option 3</th>
+
+            <th class="entry row-nocellborder" style="text-align:left;vertical-align:bottom;" id="d66934e1122">Title</th>
+
+            <th class="entry row-nocellborder" style="text-align:left;vertical-align:bottom;" id="d66934e1126">Short Title</th>
+
+          </tr>
+
+        </thead>
+<tbody class="tbody">
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d66934e1110 ">*J - DISABILITY</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d66934e1113 ">NULL</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d66934e1116 ">Y</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d66934e1119 ">00</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d66934e1122 ">If the incoming *J - DISABILITY is the unknown value 00 then only create a SPRMEDI record if the applicant has no other existing disability records</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d66934e1126 ">Create 00 disability only if null</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d66934e1110 ">*J - DISABILITY</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d66934e1113 ">%</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d66934e1116 ">N</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d66934e1119 ">00</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d66934e1122 ">Ignore an incoming *J - DISABILITY with the unknown 00 value</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d66934e1126 ">Ignore disability 00</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d66934e1110 ">*J - DISABILITY</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d66934e1113 ">%</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d66934e1116 ">N</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d66934e1119 ">NULL</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d66934e1122 ">Ignore an incoming *J - DISABILITY with a null value</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d66934e1126 ">Ignore null disability</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d66934e1110 ">*J - DOMICILE</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d66934e1113 ">%</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d66934e1116 ">Y</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d66934e1119 ">%</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d66934e1122 ">Always store a new *J value regardless of the incoming or existing values</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d66934e1126 ">Always store *J value</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d66934e1110 ">*J - ETHNIC ORIGIN</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d66934e1113 ">%</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d66934e1116 ">Y</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d66934e1119 ">%</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d66934e1122 ">Always store a new *J value regardless of the incoming or existing values</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d66934e1126 ">Always store *J value</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d66934e1110 ">*J - HIGHEST QUAL</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d66934e1113 ">%</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d66934e1116 ">Y</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d66934e1119 ">%</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d66934e1122 ">Always store a new *J value regardless of the incoming or existing values</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d66934e1126 ">Always store *J value</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d66934e1110 ">*J - NATIONALITY</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d66934e1113 ">%</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d66934e1116 ">Y</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d66934e1119 ">%</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d66934e1122 ">Always store a new *J value regardless of the incoming or existing values</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d66934e1126 ">Always store *J value</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d66934e1110 ">*J - NATIOND</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d66934e1113 ">%</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d66934e1116 ">Y</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d66934e1119 ">%</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d66934e1122 ">Always store a new *J value regardless of the incoming or existing values</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d66934e1126 ">Always store *J value</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d66934e1110 ">*J - OCCUPATION CODE</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d66934e1113 ">%</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d66934e1116 ">Y</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d66934e1119 ">%</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d66934e1122 ">Always store a new *J value regardless of the incoming or existing values</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d66934e1126 ">Always store *J value</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d66934e1110 ">*J - PARED</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d66934e1113 ">%</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d66934e1116 ">Y</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d66934e1119 ">%</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d66934e1122 ">Always store a new *J value regardless of the incoming or existing values</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d66934e1126 ">Always store *J value</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d66934e1110 ">*J - PGCECLSS</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d66934e1113 ">%</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d66934e1116 ">Y</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d66934e1119 ">%</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d66934e1122 ">Always store a new *J value regardless of the incoming or existing values</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d66934e1126 ">Always store *J value</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d66934e1110 ">*J - POSTCODE</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d66934e1113 ">%</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d66934e1116 ">Y</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d66934e1119 ">%</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d66934e1122 ">Always store a new *J value regardless of the incoming or existing values</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d66934e1126 ">Always store *J value</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d66934e1110 ">*J - PREVINST</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d66934e1113 ">%</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d66934e1116 ">Y</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d66934e1119 ">%</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d66934e1122 ">Always store a new *J value regardless of the incoming or existing values</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d66934e1126 ">Always store *J value</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d66934e1110 ">*J - QUALENT3</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d66934e1113 ">%</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d66934e1116 ">Y</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d66934e1119 ">%</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d66934e1122 ">Always store a new *J value regardless of the incoming or existing values</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d66934e1126 ">Always store *J value</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d66934e1110 ">*J - QUALGRADE</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d66934e1113 ">%</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d66934e1116 ">Y</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d66934e1119 ">%</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d66934e1122 ">Always store a new *J value regardless of the incoming or existing values</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d66934e1126 ">Always store *J value</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d66934e1110 ">*J - QUALSBJ</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d66934e1113 ">%</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d66934e1116 ">Y</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d66934e1119 ">%</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d66934e1122 ">Always store a new *J value regardless of the incoming or existing values</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d66934e1126 ">Always store *J value</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d66934e1110 ">*J - QUALSIT</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d66934e1113 ">%</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d66934e1116 ">Y</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d66934e1119 ">%</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d66934e1122 ">Always store a new *J value regardless of the incoming or existing values</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d66934e1126 ">Always store *J value</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d66934e1110 ">*J - QUALTYPE</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d66934e1113 ">%</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d66934e1116 ">Y</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d66934e1119 ">%</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d66934e1122 ">Always store a new *J value regardless of the incoming or existing values</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d66934e1126 ">Always store *J value</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d66934e1110 ">*J - QUALYEAR</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d66934e1113 ">%</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d66934e1116 ">Y</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d66934e1119 ">%</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d66934e1122 ">Always store a new *J value regardless of the incoming or existing values</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d66934e1126 ">Always store *J value</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d66934e1110 ">*J - SBJPCT1</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d66934e1113 ">%</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d66934e1116 ">Y</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d66934e1119 ">%</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d66934e1122 ">Always store a new *J value regardless of the incoming or existing values</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d66934e1126 ">Always store *J value</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d66934e1110 ">*J - SBJPCT2</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d66934e1113 ">%</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d66934e1116 ">Y</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d66934e1119 ">%</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d66934e1122 ">Always store a new *J value regardless of the incoming or existing values</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d66934e1126 ">Always store *J value</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d66934e1110 ">*J - SBJPCT3</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d66934e1113 ">%</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d66934e1116 ">Y</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d66934e1119 ">%</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d66934e1122 ">Always store a new *J value regardless of the incoming or existing values</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d66934e1126 ">Always store *J value</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d66934e1110 ">*J - SBJQA1</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d66934e1113 ">%</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d66934e1116 ">Y</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d66934e1119 ">%</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d66934e1122 ">Always store a new *J value regardless of the incoming or existing values</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d66934e1126 ">Always store *J value</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d66934e1110 ">*J - SBJQA2</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d66934e1113 ">%</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d66934e1116 ">Y</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d66934e1119 ">%</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d66934e1122 ">Always store a new *J value regardless of the incoming or existing values</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d66934e1126 ">Always store *J value</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d66934e1110 ">*J - SBJQA3</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d66934e1113 ">%</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d66934e1116 ">Y</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d66934e1119 ">%</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d66934e1122 ">Always store a new *J value regardless of the incoming or existing values</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d66934e1126 ">Always store *J value</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d66934e1110 ">*J - SCOT CAND. NO.</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d66934e1113 ">%</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d66934e1116 ">Y</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d66934e1119 ">%</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d66934e1122 ">Always store a new *J value regardless of the incoming or existing values</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d66934e1126 ">Always store *J value</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d66934e1110 ">*J - SOCIO ECON CLASS</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d66934e1113 ">%</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d66934e1116 ">Y</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d66934e1119 ">%</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d66934e1122 ">Always store a new *J value regardless of the incoming or existing values</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d66934e1126 ">Always store *J value</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d66934e1110 ">*J - ULN</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d66934e1113 ">%</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d66934e1116 ">Y</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d66934e1119 ">%</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d66934e1122 ">Always store a new *J value regardless of the incoming or existing values</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d66934e1126 ">Always store *J value</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d66934e1110 ">*J - WELBACC</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d66934e1113 ">%</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d66934e1116 ">Y</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d66934e1119 ">%</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d66934e1122 ">Always store a new *J value regardless of the incoming or existing values</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d66934e1126 ">Always store *J value</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d66934e1110 ">*J - YR LEFT LAST INST</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d66934e1113 ">%</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d66934e1116 ">Y</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d66934e1119 ">%</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d66934e1122 ">Always store a new *J value regardless of the incoming or existing values</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d66934e1126 ">Always store *J value</td>
+
+          </tr>
+
+        </tbody>
+</table>
+</div>
+
+  </div>
+
+</div></div></section>
+<section id="t-1450"><h3>*K data</h3><div class="content-locale-en-US content-locale-en"><div id="c_k_data_getucasapplicantdetails"><div class="body conbody"><p class="shortdesc">There are a number of rules defined in SKASSDT to control the loading of the *K RESCAT (Residential Category) data. You can also create your own additional rules here.</p>
+
+    <div class="p">The *K data includes the following XML end points:<ul class="ul"> <li class="li">getUCASApplicantDetails</li>
+ <li class="li">getUCASApplicantBackground</li>
+ <li class="li">getGTTRApplicantDetails</li>
+ <li class="li">getGTTRApplicantBackground</li>
+ <li class="li">getUCASApplicantRefugeeAsylumSeekerStatus</li>
+ <li class="li">getUCASApplicantServedInArmedForces</li>
+ <li class="li">getUCASApplicantCaringResponsibilities</li>
+ <li class="li">getUCASApplicantFreeSchoolMeals</li>
+ <li class="li">getUCASApplicantEstrangedFromParents</li>
+ <li class="li">getUCASApplicantLivingWithCondition</li>
+
+      <li class="li">getUCASApplicantParentCarerInArmedForces</li>
+ <li class="li">getUCASApplicantParentingResponsibilities</li>
+ </ul>
+</div>
+
+    <p class="p">The *K - RESCAT rules are used to control the updating of the SKRSAIN_SSDT_CODE_RESCAT and the SARADAP_RESD_CODE columns. The rules are used in *K, *A, *C, and *Z record processing. The last three (‘Data’ items 2, 3, and 4) are only for the SARADAP column.</p>
+
+    <p class="p">Options 1 and 3 can contain an actual value, a wildcard (%) matching any value (including null values) or the word <kbd class="ph userinput">NULL</kbd> when a null-only match is required.</p>
+
+    <p class="p">The value <kbd class="ph userinput">U</kbd> used for options 1 and 3 for ‘Data’ item 2 and 3 will be the value from the RESD DEFAULT system parameter on the System Parameter Maintenance (GKAKSYS) page. You will need to change it if your default value is different.</p>
+
+    <p class="p">‘Data’ item 4 has the status set to <kbd class="ph userinput">I</kbd> (Inactive). This rule prevents any existing <span class="ph">Banner</span> value from being updated with an incoming value (unless the existing/incoming value matches one of the earlier rules). If this rule is required, it should be activated in SKASSDT. Alternatively it can be deleted or left as inactive, in which case it will be ignored.</p>
+
+    <p class="p">*K records are loaded before *C records, so these rules are executed before the *C - RESCAT rules. If no rules are found in SKASSDT, the value in the *K-RESCAT system parameter is used to determine how records will be updated.</p>
+
+    
+<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" id="c_k_data_getucasapplicantdetails__c_k_data_getucasapplicantdetails-utbl1" class="table" frame="hsides" border="1" rules="rows"><colgroup><col style="width:10.9375%"><col style="width:10.386029411764707%"><col style="width:11.488970588235295%"><col style="width:11.67279411764706%"><col style="width:10.11029411764706%"><col style="width:10.477941176470589%"><col style="width:25.73529411764706%"><col style="width:9.191176470588236%"></colgroup><thead class="thead" style="text-align:left;vertical-align:bottom;">
+          <tr class="row">
+            <th class="entry row-nocellborder" style="text-align:left;vertical-align:bottom;" id="d33128e133">Attribute</th>
+
+            <th class="entry row-nocellborder" style="text-align:left;vertical-align:bottom;" id="d33128e136">Option 1</th>
+
+            <th class="entry row-nocellborder" style="text-align:left;vertical-align:bottom;" id="d33128e139">Option 2</th>
+
+            <th class="entry row-nocellborder" style="text-align:left;vertical-align:bottom;" id="d33128e142">Option 3</th>
+
+            <th class="entry row-nocellborder" style="text-align:left;vertical-align:bottom;" id="d33128e145">Data</th>
+
+            <th class="entry row-nocellborder" style="text-align:left;vertical-align:bottom;" id="d33128e149">Status</th>
+
+            <th class="entry row-nocellborder" style="text-align:left;vertical-align:bottom;" id="d33128e152">Title</th>
+
+            <th class="entry row-nocellborder" style="text-align:left;vertical-align:bottom;" id="d33128e155">Short Title</th>
+
+          </tr>
+
+        </thead>
+<tbody class="tbody">
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d33128e133 ">*K - RESCAT</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d33128e136 ">NULL</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d33128e139 ">Y</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d33128e142 ">%</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d33128e145 ">1</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d33128e149 ">A</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d33128e152 ">SARADAP_RESD_​CODE is mandatory so always store a *K - RESCAT value when creating an admissions record</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d33128e155 ">Store any Rescat for new SARADAP</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d33128e133 ">*K - RESCAT</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d33128e136 ">U</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d33128e139 ">Y</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d33128e142 ">%</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d33128e145 ">2</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d33128e149 ">A</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d33128e152 ">If the current SARADAP_RESD_​CODE value is the same as the RESD DEFAULT system parameter value then overwrite it with whatever the incoming *K - RESCAT value is</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d33128e155 ">Replace default residency</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d33128e133 ">*K - RESCAT</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d33128e136 ">%</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d33128e139 ">N</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d33128e142 ">U</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d33128e145 ">3</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d33128e149 ">A</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d33128e152 ">If the incoming *K - RESCAT value is the same as the RESD DEFAULT system parameter value then do not overwrite any existing SARADAP_RESD_CODE value</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d33128e155 ">Ignore default residency</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d33128e133 ">*K - RESCAT</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d33128e136 ">%</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d33128e139 ">N</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d33128e142 ">%</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d33128e145 ">4</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d33128e149 ">I</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d33128e152 ">Do not update the SARADAP_RESD_​CODE value with any incoming *K - RESCAT value. PLEASE NOTE: This record was created inactive. Click the active check box to prevent updates from occurring.</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d33128e155 ">Do not update existing residency</td>
+
+          </tr>
+
+        </tbody>
+</table>
+</div>
+
+  </div>
+
+</div></div></section>
+<section id="t-1460"><h3>*H - HESA Sensitive Fields</h3><div class="content-locale-en-US content-locale-en"><div id="c_h_hesa_sensitive_fields"><div class="body conbody"><p class="shortdesc">SKAUHNC processes the *H data from the SKBUSTH interim table into <span class="ph">Banner</span> <span class="ph">UCAS</span>, <span class="ph">Banner</span> HESA, and baseline tables subject to the following system parameters on the System Parameter Maintenance (GKAKSYS) page.  The *H data contains getUCASApplicantDetails and getGTTRApplicantDetails XML end points.</p>
+
+    
+<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" id="c_h_hesa_sensitive_fields__c_h_hesa_sensitive_fields-utbl1" class="table" frame="hsides" border="1" rules="rows"><colgroup><col><col><col></colgroup><thead class="thead" style="text-align:left;vertical-align:bottom;">
+          <tr class="row">
+            <th class="entry row-nocellborder" style="text-align:left;vertical-align:bottom;" id="d34624e60">System parameter</th>
+
+            <th class="entry row-nocellborder" style="text-align:left;vertical-align:bottom;" id="d34624e63">Value</th>
+
+            <th class="entry row-nocellborder" style="text-align:left;vertical-align:bottom;" id="d34624e66">Processing</th>
+
+          </tr>
+
+        </thead>
+<tbody class="tbody">
+          <tr class="row">
+            <td class="entry row-nocellborder" rowspan="4" style="text-align:left;vertical-align:top;" headers="d34624e60 ">GENIDEN and SEXORINT</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d34624e63 ">
+              <kbd class="ph userinput">SKASAIN</kbd>
+            </td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d34624e66 ">SKASAIN will be updated</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d34624e63 ">
+              <kbd class="ph userinput">SKASPIN</kbd>
+            </td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d34624e66 ">SKASPIN will be updated</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d34624e63 ">
+              <kbd class="ph userinput">BOTH</kbd>
+            </td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d34624e66 ">Both SKASAIN and SKASPIN will be updated</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d34624e63 ">
+              <kbd class="ph userinput">NEITHER</kbd>
+            </td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d34624e66 ">Neither SKASAIN nor SKASPIN will be updated</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" rowspan="4" style="text-align:left;vertical-align:top;" headers="d34624e60 ">RELGBEL</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d34624e63 ">
+              <kbd class="ph userinput">SKASAIN</kbd>
+            </td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d34624e66 ">SKASAIN will be updated</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d34624e63 ">
+              <kbd class="ph userinput">SPAPERS</kbd>
+            </td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d34624e66 ">SPAPERS will be updated</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d34624e63 ">
+              <kbd class="ph userinput">BOTH</kbd>
+            </td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d34624e66 ">Both SKASAIN and SPAPERS will be updated</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d34624e63 ">
+              <kbd class="ph userinput">NEITHER</kbd>
+            </td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d34624e66 ">Neither SKASAIN nor SPAPERS will be updated</td>
+
+          </tr>
+
+        </tbody>
+</table>
+</div>
+
+  </div>
+
+</div></div></section>
+<section id="t-1470"><h3>*W data</h3><div class="content-locale-en-US content-locale-en"><div id="c_w_data_getucasapplicants"><p class="shortdesc">When a *W record is processed the following records are deleted for the applicant in question, if the *W indicates that the application was mis-coded or cancelled.  The *W data contains the getUCASApplicantsCancelled and  getGTTRApplicantsCancelled XML end points.</p>
+
+  
+</div></div></section>
+<section id="t-1480"><h4>In Banner UCAS applicant data</h4><div class="content-locale-en-US content-locale-en"><div id="c_banner_ucas_applicant_data"><div class="body conbody">
+<ul class="ul">
+<li class="li">SKBUACD</li>
+
+<li class="li">SKBUAFD</li>
+
+<li class="li">SKBUARF</li>
+
+<li class="li">SKBUAST</li>
+
+<li class="li">SKBUAWX</li>
+
+<li class="li">SKBUCOM</li>
+
+<li class="li">SKRSAIN</li>
+
+<li class="li">SKRUADC</li>
+
+<li class="li">SKRUAED</li>
+
+<li class="li">SKRUAEM</li>
+
+<li class="li">SKRUAFQ</li>
+
+<li class="li">SKRUAOL</li>
+
+<li class="li">SKRUAPA</li>
+
+<li class="li">SKRUAUG</li>
+
+<li class="li">SKRUCCR</li>
+
+<li class="li">SKRUCLR</li>
+
+<li class="li">SKRUDEC</li>
+
+<li class="li">SKRURES</li>
+</ul>
+</div>
+</div></div></section>
+<section id="t-1490"><h4>In Baseline Admissions data</h4><div class="content-locale-en-US content-locale-en"><div id="c_baseline_admissions_data"><div class="body conbody">
+<ul class="ul">
+<li class="li">SARADAP</li>
+
+<li class="li">SARAPPD</li>
+
+<li class="li">SORLCUR</li>
+
+<li class="li">SORLFOS</li>
+</ul>
+
+<p class="p">If the *W record indicates a lost choice, only the relevant SKRUCCR record is deleted. Data in the other tables is left intact, in case a replacement Choice record is subsequently received.</p>
+</div>
+</div></div></section>
+<section id="t-1500"><h3>PAC – Applicant activities data</h3><div class="content-locale-en-US content-locale-en"><div id="r_pac_applicant_activities_data"><div class="body refbody"><p class="shortdesc">To improve widening participation for students, and to ensure greater efficiency for HE providers, UCAS collects activities in preparation for higher education.</p>
+
+    <div class="section">
+      <p class="p">The following are the HE activity end-points.</p>
+
+    </div>
+
+    
+<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" class="table" frame="hsides" border="1" rules="rows"><colgroup><col style="width:54.95495495495496%"><col style="width:45.04504504504505%"></colgroup><thead class="thead" style="text-align:left;vertical-align:bottom;">
+          <tr class="row">
+            <th class="entry row-nocellborder" style="text-align:left;vertical-align:bottom;" id="d58248e55">XML Link</th>
+
+            <th class="entry row-nocellborder" style="text-align:left;vertical-align:bottom;" id="d58248e58">Description</th>
+
+          </tr>
+
+        </thead>
+<tbody class="tbody">
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d58248e55 ">getUCASApplicantHigherEducationActivities</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d58248e58 ">Applicants response to 'Have you participated in an activity to prepare you for higher education?'. </td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d58248e55 ">getReferenceHigherEducationActivityTypes</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d58248e58 ">Reference data for higher education activity types.</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d58248e55 ">getReferenceHigherEducationActivityProviders</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d58248e58 ">Reference data for higher education activity providers.</td>
+
+          </tr>
+
+        </tbody>
+</table>
+</div>
+
+  </div>
+
+</div></div></section>
+<section id="t-1510"><h4>Manage the reference data</h4><div class="content-locale-en-US content-locale-en"><div id="t_manage_reference_data"><div class="body taskbody"><p class="shortdesc">The UCAS software processes and stores the reference data from the getReferenceHigherEducationActivityTypes and getReferenceHigherEducationActivityProviders end-points.</p>
+
+    <div class="tasklabel"><h2 class="sectiontitle tasklabel">Procedure</h2></div><ol class="ol steps"><li class="li step stepexpand">
+        <span class="ph cmd">Access the <span class="keyword wintitle">UCAS Data Processing (SKAUHPR)</span> page.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">For the xml-link reference data Get methods(Executable) Web-Service Group, following are the end-points that the page displays:</span>
+        <div class="itemgroup info">
+          <ol class="ol" type="a">
+            <li class="li">getReferenceHigherEducationActivityTypes</li>
+
+            <li class="li">getReferenceHigherEducationActivityProviders</li>
+
+          </ol>
+
+        </div>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Download the data from respective XML link operations and load the data like any existing reference data.</span>
+      </li>
+</ol>
+
+    <div class="section result"><div class="tasklabel"><h2 class="sectiontitle tasklabel">Results</h2></div>You can review the Higher Education Activity Types in the SKASSDT page by filtering for UCASLOAD entity and HEACTIVITYTYPES attribute. The system loads the values to the Option 1, Option 3, and Description fields. You can view the Higher Education Activity Provider values that are available to the Option 1, Option 3, and the Description fields for the SKASSDT page for the UCASLOAD entity and HEACTIVITYPROVIDERS attribute. <div class="note"><span class="notetitle">Note:</span> Institutions  should map the Higher Education Activity Types for the HEACTIVITYTYPES attribute to valid codes that exist in the Student Activity Code Validation (STVACTC).  Institutions need not update the records for HEACTIVITYPROVIDERS attribute.</div>
+</div>
+
+  </div>
+
+</div></div></section>
+<section id="t-1520"><h4>Map Higher Education activity types</h4><div class="content-locale-en-US content-locale-en"><div id="t_map_higher_education_activity_types"><div class="body taskbody"><p class="shortdesc">Map the HE activity types for the HEACTIVITYTYPES attribute to STVACTC codes.</p>
+
+    <div class="tasklabel"><h2 class="sectiontitle tasklabel">Procedure</h2></div><ol class="ol steps"><li class="li step stepexpand">
+        <span class="ph cmd">Access the <span class="keyword wintitle">Banner Student Activity Code Validation (STVACTC)</span> page.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Create valid activity codes that you want to map to the higher education activity types in the HEACTIVITYTYPES attribute.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Access the <span class="keyword wintitle">Value Mapping and List-of-Value Definition (SKASSDT)</span> page.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Filter for the HEACTIVITYTYPES attribute.</span>
+        <div class="itemgroup info">You should update the records for the HEACTIVITYTYPES attribute by entering the STVACTC codes that you create in Option 1. Do not update the Description and Option 3 field values.</div>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Save the updates.</span>
+      </li>
+</ol>
+
+  </div>
+
+</div></div></section>
+<section id="t-1530"><h4>Manage Higher Education applicant activities</h4><div class="content-locale-en-US content-locale-en"><div id="t_manage_higher_education_applicant_activities"><div class="body taskbody"><p class="shortdesc">Download the applicant’s higher education activities data from the getUCASApplicantHigherEducationActivities XML Link method.</p>
+
+    <div class="tasklabel"><h2 class="sectiontitle tasklabel">Procedure</h2></div><ol class="ol steps"><li class="li step stepexpand">
+        <span class="ph cmd">Access the <span class="keyword wintitle">UCAS Data Processing (SKAUHPR)</span> page.</span>
+        <div class="itemgroup info">You will view the getUCASApplicantHigherEducationActivities XML Link method that the system displays as an XML Link Operation for the xml-link UCAS applicant data Get methods (Executable) Web Service Group.</div>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Select this XML link operation to download data.</span>
+        <div class="itemgroup info">After you perform the Download and MDUU operation, the system displays the records in the Banner Control window for the PAC Record Type in the received (RE) status.  The following are the details in the Record Type window:
+<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" class="table" frame="border" border="1" rules="all"><colgroup><col style="width:36.63003663003663%"><col style="width:63.369963369963365%"></colgroup><thead class="thead" style="text-align:left;"> <tr class="row"> <th class="entry nocellnorowborder" style="vertical-align:top;" id="d41180e70">XML Link field</th>
+ <th class="entry cell-norowborder" style="vertical-align:top;" id="d41180e73">Review Group field</th>
+ </tr>
+ </thead>
+<tbody class="tbody"> <tr class="row">
+          <td class="entry nocellnorowborder" style="vertical-align:top;" headers="d41180e70 ">activityName</td>
+ <td class="entry cell-norowborder" style="vertical-align:top;" headers="d41180e73 ">Activity_Name</td>
+ </tr>
+ <tr class="row"> <td class="entry nocellnorowborder" style="vertical-align:top;" headers="d41180e70 ">activityProvider</td>
+ <td class="entry cell-norowborder" style="vertical-align:top;" headers="d41180e73 ">Activity_Provider_Cde</td>
+ </tr>
+ <tr class="row"> <td class="entry nocellnorowborder" style="vertical-align:top;" headers="d41180e70 ">activityType</td>
+ <td class="entry cell-norowborder" style="vertical-align:top;" headers="d41180e73 ">Activity_Type_Cde</td>
+ </tr>
+ <tr class="row"> <td class="entry nocellnorowborder" style="vertical-align:top;" headers="d41180e70 ">endDate</td>
+ <td class="entry cell-norowborder" style="vertical-align:top;" headers="d41180e73 ">End_Date</td>
+ </tr>
+ <tr class="row"> <td class="entry row-nocellborder" style="vertical-align:top;" headers="d41180e70 ">startDate</td>
+ <td class="entry cellrowborder" style="vertical-align:top;" headers="d41180e73 ">Start_Date</td>
+ </tr>
+ </tbody>
+</table>
+</div>
+</div>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Perform a Load All Applicants/ Load Single Applicants operation to view the status of the PAC records in PM/PR status.</span>
+        <div class="itemgroup info">Verify the HE activities data for applicants in the SKAUAPA page or in the SOAACTC page as the data is available in both the pages.<div class="note"><span class="notetitle">Note:</span> If the system does not load the PAC record, the system displays an OH status for PAC record.  This is because, the records with the HEACTIVITYTYPES attribute are not mapped to a valid STVACTC codes in Option 1.  To resolve the error, update the HEACTIVITYTYPES records in the SKASSDT page.<p class="p">UCAS may deprecate the getUCASApplicantActivity XML link operation sometime in the future.</p>
+</div>
+</div>
+      </li>
+</ol>
+
+  </div>
+
+</div></div></section>
+<section id="t-1540"><h4>View the HE activities data</h4><div class="content-locale-en-US content-locale-en"><div id="t_view_he_activities_data"><div class="body taskbody"><p class="shortdesc">Application Review Centre (ARC) displays the Higher Education activities for applicants, in addition to existing activities data.  </p>
+
+    <div class="section context"><div class="tasklabel"><h2 class="sectiontitle tasklabel">About this task</h2></div>
+      <p class="p">Institutions can view the HE activity data for applicants in ARC, for Faculty Self-Service 9x version.</p>
+
+    </div>
+
+    <div class="tasklabel"><h2 class="sectiontitle tasklabel">Procedure</h2></div><ol class="ol steps"><li class="li step stepexpand">
+        <span class="ph cmd">Access Faculty Self-Service.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Navigate to the Application Review Centre menu.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Search for the applicants, either from the Individual Applicant Search or from the Group of Applicants Search options.</span>
+        <div class="itemgroup info">The system displays the list of applicants depending upon your search option.</div>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Click the <span class="ph uicontrol">Name</span> hyperlink to navigate to the Applicant Details page.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">In the Applicant Details page, navigate to the <span class="keyword wintitle">Applicant Activities and Employment History</span> window to view the HE activity data in the <span class="keyword wintitle">Higher Education Activities</span> section.</span>
+      </li>
+</ol>
+
+    <div class="section result"><div class="tasklabel"><h2 class="sectiontitle tasklabel">Results</h2></div>You can view the Higher Education Activities data in the ARC page, only after the system successfully loads the PAC records  in the PM or PR status.</div>
+
+  </div>
+
+</div></div></section>
+<section id="t-1550"><h3>HESA mappings</h3><div class="content-locale-en-US content-locale-en"><div id="c_hesa_mappings"><div class="body conbody"><p class="shortdesc">The following table shows the <span class="ph">Banner</span> <span class="ph">UCAS</span> source of <span class="ph">Banner</span> HESA data that is created by the SKKHINS trigger when an applicant becomes a student.</p>
+
+    
+<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" id="c_hesa_mappings__c_hesa_mappings-utbl1" class="table" frame="hsides" border="1" rules="rows"><colgroup><col style="width:21.141649048625794%"><col style="width:27.484143763213538%"><col style="width:29.175475687103596%"><col style="width:22.198731501057086%"></colgroup><thead class="thead" style="text-align:left;vertical-align:bottom;">
+          <tr class="row">
+            <th class="entry row-nocellborder" style="text-align:left;vertical-align:bottom;" id="d35738e57">Data item</th>
+
+            <th class="entry row-nocellborder" style="text-align:left;vertical-align:bottom;" id="d35738e60">Data Source</th>
+
+            <th class="entry row-nocellborder" style="text-align:left;vertical-align:bottom;" id="d35738e63">Banner UCAS column</th>
+
+            <th class="entry row-nocellborder" style="text-align:left;vertical-align:bottom;" id="d35738e66">Banner HESA column</th>
+
+          </tr>
+
+        </thead>
+<tbody class="tbody">
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d35738e57 ">Applicant Number</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d35738e60 ">
+              <span class="ph">Banner</span>
+            </td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d35738e63 ">SKRSAIN_APPLICANT_NO</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d35738e66 ">SKBHINS_APPLICANT_​NO</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d35738e57 ">Area of Permanent Residence (Country Code)</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d35738e60 ">UCASApplicantDetail / GTTRApplicantDetail</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d35738e63 ">SKRSAIN_NATN_CODE_​DOMICILE</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d35738e66 ">SKBHINS_SSDT_CODE_​DOMICILE</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d35738e57 ">Parental HE</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d35738e60 ">UCASApplicantDetail</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d35738e63 ">SKRSAIN_SSDT_CODE_​PARED</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d35738e66 ">SKBHINS_SSDT_CODE_​PARED</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d35738e57 ">Parental Occupation 2010</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d35738e60 ">UCASApplicant​Background</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d35738e63 ">SKRSAIN_POC2010</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d35738e66 ">SKBHINS_SOC2010</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d35738e57 ">Previous / Last Institution</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d35738e60 ">UCASApplicant​Background / UCASApplicantDetail</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d35738e63 ">SKRSAIN_LAST​EDUCATION</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d35738e66 ">SKBHINS_PREVINST</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d35738e57 ">Socio Economic Class</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d35738e60 ">UCASApplicant​Background</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d35738e63 ">SKRSAIN_SOCIO_ECON_​CLASS</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d35738e66 ">SKBHINS_SSDT_CODE_​SEC</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d35738e57 ">Year Left Last Institution</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d35738e60 ">UCASApplicant​Background</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d35738e63 ">SKRSAIN_LEAVE_YR</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d35738e66 ">SKBHINS_YRLLINST</td>
+
+          </tr>
+
+        </tbody>
+</table>
+</div>
+
+  </div>
+
+</div></div></section>
+<section id="t-1560"><h3>UCAS Schools data</h3><div class="content-locale-en-US content-locale-en"><div id="c_ucas_schools_data"><div class="body conbody"><p class="shortdesc"><span class="ph">UCAS</span> produces a Schools ‘file’ three or four times a year, and when they do, the timestamps of all records on getReferenceSchools are modified even though there might not have been changes to many individual records.</p>
+
+    <p class="p">This means that all of the records would be downloaded and reprocessed into <span class="ph">Banner</span> causing any local changes to be lost.</p>
+
+    <p class="p">To prevent local data from being overwritten by incoming <span class="ph">UCAS</span> data, the SCHOOLS DATA LOADING system parameter allows you to specify whether your institution updates all records or inserts only new records.</p>
+
+    <p class="p">Updates only change the values in the coded fields (<span class="ph uicontrol">Country Code</span>, <span class="ph uicontrol">Establishment Group</span>, <span class="ph uicontrol">Status</span>, <span class="ph uicontrol">School Type</span>, and <span class="ph uicontrol">Merged with</span>), and names and addresses are stored in <span class="ph">Banner</span> in initial-capital format to prevent the need for manual reentry.</p>
+
+  </div>
+
+</div></div></section></main></body></html>

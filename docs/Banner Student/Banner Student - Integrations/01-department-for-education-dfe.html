@@ -1,0 +1,1781 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Banner Student - Integrations — Department for Education (DfE)</title><style>body{font-family:-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;line-height:1.55;color:#1a1a1a;max-width:920px;margin:0 auto;padding:24px}header{border-bottom:2px solid #5a16d6;margin-bottom:8px}h1{color:#3a0ca3}h2,h3,h4,h5,h6{margin-top:1.6em}.crumb{color:#666;font-size:13px;margin:0}.meta{color:#888;font-size:12px}nav.toc{background:#f6f4fc;border:1px solid #e3dcf5;border-radius:8px;padding:12px 18px;margin:18px 0}nav.toc h2{margin:.2em 0}nav.toc ul{list-style:none;padding-left:0}nav.toc a{text-decoration:none;color:#5a16d6}section{margin:1.2em 0;padding-top:.4em}img{max-width:100%;height:auto}table{border-collapse:collapse}td,th{border:1px solid #ccc;padding:4px 8px}code,pre{background:#f4f4f4;border-radius:4px}pre{padding:10px;overflow:auto}</style></head><body><header><p class="crumb">Banner Student › Banner Student - Integrations</p><h1>Banner Student - Integrations — Department for Education (DfE)</h1><p class="meta">Source: <a href="https://resources.elluciancloud.com/r/bundle/banner_student_acn_integrations">https://resources.elluciancloud.com/r/bundle/banner_student_acn_integrations</a> &middot; Retrieved 2026-06-17</p></header><nav class="toc"><h2>Contents</h2><ul><li style="margin-left:0px"><a href="#t-10">Department for Education (DfE)</a></li><li style="margin-left:16px"><a href="#t-20">About DfE Application Processing</a></li><li style="margin-left:16px"><a href="#t-30">Key stages of DfE Application Processing</a></li><li style="margin-left:16px"><a href="#t-40">Configure DfE Application Processing in Banner</a></li><li style="margin-left:32px"><a href="#t-50">Configure Electronic Application Processing</a></li><li style="margin-left:48px"><a href="#t-60">Configure application type</a></li><li style="margin-left:48px"><a href="#t-70">Configure application sections</a></li><li style="margin-left:48px"><a href="#t-80">Configure electronic applicant default rules</a></li><li style="margin-left:48px"><a href="#t-90">Configure application rules</a></li><li style="margin-left:48px"><a href="#t-100">Configure admission procedures and routines</a></li><li style="margin-left:32px"><a href="#t-110">Set up Push process</a></li><li style="margin-left:32px"><a href="#t-120">Set up DfE Application Processing Decision codes</a></li><li style="margin-left:32px"><a href="#t-130">Set up Campus codes</a></li><li style="margin-left:32px"><a href="#t-140">Setup STVSBGI code for Provider codes</a></li><li style="margin-left:32px"><a href="#t-150">Verify Social Economic Identity Codes</a></li><li style="margin-left:32px"><a href="#t-160">Verify HESA and Nationality codes</a></li><li style="margin-left:32px"><a href="#t-170">Set up Crosswalk Rules</a></li><li style="margin-left:48px"><a href="#t-180">Campus or site codes</a></li><li style="margin-left:48px"><a href="#t-190">Institution or Provider codes</a></li><li style="margin-left:48px"><a href="#t-200">Decision codes (STVAPDC code)</a></li><li style="margin-left:48px"><a href="#t-210">Term codes</a></li><li style="margin-left:32px"><a href="#t-220">Set up Curricula Mapping for DfE courses</a></li><li style="margin-left:32px"><a href="#t-230">Set up Banner Event Publisher</a></li><li style="margin-left:16px"><a href="#t-240">Configure DfE Application Processing in Ethos Integration</a></li><li style="margin-left:32px"><a href="#t-250">Connect Banner to Ethos Integration for DfE Apply</a></li><li style="margin-left:32px"><a href="#t-260">Create a Banner user for proxy API requests</a></li><li style="margin-left:32px"><a href="#t-270">Create an application in Ethos Integration for DfE Application Processing</a></li><li style="margin-left:32px"><a href="#t-280">Create a crosswalk to map Banner decisions</a></li><li style="margin-left:16px"><a href="#t-290">Set up automatic processing of applications</a></li><li style="margin-left:32px"><a href="#t-300">ID_B_STUGEN_master_2026-03-08/id_ethos/wh_dfe_apply/t_process_incoming_app.html</a></li><li style="margin-left:32px"><a href="#t-310">ID_B_STUGEN_master_2026-03-08/id_ethos/wh_dfe_apply/t_process_app_decisions.html</a></li><li style="margin-left:32px"><a href="#t-320">Schedule Banner processes</a></li><li style="margin-left:32px"><a href="#t-330">DfE Pipeline details</a></li><li style="margin-left:16px"><a href="#t-340">Manage DfE Applications and Decisions</a></li><li style="margin-left:32px"><a href="#t-350">Review DfE applications</a></li><li style="margin-left:32px"><a href="#t-360">Review electronic applications load status</a></li><li style="margin-left:32px"><a href="#t-370">Verify application load status for Admission Processing</a></li><li style="margin-left:32px"><a href="#t-380">Review admission records</a></li><li style="margin-left:32px"><a href="#t-390">Manage Decisions for DfE applications</a></li><li style="margin-left:48px"><a href="#t-400">Apply Decisions from SAADCRV page</a></li><li style="margin-left:48px"><a href="#t-410">Review Decisions status</a></li><li style="margin-left:48px"><a href="#t-420">View DfE application decisions</a></li><li style="margin-left:32px"><a href="#t-430">Execute the SARSTML process</a></li><li style="margin-left:32px"><a href="#t-440">Verify DfE applicant EqualityAndDiversity data</a></li></ul></nav><main><section id="t-10"><h2>Department for Education (DfE)</h2><div class="content-locale-en-US content-locale-en"><div id="c_dfe_summary"><div class="body conbody"><p class="shortdesc"><span class="keyword">DfE Application Processing</span> is the portal through which teacher training applicants can apply for a postgraduate teacher training course to teach in a state primary or secondary school, or in further education. </p>
+
+    <div class="note"><span class="notetitle">Note:</span> This 9x version corresponds to the <span class="keyword">Banner</span> Student 8.35 release version.</div>
+
+    <div class="section">Using the <span class="keyword">DfE Application Processing</span> Apply service, applicants apply for teacher training and set out the qualities, interests and ambition they could bring to the teaching profession. Providers of teacher training courses will use <span class="keyword">DfE Application Processing</span> Apply to assess candidates’ eligibility and suitability for their training courses. They need information at the correct time and in the right format so that they can make well-informed decisions about which candidates to accept.<div class="p">The <span class="keyword">Banner</span> <span class="keyword">DfE Application Processing</span> solution allow institutions to perform the following for all <span class="keyword">DfE</span> Teacher Training applications.<ul class="ul"> <li class="li">Connect from <span class="keyword">Banner</span> to Ethos Integration Pipelines using Ethos APIs. Ethos Integration Pipelines is a framework that allows institutions to integrate Ethos with non-ellucian partners.</li>
+ <li class="li">Capture <span class="keyword">DfE Application Processing</span> application information in Staging tables.</li>
+ <li class="li">Load data to Electronic Admissions Tables for application processing.</li>
+ <li class="li">Process Applications using the existing Electronic Admissions Processing logic supplied in <span class="keyword">Banner</span> in concert with new additional Admissions functionality introduced to support <span class="keyword">DfE Application Processing</span>. You can use the additional functionality for all application types, with appropriate configuration.</li>
+ <li class="li">Check all incoming applications against existing records in the <span class="keyword">Banner</span> database and push applicants to <span class="keyword">Banner</span> Person and Admission tables using the existing Electronic Application Push processes (SAAEAPS and SARETMT).</li>
+ <li class="li">Review applications and apply decisions for the applications using the SAADCRV page. For the admission records, you can also review the institution applied decisions from <span class="keyword">DfE Application Processing</span>, that are updated in the SAADCRV page, using the Ethos Integration Pipeline.</li>
+ <li class="li">Post application decisions from <span class="keyword">Banner</span> to the Ethos Integration Pipeline and transact with the <span class="keyword">DfE Application Processing</span> service.</li>
+ </ul>
+</div>
+</div>
+
+    <div class="section"><h2 class="title sectiontitle"><span class="keyword">DfE</span> workflow</h2>
+      
+      <div class="p">The following is the <span class="keyword">DfE Application Processing</span> workflow.<br><div class="imageleft"><img class="image imageleft" alt="dfe_application_workflow" data-ft-asset-display-name="dfe_application_process_flow.png" src="images/01-department-for-education-dfe-1.png" data-ft-resource-id="6_lEN8TWtbIzts0aQnA6mQ-JJ5gcpRaQKyOewyqPdFAKQ"></div><br></div>
+
+    </div>
+
+    <div class="section"><h2 class="title sectiontitle">DfE pipeline</h2>
+      
+      <p class="p">The latest DfE pipeline version is 2.0.2. and is supported by Banner Student 8.34 and 9.3.37 versions.</p>
+
+      <div class="p">The DFE 2.0.2 version pipeline processes The EqualityAndDiversity object data from DFE (DFE 1.3 version) which includes changes to sex, ethnicity and disability data. With the DfE 2.0.2 version, the 2 character gender codes, 3 character ethnicity codes and few new disability codes are available.<ul class="ul">
+        <li class="li">DfeInBound - 2.0.2 </li>
+
+        <li class="li">DfeOutBound - 2.0.2 </li>
+
+        </ul>
+</div>
+
+    </div>
+
+  </div>
+
+</div></div></section>
+<section id="t-20"><h3>About DfE Application Processing</h3><div class="content-locale-en-US content-locale-en"><div id="c_about_dfe_apply_banner"><div class="body conbody"><p class="shortdesc"><span class="keyword">de Ellucian</span> <span class="keyword">DfE Application Processing</span> solution supports the processing of teacher training applications submitted to institutions in England through the <dfn class="term">Apply for teacher training</dfn> service of the UK Department for Education (DfE).</p>
+
+    <div class="section"><h2 class="title sectiontitle">Terminology</h2>
+      
+      <p class="p">This documentation uses the following terms:</p>
+
+      
+<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" class="table" frame="border" border="1" rules="all"><colgroup><col style="width:33.33333333333333%"><col style="width:66.66666666666666%"></colgroup><thead class="thead" style="text-align:left;">
+            <tr class="row">
+              <th class="entry nocellnorowborder" style="vertical-align:top;" id="d12965e66">Term</th>
+
+              <th class="entry cell-norowborder" style="vertical-align:top;" id="d12965e69">Definition</th>
+
+            </tr>
+
+          </thead>
+<tbody class="tbody">
+            <tr class="row">
+              <td class="entry nocellnorowborder" style="vertical-align:top;" headers="d12965e66 ">
+                <span class="keyword">DfE Apply</span>
+              </td>
+
+              <td class="entry cell-norowborder" style="vertical-align:top;" headers="d12965e69 ">The "Apply for teacher training" service of the UK Department for Education (<span class="keyword">DfE</span>)</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry row-nocellborder" style="vertical-align:top;" headers="d12965e66 ">
+                <span class="keyword">DfE Application Processing</span>
+              </td>
+
+              <td class="entry cellrowborder" style="vertical-align:top;" headers="d12965e69 ">The <span class="keyword">Ellucian</span> solution that supports the processing of teacher training applications submitted through <span class="keyword">DfE Apply</span></td>
+
+            </tr>
+
+          </tbody>
+</table>
+</div>
+
+    </div>
+
+    <div class="section"><h2 class="title sectiontitle">Processing overview</h2>
+      
+      <p class="p"><span class="keyword">DfE Application Processing</span> works with <span class="keyword">Ethos Integration</span>, <span class="keyword">Banner</span>, and the DfE API to process teacher training applications.</p>
+
+      <p class="p">Prospective teachers can apply for teacher training through <span class="keyword">DfE Apply</span>. The DfE provides an API where institutions can electronically retrieve applications for which the applicant has designated that institution. Institutions can use the same API to post decisions on those applications back to the DfE.</p>
+
+      <div class="p"><span class="keyword">de Ellucian</span> <span class="keyword">DfE Application Processing</span> works with the DfE API and <span class="keyword">Banner</span> to help you process teacher training applications. <span class="keyword">DfE Application Processing</span> works as follows (see the diagram below):<ol class="ol"> <li class="li"><span class="keyword">DfE Application Processing</span> retrieves applications from the DfE using the DfE API, and then posts those applications through <span class="keyword">Ethos Integration</span> to <span class="keyword">Banner</span>.</li>
+
+        <li class="li">In <span class="keyword">Banner</span>, you evaluate the applications and record decisions.</li>
+ <li class="li"><span class="keyword">Banner</span> publishes the decisions to <span class="keyword">Ethos Integration</span>.</li>
+ <li class="li"><span class="keyword">DfE Application Processing</span> retrieves the decisions from <span class="keyword">Ethos Integration</span> and then posts those decisions back to the DfE.</li>
+ </ol>
+</div>
+
+      <p class="p"><span class="keyword">DfE Application Processing</span> uses the Packages feature of <span class="keyword">Ethos Integration</span>.</p>
+
+      <p class="p">The following is the DfE architecture diagram.</p>
+
+      <div class="p">
+        <br><img class="image" alt="architecture_banner" data-ft-asset-display-name="dfe_architecture_banner.png" src="images/01-department-for-education-dfe-2.png" data-ft-resource-id="~Bamu~Ky~UtxVxglWV5E3A-JJ5gcpRaQKyOewyqPdFAKQ"><br>
+      </div>
+
+    </div>
+
+    <div class="section"><h2 class="title sectiontitle">Other resources</h2>
+      
+      <p class="p">Refer to the <cite class="cite">DfE API documentation</cite> to know more about how the API communicates with the DfE.</p>
+
+    </div>
+
+  </div>
+
+</div></div></section>
+<section id="t-30"><h3>Key stages of DfE Application Processing</h3><div class="content-locale-en-US content-locale-en"><div id="c_dfe_processing_stages"><div class="body conbody"><p class="shortdesc">You can process <span class="keyword">DfE</span> applicants information using various key stages.</p>
+
+    <div class="p"><ul class="ul"> <li class="li">Configure: Set up mappings and system parameters to configure the <span class="keyword">Banner</span> system.</li>
+ <li class="li">Schedule: Schedule <span class="keyword">DfE</span> Integration Pipeline jobs.</li>
+ <li class="li">Use: Run scheduled jobs for application processing and make necessary decisions.</li>
+ </ul>
+The following sections in this Banner <span class="keyword">DfE</span> content describes the key stages of <span class="keyword">DfE</span> processing in detail.</div>
+
+  </div>
+
+</div></div></section>
+<section id="t-40"><h3>Configure DfE Application Processing in Banner</h3><div class="content-locale-en-US content-locale-en"><div id="c_config_dfe_app_process_banner"><div class="body conbody"><p class="shortdesc">Institutions must configure <span class="keyword">DfE</span> to process <span class="keyword">DfE</span> Teacher Training applications through the Banner Student System. </p>
+
+    <p class="p">The collection of the data and data extraction for admissions processing is performed in the Banner Student database. The processing is designed to accomplish the data collection of applications from <span class="keyword">DfE</span> required by institutions to perform admission activities. </p>
+
+    <p class="p">The following sections discusses the step by step configuration procedures that are involved in the <span class="keyword">DfE</span> application processing.</p>
+
+  </div>
+
+</div></div></section>
+<section id="t-50"><h4>Configure Electronic Application Processing</h4><div class="content-locale-en-US content-locale-en"><div id="c_config_ea_processing"><div class="body conbody"><p class="shortdesc"><span class="keyword">DfE</span> uses Electronic Application Push processes to load applications to the Banner Student database. </p>
+
+    <p class="p">The STVWSCF and STVWSCT setup pages are already delivered and institutions can view the values that gets displayed. Refer to the <cite class="cite">Banner Student Reference</cite> content to know more about the values that are already available in the pages for your setup.</p>
+
+  </div>
+
+</div></div></section>
+<section id="t-60"><h5>Configure application type</h5><div class="content-locale-en-US content-locale-en"><div id="t_dfe_config_application_type"><div class="body taskbody"><p class="shortdesc">Use the Application Type Code Validation (STVWAPP) page to define the type of application received. </p>
+
+    <div class="section context"><div class="tasklabel"><h2 class="sectiontitle tasklabel">About this task</h2></div>Steps to create an application type for the <span class="keyword">DfE</span> applications are as follows.</div>
+
+    <div class="tasklabel"><h2 class="sectiontitle tasklabel">Procedure</h2></div><ol class="ol steps"><li class="li step stepexpand">
+        <span class="ph cmd">Access the <span class="keyword wintitle">Application Type Code Validation (STVWAPP)</span> page.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">In the <span class="ph uicontrol">Code</span> field, enter an application code for <span class="keyword">DfE</span> application to create a new record.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">In the <span class="ph uicontrol">Description</span> field, enter the description of the electronic admissions application type.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">In the <span class="ph uicontrol">Level</span> field, enter the level code of the student that will be assigned to all Banner admissions applications created through the Web for this admissions application type.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">In the <span class="ph uicontrol">Student Type</span> field, enter the student's type code.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">In the <span class="ph uicontrol">Admission Type</span> field, enter the student's admission type code. </span>
+        <div class="itemgroup info">If required, you can create an Admission Type in the STVADMT page for the <span class="keyword">DfE</span> Teacher Training Application. You can define your own Admission Type code.</div>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Click <span class="ph uicontrol">Save</span>.</span>
+        <div class="itemgroup info">To know more about the STVWAPP page details and field descriptions, refer to <cite class="cite">Banner Student Reference</cite> content.</div>
+      </li>
+</ol>
+
+  </div>
+
+</div></div></section>
+<section id="t-70"><h5>Configure application sections</h5><div class="content-locale-en-US content-locale-en"><div id="t_dfe_config_application_sections"><div class="body taskbody"><p class="shortdesc">Use the Web Application Section Rules (SAAWAPP) page to specify the application sections which make up each Web admissions application and the order in which the sections are displayed. </p>
+
+    <div class="section context"><div class="tasklabel"><h2 class="sectiontitle tasklabel">About this task</h2></div>You can copy an existing web application rules to a new web application types. In the SAAWAPP page, enter the application type in the Key block. Select the Copy Configuration button. This displays a window which lists all existing application types. Select the application type from which you want to copy.<p class="p">Steps to define application sections for the <span class="keyword">DfE</span> applications are as follows.</p>
+</div>
+
+    <div class="tasklabel"><h2 class="sectiontitle tasklabel">Procedure</h2></div><ol class="ol steps"><li class="li step stepexpand">
+        <span class="ph cmd">Access the <span class="keyword wintitle">Web Application Section Rules (SAAWAPP)</span> page.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">In the Web Application Type field, enter the STVWAPP code.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Enter the following values in the <span class="ph uicontrol">Display Order</span> field and to specify a valid application section which will be part of the associated application type, use the <span class="ph uicontrol">Web Section</span> LOV field.</span>
+        <div class="itemgroup info">
+<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" class="table" frame="border" border="1" rules="all"><colgroup><col style="width:23.651452282157674%"><col style="width:20.746887966804977%"><col style="width:55.601659751037346%"></colgroup><thead class="thead" style="text-align:left;"> <tr class="row"> <th class="entry nocellnorowborder" style="vertical-align:top;" id="d1258e87">Display Order</th>
+ <th class="entry nocellnorowborder" style="vertical-align:top;" id="d1258e90">Web Section</th>
+ <th class="entry cell-norowborder" style="vertical-align:top;" id="d1258e93">Section Rules Description (Auto-populated) </th>
+ </tr>
+ </thead>
+<tbody class="tbody"> <tr class="row"> <td class="entry nocellnorowborder" style="vertical-align:top;" headers="d1258e87 ">1</td>
+ <td class="entry nocellnorowborder" style="vertical-align:top;" headers="d1258e90 ">Name</td>
+ <td class="entry cell-norowborder" style="vertical-align:top;" headers="d1258e93 ">Name</td>
+ </tr>
+ <tr class="row"> <td class="entry nocellnorowborder" style="vertical-align:top;" headers="d1258e87 ">2</td>
+ <td class="entry nocellnorowborder" style="vertical-align:top;" headers="d1258e90 ">ADDR1</td>
+
+          <td class="entry cell-norowborder" style="vertical-align:top;" headers="d1258e93 ">First address and phone number</td>
+ </tr>
+ <tr class="row"> <td class="entry nocellnorowborder" style="vertical-align:top;" headers="d1258e87 ">3</td>
+ <td class="entry nocellnorowborder" style="vertical-align:top;" headers="d1258e90 ">ADDR2</td>
+ <td class="entry cell-norowborder" style="vertical-align:top;" headers="d1258e93 ">Second address and phone number<p class="p">Ensure to enter a default address type for ADDR1 and ADDR2</p>
+</td>
+ </tr>
+ <tr class="row"> <td class="entry nocellnorowborder" style="vertical-align:top;" headers="d1258e87 ">4</td>
+ <td class="entry nocellnorowborder" style="vertical-align:top;" headers="d1258e90 ">PERSONAL</td>
+ <td class="entry cell-norowborder" style="vertical-align:top;" headers="d1258e93 ">Personal information</td>
+ </tr>
+ <tr class="row"> <td class="entry row-nocellborder" style="vertical-align:top;" headers="d1258e87 ">5</td>
+ <td class="entry row-nocellborder" style="vertical-align:top;" headers="d1258e90 ">ADDITIONAL</td>
+ <td class="entry cellrowborder" style="vertical-align:top;" headers="d1258e93 ">Additional information</td>
+ </tr>
+ </tbody>
+</table>
+</div>
+Refer to the <cite class="cite">Banner_Dfe_Admissions_Procedures_Routines_config_data_9.3.23_March_2021.xlsx</cite> file to know more about the web section elements for each of the SAAWAPP web sections.</div>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Save the record.</span>
+        <div class="itemgroup info">To know more about the SAAWAPP page details and field descriptions, refer to <cite class="cite">Banner Student Reference</cite> content.</div>
+      </li>
+</ol>
+
+  </div>
+
+</div></div></section>
+<section id="t-80"><h5>Configure electronic applicant default rules</h5><div class="content-locale-en-US content-locale-en"><div id="t_config_electronic_applicant_default_rules"><div class="body taskbody"><p class="shortdesc">Steps to configure the matching and processing rules for the defined application type for DfE.</p>
+
+    <div class="tasklabel"><h2 class="sectiontitle tasklabel">Procedure</h2></div><ol class="ol steps"><li class="li step stepexpand">
+        <span class="ph cmd">Access the <span class="keyword wintitle">Electronic Applicant Web Default Rules (SAAWADF)</span> page.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Enter the Web application type and navigate to the data block.</span>
+        <div class="itemgroup info">In the <span class="keyword wintitle">Default Curriculum</span> section, you will view the level associated with the chosen Web application type as defined in the STVWAPP page. </div>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Enter the required effective term.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Click <span class="ph uicontrol">Save</span> </span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Navigate to the <span class="keyword wintitle">Matching and Processing Rules</span> window.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">In the <span class="keyword wintitle">Web Display Rules</span> section, select the required interface code value from the LOV that are defined in the STVINFC page. </span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">In the <span class="keyword wintitle">Web Display Rules</span> section, select the application source value from the LOV that are define in the STVAPLS page.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Navigate to the <span class="keyword wintitle">Web Matching Rules</span> section.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Enter values in the <span class="ph uicontrol">Maximum Number of Majors</span>, <span class="ph uicontrol">Maximum number of Minors</span>, <span class="ph uicontrol">Maximum Number of Concentration</span>, and <span class="ph uicontrol">Maximum Number of Additional Majors</span> fields. </span>
+        <div class="itemgroup info">For DfE, Ellucian recommends that you set the maximum number of additional majors to 0, with the other values being set to 1.</div>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Click <span class="ph uicontrol">Save</span> </span>
+        <div class="itemgroup info">To know more about the SAAWADF page details and field descriptions, refer to <cite class="cite">Banner Student Reference</cite> content.</div>
+      </li>
+</ol>
+
+  </div>
+
+</div></div></section>
+<section id="t-90"><h5>Configure application rules</h5><div class="content-locale-en-US content-locale-en"><div id="t_dfe_config_application_rules"><div class="body taskbody"><p class="shortdesc">The Electronic Admissions Application Rules (SAAERUL) page includes several rules that controls how the student admission application data is handled in Electronic Application Processing. Institutions must ensure if the rules defined in the SAAERUL page are accurate and additionally set up the DFEG group required for DfE applications processing.</p>
+
+    <div class="section context"><div class="tasklabel"><h2 class="sectiontitle tasklabel">About this task</h2></div>To set up the DFEG group and default email types, use the following steps.</div>
+
+    <div class="tasklabel"><h2 class="sectiontitle tasklabel">Procedure</h2></div><ol class="ol steps"><li class="li step stepexpand">
+        <span class="ph cmd">Access the <span class="keyword wintitle">Electronic Admissions Application Rules (SAAERUL)</span> page.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Enter <kbd class="ph userinput">DFEG</kbd> in the <span class="ph uicontrol">Group</span> field.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Click <span class="ph uicontrol">Go</span> to navigate to the next block.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Enter the defined <span class="keyword">DfE</span> STVWAPP code for <span class="keyword">DfE</span> applications in DFEWAPPCODE rule label.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">In the DFEPHONEHOLDER rule label for DFEG group, enter <kbd class="ph userinput">INTL</kbd> or <kbd class="ph userinput">PH</kbd> to map the applicant's phone number to either the <span class="ph uicontrol">Phone Number</span> (SPRTELE_PHONE_NUMBER) or the <span class="ph uicontrol">International Access</span> field (SPRTELE_INTL_ACCESS) of the SPAIDEN page.</span>
+        <div class="itemgroup info">
+          <p class="p">If you want to record phone numbers with more than 12 characters, Ellucian recommends to set the mapping for DFEPHONEHOLDER to INTL.</p>
+
+          <p class="p">Institution staff responsible for applying decisions on DfE applications should have a valid email record in GOREMAL with the email type matching the default email type defined for USEREMAILTYPE rule group. The <span class="keyword apiname">dfe-admission-decisions</span> API checks for email records for staff users with email type matching the default email type (value for USEREMAILTYPE) to authenticate users. </p>
+
+          <p class="p">The <span class="keyword apiname">dfe-admission-decisions</span> API executes and communicates the decisions to DfE, only if the authentication is a success.</p>
+
+        </div>
+        <div class="itemgroup info">Use the following procedure to set up the default email type.</div>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">In the USEREMAILTYPE rule label for the DFEG group, enter a valid email type as defined in the GTVEMAL page. </span>
+        <div class="itemgroup info">To create email records for staff users, use the default value (email type value entered for the USEREMAILTYPE rule label) as the Email Type in Email window of the SPAIDEN page (GOREMAL_EMAL_CODE).</div>
+        <div class="itemgroup info">For the DFEG group, in the DFEADMNAPSTCODE rule label, enter a valid application status code that exists in the STVAPST page. You can use this application status to indicate that an application is deferred for a Term in Banner, and you can create a new application for a new term after the application is reinstated.</div>
+        <div class="itemgroup info">Refer to the <span class="xref ft-internal-xlink" data-ft-warning="excluded-from-rendering" data-clusterid="ID_B_STUGEN_master_2026-03-08/id_b_stugen/stu_integration/r_delivered_rule_groups_used_edi_processing">Delivered Rule Groups Used in EDI Processing</span> page to know more about rules.</div>
+      </li>
+</ol>
+
+  </div>
+
+</div></div></section>
+<section id="t-100"><h5>Configure admission procedures and routines</h5><div class="content-locale-en-US content-locale-en"><div id="r_dfe_configure_admissions_procedures_routines"><div class="body refbody"><p class="shortdesc">Before loading data from the holding tables into the permanent Banner tables, institutions must ensure that the information submitted by the applicant is accurate. Configuring application procedures and routines helps institutions to achieve this.</p>
+
+    <div class="section">
+      <p class="p">To know about the procedures and routines that are required for <span class="keyword">DfE</span> applications, refer and download the <cite class="cite">Banner_Dfe_Admissions_Procedures_Routines_config_data.xlsx</cite> file that is delivered along with this release as an attachment. </p>
+
+      <p class="p">Also, refer to <span class="xref ft-internal-xlink" data-ft-warning="excluded-from-rendering" data-clusterid="ID_B_STUGEN_master_2026-03-08/id_b_stugen/stu_integration/r_procedures_used_edi_processing">Procedures used in EDI Processing</span> to know more about admission procedures and refer to <span class="xref ft-internal-xlink" data-ft-warning="excluded-from-rendering" data-clusterid="ID_B_STUGEN_master_2026-03-08/id_b_stugen/stu_integration/r_routines_used_edi_processing">Routines Used in EDI Processing</span> to know more about routines.</p>
+
+    </div>
+
+    <div class="section">
+      <div class="p">Ellucian recommends institutions to note the following.<ul class="ul"> <li class="li">After the duplicate checking is turned on for all the Web Application Types in the SAAERUL page, institutions can control the duplicate checking within each Application Type using the SAAECRL page. </li>
+ <li class="li">In the SAAECRL page, for the following routines, select the Required flag to prevent duplicates from pushing into Banner:<ul class="ul"> <li class="li">P050 R0060 Required Flag Selected, Override Flag Not Selected </li>
+
+        <li class="li">P050 R0070 Required Flag Selected, Override Flag Not Selected </li>
+ <li class="li">P050 R0080 Required Flag Selected, Override Flag Not Selected </li>
+ <li class="li">P120 R0010 Required Flag Selected, Override Flag Not Selected </li>
+ </ul>
+</li>
+ <li class="li">In the SAAECRL page, for the following routines, select the Required flag and the Override flag to allow duplicates to push into Banner: <ul class="ul"> <li class="li">P050 R0060 Required Flag Selected, Override Flag Selected </li>
+
+        <li class="li">P050 R0070 Required Flag Selected, Override Flag Selected </li>
+ <li class="li">P050 R0080 Required Flag Selected, Override Flag Selected </li>
+ <li class="li">P120 R0010 Required Flag Selected, Override Flag Selected </li>
+ </ul>
+</li>
+
+        <li class="li">When the application is loaded using the SAAEAPS/SARETMT push process, the Procedure P030 Biographic Information data can be overwritten depending on how the application routines are set up in the SAAECRL process. To stop the Biographical data from being overwritten,institutions must clear the Required and Override check boxes in the SAAECRL page for the following routines attached to Procedure P030 - Biographic Information. You must establish the setting on each application type. <ul class="ul">
+        <li class="li">P030 R0010 Required Flag Selected, Override Flag Selected </li>
+ <li class="li">P030 R0020 Required Flag Selected, Override Flag Selected </li>
+ <li class="li">P030 R0025 Required Flag Selected, Override Flag Selected </li>
+ <li class="li">P030 R0030 Required Flag Selected, Override Flag Selected </li>
+ <li class="li">P030 R0040 Required Flag Selected, Override Flag Selected </li>
+ <li class="li">P030 R0060 Required Flag Selected, Override Flag Selected </li>
+ <li class="li">P030 R0080 Required Flag Selected, Override Flag Selected </li>
+
+        <li class="li">P030 R0090 Required Flag Selected, Override Flag Selected </li>
+ <li class="li">P030 R0091 Required Flag Selected, Override Flag Selected </li>
+ <li class="li">P030 R0110 Required Flag Selected, Override Flag Selected </li>
+ <li class="li">P030 R0130 Required Flag Selected, Override Flag Selected </li>
+ <li class="li">P030 R0150 Required Flag Selected, Override Flag Selected </li>
+ <li class="li">P030 R0200 Required Flag Not Selected, Override Flag Not Selected</li>
+ <li class="li">P030 R0210 Required Flag Not Selected, Override Flag Not Selected </li>
+
+        <li class="li">P030 R0220 Required Flag Not Selected, Override Flag Not Selected </li>
+ <li class="li">P030 R0230 Required Flag Not Selected, Override Flag Not Selected </li>
+ <li class="li">P030 R0240 Required Flag Not Selected, Override Flag Not Selected </li>
+ <li class="li">P030 R0250 Required Flag Not Selected, Override Flag Not Selected </li>
+ <li class="li">P030 R0255 Required Flag Not Selected, Override Flag Not Selected </li>
+ <li class="li">P030 R0260 Required Flag Not Selected, Override Flag Not Selected </li>
+
+        <li class="li">P030 R0265 Required Flag Not Selected, Override Flag Not Selected </li>
+ <li class="li">P030 R0270 Required Flag Not Selected, Override Flag Not Selected </li>
+ <li class="li">P030 R0280 Required Flag Not Selected, Override Flag Not Selected </li>
+ <li class="li">P030 R0290 Required Flag Not Selected, Override Flag Not Selected </li>
+ </ul>
+</li>
+ </ul>
+The settings yields the following results:<ul class="ul"> <li class="li">If the person is new to Banner, add the person data to Banner</li>
+
+        <li class="li">If the person already exists in Banner and the Banner field is null, load the new person data to Banner</li>
+ <li class="li">If the person already exists in Banner and the Banner field is not null, do not update the Banner field</li>
+ </ul>
+</div>
+
+    </div>
+
+  </div>
+
+</div></div></section>
+<section id="t-110"><h4>Set up Push process</h4><div class="content-locale-en-US content-locale-en"><div id="c_dfe_setup_push_process"><div class="body conbody"><p class="shortdesc">Use the Elec. Appl. Verify/Load Process (SARETMT) to match, verify, and load the <span class="keyword">DfE</span> applications that meet your processing guidelines.</p>
+
+    <p class="p">Parameters for SARETMT allow processing based upon Application Type, Application Source, Application Term, and the Date Range of when applications were added. </p>
+
+    <p class="p">To setup SARETMT parameters, refer to <span class="xref ft-internal-xlink" data-ft-warning="excluded-from-rendering" data-clusterid="ID_B_STUGEN_master_2026-03-08/id_b_stugen/stu_integration/r_processing_notes">Processing Notes</span> to read more about the parameters.</p>
+
+    <p class="p">To execute SARETMT process in steps, please follow the steps listed <span class="xref ft-internal-xlink" data-ft-warning="excluded-from-rendering" data-clusterid="ID_B_STUGEN_master_2026-03-08/id_b_stugen/stu_integration/t_detailed_steps">here</span>.</p>
+
+  </div>
+
+</div></div></section>
+<section id="t-120"><h4>Set up DfE Application Processing Decision codes</h4><div class="content-locale-en-US content-locale-en"><div id="t_dfe_decision_codes"><div class="body taskbody"><p class="shortdesc">You must setup the STVAPDC decision codes equivalent to the <span class="keyword">DfE</span> decision codes that campuses will apply.</p>
+
+    <div class="tasklabel"><h2 class="sectiontitle tasklabel">Procedure</h2></div><ol class="ol steps"><li class="li step stepexpand">
+        <span class="ph cmd">Access the <span class="keyword wintitle">Admission Application Decision Code Validation (STVAPDC)</span> page.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Insert user defined decision codes you need to use for the decision crosswalk rules in SOAXREF page.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Ensure that the Curriculum Status (STVAPDC_CSTS_CODE) is left blank/null for all decision codes created for <span class="keyword">DfE</span>. </span>
+        <div class="itemgroup info">The following are the <span class="keyword">DfE</span> decisions that gets updated in the SAADCRV page (SARAPPD table). Institutions must create the STVAPDC decision codes for the following <span class="keyword">DfE</span> decisions.<ul class="ul"> <li class="li">Make a Conditional Offer</li>
+ <li class="li">Make an Unconditional Offer </li>
+ <li class="li">Change Course Conditional </li>
+ <li class="li">Change Course Unconditional </li>
+ <li class="li">Reject </li>
+ <li class="li">Withdraw </li>
+ <li class="li">Conditions Met </li>
+ <li class="li">Conditions Not Met </li>
+
+          <li class="li">Offer Accepted </li>
+ <li class="li">Offer Declined</li>
+ <li class="li">Withdraw at candidate request</li>
+ <li class="li"> Interviewing<div class="note"><span class="notetitle">Note:</span> Select the Applicant check box in the STVAPDC page only for or after Conditions Met <span class="keyword">DfE</span> decision, so that the Learner record is created only after applying the Conditions Met decision.</div>
+</li>
+ </ul>
+</div>
+      </li>
+</ol>
+
+  </div>
+
+</div></div></section>
+<section id="t-130"><h4>Set up Campus codes</h4><div class="content-locale-en-US content-locale-en"><div id="t_campus_or_site_code"><div class="body taskbody"><p class="shortdesc">Institutions must set up campus codes for their campuses using the STVCAMP page.</p>
+
+    <div class="tasklabel"><h2 class="sectiontitle tasklabel">Procedure</h2></div><ol class="ol steps"><li class="li step">
+        <span class="ph cmd">Access the <span class="keyword wintitle">Campus Code Validation (STVCAMP)</span> page.</span>
+      </li>
+<li class="li step">
+        <span class="ph cmd">In the <span class="ph uicontrol">Code</span> field, enter your institution defined campus codes as required.</span>
+      </li>
+<li class="li step">
+        <span class="ph cmd">In the <span class="ph uicontrol">Description</span> field, enter the respective campus description.</span>
+      </li>
+<li class="li step">
+        <span class="ph cmd">Save the record.</span>
+      </li>
+</ol>
+
+  </div>
+
+</div></div></section>
+<section id="t-140"><h4>Setup STVSBGI code for Provider codes</h4><div class="content-locale-en-US content-locale-en"><div id="t_provider_code"><div class="body taskbody"><p class="shortdesc">Institutions must set up provider codes for their campuses using the STVSBGI page.</p>
+
+    <div class="tasklabel"><h2 class="sectiontitle tasklabel">Procedure</h2></div><ol class="ol steps"><li class="li step">
+        <span class="ph cmd">Access the <span class="keyword wintitle">Source/Background Institution Code Validation (STVSBGI)</span> page.</span>
+      </li>
+<li class="li step">
+        <span class="ph cmd">In the <span class="ph uicontrol">Source/Background Institution</span> field, enter your institution defined provider codes as required.</span>
+      </li>
+<li class="li step">
+        <span class="ph cmd">In the <span class="ph uicontrol">Description</span> field, enter the respective campus description.</span>
+      </li>
+<li class="li step">
+        <span class="ph cmd">From the <span class="ph uicontrol">Type</span> drop-down list, select the college value.</span>
+      </li>
+<li class="li step"><strong>Optional: </strong>
+        <span class="ph cmd">Select the <span class="ph uicontrol">Source</span> check box.</span>
+      </li>
+<li class="li step">
+        <span class="ph cmd">Save the record.</span>
+      </li>
+</ol>
+
+  </div>
+
+</div></div></section>
+<section id="t-150"><h4>Verify Social Economic Identity Codes</h4><div class="content-locale-en-US content-locale-en"><div id="t_verify_social_economic_identity_codes"><div class="body taskbody"><p class="shortdesc">You can verify the DfE specific Social Economic codes that are available in the GTVSEID page as DFE Disability, DFE Ethnic and DFE Nation. The DfE Social Economic Identity codes are required to load the candidate's nationalities, disabilities, ethnicity to the GOAPSID page, which then is used by HESA reporting) </p>
+
+    <div class="section context"><div class="tasklabel"><h2 class="sectiontitle tasklabel">About this task</h2></div>With the Banner Student 8.22 release version, the GTVSEID page delivers the Social Economic codes or identifiers that are required to load the DfE Nationality, Disability and Ethnicity data to the GOAPSID page for further HESA reporting.</div>
+
+    <div class="tasklabel"><h2 class="sectiontitle tasklabel">Procedure</h2></div><ol class="ol steps"><li class="li step stepexpand">
+        <span class="ph cmd">Access the <span class="keyword wintitle">Social Economic Codes Identity (GTVSEID)</span> page.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Verify if the GTVSEID page delivers the Social Economic codes codes:</span>
+        <div class="itemgroup info">
+          <ul class="ul">
+            <li class="li">DFE Disability</li>
+
+            <li class="li">DFE Ethnic</li>
+
+            <li class="li">DFE Nation</li>
+
+          </ul>
+
+        </div>
+      </li>
+</ol>
+
+  </div>
+
+</div></div></section>
+<section id="t-160"><h4>Verify HESA and Nationality codes</h4><div class="content-locale-en-US content-locale-en"><div id="t_dfe_setup_hesa_disability_codes"><div class="body taskbody"><p class="shortdesc">DfE can send up to five nationalities for every candidate. DfE sends the HESA data such as gender, ethnicity, and disability codes for candidates after the candidate accepts an offer.</p>
+
+    <div class="section context"><div class="tasklabel"><h2 class="sectiontitle tasklabel">About this task</h2></div>The Gender Codes compliant with DfE should be added to the GTVGNDR page as mentioned in the following table..</div>
+
+    <div class="tasklabel"><h2 class="sectiontitle tasklabel">Procedure</h2></div><ol class="ol steps"><li class="li step stepexpand">
+        <span class="ph cmd">Access the <span class="keyword wintitle">Gender Designation Code Validation (GTVGNDR)</span> page.</span>
+      </li>
+<li class="li step stepexpand">
+        <div class="note"><span class="notetitle">Note:</span> The GTVGNDR values for DfE should be maintained here as there is no crosswalk functionality available currently for gender designation codes. With one of our future release, we will deliver the crosswalk functionality for the GTVGNDR page, so that users can maintain their user defined gender designation codes. Until then, users need to maintain same gender values as sent from DfE in GTVGNDR page.</div>
+
+        <span class="ph cmd">If the data does not exist, you can add the data manually to the GTVGNDR page as mentioned in the following table.</span>
+        
+<table border="1" frame="hsides" rules="rows" cellpadding="4" cellspacing="0" summary="" class="simpletable choicetable choicetableborder">
+<colgroup><col style="width:44.052863436123346%"><col style="width:55.947136563876654%"></colgroup><thead><tr class="sthead chhead"><th class="stentry choptionhd" style="vertical-align:bottom;text-align:left;" id="d14831e58-option"> GTVGNDR_GNDR_CODE</th>
+<th class="stentry chdeschd" style="vertical-align:bottom;text-align:left;" id="d14831e58-desc">GTVGNDR_GNDR_DESC</th></tr></thead>
+<tbody><tr class="strow chrow">
+            <th style="vertical-align:top;" headers="d14831e58-option" id="d14831e71" class="stentry choption">1</th>
+
+            <td style="vertical-align:top;" headers="d14831e58-desc d14831e71" class="stentry chdesc">Male</td>
+
+          </tr>
+<tr class="strow chrow">
+            <th style="vertical-align:top;" headers="d14831e58-option" id="d14831e80" class="stentry choption">2</th>
+
+            <td style="vertical-align:top;" headers="d14831e58-desc d14831e80" class="stentry chdesc">Female</td>
+
+          </tr>
+<tr class="strow chrow">
+            <th style="vertical-align:top;" headers="d14831e58-option" id="d14831e89" class="stentry choption">3</th>
+
+            <td style="vertical-align:top;" headers="d14831e58-desc d14831e89" class="stentry chdesc">Other</td>
+
+          </tr>
+</tbody></table>
+
+        <div class="itemgroup info">As a part of Banner Student 8.22 release, the Disability codes are available for the Social Economic Identity Code - DFE DISABILITY.</div>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Access the <span class="keyword wintitle">Social Economic Identity Rules (GOASEID)</span> page.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">For the Social Economic Identity Code specified in the key block, select the <kbd class="ph userinput">DFE DISABILITY</kbd> value from the LOV to view the disability codes compliant with DfE. </span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Click <a class="xref ft-external-link" href="https://www.hesa.ac.uk/collection/c19053/e/disable" target="_blank" rel="noopener">https://www.hesa.ac.uk/collection/c19053/e/disable</a> refer to the HESA disability codes sent by DfE.</span>
+        <div class="itemgroup info">As a part of Banner Student 8.22 release, the Ethnicity codes are available for the Social Economic Identity Code - DFE ETHINICITY.</div>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Access the <span class="keyword wintitle">Social Economic Identity Rules (GOASEID)</span> page.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">For the Social Economic Identity Code specified in the key block, select the <kbd class="ph userinput">DFE ETHINICITY</kbd> value from the LOV to view the ethnicity codes compliant with DfE. </span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Click <a class="xref ft-external-link" href="https://www.hesa.ac.uk/collection/c19053/e/ethnic" target="_blank" rel="noopener">https://www.hesa.ac.uk/collection/c19053/e/ethnic</a> refer to the HESA ethnic codes sent by DfE.</span>
+        <div class="itemgroup info">As a part of Banner Student 8.22.1 release, the ISO 3166-3 codes nationality codes are available to update the nation codes in the GORPSID page.</div>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Access the <span class="keyword wintitle">Social Economic Identity Rules (GOASEID)</span> page.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">For the Social Economic Identity Code specified in the key block, select the <kbd class="ph userinput">DFE NATION</kbd> value from the LOV to view the nation codes compliant with DfE. </span>
+      </li>
+</ol>
+
+  </div>
+
+</div></div></section>
+<section id="t-170"><h4>Set up Crosswalk Rules</h4><div class="content-locale-en-US content-locale-en"><div id="t_map_dfe_setup_crosswalk_rules"><div class="body taskbody"><p class="shortdesc">You need to set up the EDI Cross-Reference Rules (SOAXREF) page for <span class="keyword">DfE</span> applications processing to map <span class="keyword">DfE</span> fields for <span class="keyword">Banner</span>.</p>
+
+    <div class="section context"><div class="tasklabel"><h2 class="sectiontitle tasklabel">About this task</h2></div>
+      <div class="note"><span class="notetitle">Note:</span> For all SOAXREF configurations listed in this section, the EDI check box in SOAXREF page should be selected against all records for <span class="keyword">DfE</span> Ellucian recommends that you use the Electronic Qualifier as DFE for records included for <span class="keyword">DfE</span> applications.<p class="p">For any of your other mappings that you require for your institutions, review the incoming DfE values. If you are unable to use the values set up in the respective validation pages directly, create mappings in the SOAXREF page for the needed cross-reference labels.</p>
+</div>
+
+    </div>
+
+  </div>
+
+</div></div></section>
+<section id="t-180"><h5>Campus or site codes</h5><div class="content-locale-en-US content-locale-en"><div id="t_dfe_campus_code_crosswalk_rules"><div class="body taskbody"><p class="shortdesc">Map campus or site codes to Banner.</p>
+
+    <div class="tasklabel"><h2 class="sectiontitle tasklabel">Procedure</h2></div><ol class="ol steps"><li class="li step stepexpand">
+        <span class="ph cmd">Access the <span class="keyword wintitle">EDI Cross-Reference Rules (SOAXREF</span>) page.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">In the key block, enter <kbd class="ph userinput">STVCAMP</kbd> in Cross Reference Label.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Navigate to the data block.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Enter the Electronic Qualifier (SORXREF_EDI_QLFR) as <kbd class="ph userinput">DFE</kbd> </span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Enter <span class="keyword">DfE</span> sent code as the Electronic Value (SORXREF_EDI_VALUE).</span>
+        <div class="itemgroup info">You can refer to the Site Code value in the SAIEAST page for applications.</div>
+        <div class="itemgroup info">When DfE sends generic codes for site codes and you require to map these generic site codes to distinct campus codes in Banner, you can concatenate the DfE Provider Code with the DfE Site Code to create unique electronic values for site codes.s Follow the steps in this section.</div>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Select the <span class="ph uicontrol">EDI Indicator</span> check box (SORXREF_EDI_STANDARD_IND).</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Enter the STVCAMP equivalent provider code for your campus in <span class="ph uicontrol">Banner Value</span> field (SORXREF_BANNER_VALUE).</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Save the record.</span>
+        <div class="itemgroup info">For an institution that receives applications only for their provider code from DfE, you can enter the site code from DfE as is without any concatenation in the Electronic Value field. For example, if your site code value is -, enter  <kbd class="ph userinput">-</kbd> in the <span class="ph uicontrol">Electronic Value</span> field.</div>
+      </li>
+</ol>
+
+  </div>
+
+</div></div></section>
+<section id="t-190"><h5>Institution or Provider codes</h5><div class="content-locale-en-US content-locale-en"><div id="t_dfe_institution_provider_code"><div class="body taskbody"><p class="shortdesc">You must manage your own institution specific provider codes using SOAXREF page. To ensure communication to the appropriate end-points, the provider codes mapping is required for the <span class="keyword">DfE</span> Ethos APIs, that is, <span class="keyword">DfE</span>-application-submission-process and DfE-admission-decisions.</p>
+
+    <div class="tasklabel"><h2 class="sectiontitle tasklabel">Procedure</h2></div><ol class="ol steps"><li class="li step stepexpand">
+        <span class="ph cmd">Access the <span class="keyword wintitle">EDI Cross-Reference Rules (SOAXREF)</span> page.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">In the key block, enter <kbd class="ph userinput">STVSBGIC</kbd> in Cross Reference Label.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Navigate to the data block.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Enter the Electronic Qualifier (SORXREF_EDI_QLFR) as <kbd class="ph userinput">DFE</kbd> </span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Enter <span class="keyword">DfE</span> sent provider code as the Electronic Value (SORXREF_EDI_VALUE).</span>
+        <div class="itemgroup info">You can refer to the Provider Code value in the SAIEAST page for applications.</div>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Save the record.</span>
+      </li>
+</ol>
+
+  </div>
+
+</div></div></section>
+<section id="t-200"><h5>Decision codes (STVAPDC code)</h5><div class="content-locale-en-US content-locale-en"><div id="t_dfe_decision_codes_crosswalk_forms"><div class="body taskbody"><p class="shortdesc">The Decision Codes from <span class="keyword">DfE</span> must have an equivalent STVAPDC decision codes mapped to it. The dfe-application-submissions and dfe-admission-decisions APIs requires the decision codes to communicate any decision updates on applications to and from <span class="keyword">DfE</span>.</p>
+
+    <div class="tasklabel"><h2 class="sectiontitle tasklabel">Procedure</h2></div><ol class="ol steps"><li class="li step">
+        <span class="ph cmd">Access the <span class="keyword wintitle">EDI Cross-Reference Rules (SOAXREF)</span> page.</span>
+      </li>
+<li class="li step">
+        <span class="ph cmd">In the key block, enter <kbd class="ph userinput">STVAPDC</kbd> in Cross Reference Label.</span>
+      </li>
+<li class="li step">
+        <span class="ph cmd">Navigate to the data block.</span>
+      </li>
+<li class="li step">
+        <span class="ph cmd">Refer to the <span class="keyword">DfE</span> decision codes populated in the <span class="ph uicontrol">Electronic Value</span> field (SORXREF_EDI_QLFR). This data is delivered and you cannot update the value. If you attempt to update the delivered data, the API communication will fail.</span>
+      </li>
+<li class="li step">
+        <span class="ph cmd">Enter the STVAPDC codes defined in the <span class="ph uicontrol">Banner Value</span> field (SORXREF_BANNER_VALUE).</span>
+      </li>
+<li class="li step">
+        <span class="ph cmd">Save the record.</span>
+      </li>
+</ol>
+
+  </div>
+
+</div></div></section>
+<section id="t-210"><h5>Term codes</h5><div class="content-locale-en-US content-locale-en"><div id="t_term_codes"><div class="body taskbody"><p class="shortdesc">To update the Withdrawn status on all applications and to create new applications after confirmed defer offer, institutions must create term code mappings with the course start dates.</p>
+
+    <div class="tasklabel"><h2 class="sectiontitle tasklabel">Procedure</h2></div><ol class="ol steps"><li class="li step stepexpand">
+        <span class="ph cmd">Access the <span class="keyword wintitle">EDI Cross-Reference Rules (SOAXREF)</span> page. </span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">In the key block, enter <kbd class="ph userinput">STVTERM</kbd> in <span class="ph uicontrol">Cross Reference Label</span> field. </span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Navigate to the data block. </span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Enter <kbd class="ph userinput">DFE</kbd> as the Electronic Qualifier (SORXREF_EDI_QLFR).</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Enter the Course Start date in the YYYY-MM format.</span>
+        <div class="itemgroup info">For example, if the start date for applications from staging (SAIEAST) is 01/09/2021, then the electronic value must be 2021-09. Ellucian mandates institutions to map the applied course start date and offer start date for all courses to the respective term codes. </div>
+        <div class="itemgroup info">Ellucian mandates the mappings because, if you want to update the Withdrawn status for an application in the SAADCRV page and if there is an offer start date in staging, the <code class="ph codeph">dfe-application-submission-api</code> searches for the respective term. If the offer start date is blank, the API searches for the term that is mapped to the applied course start date.</div>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Enter the STVTERM code in the<span class="ph uicontrol">Banner Value</span> field.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Save the record.</span>
+      </li>
+</ol>
+
+  </div>
+
+</div></div></section>
+<section id="t-220"><h4>Set up Curricula Mapping for DfE courses</h4><div class="content-locale-en-US content-locale-en"><div id="t_setup_dfe_curricula_mapping_dfe_courses"><div class="body taskbody"><p class="shortdesc">Steps used to map <span class="keyword">DfE</span> course codes to <span class="keyword">Banner</span> courses.</p>
+
+    <div class="section prereq p"><div class="tasklabel"><h2 class="sectiontitle tasklabel">Before you begin</h2></div>In the Curriculum Rules Control (SOACTRL) page, you must select the <span class="ph uicontrol">Perform Curriculum Checking</span> (SOBCTRL_CURR_RULE_IND) option button to set as Yes.  The <code class="ph codeph">dfe-application-submission-process</code> API uses this setting to validate and update the curricula for admissions records, when there are changes to the offer course.</div>
+
+    <div class="tasklabel"><h2 class="sectiontitle tasklabel">Procedure</h2></div><ol class="ol steps"><li class="li step stepexpand">
+        <span class="ph cmd">Access the<span class="keyword wintitle"> Curriculum Mapping (SOACMAP)</span> page.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">In the Key block, specify the academic year of the mapping rules. </span>
+        <div class="itemgroup info">The Academic Year is not a mandatory field. You can directly navigate to the data block by leaving the Academic Year field value as blank.</div>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Go to the next block.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">From the <span class="ph uicontrol">Term</span> LOV field, select a term value.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">From the <span class="ph uicontrol">Programme</span> LOV field, select a program value.</span>
+        <div class="itemgroup info">Ellucian recommends that the level for the <span class="keyword">DfE</span> application type that you have already created in the STVWAPP page should match the level for curricula record in the SOACURR page. </div>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd"> The Campus field displays the campus value automatically if the value is already setup for respective curricula record in the SOACURR page. Else, select a campus value from the <span class="ph uicontrol">Campus</span> LOV field.</span>
+        <div class="itemgroup info">Institutions should configure the campus value in the SOACMAP page as a Banner value (SORXREF_BANNER_VALUE) for the associated <span class="keyword">DfE</span> campus value in the SOAXREF page for the Cross-Reference Label STVCAMP.</div>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">From the <span class="ph uicontrol">Major</span> LOV, select a major value.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">From the<span class="ph uicontrol"> Admit Category</span> LOV, select the value <kbd class="ph userinput">DFE</kbd>.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Enter the <span class="keyword">DfE</span> course code in the <span class="ph uicontrol">Admit Curriculum</span> field.</span>
+      </li>
+<li class="li step stepexpand"><strong>Optional: </strong>
+        <span class="ph cmd">Select the part of term.</span>
+      </li>
+<li class="li step stepexpand"><strong>Optional: </strong>
+        <span class="ph cmd">Ensure that the expiry date displayed on selecting the part of term is not past dated/expired. To select a future date, overwrite the selected date.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Select a Source/Background Institution from the LOV.</span>
+        <div class="itemgroup info">Institutions should configure the institution value in the SOACMAP page as a Banner value (SORXREF_BANNER_VALUE) for the associated provider or institution code in the SOAXREF page for the Cross-Reference Label STVSBGIC.</div>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Ensure to select the <span class="ph uicontrol">Active</span> check box.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Select a value (Full-Time/ Part-Time/ None) from the LOV that adheres to value sent from <span class="keyword">DfE</span> for a course.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Save the record.</span>
+      </li>
+</ol>
+
+  </div>
+
+</div></div></section>
+<section id="t-230"><h4>Set up Banner Event Publisher</h4><div class="content-locale-en-US content-locale-en"><div id="c_banner_event_publisher_setup"><div class="body conbody"><p class="shortdesc">After you apply the Conditional Decision in <span class="keyword">Banner</span>, the BEP event for decisions is triggered. The BEP event trigger is observed as a Change Notification in the Ethos Hub. </p>
+
+    <div class="p">Configure the following BEP (Banner Event Publisher) event names for DfE-admission-decisions API:<ul class="ul"> <li class="li">EEDM.STU.DfeAdmissionDecisions.SARAPPD, where SARAPPD configuration is enabled by default for the decision pipeline to communicate the decision.  If you disable the SARAPPD page configuration, the BEP event cannot publish the decisions.</li>
+
+      <li class="li">EEDM.STU.DfeAdmissionDecisions.SARACMT, where SARACMT configuration is enabled by default for the decision pipeline to communicate the DfE notes.  If you disable the SARACMT page configuration, the BEP event cannot publish the DfE notes.</li>
+ </ul>
+</div>
+
+  </div>
+
+</div></div></section>
+<section id="t-240"><h3>Configure DfE Application Processing in Ethos Integration</h3><div class="content-locale-en-US content-locale-en"><div id="c_config_dfe_ethos_int_for_banner"><p class="shortdesc">Perform the setup that supports communication between <span class="keyword">DfE Application Processing</span> and <span class="keyword">Banner</span> through Ethos Integration.</p>
+
+  
+</div></div></section>
+<section id="t-250"><h4>Connect Banner to Ethos Integration for DfE Apply</h4><div class="content-locale-en-US content-locale-en"><div id="c_connect_banner_ethos_int_dfe"><div class="body conbody"><p class="shortdesc"><span class="keyword">DfE Application Processing</span> communicates with Banner through <span class="keyword">Ethos Integration</span>. To support <span class="keyword">DfE Application Processing</span>, you need to connect Banner to <span class="keyword">Ethos Integration</span>.</p>
+
+    <p class="p">For the procedures, see <span class="xref ft-internal-xlink" data-ft-warning="excluded-from-rendering" data-clusterid="ID_B_STUGEN_master_2026-03-08/id_b_stugen/stu_integration/c_connect_banner_ethos">Connect Banner to Ethos Integration</span>.</p>
+
+    <p class="p">That setup includes installing the Banner Ethos APIs (Student API and Integration API). <span class="keyword">DfE Application Processing</span> requires Banner Ethos API 9.38 or later.</p>
+
+    <div class="p">The Ethos application that you create for the Banner Student API must own the resources listed below. That will be the case if you create that Ethos application from the catalog, or use the <span class="ph uicontrol">Auto-Configure Resources</span> feature in <span class="keyword">Ethos Integration</span> to update the owned resources after installing the required Ethos API version, as described in <span class="xref ft-internal-xlink" data-ft-warning="excluded-from-rendering" data-clusterid="ID_B_STUGEN_master_2026-03-08/id_b_stugen/stu_integration/t_update_resources_banner_non_mep">Update Banner's owned resources after an Ethos API upgrade</span>.<ul class="ul">
+      <li class="li">dfe-admission-decisions</li>
+
+      <li class="li">dfe-application-submission-process</li>
+
+      </ul>
+</div>
+
+    <p class="p"></p>
+
+  </div>
+
+</div></div></section>
+<section id="t-260"><h4>Create a Banner user for proxy API requests</h4><div class="content-locale-en-US content-locale-en"><div id="c_dfe_apply_banner_user_proxy_requests"><div class="body conbody"><p class="shortdesc">Create a user in Banner to support proxy API requests from <span class="keyword">DfE Application Processing</span>.</p>
+
+    <p class="p"><span class="keyword">DfE Application Processing</span> makes API requests to Banner through <span class="keyword">Ethos Integration</span>. Each request includes the credentials for a Banner user with permissions to access the data. You will enter those user credentials in the Add Application wizard when you create the Ethos application for <span class="keyword">DfE Application Processing</span>.</p>
+
+    <div class="p">Create the user as described in <span class="xref ft-internal-xlink" data-ft-warning="excluded-from-rendering" data-clusterid="ID_B_STUGEN_master_2026-03-08/id_b_stugen/stu_integration/c_create_authorize_banner_users">Create and Authorize a Banner User to Enable Proxy API calls for Ethos Integration</span>. Assign that user the following security objects:<ul class="ul"> <li class="li">API_DFE_SUBMISSION_PROCESS</li>
+ <li class="li">API_DFE_ADMISSION_DECISIONS</li>
+ </ul>
+</div>
+
+  </div>
+
+</div></div></section>
+<section id="t-270"><h4>Create an application in Ethos Integration for DfE Application Processing</h4><div class="content-locale-en-US content-locale-en"><div id="t_create_app_dfe_apply_for_banner"><div class="body taskbody"><p class="shortdesc"> <span class="ph">The application record contains basic information about</span> <span class="keyword">DfE Application Processing</span> and how it interacts with Banner through <span class="keyword">Ethos Integration</span>.</p>
+
+    <div class="section prereq p"><div class="tasklabel"><h2 class="sectiontitle tasklabel">Before you begin</h2></div>The Add Application wizard will prompt you for the username and password for a user account that supports proxy API requests. Before running the wizard, create that user account using the procedure in <span class="xref ft-internal-link" title="Create a user in Banner to support proxy API requests from DfE Application Processing." data-ft-warning="excluded-from-rendering" data-mapid="JJ5gcpRaQKyOewyqPdFAKQ" data-tocid="FgieJRzaNV3bsjFGbHxkpQ">Create a Banner user for proxy API requests</span>.</div>
+
+    <div class="section context"><div class="tasklabel"><h2 class="sectiontitle tasklabel">About this task</h2></div>Note that multiple Ethos applications are needed to support <span class="keyword">DfE Application Processing</span> with Banner:<ul class="ul"> <li class="li">Ethos applications for the Banner Student API and the Banner Integration API, which is part of setting up Banner in <span class="keyword">Ethos Integration</span>.</li>
+ <li class="li">An Ethos application for <span class="keyword">DfE Application Processing</span>, which you will create using the procedure below.</li>
+ </ul>
+</div>
+
+    <div class="tasklabel"><h2 class="sectiontitle tasklabel">Procedure</h2></div><ol class="ol steps"><li class="li step">
+        
+        <span class="ph cmd" id="t_create_app_dfe_apply_for_banner__d115e58"><span class="ph">On the <span class="keyword">Ethos Integration</span> header bar, click</span> the gear icon <span class="ph"><img class="image ell-icon" src="images/01-department-for-education-dfe-3.png" alt="" data-ft-asset-display-name="settings.png" data-ft-resource-id="tOCuJWRYIPPIGmT_BbKcXQ-JJ5gcpRaQKyOewyqPdFAKQ"></span> and then select the Ethos environment where you want to perform this procedure.</span>
+      </li>
+<li class="li step">
+        <span class="ph cmd" id="t_create_app_dfe_apply_for_banner__d115e81"><span class="ph">On the <span class="keyword">Ethos Integration</span> header bar, click</span> <span class="ph uicontrol">Applications</span>.</span>
+      </li>
+<li class="li step">
+        <span class="ph cmd">In the <span class="ph uicontrol">Create New App</span> area of the page, click <span class="ph uicontrol">Manually</span>.</span>
+      </li>
+<li class="li step">
+        <span class="ph cmd">In the <span class="ph uicontrol">Add Application</span> dialog box, do the following:</span>
+        <ol type="a" class="ol substeps">
+          <li class="li substep">
+            
+            <span class="ph cmd">Select <span class="ph uicontrol">Configure REST API proxy</span>.</span>
+          </li>
+
+          <li class="li substep">
+            <span class="ph cmd">Click <span class="ph uicontrol">Continue</span>.</span>
+          </li>
+
+        </ol>
+
+      </li>
+<li class="li step">
+        <span class="ph cmd">On the <span class="keyword wintitle">Application Details</span> page of the wizard, enter the information described below and then click <span class="ph uicontrol">Next</span>.</span>
+        
+<table border="1" frame="hsides" rules="rows" cellpadding="4" cellspacing="0" summary="" class="simpletable choicetable choicetableborder">
+<colgroup><col style="width:33.33333333333333%"><col style="width:66.66666666666666%"></colgroup><thead><tr class="sthead chhead"><th class="stentry choptionhd" style="vertical-align:bottom;text-align:left;" id="d14157e166-option">Field</th>
+<th class="stentry chdeschd" style="vertical-align:bottom;text-align:left;" id="d14157e166-desc">Entry</th></tr></thead>
+<tbody><tr class="strow chrow">
+            <th style="vertical-align:top;" headers="d14157e166-option" id="d14157e179" class="stentry choption">Application name</th>
+
+            <td style="vertical-align:top;" headers="d14157e166-desc d14157e179" class="stentry chdesc">
+              <span class="ph">Enter a unique name for this application.</span>
+              <p class="p">Example name: <kbd class="ph userinput">DfE Apply</kbd></p>
+
+              <p class="p">Make sure the name uniquely identifies this application. When you need to select an application elsewhere in the <span class="keyword">Ethos Integration</span> user interface, you will use the name to select the correct application.</p>
+
+            </td>
+
+          </tr>
+<tr class="strow chrow">
+            <th style="vertical-align:top;" headers="d14157e166-option" id="d14157e202" class="stentry choption">Description</th>
+
+            <td style="vertical-align:top;" headers="d14157e166-desc d14157e202" class="stentry chdesc">(Optional) Enter a description of this application.</td>
+
+          </tr>
+</tbody></table>
+
+      </li>
+<li class="li step">
+        <span class="ph cmd">On the <span class="keyword wintitle">Add Source Applications</span> page of the wizard, set up proxy API requests:</span>
+        <ol type="a" class="ol substeps">
+          <li class="li substep substepexpand" id="t_create_app_dfe_apply_for_banner__j5r_ynl_yjb">
+            <span class="ph cmd">Click <span class="ph uicontrol">Add Source Application</span> to open the <span class="ph uicontrol">Add Source Application</span> dialog box.</span>
+          </li>
+
+          <li class="li substep substepexpand">
+            <span class="ph cmd">In the <span class="ph uicontrol">Source Application</span> field, select the Ethos application that you created for Banner.</span>
+            <div class="itemgroup info"><span class="ph" id="t_create_app_dfe_apply_for_banner__d115e371">For Banner, you created two applications in <span class="keyword">Ethos Integration</span>: one for the Banner Student API and one for the Banner Integration API. Perform these steps twice - one time for each Banner application. You can enter the same credentials (for the same Banner user) in both cases.</span></div>
+          </li>
+
+          <li class="li substep substepexpand">
+            <span class="ph cmd">Enter the username and password for the Banner user account that supports proxy API requests.</span>
+          </li>
+
+          <li class="li substep substepexpand">
+            <span class="ph cmd"> In the <span class="ph uicontrol">Select a resource</span> field, select any Ethos resource to which that user account has permissions in the ERP.</span>
+            <div class="itemgroup info">You can select any resource for which you granted that user account permissions in the ERP. For example, persons. Ethos Integration uses that resource to validate the user credentials by confirming that the user account has access to at least one resource in the ERP. After the credentials are validated, the application will have access to all resources for which the user account has been granted permissions.</div>
+          </li>
+
+          <li class="li substep substepexpand" id="t_create_app_dfe_apply_for_banner__bz2_ynl_yjb">
+            <span class="ph cmd">Click <span class="ph uicontrol">Add</span>.</span>
+          </li>
+
+          <li class="li substep substepexpand">
+            <span class="ph cmd">Click <span class="ph uicontrol">Next</span>.</span>
+          </li>
+
+        </ol>
+
+      </li>
+<li class="li step">
+        <span class="ph cmd">On the <span class="keyword wintitle">Add Subscriptions</span> page of the wizard, set up subscriptions:</span>
+        <ol type="a" class="ol substeps">
+          <li class="li substep">
+            <span class="ph cmd">Click <span class="ph uicontrol">Add Subscriptions</span> to open the <span class="ph uicontrol">Add Subscriptions</span> dialog box.</span>
+          </li>
+
+          <li class="li substep">
+            <span class="ph cmd">Select <span class="ph uicontrol">dfe-admission-decisions</span>.</span>
+          </li>
+
+          <li class="li substep">
+            <span class="ph cmd">Click <span class="ph uicontrol">Add</span>.</span>
+          </li>
+
+          <li class="li substep">
+            <span class="ph cmd">Click <span class="ph uicontrol">Next</span>.</span>
+          </li>
+
+        </ol>
+
+      </li>
+<li class="li step">
+        <span class="ph cmd" id="t_create_app_dfe_apply_for_banner__d115e207">Click <span class="ph uicontrol">View Application</span> if you are ready to configure app-specific settings, or click <span class="ph uicontrol">Back to Applications</span> if you want to just create the app now and configure settings later.</span>
+      </li>
+</ol>
+
+  </div>
+
+</div></div></section>
+<section id="t-280"><h4>Create a crosswalk to map Banner decisions</h4><div class="content-locale-en-US content-locale-en"><div id="t_banner_decisions_crosswalk"><div class="body taskbody"><p class="shortdesc">The <code class="ph codeph">decisions</code> crosswalk maps your Banner decisions to DfE decision endpoints.</p>
+
+    <div class="section context"><div class="tasklabel"><h2 class="sectiontitle tasklabel">About this task</h2></div>The <a class="xref ft-external-link" href="https://sandbox.apply-for-teacher-training.service.gov.uk/api-docs/reference" target="_blank" rel="noopener">DfE API Reference</a> describes the endpoints for POST requests to the API. To ensure that <span class="keyword">DfE Application Processing</span> sends each decision to the correct endpoint, you must map your Banner decisions to the appropriate DfE decision endpoints.</div>
+
+    <div class="tasklabel"><h2 class="sectiontitle tasklabel">Procedure</h2></div><ol class="ol steps"><li class="li step">
+        
+        <span class="ph cmd" id="t_banner_decisions_crosswalk__d115e58"><span class="ph">On the <span class="keyword">Ethos Integration</span> header bar, click</span> the gear icon <span class="ph"><img class="image ell-icon" src="images/01-department-for-education-dfe-3.png" alt="" data-ft-asset-display-name="settings.png" data-ft-resource-id="tOCuJWRYIPPIGmT_BbKcXQ-JJ5gcpRaQKyOewyqPdFAKQ"></span> and then select the Ethos environment where you want to perform this procedure.</span>
+      </li>
+<li class="li step">
+        <span class="ph cmd">Click the <span class="ph uicontrol">Crosswalks</span> tab.</span>
+      </li>
+<li class="li step">
+        <span class="ph cmd">Click <span class="ph uicontrol">Add a new Crosswalk</span> <span class="ph"><img class="image ell-icon" src="images/01-department-for-education-dfe-4.png" alt="" data-ft-asset-display-name="add.png" data-ft-resource-id="Swj~KjMTR8ZlFVQuDT0Nvg-JJ5gcpRaQKyOewyqPdFAKQ"></span> to create a new crosswalk.</span>
+      </li>
+<li class="li step">
+        <span class="ph cmd">In the <span class="keyword wintitle">Add new Crosswalk</span> dialog box, enter <kbd class="ph userinput">decisions</kbd> and then click <span class="ph uicontrol">Create</span>.</span>
+      </li>
+<li class="li step">
+        <span class="ph cmd">Leave the <span class="ph uicontrol">Default Target Value</span> field blank.</span>
+      </li>
+<li class="li step">
+        <span class="ph cmd">Set up the <code class="ph codeph">offer</code> mapping:</span>
+        
+<table border="1" frame="hsides" rules="rows" cellpadding="4" cellspacing="0" summary="" class="simpletable choicetable choicetableborder">
+<colgroup><col style="width:33.33333333333333%"><col style="width:66.66666666666666%"></colgroup><thead><tr class="sthead chhead"><th class="stentry choptionhd" style="vertical-align:bottom;text-align:left;" id="d17498e125-option">Field</th>
+<th class="stentry chdeschd" style="vertical-align:bottom;text-align:left;" id="d17498e125-desc">Entry</th></tr></thead>
+<tbody><tr class="strow chrow">
+            <th style="vertical-align:top;" headers="d17498e125-option" id="d17498e138" class="stentry choption">Mapping Name</th>
+
+            <td style="vertical-align:top;" headers="d17498e125-desc d17498e138" class="stentry chdesc">(Optional) Enter a descriptive name for this mapping.<p class="p">Example: <kbd class="ph userinput">DfE offers</kbd></p>
+</td>
+
+          </tr>
+<tr class="strow chrow">
+            <th style="vertical-align:top;" headers="d17498e125-option" id="d17498e151" class="stentry choption">Target Value</th>
+
+            <td style="vertical-align:top;" headers="d17498e125-desc d17498e151" class="stentry chdesc">Enter <kbd class="ph userinput">offer</kbd></td>
+
+          </tr>
+<tr class="strow chrow">
+            <th style="vertical-align:top;" headers="d17498e125-option" id="d17498e162" class="stentry choption">Source Values</th>
+
+            <td style="vertical-align:top;" headers="d17498e125-desc d17498e162" class="stentry chdesc">Enter the following values. After entering each value, click <span class="ph uicontrol">New Source Value</span> to enter the next value.<ul class="ul"> <li class="li"><kbd class="ph userinput">Make a Conditional Offer</kbd></li>
+ <li class="li"><kbd class="ph userinput">Make an Unconditional Offer</kbd></li>
+ <li class="li"><kbd class="ph userinput">Change Course Conditional</kbd></li>
+ <li class="li"><kbd class="ph userinput">Change Course Unconditional</kbd></li>
+ </ul>
+</td>
+
+          </tr>
+</tbody></table>
+
+      </li>
+<li class="li step">
+        <span class="ph cmd">Click <span class="ph uicontrol">New Mapping</span> and then set up the <code class="ph codeph">reject</code> mapping:</span>
+        
+<table border="1" frame="hsides" rules="rows" cellpadding="4" cellspacing="0" summary="" class="simpletable choicetable choicetableborder">
+<colgroup><col style="width:33.33333333333333%"><col style="width:66.66666666666666%"></colgroup><thead><tr class="sthead chhead"><th class="stentry choptionhd" style="vertical-align:bottom;text-align:left;" id="d17498e203-option">Field</th>
+<th class="stentry chdeschd" style="vertical-align:bottom;text-align:left;" id="d17498e203-desc">Entry</th></tr></thead>
+<tbody><tr class="strow chrow">
+            <th style="vertical-align:top;" headers="d17498e203-option" id="d17498e216" class="stentry choption">Mapping Name</th>
+
+            <td style="vertical-align:top;" headers="d17498e203-desc d17498e216" class="stentry chdesc">(Optional) Enter a descriptive name for this mapping.<p class="p">Example: <kbd class="ph userinput">DfE rejections</kbd></p>
+</td>
+
+          </tr>
+<tr class="strow chrow">
+            <th style="vertical-align:top;" headers="d17498e203-option" id="d17498e229" class="stentry choption">Target Value</th>
+
+            <td style="vertical-align:top;" headers="d17498e203-desc d17498e229" class="stentry chdesc">Enter <kbd class="ph userinput">reject</kbd></td>
+
+          </tr>
+<tr class="strow chrow">
+            <th style="vertical-align:top;" headers="d17498e203-option" id="d17498e240" class="stentry choption">Source Values</th>
+
+            <td style="vertical-align:top;" headers="d17498e203-desc d17498e240" class="stentry chdesc">Enter the following values. After entering the first value, click <span class="ph uicontrol">New Source Value</span> to enter the next value.<p class="p"><kbd class="ph userinput">Reject</kbd></p>
+<p class="p"><kbd class="ph userinput">Withdraw</kbd></p>
+</td>
+
+          </tr>
+</tbody></table>
+
+      </li>
+<li class="li step">
+        <span class="ph cmd">Click <span class="ph uicontrol">New Mapping</span> and then set up the <code class="ph codeph">confirm-conditions-met</code> mapping:</span>
+        
+<table border="1" frame="hsides" rules="rows" cellpadding="4" cellspacing="0" summary="" class="simpletable choicetable choicetableborder">
+<colgroup><col style="width:33.33333333333333%"><col style="width:66.66666666666666%"></colgroup><thead><tr class="sthead chhead"><th class="stentry choptionhd" style="vertical-align:bottom;text-align:left;" id="d17498e269-option">Field</th>
+<th class="stentry chdeschd" style="vertical-align:bottom;text-align:left;" id="d17498e269-desc">Entry</th></tr></thead>
+<tbody><tr class="strow chrow">
+            <th style="vertical-align:top;" headers="d17498e269-option" id="d17498e282" class="stentry choption">Mapping Name</th>
+
+            <td style="vertical-align:top;" headers="d17498e269-desc d17498e282" class="stentry chdesc">(Optional) Enter a descriptive name for this mapping.</td>
+
+          </tr>
+<tr class="strow chrow">
+            <th style="vertical-align:top;" headers="d17498e269-option" id="d17498e291" class="stentry choption">Target Value</th>
+
+            <td style="vertical-align:top;" headers="d17498e269-desc d17498e291" class="stentry chdesc">Enter <kbd class="ph userinput">confirm-conditions-met</kbd></td>
+
+          </tr>
+<tr class="strow chrow">
+            <th style="vertical-align:top;" headers="d17498e269-option" id="d17498e302" class="stentry choption">Source Values</th>
+
+            <td style="vertical-align:top;" headers="d17498e269-desc d17498e302" class="stentry chdesc">Enter <kbd class="ph userinput">Conditions Met</kbd></td>
+
+          </tr>
+</tbody></table>
+
+      </li>
+<li class="li step">
+        <span class="ph cmd">Click <span class="ph uicontrol">New Mapping</span> and then set up the <code class="ph codeph">conditions-not-met</code> mapping:</span>
+        
+<table border="1" frame="hsides" rules="rows" cellpadding="4" cellspacing="0" summary="" class="simpletable choicetable choicetableborder">
+<colgroup><col style="width:33.33333333333333%"><col style="width:66.66666666666666%"></colgroup><thead><tr class="sthead chhead"><th class="stentry choptionhd" style="vertical-align:bottom;text-align:left;" id="d17498e324-option">Field</th>
+<th class="stentry chdeschd" style="vertical-align:bottom;text-align:left;" id="d17498e324-desc">Entry</th></tr></thead>
+<tbody><tr class="strow chrow">
+            <th style="vertical-align:top;" headers="d17498e324-option" id="d17498e337" class="stentry choption">Mapping Name</th>
+
+            <td style="vertical-align:top;" headers="d17498e324-desc d17498e337" class="stentry chdesc">(Optional) Enter a descriptive name for this mapping.</td>
+
+          </tr>
+<tr class="strow chrow">
+            <th style="vertical-align:top;" headers="d17498e324-option" id="d17498e346" class="stentry choption">Target Value</th>
+
+            <td style="vertical-align:top;" headers="d17498e324-desc d17498e346" class="stentry chdesc">Enter <kbd class="ph userinput">conditions-not-met</kbd></td>
+
+          </tr>
+<tr class="strow chrow">
+            <th style="vertical-align:top;" headers="d17498e324-option" id="d17498e357" class="stentry choption">Source Values</th>
+
+            <td style="vertical-align:top;" headers="d17498e324-desc d17498e357" class="stentry chdesc">Enter <kbd class="ph userinput">Conditions Not Met</kbd></td>
+
+          </tr>
+</tbody></table>
+
+      </li>
+<li class="li step">
+        <span class="ph cmd">Click <span class="ph uicontrol">New Mapping</span> and then set up the <code class="ph codeph">defer-offer</code> mapping:</span>
+        
+<table border="1" frame="hsides" rules="rows" cellpadding="4" cellspacing="0" summary="" class="simpletable choicetable choicetableborder">
+<colgroup><col style="width:33.33333333333333%"><col style="width:66.66666666666666%"></colgroup><thead><tr class="sthead chhead"><th class="stentry choptionhd" style="vertical-align:bottom;text-align:left;" id="d17498e379-option">Field</th>
+<th class="stentry chdeschd" style="vertical-align:bottom;text-align:left;" id="d17498e379-desc">Entry</th></tr></thead>
+<tbody><tr class="strow chrow">
+            <th style="vertical-align:top;" headers="d17498e379-option" id="d17498e392" class="stentry choption">Mapping Name</th>
+
+            <td style="vertical-align:top;" headers="d17498e379-desc d17498e392" class="stentry chdesc">(Optional) Enter a descriptive name for this mapping.</td>
+
+          </tr>
+<tr class="strow chrow">
+            <th style="vertical-align:top;" headers="d17498e379-option" id="d17498e401" class="stentry choption">Target Value</th>
+
+            <td style="vertical-align:top;" headers="d17498e379-desc d17498e401" class="stentry chdesc">Enter <kbd class="ph userinput">defer-offer</kbd></td>
+
+          </tr>
+<tr class="strow chrow">
+            <th style="vertical-align:top;" headers="d17498e379-option" id="d17498e412" class="stentry choption">Source Values</th>
+
+            <td style="vertical-align:top;" headers="d17498e379-desc d17498e412" class="stentry chdesc">Enter <kbd class="ph userinput">Defer Offer</kbd></td>
+
+          </tr>
+</tbody></table>
+
+      </li>
+<li class="li step">
+        <span class="ph cmd">Click <span class="ph uicontrol">New Mapping</span> and then set up the <code class="ph codeph">confirm-defer-offer</code> mapping:</span>
+        
+<table border="1" frame="hsides" rules="rows" cellpadding="4" cellspacing="0" summary="" class="simpletable choicetable choicetableborder">
+<colgroup><col style="width:33.33333333333333%"><col style="width:66.66666666666666%"></colgroup><thead><tr class="sthead chhead"><th class="stentry choptionhd" style="vertical-align:bottom;text-align:left;" id="d17498e434-option">Field</th>
+<th class="stentry chdeschd" style="vertical-align:bottom;text-align:left;" id="d17498e434-desc">Entry</th></tr></thead>
+<tbody><tr class="strow chrow">
+            <th style="vertical-align:top;" headers="d17498e434-option" id="d17498e447" class="stentry choption">Mapping Name</th>
+
+            <td style="vertical-align:top;" headers="d17498e434-desc d17498e447" class="stentry chdesc">(Optional) Enter a descriptive name for this mapping.</td>
+
+          </tr>
+<tr class="strow chrow">
+            <th style="vertical-align:top;" headers="d17498e434-option" id="d17498e456" class="stentry choption">Target Value</th>
+
+            <td style="vertical-align:top;" headers="d17498e434-desc d17498e456" class="stentry chdesc">Enter <kbd class="ph userinput">confirm-deferred-offer</kbd></td>
+
+          </tr>
+<tr class="strow chrow">
+            <th style="vertical-align:top;" headers="d17498e434-option" id="d17498e467" class="stentry choption">Source Values</th>
+
+            <td style="vertical-align:top;" headers="d17498e434-desc d17498e467" class="stentry chdesc">Enter <kbd class="ph userinput">Confirmed Defer Offer</kbd></td>
+
+          </tr>
+</tbody></table>
+
+      </li>
+<li class="li step">
+        <span class="ph cmd">Click <span class="ph uicontrol">New Mapping</span> and then set up the <code class="ph codeph">Withdraw at candidate request</code> mapping:</span>
+        
+<table border="1" frame="hsides" rules="rows" cellpadding="4" cellspacing="0" summary="" class="simpletable choicetable choicetableborder">
+<colgroup><col style="width:33.33333333333333%"><col style="width:66.66666666666666%"></colgroup><thead><tr class="sthead chhead"><th class="stentry choptionhd" style="vertical-align:bottom;text-align:left;" id="d17498e490-option">Field</th>
+<th class="stentry chdeschd" style="vertical-align:bottom;text-align:left;" id="d17498e490-desc">Entry</th></tr></thead>
+<tbody><tr class="strow chrow">
+            <th style="vertical-align:top;" headers="d17498e490-option" id="d17498e503" class="stentry choption">Mapping Name</th>
+
+            <td style="vertical-align:top;" headers="d17498e490-desc d17498e503" class="stentry chdesc">(Optional) Enter a descriptive name for this mapping.</td>
+
+          </tr>
+<tr class="strow chrow">
+            <th style="vertical-align:top;" headers="d17498e490-option" id="d17498e512" class="stentry choption">Target Value</th>
+
+            <td style="vertical-align:top;" headers="d17498e490-desc d17498e512" class="stentry chdesc">Enter <kbd class="ph userinput">withdraw</kbd></td>
+
+          </tr>
+<tr class="strow chrow">
+            <th style="vertical-align:top;" headers="d17498e490-option" id="d17498e523" class="stentry choption">Source Values</th>
+
+            <td style="vertical-align:top;" headers="d17498e490-desc d17498e523" class="stentry chdesc">Enter <kbd class="ph userinput">Withdraw at candidate request</kbd></td>
+
+          </tr>
+</tbody></table>
+
+      </li>
+<li class="li step">
+        <span class="ph cmd">Click <span class="ph uicontrol">New Mapping</span> and then set up the <code class="ph codeph">Reject By Codes</code> mapping:</span>
+        
+<table border="1" frame="hsides" rules="rows" cellpadding="4" cellspacing="0" summary="" class="simpletable choicetable choicetableborder">
+<colgroup><col style="width:33.33333333333333%"><col style="width:66.66666666666666%"></colgroup><thead><tr class="sthead chhead"><th class="stentry choptionhd" style="vertical-align:bottom;text-align:left;" id="d17498e545-option">Field</th>
+<th class="stentry chdeschd" style="vertical-align:bottom;text-align:left;" id="d17498e545-desc">Entry</th></tr></thead>
+<tbody><tr class="strow chrow">
+            <th style="vertical-align:top;" headers="d17498e545-option" id="d17498e558" class="stentry choption">Mapping Name</th>
+
+            <td style="vertical-align:top;" headers="d17498e545-desc d17498e558" class="stentry chdesc">(Optional) Enter a descriptive name for this mapping.</td>
+
+          </tr>
+<tr class="strow chrow">
+            <th style="vertical-align:top;" headers="d17498e545-option" id="d17498e567" class="stentry choption">Target Value</th>
+
+            <td style="vertical-align:top;" headers="d17498e545-desc d17498e567" class="stentry chdesc">Enter <kbd class="ph userinput">reject-by-codes</kbd></td>
+
+          </tr>
+<tr class="strow chrow">
+            <th style="vertical-align:top;" headers="d17498e545-option" id="d17498e578" class="stentry choption">Source Values</th>
+
+            <td style="vertical-align:top;" headers="d17498e545-desc d17498e578" class="stentry chdesc">Enter <kbd class="ph userinput">Reject By Codes</kbd></td>
+
+          </tr>
+</tbody></table>
+
+      </li>
+<li class="li step">
+        <span class="ph cmd">Click <span class="ph uicontrol">Save</span>.</span>
+      </li>
+</ol>
+
+  </div>
+
+</div></div></section>
+<section id="t-290"><h3>Set up automatic processing of applications</h3><div class="content-locale-en-US content-locale-en"><div id="c_set_up_auto_app_processing"><p class="shortdesc">Set up the pipeline jobs in Ethos Integration and the processes in Banner that process applications and decisions.</p>
+
+  
+</div></div></section>
+<section id="t-300"><h4>ID_B_STUGEN_master_2026-03-08/id_ethos/wh_dfe_apply/t_process_incoming_app.html</h4></section>
+<section id="t-310"><h4>ID_B_STUGEN_master_2026-03-08/id_ethos/wh_dfe_apply/t_process_app_decisions.html</h4></section>
+<section id="t-320"><h4>Schedule Banner processes</h4><div class="content-locale-en-US content-locale-en"><div id="c_schedule_banner_processes_dfe"><p class="shortdesc">If there is data coming out of the pipeline jobs, data is available for SARSTML and SARETMT to push/load. To configure scheduled jobs for SARSTML and SARETMT processes, you can use any external scheduling tools available or create cron jobs as required.</p>
+
+  
+</div></div></section>
+<section id="t-330"><h4>DfE Pipeline details</h4><div class="content-locale-en-US content-locale-en"><div id="c_dfe_pipeline"><div class="body conbody"><p class="shortdesc">The latest versions for DfEInBound is 2.0.3 and the latest version for DfEOutBound pipelines are 2.0.7 to support DfE 1.4 updates.</p>
+
+    <p class="p">DfEInBound  2.0.3 version includes the new fields currently_completing_qualification, missing_explanation and other_uk_qualification_type as part of qualifications object from DfE. </p>
+
+    <p class="p">DfEOutBound  2.0.7 version includes DfE Notes updates.</p>
+
+    <div class="p">The following features are available for the  DfE 1.1, 1.2, and 1.3 versions.<ul class="ul"> <li class="li">Interviews </li>
+ <li class="li">Notes</li>
+ <li class="li">Withdraw at candidate request decision</li>
+ <li class="li">Reject applications by codes decision</li>
+ <li class="li">The following fields have been added to the work (and volunteering) experience objects:<ul class="ul"> <li class="li">skills_relevant_to_teaching</li>
+ <li class="li">start_month</li>
+ <li class="li">end_month</li>
+ </ul>
+</li>
+ <li class="li">Show referee details before offer acceptance</li>
+
+      <li class="li">Referee details will appear as soon as a reference is added by the candidate, but reference feedback will only be included after a candidate has accepted an offer and has received a reference.  The following fields are marked as optional in the reference objects:<ul class="ul"> <li class="li">reference</li>
+ <li class="li">safeguarding_concerns</li>
+ </ul>
+</li>
+ </ul>
+</div>
+
+  </div>
+
+</div></div></section>
+<section id="t-340"><h3>Manage DfE Applications and Decisions</h3><div class="content-locale-en-US content-locale-en"><div id="c_manage_applicant_and_applications_in_banner"><div class="body conbody"><p class="shortdesc">You can view and manage <span class="keyword">DfE</span> applicants and applications in <span class="keyword">Banner</span>.</p>
+
+    <div class="p">Ellucian recommends that you must be cautious of the following while managing DfE applications for seamless processing.<ul class="ul"> <li class="li">If you reject or withdraw an offer, Banner cannot revert the application decision and status to an offer status. Banner considers the reject status (reject or withdraw offer decisions) as an end of state. However, we are working with DfE to understand and improve the status transitions.</li>
+ <li class="li">With the current release install, the system can:<ul class="ul">
+      <li class="li">Update the withdraw decisions in Banner (applicants withdraw their applications), based on the Term Code crosswalk rules defined in the SOAXREF page for the STVTERM table. </li>
+ <li class="li">The system verifies the term code mapped to an offer start date for applications. If the offer start date is NULL, the system verifies the term code mapped to the applied course start date. </li>
+ </ul>
+</li>
+
+      <li class="li">For now, Banner does not support the DfE Notes and Interviews functionality. However, you can create notes and interviews for applications before applying a decision from the DfE interface. After you create an interview or notes to applications from DfE, you must download the updates to staging, run the SARSTML process.</li>
+
+      <li class="li">You can defer applications provided the previous status of the applications in staging is pending_conditions or recruited. Else the defer functionality for Banner will not function as expected.</li>
+ <li class="li">Before you download the confirm defer updates to staging (SAIEAST page), set up the user-defined STVAPST code to imply that the application is deferred or inactive in the SAAERUL page. The setup is for the DFEADMNAPSTCODE rule label in the DFEG rule group.</li>
+
+      <li class="li">Before you download the DfE interview updates to staging (SAIEAST page), set up the user-defined comment types in STVCMTT page The setup is for the INTERVIEWDTCMNT, LOCATIONDTCMNT, and CANCELRSONCMNT rule labels in the DFEG rule group in SAAERUL page.</li>
+
+      <li class="li">Before you download the DfE cancelled interview detail updates to staging (SAIEAST page), set up the user-defined Appointment Result Code in the STVRSLT page The setup is for the INTERVIEWCANCDE rule label in the DFEG rule group in SAAERUL page.</li>
+
+      <li class="li">Before you download the DfE cancelled interview detail updates to staging (SAIEAST page), set up the user-defined Interviewer Code in the SPAIDEN page The setup is for the INTERVIEWERID rule label in the DFEG rule group in SAAERUL page.</li>
+ <li class="li">To confirm defer offer on an application, ensure that the previous state for application in staging (SAIEAST page) is offer_deferred. You can confirm defer as conditions met or not met. </li>
+
+      <li class="li">When your conditions are met for the confirm defer decision, status of the application at DfE is recruited. When your conditions are not met, the status of the application is pending_conditions. You can, then, bring the recruited or the pending_conditions status to staging.</li>
+ <li class="li">When you run the DfEOutBound job, notes are sent to DfE. When you run the DfEInBound job, DfE creates the notes and are updated in the SAAADMS page.</li>
+
+      <li class="li">While you create, update, and cancel the interviews from the Conditional Decisions window, ensure to note the following information.<ul class="ul"> <li class="li">Enter the decision as <kbd class="ph userinput">Interviewing</kbd>, and provide the interview details in the INTERVIEW DETAILS section. </li>
+ <li class="li">Run the DfEOutBound job to send the interview details to DfE. </li>
+ <li class="li">Run the DfEInBound job to update the Interview ID from DfE in the SAADCRV page.</li>
+
+      <li class="li">Provide the cancellation reason in Cancellation Reason field to cancel the Interviews from Banner. </li>
+ <li class="li">You can view the scheduled interviews in DfE in the Interview Details section of the Conditional Decisions window.</li>
+ <li class="li">You cannot create interviews that matches the date, time, and location and provider and additional details as per the application.  At least any one of the information should differ.  </li>
+
+      <li class="li">You can update or cancel an interview only after the SAADCRV page displays the Interview ID.</li>
+ </ul>
+</li>
+ <li class="li">Institutions can reject an application in the following ways: <ul class="ul"> <li class="li">When you select the decision as Reject, the Reject Reasons section is available in the Conditional Decisions window. You can enter the Reject Code and Reject Reason and save the record. Then, run the DfEOutBound job, to send the Reject decision is to DfE.</li>
+
+      <li class="li">When you select the decision as Reject, and enter the rejection reason in the Reject/Withdraw Reason field of the Conditional Decisions section. Run the DfEOutBound job to send the Reject decision to DfE.</li>
+ </ul>
+</li>
+ <li class="li">After downloading the confirm defer updates to staging, run the SARSTML process to create a new application. </li>
+ <li class="li">The SARSTML process will not create the new application, when:<ul class="ul">
+      <li class="li">You do not create the term code mappings for the offer course start date in the SOAXREF page</li>
+ <li class="li">Banner curricula mappings for term code does not exist in the SOACMAP page</li>
+ </ul>
+</li>
+ <li class="li">The system does the following when:<ul class="ul"> <li class="li">The SARSTML process executes and creates a new application that is already in recruited or in pending conditions status in the EA tables</li>
+
+      <li class="li">The electronic push process (SAAEAPS/SARETMT), executes and creates a new application in the SAAADMS page</li>
+ </ul>
+</li>
+ <li class="li">For recruited applications, there are no further decisions that the system creates on the applications, apart from the withdraw status. If an applicant withdraws the application after the recruited status, the new application displays the updated withdrawn status.</li>
+
+      <li class="li">However, for applications that are in the pending_conditions status after confirming deferral, as an additional step, you must apply the conditions met or not met decision from Banner or DfE. This step will update the status of the application to recruited at DfE. If an applicant withdraws the application after the pending_condition status, the new application displays the updated withdrawn status.</li>
+ </ul>
+</div>
+
+  </div>
+
+</div></div></section>
+<section id="t-350"><h4>Review DfE applications</h4><div class="content-locale-en-US content-locale-en"><div id="t_review_dfe_applications"><div class="body taskbody"><p class="shortdesc">All applications from <span class="keyword">DfE</span> resides in the SAIEAST page for the institutions to review. </p>
+
+    <div class="section context"><div class="tasklabel"><h2 class="sectiontitle tasklabel">About this task</h2></div>In case of errors encountered in the DfeApplicationExtraction pipeline job, then the applications will not make it to the staging tables and SAIEAST page, here users are recommended to look up the error encountered for the latest DfeApplicationExtraction pipeline job in Ethos hub, verify the job parameters and rerun the job from Ethos Hub UI.<p class="p">After you download the applications to the SAIEAST page, you can schedule for offline interviews, assessments, and prepare checklists required for teacher training applications processing. Use the following steps to view the <span class="keyword">DfE</span> applications.</p>
+</div>
+
+    <div class="tasklabel"><h2 class="sectiontitle tasklabel">Procedure</h2></div><ol class="ol steps"><li class="li step stepexpand">
+        <span class="ph cmd">Access the <span class="keyword wintitle">Student Ethos Admissions Staging Summary (SAIEAST)</span> page.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">In the Key block, enter the distinct STVWAPP code created for the <span class="keyword">DfE</span> application.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Enter the application ID or the application reference ID related to the search for a specific application.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">You can also enter the STVWAPP code in the Application Type field and navigate to the next block.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">In the Ethos Load Summary block, view all the <span class="keyword">DfE</span> applications listed by Banner activity date and maximum application sequence number.</span>
+        <div class="itemgroup info">
+          <p class="p">You can view all the changes for applications in the Application Summary block and can navigate through all application sequences for applications in the order of latest application sequence number to older application sequence numbers.</p>
+
+        </div>
+      </li>
+</ol>
+
+  </div>
+
+</div></div></section>
+<section id="t-360"><h4>Review electronic applications load status</h4><div class="content-locale-en-US content-locale-en"><div id="t_review_electronic_applications_load_status"><div class="body taskbody"><p class="shortdesc">Institutions can schedule the SARSTML process to load <span class="keyword">DfE</span> data into Banner Electronic Applications tables. You can also review the data in the SARSTML process when the data load is successful.</p>
+
+    <div class="tasklabel"><h2 class="sectiontitle tasklabel">Procedure</h2></div><div class="li step p">
+        <span class="ph cmd"></span><br>
+        <div class="itemgroup info">To know more about the SARSTML process, the parameters that the process used to push <span class="keyword">DfE</span> data, see <span class="xref ft-internal-xlink" data-ft-warning="excluded-from-rendering" data-clusterid="ID_B_STUGEN_master_2026-03-08/id_b_stugen/stu_integration/r_sarstml_data_staging_ea_tables">SARSTML process</span></div>
+      </div>
+
+  </div>
+
+</div></div></section>
+<section id="t-370"><h4>Verify application load status for Admission Processing</h4><div class="content-locale-en-US content-locale-en"><div id="t_verify_app_load_status_ad_processing"><div class="body taskbody"><p class="shortdesc">The applications that are loaded to the EA tables are ready for the Electronic Applications Push Processes for loading into Banner Admission tables. </p>
+
+    <div class="section context"><div class="tasklabel"><h2 class="sectiontitle tasklabel">About this task</h2></div>
+      <p class="p">The SARETMT or bulk push process can be scheduled to load applications to Banner Admission tables. Applications pushed to Banner Admission Tables are denoted by the "P" (Pushed indicator in the <code class="ph codeph">SARETMT.lis</code> file).</p>
+
+      <p class="p">For applications carrying Push errors, push indicator displays ‘E’. Institutions can review the push errors in the SAAEAPS page and rectify the errors. Subsequently, the SARETMT push process again attempts to push the applicant. The following table lists the possible push indicators and their respective descriptions.</p>
+
+      
+<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" class="table" frame="border" border="1" rules="all"><colgroup><col style="width:32.89473684210527%"><col style="width:67.10526315789474%"></colgroup><thead class="thead" style="text-align:left;">
+            <tr class="row">
+              <th class="entry nocellnorowborder" style="vertical-align:top;" id="d18938e59">Process Codes</th>
+
+              <th class="entry cell-norowborder" style="vertical-align:top;" id="d18938e62">Description</th>
+
+            </tr>
+
+          </thead>
+<tbody class="tbody">
+            <tr class="row">
+              <td class="entry nocellnorowborder" style="vertical-align:top;" headers="d18938e59 ">V</td>
+
+              <td class="entry cell-norowborder" style="vertical-align:top;" headers="d18938e62 ">Verified, not pushed</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry nocellnorowborder" style="vertical-align:top;" headers="d18938e59 ">E</td>
+
+              <td class="entry cell-norowborder" style="vertical-align:top;" headers="d18938e62 ">Errors, not pushed</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry nocellnorowborder" style="vertical-align:top;" headers="d18938e59 ">S</td>
+
+              <td class="entry cell-norowborder" style="vertical-align:top;" headers="d18938e62 ">Suspend, not pushed</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry row-nocellborder" style="vertical-align:top;" headers="d18938e59 ">P</td>
+
+              <td class="entry cellrowborder" style="vertical-align:top;" headers="d18938e62 ">Pushed</td>
+
+            </tr>
+
+          </tbody>
+</table>
+</div>
+
+      <p class="p">Use the following steps to review the SARETMT job files.</p>
+
+    </div>
+
+    <div class="tasklabel"><h2 class="sectiontitle tasklabel">Procedure</h2></div><ol class="ol steps"><li class="li step stepexpand">
+        <span class="ph cmd">Access the <span class="keyword wintitle">Saved Output Review (GJIREVO)</span> page.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">In the Process field, enter <kbd class="ph userinput">SARETMT</kbd>.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Select the run number.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">In the File Name field, select the <code class="ph codeph">saretmt.lis</code> file.</span>
+        <div class="itemgroup info">Alternately, you can click the Related link that navigates you to the GJIREVO page, from where you can navigate to the SARETMT process.<p class="p">The duplicate rules in the SAAERUL page for ADMS group and the SAAECRL procedures (P050 and P120) with the respective routines determine controlling of duplicate applications. The settings do not prevent an applicant from creating and submitting more than one application. The controls determine whether the application will push into Banner.</p>
+<p class="p">Refer to <span data-ft-link-error-class="xref" data-ft-link-error-href="05e374dc3aada681bf54e59c2e3c7f19.xml" data-ft-link-error-data-ft-asset-display-name="c_run_match_verify_load_process_saretmt.xml" data-ft-resource-error="[ERR_LINK_UNRESOLVED] link with text &quot;SARETMT process&quot; targeting &quot;05e374dc3aada681bf54e59c2e3c7f19.xml&quot; could not be resolved
+---
+&lt;a class=&quot;xref&quot; href=&quot;05e374dc3aada681bf54e59c2e3c7f19.xml&quot; data-ft-asset-display-name=&quot;c_run_match_verify_load_process_saretmt.xml&quot;&gt;SARETMT process&lt;/a&gt;
+---
+maybe the target is not in the archive or the link malformed ?">SARETMT process</span> to know more about the processes and reports.</p>
+</div>
+      </li>
+</ol>
+
+  </div>
+
+</div></div></section>
+<section id="t-380"><h4>Review admission records</h4><div class="content-locale-en-US content-locale-en"><div id="t_admission_records"><div class="body taskbody"><p class="shortdesc">Institutions can use the SAAADMS page to review the admissions records.</p>
+
+    <div class="tasklabel"><h2 class="sectiontitle tasklabel">Procedure</h2></div><ol class="ol steps"><li class="li step stepexpand">
+        <span class="ph cmd">Access the <span class="keyword wintitle">Admissions Application (SAAADMS)</span> page.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Search for an applicant with either a Banner ID or an Additional ID.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">To search for an additional ID, click the ID LOV field, and search by Additional ID from the Option drop-down list.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">In the SPIADID page, enter the application ID or support reference number in the Additional ID field.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Click Go to navigate to the next block.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Select the record and navigate back to the SAAADMS key block page.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">In the Application window, review the application.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">In the Curricula window, review the related curricula details.</span>
+        <div class="itemgroup info"><p class="p">Each application will have an unique sequence number.</p>
+To know more about the SAAADMS page details, field names and descriptions, refer to the <span class="xref ft-internal-xlink" data-ft-warning="excluded-from-rendering" data-clusterid="ID_B_STUGEN_master_2026-03-08/id_b_stugen/stu_integration/c_saaadms_admissions_application">SAAADMS</span> page of the <cite class="cite">Banner Student Reference</cite> content.</div>
+        <div class="itemgroup info">Institutions can also review the admissions records and its attributed electronic information all in one place using the SAIEASU page.<p class="p">The SAIEASU page at all times will display the admissions information and its electronic applications details for all records that are up to date in Baseline (for application sequence that is loaded to Banner target tables using the SARSTML process)</p>
+</div>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Access the <span class="keyword wintitle">Student Admissions Electronic Applications Summary (SAIEASU)</span> page.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Search for the admissions record by entering relevant filters.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Click <span class="ph uicontrol">Go</span> to navigate to the next block.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Select the admissions record from the <span class="ph uicontrol">Person Detail Search</span> section results.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Review the <span class="keyword wintitle">Admissions Applications Summary</span>, <span class="keyword wintitle">Field of Study</span>, and <span class="keyword wintitle">Electronic Applications Details</span> sections.</span>
+        <div class="itemgroup info">To know more about the SAIEASU page, refer to the <cite class="cite">Banner Student Reference</cite> content.</div>
+        <div class="itemgroup info">The Electronic Applications displayed at any given time is for the maximum sequence number that is already pushed to target tables using the SARSTML process.</div>
+      </li>
+</ol>
+
+  </div>
+
+</div></div></section>
+<section id="t-390"><h4>Manage Decisions for DfE applications</h4><div class="content-locale-en-US content-locale-en"><div id="c_manage_decisions_dfe_applications"><div class="body conbody"><p class="shortdesc">Institutions can apply decisions to applications by person ID or view the institution applied decisions from DfE in the SAADCRV page. You can use the All DfE/Conditional Decisions window to apply conditional decisions to applications.</p>
+
+    <p class="p">To know more about the SAADCRV page details, field names and descriptions, refer to the <span class="xref ft-internal-xlink" data-ft-warning="excluded-from-rendering" data-clusterid="ID_B_STUGEN_master_2026-03-08/id_b_stugen/stu_integration/c_saadcrv_admissions_decision">SAADCRV</span> page of the <cite class="cite">Banner Student Reference</cite> content.</p>
+
+  </div>
+
+</div></div></section>
+<section id="t-400"><h5>Apply Decisions from SAADCRV page</h5><div class="content-locale-en-US content-locale-en"><div id="t_apply_decisions_saadcrv"><div class="body taskbody"><p class="shortdesc">Institutions bearing the default browser language as English -UK, will view the Conditional Decisions window displayed as All DfE/Conditional Decisions. </p>
+
+    <div class="section context"><div class="tasklabel"><h2 class="sectiontitle tasklabel">About this task</h2></div>
+      <p class="p">To apply decisions from the SAADCRV page, use the following steps.</p>
+
+    </div>
+
+    <div class="tasklabel"><h2 class="sectiontitle tasklabel">Procedure</h2></div><ol class="ol steps"><li class="li step stepexpand">
+        <span class="ph cmd">Access the <span class="keyword wintitle">Admissions Decisions (SAADCRV)</span> page.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Search for the applicant by Banner ID.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Select the required application from Application Summary block.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Navigate to All DfE/Conditional Decisions window and enter a decision in the <span class="ph uicontrol">Decisions</span> LOV field.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Navigate to the Offer Conditions block to enter offer conditions, if any.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Save the record.</span>
+        <div class="itemgroup info">
+          <p class="p">You can insert new or more offer decisions after offer decisions that are previously saved. The saved decisions are transferred to <span class="keyword">DfE</span> immediately with the exception of reject/withdrawals, until applicants respond to the most recent offer as accepted/declined. After the applicant responds, institutions cannot amend their decisions. Institutions must ensure data integrity while scheduling of pipeline jobs.</p>
+
+          <p class="p">For decisions applied from the SAADCRV page, the <span class="ph uicontrol">Admit Curriculum</span> field requires updates only for the following:</p>
+
+          
+<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" class="table" frame="border" border="1" rules="all"><colgroup><col style="width:43.103448275862064%"><col style="width:56.89655172413792%"></colgroup><thead class="thead" style="text-align:left;">
+                <tr class="row">
+                  <th class="entry nocellnorowborder" style="vertical-align:top;" id="d727e112">Decision</th>
+
+                  <th class="entry cell-norowborder" style="vertical-align:top;" id="d727e115">Admit Curriculum</th>
+
+                </tr>
+
+              </thead>
+<tbody class="tbody">
+                <tr class="row">
+                  <td class="entry nocellnorowborder" style="vertical-align:top;" headers="d727e112 ">Make a Conditional Offer</td>
+
+                  <td class="entry cell-norowborder" style="vertical-align:top;" headers="d727e115 ">NA</td>
+
+                </tr>
+
+                <tr class="row">
+                  <td class="entry nocellnorowborder" style="vertical-align:top;" headers="d727e112 ">Make an Unconditional Offer</td>
+
+                  <td class="entry cell-norowborder" style="vertical-align:top;" headers="d727e115 ">NA</td>
+
+                </tr>
+
+                <tr class="row">
+                  <td class="entry nocellnorowborder" style="vertical-align:top;" headers="d727e112 ">Change Course Conditional</td>
+
+                  <td class="entry cell-norowborder" style="vertical-align:top;" headers="d727e115 ">Select the Admit Curriculum from LOV</td>
+
+                </tr>
+
+                <tr class="row">
+                  <td class="entry nocellnorowborder" style="vertical-align:top;" headers="d727e112 ">Change Course Unconditional</td>
+
+                  <td class="entry cell-norowborder" style="vertical-align:top;" headers="d727e115 ">Select the Admit Curriculum from LOV</td>
+
+                </tr>
+
+                <tr class="row">
+                  <td class="entry nocellnorowborder" style="vertical-align:top;" headers="d727e112 ">Reject </td>
+
+                  <td class="entry cell-norowborder" style="vertical-align:top;" headers="d727e115 ">NA</td>
+
+                </tr>
+
+                <tr class="row">
+                  <td class="entry nocellnorowborder" style="vertical-align:top;" headers="d727e112 ">Withdraw</td>
+
+                  <td class="entry cell-norowborder" style="vertical-align:top;" headers="d727e115 ">NA</td>
+
+                </tr>
+
+                <tr class="row">
+                  <td class="entry nocellnorowborder" style="vertical-align:top;" headers="d727e112 ">Conditions Met</td>
+
+                  <td class="entry cell-norowborder" style="vertical-align:top;" headers="d727e115 ">NA</td>
+
+                </tr>
+
+                <tr class="row">
+                  <td class="entry nocellnorowborder" style="vertical-align:top;" headers="d727e112 ">Conditions Not Met</td>
+
+                  <td class="entry cell-norowborder" style="vertical-align:top;" headers="d727e115 ">NA</td>
+
+                </tr>
+
+                <tr class="row">
+                  <td class="entry nocellnorowborder" style="vertical-align:top;" headers="d727e112 ">Defer Offer</td>
+
+                  <td class="entry cell-norowborder" style="vertical-align:top;" headers="d727e115 ">NA</td>
+
+                </tr>
+
+                <tr class="row">
+                  <td class="entry row-nocellborder" style="vertical-align:top;" headers="d727e112 ">Confirmed Defer Offer</td>
+
+                  <td class="entry cellrowborder" style="vertical-align:top;" headers="d727e115 ">NA</td>
+
+                </tr>
+
+              </tbody>
+</table>
+</div>
+
+          <p class="p">For the institution's Reject or Withdraw decisions, you must enter a reject/withdraw reason, respectively.</p>
+
+          <p class="p">The Acceptance or Declined decisions update only the Application Decision window, and not the All DfE/Conditional Decisions window.</p>
+
+          <p class="p">To confirm conditions, use the following steps.</p>
+
+        </div>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Access the <span class="keyword wintitle">Admissions Decisions (SAADCRV)</span> page.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Search for the applicant by Banner ID to view the applicant acceptance decision being updated in the Application Decision window.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Navigate to the All DfE/Conditional Decisions window and apply the <kbd class="ph userinput">Conditions Met</kbd> or <kbd class="ph userinput">Conditions Not Met </kbd>decision from the <span class="ph uicontrol">Decisions</span> LOV field.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Save the record.</span>
+        <div class="itemgroup info"><p class="p">For applications withdrawn by the applicants, the <code class="ph codeph">dfe-application-submission</code> API updates the withdrawn status on executing the DfEInBound pipeline job in the <span class="ph uicontrol">Status</span> field of the Application Summary window in the SAADCRV page.</p>
+<p class="p">To defer an offer, you can apply the Defer Offer decision on applications, ensure that the preceding status for your applications are pending_conditions or recruited as per the DfE documentation.</p>
+To apply the Defer Offer decision on applications</div>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Access the Admissions Decisions (SAADCRV) page.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Search for the applicant by Banner ID and go to the respective application to view the applicant acceptance decision or the conditions met decision updates in the <span class="keyword wintitle">Application Decision</span> window.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Navigate to the All DfE/Conditional Decisions window and apply the Defer Offer decision from the <span class="ph uicontrol">Decisions LOV</span> field. </span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Save the record</span>
+        <div class="itemgroup info">
+          <p class="p">To Confirm Defer Offer, application must be deferred in the previous year and is to be confirmed or reinstated in the current recruitment cycle year. Else this decision for applications will fail at DfE and throws an error.The offer_deferred status is the previous status for the applications in the SAIEAST page.  Use the following procedure to Confirm Defer Offer.</p>
+
+        </div>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Access the <span class="keyword wintitle">Admissions Decisions (SAADCRV)</span> page. </span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Search for the applicant by Banner ID and go to the respective application to view the defer offer decision updated in the Application Decision window.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Navigate to the All DfE/Conditional Decisions window and apply the Confirmed Defer Offer decision from the <span class="ph uicontrol">Decisions LOV</span>field </span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Select the desired value (Yes or No) from the <span class="ph uicontrol">Confirm Deferred as Conditions Met</span> LOV field </span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Save the record.</span>
+        <div class="itemgroup info">
+          <p class="p">For all decisions applied on applications from <span class="keyword">Banner</span>, you should execute the DfEOutBound pipeline job to update the applications in the DfE Apply interface. </p>
+
+        </div>
+      </li>
+</ol>
+
+  </div>
+
+</div></div></section>
+<section id="t-410"><h5>Review Decisions status</h5><div class="content-locale-en-US content-locale-en"><div id="t_review_dfeconsume_decision_job_details"><div class="body taskbody"><p class="shortdesc">To view the decision status for every decision sent to DfE in Banner, you must enable the Log Status Of Decision option for DfEConsumeDecision jobs. After you enable the Log Status Of Decision option, the Student Admission Decision Errors (SAISADE) page displays every decision comprised in a job.</p>
+
+    <div class="tasklabel"><h2 class="sectiontitle tasklabel">Procedure</h2></div><ol class="ol steps"><li class="li step">
+        <span class="ph cmd">Access the Student Admission Decision Errors (SAISADE) page.</span>
+      </li>
+<li class="li step">
+        <span class="ph cmd">You can either enter the values in the <span class="keyword wintitle">Job Details</span> section or leave them blank.</span>
+      </li>
+<li class="li step">
+        <span class="ph cmd">Click <span class="ph uicontrol">Go</span>.</span>
+      </li>
+<li class="li step">
+        <span class="ph cmd">Select the record that has Failure as the job status and click <span class="ph uicontrol">View Errors</span>.</span>
+      </li>
+</ol>
+
+    <div class="section result"><div class="tasklabel"><h2 class="sectiontitle tasklabel">Results</h2></div>The <span class="keyword wintitle">Error Information</span> window appears with the error description and error details for the failed record that you selected.<div class="note"><span class="notetitle">Note:</span> After you review the error details for decisions, you can create new decisions for admissions applications with the correct information.</div>
+</div>
+
+  </div>
+
+</div></div></section>
+<section id="t-420"><h5>View DfE application decisions</h5><div class="content-locale-en-US content-locale-en"><div id="t_view_dfe_application_decisions"><div class="body taskbody"><p class="shortdesc">To view the decisions applied from DfE interface in the SAADCRV page, institutions should submit the decisions for applications, and run the DfEInBound pipeline job from the Ethos Integration Pipeline user interface and verify if the decisions are available in the SAADCRV page for the respective admission records.</p>
+
+    <div class="section prereq p"><div class="tasklabel"><h2 class="sectiontitle tasklabel">Before you begin</h2></div>Ellucian recommends that you use either the DfE user interface to apply all decisions or use the SAADCRV page to apply all decisions for applications.<p class="p">When you update the decisions and execute a DfEInBound pipeline job for your institution through the DfE interface, the <code class="ph codeph">dfe-application-submission</code> API returns the information to the SAADCRV page.</p>
+<p class="p">Ensure to run the DfEConsumeDecision pipeline to update DfE with any decisions for applications that you apply through <span class="keyword">Banner</span>. To update <span class="keyword">Banner</span> with the current state of applications from DfE, run the DfEInBound pipeline job for your institution. Do not use the DfE user interface and <span class="keyword">Banner</span> to apply decisions simultaneously. This action causes data concurrency issues. The API will not support decisions concurrently originating from both the systems.</p>
+</div>
+
+    <div class="tasklabel"><h2 class="sectiontitle tasklabel">Procedure</h2></div><ol class="ol steps"><li class="li step stepexpand">
+        <span class="ph cmd">Access the <span class="keyword wintitle">Admissions Decisions (SAADCRV)</span> page.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Search for the applicant by Banner ID.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Select the required application from Application Summary block.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Verify if the <span class="keyword wintitle">All DfE/Conditional Decisions</span> window displays the applied decisions and conditions from DfE.</span>
+        <div class="itemgroup stepresult">The Decisions block displays the DfE application decisions and the Offer Conditions block displays the attributed offer conditions in the All DfE/Conditional Decisions window. The Application Decision window displays the equivalent STVAPDC decision codes.<p class="p">The All DfE/ Conditional Decisions window displays updates only for the following decisions:</p>
+
+<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" class="table" frame="border" border="1" rules="all"><colgroup><col style="width:43.103448275862064%"><col style="width:56.89655172413792%"></colgroup><thead class="thead" style="text-align:left;"> <tr class="row"> <th class="entry nocellnorowborder" style="vertical-align:top;" id="d21696e102">Decision</th>
+ <th class="entry cell-norowborder" style="vertical-align:top;" id="d21696e105">Offer Conditions</th>
+ </tr>
+ </thead>
+<tbody class="tbody"> <tr class="row"> <td class="entry nocellnorowborder" style="vertical-align:top;" headers="d21696e102 ">Make a Conditional Offer</td>
+ <td class="entry cell-norowborder" style="vertical-align:top;" headers="d21696e105 ">Yes</td>
+ </tr>
+ <tr class="row"> <td class="entry nocellnorowborder" style="vertical-align:top;" headers="d21696e102 ">Make an Unconditional Offer</td>
+ <td class="entry cell-norowborder" style="vertical-align:top;" headers="d21696e105 ">NA</td>
+ </tr>
+ <tr class="row"> <td class="entry nocellnorowborder" style="vertical-align:top;" headers="d21696e102 ">Change Course Conditional</td>
+ <td class="entry cell-norowborder" style="vertical-align:top;" headers="d21696e105 ">Yes</td>
+ </tr>
+ <tr class="row"> <td class="entry nocellnorowborder" style="vertical-align:top;" headers="d21696e102 ">Change Course Unconditional</td>
+ <td class="entry cell-norowborder" style="vertical-align:top;" headers="d21696e105 ">NA</td>
+ </tr>
+ <tr class="row"> <td class="entry nocellnorowborder" style="vertical-align:top;" headers="d21696e102 ">Reject </td>
+ <td class="entry cell-norowborder" style="vertical-align:top;" headers="d21696e105 ">NA</td>
+ </tr>
+ <tr class="row"> <td class="entry nocellnorowborder" style="vertical-align:top;" headers="d21696e102 ">Withdraw</td>
+
+          <td class="entry cell-norowborder" style="vertical-align:top;" headers="d21696e105 ">NA</td>
+ </tr>
+ <tr class="row"> <td class="entry nocellnorowborder" style="vertical-align:top;" headers="d21696e102 ">Conditions Met</td>
+ <td class="entry cell-norowborder" style="vertical-align:top;" headers="d21696e105 ">NA</td>
+ </tr>
+ <tr class="row"> <td class="entry nocellnorowborder" style="vertical-align:top;" headers="d21696e102 ">Conditions Not Met</td>
+ <td class="entry cell-norowborder" style="vertical-align:top;" headers="d21696e105 ">NA</td>
+ </tr>
+ <tr class="row"> <td class="entry nocellnorowborder" style="vertical-align:top;" headers="d21696e102 ">Defer Offer</td>
+ <td class="entry cell-norowborder" style="vertical-align:top;" headers="d21696e105 ">NA</td>
+ </tr>
+ <tr class="row"> <td class="entry row-nocellborder" style="vertical-align:top;" headers="d21696e102 ">Confirm Defer Offer</td>
+ <td class="entry cellrowborder" style="vertical-align:top;" headers="d21696e105 ">NA</td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<p class="p">For the institution's Reject or Withdraw decisions, the Reject/Withdraw Reason field must display a reject/withdraw reason. </p>
+<p class="p">The Acceptance or Declined decisions update only the Application Decision window, and not the All DfE/Conditional Decisions window.</p>
+<p class="p">The Withdraw by Applicant decision updates only the Status field for SAADCRV (SARADAP_APST_CODE).</p>
+<p class="p">The Withdraw status is created in Banner only if term code mappings are created in the SOAXREF page for the offer start date and applied course start date. Ellucian recommends that you create the term code mappings for every recruitment cycle start date on the SOAXREF page.</p>
+<p class="p">After you apply the Defer Offer decision at DfE, you can view the Defer Offer decision that the DfEInBound job creates, provided the preceding status for your applications in the SAIEAST page for the applications are 'pending_conditions' or 'recruited'. If the preceding status as mentioned is not available in staging, the dfe-application-submission api will not create the decisions.</p>
+<p class="p">After you apply the Confirmed Defer Offer decision at DfE, you can view the Confirmed Defer Offer decision that the DfEInBound job creates, only if the previous status in SAIEAST page for applications is 'offer-deferred'.  You can also view the user-defined STVAPST status implying Defer (as defined in the SAAERUL page for the DFEG rule group) updated as the application status.  If you do not maintain the STVAPST status for the DFEADMNAPSTCODE rule label in the DFEG rule group, you can see an error on running the DfEInBound job and Confirmed Defer Offer decision is not created. Also, if the SAADCRV page does not display the decision, the previous status in staging (SAIEAST page) is not offer_deferred.</p>
+</div>
+      </li>
+</ol>
+
+  </div>
+
+</div></div></section>
+<section id="t-430"><h4>Execute the SARSTML process</h4><div class="content-locale-en-US content-locale-en"><div id="c_execute_sarstml_process"><div class="body conbody"><p class="shortdesc">After every data download to staging from DfE, institutions should run the SARSTML process to ensure that the data updates from DfE that are now existing in the staging table are loaded to the target tables. This ensures data integrity between DfE applications and records in Banner always.</p>
+
+    <div class="note"><span class="notetitle">Note:</span> Institutions are expected to make decisions on applications only after creating admissions records. Hence, on running the SARSTML process after you create admissions records, the updated data from staging is loaded to the target baseline tables directly and not the Electronic Application (EA) tables.<p class="p">If you do not create admission records, the SARSTML process continues to load or replace the applications data in the EA tables with the updated information from staging.</p>
+<p class="p">To load the demographic data such as ethnicity, disability and nationality codes to the GOAPSID page and the gender code to SPAIDEN page, institutions must execute the SARSTML process.  Before you execute  SARSTML, ensure that the pending_conditions or recruited status updates must be downloaded to Banner (right after applicant acceptance).</p>
+<p class="p">To create a new application in the EA tables after Confirmed Defer Offer decision, institutions must ensure to get the application status of pending_conditions or recruited, for confirmed applications downloaded to staging.  With this, institutions can execute the SARSTML process for the applied recruitment cycle year (and not the current recruitment year) to create new applications in the EA tables for the latest term code.  To create applications in the EA tables successfully, ensure that you map your applications offer course start date to term codes in the SOAXREF page.</p>
+</div>
+
+  </div>
+
+</div></div></section>
+<section id="t-440"><h4>Verify DfE applicant EqualityAndDiversity data</h4><div class="content-locale-en-US content-locale-en"><div id="r_verify_dfe_applicant_hesa_data"><div class="body refbody"><p class="shortdesc">The EqualityAndDiversity data for an applicant is processed only after the applicant accepts the offer. After an applicant's offer acceptance, with the subsequent DfeApplicationExtraction pipeline job execution, the Applicant Acceptance decision status gets updated in the SAIEAST page and the respective decision is populated in the SAADCRV page.</p>
+
+    <div class="section">After the subsequent SARSTML process execution, the EqualityAndDiversity data from the staging tables is loaded to the target tables.</div>
+
+    
+<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" class="table" frame="hsides" border="1" rules="rows"><colgroup><col style="width:24.39024390243903%"><col style="width:31.463414634146346%"><col style="width:44.14634146341464%"></colgroup><thead class="thead" style="text-align:left;vertical-align:bottom;">
+          <tr class="row">
+            <th class="entry row-nocellborder" style="text-align:left;vertical-align:bottom;" id="d20874e56">EqualityAndDiversity Data</th>
+
+            <th class="entry row-nocellborder" style="text-align:left;vertical-align:bottom;" id="d20874e59">Page</th>
+
+            <th class="entry row-nocellborder" style="text-align:left;vertical-align:bottom;" id="d20874e62">Table</th>
+
+          </tr>
+
+        </thead>
+<tbody class="tbody">
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d20874e56 ">Gender (two-character code)</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d20874e59 ">SPAIDEN – Biographical tab</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d20874e62 ">SPBPERS_GNDR_CODE</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d20874e56 ">Disability (two-character code)</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d20874e59 ">GOAPSID</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d20874e62 ">GORPSID_SEID_VALUE where GORPSID_SEID_CODE = DFE Disability and GORPSID_SEIR_CODE = DFE_SEID</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d20874e56 ">Ethnicity (three-character code)</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d20874e59 ">GOAPSID</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d20874e62 ">GORPSID_SEID_VALUE where GORPSID_SEID_CODE = DFE Ethnic and GORPSID_SEIR_CODE = DFE_SEID</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d20874e56 ">Nationality (Array of two-character codes, up to five values)</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d20874e59 ">GOAPSID</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d20874e62 ">GORPSID_SEID_VALUE where GORPSID_SEID_CODE = DFE Nation and GORPSID_SEIR_CODE = DFE_SEID</td>
+
+          </tr>
+
+        </tbody>
+</table>
+</div>
+
+    <div class="section">
+      <div class="note"><span class="notetitle">Note:</span> The Sex, Ethnicity, Nationality, and Disability data for the relevant application is also published in the SAAQUAN page after the SARSTML process is run to load the application.</div>
+
+    </div>
+
+    <div class="section">Refer to the<cite class="cite"> Banner_DfE_Staging_Tables_Electronic_Applications_Processing_Tables.xls</cite> available as an attachment with the <cite class="cite">Dfe Use</cite> content to know more about the tables updated during processing.</div>
+
+  </div>
+
+</div></div></section></main></body></html>

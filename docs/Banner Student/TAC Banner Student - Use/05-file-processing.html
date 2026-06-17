@@ -1,0 +1,2530 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>TAC Banner Student - Use — File Processing</title><style>body{font-family:-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;line-height:1.55;color:#1a1a1a;max-width:920px;margin:0 auto;padding:24px}header{border-bottom:2px solid #5a16d6;margin-bottom:8px}h1{color:#3a0ca3}h2,h3,h4,h5,h6{margin-top:1.6em}.crumb{color:#666;font-size:13px;margin:0}.meta{color:#888;font-size:12px}nav.toc{background:#f6f4fc;border:1px solid #e3dcf5;border-radius:8px;padding:12px 18px;margin:18px 0}nav.toc h2{margin:.2em 0}nav.toc ul{list-style:none;padding-left:0}nav.toc a{text-decoration:none;color:#5a16d6}section{margin:1.2em 0;padding-top:.4em}img{max-width:100%;height:auto}table{border-collapse:collapse}td,th{border:1px solid #ccc;padding:4px 8px}code,pre{background:#f4f4f4;border-radius:4px}pre{padding:10px;overflow:auto}</style></head><body><header><p class="crumb">Banner Student › TAC Banner Student - Use</p><h1>TAC Banner Student - Use — File Processing</h1><p class="meta">Source: <a href="https://resources.elluciancloud.com/r/bundle/banner_student_acn_use_tac">https://resources.elluciancloud.com/r/bundle/banner_student_acn_use_tac</a> &middot; Retrieved 2026-06-17</p></header><nav class="toc"><h2>Contents</h2><ul><li style="margin-left:0px"><a href="#t-470">File Processing</a></li><li style="margin-left:16px"><a href="#t-480">SATAC processing</a></li><li style="margin-left:32px"><a href="#t-490">SATAC file import definitions</a></li><li style="margin-left:48px"><a href="#t-500">Applicant file</a></li><li style="margin-left:48px"><a href="#t-510">Academic Qualifications file</a></li><li style="margin-left:48px"><a href="#t-520">Other Qualifications file</a></li><li style="margin-left:48px"><a href="#t-530">Employment file</a></li><li style="margin-left:48px"><a href="#t-540">Preferences file</a></li><li style="margin-left:48px"><a href="#t-550">Preference Course Rank Set (PCRS) file</a></li><li style="margin-left:48px"><a href="#t-560">Fact file</a></li><li style="margin-left:48px"><a href="#t-570">High School Subjects file</a></li><li style="margin-left:48px"><a href="#t-580">Overseas Student Additional Personal Details file</a></li><li style="margin-left:48px"><a href="#t-590">Overseas Student Additional Preference Details file</a></li><li style="margin-left:32px"><a href="#t-600">Loading files from SATAC</a></li><li style="margin-left:32px"><a href="#t-610">Matching SATAC course codes to Banner programs</a></li><li style="margin-left:32px"><a href="#t-620">Loading data to Electronic Admissions</a></li><li style="margin-left:32px"><a href="#t-630">Post load activities</a></li><li style="margin-left:32px"><a href="#t-640">Providing reconciliation data to SATAC</a></li><li style="margin-left:16px"><a href="#t-650">UAC processing</a></li><li style="margin-left:32px"><a href="#t-660">UAC file details</a></li><li style="margin-left:48px"><a href="#t-670">UAC Applicant file</a></li><li style="margin-left:48px"><a href="#t-680">UAC Previous Name file</a></li><li style="margin-left:48px"><a href="#t-690">UAC Preferences file</a></li><li style="margin-left:48px"><a href="#t-700">UAC Offer file</a></li><li style="margin-left:48px"><a href="#t-710">UAC Offers Notes file</a></li><li style="margin-left:48px"><a href="#t-720">UAC Qualifications file</a></li><li style="margin-left:48px"><a href="#t-730">UAC Subjects file</a></li><li style="margin-left:48px"><a href="#t-740">UAC Test Scores file</a></li><li style="margin-left:48px"><a href="#t-750">UAC FACT file</a></li><li style="margin-left:32px"><a href="#t-760">Loading files from UAC</a></li><li style="margin-left:32px"><a href="#t-770">Matching UAC course codes to Banner programs</a></li><li style="margin-left:32px"><a href="#t-780">Load to baseline Electronic Admissions tables for UAC processing</a></li><li style="margin-left:32px"><a href="#t-790">Load additional data to baseline tables for UAC processing</a></li><li style="margin-left:32px"><a href="#t-800">Provide reconciliation data to UAC</a></li><li style="margin-left:16px"><a href="#t-810">VTAC processing</a></li><li style="margin-left:32px"><a href="#t-820">VTAC file details</a></li><li style="margin-left:48px"><a href="#t-830">VTAC Data file</a></li><li style="margin-left:32px"><a href="#t-840">Loading files from VTAC</a></li><li style="margin-left:32px"><a href="#t-850">Matching VTAC course codes to Banner programs</a></li><li style="margin-left:32px"><a href="#t-860">Load to baseline Electronic Admissions tables for VTAC processing</a></li><li style="margin-left:32px"><a href="#t-870">Load additional data to baseline tables for VTAC processing</a></li><li style="margin-left:32px"><a href="#t-880">Provide reconciliation data to VTAC</a></li></ul></nav><main><section id="t-470"><h2>File Processing</h2><div class="content-locale-en-US content-locale-en"><div id="c_file_processing"><p class="shortdesc">This section describes activities used for loading files from SATAC.</p>
+
+<div class="related-links">
+<div class="linklist relinfo reltasks" xml:lang="en-US" lang="en-US"><strong>Related tasks</strong><br>
+<ul class="linklist">
+<li class="linklist"><span class="link ft-internal-link" title="The VTAC Offer (D1) file is now too large to be imported using the method outlined in this procedure and a separate MDUU activity has been created to register the VTAC Offer (D1) file as an external table." data-ft-warning="excluded-from-rendering" data-mapid="vGfahdchqsK1UkDrWNSsfQ" data-tocid="67e~FEnjsjfidxspZchhtA">Import TAC files</span></li>
+<li class="linklist"><span class="link ft-internal-link" title="The following procedure explains how to match TAC course codes to Banner programs and curriculum rules. UAC course matching is executed using the SOPPTAC process." data-ft-warning="excluded-from-rendering" data-mapid="vGfahdchqsK1UkDrWNSsfQ" data-tocid="fOtzDlAPmN0t~QZv5yINOA">Match TAC course to Banner programs</span></li></ul></div>
+</div></div></div></section>
+<section id="t-480"><h3>SATAC processing</h3><div class="content-locale-en-US content-locale-en"><div id="c_satac_processing"><p class="shortdesc">This section describes the activities involved in importing SATAC files and loading the files from SATAC.</p>
+
+<div class="related-links">
+<div class="linklist relinfo reltasks" xml:lang="en-US" lang="en-US"><strong>Related tasks</strong><br>
+<ul class="linklist">
+<li class="linklist"><span class="link ft-internal-link" title="The following procedure explains how to process the TAC data from the staging tables into Electronic Admissions tables. UAC data is loaded to Electronic Admissions tables using the SOPPTAC process." data-ft-warning="excluded-from-rendering" data-mapid="vGfahdchqsK1UkDrWNSsfQ" data-tocid="kSQy0KzEkNstOLNnyP1uIQ">Load Electronic Admissions data</span></li>
+<li class="linklist"><span class="link ft-internal-link" title="The following procedure explains how to update data elements that are not processed by the baseline Electronic Application Match, Verify and Load (SARETMT) process." data-ft-warning="excluded-from-rendering" data-mapid="vGfahdchqsK1UkDrWNSsfQ" data-tocid="ewDiXKT2F4XvVq38e25Abg">Post load activities</span></li>
+<li class="linklist"><span class="link ft-internal-link" title="The following procedure explains how to produce TAC reconciliation files." data-ft-warning="excluded-from-rendering" data-mapid="vGfahdchqsK1UkDrWNSsfQ" data-tocid="nSsZj_~_VetTn09o62rYlQ">Produce TAC reconciliation files</span></li></ul></div>
+</div></div></div></section>
+<section id="t-490"><h4>SATAC file import definitions</h4><div class="content-locale-en-US content-locale-en"><div id="c_satac_file_import_definition"><div class="body conbody"><p class="shortdesc">This table provides details on the correct values to enter in the Import section of the Execution Tree Set-up (GKAPEXS) page for each SATAC file.</p>
+
+    <p class="p">The file length described in the <span class="ph uicontrol">Fields</span> field is one character longer than the length of the file received from SATAC. This is to accommodate carriage-return characters used in some text editors. If the text editor does not have additional carriage-return characters, the load will still work if you use the field values for each field.</p>
+
+  </div>
+
+</div></div></section>
+<section id="t-500"><h5>Applicant file</h5><div class="content-locale-en-US content-locale-en"><div id="r_applicant_file"><div class="body refbody"><p class="shortdesc">This topic describes the applicant file details.</p>
+
+    
+<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" id="r_applicant_file__r_applicant_file-utbl1" class="table" frame="hsides" border="1" rules="rows"><colgroup><col><col></colgroup><tbody class="tbody">
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;">External Table Name</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;">SATACAPPL</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;">Directory Name</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;">Name of the directory where the file is stored. Your database administrator can supply this if you do not have the information.</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;">File Name</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;"><code class="ph codeph">XX_appl.txt</code>, where XX represents the two-character value that SATAC uses to identify your institution.</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;">Record Delimiter</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;">NEWLINE</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;">Fields</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;">SATAC_APPL_DATA (1401)</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;">Field Delimiter</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;">FIXEDLENGTH()</td>
+
+          </tr>
+
+        </tbody>
+</table>
+</div>
+
+  </div>
+
+</div></div></section>
+<section id="t-510"><h5>Academic Qualifications file</h5><div class="content-locale-en-US content-locale-en"><div id="r_academic_qualifications_file"><div class="body refbody"><p class="shortdesc">This topic describes the academic qualifications file details.</p>
+
+    
+<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" id="r_academic_qualifications_file__r_academic_qualifications_file-utbl1" class="table" frame="hsides" border="1" rules="rows"><colgroup><col><col></colgroup><tbody class="tbody">
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;">External Table Name</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;">SATACACAD</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;">Directory Name</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;">Name of the directory where the file is stored. Your database administrator can supply this if you do not have the information.</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;">File Name</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;"><code class="ph codeph">XX_acad.txt</code>, where XX represents the two-character value that SATAC uses to identify your institution.</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;">Record Delimiter</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;">NEWLINE</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;">Fields</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;">SATAC_ACAD_DATA (151)</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;">Field Delimiter</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;">FIXEDLENGTH()</td>
+
+          </tr>
+
+        </tbody>
+</table>
+</div>
+
+  </div>
+
+</div></div></section>
+<section id="t-520"><h5>Other Qualifications file</h5><div class="content-locale-en-US content-locale-en"><div id="r_other_qualitification_file"><div class="body refbody"><p class="shortdesc">This topic describes the other qualifications file details.</p>
+
+    
+<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" id="r_other_qualitification_file__r_other_qualitification_file-utbl1" class="table" frame="hsides" border="1" rules="rows"><colgroup><col><col></colgroup><tbody class="tbody">
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;">External Table Name</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;">SATACOTHR</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;">Directory Name</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;">Name of the directory where the file is stored. Your database administrator can supply this if you do not have the information.</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;">File Name</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;"><code class="ph codeph">XX_othr.txt</code>, where XX represents the two-character value that SATAC uses to identify your institution.</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;">Record Delimiter</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;">NEWLINE</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;">Fields</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;">SATAC_OTHR_DATA (151)</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;">Field Delimiter</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;">FIXEDLENGTH()</td>
+
+          </tr>
+
+        </tbody>
+</table>
+</div>
+
+  </div>
+
+</div></div></section>
+<section id="t-530"><h5>Employment file</h5><div class="content-locale-en-US content-locale-en"><div id="r_employment_file"><div class="body refbody"><p class="shortdesc">This topic describes the employment file details.</p>
+
+    
+<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" id="r_employment_file__r_employment_file-utbl1" class="table" frame="hsides" border="1" rules="rows"><colgroup><col><col></colgroup><tbody class="tbody">
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;">External Table Name</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;">SATACEMPL</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;">Directory Name</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;">Name of the directory where the file is stored. Your database administrator can supply this if you do not have the information.</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;">File Name</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;"><code class="ph codeph">XX_empl.txt</code>, where XX represents the two-character value that SATAC uses to identify your institution.</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;">Record Delimiter</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;">NEWLINE</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;">Fields</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;">SATAC_EMPL_DATA(151)</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;">Field Delimiter</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;">FIXEDLENGTH()</td>
+
+          </tr>
+
+        </tbody>
+</table>
+</div>
+
+  </div>
+
+</div></div></section>
+<section id="t-540"><h5>Preferences file</h5><div class="content-locale-en-US content-locale-en"><div id="r_preferences_file"><div class="body refbody"><p class="shortdesc">This topic describes the preferences file details.</p>
+
+    
+<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" id="r_preferences_file__r_preferences_file-utbl1" class="table" frame="hsides" border="1" rules="rows"><colgroup><col><col></colgroup><tbody class="tbody">
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;">External Table Name</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;">SATACPREF</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;">Directory Name</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;">Name of the directory where the file is stored. Your database administrator can supply this if you do not have the information.</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;">File Name</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;"><code class="ph codeph">XX_pref.txt</code>, where XX represents the two-character value that SATAC uses to identify your institution.</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;">Record Delimiter</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;">NEWLINE</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;">Fields</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;">SATAC_PREF_DATA(501)</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;">Field Delimiter</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;">FIXEDLENGTH()</td>
+
+          </tr>
+
+        </tbody>
+</table>
+</div>
+
+  </div>
+
+</div></div></section>
+<section id="t-550"><h5>Preference Course Rank Set (PCRS) file</h5><div class="content-locale-en-US content-locale-en"><div id="r_preference_course_rank_set_pcrs_file"><div class="body refbody"><p class="shortdesc">This topic describes the preference course rank set file details.</p>
+
+    
+<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" id="r_preference_course_rank_set_pcrs_file__r_preference_course_rank_set_pcrs_file-utbl1" class="table" frame="hsides" border="1" rules="rows"><colgroup><col><col></colgroup><tbody class="tbody">
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;">External Table Name</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;">SATACPCRS</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;">Directory Name</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;">Name of the directory where the file is stored. Your database administrator can supply this if you do not have the information.</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;">File Name</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;"><code class="ph codeph">XX_pcrs.txt</code>, where XX represents the two-character value that SATAC uses to identify your institution.</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;">Record Delimiter</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;">NEWLINE</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;">Fields</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;">SATAC_PCRS_DATA (251)</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;">Field Delimiter</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;">FIXEDLENGTH()</td>
+
+          </tr>
+
+        </tbody>
+</table>
+</div>
+
+  </div>
+
+</div></div></section>
+<section id="t-560"><h5>Fact file</h5><div class="content-locale-en-US content-locale-en"><div id="r_fact_file"><div class="body refbody"><p class="shortdesc">This topic describes the fact file details.</p>
+
+    
+<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" id="r_fact_file__r_fact_file-utbl1" class="table" frame="hsides" border="1" rules="rows"><colgroup><col><col></colgroup><tbody class="tbody">
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;">External Table Name</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;">SATACFACT</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;">Directory Name</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;">Name of the directory where the file is stored. Your database administrator can supply this if you do not have the information.</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;">File Name</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;"><code class="ph codeph">XX_fact.txt</code>, where XX represents the two-character value that SATAC uses to identify your institution.</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;">Record Delimiter</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;">NEWLINE</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;">Fields</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;">SATAC_FACT_DATA (101)</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;">Field Delimiter</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;">FIXEDLENGTH()</td>
+
+          </tr>
+
+        </tbody>
+</table>
+</div>
+
+  </div>
+
+</div></div></section>
+<section id="t-570"><h5>High School Subjects file</h5><div class="content-locale-en-US content-locale-en"><div id="r_high_school_subjects_file"><div class="body refbody"><p class="shortdesc">This topic describes the high school subjects file details.</p>
+
+    
+<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" id="r_high_school_subjects_file__r_high_school_subjects_file-utbl1" class="table" frame="hsides" border="1" rules="rows"><colgroup><col><col></colgroup><tbody class="tbody">
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;">External Table Name</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;">SATACSUBJ</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;">Directory Name</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;">Name of the directory where the file is stored. Your database administrator can supply this if you do not have the information.</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;">File Name</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;"><code class="ph codeph">XX_subj.txt</code>, where XX represents the two-character value that SATAC uses to identify your institution.</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;">Record Delimiter</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;">NEWLINE</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;">Fields</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;">SATAC_SUBJ_DATA (201)</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;">Field Delimiter</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;">FIXEDLENGTH()</td>
+
+          </tr>
+
+        </tbody>
+</table>
+</div>
+
+  </div>
+
+</div></div></section>
+<section id="t-580"><h5>Overseas Student Additional Personal Details file</h5><div class="content-locale-en-US content-locale-en"><div id="r_overseas_student_additional_personal_file"><div class="body refbody"><p class="shortdesc">This topic describes the overseas student additional personal file details.</p>
+
+    
+<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" id="r_overseas_student_additional_personal_file__r_overseas_student_additional_personal_file-utbl1" class="table" frame="hsides" border="1" rules="rows"><colgroup><col><col></colgroup><tbody class="tbody">
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;">External Table Name</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;">SATACOSPERS</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;">Directory Name</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;">Name of the directory where the file is stored. Your database administrator can supply this if you do not have the information.</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;">File Name</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;"><code class="ph codeph">XX_ospers.txt</code>, where XX represents the two-character value that SATAC uses to identify your institution.</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;">Record Delimiter</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;">NEWLINE</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;">Fields</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;">SATAC_OSPERS_DATA (801)</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;">Field Delimiter</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;">FIXEDLENGTH()</td>
+
+          </tr>
+
+        </tbody>
+</table>
+</div>
+
+  </div>
+
+</div></div></section>
+<section id="t-590"><h5>Overseas Student Additional Preference Details file</h5><div class="content-locale-en-US content-locale-en"><div id="r_overseas_student_additional_ppreference_file"><div class="body refbody"><p class="shortdesc">This topic describes the overseas student additional preference file details.</p>
+
+    
+<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" id="r_overseas_student_additional_ppreference_file__r_overseas_student_additional_ppreference_file-utbl1" class="table" frame="hsides" border="1" rules="rows"><colgroup><col><col></colgroup><tbody class="tbody">
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;">External Table Name</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;">SATACOSPREF</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;">Directory Name</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;">Name of the directory where the file is stored. Your database administrator can supply this if you do not have the information.</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;">File Name</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;"><code class="ph codeph">XX_ospref.txt</code>, where XX represents the two-character value that SATAC uses to identify your institution.</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;">Record Delimiter</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;">NEWLINE</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;">Fields</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;">SATAC_OSPREF_DATA (601)</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;">Field Delimiter</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;">FIXEDLENGTH()</td>
+
+          </tr>
+
+        </tbody>
+</table>
+</div>
+
+  </div>
+
+</div></div></section>
+<section id="t-600"><h4>Loading files from SATAC</h4><div class="content-locale-en-US content-locale-en"><div id="r_loading_files_satac"><div class="body refbody"><p class="shortdesc">This table describes the activities for loading files from SATAC.</p>
+
+    
+<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" id="r_loading_files_satac__r_loading_files_satac-utbl1" class="table" frame="hsides" border="1" rules="rows"><colgroup><col style="width:80pt"><col style="width:150pt"><col style="width:225pt"></colgroup><thead class="thead" style="text-align:left;vertical-align:bottom;">
+          <tr class="row">
+            <th class="entry row-nocellborder" style="text-align:left;vertical-align:bottom;" id="d7816e44">Activity Type</th>
+
+            <th class="entry row-nocellborder" style="text-align:left;vertical-align:bottom;" id="d7816e47">Activity Name</th>
+
+            <th class="entry row-nocellborder" style="text-align:left;vertical-align:bottom;" id="d7816e50">Description</th>
+
+          </tr>
+
+        </thead>
+<tbody class="tbody">
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d7816e44 ">Load SATAC Applicant Personal Details File</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d7816e47 ">ASC_SATAC_APPL</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d7816e50 ">This activity pulls data from the SATAC Application File (SATACAPPL) to populate the SATAC Applicant Details (SKRSAPP) table. The activity uses the applicant's SATAC ID and admit term as populate keys.</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d7816e44 ">Load SATAC Academic Qualifications File</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d7816e47 ">ASC_SATAC_ACAD</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d7816e50 ">This activity pulls data from the SATAC Academic Qualifications File (SATACACAD) to populate the SATAC Qualifications (SKRSACA) table. The activity uses the SATAC ID, level code, qualification number, qualification type, and admission term as populate keys.</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d7816e44 ">SATAC Other Qualifications File</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d7816e47 ">ASC_SATAC_OTHR</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d7816e50 ">This activity pulls data from the SATAC Other Qualifications File (SATACOTHR) to populate SKRSACA. The activity uses the SATAC ID, level code, qualification number, qualification type, and admission term as populate keys.</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d7816e44 ">SATAC Employment File</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d7816e47 ">ASC_SATAC_EMPL</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d7816e50 ">This activity pulls data from the SATAC Employment File (SATACEMPL) to populate the SATAC Employment (SKRSEMP) table. The activity uses the SATAC ID, occupation code, sequence number, and admit term as populate keys.</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d7816e44 ">SATAC High School Subjects File</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d7816e47 ">ASC_SATAC_SUBJ</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d7816e50 ">This activity pulls data from the SATAC High School Subjects File (SATACSUBJ) to populate the SATAC High School Subjects (SKRSSUB) table. The activity uses the SATAC ID, subject code, qualification number, and admit term as populate keys.</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d7816e44 ">SATAC Preferences and Offers File</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d7816e47 ">ASC_SATAC_PREF</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d7816e50 ">This activity pulls data from the SATAC Preferences and Offers File (SATACPREF) to populate the SATAC Preferences and Offers (SKRSOFR) table. The activity uses the SATAC ID, course code, and admit term as populate keys.</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d7816e44 ">SATAC Preference Course Rank Set File</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d7816e47 ">ASC_SATAC_PCRS</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d7816e50 ">This activity pulls data from the SATAC Preference Course Rank Set File (SATACPCRS) to populate the SATAC Course Rank Set (SKRSPCR) table. The activity uses the SATAC ID, course code, and admit term as populate keys.</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d7816e44 ">SATAC FACT File</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d7816e47 ">ASC_SATAC_FACT</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d7816e50 ">This activity pulls data from the SATAC FACT File (SATACFACT) to populate the SATAC FACT (SKRSFCT) table. The activity uses the SATAC ID, fact class, fact code, and admit term as populate keys.</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d7816e44 ">SATAC Overseas Student Additional Personal Details File</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d7816e47 ">ASC_SATAC_OSPERS</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d7816e50 ">This activity pulls data from the SATAC International Applicant File (SATACOSPERS) to populate the SATAC OS Personal Details (SKRSIAP) table. The activity uses the SATAC ID and admit term as populate keys.</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d7816e44 ">SATAC Overseas Student Preferences File</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d7816e47 ">ASC_SATAC_OSPREF</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d7816e50 ">This activity pulls data from the SATACOSPERS to populate the SATAC Overseas Student Preferences (SKRSIOF) table. The activity uses the SATAC ID, course code, and admit term as populate keys.</td>
+
+          </tr>
+
+        </tbody>
+</table>
+</div>
+
+  </div>
+
+<div class="related-links">
+<div class="linklist relinfo relconcepts" xml:lang="en-US" lang="en-US"><strong>Related concepts</strong><br>
+<ul class="linklist">
+<li class="linklist"><span class="link ft-internal-link" title="The activities to load SATAC files move the data from the external tables to the MDUU staging tables." data-ft-warning="excluded-from-rendering" data-mapid="vGfahdchqsK1UkDrWNSsfQ" data-tocid="p30WaInPhvWdyF52IqZrgA">Load files from SATAC</span></li></ul></div>
+</div></div></div></section>
+<section id="t-610"><h4>Matching SATAC course codes to Banner programs</h4><div class="content-locale-en-US content-locale-en"><div id="r_matching_satac_course_codes_banner_programs"><div class="body refbody"><p class="shortdesc">This table describes the activities for loading files to match SATAC course codes to the <span class="keyword">Banner</span> programs.</p>
+
+    
+<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" id="r_matching_satac_course_codes_banner_programs__r_matching_satac_course_codes_banner_programs-utbl1" class="table" frame="hsides" border="1" rules="rows"><colgroup><col style="width:80pt"><col style="width:150pt"><col style="width:225pt"></colgroup><thead class="thead" style="text-align:left;vertical-align:bottom;">
+          <tr class="row">
+            <th class="entry row-nocellborder" style="text-align:left;vertical-align:bottom;" id="d1291e50">Activity Type</th>
+
+            <th class="entry row-nocellborder" style="text-align:left;vertical-align:bottom;" id="d1291e53">Activity Name</th>
+
+            <th class="entry row-nocellborder" style="text-align:left;vertical-align:bottom;" id="d1291e56">Description</th>
+
+          </tr>
+
+        </thead>
+<tbody class="tbody">
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d1291e50 ">Match SATAC Courses to Banner Programs</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d1291e53 ">ASC_SATAC_COURSE_MATCH</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d1291e56 ">This activity pulls data from SKRSOFR, SKRSAPP, SKRPOFR, and the Program Rules (SMRPRLE) table to populate the TAC Course Match (SKRTACM) table. The activity uses the SATAC ID, category code, course code, and admit term as populate keys.</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d1291e50 ">SATAC Course Match Error Detection</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d1291e53 ">ASC_SATAC_MATCH_ERROR</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d1291e56 ">This activity pulls data from the SKRSOFR and SKRSAPP to populate the TAC Load Error (SKRTACE) table. The activity uses the SATAC ID, category code, category course code, and admit term as populate keys.</td>
+
+          </tr>
+
+        </tbody>
+</table>
+</div>
+
+  </div>
+
+<div class="related-links">
+<div class="linklist relinfo relconcepts" xml:lang="en-US" lang="en-US"><strong>Related concepts</strong><br>
+<ul class="linklist">
+<li class="linklist"><span class="link ft-internal-link" title="The activities in this processing step are used to match SATAC course codes to Banner programs and curriculum rules." data-ft-warning="excluded-from-rendering" data-mapid="vGfahdchqsK1UkDrWNSsfQ" data-tocid="v~Pi9YlKjMDu8bW4Ekyu9A">Match SATAC course codes to Banner programs</span></li></ul></div>
+</div></div></div></section>
+<section id="t-620"><h4>Loading data to Electronic Admissions</h4><div class="content-locale-en-US content-locale-en"><div id="r_loading_data_electronic_admissions"><div class="body refbody"><p class="shortdesc">For SATAC file processing, all of the Electronic Admissions activities are performed by a single activity, and the load to Electronic Admissions task can now be run in Audit mode.</p>
+
+    <div class="section">
+      <p class="p">Detailed messages are written to the Process Log (GKRRLOG) table and can be viewed in the Process Log (GKARLOG) page.</p>
+
+      <p class="p">The following table describes the activity for loading files to Electronic Admissions.</p>
+
+      <div class="note"><span class="notetitle">Note:</span> The target tables are the <span class="keyword">Banner</span> Mass Data Update Utility (MDUU) tables and the activity uses the SKKSTAC function that has routines to appropriately populate the Electronic Admissions tables. The function also writes detailed processing messages to the GKRRLOG table.</div>
+
+      
+<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" id="r_loading_data_electronic_admissions__r_loading_data_electronic_admissions-utbl1" class="table" frame="hsides" border="1" rules="rows"><colgroup><col style="width:80pt"><col style="width:150pt"><col style="width:225pt"></colgroup><thead class="thead" style="text-align:left;vertical-align:bottom;">
+            <tr class="row">
+              <th class="entry row-nocellborder" style="text-align:left;vertical-align:bottom;" id="d2290e58">Activity Type</th>
+
+              <th class="entry row-nocellborder" style="text-align:left;vertical-align:bottom;" id="d2290e61">Activity Name</th>
+
+              <th class="entry row-nocellborder" style="text-align:left;vertical-align:bottom;" id="d2290e64">Description</th>
+
+            </tr>
+
+          </thead>
+<tbody class="tbody">
+            <tr class="row">
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d2290e58 ">Load SATAC data to Electronic Admissions tables</td>
+
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d2290e61 ">ASC_SATAC_EALOAD</td>
+
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d2290e64 ">This activity uses the SKKSTAC function to retrieve data from the SATAC import tables, such as SKRSAPP and SKRSOFR and processes the data correctly into the appropriate baseline EA tables such as SABNSTU, SARHEAD, SARPERS, and SARETRY.<p class="p">The activity uses the SATAC ID and admit term as populate keys, and also allows multiple preferences to be processed for each applicant.</p>
+</td>
+
+            </tr>
+
+          </tbody>
+</table>
+</div>
+
+      <p class="p">The SKKSTAC package contains functions to correctly insert records into specific electronic admissions tables. The following table list the tables are used by SKKSTAC and what data is inserted into each table.</p>
+
+      
+<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" id="r_loading_data_electronic_admissions__r_loading_data_electronic_admissions-utbl2" class="table" frame="hsides" border="1" rules="rows"><colgroup><col style="width:100pt"><col style="width:350pt"></colgroup><thead class="thead" style="text-align:left;vertical-align:bottom;">
+            <tr class="row">
+              <th class="entry row-nocellborder" style="text-align:left;vertical-align:bottom;" id="d2290e104">Table</th>
+
+              <th class="entry row-nocellborder" style="text-align:left;vertical-align:bottom;" id="d2290e107">Action</th>
+
+            </tr>
+
+          </thead>
+<tbody class="tbody">
+            <tr class="row">
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d2290e104 ">SABNSTU</td>
+
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d2290e107 ">If the applicant ID (SATAC ID) does not already exist, an AIDM is generated and linked to the applicant ID on SABNSTU. If the applicant ID matches an existing ID on SABNSTU, the system cannot generate a new AIDM so the existing linked AIDM is used and no updates are made to SABNSTU for that applicant.</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d2290e104 ">SARHEAD</td>
+
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d2290e107 ">A row is inserted into SARHEAD for each applicant preference for the applicant. This means that for each row the applicant has in SKRSOFR, if the course code has been matched to a Banner curriculum, there will be a row in SARHEAD. The SKRSOFR_ADMIT_TERM value is used to populate the SARHEAD_TERM_CODE_ENTRY column. Mapping rules exist on SKARMAP to map the SATAC applicant type to a valid web applicant (WAPP) code. These WAPP code is then used to populate the SARHEAD_WAPP_CODE value. The SATAC course code is populated into the SARHEAD_WEB_CASHIER_USER field to facilitate processing of multiple application preferences.</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d2290e104 ">SARPERS</td>
+
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d2290e107 ">A row is inserted into SARPERS for the applicant and for each person who has been related to the applicant in the SATAC APPL file and loaded to SKRSAPP. If the applicant has a next-of-kin person, an emergency contact person, or an employer contact, these are loaded into SARPERS with the specific relation SARPERS_RLTN_CDEcode. These SARPERS rows are repeated for each of the applicant's course preferences.</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d2290e104 ">SARADDR</td>
+
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d2290e107 ">A row is inserted into SARADDR for each of the applicant's addresses. These SARADDR rows are repeated for each of the applicant's course preferences.</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d2290e104 ">SARPHON</td>
+
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d2290e107 ">A row is inserted into SARPHON for each of the applicant's phone numbers and their respective e-mail address. These SARPHON rows are repeated for each of the applicant's course preferences.</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d2290e104 ">SARHLTH</td>
+
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d2290e107 ">A row is inserted into SARHLTH for the applicant's disability information. If the applicant indicates no disability, a row is inserted for no disability to facilitate later statutory reporting. <p class="p">If an applicant has indicated one or more disabilities, a row is inserted into SARHLTH for each disability. These SARHLTH rows are repeated for each of the applicant's course preferences.</p>
+</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d2290e104 ">SAREMPL</td>
+
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d2290e107 ">A row is inserted into SAREMPL for each record in the applicant's SATAC EMPL file (SKRSEMP table). These SAREMPL rows are repeated for each of the applicant's course preferences.</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d2290e104 ">SARHSCH</td>
+
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d2290e107 ">A row is inserted into SARHSCH for each high school record in the applicant's SATAC ACAD file (SKRSACA table). These SARHSCH rows are repeated for each of the applicant's course preferences.</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d2290e104 ">SARHSUM</td>
+
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d2290e107 ">Rows are inserted into SARHSUM for each high school record that was inserted into SARHSCH. These SARHSUM rows are repeated for each of the applicant's course preferences.</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d2290e104 ">SARHSES</td>
+
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d2290e107 ">Rows are inserted into SARHSES for each South Australian high school subject record in the applicant's SATAC SUBJ file (SKRSSUB table). These SARHSES rows are repeated for each of the applicant's course preferences.</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d2290e104 ">SARHCRS</td>
+
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d2290e107 ">Rows are inserted into SARHCRS for each South Australian high school subject record in the applicant's SATAC SUBJ file (SKRSSUB table). These SARHCRS rows are repeated for each of the applicant's course preferences.</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d2290e104 ">SARPCOL</td>
+
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d2290e107 ">A row is inserted into SARPCOL for each non-high school record in the applicant's SATAC ACAD file or SATAC OTHR file (SKRSACA table). The rows record the institution or location for each record. These SARPCOL rows are repeated for each of the applicant's course preferences.</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d2290e104 ">SARPSES</td>
+
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d2290e107 ">Rows are inserted into SARPSES for each record that was inserted into SARPCOL. These SARPSES rows are repeated for each of the applicant's course preferences.</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d2290e104 ">SARPDEG</td>
+
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d2290e107 ">Rows are inserted into SARPDEG for each record that was inserted into SARPCOL. The rows record the degree or award for each record. These SARPDEG rows are repeated for each of the applicant's course preferences.</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d2290e104 ">SARDFOS</td>
+
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d2290e107 ">Rows are inserted into SARDFOS for each record that was inserted into SARPDEG. The rows record the major, field of study, or field of education for each record. These SARDFOS rows are repeated for each of the applicant's course preferences.</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d2290e104 ">SARETRY</td>
+
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d2290e107 ">A row is inserted into SARETRY for each applicant preference for the applicant. This means that for each row the applicant has in SKRSOFR, if the course code has been matched to a Banner curriculum, there will be a row in SARETRY. The matched base curriculum rule number is populated in SARETRY.</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d2290e104 ">SAREFOS</td>
+
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d2290e107 ">A row is inserted into SAREFOS for each applicant preference for the applicant. This means that for each row the applicant has in SKRSOFR, if the course code has been matched to a Banner curriculum, there will be a row in SAREFOS. The matched major curriculum rule number is populated in SAREFOS.</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d2290e104 ">SARPRFN</td>
+
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d2290e107 ">Rows are inserted into SARPRFN for each applicant using data from various files. For example, any records in the SKRSFCT file will be inserted to SARPRFN, along with specific references from other files, such as basis of admission, course stream, allocatability status, and file ID. Where a reference record is not tied directly to a single preference, the SARPRFN rows are repeated for each of the applicant's course preferences.</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d2290e104 ">SARRLST</td>
+
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d2290e107 ">Rows are inserted into SARRLST for each applicant based on the applicant's SARHEAD_WAPP_CODE value. Processing rules exist in baseline for each WAPP code. These rules are built on the baseline Electronic Admissions Procedure/Routine Control Page (SAAECRL). The rows inserted into SARRLST are the correct procedures for the applicant's WAPP code. These SARRLST rows are repeated for each of the applicant's course preferences.</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d2290e104 ">SARPERR</td>
+
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d2290e107 ">Rows are inserted into SARPERR for each applicant based on the applicant's SARHEAD_WAPP_CODE value. Processing rules exist in baseline for each WAPP code. These rules are built on SAAECRL. The rows inserted into SARPERR are the correct routines for the applicant's WAPP code. These SARPERR rows are repeated for each of the applicant's course preferences.</td>
+
+            </tr>
+
+          </tbody>
+</table>
+</div>
+
+    </div>
+
+  </div>
+
+<div class="related-links">
+<div class="linklist relinfo relconcepts" xml:lang="en-US" lang="en-US"><strong>Related concepts</strong><br>
+<ul class="linklist">
+<li class="linklist"><span class="link ft-internal-link" title="The ASC_SATAC_EALOAD activity used in the Loading to EA step of the process populates baseline EA tables with the data from the MDUU staging tables." data-ft-warning="excluded-from-rendering" data-mapid="vGfahdchqsK1UkDrWNSsfQ" data-tocid="FMQY4efu1yFXTApMtCOoZw">Load to Electronic Admissions</span></li></ul></div>
+</div></div></div></section>
+<section id="t-630"><h4>Post load activities</h4><div class="content-locale-en-US content-locale-en"><div id="r_file_processing_post_load_activities"><div class="body refbody"><p class="shortdesc">The following table describes the post loading activities.</p>
+
+    
+<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" id="r_file_processing_post_load_activities__r_file_processing_post_load_activities-utbl1" class="table" frame="hsides" border="1" rules="rows"><colgroup><col style="width:100pt"><col style="width:150pt"><col style="width:225pt"></colgroup><thead class="thead" style="text-align:left;vertical-align:bottom;">
+          <tr class="row">
+            <th class="entry row-nocellborder" style="text-align:left;vertical-align:bottom;" id="d13131e44">Activity Type</th>
+
+            <th class="entry row-nocellborder" style="text-align:left;vertical-align:bottom;" id="d13131e47">Activity Name</th>
+
+            <th class="entry row-nocellborder" style="text-align:left;vertical-align:bottom;" id="d13131e50">Description</th>
+
+          </tr>
+
+        </thead>
+<tbody class="tbody">
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d13131e44 ">Update fields in SARADAP</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d13131e47 ">ASC_SATAC_SARADAP</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d13131e50 ">This activity pulls data from SKRSOFR, SABNSTU, SKRSAPP, SARCTRL, and SARADAP to populate the Admissions Application Repeating (SARADAP) table. The activity uses PIDM, term code entry, and application number as populate keys.</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d13131e44 ">Create records in SARAPPD</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d13131e47 ">ASC_SATAC_SARAPPD</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d13131e50 ">This activity pulls data from the SKRSOFR, SABNSTU, SARCTRL, and SARADAP to populate the Student Application Decision Repeating (SARAPPD) table. The activity uses PIDM, code entry application number, and sequence number as populate keys.</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d13131e44 ">Update fields in SGBSTDN</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d13131e47 ">ASC_SATAC_SGBSTDN</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d13131e50 ">This activity pulls data from the SGBSTDN, SABNSTU, SARCTRL, and SKRSAPP to populate the Student Base (SGBSTDN) table. The activity uses PIDM, term code, and student code as populate keys.</td>
+
+          </tr>
+
+        </tbody>
+</table>
+</div>
+
+  </div>
+
+</div></div></section>
+<section id="t-640"><h4>Providing reconciliation data to SATAC</h4><div class="content-locale-en-US content-locale-en"><div id="r_providing_reconciliation_data_satac"><div class="body refbody"><p class="shortdesc">The following table describes the reconciliation activities to SATAC.</p>
+
+    
+<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" id="r_providing_reconciliation_data_satac__r_providing_reconciliation_data_satac-utbl1" class="table" frame="hsides" border="1" rules="rows"><colgroup><col style="width:114pt"><col style="width:150pt"><col style="width:225pt"></colgroup><thead class="thead" style="text-align:left;vertical-align:bottom;">
+          <tr class="row">
+            <th class="entry row-nocellborder" style="text-align:left;vertical-align:bottom;" id="d8190e44">Activity Type</th>
+
+            <th class="entry row-nocellborder" style="text-align:left;vertical-align:bottom;" id="d8190e47">Activity Name</th>
+
+            <th class="entry row-nocellborder" style="text-align:left;vertical-align:bottom;" id="d8190e50">Description</th>
+
+          </tr>
+
+        </thead>
+<tbody class="tbody">
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d8190e44 ">Reconciliation Snapshot</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d8190e47 ">ASC_SATAC_SNA_RECON</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d8190e50 ">This activity pulls data from various baseline tables to populate the TAC Course Match (SKRTACM) table. The activity uses TAC applicant ID, admission category code, course code, and admit term as populate keys.</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d8190e44 ">Reconciliation Extract</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d8190e47 ">ASC_SATAC_EXT_RECON</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d8190e50 ">This activity pulls data from SKRTACM to populate the TAC Reconciliation Extract (SKRTACR) table. The activity uses the TAC applicant ID, admission category code, course code, admit term, and PIDM as populate keys.</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d8190e44 ">Reconciliation Export</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d8190e47 ">ASC_SATAC_EXP_RECON</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d8190e50 ">This activity pulls data from SKRTACR to populate the SATAC Reconciliation Export (SKRXSTC) table. The activity uses TAC applicant ID, admit term and course code as populate keys.</td>
+
+          </tr>
+
+        </tbody>
+</table>
+</div>
+
+  </div>
+
+<div class="related-links">
+<div class="linklist relinfo relconcepts" xml:lang="en-US" lang="en-US"><strong>Related concepts</strong><br>
+<ul class="linklist">
+<li class="linklist"><span class="link ft-internal-link" title="The export process populates the export based on extract data." data-ft-warning="excluded-from-rendering" data-mapid="vGfahdchqsK1UkDrWNSsfQ" data-tocid="KnRbI5rXR208BzXcPD70xQ">Export processing</span></li>
+<li class="linklist"><span class="link ft-internal-link" title="The activities used to provide reconciliation data to SATAC include tasks and activities to produce the SATAC reconciliation file, ready for export to SATAC." data-ft-warning="excluded-from-rendering" data-mapid="vGfahdchqsK1UkDrWNSsfQ" data-tocid="jTW6qS~f52uyKWQZtUmRXA">Provide reconciliation data to SATAC</span></li></ul></div>
+</div></div></div></section>
+<section id="t-650"><h3>UAC processing</h3><div class="content-locale-en-US content-locale-en"><div id="c_uac_processing"><p class="shortdesc">This section describes activities and processes used for loading files from UAC.</p>
+
+<div class="related-links">
+<div class="linklist relinfo reltasks" xml:lang="en-US" lang="en-US"><strong>Related tasks</strong><br>
+<ul class="linklist">
+<li class="linklist"><span class="link ft-internal-link" title="The following procedure explains how to process the TAC data from the staging tables into Electronic Admissions tables. UAC data is loaded to Electronic Admissions tables using the SOPPTAC process." data-ft-warning="excluded-from-rendering" data-mapid="vGfahdchqsK1UkDrWNSsfQ" data-tocid="kSQy0KzEkNstOLNnyP1uIQ">Load Electronic Admissions data</span></li>
+<li class="linklist"><span class="link ft-internal-link" title="The following procedure explains how to update data elements that are not processed by the baseline Electronic Application Match, Verify and Load (SARETMT) process." data-ft-warning="excluded-from-rendering" data-mapid="vGfahdchqsK1UkDrWNSsfQ" data-tocid="ewDiXKT2F4XvVq38e25Abg">Post load activities</span></li>
+<li class="linklist"><span class="link ft-internal-link" title="The following procedure explains how to produce TAC reconciliation files." data-ft-warning="excluded-from-rendering" data-mapid="vGfahdchqsK1UkDrWNSsfQ" data-tocid="nSsZj_~_VetTn09o62rYlQ">Produce TAC reconciliation files</span></li></ul></div>
+</div></div></div></section>
+<section id="t-660"><h4>UAC file details</h4><div class="content-locale-en-US content-locale-en"><div id="c_uac_file_details"><p class="shortdesc">UAC file details and the values are discussed in this section.</p>
+
+</div></div></section>
+<section id="t-670"><h5>UAC Applicant file</h5><div class="content-locale-en-US content-locale-en"><div id="r_uac_applicant_file"><div class="body refbody"><p class="shortdesc">This topic describes the UAC Applicant File details.</p>
+
+    
+<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" id="r_uac_applicant_file__r_uac_applicant_file-utbl1" class="table" frame="hsides" border="1" rules="rows"><colgroup><col><col></colgroup><tbody class="tbody">
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;">External Table Name</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;">UACAPPL</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;">Directory Name</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;">Name of the directory where the file is stored. Your database administrator can supply this if you do not have the information.</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;">File Name</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;"><code class="ph codeph">applic_x.txt</code>, where <code class="ph codeph">x</code> represents the two-character value that UAC uses to identify your institution.</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;">Record Delimiter</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;">NEWLINE</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;">Fields</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;">UAC_APPLIC_DATA (583)</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;">Field Delimiter</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;">FIXEDLENGTH()</td>
+
+          </tr>
+
+        </tbody>
+</table>
+</div>
+
+  </div>
+
+</div></div></section>
+<section id="t-680"><h5>UAC Previous Name file</h5><div class="content-locale-en-US content-locale-en"><div id="r_uac_previous_file_name"><div class="body refbody"><p class="shortdesc">This topic describes the UAC Previous Name File details.</p>
+
+    
+<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" id="r_uac_previous_file_name__r_uac_previous_file_name-utbl1" class="table" frame="hsides" border="1" rules="rows"><colgroup><col><col></colgroup><tbody class="tbody">
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;">External Table Name</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;">UACPREV</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;">Directory Name</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;">Name of the directory where the file is stored. Your database administrator can supply this if you do not have the information.</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;">File Name</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;"><code class="ph codeph">prevname_x.txt</code>, where <code class="ph codeph">x</code> represents the two-character value that UAC uses to identify your institution.</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;">Record Delimiter</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;">NEWLINE</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;">Fields</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;">UAC_PREVNAME_DATA (45)</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;">Field Delimiter</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;">FIXEDLENGTH()</td>
+
+          </tr>
+
+        </tbody>
+</table>
+</div>
+
+  </div>
+
+</div></div></section>
+<section id="t-690"><h5>UAC Preferences file</h5><div class="content-locale-en-US content-locale-en"><div id="r_uac_preferences_file"><div class="body refbody"><p class="shortdesc">This topic describes the UAC Preferences File details.</p>
+
+    
+<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" id="r_uac_preferences_file__r_uac_preferences_file-utbl1" class="table" frame="hsides" border="1" rules="rows"><colgroup><col><col></colgroup><tbody class="tbody">
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;">External Table Name</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;">UACPREF</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;">Directory Name</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;">Name of the directory where the file is stored. Your database administrator can supply this if you do not have the information.</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;">File Name</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;"><code class="ph codeph">pref_x.txt</code>, where <code class="ph codeph">x</code> represents the two-character value that UAC uses to identify your institution.</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;">Record Delimiter</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;">NEWLINE</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;">Fields</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;">UAC_PREF_DATA (40)</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;">Field Delimiter</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;">FIXEDLENGTH()</td>
+
+          </tr>
+
+        </tbody>
+</table>
+</div>
+
+  </div>
+
+</div></div></section>
+<section id="t-700"><h5>UAC Offer file</h5><div class="content-locale-en-US content-locale-en"><div id="r_uac_offer_file"><div class="body refbody"><p class="shortdesc">This topic describes the UAC Offer File details.</p>
+
+    
+<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" id="r_uac_offer_file__r_uac_offer_file-utbl1" class="table" frame="hsides" border="1" rules="rows"><colgroup><col><col></colgroup><tbody class="tbody">
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;">External Table Name</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;">UACOFFER</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;">Directory Name</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;">Name of the directory where the file is stored. Your database administrator can supply this if you do not have the information.</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;">File Name</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;"><code class="ph codeph">offer_x.txt</code>, where <code class="ph codeph">x</code> represents the two-character value that UAC uses to identify your institution.</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;">Record Delimiter</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;">NEWLINE</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;">Fields</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;">UAC_OFFER_DATA (121)</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;">Field Delimiter</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;">FIXEDLENGTH()</td>
+
+          </tr>
+
+        </tbody>
+</table>
+</div>
+
+  </div>
+
+</div></div></section>
+<section id="t-710"><h5>UAC Offers Notes file</h5><div class="content-locale-en-US content-locale-en"><div id="r_uac_offer_notes_files"><div class="body refbody"><p class="shortdesc">This topic describes the UAC Offer Notes File details.</p>
+
+    
+<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" id="r_uac_offer_notes_files__r_uac_offer_notes_files-utbl1" class="table" frame="hsides" border="1" rules="rows"><colgroup><col><col></colgroup><tbody class="tbody">
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;">External Table Name</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;">UACOFFNOTE</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;">Directory Name</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;">Name of the directory where the file is stored. Your database administrator can supply this if you do not have the information.</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;">File Name</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;"><code class="ph codeph">offnote_x.txt</code>, where <code class="ph codeph">x</code> represents the two-character value that UAC uses to identify your institution.</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;">Record Delimiter</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;">NEWLINE</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;">Fields</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;">UAC_OFFNOTE_DATA (219)</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;">Field Delimiter</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;">FIXEDLENGTH()</td>
+
+          </tr>
+
+        </tbody>
+</table>
+</div>
+
+  </div>
+
+</div></div></section>
+<section id="t-720"><h5>UAC Qualifications file</h5><div class="content-locale-en-US content-locale-en"><div id="r_uac_qualifications_file"><div class="body refbody"><p class="shortdesc">This topic describes the UAC Qualifications File details.</p>
+
+    
+<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" id="r_uac_qualifications_file__r_uac_qualifications_file-utbl1" class="table" frame="hsides" border="1" rules="rows"><colgroup><col><col></colgroup><tbody class="tbody">
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;">External Table Name</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;">UACQUAL</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;">Directory Name</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;">Name of the directory where the file is stored. Your database administrator can supply this if you do not have the information.</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;">File Name</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;"> <code class="ph codeph">qual_x.txt</code>, where <code class="ph codeph">x</code> represents the two-character value that UAC uses to identify your institution.</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;">Record Delimiter</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;">NEWLINE</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;">Fields</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;">UAC_QUAL_DATA (269)</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;">Field Delimiter</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;">FIXEDLENGTH()</td>
+
+          </tr>
+
+        </tbody>
+</table>
+</div>
+
+  </div>
+
+</div></div></section>
+<section id="t-730"><h5>UAC Subjects file</h5><div class="content-locale-en-US content-locale-en"><div id="r_uac_subjects_file"><div class="body refbody"><p class="shortdesc">This topic describes the UAC Subjects File details.</p>
+
+    
+<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" id="r_uac_subjects_file__r_uac_subjects_file-utbl1" class="table" frame="hsides" border="1" rules="rows"><colgroup><col><col></colgroup><tbody class="tbody">
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;">External Table Name</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;">UACSUBJRES</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;">Directory Name</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;">Name of the directory where the file is stored. Your database administrator can supply this if you do not have the information.</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;">File Name</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;"><code class="ph codeph">subjres_x.txt</code>, where <code class="ph codeph">x</code> represents the two-character value that UAC uses to identify your institution.</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;">Record Delimiter</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;">NEWLINE</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;">Fields</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;">UAC_SUBJRES_DATA (196)</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;">Field Delimiter</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;">FIXEDLENGTH()</td>
+
+          </tr>
+
+        </tbody>
+</table>
+</div>
+
+  </div>
+
+</div></div></section>
+<section id="t-740"><h5>UAC Test Scores file</h5><div class="content-locale-en-US content-locale-en"><div id="r_uac_test_score_file"><div class="body refbody"><p class="shortdesc">This topic describes the UAC Test Scores File details.</p>
+
+    
+<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" id="r_uac_test_score_file__r_uac_test_score_file-utbl1" class="table" frame="hsides" border="1" rules="rows"><colgroup><col><col></colgroup><tbody class="tbody">
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;">External Table Name</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;">UACSCORE</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;">Directory Name</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;">Name of the directory where the file is stored. Your database administrator can supply this if you do not have the information.</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;">File Name</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;"><code class="ph codeph">score_x.txt</code>, where <code class="ph codeph">x</code> represents the two-character value that UAC uses to identify your institution.</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;">Record Delimiter</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;">NEWLINE</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;">Fields</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;">UAC_SCORE_DATA (94)</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;">Field Delimiter</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;">FIXEDLENGTH()</td>
+
+          </tr>
+
+        </tbody>
+</table>
+</div>
+
+  </div>
+
+</div></div></section>
+<section id="t-750"><h5>UAC FACT file</h5><div class="content-locale-en-US content-locale-en"><div id="r_uac_fact_file"><div class="body refbody"><p class="shortdesc">This topic describes the UAC Fact File details.</p>
+
+    
+<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" id="r_uac_fact_file__r_uac_fact_file-utbl1" class="table" frame="hsides" border="1" rules="rows"><colgroup><col><col></colgroup><tbody class="tbody">
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;">External Table Name</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;">UACFACT</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;">Directory Name</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;">Name of the directory where the file is stored. Your database administrator can supply this if you do not have the information.</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;">File Name</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;"><code class="ph codeph">fact_x.txt</code>, where <code class="ph codeph">x</code> represents the two-character value that UAC uses to identify your institution.</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;">Record Delimiter</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;">NEWLINE</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;">Fields</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;">UAC_FACT_DATA (39)</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;">Field Delimiter</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;">FIXEDLENGTH()</td>
+
+          </tr>
+
+        </tbody>
+</table>
+</div>
+
+  </div>
+
+</div></div></section>
+<section id="t-760"><h4>Loading files from UAC</h4><div class="content-locale-en-US content-locale-en"><div id="r_loading_files_uac"><div class="body refbody"><p class="shortdesc">This table describes the activities for loading files from UAC with ASC_UAC_LOAD as the process code and ASC_UAC_IMPORT as the task code for the files that are not currently handled by SOPLUAC.</p>
+
+    
+<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" id="r_loading_files_uac__r_loading_files_uac-utbl1" class="table" frame="hsides" border="1" rules="rows"><colgroup><col style="width:80pt"><col style="width:150pt"><col style="width:225pt"></colgroup><thead class="thead" style="text-align:left;vertical-align:bottom;">
+          <tr class="row">
+            <th class="entry row-nocellborder" style="text-align:left;vertical-align:bottom;" id="d4994e44">Activity Type</th>
+
+            <th class="entry row-nocellborder" style="text-align:left;vertical-align:bottom;" id="d4994e47">Activity Name</th>
+
+            <th class="entry row-nocellborder" style="text-align:left;vertical-align:bottom;" id="d4994e50">Description</th>
+
+          </tr>
+
+        </thead>
+<tbody class="tbody">
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d4994e44 ">Load UAC Previous Name file</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d4994e47 ">ASC_UAC_PREVNAME</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d4994e50 ">This activity pulls data from the UAC Previous Name File (UACPREV) to populate the UAC Previous Name Table (SKRUPRV). The activity uses the UAC application ID and admit term as populate keys.</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d4994e44 ">Load UAC Yr12 subjects file</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d4994e47 ">ASC_UAC_SUBJ</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d4994e50 ">This activity pulls data from the UAC Application File Table (UACSUBJRES) to populate the UAC Subjects Table (SKRUSUB). The activity uses the applicant's UAC ID, qualification sequence number, subject sequence number, and admit term as populate keys.</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d4994e44 ">Load UAC Test scores file</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d4994e47 ">ASC_UAC_TESTS</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d4994e50 ">This activity pulls data from the UAC Test Scores File (UACSCORE) to populate the UAC Test Scores Table (SKRUTST). The activity uses the applicant's UAC ID, qualification sequence number, test sequence number, and admit term as populate keys.</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d4994e44 ">Load UAC FACT file</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d4994e47 ">ASC_UAC_FACT</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d4994e50 ">This activity pulls data from the UAC Fact File (UACFACT) to populate the UAC FACT Table (SKRUFCT). The activity uses the applicant's UAC ID, fact code, and admit term as populate keys.</td>
+
+          </tr>
+
+        </tbody>
+</table>
+</div>
+
+  </div>
+
+<div class="related-links">
+<div class="linklist relinfo relconcepts" xml:lang="en-US" lang="en-US"><strong>Related concepts</strong><br>
+<ul class="linklist">
+<li class="linklist"><span class="link ft-internal-link" title="The UAC Load Process (SOPLUAC) is used to parse several UAC files to insert the data into the existing UAC staging tables" data-ft-warning="excluded-from-rendering" data-mapid="vGfahdchqsK1UkDrWNSsfQ" data-tocid="cpaU~TZs2bNrnn0g6n7dmg">UAC Load Process (SOPLUAC)</span></li></ul></div>
+</div></div></div></section>
+<section id="t-770"><h4>Matching UAC course codes to Banner programs</h4><div class="content-locale-en-US content-locale-en"><div id="r_matching_uac_course_codes_banner_programs"><div class="body refbody"><p class="shortdesc">This table describes the activities for matching UAC course codes to <span class="keyword">Banner</span> programs ASC_UAC_LOAD as the process code.</p>
+
+    
+<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" id="r_matching_uac_course_codes_banner_programs__r_matching_uac_course_codes_banner_programs-utbl1" class="table" frame="hsides" border="1" rules="rows"><colgroup><col style="width:80pt"><col style="width:150pt"><col style="width:225pt"></colgroup><thead class="thead" style="text-align:left;vertical-align:bottom;">
+          <tr class="row">
+            <th class="entry row-nocellborder" style="text-align:left;vertical-align:bottom;" id="d7690e50">Activity Type</th>
+
+            <th class="entry row-nocellborder" style="text-align:left;vertical-align:bottom;" id="d7690e53">Activity Name</th>
+
+            <th class="entry row-nocellborder" style="text-align:left;vertical-align:bottom;" id="d7690e56">Description</th>
+
+          </tr>
+
+        </thead>
+<tbody class="tbody">
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d7690e50 ">Match UAC Courses to <span class="keyword">Banner</span> programs</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d7690e53 ">ASC_UAC_COURSE_MATCH</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d7690e56 ">This activity pulls data from the SKRUOFR, SKRUAPP, SKRPOFR, and SMRPRLE to populate the TAC Course Match (SKRTACM) table. The activity uses the applicant's offer ID, UAC code, course code, and admit term as populate keys.</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d7690e50 ">UAC course match error detection</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d7690e53 ">ASC_UAC_MATCH_ERROR</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d7690e56 ">This activity pulls data from SKRUOFR and SKRUAPP to populate the TAC Load Error (SKRTACE) table. The activity uses the applicant's offer ID, UAC code, course code, and admit term as populate keys.</td>
+
+          </tr>
+
+        </tbody>
+</table>
+</div>
+
+  </div>
+
+<div class="related-links">
+<div class="linklist relinfo relconcepts" xml:lang="en-US" lang="en-US"><strong>Related concepts</strong><br>
+<ul class="linklist">
+<li class="linklist"><span class="link ft-internal-link" title="The activities in this processing step are used to match UAC course codes to Banner programs and curriculum rules." data-ft-warning="excluded-from-rendering" data-mapid="vGfahdchqsK1UkDrWNSsfQ" data-tocid="izbaddHL2G_30bxBOJSeGg">Match UAC course codes to Banner programs</span></li></ul></div>
+</div></div></div></section>
+<section id="t-780"><h4>Load to baseline Electronic Admissions tables for UAC processing</h4><div class="content-locale-en-US content-locale-en"><div id="r_file_processing_load_baseline_electronic_admission_table_uac_processing"><div class="body refbody"><p class="shortdesc">For UAC file processing, all of the Electronic Admissions activities are performed by a single activity (ASC_UAC_EALOAD), and the load to Electronic Admissions task can be run in Audit mode.</p>
+
+    <div class="section">
+      <p class="p">Detailed messages are written to the Process Log (GKRRLOG) table and can be viewed in the Process Log (GKARLOG) page.</p>
+
+      <p class="p">The following table describes the activity for loading files to Electronic Admissions.</p>
+
+      
+<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" id="r_file_processing_load_baseline_electronic_admission_table_uac_processing__r_file_processing_load_baseline_electronic_admission_table-utbl1" class="table" frame="hsides" border="1" rules="rows"><colgroup><col style="width:108.5pt"><col style="width:150pt"><col style="width:225pt"></colgroup><thead class="thead" style="text-align:left;vertical-align:bottom;">
+            <tr class="row">
+              <th class="entry row-nocellborder" style="text-align:left;vertical-align:bottom;" id="d9348e52">Activity Type</th>
+
+              <th class="entry row-nocellborder" style="text-align:left;vertical-align:bottom;" id="d9348e55">Activity Name</th>
+
+              <th class="entry row-nocellborder" style="text-align:left;vertical-align:bottom;" id="d9348e58">Description</th>
+
+            </tr>
+
+          </thead>
+<tbody class="tbody">
+            <tr class="row">
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d9348e52 ">Load UAC data to Electronic Admissions tables</td>
+
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d9348e55 ">ASC_UAC_EALOAD</td>
+
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d9348e58 ">This activity uses several functions within the SKKUTAC package to load data to baseline Electronic Admissions tables. You can run this activity in audit mode which will not update the tables but will produce a detailed log about what can be loaded and what cannot be loaded and why it cannot be loaded. This log can be viewed on the MDUU page GKARLOG.<p class="p">When the activity is run in update mode, the activity log is produced and the electronic admissions tables are updated where possible.</p>
+<p class="p">The activity uses the UAC ID and admit term as populate keys, and also allows multiple preferences to be processed for each applicant.</p>
+</td>
+
+            </tr>
+
+          </tbody>
+</table>
+</div>
+
+      <p class="p">The SKKUTAC package contains functions to correctly insert records into specific electronic admissions tables.</p>
+
+      <p class="p">The following table list the tables are used by the SKKUTAC package and what data is inserted into each table.</p>
+
+      
+<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" id="r_file_processing_load_baseline_electronic_admission_table_uac_processing__r_file_processing_load_baseline_electronic_admission_table-utbl2" class="table" frame="hsides" border="1" rules="rows"><colgroup><col style="width:100pt"><col style="width:350pt"></colgroup><thead class="thead" style="text-align:left;vertical-align:bottom;">
+            <tr class="row">
+              <th class="entry row-nocellborder" style="text-align:left;vertical-align:bottom;" id="d9348e103">Table</th>
+
+              <th class="entry row-nocellborder" style="text-align:left;vertical-align:bottom;" id="d9348e106">Action</th>
+
+            </tr>
+
+          </thead>
+<tbody class="tbody">
+            <tr class="row">
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d9348e103 ">SABNSTU</td>
+
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d9348e106 ">If the applicant ID (UAC ID) does not already exist, an AIDM is generated and linked to the applicant ID on SABNSTU. If the applicant ID matches an existing ID on SABNSTU, the system cannot generate a new AIDM so the existing linked AIDM is used and no updates are made to SABNSTU for that applicant.</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d9348e103 ">SARHEAD</td>
+
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d9348e106 ">A row is inserted into SARHEAD for each application preference for which the applicant will receive an offer. This means that for each row the applicant has in SKRUOFR, if the course code has been matched to a <span class="keyword">Banner</span> curriculum, there will be a row in SARHEAD. The SKRUOFR_ADMIT_TERM value is used to populate the SARHEAD_TERM_CODE_ENTRY column. The UAC course code is populated into the SARHEAD_WEB_CASHIER_USER field to facilitate later reconciliation reporting. <p class="p">SARHEAD_TERM_CODE_ENTRY column. Mapping rules exist on SKARMAP to map the SATAC applicant type to a valid web applicant (WAPP) code. This WAPP code is then used to populate the SARHEAD_WAPP_CODE value.</p>
+</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d9348e103 ">SARPERS</td>
+
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d9348e106 ">A row is inserted into SARPERS for each application preference for which the applicant is receiving an offer.</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d9348e103 ">SARADDR</td>
+
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d9348e106 ">A row is inserted into SARADDR for each of the applicant's addresses. These SARADDR rows are repeated for each of the applicant's offered course preferences.</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d9348e103 ">SARPHON</td>
+
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d9348e106 ">A row is inserted into SARPHON for each of the applicant's phone numbers and their respective e-mail address. These SARPHON rows are repeated for each of the applicant's offered course preferences.</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d9348e103 ">SARRFNO</td>
+
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d9348e106 ">If the student is an international student with visa information, then this data from the SKRUAPP file is loaded into SARRFNO.</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d9348e103 ">SARHSCH</td>
+
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d9348e106 ">A row is inserted into SARHSCH for each of the applicant's high school records in the SKRUQUL table. These SARHSCH rows are repeated for each of the applicant's offered course preferences.</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d9348e103 ">SARHSUM</td>
+
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d9348e106 ">A row is inserted into SARHSUM for each of the applicant's high school records in the SKRUQUL table. These SARHSUM rows are repeated for each of the applicant's offered course preferences.</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d9348e103 ">SARHSES</td>
+
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d9348e106 ">A row is inserted into SARHSES for each of the applicant's high school records in the SKRUQUL table. These SARHSES rows are repeated for each of the applicant's offered course preferences.</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d9348e103 ">SARHCRS</td>
+
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d9348e106 ">A row is inserted into SARHCRS for each of the applicant's high school subject records in the SKRUSUB table. These SARHCRS rows are repeated for each of the applicant's offered course preferences.</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d9348e103 ">SARPCOL</td>
+
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d9348e106 ">A row is inserted into SARPCOL for each of the applicant's prior tertiary institution records in the SKRUQUL table. These SARPCOL rows are repeated for each of the applicant's offered course preferences.</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d9348e103 ">SARPSES</td>
+
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d9348e106 ">A row is inserted into SARPSES for each of the applicant's prior tertiary institution records in the SKRUQUL table. These SARPSES rows are repeated for each of the applicant's offered course preferences.</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d9348e103 ">SARPCRS</td>
+
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d9348e106 ">A row is inserted into SARPCRS for each of the applicant's prior tertiary Institution subject records in the SKRUSUB table. These SARPCRS rows are repeated for each of the applicant's offered course preferences.</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d9348e103 ">SARPDEG</td>
+
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d9348e106 ">A row is inserted into SARPDEG for each of the applicant's prior tertiary institution records in the SKRUQUL table. These SARPDEG rows are repeated for each of the applicant's offered course preferences.</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d9348e103 ">SARDFOS</td>
+
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d9348e106 ">A row is inserted into SARDFOS for each of the applicant's prior tertiary institution records in the SKRUQUL table. These SARPDEG rows are repeated for each of the applicant's offered course preferences.</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d9348e103 ">SARTEST</td>
+
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d9348e106 ">A row is inserted into SARTEST for each applicant's test score records in the SKRUTST table. These SARTEST rows are repeated for each of the applicant's offered course preferences.</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d9348e103 ">SARPRFN</td>
+
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d9348e106 ">A row is inserted into SARPRFN for each applicant's fact records in the SKRUFCT table. These SARPRFN rows are repeated for each of the applicant's offered course preferences.</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d9348e103 ">SARETRY</td>
+
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d9348e106 ">A row is inserted into SARETRY for each applicant preference for which the applicant will receive an offer. This means that for each row the applicant has in SKRUOFR, if the course code has been matched to a <span class="keyword">Banner</span> curriculum, there will be a row in SARETRY. The matched base curriculum rule number is populated in SARETRY.</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d9348e103 ">SAREFOS</td>
+
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d9348e106 ">A row is inserted into SAREFOS for each applicant preference for which the applicant will receive an offer. This means that for each row the applicant has in SKRUOFR, if the course code has been matched to a <span class="keyword">Banner</span> curriculum, there will be a row in SAREFOS. The matched major curriculum rule number is populated in SAREFOS.</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d9348e103 ">SARRLST</td>
+
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d9348e106 ">Rows are inserted into SARRLST for each applicant based on the applicant's SARHEAD_WAPP_CODE value. Processing rules exist in baseline for each WAPP code. These rules are built on the baseline Electronic Admissions Procedure/Routine Control (SAAECRL) page. The rows inserted into SARRLST are the correct procedures for the applicant's WAPP code. These SARRLST rows are repeated for each of the applicant's offered course preferences.</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d9348e103 ">SARPERR</td>
+
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d9348e106 ">Rows are inserted into SARPERR for each applicant based on the applicant's SARHEAD_WAPP_CODE value. Processing rules exist in baseline for each WAPP code. These rules are built on SAAECRL. The rows inserted into SARPERR are the correct routines for the applicant's WAPP code. These SARPERR rows are repeated for each of the applicant's offered course preferences.</td>
+
+            </tr>
+
+          </tbody>
+</table>
+</div>
+
+    </div>
+
+  </div>
+
+</div></div></section>
+<section id="t-790"><h4>Load additional data to baseline tables for UAC processing</h4><div class="content-locale-en-US content-locale-en"><div id="r_file_processing_load_additional_data_baseline_tables_uac_processing"><div class="body refbody"><p class="shortdesc">This table describes the activities to load Electronic Admissions tables to baseline tables with ASC_UAC_POSTLOAD as the process code and task code.</p>
+
+    
+<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" id="r_file_processing_load_additional_data_baseline_tables_uac_processing__r_file_processing_load_additional_data_baseline_tables-utbl1" class="table" frame="hsides" border="1" rules="rows"><colgroup><col style="width:80pt"><col style="width:150pt"><col style="width:225pt"></colgroup><thead class="thead" style="text-align:left;vertical-align:bottom;">
+          <tr class="row">
+            <th class="entry row-nocellborder" style="text-align:left;vertical-align:bottom;" id="d10710e44">Activity Type</th>
+
+            <th class="entry row-nocellborder" style="text-align:left;vertical-align:bottom;" id="d10710e47">Activity Name</th>
+
+            <th class="entry row-nocellborder" style="text-align:left;vertical-align:bottom;" id="d10710e50">Description</th>
+
+          </tr>
+
+        </thead>
+<tbody class="tbody">
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d10710e44 ">Update fields in GOBINTL</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d10710e47 ">ASC_UAC_GOBINTL</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d10710e50 ">This activity copies the Year of Arrival data in the Note field in the Electronic Admissions Person Table (SARPERS) to the Alien Registration field in the International Information Table (GOBINTL), so that the data will be picked up by DEEWR reporting. This activity uses PIDM as populate key.</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d10710e44 ">Update fields in SARADAP</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d10710e47 ">ASC_UAC_SARADAP</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d10710e50 ">This activity pulls data from the Admissions Table (SARADAP), SARCTRL, UAC Applicant Details Table (SKRUAPP), the Electronic Admissions Non-Student Table (SABNSTU), and the UAC Offers Table (SKRUOFR) to populate the Admissions Application Repeating Table (SARADAP). The activity uses the PIDM, term code entry, and application number as populate keys.</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d10710e44 ">Create records in SARAPPD</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d10710e47 ">ASC_UAC_SARAPPD</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d10710e50 ">This activity pulls data from the SARADAP, SARCTRL, SABNSTU, and SKRUOFR to populate the Student Application Decision Repeating Table (SARAPPD). The activity uses the PIDM, term code entry, application number, and APDC code as populate keys.</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d10710e44 ">Populate SKRCHSN</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d10710e47 ">ASC_UAC_SKRCHSN</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d10710e50 ">This activity pulls data from the SARCTRL, SKRUAPP, and SABNSTU to populate the CHESSN and Entitlements Data Table (SKRCHSN) while updating a flag on the SKRUAPP. The activity uses the application ID and admit term as populate keys for SKRUAPP.</td>
+
+          </tr>
+
+        </tbody>
+</table>
+</div>
+
+    
+<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" class="table" frame="hsides" border="1" rules="all"><caption><span class="tablecap"><span class="table--title-label">Table 1. </span>Possible Course Match Errors and description</span></caption><colgroup><col><col><col></colgroup><thead class="thead" style="text-align:left;">
+          <tr class="row">
+            <th class="entry row-nocellborder" style="vertical-align:top;" id="d10710e125">Error message</th>
+
+            <th class="entry row-nocellborder" style="vertical-align:top;" id="d10710e128">What it means</th>
+
+            <th class="entry row-nocellborder" style="vertical-align:top;" id="d10710e131">How to fix it</th>
+
+          </tr>
+
+        </thead>
+<tbody class="tbody">
+          <tr class="row">
+            <td class="entry row-nocellborder" style="vertical-align:top;" headers="d10710e125 ">Course not matched to program offering</td>
+
+            <td class="entry row-nocellborder" style="vertical-align:top;" headers="d10710e128 ">The <span class="keyword">TAC</span> course code has not been matched to any Banner program and major for the Admit Category of UAC</td>
+
+            <td class="entry row-nocellborder" style="vertical-align:top;" headers="d10710e131 ">Create data on SKAPOFR to match the course code to a Banner program and major, using an Admit Category of UAC for the academic year.</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="vertical-align:top;" headers="d10710e125 ">Course matched to inactive program offering</td>
+
+            <td class="entry row-nocellborder" style="vertical-align:top;" headers="d10710e128 ">The <span class="keyword">TAC</span> course code has been matched to a Banner program and major for the Admit Category of UAC, but it is inactive</td>
+
+            <td class="entry row-nocellborder" style="vertical-align:top;" headers="d10710e131 ">Ensure that the active indicator is checked for the existing record on SKAPOFR.</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="vertical-align:top;" headers="d10710e125 ">Course does not match a program offering for this academic year</td>
+
+            <td class="entry row-nocellborder" style="vertical-align:top;" headers="d10710e128 ">The <span class="keyword">TAC</span> course code has been matched to a Banner program and major for the Admit Category of UAC, but not for the academic year that was used when the process was run.</td>
+
+            <td class="entry row-nocellborder" style="vertical-align:top;" headers="d10710e131 ">Copy the existing SKAPOFR record to the academic year.</td>
+
+          </tr>
+
+        </tbody>
+</table>
+</div>
+
+  </div>
+
+</div></div></section>
+<section id="t-800"><h4>Provide reconciliation data to UAC</h4><div class="content-locale-en-US content-locale-en"><div id="r_file_processing_provide_reconciliation_data_uac"><div class="body refbody"><p class="shortdesc">This table describes the activities to provide reconciliation data to UAC with ASC_UAC_RECONCILE as the process code and task code.</p>
+
+    
+<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" id="r_file_processing_provide_reconciliation_data_uac__r_file_processing_provide_reconciliation_data_uac-utbl1" class="table" frame="hsides" border="1" rules="rows"><colgroup><col style="width:117pt"><col style="width:150pt"><col style="width:225pt"></colgroup><thead class="thead" style="text-align:left;vertical-align:bottom;">
+          <tr class="row">
+            <th class="entry row-nocellborder" style="text-align:left;vertical-align:bottom;" id="d9988e44">Activity Type</th>
+
+            <th class="entry row-nocellborder" style="text-align:left;vertical-align:bottom;" id="d9988e47">Activity Name</th>
+
+            <th class="entry row-nocellborder" style="text-align:left;vertical-align:bottom;" id="d9988e50">Description</th>
+
+          </tr>
+
+        </thead>
+<tbody class="tbody">
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d9988e44 ">Reconciliation Snapshot</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d9988e47 ">ASC_UAC_SNA_RECON</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d9988e50 ">This activity pulls data from the SKRTACM, SARCTRL, SPRIDEN, SARAPPD, SGBSTDN, SARADAP, and the SABNSTU to populate the TAC Course Match (SKRTACM) table. The activity uses the TAC Applicant ID, category code, category course, and admit term as populate keys.</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d9988e44 ">Reconciliation Extract</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d9988e47 ">ASC_UAC_EXT_RECON</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d9988e50 ">This activity pulls data from the SKRTACM to populate the TAC Reconciliation Extract (SKRTACR) table. The activity uses the matching ID, category code, category course, and admit term as populate keys.</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d9988e44 ">Reconciliation Export</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d9988e47 ">ASC_UAC_EXP_RECON</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d9988e50 ">This activity pulls data from the SKRTACR to populate the UAC Reconciliation Export (SKRXUAC) table. The activity uses the UAC Applicant ID, admit term, and course code as populate keys.</td>
+
+          </tr>
+
+        </tbody>
+</table>
+</div>
+
+  </div>
+
+<div class="related-links">
+<div class="linklist relinfo relconcepts" xml:lang="en-US" lang="en-US"><strong>Related concepts</strong><br>
+<ul class="linklist">
+<li class="linklist"><span class="link ft-internal-link" title="The export process populates the export based on extract data." data-ft-warning="excluded-from-rendering" data-mapid="vGfahdchqsK1UkDrWNSsfQ" data-tocid="KnRbI5rXR208BzXcPD70xQ">Export processing</span></li></ul></div>
+</div></div></div></section>
+<section id="t-810"><h3>VTAC processing</h3><div class="content-locale-en-US content-locale-en"><div id="c_vtac_processing"><p class="shortdesc">This section details the activities that are used for loading files from VTAC, based on the 2015/2016 Institutional Data Element Dictionary V1.2 VTAC Specification document.</p>
+
+<div class="related-links">
+<div class="linklist relinfo reltasks" xml:lang="en-US" lang="en-US"><strong>Related tasks</strong><br>
+<ul class="linklist">
+<li class="linklist"><span class="link ft-internal-link" title="The following procedure explains how to process the TAC data from the staging tables into Electronic Admissions tables. UAC data is loaded to Electronic Admissions tables using the SOPPTAC process." data-ft-warning="excluded-from-rendering" data-mapid="vGfahdchqsK1UkDrWNSsfQ" data-tocid="kSQy0KzEkNstOLNnyP1uIQ">Load Electronic Admissions data</span></li>
+<li class="linklist"><span class="link ft-internal-link" title="The following procedure explains how to update data elements that are not processed by the baseline Electronic Application Match, Verify and Load (SARETMT) process." data-ft-warning="excluded-from-rendering" data-mapid="vGfahdchqsK1UkDrWNSsfQ" data-tocid="ewDiXKT2F4XvVq38e25Abg">Post load activities</span></li>
+<li class="linklist"><span class="link ft-internal-link" title="The following procedure explains how to produce TAC reconciliation files." data-ft-warning="excluded-from-rendering" data-mapid="vGfahdchqsK1UkDrWNSsfQ" data-tocid="nSsZj_~_VetTn09o62rYlQ">Produce TAC reconciliation files</span></li></ul></div>
+</div></div></div></section>
+<section id="t-820"><h4>VTAC file details</h4><div class="content-locale-en-US content-locale-en"><div id="c_vtac_file_details"><p class="shortdesc">This topic describes the activities involved in importing VTAC files and loading the following file from VTAC.</p>
+
+<div class="related-links">
+<div class="linklist relinfo reltasks" xml:lang="en-US" lang="en-US"><strong>Related tasks</strong><br>
+<ul class="linklist">
+<li class="linklist"><span class="link ft-internal-link" title="The VTAC Offer (D1) file is now too large to be imported using the method outlined in this procedure and a separate MDUU activity has been created to register the VTAC Offer (D1) file as an external table." data-ft-warning="excluded-from-rendering" data-mapid="vGfahdchqsK1UkDrWNSsfQ" data-tocid="67e~FEnjsjfidxspZchhtA">Import TAC files</span></li></ul></div>
+</div></div></div></section>
+<section id="t-830"><h5>VTAC Data file</h5><div class="content-locale-en-US content-locale-en"><div id="r_vtac_data_file"><div class="body refbody"><p class="shortdesc">This topic describes the VTAC Data File details for loading the VTAC Offer (D1) file.</p>
+
+    <div class="section">
+      <p class="p">The D1 Offer and Master file from VTAC is a fixed length flat file that is now 5019 characters in length, before any line feed characters are taken into consideration.</p>
+
+      <p class="p">This means that when the file is registered for the external table VTAC, each row is 5020 characters in length. This also means that the file is now too big to be handled by the GKAPEXS page and is too big for the external table VTAC to only have one column.</p>
+
+      <p class="p">The table VTAC now has three columns, such as, VTAC_DATA (CHAR 2000), VTAC_DATA1 (CHAR 2000) and VTAC_DATA2 (CHAR 1020).</p>
+
+      <p class="p">After the VTAC D1 file has been loaded to a directory that MDUU can access, users need to run the ASC_VTAC_REG_EXT_TABLE activity to register the file as an external table.</p>
+
+      <p class="p">Users need to provide the filename, including the file extension, when they run the activity.</p>
+
+      <p class="p">If the file extension, (for example,.txt) is not provided, then the external table will not be registered and an error message will be written to the TAC External Table Log (SKRTLOG) table.</p>
+
+      <p class="p">Users can view records on SKRTLOG using the Universal Viewer (GKAPUNV) page.</p>
+
+      <p class="p">The data in the external table is only temporary and will be purged when the user loads and registers a VTAC file for the next round. This means that a VTAC file for one round needs to be processed at least as far as VTAC staging tables before a VTAC file for the next round is registered.</p>
+
+      <p class="p">The following information describes the VTAC Data File details for loading the VTAC Abridged Offer (D2) file.</p>
+
+      
+<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" id="r_vtac_data_file__r_vtac_data_file-utbl1" class="table" frame="hsides" border="1" rules="rows"><colgroup><col style="width:110pt"><col style="width:300pt"></colgroup><tbody class="tbody">
+            <tr class="row">
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;">External Table Name</td>
+
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;">VTACD2</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;">Directory Name</td>
+
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;">Name of the directory where the file is stored. Your database administrator can supply this if you do not have the information.</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;">File Name</td>
+
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;"><code class="ph codeph">vtac_x.txt</code>, where <code class="ph codeph">x</code> represents the two-character value that VTAC uses to identify your institution.</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;">Record Delimiter</td>
+
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;">NEWLINE</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;">Fields</td>
+
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;">VTACD2_ID(9), VTACD2_CATEGORY(3),VTACD2_TER_STATUS(1), VTACD2_SURNAME(24),VTACD2_FIRST_NAME(17), VTACD2_SECOND_NAME(17),VTACD2_DOB(10), VTACD2_GENDER(1),VTACD2_POSTAL_ADDRESS_1(25),VTACD2_POSTAL_ADDRESS_2(25),VTACD2_POSTAL_SUBURB(25),VTACD2_POSTAL_STATE(3), VTACD2_POSTAL_POSTCODE(4),VTACD2_POSTAL_OS_STATE(14),VTACD2_POSTAL_OS_POSTCODE(12),VTACD2_POSTAL_COUNTRY (36), VTACD2_HOME_PHONE(16),VTACD2_BUSINESS_PHONE(16),VTACD2_MOBILE_PHONE(16),VTACD2_EMAIL(40),VTACD2_CITZ_STATUS(1), VTACD2_NATN_CODE_CITZ(4),VTACD2_YR_ARRIVED(4),VTACD2_OFFERED_COURSE(10),VTACD2_OFFERED_COURSE_NAME(150),VTACD2_OFFER_ROUND(1),VTACD2_FEE_ELIGIBILITY(1),VTACD2_GET_METHOD_A(3),VTACD2_GET_METHOD_B(3), VTACD2_ATAR(5), VTACD2_SEAS(2)<div class="note"><span class="notetitle">Note:</span> The last field needs to be one character longer than the D2 field to accommodate line feed characters.</div>
+</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;">Field Delimiter</td>
+
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;">~</td>
+
+            </tr>
+
+          </tbody>
+</table>
+</div>
+
+    </div>
+
+  </div>
+
+</div></div></section>
+<section id="t-840"><h4>Loading files from VTAC</h4><div class="content-locale-en-US content-locale-en"><div id="r_loading_files_vtac"><div class="body refbody"><p class="shortdesc">This table describes the activity for loading files from VTAC with ASC_VTAC_LOAD as the process code and ASC_VTAC_FILE_LOAD as the task code.</p>
+
+    
+<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" id="r_loading_files_vtac__r_loading_files_vtac-utbl1" class="table" frame="hsides" border="1" rules="rows"><colgroup><col style="width:80pt"><col style="width:150pt"><col style="width:225pt"></colgroup><thead class="thead" style="text-align:left;vertical-align:bottom;">
+          <tr class="row">
+            <th class="entry row-nocellborder" style="text-align:left;vertical-align:bottom;" id="d4406e44">Activity Type</th>
+
+            <th class="entry row-nocellborder" style="text-align:left;vertical-align:bottom;" id="d4406e47">Activity Name</th>
+
+            <th class="entry row-nocellborder" style="text-align:left;vertical-align:bottom;" id="d4406e50">Description</th>
+
+          </tr>
+
+        </thead>
+<tbody class="tbody">
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d4406e44 ">Load VTAC data</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d4406e47 ">ASC_VTAC_DATA</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d4406e50 ">This activity pulls data from the VTAC Data (VTAC) table to populate the VTAC Data (SKRVTAC) table. The activity is deliberately delivered with no populate keys and no purge keys to ensure that records are correctly loaded, even when VTAC provides multiple rows per applicant.</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d4406e44 ">Load VTAC data</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d4406e47 ">ASC_VTAC_D2_DATA</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d4406e50 ">This activity pulls data from the VTAC D2 (VTACD2) table to populate the VTAC Data (SKRVTAC) table. The activity is deliberately delivered with no populate keys and no purge keys to ensure that records are correctly loaded, even when VTAC provides multiple rows per applicant.</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d4406e44 ">Load VTAC data</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d4406e47 ">ASC_VTAC_PREFS</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d4406e50 ">This activity pulls data from VTAC to populate the VTAC Supplementary Data Table 1 (SKRVTS1). The activity uses the application year, admit term, and VTAC ID as populate keys and is deliberately delivered without purge keys.</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d4406e44 ">Load VTAC data</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d4406e47 ">ASC_VTAC_QUALS</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d4406e50 ">This activity pulls data from the VTAC to populate the VTAC Supplementary Data Table 2 (SKRVTS2). The activity uses the application year, admit term, VTAC current course code, and VTAC ID as populate keys.</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d4406e44 ">Load VTAC data</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d4406e47 ">ASC_VTAC_​STUDIES1_12</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d4406e50 ">This activity pulls data from the gets the first 12 high school subjects to populate the VTAC Supplementary Data Table 3 (SKRVTS3). The activity uses the application year, admit term, and VTAC ID as populate keys and is deliberately delivered without purge keys.</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d4406e44 ">Load VTAC data</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d4406e47 ">ASC_VTAC_​STUDIES13_24</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d4406e50 ">This activity pulls data from the gets the next 12 high school subjects to populate the SKRVTS3. The activity uses the application year, admit term, and VTAC ID as populate keys and is deliberately delivered without purge keys.</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d4406e44 ">Load VTAC data</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d4406e47 ">ASC_VTAC_​STUDIES25_35</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d4406e50 ">This activity pulls data from the gets the last 11 high school subjects to populate the SKRVTS3. The activity uses the application year, admit term, and VTAC ID as populate keys and is deliberately delivered without purge keys.</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d4406e44 ">Load VTAC data</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d4406e47 ">ASC_VTAC_OFFER</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d4406e50 ">This activity organises preferences and pulls data from SKRVTAC and SKRVTS1 and puts the data to the SKVVOFR view. The activity pulls the data from the SKVVOFR view to populate the VTAC Offer Data (SKRVOFR) table so that each of the student's preference from the flat file is arranged into a separate row, to make matching and loading to Banner easier. The activity uses the application year, admit term, VTAC course code, and VTAC ID as populate keys, and is deliberately delivered without purge keys.</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d4406e44 ">Load VTAC data</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d4406e47 ">ASC_VTAC_D2_OFFER</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d4406e50 ">This activity pulls data from the VTAC D2 Table (VTACD2) and the VTAC Data Staging (SKRVTAC) table to populate the VTAC Offers Staging Table (SKRVOFR). The activity uses the admit term, VTAC course code, offered course, VTAC offer round file, and VTAC ID as populate keys, and is deliberately delivered without purge keys.</td>
+
+          </tr>
+
+        </tbody>
+</table>
+</div>
+
+  </div>
+
+</div></div></section>
+<section id="t-850"><h4>Matching VTAC course codes to Banner programs</h4><div class="content-locale-en-US content-locale-en"><div id="r_matching_vtac_course_codes_banner_programs"><div class="body refbody"><p class="shortdesc">This table describes the activities for matching VTAC course codes to <span class="keyword">Banner</span> programs ASC_VTAC_LOAD as the process code.</p>
+
+    
+<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" id="r_matching_vtac_course_codes_banner_programs__r_matching_vtac_course_codes_banner_programs-utbl1" class="table" frame="hsides" border="1" rules="rows"><colgroup><col style="width:80pt"><col style="width:150pt"><col style="width:225pt"></colgroup><thead class="thead" style="text-align:left;vertical-align:bottom;">
+          <tr class="row">
+            <th class="entry row-nocellborder" style="text-align:left;vertical-align:bottom;" id="d12808e50">Activity Type</th>
+
+            <th class="entry row-nocellborder" style="text-align:left;vertical-align:bottom;" id="d12808e53">Activity Name</th>
+
+            <th class="entry row-nocellborder" style="text-align:left;vertical-align:bottom;" id="d12808e56">Description</th>
+
+          </tr>
+
+        </thead>
+<tbody class="tbody">
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d12808e50 ">Match VTAC Courses to Banner programs</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d12808e53 ">ASC_VTAC_COURSE_MATCH</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d12808e56 ">This activity pulls data from the SKRPOFR, SMRPRLE, and SKRVOFR to populate the TAC Course Match (SKRTACM) table. The activity uses the VTAC ID, admission category code, VTAC course, and admit term as populate keys.</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d12808e50 ">VTAC course match error detection</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d12808e53 ">ASC_VTAC_MATCH_ERROR</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d12808e56 ">This activity pulls data from the SKRVOFR to populate the TAC Load Error (SKRTACE) table. The activity uses the VTAC ID, admission category code, VTAC course, and admit term as populate keys.</td>
+
+          </tr>
+
+        </tbody>
+</table>
+</div>
+
+  </div>
+
+</div></div></section>
+<section id="t-860"><h4>Load to baseline Electronic Admissions tables for VTAC processing</h4><div class="content-locale-en-US content-locale-en"><div id="r_file_processing_load_baseline_electronic_admission_table_vtac_processing"><div class="body refbody"><p class="shortdesc">For VTAC file processing, all of the Electronic Admissions activities are performed by a single activity (ASC_VTAC_EALOAD), and the load to Electronic Admissions task can now be run in Audit mode.</p>
+
+    <div class="section">
+      <p class="p">Detailed messages are written to the Process Log (GKRRLOG) table and can be viewed in the Process Log (GKARLOG) page.</p>
+
+      <p class="p">The only records loaded to Electronic Admissions tables will be those matched preferences that are receiving an offer.</p>
+
+      <p class="p">The following table describes the activity for loading files to Electronic Admissions.</p>
+
+      <div class="note"><span class="notetitle">Note:</span> The target tables are the <span class="keyword">Banner</span> Mass Data Update Utility (MDUU) tables and the activity uses the SKKVTAC function that has routines to appropriately populate the Electronic Admissions tables. The function also writes detailed processing messages to the GKRRLOG table.</div>
+
+      
+<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" id="r_file_processing_load_baseline_electronic_admission_table_vtac_processing__r_file_processing_load_baseline_electronic_admission_table_second-utbl1" class="table" frame="hsides" border="1" rules="rows"><colgroup><col style="width:80pt"><col style="width:150pt"><col style="width:225pt"></colgroup><thead class="thead" style="text-align:left;vertical-align:bottom;">
+            <tr class="row">
+              <th class="entry row-nocellborder" style="text-align:left;vertical-align:bottom;" id="d8845e61">Activity Type</th>
+
+              <th class="entry row-nocellborder" style="text-align:left;vertical-align:bottom;" id="d8845e64">Activity Name</th>
+
+              <th class="entry row-nocellborder" style="text-align:left;vertical-align:bottom;" id="d8845e67">Description</th>
+
+            </tr>
+
+          </thead>
+<tbody class="tbody">
+            <tr class="row">
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d8845e61 ">Load VTAC data to Electronic Admissions tables</td>
+
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d8845e64 ">ASC_VTAC_EALOAD</td>
+
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d8845e67 ">This activity uses several functions within the SKKVTAC package to load data to baseline Electronic Admissions tables. You can run this activity in audit mode which will not update the tables but will produce a detailed log about what can be loaded and what cannot be loaded and why it cannot be loaded. This log can be viewed on the MDUU page GKARLOG.<p class="p">When the activity is run in update mode, the activity log is produced and the electronic admissions tables are updated where possible.</p>
+<p class="p">The activity uses the VTAC ID and admit term as populate keys, and also allows multiple preferences to be processed for each applicant.</p>
+</td>
+
+            </tr>
+
+          </tbody>
+</table>
+</div>
+
+      <p class="p">The SKKVTAC package contains functions to correctly insert records into specific electronic admissions tables.</p>
+
+      <p class="p">The following table lists tables used by the SKKVTAC package and what data is inserted into each table.</p>
+
+      
+<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" id="r_file_processing_load_baseline_electronic_admission_table_vtac_processing__r_file_processing_load_baseline_electronic_admission_table_second-utbl2" class="table" frame="hsides" border="1" rules="rows"><colgroup><col style="width:100pt"><col style="width:350pt"></colgroup><thead class="thead" style="text-align:left;vertical-align:bottom;">
+            <tr class="row">
+              <th class="entry row-nocellborder" style="text-align:left;vertical-align:bottom;" id="d8845e112">Table</th>
+
+              <th class="entry row-nocellborder" style="text-align:left;vertical-align:bottom;" id="d8845e115">Action</th>
+
+            </tr>
+
+          </thead>
+<tbody class="tbody">
+            <tr class="row">
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d8845e112 ">SABNSTU</td>
+
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d8845e115 ">If the applicant ID (VTAC ID) does not already exist, an AIDM is generated and linked to the applicant ID on SABNSTU. If the applicant ID matches an existing ID on SABNSTU, the system cannot generate a new AIDM so the existing linked AIDM is used and no updates are made to SABNSTU for that applicant.</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d8845e112 ">SARHEAD</td>
+
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d8845e115 ">A row is inserted into SARHEAD for each application preference for which the applicant will receive an offer. This means that for each row the applicant has in SKRVOFR, if the course code has been matched to a <span class="keyword">Banner</span> curriculum, there will be a row in SARHEAD. The SKRVOFR_ADMIT_TERM value is used to populate the SARHEAD_TERM_CODE_ENTRY column. The VTAC course code is populated into the SARHEAD_WEB_CASHIER_USER field to facilitate later reconciliation reporting. <p class="p">The level code is used in the course match table to determine the correct Web Application (SARHEAD_WAPP_CODE) value to insert into the Electronic Admissions Header (SARHEAD) table.</p>
+<p class="p">If the user has not created any Web Application code on STVWAPP for the level of the applicant's course, then the following error message will be displayed:</p>
+<p class="p">There is no Web Application code on STVWAPP for the level of the applicant's course.</p>
+<p class="p">If the user has not listed the Web Application code as a value for the VTAC-WAPP system parameter on SKARSYS, then the following error message will be displayed:</p>
+<p class="p">There is no value for the VTAC-WAPP system parameter on SKARSYS for the level of the applicant's course.</p>
+</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d8845e112 ">SARPERS</td>
+
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d8845e115 ">A row is inserted into SARPERS for each application preference for which the applicant is receiving an offer.</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d8845e112 ">SARADDR</td>
+
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d8845e115 ">A row is inserted into SARADDR for each of the applicant's addresses. These SARADDR rows are repeated for each of the applicant's offered course preferences.</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d8845e112 ">SARPHON</td>
+
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d8845e115 ">A row is inserted into SARPHON for each of the applicant's phone numbers and their respective e-mail address. These SARPHON rows are repeated for each of the applicant's offered course preferences.</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d8845e112 ">SARHLTH</td>
+
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d8845e115 ">A row is inserted into SARHLTH for the applicant's disability information.<p class="p">If an applicant has indicated one or more disabilities, a row is inserted into SARHLTH for each disability. These SARHLTH rows are repeated for each of the applicant's offered course preferences.</p>
+</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d8845e112 ">SARHSCH</td>
+
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d8845e115 ">A row is inserted into SARHSCH for each of the applicant's high school records in the SKRVTAC table. These SARHSCH rows are repeated for each of the applicant's offered course preferences.</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d8845e112 ">SARPCOL</td>
+
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d8845e115 ">A row is inserted into SARPCOL for each of the applicant's prior tertiary institution records in the SKRVTS2 table. These SARPCOL rows are repeated for each of the applicant's offered course preferences.</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d8845e112 ">SARPSES</td>
+
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d8845e115 ">A row is inserted into SARPSES for each of the applicant's prior tertiary institution records in the SKRVTS2 table. These SARPSES rows are repeated for each of the applicant's offered course preferences.</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d8845e112 ">SARPDEG</td>
+
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d8845e115 ">A row is inserted into SARPDEG for each of the applicant's prior tertiary institution records in the SKRVTS2 table. These SARPDEG rows are repeated for each of the applicant's offered course preferences.</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d8845e112 ">SARTEST</td>
+
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d8845e115 ">A row is inserted into SARTEST for each applicant's ATAR or STAT score. These SARTEST rows are repeated for each of the applicant's offered course preferences.</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d8845e112 ">SARPRFN</td>
+
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d8845e115 ">A row is inserted into SARPRFN for the selection basis. This row is repeated for each of the applicant's offered course preferences.</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d8845e112 ">SARETRY</td>
+
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d8845e115 ">A row is inserted into SARETRY for each applicant preference for which the applicant will receive an offer. This means that for each row the applicant has in SKRVOFR, if the course code has been matched to a <span class="keyword">Banner</span> curriculum, there will be a row in SARETRY. The matched base curriculum rule number is populated in SARETRY.</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d8845e112 ">SAREFOS</td>
+
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d8845e115 ">A row is inserted into SAREFOS for each applicant preference for which the applicant will receive an offer. This means that for each row the applicant has in SKRVOFR, if the course code has been matched to a <span class="keyword">Banner</span> curriculum, there will be a row in SAREFOS. The matched major curriculum rule number is populated in SAREFOS.</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d8845e112 ">SARRLST</td>
+
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d8845e115 ">Rows are inserted into SARRLST for each applicant based on the applicant's SARHEAD_WAPP_CODE value. Processing rules exist in baseline for each WAPP code. These rules are built on the baseline Electronic Admissions Procedure/Routine Control (SAAECRL) page. The rows inserted into SARRLST are the correct procedures for the applicant's WAPP code. These SARRLST rows are repeated for each of the applicant's offered course preferences.</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d8845e112 ">SARPERR</td>
+
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d8845e115 ">Rows are inserted into SARPERR for each applicant based on the applicant's SARHEAD_WAPP_CODE value. Processing rules exist in baseline for each WAPP code. These rules are built on SAAECRL. The rows inserted into SARPERR are the correct routines for the applicant's WAPP code. These SARPERR rows are repeated for each of the applicant's offered course preferences.</td>
+
+            </tr>
+
+          </tbody>
+</table>
+</div>
+
+    </div>
+
+  </div>
+
+<div class="related-links">
+<div class="linklist relinfo relconcepts" xml:lang="en-US" lang="en-US"><strong>Related concepts</strong><br>
+<ul class="linklist">
+<li class="linklist"><span class="link ft-internal-link" title="The activities used in this step of the process populate baseline EA tables with the data from the MDUU staging tables." data-ft-warning="excluded-from-rendering" data-mapid="vGfahdchqsK1UkDrWNSsfQ" data-tocid="~wF3_4~mUJoaw9s3gS4IKw">Load to baseline Electronic Admissions tables</span></li></ul></div>
+</div></div></div></section>
+<section id="t-870"><h4>Load additional data to baseline tables for VTAC processing</h4><div class="content-locale-en-US content-locale-en"><div id="r_file_processing_load_additional_data_baseline_tables_vtac_processing"><div class="body refbody"><p class="shortdesc">This table describes the activities to load Electronic Admissions tables to baseline tables with ASC_VTAC_POSTLOAD as the process code and task code.</p>
+
+    
+<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" id="r_file_processing_load_additional_data_baseline_tables_vtac_processing__r_file_processing_load_additional_data_baseline_tables_second-utbl1" class="table" frame="hsides" border="1" rules="rows"><colgroup><col style="width:99pt"><col style="width:150pt"><col style="width:225pt"></colgroup><thead class="thead" style="text-align:left;vertical-align:bottom;">
+          <tr class="row">
+            <th class="entry row-nocellborder" style="text-align:left;vertical-align:bottom;" id="d12572e44">Activity Type</th>
+
+            <th class="entry row-nocellborder" style="text-align:left;vertical-align:bottom;" id="d12572e47">Activity Name</th>
+
+            <th class="entry row-nocellborder" style="text-align:left;vertical-align:bottom;" id="d12572e50">Description</th>
+
+          </tr>
+
+        </thead>
+<tbody class="tbody">
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d12572e44 ">Create records in SARAPPD</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d12572e47 ">ASC_VTAC_SARAPPD</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d12572e50 ">This activity pulls data from the SARADAP, SARCTRL, SKRVTAC, SABNSTU, SARADAP to populate SARAPPD with the offer record. The activity uses the PIDM, term code entry, and APDC code as populate keys.</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d12572e44 ">Populate SKRCHSN</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d12572e47 ">ASC_VTAC_SKRCHSN</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d12572e50 ">This activity pulls data from the SARCTRL, SKRVTAC, and SABNSTU to populate the CHESSN Entitlements (SKRCHSN) table while updating a flag in SKRVTAC. The activity uses the application ID and admit term as populate keys.</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d12572e44 ">Assign a cohort</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d12572e47 ">ASC_VTAC_SARCHRT</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d12572e50 ">This activity pulls data from the SARADAP, SARCTRL, SKRVTAC, SABNSTU, to populate the Cohort Application (SARCHRT) table. The activity uses the PIDM, term code entry, and application number as populate keys.</td>
+
+          </tr>
+
+        </tbody>
+</table>
+</div>
+
+  </div>
+
+<div class="related-links">
+<div class="linklist relinfo relconcepts" xml:lang="en-US" lang="en-US"><strong>Related concepts</strong><br>
+<ul class="linklist">
+<li class="linklist"><span class="link ft-internal-link" title="The activities used to load additional data to baseline tables populate baseline production tables and ASC tables with data that could not be processed by the Electronic Admissions routines." data-ft-warning="excluded-from-rendering" data-mapid="vGfahdchqsK1UkDrWNSsfQ" data-tocid="zTlAVR9nI7cD7aeMtKAXlA">Load additional data to baseline tables</span></li></ul></div>
+</div></div></div></section>
+<section id="t-880"><h4>Provide reconciliation data to VTAC</h4><div class="content-locale-en-US content-locale-en"><div id="r_file_processing_provide_reconciliation_data_vtac"><div class="body refbody"><p class="shortdesc">This table describes the activities to provide reconciliation data to VTAC with ASC_VTAC_RECONCILE as the process code and task code.</p>
+
+    
+<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" id="r_file_processing_provide_reconciliation_data_vtac__r_file_processing_provide_reconciliation_data_vtac-utbl1" class="table" frame="hsides" border="1" rules="rows"><colgroup><col style="width:111pt"><col style="width:150pt"><col style="width:225pt"></colgroup><thead class="thead" style="text-align:left;vertical-align:bottom;">
+          <tr class="row">
+            <th class="entry row-nocellborder" style="text-align:left;vertical-align:bottom;" id="d7487e44">Activity Type</th>
+
+            <th class="entry row-nocellborder" style="text-align:left;vertical-align:bottom;" id="d7487e47">Activity Name</th>
+
+            <th class="entry row-nocellborder" style="text-align:left;vertical-align:bottom;" id="d7487e50">Description</th>
+
+          </tr>
+
+        </thead>
+<tbody class="tbody">
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d7487e44 ">Reconciliation Snapshot</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d7487e47 ">ASC_VTAC_SNA_RECON</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d7487e50 ">This activity pulls data from the SKRTACM, SARCTRL, SPRIDEN, SORLCUR, SARADAP, and SABNSTU to populate the TAC Course Match Table (SKRTACM). The activity uses the matching ID, category code, category course, and admit term as populate keys.</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d7487e44 ">Additional Snapshot</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d7487e47 ">ASC_VTAC_SNA_ADD</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d7487e50 ">This additional snapshot activity checks for any VTAC applicants for the current year who have received an offer for a VTAC course, but received that offer outside of any VTAC round, and reports such offers in the VTAC Enrolment Return applicants file (D4.1).<p class="p">This activity pulls data from the SKRTACM, SARCTRL, SPRIDEN, SARADAP, SABNSTU, and SARAPPD to populate the TAC Course Match Table (SKRTACM). The activity uses the matching ID, category code, category course, and admit term as populate keys.</p>
+<p class="p">The activity is optional. If the institution does not make offers in VTAC courses to VTAC applicants outside of VTAC offer rounds, then there is no need to run this activity and it can be disabled.</p>
+</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d7487e44 ">Record Count Enrolments</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d7487e47 ">ASC_VTAC_RECON_COUNT</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d7487e50 ">This VTAC Enrolment Count by Course activity records the count of enrolments by course code. The count of enrolments of VTAC applicants by course code is calculated using the data that resides in the TAC Reconciliation Extract Table (SKRTACR). <p class="p">The count of enrolments of direct applicants into VTAC courses by course code will be reported. The count of enrolment records will not be available in the SKRTACR table, so the activity uses learner program, major, and curriculum rule data in the Curriculum Table (SORLCUR) and Field of Study Table (SORLFOS) to link back to VTAC course codes in the SKRPOFR table.</p>
+<p class="p">For the count of direct applicant enrolments into VTAC courses, the correct VTAC course is determined by matching the base curriculum rule for the student on SORLCUR and the major field of study curriculum rule for the student and curriculum on SORLFOS with the base curriculum and major curriculum rule numbers on SKAPOFR where the academic year of the record on SKAPOFR is the current year. Then the programming logic identifies the SKAPOFR record where the Admissions Category is 'VTAC' and the term code of the SKAPOFR record matches the admit term code of the student's SORLCUR record.</p>
+<p class="p">If there is more than one VTAC course record on SKAPOFR for the matching term, base curriculum rule and major curriculum rule then the programming logic can only select a single record by matching the rate code for the student on SORLCUR with the rate code of the course record on SKAPOFR. Populating the rate code field on SKAPOFR has no impact on processing VTAC files but will allow you to match direct applicants to VTAC course codes more precisely.</p>
+<p class="p">If there is more than one VTAC course record on SKAPOFR for the matching term, base curriculum rule and major curriculum rule and the rate code is not populated on SKAPOFR, or if a direct applicant does not have a rate code on SORLCUR, then this person will be counted for each VTAC course record on SKAPOFR for the matching term, base curriculum rule and major curriculum rule, because there would be no way for the logic to match precisely to a single record.</p>
+<p class="p">The total count of enrolments by course code is pulled into a CLOB field, along with the course code so that this data can be used in the VTAC Enrolment return courses count file (D4.2).</p>
+<p class="p">This activity pulls data from the Program Offering (SKRPOFR) table to populate the VTAC Enrolment Count (SKRCVTC) table. The activity uses the category course code and admit term as populate keys.</p>
+</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d7487e44 ">Reconciliation Extract</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d7487e47 ">ASC_VTAC_EXT_RECON</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d7487e50 ">This activity pulls data from the SKRTACM to populate the TAC Reconciliation Extract Table (SKRTACR). The activity uses the matching ID, category code, category course, PIDM, and admit term as populate keys.</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d7487e44 ">Reconciliation Export</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d7487e47 ">ASC_VTAC_EXP_RECON</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d7487e50 ">This activity pulls data from SKRTACR to populate the VTAC Reconciliation Export (SKRXVTC) table. The activity uses the VTAC ID, VTAC course code, and admit term as populate keys.</td>
+
+          </tr>
+
+        </tbody>
+</table>
+</div>
+
+  </div>
+
+<div class="related-links">
+<div class="linklist relinfo relconcepts" xml:lang="en-US" lang="en-US"><strong>Related concepts</strong><br>
+<ul class="linklist">
+<li class="linklist"><span class="link ft-internal-link" title="The export process populates the export based on extract data." data-ft-warning="excluded-from-rendering" data-mapid="vGfahdchqsK1UkDrWNSsfQ" data-tocid="KnRbI5rXR208BzXcPD70xQ">Export processing</span></li>
+<li class="linklist"><span class="link ft-internal-link" title="The activities used to provide reconciliation data to VTAC include tasks and activities to produce data for the VTAC reconciliation file, which can be pulled into Microsoft Excel, ready for export to VTAC." data-ft-warning="excluded-from-rendering" data-mapid="vGfahdchqsK1UkDrWNSsfQ" data-tocid="bL2Asr~eRaTHCTL2fnNHxQ">Provide reconciliation data to VTAC</span></li></ul></div>
+</div></div></div></section></main></body></html>

@@ -1,0 +1,711 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>CLCONC Banner Student - Use</title><style>body{font-family:-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;line-height:1.55;color:#1a1a1a;max-width:920px;margin:0 auto;padding:24px}header{border-bottom:2px solid #5a16d6;margin-bottom:8px}h1{color:#3a0ca3}h2,h3,h4,h5,h6{margin-top:1.6em}.crumb{color:#666;font-size:13px;margin:0}.meta{color:#888;font-size:12px}nav.toc{background:#f6f4fc;border:1px solid #e3dcf5;border-radius:8px;padding:12px 18px;margin:18px 0}nav.toc h2{margin:.2em 0}nav.toc ul{list-style:none;padding-left:0}nav.toc a{text-decoration:none;color:#5a16d6}section{margin:1.2em 0;padding-top:.4em}img{max-width:100%;height:auto}table{border-collapse:collapse}td,th{border:1px solid #ccc;padding:4px 8px}code,pre{background:#f4f4f4;border-radius:4px}pre{padding:10px;overflow:auto}</style></head><body><header><p class="crumb">Banner Student › CLCONC Banner Student - Use</p><h1>CLCONC Banner Student - Use</h1><p class="meta">Source: <a href="https://resources.elluciancloud.com/r/bundle/banner_student_acn_use_clconc">https://resources.elluciancloud.com/r/bundle/banner_student_acn_use_clconc</a> &middot; Retrieved 2026-06-17</p></header><nav class="toc"><h2>Contents</h2><ul><li style="margin-left:0px"><a href="#t-10">Overview</a></li><li style="margin-left:16px"><a href="#t-20">CLCONC validation system</a></li><li style="margin-left:16px"><a href="#t-30">Functions and features</a></li><li style="margin-left:16px"><a href="#t-40">Processing data collection</a></li><li style="margin-left:32px"><a href="#t-50">Snapshot processing</a></li><li style="margin-left:32px"><a href="#t-60">Extract processing</a></li><li style="margin-left:32px"><a href="#t-70">Export processing</a></li><li style="margin-left:16px"><a href="#t-80">File details</a></li><li style="margin-left:32px"><a href="#t-90">Centrelink Customer eServices Request File</a></li><li style="margin-left:32px"><a href="#t-100">Centrelink Customer eServices Response File</a></li><li style="margin-left:32px"><a href="#t-110">CCeS Rejection File</a></li><li style="margin-left:16px"><a href="#t-120">Request file data export</a></li><li style="margin-left:16px"><a href="#t-130">Prerequisites</a></li><li style="margin-left:0px"><a href="#t-140">Procedures</a></li><li style="margin-left:16px"><a href="#t-150">Define system parameters</a></li><li style="margin-left:16px"><a href="#t-160">Copy system parameters to another year</a></li><li style="margin-left:16px"><a href="#t-170">Build CLCONC data</a></li><li style="margin-left:16px"><a href="#t-180">Record Centrelink CCeS details</a></li><li style="margin-left:16px"><a href="#t-190">Processing of CLCONC data</a></li><li style="margin-left:32px"><a href="#t-200">ASC_CCES_VALIDATION</a></li><li style="margin-left:32px"><a href="#t-210">ASC_CCES_IMPORT</a></li><li style="margin-left:16px"><a href="#t-220">Import response file</a></li><li style="margin-left:16px"><a href="#t-230">Import rejection file</a></li><li style="margin-left:16px"><a href="#t-240">Process imported files</a></li><li style="margin-left:0px"><a href="#t-250">Tables</a></li><li style="margin-left:16px"><a href="#t-260">Concession Data (SKRCONC) table</a></li><li style="margin-left:16px"><a href="#t-270">Centrelink Customer eServices (CCeS) Control (SKBCCES) table</a></li><li style="margin-left:16px"><a href="#t-280">System Parameters (SKARSYS) page</a></li></ul></nav><main><section id="t-10"><h2>Overview</h2><div class="content-locale-en-US content-locale-en"><div id="c_overview"><div class="body conbody"><p class="shortdesc"><span class="keyword">Banner</span>® Centrelink Concession Card (<span class="keyword">CLCONC</span>) provides information on procedures for producing <span class="keyword">Banner</span> <span class="keyword">CLCONC</span> validation files. It provides information on procedures and tables to allow the collection of student concession data and managing the facilitation of communications with Centrelink.</p>
+
+    <p class="p">Refer to the <span class="keyword">Banner</span> Student Localizations Online Help to know more information about the <span class="keyword">CLCONC</span> pages.</p>
+
+  </div>
+
+</div></div></section>
+<section id="t-20"><h3>CLCONC validation system</h3><div class="content-locale-en-US content-locale-en"><div id="c_clconc_validation_system"><div class="body conbody"><p class="shortdesc">The Banner <span class="keyword">CLCONC</span> validation system enables the collection of student concession data and the facilitation of communications with Centrelink. It verifies students are eligible for the concessions they are claiming.</p>
+
+    <p class="p">The system is currently configured for use with Centrelink, however, the basic data capture facilities can be used for general concession recording or for concessions managed by other agencies.</p>
+
+    <div class="p"><span class="keyword">CLCONC</span> validation system provides the following features:<ul class="ul"> <li class="li">Collect data for student concessions, proof of eligibility, dates of confirmation of eligibility, and concession management</li>
+ <li class="li">Provide facilities for packaging data for transmission to Centrelink</li>
+ <li class="li">Provide facilities for interpreting data sent back by Centrelink</li>
+
+      </ul>
+Centrelink extends a service to university and TAFE providers for the confirmation of customers' concession status. This service, called Centrelink Customer eServices (CCeS), allows institutions to submit batch requests to Centrelink for processing. The batches consist of Centrelink customer details to be either verified or disproved by Centrelink. The transmission mechanism for the request-and-response process is stored in XML documents and is uploaded through a secure web site. The system allows you to record concession claims, generate correctly formatted XML files for upload, and process return XML files.</div>
+
+    <p class="p">The typical process flow for <span class="keyword">CLCONC</span> validation is shown in <span class="xref ft-internal-link" data-ft-warning="excluded-from-rendering" data-mapid="5xTGE0i9AVFM8G4jfVaCTg" data-tocid="lUrxzvIEwCEgYapeNVi2Fw" data-section="c_clconc_validation_system__c_clconc_validation_system-fig1">Figure 1</span>.</p>
+
+    <div class="fig fignone" id="c_clconc_validation_system__c_clconc_validation_system-fig1"><span class="figcap"><span class="fig--title-label">Figure 1. </span>Typical process flow for CLCONC validation</span>
+      
+      <br><img class="image" alt="CLCONC validation process flow" data-ft-asset-display-name="CLCONCprocessflowdiagram.JPG" src="images/clconc-banner-student-use-1.jpeg" data-ft-resource-id="orw8GbgBpVyuX_ABstzxZA-5xTGE0i9AVFM8G4jfVaCTg"><br>
+    </div>
+
+  </div>
+
+</div></div></section>
+<section id="t-30"><h3>Functions and features</h3><div class="content-locale-en-US content-locale-en"><div id="c_functions_features"><div class="body conbody"><p class="shortdesc"><span class="keyword">CLCONC</span> is made up of various steps and processes. These are organised as follows.</p>
+
+    <ul class="ul">
+      <li class="li">Set up the <span class="keyword">CLCONC</span>: Procedures and pages are used to define elements, values, and processes that are required to produce <span class="keyword">CLCONC</span> extracts.</li>
+
+      <li class="li">Create the <span class="keyword">CLCONC</span> XML request file: Extract and report generation procedures and pages are used to create and view the data snapshot and extract. This step has three stages, namely, snapshot process, extract process, and export process.</li>
+
+      <li class="li">Upload <span class="keyword">CLCONC</span> response and rejection file: Procedures, file transformation tools, and pages are used to import and upload response and rejection files.</li>
+
+      <li class="li">View Data: The request file is viewed in XML format and concessions verified through the response file will be viewed in the Concession Details (SKACONC) page. Errors and rejected requests can be viewed through the standard Universal Viewer (GKAPUNV) page supplied with the <span class="keyword">Banner</span> Mass Data Update Utility (MDUU).</li>
+
+    </ul>
+
+    <p class="p">For example, if your institution already records concession details in a custom table, the <span class="keyword">CLCONC</span> request and response extracts can be remapped to refer to this custom table.</p>
+
+    <div class="note"><span class="notetitle">Note:</span> Configuring the <span class="keyword">CLCONC</span> module requires knowledge of the underlying database tables and is usually carried out with the assistance of technical staff within your institution or Professional Services.</div>
+
+  </div>
+
+</div></div></section>
+<section id="t-40"><h3>Processing data collection</h3><div class="content-locale-en-US content-locale-en"><div id="c_processing_data_collection"><div class="body conbody"><p class="shortdesc">This release provides data reporting and extract functionality to meet the needs of <span class="keyword">CLCONC</span>.</p>
+
+    <p class="p">The <span class="keyword">CLCONC</span> module uses rule sets in the MDUU to generate the snapshot, extract, and export files for concession verification. Seed data is delivered to enable you to begin designing your concession verification processes.</p>
+
+    <p class="p">To understand how the concession validation files are built, you must understand the process, task, and activity elements of MDUU. Refer to the <cite class="cite"><span class="keyword">Banner</span> Mass Data Update Utility Use</cite> for a complete explanation of tasks and activities, and how these elements work to support <span class="keyword">CLCONC</span> validation requirements.</p>
+
+  </div>
+
+</div></div></section>
+<section id="t-50"><h4>Snapshot processing</h4><div class="content-locale-en-US content-locale-en"><div id="c_snapshot_processing"><div class="body conbody"><p class="shortdesc">Before the construction of the XML request file, the necessary concession data is extracted.</p>
+
+    <p class="p">The snapshot process populates concession snapshot data from baseline tables, Solution Centre tables, locally developed tables, and tables from third-party applications. The process allows selected target tables in the snapshot data structure to be populated. It can refresh (remove and insert) or update (add new rows and update existing rows) the snapshot.</p>
+
+    <p class="p">The structure of the snapshot tables is maintained by the MDUU under a schema called MDUUREP. (Refer to the <cite class="cite"><span class="keyword">Banner</span> Mass Data Update Utility Use</cite> for more information).</p>
+
+    <p class="p">When running the snapshot, you can select which snapshot tables to populate. You can also purge the selected snapshot tables before re-inserting rows.</p>
+
+    <div class="p">This process allows you to do the following:<ul class="ul"> <li class="li">Create snapshot data</li>
+ <li class="li">Define the column mappings for the snapshot</li>
+ <li class="li">Define the rules to generate the snapshot population</li>
+ <li class="li">Initialise the snapshot</li>
+ <li class="li">Populate the snapshot</li>
+ <li class="li">Increment the snapshot (add or remove records without refreshing the snapshot from scratch).</li>
+ </ul>
+</div>
+
+  </div>
+
+</div></div></section>
+<section id="t-60"><h4>Extract processing</h4><div class="content-locale-en-US content-locale-en"><div id="c_extract_processing"><div class="body conbody"><p class="shortdesc">After the initial concession data snapshot activity has taken place, it is transformed and organised before the production of the XML request file.</p>
+
+    <p class="p">The extract process populates the extract based on snapshot data and, where necessary, it transforms the snapshot data into the format needed for the extract. The process allows selected target tables in the extract data structure to be populated. It can refresh (remove and insert) or update (add new rows and update existing rows) the extract.</p>
+
+    <div class="p">This process allows you to do the following:<ul class="ul"> <li class="li">Create extract data</li>
+ <li class="li">Define the column mappings for the extract</li>
+ <li class="li">Define the rules to generate the extract population</li>
+ <li class="li">Use expressions and functions to derive values based on the contents of the snapshot</li>
+ <li class="li">Initialise the extract</li>
+ <li class="li">Populate the extract</li>
+ <li class="li">Increment the extract (add or remove records without refreshing the cohort from scratch).</li>
+ </ul>
+</div>
+
+  </div>
+
+</div></div></section>
+<section id="t-70"><h4>Export processing</h4><div class="content-locale-en-US content-locale-en"><div id="c_export_processing"><div class="body conbody"><p class="shortdesc">The final stage in generating a concession validation request is production of the XML request file.</p>
+
+    <p class="p">The export process populates the export based on extract data. The process allows selected target tables in the export data structure to be populated. It can refresh (remove and insert) or update (add new rows and update existing rows) the export.</p>
+
+    <div class="p">This process allows you to do the following:<ul class="ul"> <li class="li">Create export data</li>
+ <li class="li">Define the mappings for the CLOB export column</li>
+ <li class="li">Define the rules to generate the export population</li>
+ <li class="li">Initialise the export</li>
+ <li class="li">Populate the export</li>
+ <li class="li">Increment the export (add and remove records without refreshing the cohort from scratch)</li>
+ <li class="li">View the export.</li>
+ </ul>
+</div>
+
+  </div>
+
+</div></div></section>
+<section id="t-80"><h3>File details</h3><div class="content-locale-en-US content-locale-en"><div id="c_file_details"><div class="body conbody"><p class="shortdesc">This section provides more information about the files generated and processed in the <span class="keyword">CLCONC</span> system.</p>
+
+    <div class="p"><span class="keyword">CLCONC</span> validation uses the imported file processing activity, where Centrelink returns a file identifying whether the request has been successful. The following tasks are carried out during this process:<ul class="ul"> <li class="li">Import files and extract data from them</li>
+ <li class="li">Define the mappings for the imported data columns</li>
+ <li class="li">Define the rules to generate the import population</li>
+ <li class="li">Initialise the import</li>
+ <li class="li">Populate the import</li>
+ <li class="li">Increment the import</li>
+
+      <li class="li">View the import</li>
+ <li class="li">Update baseline and ASC tables with the imported data.</li>
+ </ul>
+</div>
+
+  </div>
+
+</div></div></section>
+<section id="t-90"><h4>Centrelink Customer eServices Request File</h4><div class="content-locale-en-US content-locale-en"><div id="r_centrelink_customer_eservices_request_file"><div class="body refbody"><p class="shortdesc">The following table describes the activities for this file.</p>
+
+    
+<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" id="r_centrelink_customer_eservices_request_file__r_centrelink_customer_eservices_request_file-tbl1.1" class="table" frame="hsides" border="1" rules="rows"><colgroup><col><col><col></colgroup><thead class="thead" style="text-align:left;vertical-align:bottom;">
+          <tr class="row">
+            <th class="entry row-nocellborder" style="text-align:left;vertical-align:bottom;" id="d2908e44">Activity Type</th>
+
+            <th class="entry row-nocellborder" style="text-align:left;vertical-align:bottom;" id="d2908e47">Activity Name</th>
+
+            <th class="entry row-nocellborder" style="text-align:left;vertical-align:bottom;" id="d2908e50">Description</th>
+
+          </tr>
+
+        </thead>
+<tbody class="tbody">
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d2908e44 ">Snapshot</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d2908e47 ">
+              <pre class="pre codeblock"><code>
+ASC_CCES_SNA
+</code></pre>
+            </td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d2908e50 ">This activity pulls data from various <span class="keyword">Banner</span> baseline and Australian Solution Centre (ASC) tables to populate the CCeS Validation Snapshot (SKRCSCV) table. The activity uses the PIDM and concession type as populate keys to ensure that the concession validation requests are for each concession type against which a student is claiming.</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d2908e44 ">Extract</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d2908e47 ">
+              <pre class="pre codeblock"><code>
+ASC_CCES_EXT
+</code></pre>
+            </td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d2908e50 ">This activity pulls data from the CCeS Validation Snapshot (SKRCSCV) table to populate the CCeS Validation Extract (SKRCECV) table. The activity uses the PIDM and concession type as populate keys.</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d2908e44 ">Export</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d2908e47 ">
+              <pre class="pre codeblock"><code>
+ASC_CCES_EXP
+</code></pre>
+            </td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d2908e50 ">This activity pulls data from the CCeS Validation Extract (SKRCECV) table, formats it as an XML file, and places it in the CCeS Validation Export SKRCXCV) table.</td>
+
+          </tr>
+
+        </tbody>
+</table>
+</div>
+
+  </div>
+
+</div></div></section>
+<section id="t-100"><h4>Centrelink Customer eServices Response File</h4><div class="content-locale-en-US content-locale-en"><div id="t_centrelink_customer_eservices_response_file"><div class="body taskbody"><p class="shortdesc">Centrelink returns a response file which indicates whether the student identified in the request file has been successfully matched in the Centrelink system. A response file does not guarantee that a student has been successfully matched, only that the request file was correctly formatted and all processing occurred without error.</p>
+
+    <div class="section context"><div class="tasklabel"><h2 class="sectiontitle tasklabel">About this task</h2></div>
+      <p class="p">The response files generated by Centrelink are stored in the Centrelink CCeS web site. To download the response file, which is in XML format, you can visit the Centrelink CCeS web site and log in using your Centrelink user name and password.</p>
+
+      <p class="p">The following tasks are carried out after the response file has been retrieved.</p>
+
+    </div>
+
+    <div class="tasklabel"><h2 class="sectiontitle tasklabel">Procedure</h2></div><ol class="ol steps"><li class="li step">
+        <span class="ph cmd">Extract data from the XML document and place it into a text file (.txt) separated by a tilde (~) text file.</span>
+      </li>
+<li class="li step">
+        <span class="ph cmd">Upload the response data to a temporary table for further processing, creating a row of data for each student.</span>
+      </li>
+<li class="li step">
+        <span class="ph cmd">Inspect the response to determine whether the student has been validated by Centrelink or the DVA.</span>
+      </li>
+<li class="li step">
+        <span class="ph cmd">Update the student's concession record if the student has been validated, including recording a validated status and a date of validation.</span>
+      </li>
+<li class="li step">
+        <span class="ph cmd">Record the student as not validated on their concession record if Centrelink or the DVA have been unable to match them.</span>
+      </li>
+<li class="li step">
+        <span class="ph cmd">Report processing errors to an error recording table where the request file was examined by Centrelink but a system or data error prevented full processing.</span>
+      </li>
+</ol>
+
+  </div>
+
+</div></div></section>
+<section id="t-110"><h4>CCeS Rejection File</h4><div class="content-locale-en-US content-locale-en"><div id="c_cces_rejection_file"><div class="body conbody"><p class="shortdesc">If the format of the request file is not valid or if the file encounters serious system errors, Centrelink will return a rejection file. This indicates that the request was not examined and has been returned unprocessed.</p>
+
+    <p class="p">The rejection file contains a list of all the requests falling into this condition so that errors can be corrected and the request made again.</p>
+
+    <p class="p">The rejection files generated by Centrelink are stored in the Centrelink CCeS web site. To download the response file which is in XML format, you can visit the Centrelink CCeS web site and log in using their Centrelink user name and password.</p>
+
+    <p class="p">After the rejection file has been retrieved, the following tasks can be carried out.</p>
+
+    <ul class="ul">
+      <li class="li">Extract data from the XML rejection file and place it into a tilde-separated (~) text file.</li>
+
+      <li class="li">Upload the file to a temporary table for further processing, identifying each student on a separate row.</li>
+
+      <li class="li">Identify the cause of the rejection, reporting all problems to the Error Reporting Table (SKRCSER).</li>
+
+    </ul>
+
+  </div>
+
+</div></div></section>
+<section id="t-120"><h3>Request file data export</h3><div class="content-locale-en-US content-locale-en"><div id="c_request_file_data_export"><div class="body conbody"><p class="shortdesc">The <span class="keyword">CLCONC</span> data export process produces an XML request that can be uploaded to the Centrelink CCeS web site. The XML file is produced in accordance with and validates against Centrelink's CCeS request DTD. The file itself is stored as a field in the CCeS Validation Export (SKRCXCV) table.</p>
+
+    <p class="p">You can view the fully formatted file using the Universal Viewer (GKAPUNV) form. You can also use GKAPUNV to extract this field and save it as an XML file, naming it in accordance with the Centrelink requirements. You can then log in to the Centrelink CCeS web site and upload the file to the CCesS site drop box using a web browser. No automated file transfer or integrations are required to complete the request file upload.</p>
+
+  </div>
+
+</div></div></section>
+<section id="t-130"><h3>Prerequisites</h3><div class="content-locale-en-US content-locale-en"><div id="c_prerequisites"><div class="body conbody"><p class="shortdesc">The minimum required releases for <span class="keyword">CLCONC</span> 8.1 upgrade are as follows.</p>
+
+    <ul class="ul">
+      <li class="li"><span class="keyword">Banner</span> General 8.3 or later</li>
+
+      <li class="li"><span class="keyword">Banner</span> Student 8.3 or later</li>
+
+      <li class="li"><span class="keyword">Banner</span> Mass Data Update Utility (MDUU) 8.0</li>
+
+      <li class="li"><span class="keyword">Banner</span> <span class="keyword">CLCONC</span> 8.0</li>
+
+      <li class="li">ASCGEN 8.3.1</li>
+
+    </ul>
+
+    <div class="p">The <span class="keyword">CLCONC</span> 8.1 upgrade has been certified in an environment with the following releases:<ul class="ul"> <li class="li">Banner General 8.4.1</li>
+ <li class="li">Banner Student 8.5.1</li>
+ <li class="li">Banner Mass Data Update Utility (MDUU) 8.0.1</li>
+ <li class="li">Banner <span class="keyword">CLCONC</span> 8.0</li>
+ <li class="li">ASCGEN 8.3.1</li>
+ </ul>
+</div>
+
+  </div>
+
+</div></div></section>
+<section id="t-140"><h2>Procedures</h2><div class="content-locale-en-US content-locale-en"><div id="c_procedures"><p class="shortdesc">This section describes the procedures performed using <span class="keyword">Banner</span> <span class="keyword">CLCONC</span>.</p>
+
+</div></div></section>
+<section id="t-150"><h3>Define system parameters</h3><div class="content-locale-en-US content-locale-en"><div id="t_define_system_parameters"><div class="body taskbody"><p class="shortdesc">There are several elements where the selection of the correct data depends on specific <span class="keyword">Banner</span> codes.</p>
+
+    <div class="section context"><div class="tasklabel"><h2 class="sectiontitle tasklabel">About this task</h2></div>
+      <p class="p">For example, to determine a student's address for confirmation purposes with Centrelink, the <span class="keyword">CLCONC</span> system queries the baseline address tables using a hierarchy of address types, starting with the permanent residence. For example, if you have defined PR as this type, you would assign it as the first value for the residential address parameter.</p>
+
+      <p class="p">To support inter connectivity between baseline codes and <span class="keyword">CLCONC</span> elements, a predefined set of system parameters is delivered with <span class="keyword">CLCONC</span> validation, and you must configure these parameters for use. You can modify the delivered parameters to meet your needs, or you can create new ones.</p>
+
+      <p class="p">Only users with appropriate permissions can define or modify system parameters.</p>
+
+    </div>
+
+    <div class="tasklabel"><h2 class="sectiontitle tasklabel">Procedure</h2></div><ol class="ol steps"><li class="li step stepexpand">
+        <span class="ph cmd">Access the Report System Parameters Form (SKARSYS).</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Enter the academic year code in the <span class="ph uicontrol">Academic Year</span> field, then go to the next block.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Enter the parameter for which you want to enter valid values in the <span class="ph uicontrol">Parameter</span> field.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Enter the valid value(s) for the parameter in the <span class="ph uicontrol">Value</span> field.</span>
+        <div class="itemgroup info">
+          <p class="p">You can enter multiple values for each parameter, separated by a comma, up to 2,000 characters.</p>
+
+        </div>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">If desired, enter information in the <span class="ph uicontrol">Description</span> and <span class="ph uicontrol">Notes</span> fields.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Save your changes.</span>
+      </li>
+</ol>
+
+  </div>
+
+</div></div></section>
+<section id="t-160"><h3>Copy system parameters to another year</h3><div class="content-locale-en-US content-locale-en"><div id="t_copy_system_parameters_another_year"><div class="body taskbody"><p class="shortdesc">System parameters are associated with an academic year. You can copy one year's parameter definitions to another, then modify the new definition as desired. When you copy system parameter rules from one year to another, all rules are copied.</p>
+
+    <div class="section context"><div class="tasklabel"><h2 class="sectiontitle tasklabel">About this task</h2></div>
+      <p class="p">System parameter rules cannot be deleted if the system required indicator is checked but the parameter value can be updated to null. System parameter rules can be deleted after being copied to the new academic year if the system required indicator is not selected. You can copy rules forwards or backwards in time; the only restriction is that you cannot copy system parameter rules to an academic year that already has system parameter rules.</p>
+
+      <p class="p">If you attempt to copy parameters to a year for which at least one parameter has already been defined, the system does not perform the copy and displays an error message.</p>
+
+    </div>
+
+    <div class="tasklabel"><h2 class="sectiontitle tasklabel">Procedure</h2></div><ol class="ol steps"><li class="li step">
+        <span class="ph cmd">Access the <span class="keyword wintitle">Report System Parameters (SKARSYS)</span> page.</span>
+      </li>
+<li class="li step">
+        <span class="ph cmd">Select <span class="ph uicontrol">Copy Rules to New Year</span>.</span>
+      </li>
+<li class="li step">
+        <span class="ph cmd">Enter the code of the academic year to be copied in the <span class="ph uicontrol">From Year</span> field of the <span class="keyword wintitle">Copy Rules</span> window.</span>
+      </li>
+<li class="li step">
+        <span class="ph cmd">Enter the code of the academic year to which the definitions are to be copied in the <span class="ph uicontrol">To Year</span> field.</span>
+      </li>
+<li class="li step">
+        <span class="ph cmd">Select the <span class="ph uicontrol">Process Rule Copy</span> button.</span>
+      </li>
+<li class="li step">
+        <span class="ph cmd">If desired, modify the parameter definitions.</span>
+      </li>
+</ol>
+
+  </div>
+
+</div></div></section>
+<section id="t-170"><h3>Build CLCONC data</h3><div class="content-locale-en-US content-locale-en"><div id="t_build_clconc_data"><div class="body taskbody"><p class="shortdesc">The following procedure explains how to build student concession data.</p>
+
+    <div class="tasklabel"><h2 class="sectiontitle tasklabel">Procedure</h2></div><ol class="ol steps"><li class="li step stepexpand">
+        <span class="ph cmd">Access the <span class="keyword wintitle">Concession Details (SKACONC)</span> page.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Enter the student ID in the <span class="ph uicontrol">ID</span> field of the Key Block.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Select Next Block.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Enter the student concession details in the <span class="keyword wintitle">Concession Details</span> window.</span>
+        <div class="itemgroup info">
+          <div class="note"><span class="notetitle">Note:</span> A concession type is mandatory. For Centrelink purposes, a Centrelink ID is required to perform the validation process even if it is not mandatory on the Concession Details (SKACONC) page.</div>
+
+        </div>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Save the record.</span>
+      </li>
+</ol>
+
+    <div class="section result"><div class="tasklabel"><h2 class="sectiontitle tasklabel">Results</h2></div>
+      <p class="p">Refer to <span class="keyword">CLCONC</span> Online Help to know and read more information about forms.</p>
+
+    </div>
+
+  </div>
+
+</div></div></section>
+<section id="t-180"><h3>Record Centrelink CCeS details</h3><div class="content-locale-en-US content-locale-en"><div id="t_record_centrelink_cces_details"><div class="body taskbody"><p class="shortdesc">Use this procedure to capture and record CCeS user name data for an organisation.</p>
+
+    <div class="tasklabel"><h2 class="sectiontitle tasklabel">Procedure</h2></div><ol class="ol steps"><li class="li step">
+        <span class="ph cmd">Access the <span class="keyword wintitle">External Systems Interaction Control (SKASYSC)</span> page.</span>
+      </li>
+<li class="li step">
+        <span class="ph cmd">Go to the <span class="keyword wintitle">Centrelink</span> window.</span>
+      </li>
+<li class="li step">
+        <span class="ph cmd">Enter the organisation ID in the <span class="ph uicontrol">ID</span> field.</span>
+      </li>
+<li class="li step">
+        <span class="ph cmd">Enter the Centrelink CCeS details for the organisation ID entered.</span>
+      </li>
+<li class="li step">
+        <span class="ph cmd">Save the record.</span>
+      </li>
+</ol>
+
+  </div>
+
+</div></div></section>
+<section id="t-190"><h3>Processing of CLCONC data</h3><div class="content-locale-en-US content-locale-en"><div id="c_process_clconc_data"><div class="body conbody"><p class="shortdesc">Use this procedure to produce files for validation by Centrelink and to update student records on the basis of Centrelink responses.</p>
+
+    <p class="p">You can control the execution of each process to run specific activities or tasks separately, or to run all tasks and activities one time in producing the request file. However, we recommend you run each task separately, evaluating the data each time. This results in better processing time and allows you to do any data cleaning. In the case of processing incoming data from response or rejection files, run the import activity before any other activity.</p>
+
+    <p class="p">Refer to the <cite class="cite"><span class="keyword">Banner</span> Mass Data Update Utility Use</cite> for more information about the forms used in configuring and executing each activity.</p>
+
+  </div>
+
+</div></div></section>
+<section id="t-200"><h4>ASC_CCES_VALIDATION</h4><div class="content-locale-en-US content-locale-en"><div id="t_asc_cces_validation"><div class="body taskbody"><p class="shortdesc">This process is used to produce <span class="keyword">CLCONC</span> XML request file. This process contains snapshot, extract, and export activities.</p>
+
+    <div class="tasklabel"><h2 class="sectiontitle tasklabel">Procedure</h2></div><ol class="ol steps"><li class="li step stepexpand">
+        <span class="ph cmd">Access the <span class="keyword wintitle">Execution Tree Set-up (GKAPEXS)</span> page.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Enter <kbd class="ph userinput">ASC_CCES_VALIDATION</kbd> in the <span class="ph uicontrol">Process Code</span> field.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Select Next Block.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Customise the execution tree to meet your local requirements, for example, by changing the status of tree nodes using the <span class="ph uicontrol">Change Status</span> button.</span>
+        <div class="itemgroup info">
+          <p class="p">If desired, you can customise the activities and add these to the execution tree, or you can create your own execution tree. If you customise the activities, you need to create local copies of the baseline activities first.</p>
+
+        </div>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Access the <span class="keyword wintitle">Process Tree Execution (GKAPEXE)</span> page.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Enter <kbd class="ph userinput">ASC_CCES_VALIDATION</kbd> in the <span class="ph uicontrol">Process Code</span> field.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Select Next Block.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Select the required stages on the <span class="keyword wintitle">Execution Tree Set-up</span> window.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Go to the <span class="keyword wintitle">Execution</span> window.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Enter values for the parameters, if necessary.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Change the value in the <span class="ph uicontrol">Execution Mode</span> field to <kbd class="ph userinput">Update</kbd>.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Select either the <span class="ph uicontrol">Run for Jobsub</span> or <span class="ph uicontrol">Run Now</span> button, as desired, to execute the process.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Review the results by selecting the View SQL log.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Access the <span class="keyword wintitle">Universal Viewer (GKAPUNV)</span> page to review the data generated by the process.</span>
+      </li>
+</ol>
+
+  </div>
+
+</div></div></section>
+<section id="t-210"><h4>ASC_CCES_IMPORT</h4><div class="content-locale-en-US content-locale-en"><div id="c_asc_cces_import"><p class="shortdesc">The <code class="ph codeph">ASC_CCES_IMPORT</code> process is used to treat incoming files generated by Centrelink's CCeS system in response to request files generated from data extracted from <span class="keyword">Banner</span>. This process contains response, rejection, and verify activities.</p>
+
+</div></div></section>
+<section id="t-220"><h3>Import response file</h3><div class="content-locale-en-US content-locale-en"><div id="t_import_response_file"><div class="body taskbody"><p class="shortdesc">Use this procedure to import the response file generated by Centrelink.</p>
+
+    <div class="tasklabel"><h2 class="sectiontitle tasklabel">Procedure</h2></div><ol class="ol steps"><li class="li step stepexpand">
+        <span class="ph cmd">Retrieve the response file.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Perform XSLT transformation on the response file (with the ASC-supplied stylesheet) to generate a file that is separated by a tilde (~) text file.</span>
+        <ol type="a" class="ol substeps">
+          <li class="li substep">
+            <span class="ph cmd">Save the response file to a desired location.</span>
+          </li>
+
+          <li class="li substep">
+            <span class="ph cmd">Save the response file stylesheet to a desired location.</span>
+          </li>
+
+          <li class="li substep">
+            <span class="ph cmd">Using an XSLT processor (such as XML Spy, Saxon, or Cooktop), run the stylesheet against the response file.</span>
+          </li>
+
+          <li class="li substep">
+            <span class="ph cmd">Save the output as .txt file.</span>
+          </li>
+
+          <li class="li substep">
+            <span class="ph cmd">Load the text file to a directory that is accessible to MDUU.</span>
+          </li>
+
+        </ol>
+
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Access the <span class="keyword wintitle">Execution Tree Set-up (GKAPEXS)</span> page.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Enter <kbd class="ph userinput">ASC_CCES_IMPORT</kbd> in the <span class="ph uicontrol">Process Code</span> field.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Select Next Block.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Customise the execution tree to meet your local requirements, for example, by changing the status of tree nodes using the <span class="ph uicontrol">Change Status</span> button.</span>
+        <div class="itemgroup info">
+          <p class="p">If desired, you can customise the activities and add these to the execution tree, or you can create your own execution tree. If you customise the activities, you need to create local copies of the baseline activities first.</p>
+
+        </div>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Go to the <span class="ph uicontrol">Import</span> tab.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Enter <kbd class="ph userinput">SKRCSIM</kbd> in the <span class="ph uicontrol">External Table Name</span> field.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Enter the directory where the import file is located in the <span class="ph uicontrol">Directory Name</span> field.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Enter the file name to be imported in the <span class="ph uicontrol">File Name</span> field.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Enter <kbd class="ph userinput">NEWLINE</kbd> in the <span class="ph uicontrol">Record Delimiter</span> field.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Enter the following string in the <span class="ph uicontrol">Fields</span> field:</span>
+        <div class="itemgroup info">
+          <p class="p">
+            <kbd class="ph userinput">SKRCSIM_RESP_TYPE (11), SKRCSIM_TIMESTAMP (14), SKRCSIM_USER_ID (12), SKRCSIM_BATCH_INFO (255), SKRCSIM_ID (34), SKRCSIM_CRN (10), SKRCSIM_MTCH_CODE (10), SKRCSIM_CNFRM_DATE (8), SKRCSIM_CNFRM_ID (23), SKRCSIM_NAME (2), SKRCSIM_ORG_TYPE (3), SKRCSIM_FIRST_NAME (2), SKRCSIM_MIDDLE_NAME (2), SKRCSIM_SURNAME (2), SKRCSIM_DOB (2), SKRCSIM_ADDR (2), SKRCSIM_PCODE (2), SKRCSIM_STATE (3)</kbd>
+          </p>
+
+        </div>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Enter a tilde (~) in the <span class="ph uicontrol">Field Delimiter</span> field.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Click <span class="ph uicontrol">Register File</span>.</span>
+      </li>
+</ol>
+
+  </div>
+
+</div></div></section>
+<section id="t-230"><h3>Import rejection file</h3><div class="content-locale-en-US content-locale-en"><div id="t_import_rejection_file"><div class="body taskbody"><p class="shortdesc">Use this procedure to import the rejection file details generated by Centrelink.</p>
+
+    <div class="tasklabel"><h2 class="sectiontitle tasklabel">Procedure</h2></div><ol class="ol steps"><li class="li step stepexpand">
+        <span class="ph cmd">Retrieve the rejection file.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Perform XSLT transformation on the rejection file (with the ASC-supplied stylesheet) to generate a file that is separated by a tilde (~) text file.</span>
+        <ol type="a" class="ol substeps">
+          <li class="li substep">
+            <span class="ph cmd">Save the response file to a desired location.</span>
+          </li>
+
+          <li class="li substep">
+            <span class="ph cmd">Save the response file stylesheet to a desired location.</span>
+          </li>
+
+          <li class="li substep">
+            <span class="ph cmd">Using an XSLT processor (such as XML Spy, Saxon, or Cooktop), run the stylesheet against the response file.</span>
+          </li>
+
+          <li class="li substep">
+            <span class="ph cmd">Save the output as .txt file.</span>
+          </li>
+
+          <li class="li substep">
+            <span class="ph cmd">Load the text file to a directory that is accessible to MDUU.</span>
+          </li>
+
+        </ol>
+
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Access the <span class="keyword wintitle">Execution Tree Set-up (GKAPEXS)</span> page.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Enter <kbd class="ph userinput">ASC_CCES_IMPORT</kbd> in the <span class="ph uicontrol">Process Code</span> field.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Select Next Block.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Customise the execution tree to meet your local requirements, for example, by changing the status of tree nodes using the <span class="ph uicontrol">Change Status</span> button.</span>
+        <div class="itemgroup info">
+          <p class="p">If desired, you can customise the activities and add these to the execution tree, or you can create your own execution tree. If you customise the activities, you need to create local copies of the baseline activities first.</p>
+
+        </div>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Go to the <span class="ph uicontrol">Import</span> tab.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Enter <kbd class="ph userinput">SKRCSRE</kbd> in the <span class="ph uicontrol">External Table Name</span> field.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Enter the directory where the import file is located in the <span class="ph uicontrol">Directory Name</span> field.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Enter the file name to be imported in the <span class="ph uicontrol">File Name</span> field.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Enter <kbd class="ph userinput">NEWLINE</kbd> in the <span class="ph uicontrol">Record Delimiter</span> field.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Enter the following string in the <span class="ph uicontrol">Fields</span> field:</span>
+        <div class="itemgroup info">
+          <p class="p">
+            <kbd class="ph userinput">SKRCSRE_RESP_TYPE (11), SKRCSRE_TIMESTAMP (14),</kbd>
+          </p>
+
+          <p class="p">
+            <kbd class="ph userinput">SKRCSRE_USER_ID (12), SKRCSRE_BATCH_INFO (255), SKRCSRE_ID (34), SKRCSRE_CRN (10), SKRCSRE_ORG_TYPE (3), SKRCSRE_CNFRM_DATE (8), SKRCSRE_FIRST_NAME (30), SKRCSRE_MIDDLE_NAME (30), SKRCSRE_SURNAME (30), SKRCSRE_DOB (8), SKRCSRE_ADDR_LN_1 (50), SKRCSRE_ADDR_LN_2 (50), SKRCSRE_SUBURB (50), SKRCSRE_STATE (3), SKRCSRE_POSTCODE (4), SKRCSRE_EXT_PCODE (5)</kbd>
+          </p>
+
+        </div>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Enter a tilde (~) in the <span class="ph uicontrol">Field Delimiter</span> field.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Click <span class="ph uicontrol">Register File</span>.</span>
+      </li>
+</ol>
+
+  </div>
+
+</div></div></section>
+<section id="t-240"><h3>Process imported files</h3><div class="content-locale-en-US content-locale-en"><div id="t_process_imported_files"><div class="body taskbody"><p class="shortdesc">Use this procedure to process the imported files generated by Centrelink.</p>
+
+    <div class="tasklabel"><h2 class="sectiontitle tasklabel">Procedure</h2></div><ol class="ol steps"><li class="li step stepexpand">
+        <span class="ph cmd">Access the <span class="keyword wintitle">Execution Tree Set-up (GKAPEXS)</span> page.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Enter <kbd class="ph userinput">ASC_CCES_IMPORT</kbd> in the <span class="ph uicontrol">Process Code</span> field.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Select Next Block.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Customise the execution tree to meet your local requirements, for example, by changing the status of tree nodes using the <span class="ph uicontrol">Change Status</span> button.</span>
+        <div class="itemgroup info">
+          <p class="p">If desired, you can customise the activities and add these to the execution tree, or you can create your own execution tree. If you customise the activities, you need to create local copies of the baseline activities first.</p>
+
+        </div>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Access the <span class="keyword wintitle">Process Tree Execution (GKAPEXE)</span> page.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Enter <kbd class="ph userinput">ASC_CCES_IMPORT</kbd> in the <span class="ph uicontrol">Process Code</span> field.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Select Next Block.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Select the required stages on the <span class="keyword wintitle">Execution Tree Set-up</span> window.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Go to the <span class="keyword wintitle">Execution</span> window.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Enter values for the parameters, if necessary.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Change the value in the <span class="ph uicontrol">Execution Mode</span> field to <kbd class="ph userinput">Update</kbd>.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Select either the <span class="ph uicontrol">Run for Jobsub</span> or <span class="ph uicontrol">Run Now</span> button, as desired, to execute the process.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Review the results by selecting the View SQL log.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Access the <span class="keyword wintitle">Universal Viewer (GKAPUNV)</span> page to review the data generated by the process.</span>
+      </li>
+</ol>
+
+  </div>
+
+</div></div></section>
+<section id="t-250"><h2>Tables</h2><div class="content-locale-en-US content-locale-en"><div id="c_tables"><p class="shortdesc">The following tables are delivered for <span class="keyword">Banner</span> <span class="keyword">CLCONC</span>.</p>
+
+</div></div></section>
+<section id="t-260"><h3>Concession Data (SKRCONC) table</h3><div class="content-locale-en-US content-locale-en"><div id="c_concession_data_table_skrconc"><p class="shortdesc">Concession Data (SKRCONC) table stores all data relevant to a student's concession status. This table is added for the Concession Details (SKACONC) page.</p>
+
+</div></div></section>
+<section id="t-270"><h3>Centrelink Customer eServices (CCeS) Control (SKBCCES) table</h3><div class="content-locale-en-US content-locale-en"><div id="c_centrelink_customer_eservices_cces_control_table_skbcces"><div class="body conbody"><p class="shortdesc">The Centrelink Customer eServices (CCeS) Control (SKBCCES) table establishes a valid and successful file transmission of Centrelink customer data to the CCeS web site.</p>
+
+    <div class="note"><span class="notetitle">Note:</span> This table is added for the modified form (External Systems Interaction Control (SKASYSC)) page.</div>
+
+  </div>
+
+</div></div></section>
+<section id="t-280"><h3>System Parameters (SKARSYS) page</h3><div class="content-locale-en-US content-locale-en"><div id="c_system_parameters_form_skarsys"><div class="body conbody"><p class="shortdesc">A set of default system parameters is delivered with the <span class="keyword">CLCONC</span> module. These parameters are used to configure the <span class="keyword">CLCONC</span> system. Use the Report System Parameters (SKARSYS) page to configure this data to the specifics of your implementation.</p>
+
+    <p class="p">The following system parameters are available from the SKARSYS page.</p>
+
+    <p class="p">POSTAL_ADDR_TYPE Records the hierarchy of address type codes used to identify a student's postal address for reporting.</p>
+
+    <p class="p">RESIDENTIAL_ADDR_TYPE Records the hierarchy of address type codes used to identify a student's residential address for reporting.</p>
+
+  </div>
+
+</div></div></section></main></body></html>

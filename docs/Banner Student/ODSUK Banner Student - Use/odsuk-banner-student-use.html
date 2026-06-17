@@ -1,0 +1,529 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>ODSUK Banner Student - Use</title><style>body{font-family:-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;line-height:1.55;color:#1a1a1a;max-width:920px;margin:0 auto;padding:24px}header{border-bottom:2px solid #5a16d6;margin-bottom:8px}h1{color:#3a0ca3}h2,h3,h4,h5,h6{margin-top:1.6em}.crumb{color:#666;font-size:13px;margin:0}.meta{color:#888;font-size:12px}nav.toc{background:#f6f4fc;border:1px solid #e3dcf5;border-radius:8px;padding:12px 18px;margin:18px 0}nav.toc h2{margin:.2em 0}nav.toc ul{list-style:none;padding-left:0}nav.toc a{text-decoration:none;color:#5a16d6}section{margin:1.2em 0;padding-top:.4em}img{max-width:100%;height:auto}table{border-collapse:collapse}td,th{border:1px solid #ccc;padding:4px 8px}code,pre{background:#f4f4f4;border-radius:4px}pre{padding:10px;overflow:auto}</style></head><body><header><p class="crumb">Banner Student › ODSUK Banner Student - Use</p><h1>ODSUK Banner Student - Use</h1><p class="meta">Source: <a href="https://resources.elluciancloud.com/r/bundle/banner_student_acn_use_odsuk">https://resources.elluciancloud.com/r/bundle/banner_student_acn_use_odsuk</a> &middot; Retrieved 2026-06-17</p></header><nav class="toc"><h2>Contents</h2><ul><li style="margin-left:0px"><a href="#t-10">Introduction</a></li><li style="margin-left:16px"><a href="#t-20">Related Documentation</a></li><li style="margin-left:16px"><a href="#t-30">Prerequisites</a></li><li style="margin-left:0px"><a href="#t-40">Administrative User Interface</a></li><li style="margin-left:16px"><a href="#t-50">Staging and data replication</a></li><li style="margin-left:16px"><a href="#t-60">Set up and synchronize data</a></li><li style="margin-left:16px"><a href="#t-70">Schedule a process</a></li><li style="margin-left:16px"><a href="#t-80">Load Banner UCAS and HESA data in ODSUK</a></li><li style="margin-left:16px"><a href="#t-90">Metadata</a></li><li style="margin-left:32px"><a href="#t-100">HESA Business Concept - Part 1</a></li><li style="margin-left:32px"><a href="#t-110">HESA Business Concept - Part 2</a></li><li style="margin-left:32px"><a href="#t-120">HESA KIS Business Concept</a></li><li style="margin-left:32px"><a href="#t-130">UCAS Business Concept - Part 1</a></li><li style="margin-left:32px"><a href="#t-140">UCAS Business Concept - Part 2</a></li><li style="margin-left:0px"><a href="#t-150">Reporting Views</a></li><li style="margin-left:16px"><a href="#t-160">HESA reporting views</a></li><li style="margin-left:16px"><a href="#t-170">UCAS reporting views</a></li></ul></nav><main><section id="t-10"><h2>Introduction</h2><div class="content-locale-en-US content-locale-en"><div id="c_introduction"><div class="body conbody"><p class="shortdesc">The <span class="ph">Banner®</span> Operational Data Store (<span class="ph">Banner</span> ODS) enables you to extract information from your source administrative systems and reorganize that information into a simplified set of tables and views in the <span class="ph">Banner</span> ODS database. End-users can then create and deploy operational and adhoc reports on this information.</p>
+
+    <p class="p">This 9x version corresponds to the <span class="ph">Banner</span> <span class="keyword">ODSUK</span> 8.8 release version.</p>
+
+    <p class="p"><span class="ph">Banner</span> ODS provides an extensive and flexible data store and business-organized reporting views with fewer columns and improved performance. You can use these views alone or in combination with other views when producing reports.</p>
+
+    <p class="p">Using this solution, your institution can take full advantage of the data stored in your source system by turning it into applied knowledge that can help you make informed decisions, guide strategic institutional planning and forecasting based on analysis of historical trends, and enhance institutional performance.</p>
+
+    <p class="p"><span class="ph">Banner</span> ODS for the UK (<span class="keyword">ODSUK</span>) incorporates Banner UCAS and Banner HESA data structures allowing users to extract, transform, and load Banner UCAS and Banner HESA data into the ODS database.</p>
+
+    <p class="p">This documentation provides details about the objects that are delivered with <span class="keyword">ODSUK</span>. This content assumes that you have a working knowledge of ODS. If you need more information about how to use <span class="ph">Banner</span> and ODS, see <cite class="cite">Related Documentation</cite> section.</p>
+
+    <div class="note"><span class="notetitle">Note:</span> Beginning with the ODS 9.0 release, the ODS ETL tool OWB (Oracle Warehouse Builder) is replaced with ODI (Oracle Data Integrator).</div>
+
+    <p class="p">The ODSUK tables and views use <span class="ph">Banner</span> naming conventions. For example, tables and views that include 'PROGRAM' in the title relate to the Banner Program entity that is equivalent to the HESA Course entity, and tables and views that include 'COURSE' in the title relate to the Banner Course entity that equates to the HESA Module entity. For example, AS_HESA_PROGRAM and MST_HESA_PROGRAM contain data relating to <span class="ph">Banner</span> Programs / HESA Courses.</p>
+
+  </div>
+
+<div class="related-links">
+<div class="linklist relinfo relconcepts" xml:lang="en-US" lang="en-US"><strong>Related concepts</strong><br>
+<ul class="linklist">
+<li class="linklist"><span class="link ft-internal-link" title="In addition to this Use content, the documentation listed in this chapter supports your work with the Banner ODSUK processing." data-ft-warning="excluded-from-rendering" data-mapid="KD5M4Rr0YwEq7lJ~hHZuFA" data-tocid="vsc0uOla5PNdn3Lrd6TM3g">Related Documentation</span></li></ul></div>
+</div></div></div></section>
+<section id="t-20"><h3>Related Documentation</h3><div class="content-locale-en-US content-locale-en"><div id="c_related_documentation"><div class="body conbody"><p class="shortdesc">In addition to this Use content, the documentation listed in this chapter supports your work with the <span class="keyword">Banner</span> <span class="keyword">ODSUK</span> processing.</p>
+
+    <p class="p"><cite class="cite"><span class="keyword">Banner</span> Operational Data Store Use</cite> - a user manual describing the setup and use of the Operational Data Store (ODS) product.</p>
+
+    <p class="p"><cite class="cite"><span class="keyword">Banner</span> Operational Data Store for the UK Install </cite> - an install guide that explains the steps necessary to install the ODSUK release.</p>
+
+    <p class="p"><cite class="cite"><span class="keyword">Banner</span> UCAS Use</cite> - content describing the setup and use of the Banner UCAS module, which is used with Banner Student.</p>
+
+    <div class="p"><cite class="cite"><span class="keyword">Banner</span> HESA Uses</cite> - a set of use content. <ul class="ul"> <li class="li"><cite class="cite"><span class="keyword">Banner</span> HESA Use</cite> - content describing the setup and use of the Banner HESA module and providing common reference information.</li>
+ <li class="li"><cite class="cite"><span class="keyword">Banner</span> HESA DLHE Collection Use</cite> - a reference manual for the Destinations of Leavers from Higher Education returns and collection.</li>
+
+      <li class="li"><cite class="cite"><span class="keyword">Banner</span> HESA ITT Collection Use</cite> - a reference manual for the Initial Teachers Training returns and collection.</li>
+ <li class="li"><cite class="cite"><span class="keyword">Banner</span> HESA KIS Collection Use</cite> - a reference manual for the Key Information Sets returns and collection.</li>
+ <li class="li"><cite class="cite"><span class="keyword">Banner</span> HESA Student and AO Collections Use</cite> - a reference manual for the Student and Aggregate Offshore returns and collection.</li>
+ <li class="li"><cite class="cite"><span class="keyword">Banner</span> HESA Data Futures Use</cite> - a reference manual for the data future returns and collections.</li>
+ <li class="li"><cite class="cite"><span class="keyword">Banner</span> HESA Graduate Outcomes Use</cite> - a reference manual for the Graduate Outcomes returns and collection.</li>
+ <li class="li"><cite class="cite"><span class="keyword">Banner</span> HESA AP Use</cite> - a reference manual for the Alternate Providers returns and collection.</li>
+ <li class="li"><cite class="cite"><span class="keyword">Banner</span> HESA ILR Use</cite> - a reference manual for the Individualised Learner Records feature.<p class="p"><cite class="cite"><span class="keyword">Banner</span> Getting Started Guide</cite> - a user/reference manual that describes the features and components of the Banner system.</p>
+</li>
+ </ul>
+</div>
+
+  </div>
+
+<div class="related-links">
+<div class="linklist relinfo relconcepts" xml:lang="en-US" lang="en-US"><strong>Related concepts</strong><br>
+<ul class="linklist">
+<li class="linklist"><span class="link ft-internal-link" title="The Banner Operational Data Store (Banner ODS) enables you to extract information from your source administrative systems and reorganize that information into a simplified set of tables and views in the Banner ODS database. End-users can then create and deploy operational and adhoc reports on this information." data-ft-warning="excluded-from-rendering" data-mapid="KD5M4Rr0YwEq7lJ~hHZuFA" data-tocid="Oc8cYOt1Eo86Q02WuvsiQQ">Introduction</span></li></ul></div>
+</div></div></div></section>
+<section id="t-30"><h3>Prerequisites</h3><div class="content-locale-en-US content-locale-en"><div id="c_prerequisites"><div class="body conbody"><p class="shortdesc">The minimum required releases for <span class="keyword">Banner</span> <span class="keyword">ODSUK</span> 9.0 are listed below.</p>
+
+    <ul class="ul">
+      <li class="li"><span class="ph">Banner</span> ODS 9.0</li>
+
+      <li class="li"><span class="ph">Banner</span> <span class="keyword">ODSUK</span> 8.8</li>
+
+      <li class="li"><span class="ph">Banner</span> HESA 8.14 or higher</li>
+
+      <li class="li"><span class="ph">Banner</span> UCAS 8.10 or higher</li>
+
+      <li class="li"><span class="ph">Banner</span> General 8.6</li>
+
+      <li class="li"><span class="ph">Banner</span> Student 8.6.2 or higher</li>
+
+      <li class="li">DBEU</li>
+
+      <li class="li">Target Oracle Database 11.2.0.4, 12.1.0.0, or 12.1.0.2</li>
+
+      <li class="li">Source Oracle Database 11.2.0.4</li>
+
+      <li class="li">Java: 1.8.0_60 or higher</li>
+
+      <li class="li">ODI EE product: ODI 12.2.1</li>
+
+      <li class="li">MDUU 8.0 or higher. If you are not running 8.1, Ellucian recommends applying the following patches: p1-hwx5vn_mduu8000006, p1-mgpqll_mduu8000001, p1-c3qzdt_mduu8000002, p1-108vy7i_mduu8000003, p1-156f9lt_mduu8000004, p1-16vnsdi_mduu8000005.</li>
+
+    </ul>
+
+  </div>
+
+</div></div></section>
+<section id="t-40"><h2>Administrative User Interface</h2><div class="content-locale-en-US content-locale-en"><div id="c_administrative_user_interface"><div class="body conbody"><p class="shortdesc">Options in the Administrative User Interface (UI) enable you to easily perform the tasks required to set up and maintain the UCAS and HESA elements of <span class="ph">Banner</span> ODS for the UK (<span class="keyword">ODSUK</span>) at your institution.</p>
+
+    <p class="p">It is assumed that you are familiar with baseline ODS functionality. For complete information about the ODS UI, refer to the <cite class="cite">Administrative User Interface</cite> section of the <cite class="cite"><span class="ph">Banner</span> Operational Data Store Use</cite>.</p>
+
+  </div>
+
+</div></div></section>
+<section id="t-50"><h3>Staging and data replication</h3><div class="content-locale-en-US content-locale-en"><div id="c_staging_data_replication"><div class="body conbody"><p class="shortdesc">Materialized Views architecture is used for staging data in <span class="ph">Banner</span> <span class="keyword">ODSUK</span>.</p>
+
+    <p class="p"><span class="ph">Banner</span> HESA and <span class="ph">Banner</span> UCAS staging tables are included in the Student Refresh Group collection when using the Refresh Staging Collections feature in the Administrative UI.</p>
+
+    <p class="p">Individual <span class="ph">Banner</span> HESA and <span class="ph">Banner</span> UCAS staging tables can be refreshed using the Refresh Staging Tables feature in the Administrative UI.</p>
+
+  </div>
+
+</div></div></section>
+<section id="t-60"><h3>Set up and synchronize data</h3><div class="content-locale-en-US content-locale-en"><div id="c_set_up_synchronize_data"><div class="body conbody"><p class="shortdesc">Maintaining current data in <span class="ph">Banner</span> ODS is key to producing accurate reports. ODS uses programs (Oracle Warehouse Builder (OWB) mappings) to associate elements in the administrative system with their corresponding elements in ODS.</p>
+
+    <p class="p">When you run a job (that is, schedule a process using the Administrative UI), it calls the related mappings and loads or updates the data defined by them.</p>
+
+    <p class="p">ODS includes the following main categories of mappings.</p>
+
+    <ul class="ul">
+      <li class="li">LOAD mappings load data from the administrative system into ODS. These mapping names include a LOAD_ prefix.</li>
+
+      <li class="li">REFRESH mappings update ODS with data that has changed in the administrative system. These mapping names include an UPDATE_ or DELETE_ prefix. Typically, these mappings exist in pairs. To perform a complete refresh, you run the DELETE mapping followed by its associated UPDATE mapping.</li>
+
+    </ul>
+
+    <p class="p">ODSUK is delivered with a number of mappings already defined. LOAD and REFRESH mappings exist for each UCAS and HESA composite table in ODS. To make it easier to work with the mappings, they are organized into groups by product area. You can run one job that includes a group of mappings at the same time, such as UCAS-related mappings, or you can run a single mapping.</p>
+
+  </div>
+
+</div></div></section>
+<section id="t-70"><h3>Schedule a process</h3><div class="content-locale-en-US content-locale-en"><div id="c_schedule_process"><div class="body conbody"><p class="shortdesc">You can schedule a job to run at a specific time. </p>
+
+    <p class="p">To run load and refresh (update) jobs, select <span class="ph uicontrol">Schedule a Process</span> on the Options menu of the Administrative UI.</p>
+
+    <div class="note warning"><span class="warningtitle">Warning:</span> Before you schedule any jobs to run, you must review and set up parameters associated with scheduling a process.</div>
+
+  </div>
+
+</div></div></section>
+<section id="t-80"><h3>Load Banner UCAS and HESA data in ODSUK</h3><div class="content-locale-en-US content-locale-en"><div id="c_banner_ucas_hesa_ods_processes"><div class="body conbody"><p class="shortdesc">You can use the following options on the <span class="ph uicontrol">Schedule Banner ODS</span> mappings menu in the Administrative UI to load or update the corresponding UCAS and HESA data into ODS composite and slotted tables.</p>
+
+    <ul class="ul">
+      <li class="li"><span class="ph uicontrol">Load All </span><span class="ph">Banner</span><span class="ph uicontrol"> ODS Products</span>: When this process is run the <span class="ph">Banner</span> UCAS and <span class="ph">Banner</span> HESA data will be included in the load of data into the ODS composite and slotted tables.</li>
+
+      <li class="li"><span class="ph uicontrol">Refresh All </span><span class="ph">Banner</span><span class="ph uicontrol"> ODS Products</span>: When this process is run the <span class="ph">Banner</span> UCAS and <span class="ph">Banner</span> HESA data will be included in the update of data in the ODS composite and slotted tables.</li>
+
+      <li class="li"><span class="ph uicontrol">Load All </span><span class="ph">Banner</span><span class="ph uicontrol"> ODS Slotted Tables</span>: When this process is run the <span class="ph">Banner</span> UCAS and <span class="ph">Banner</span> HESA data will be included in the load of data into the ODS slotted tables.</li>
+
+      <li class="li"><span class="ph uicontrol">Refresh All </span><span class="ph">Banner</span><span class="ph uicontrol"> ODS Slotted Tables</span>: When this process is run the <span class="ph">Banner</span> UCAS and <span class="ph">Banner</span> HESA data will be included in the update of data in the ODS slotted tables.</li>
+
+      <li class="li"><span class="ph uicontrol">Load HESA</span>: When this process is run the Banner HESA data will be loaded into the HESA ODS composite and slotted tables.</li>
+
+      <li class="li"><span class="ph uicontrol">Load UCAS</span>: When this process is run the Banner UCAS data will be loaded into the UCAS ODS composite and slotted tables.</li>
+
+      <li class="li"><span class="ph uicontrol">Refresh HESA</span>: When this process is run the Banner HESA data will be updated in the HESA ODS composite and slotted tables.</li>
+
+      <li class="li"><span class="ph uicontrol">Refresh UCAS</span>: When this process is run the Banner UCAS data will be updated in the UCAS ODS composite and slotted tables.</li>
+
+    </ul>
+
+    <p class="p">Refer to the <cite class="cite"><span class="ph">Banner</span> Operational Data Store Use</cite> for instructions on how to run these processes.</p>
+
+  </div>
+
+</div></div></section>
+<section id="t-90"><h3>Metadata</h3><div class="content-locale-en-US content-locale-en"><div id="c_metadata"><div class="body conbody"><p class="shortdesc">Metadata is 'data about data', or information and characteristics about data entities such as a column name, description, format, length, origin, and destination. </p>
+
+    <p class="p">Metadata in ODS provides the following types of information:</p>
+
+    <ul class="ul">
+      <li class="li">Data columns in ODS</li>
+
+      <li class="li">Definition of each data column's business use</li>
+
+      <li class="li">Type of data (number, character, date, and so on)</li>
+
+      <li class="li">How long the data column is</li>
+
+      <li class="li">Where in the source system the data column comes from</li>
+
+      <li class="li">Data column's destination in the target system</li>
+
+    </ul>
+
+    <p class="p">ODSUK includes metadata describing the reporting views and the sources from which they are extracted</p>
+
+    <div class="note"><span class="notetitle">Note:</span> The metadata includes <span class="ph">Banner</span> UCAS and <span class="ph">Banner</span> HESA ODS reporting views and source composite views, both with the original source tables and source column names. </div>
+
+    <p class="p">From the subject area drop-down in the Administrative UI, select the UCAS or HESA option to view the metadata for that area. The metadata can then be viewed online or it can be output to an HTML file.</p>
+
+    <p class="p">For complete information about ODS metadata, refer to the <cite class="cite">Meta Data</cite> section under <cite class="cite">Administrative User Interface</cite> in the <cite class="cite"><span class="ph">Banner</span> Operational Data Store Use</cite>.</p>
+
+    <p class="p">For more details on the metadata and business concepts, refer to the flow diagrams in the sections that follow.</p>
+
+  </div>
+
+</div></div></section>
+<section id="t-100"><h4>HESA Business Concept - Part 1</h4><div class="content-locale-en-US content-locale-en"><div id="c_hesa_bizconcept_part1"><div class="body conbody"><p class="shortdesc">The figure shows the HESA Business Concept.</p>
+
+    <img class="image" width="810" alt="HESA Business Concept - Part 1" data-ft-asset-display-name="flw_hesa_bizconcept_01.jpg" style="aspect-ratio: 810/1074;" data-ft-resize-ratio="0.9" src="images/odsuk-banner-student-use-1.jpeg" data-ft-resource-id="_NysAcPRjVrzpjYJh0ohIg-KD5M4Rr0YwEq7lJ~hHZuFA">
+  </div>
+
+</div></div></section>
+<section id="t-110"><h4>HESA Business Concept - Part 2</h4><div class="content-locale-en-US content-locale-en"><div id="c_hesa_bizconcept_part2"><div class="body conbody"><p class="shortdesc">The figure shows the HESA Business Concept.</p>
+
+    <img class="image" alt="HESA Business Concept - Part 2" data-ft-asset-display-name="flw_hesa_bizconcept_02.jpg" src="images/odsuk-banner-student-use-2.jpeg" data-ft-resource-id="BGYnxrdcRhlSKbRO6CfxNg-KD5M4Rr0YwEq7lJ~hHZuFA">
+  </div>
+
+</div></div></section>
+<section id="t-120"><h4>HESA KIS Business Concept</h4><div class="content-locale-en-US content-locale-en"><div id="c_hesa_kis_bizconcept"><div class="body conbody"><p class="shortdesc">The figure shows the HESA KIS Business Concept.</p>
+
+    <img class="image" alt="HESA KIS Business Concept" data-ft-asset-display-name="flw_hesa_kis_bizconcept.jpg" src="images/odsuk-banner-student-use-3.jpeg" data-ft-resource-id="e7SRD5O0v263qgfIYk6tzg-KD5M4Rr0YwEq7lJ~hHZuFA">
+  </div>
+
+</div></div></section>
+<section id="t-130"><h4>UCAS Business Concept - Part 1</h4><div class="content-locale-en-US content-locale-en"><div id="c_ucas_bizconcept_part1"><div class="body conbody"><p class="shortdesc">The figure shows the UCAS Business Concept.</p>
+
+    <img class="image" width="810" alt="UCAS Business Concept - Part 1" data-ft-asset-display-name="flw_ucas_bizconcept_01.jpg" style="aspect-ratio: 810/1068;" data-ft-resize-ratio="0.9" src="images/odsuk-banner-student-use-4.jpeg" data-ft-resource-id="Gux1Ih32LoyfbUvglMCyCA-KD5M4Rr0YwEq7lJ~hHZuFA">
+  </div>
+
+</div></div></section>
+<section id="t-140"><h4>UCAS Business Concept - Part 2</h4><div class="content-locale-en-US content-locale-en"><div id="c_ucas_bizconcept_part2"><div class="body conbody"><p class="shortdesc">The figure shows the UCAS Business Concept.</p>
+
+    <img class="image" alt="UCAS Business Concept - Part 2" data-ft-asset-display-name="flw_ucas_bizconcept_02.jpg" src="images/odsuk-banner-student-use-5.jpeg" data-ft-resource-id="qKfk2p0hmym2UE1aSbsCZg-KD5M4Rr0YwEq7lJ~hHZuFA">
+  </div>
+
+</div></div></section>
+<section id="t-150"><h2>Reporting Views</h2><div class="content-locale-en-US content-locale-en"><div id="c_reporting_views"><div class="body conbody"><p class="shortdesc">HESA and UCAS data from your source system database is used to populate <span class="ph">Banner</span> ODS composite tables. This data can be retrieved in reports using the ODS reporting views.</p>
+
+    <p class="p">Use the Administrative User Interface (UI) to maintain and view metadata reports for each composite view (data on the source system used as an intermediate step to produce the composite tables and reporting views) and reporting view.</p>
+
+    <p class="p">The meta data reports enable you to look at the information about the composite or reporting view definition, and the column business definitions by either target, composite or reporting view, or by source administrative system sources.</p>
+
+    <p class="p">For additional information on how to view meta data for the composite views or reporting views, refer to <cite class="cite">Composite View Meta Data</cite> under <cite class="cite">Administrative User Interface</cite> in the <cite class="cite"><span class="ph">Banner</span> Operational Data Store Use</cite>.</p>
+
+    <p class="p">For additional information on how to maintain meta data for the composite or reporting views, and to maintain sources and source columns, refer to <cite class="cite">Meta Data</cite> under <cite class="cite">Administrative User Interface</cite> in the <cite class="cite"><span class="ph">Banner</span> Operational Data Store Use</cite>.</p>
+
+    <p class="p">The sections that follow provide information about the <span class="ph">Banner</span> HESA and <span class="ph">Banner</span> UCAS reporting views included in <span class="ph">Banner</span> <span class="keyword">ODSUK</span>).</p>
+
+  </div>
+
+</div></div></section>
+<section id="t-160"><h3>HESA reporting views</h3><div class="content-locale-en-US content-locale-en"><div id="r_hesa_reporting_views"><div class="body refbody"><p class="shortdesc">The following table describes the HESA reporting views.</p>
+
+    
+<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" id="r_hesa_reporting_views__r_hesa_reporting_views-utbl1" class="table" frame="hsides" border="1" rules="rows"><colgroup><col><col></colgroup><thead class="thead" style="text-align:left;vertical-align:bottom;">
+          <tr class="row">
+            <th class="entry row-nocellborder" style="text-align:left;vertical-align:bottom;" id="d466e46">View Name</th>
+
+            <th class="entry row-nocellborder" style="text-align:left;vertical-align:bottom;" id="d466e49">Description</th>
+
+          </tr>
+
+        </thead>
+<tbody class="tbody">
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d466e46 ">HESA Destination of Leavers (DL11_STUDENT)</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d466e49 ">This reporting view contains data about student destinations for the HESA DLHE collection of 2011/12 and later.</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d466e46 ">DLHE Student (DLHE_STUDENT)</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d466e49 ">This reporting view contains data about student destinations for the HESA DLHE collection earlier than 2011/12.</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d466e46 ">HESA Course (HESA_COURSE)</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d466e49 ">This reporting view contains HESA supplementary details for a subject (course) offered as part of the instruction in an academic study program. Details tracked are specific to each academic period for which the subject could be offered.</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d466e46 ">HESA Course Cost Centre Information (HESA_COURSE_COST_CENTRE)</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d466e49 ">This reporting view contains HESA course cost centres associated with each relevant <span class="keyword">Banner</span> catalog course.</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d466e46 ">HESA KIS Course (HESA_KIS_COURSE)</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d466e49 ">This reporting view contains data about each Key Information Set (KIS) course.</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d466e46 ">HESA KIS Course Accreditation (HESA_KIS_COURSE_ACCRED)</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d466e49 ">This reporting view contains accreditation data about each HESA KIS course.</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d466e46 ">HESA KIS Course Location (HESA_KIS_COURSE_LOCATION)</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d466e49 ">This reporting view contains data about the HESA courses associated with this KIS course.</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d466e46 ">HESA KIS Course Stage Details (HESA_KIS_COURSE_STAGE)</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d466e49 ">This reporting view contains data about the stages of each HESA KIS course.</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d466e46 ">HESA KIS Course Stage Module (HESA_KIS_COURSE_STAGE_MOD)</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d466e49 ">This reporting view contains study module data about each HESA KIS course stage.</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d466e46 ">HESA KIS Course Teaching Institution (HESA_KIS_COURSE_TINST)</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d466e49 ">This reporting view contains data about the Teaching Institutions associated with the KIS course.</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d466e46 ">HESA KIS Course Application UKPRN Details (HESA_KIS_COURSE_UKPRNA)</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d466e49 ">This reporting view contains UK Provider Reference Number (UKPRN) data for each KIS course.</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d466e46 ">HESA KIS HESA Course Details (HESA_KIS_HESA_COURSE)</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d466e49 ">This reporting view contains data about the HESA Course for each KIS course.</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d466e46 ">HESA Person Information (HESA_PERSON)</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d466e49 ">This reporting view contains one row of supplemental data per <span class="keyword">Banner</span> person. Supplemental person data is shared between HESA and UCAS to avoid repetition. Both HESA and UCAS data are included in this view.</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d466e46 ">HESA Program (HESA_PROGRAM)</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d466e49 ">This reporting view contains HESA supplementary details for an academic study program. Details tracked are specific to each academic period for which the program could be offered.</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d466e46 ">HESA Program Course (HESA_PROGRAM_COURSE)</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d466e49 ">This reporting view contains a list of subjects (courses) offered as part of the instruction in an academic study program. Details tracked are specific to each academic period for which the subject could be offered as part of the program.</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d466e46 ">HESA Program Mode (HESA_PROGRAM_MODE)</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d466e49 ">This reporting view contains details of study modes available for an academic study program. Details tracked are specific to each academic period for which the study mode is available for the program.</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d466e46 ">HESA Student Instance (HESA_STUDENT_INSTANCE)</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d466e49 ">This reporting view contains HESA supplementary details for each instance of study undertaken by a student at the institution. Details tracked are specific to each academic period in which the student is studying.</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d466e46 ">HESA Instance Financial Support (HESA_STUDENT_INSTANCE_FIS)</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d466e49 ">This reporting view contains data about the financial support arrangements for each instance.</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d466e46 ">HESA Instance Year Mobility (HESA_STUDENT_INSTANCE_MOB)</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d466e49 ">This reporting view contains data about student instance mobility experiences.</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d466e46 ">HESA Student Instance Qualification (HESA_STUDENT_INSTANCE_QUAL)</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d466e49 ">This reporting view contains entry qualification details for each instance of study undertaken by a student at the institution.</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d466e46 ">HESA Instance Learner Delivery Funding and Monitoring <p class="p">( HESA_ST_IN_LR_DEL_FUN_MON )</p>
+</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d466e49 ">This reporting view contains Learner Delivery Funding and Monitoring for each instance</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d466e46 ">HESA Student Instance Engagement <p class="p">(HESA_STUD_INST_ENGAGEMENT )</p>
+</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d466e49 ">This reporting view contains student engagement for each instance</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d466e46 ">HESA Instance Engagement Finances <p class="p">(HESA_STUD_INST_ENGA_FIN )</p>
+</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d466e49 ">This reporting view contains student finance engagement for each instance</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d466e46 ">HESA Instance Learner Employment Status <p class="p">(HESA_STU_INS_LRN_EMP_STA )</p>
+</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d466e49 ">This reporting view contains learner employment status for each instance</td>
+
+          </tr>
+
+        </tbody>
+</table>
+</div>
+
+  </div>
+
+</div></div></section>
+<section id="t-170"><h3>UCAS reporting views</h3><div class="content-locale-en-US content-locale-en"><div id="r_ucas_reporting_views"><div class="body refbody"><p class="shortdesc">The following table describes the UCAS reporting views.</p>
+
+    
+<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" id="r_ucas_reporting_views__r_ucas_reporting_views-utbl1" class="table" frame="hsides" border="1" rules="rows"><colgroup><col><col></colgroup><thead class="thead" style="text-align:left;vertical-align:bottom;">
+          <tr class="row">
+            <th class="entry row-nocellborder" style="text-align:left;vertical-align:bottom;" id="d1872e46">View Name</th>
+
+            <th class="entry row-nocellborder" style="text-align:left;vertical-align:bottom;" id="d1872e49">Description</th>
+
+          </tr>
+
+        </thead>
+<tbody class="tbody">
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d1872e46 ">UCAS NMAS Applicant (NMAS_APPLICANT)</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d1872e49 ">This reporting view returns one row per UCAS applicant number and contains data specific to an NMAS type of applicant, that is, it includes only applicants where the UCAS_APPLICANT_TYPE = N. <p class="p">this view is no longer used, but is retained in the system for historical purposes.</p>
+</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d1872e46 ">UCAS SWAS Applicant (SWAS_APPLICANT)</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d1872e49 ">This reporting view returns one row per UCAS applicant number and contains data specific to an SWAS type of applicant, that is, it includes only applicants where UCAS_APPLICANT_TYPE = S. <p class="p">this view is no longer used, but is retained in the system for historical purposes.</p>
+</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d1872e46 ">UCAS Applicant (UCAS_APPLICANT)</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d1872e49 ">This reporting view returns one row per UCAS applicant number and contains common UCAS applicant data. This view is for all admissions systems.</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d1872e46 ">UCAS Contextual School Data (UCAS_APPLICANT_CONTXT_DATA)</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d1872e49 ">This reporting view contains contextual data about the schools that an applicant has attended, provided by UCAS.</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d1872e46 ">UCAS Applicant *J Qualification Data (UCAS_APPLICANT_QUAL)</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d1872e49 ">This reporting view returns one row per UCAS applicant number and qualification number and contains applicant *J Qualification data. This view is for all admissions systems.</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d1872e46 ">UCAS UK Central Applicant Qualification Data (UCAS_APPLICANT_QUALIFICATIONS)</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d1872e49 ">This reporting view returns one row per UCAS applicant number and contains qualification data for an applicant.</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d1872e46 ">UCAS Application Decision (UCAS_APPLICATION_DECISION)</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d1872e49 ">This reporting view returns one row per application per decision recorded for that application and contains data specific to an application decision. This view is for all admissions systems.</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d1872e46 ">UCAS Application Decision History (UCAS_APPLICATION_DECISION_SLOT)</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d1872e49 ">This reporting view returns one row per UCAS applicant number and choice number and contains data for the latest five decisions for that application. Slot 1 contains the most recent decision, slot 2 the next most recent, and so on. This view is for all admissions systems.</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d1872e46 ">UCAS Review Group Actions (UCAS_APPLICATION_REV_CMT)</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d1872e49 ">This reporting view contains the review group actions and associated comments stored against applicants in the <span class="keyword">Banner</span> UCAS Application Review Centre. Review Group Actions can be set up to represent any stage of the admissions process, such as inviting for an interview, referring to a particular department, and so on. This view is for all admissions systems.</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d1872e46 ">UCAS External Application (UCAS_EXTERNAL_APPLICATION)</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d1872e49 ">This reporting view returns one row per applicant number and choice number and contains data specific to any application(s) submitted by the person through UCAS for an external institution. This view is for all admissions systems.</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d1872e46 ">UCAS Internal Application (UCAS_INTERNAL_APPLICATION)</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d1872e49 ">This reporting view returns one row per person per application number per academic period and contains data specific to any application(s), submitted by the person through UCAS for the internal institution. This view is for all admissions systems.</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d1872e46 ">UCAS Tariff Score Reference (UCAS_TARIFF_SCORE)</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d1872e49 ">This reporting view returns one row per exam level and exam grade, and contains the tariff score for the exam level and exam grade.</td>
+
+          </tr>
+
+        </tbody>
+</table>
+</div>
+
+  </div>
+
+</div></div></section></main></body></html>

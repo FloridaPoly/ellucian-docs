@@ -1,0 +1,488 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Ellucian Experience — Monitor Ellucian Experience</title><style>body{font-family:-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;line-height:1.55;color:#1a1a1a;max-width:920px;margin:0 auto;padding:24px}header{border-bottom:2px solid #5a16d6;margin-bottom:8px}h1{color:#3a0ca3}h2,h3,h4,h5,h6{margin-top:1.6em}.crumb{color:#666;font-size:13px;margin:0}.meta{color:#888;font-size:12px}nav.toc{background:#f6f4fc;border:1px solid #e3dcf5;border-radius:8px;padding:12px 18px;margin:18px 0}nav.toc h2{margin:.2em 0}nav.toc ul{list-style:none;padding-left:0}nav.toc a{text-decoration:none;color:#5a16d6}section{margin:1.2em 0;padding-top:.4em}img{max-width:100%;height:auto}table{border-collapse:collapse}td,th{border:1px solid #ccc;padding:4px 8px}code,pre{background:#f4f4f4;border-radius:4px}pre{padding:10px;overflow:auto}</style></head><body><header><p class="crumb">Experience Platform › Ellucian Experience</p><h1>Ellucian Experience — Monitor Ellucian Experience</h1><p class="meta">Source: <a href="https://resources.elluciancloud.com/r/bundle/ellucian_experience">https://resources.elluciancloud.com/r/bundle/ellucian_experience</a> &middot; Retrieved 2026-06-17</p></header><nav class="toc"><h2>Contents</h2><ul><li style="margin-left:0px"><a href="#t-3230">Monitor Ellucian Experience</a></li><li style="margin-left:16px"><a href="#t-3240">Send Experience data to Google Analytics</a></li><li style="margin-left:32px"><a href="#t-3250">Google Analytics custom dimensions for Experience</a></li><li style="margin-left:16px"><a href="#t-3260">View a site user count</a></li><li style="margin-left:16px"><a href="#t-3270">View a user's available cards</a></li><li style="margin-left:16px"><a href="#t-3280">Generate a user information report</a></li><li style="margin-left:16px"><a href="#t-3290">User data tracking options</a></li><li style="margin-left:32px"><a href="#t-3300">What is tracked in Experience</a></li></ul></nav><main><section id="t-3230"><h2>Monitor Ellucian Experience</h2></section>
+<section id="t-3240"><h3>Send Experience data to Google Analytics</h3><div class="content-locale-en-US content-locale-en"><div id="t_experience_google_analytics"><div class="body taskbody"><p class="shortdesc">You can view <span class="keyword">Ellucian Experience</span> site usage information from within your Google Analytics account.</p>
+
+    <div class="section context"><div class="tasklabel"><h2 class="sectiontitle tasklabel">About this task</h2></div>
+      <div class="p">If you configure <span class="keyword">Experience</span> and Google Analytics using the procedure below, Experience will send information about <span class="keyword">Experience</span> user events to Google Analytics. These events include, for example:<ul class="ul"> <li class="li">Page views, based on an <span class="keyword">Experience</span> user accessing an Experience page (such as the dashboard; the All Cards, Profile, and Configuration pages; and any <span class="keyword">Experience</span> page associated with an <span class="keyword">Experience</span> card such as the Classes card).</li>
+ <li class="li">Card views, based on an <span class="keyword">Experience</span> user accessing an Experience page with that card loaded on the page.</li>
+ <li class="li">Clicks of links in <span class="keyword">Experience</span> cards and pages.</li>
+ </ul>
+</div>
+
+      <p class="p">Each event identifies the browser, such as Chrome or Safari. If the user accesses Experience through the <span class="keyword">Experience App</span> rather than a web browser, the browser is identified as "Experience."</p>
+
+      <p class="p">Information is sent to Google Analytics only if a user has enabled sharing of usage data, either during Experience onboarding or later from the Profile page. If the user is using the <span class="keyword">Experience App</span> on iOS, the user must also have consented to activity tracking through iOS privacy settings.</p>
+
+      <div class="note"><span class="notetitle">Note:</span> <span class="keyword">Experience</span> requires Google Analytics 4.</div>
+
+    </div>
+
+    <div class="tasklabel"><h2 class="sectiontitle tasklabel">Procedure</h2></div><ol class="ol steps"><li class="li step stepexpand">
+        <span class="ph cmd">Set up Google Analytics to work with <span class="keyword">Experience</span> data. The following are the high-level steps; see Google documentation for details.</span>
+        <ol type="a" class="ol substeps">
+          <li class="li substep substepexpand">
+            <span class="ph cmd">Create an Analytics account, or use an existing account.</span>
+          </li>
+
+          <li class="li substep substepexpand">
+            <span class="ph cmd">Within that account, create a Google Analytics 4 property for <span class="keyword">Experience</span>.</span>
+            <div class="itemgroup info">Example property name: <kbd class="ph userinput">Ellucian Experience</kbd></div>
+          </li>
+
+          <li class="li substep substepexpand">
+            <span class="ph cmd">Within that property, create a data stream of the Web type for <span class="keyword">Experience</span>.</span>
+            <div class="itemgroup info">For the <span class="ph uicontrol">Website URL</span>, enter the URL displayed in the <span class="ph uicontrol">Ellucian Experience Dashboard URL</span> field on the <span class="ph uicontrol" id="t_experience_google_analytics__yxb_yyl_5gb">Dashboard Setup</span> tab in <span class="keyword">Ellucian Experience</span> Setup. Enter only the portion after <span class="ph filepath">https://</span><p class="p">Example: <kbd class="ph userinput">experience.elluciancloud.com/mycollege</kbd></p>
+</div>
+          </li>
+
+        </ol>
+
+        <div class="itemgroup info">
+          <div class="note"><span class="notetitle">Note:</span> The Google documentation includes steps for setting up data collection on the website. You can skip those steps. <span class="keyword">Experience</span> will automatically collect and send data after you enter the Analytics Measurement ID in <span class="keyword">Ellucian Experience</span> Setup as described later in this procedure.</div>
+
+        </div>
+      </li>
+<li class="li step stepexpand">
+        
+        <span class="ph cmd" id="t_experience_google_analytics__d123e216">Access <span class="keyword">Ellucian Experience Setup</span>:</span>
+        <ol type="a" class="ol substeps" id="t_experience_google_analytics__d123e222">
+          <li class="li substep substepexpand" id="t_experience_google_analytics__d123e224">
+            <span class="ph cmd" id="t_experience_google_analytics__d123e226">In the <span class="keyword">Ellucian Customer Center</span>, click <span class="ph uicontrol">Tools</span> and then select the desired <span class="keyword">Experience Setup</span> instance under the <span class="ph uicontrol">Experience</span> category:</span>
+            <div class="itemgroup info" id="t_experience_google_analytics__d123e241">
+              <ul class="ul">
+                <li class="li">Click <span class="ph uicontrol">Experience Setup</span> to access the Production instance of <span class="keyword">Experience Setup</span>.</li>
+
+                <li class="li">Click <span class="ph uicontrol">Experience Setup Test</span> to access the Test instance of <span class="keyword">Experience Setup</span>.</li>
+
+              </ul>
+
+            </div>
+          </li>
+
+          <li class="li substep substepexpand">
+            <span class="ph cmd" id="t_experience_google_analytics__d123e268">(If applicable) In <span class="keyword">Experience Setup</span>, in the <span class="ph uicontrol">Environments</span> drop-down, select the desired <span class="keyword">Ethos</span> environment. </span>
+            <div class="itemgroup info"><span class="ph" id="t_experience_google_analytics__d123e281">The option to select an environment is available only if multiple <span class="keyword">Ethos</span> environments are associated with this <span class="keyword">Experience Setup</span> instance.</span></div>
+          </li>
+
+        </ol>
+
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Enter the Google Analytics Measurement ID in <span class="keyword">Ellucian Experience</span> Setup:</span>
+        <ol type="a" class="ol substeps">
+          <li class="li substep substepexpand" id="t_experience_google_analytics__w5m_f2t_hpb">
+            <span class="ph cmd">In Google Analytics, from the data stream details, copy the <span class="ph uicontrol">Measurement ID</span>.</span>
+            <div class="itemgroup info">The ID will have the form G﻿-﻿XXXXXXXXXX.</div>
+          </li>
+
+          <li class="li substep substepexpand">
+            <span class="ph cmd"><span class="ph">In <span class="keyword">Experience Setup</span>,</span> click the <span class="ph uicontrol">User Activity</span> tab.</span>
+          </li>
+
+          <li class="li substep substepexpand">
+            <span class="ph cmd">In the <span class="ph uicontrol">Connect Google Analytics</span> section of the page, in the <span class="ph uicontrol">Google Analytics Measurement ID</span> field, paste the Measurement ID that you copied from Google Analytics.</span>
+          </li>
+
+          <li class="li substep substepexpand">
+            <span class="ph cmd">Click <span class="ph uicontrol">Save</span>.</span>
+          </li>
+
+        </ol>
+
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">In Google Analytics, create custom dimensions that allow you to view <span class="keyword">Experience</span> data filtered by attributes such as <span class="keyword">Experience</span> user role and Experience environment (Test or Production).</span>
+        <div class="itemgroup info">For the procedure, see the Google documentation for <a class="xref ft-external-link" href="https://support.google.com/analytics/answer/10075209?visit_id=637544773293121333-950679028&amp;rd=1&amp;pli=1#new-custom-dimension" target="_blank" rel="noopener">creating custom dimensions</a>. For examples, see <span class="xref ft-internal-link" title="You can create the Google Analytics custom dimensions described here to support viewing Experience data in Google Analytics." data-ft-warning="excluded-from-rendering" data-mapid="~E0SOywQoPvkcEZ51gEr7Q" data-tocid="6ZeWRFJLQufs0YLYnMg9mw">Google Analytics custom dimensions for Experience</span>.<div class="p">Notes about custom dimensions:<ul class="ul">
+          <li class="li"><span class="ph">When you create a new custom dimension, your Google Analytics reports will reflect that custom dimension only for <span class="keyword">Experience</span> events that occur after that time. For example, if you create a custom dimension for the student role, and then view a Google Analytics report of card views and filter it by student role, the report will display only card views that occurred after you created the custom dimension. If there are no events matching those criteria (for example, if you attempt to report on a custom dimension immediately after creating it), Google Analytics might display a message or results indicating no data was returned.</span></li>
+
+          <li class="li">The setup of custom dimensions includes entering a user property. You can either type in the user property or select from a drop-down list. The drop-down list is populated based on data sent from <span class="keyword">Experience</span> to Google Analytics. For example, the first time that any user with the <code class="ph codeph">student</code> role accesses <span class="keyword">Experience</span>, and that data is sent to Google Analytics, the <code class="ph codeph">role_student</code> property will appear in the drop-down list. This might take 24 hours or more after the event in <span class="keyword">Experience</span>.</li>
+
+          </ul>
+</div>
+</div>
+      </li>
+</ol>
+
+  </div>
+
+</div></div></section>
+<section id="t-3250"><h4>Google Analytics custom dimensions for Experience</h4><div class="content-locale-en-US content-locale-en"><div id="r_experience_google_analytics_custom_dimensions"><div class="body refbody"><p class="shortdesc">You can create the Google Analytics custom dimensions described here to support viewing <span class="keyword">Experience</span> data in Google Analytics.</p>
+
+    <div class="section">
+      <div class="note"><span class="notetitle">Note:</span> <span class="ph">When you create a new custom dimension, your Google Analytics reports will reflect that custom dimension only for <span class="keyword">Experience</span> events that occur after that time. For example, if you create a custom dimension for the student role, and then view a Google Analytics report of card views and filter it by student role, the report will display only card views that occurred after you created the custom dimension. If there are no events matching those criteria (for example, if you attempt to report on a custom dimension immediately after creating it), Google Analytics might display a message or results indicating no data was returned.</span></div>
+
+    </div>
+
+    
+<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" class="table" frame="border" border="1" rules="all"><colgroup><col style="width:20%"><col style="width:20%"><col style="width:20%"><col style="width:40%"></colgroup><thead class="thead" style="text-align:left;">
+          <tr class="row">
+            <th class="entry cellrowborder" style="vertical-align:top;" id="d41275e63">Custom dimension</th>
+
+            <th class="entry cellrowborder" style="vertical-align:top;" id="d41275e66">Comments</th>
+
+            <th class="entry cellrowborder" style="vertical-align:top;" id="d41275e69">Setting</th>
+
+            <th class="entry cellrowborder" style="vertical-align:top;" id="d41275e72">Entry</th>
+
+          </tr>
+
+        </thead>
+<tbody class="tbody">
+          <tr class="row">
+            <td class="entry cellrowborder" rowspan="3" style="vertical-align:top;" headers="d41275e63 ">Ethos tenant</td>
+
+            <td class="entry cellrowborder" rowspan="3" style="vertical-align:top;" headers="d41275e66 ">Use this custom dimension to filter data by Ethos tenant.</td>
+
+            <td class="entry cellrowborder" style="vertical-align:top;" headers="d41275e69 ">Dimension name</td>
+
+            <td class="entry cellrowborder" style="vertical-align:top;" headers="d41275e72 ">Example: <kbd class="ph userinput">Ethos tenant</kbd></td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry cellrowborder" style="vertical-align:top;" headers="d41275e69 ">Scope</td>
+
+            <td class="entry cellrowborder" style="vertical-align:top;" headers="d41275e72 ">Select <span class="ph uicontrol">User</span></td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry cellrowborder" style="vertical-align:top;" headers="d41275e69 ">User property</td>
+
+            <td class="entry cellrowborder" style="vertical-align:top;" headers="d41275e72 ">Enter <kbd class="ph userinput">tenantId</kbd></td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry cellrowborder" rowspan="3" style="vertical-align:top;" headers="d41275e63 ">Stage</td>
+
+            <td class="entry cellrowborder" rowspan="3" style="vertical-align:top;" headers="d41275e66 ">
+              <p class="p">Use this custom dimension to filter data by <span class="keyword">Experience</span> environment (such as Test or Production).</p>
+
+            </td>
+
+            <td class="entry cellrowborder" style="vertical-align:top;" headers="d41275e69 ">Dimension name</td>
+
+            <td class="entry cellrowborder" style="vertical-align:top;" headers="d41275e72 ">Example: <kbd class="ph userinput">Stage</kbd></td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry cellrowborder" style="vertical-align:top;" headers="d41275e69 ">Scope</td>
+
+            <td class="entry cellrowborder" style="vertical-align:top;" headers="d41275e72 ">Select <span class="ph uicontrol">User</span></td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry cellrowborder" style="vertical-align:top;" headers="d41275e69 ">User property</td>
+
+            <td class="entry cellrowborder" style="vertical-align:top;" headers="d41275e72 ">Enter <kbd class="ph userinput">stage</kbd></td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry cellrowborder" rowspan="3" style="vertical-align:top;" headers="d41275e63 ">User role</td>
+
+            <td class="entry cellrowborder" rowspan="3" style="vertical-align:top;" headers="d41275e66 ">Use this custom dimension to filter data by user role.<p class="p">You need to create a custom dimension for each <span class="keyword">Experience</span> user role that you want to use to filter data in Google Analytics.</p>
+</td>
+
+            <td class="entry cellrowborder" style="vertical-align:top;" headers="d41275e69 ">Dimension name</td>
+
+            <td class="entry cellrowborder" style="vertical-align:top;" headers="d41275e72 ">Example: <kbd class="ph userinput">Students</kbd></td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry cellrowborder" style="vertical-align:top;" headers="d41275e69 ">Scope</td>
+
+            <td class="entry cellrowborder" style="vertical-align:top;" headers="d41275e72 ">Select <span class="ph uicontrol">User</span></td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry cellrowborder" style="vertical-align:top;" headers="d41275e69 ">User property</td>
+
+            <td class="entry cellrowborder" style="vertical-align:top;" headers="d41275e72 ">Enter <kbd class="ph userinput">role_<var class="keyword varname">&lt;experience_role&gt;</var></kbd>, where <var class="keyword varname">&lt;experience_role&gt;</var> is the role name as it appears on the <span class="ph uicontrol">Roles</span> tab in <span class="keyword">Ellucian Experience</span> Setup.<p class="p">For example, if the role name is <code class="ph codeph">student</code>, enter <kbd class="ph userinput">role_student</kbd></p>
+<p class="p">If the <span class="keyword">Experience</span> role name includes a space or a character that is not alphanumeric or an underscore, replace that space or character with an underscore. For example, if the role name is <code class="ph codeph">idp-student</code>, enter <kbd class="ph userinput">role_idp_student</kbd></p>
+</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry cellrowborder" rowspan="3" style="vertical-align:top;" headers="d41275e63 ">Page Id</td>
+
+            <td class="entry cellrowborder" rowspan="3" style="vertical-align:top;" headers="d41275e66 ">Provides the title of the <span class="keyword">Experience</span> card.</td>
+
+            <td class="entry cellrowborder" style="vertical-align:top;" headers="d41275e69 ">Dimension name</td>
+
+            <td class="entry cellrowborder" style="vertical-align:top;" headers="d41275e72 ">Example: <kbd class="ph userinput">Page Id</kbd></td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry cellrowborder" style="vertical-align:top;" headers="d41275e69 ">Scope</td>
+
+            <td class="entry cellrowborder" style="vertical-align:top;" headers="d41275e72 ">Select <span class="ph uicontrol">Event</span></td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry cellrowborder" style="vertical-align:top;" headers="d41275e69 ">User property</td>
+
+            <td class="entry cellrowborder" style="vertical-align:top;" headers="d41275e72 ">Enter <kbd class="ph userinput">pageId</kbd></td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry cellrowborder" rowspan="3" style="vertical-align:top;" headers="d41275e63 ">Event Label</td>
+
+            <td class="entry cellrowborder" rowspan="3" style="vertical-align:top;" headers="d41275e66 ">Provides the ID of the <span class="keyword">Experience</span> card.</td>
+
+            <td class="entry cellrowborder" style="vertical-align:top;" headers="d41275e69 ">Dimension name</td>
+
+            <td class="entry cellrowborder" style="vertical-align:top;" headers="d41275e72 ">Example: <kbd class="ph userinput">Event Label</kbd></td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry cellrowborder" style="vertical-align:top;" headers="d41275e69 ">Scope</td>
+
+            <td class="entry cellrowborder" style="vertical-align:top;" headers="d41275e72 ">Select <span class="ph uicontrol">Event</span></td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry cellrowborder" style="vertical-align:top;" headers="d41275e69 ">User property</td>
+
+            <td class="entry cellrowborder" style="vertical-align:top;" headers="d41275e72 ">Enter <kbd class="ph userinput">event_label</kbd></td>
+
+          </tr>
+
+        </tbody>
+</table>
+</div>
+
+  </div>
+
+</div></div></section>
+<section id="t-3260"><h3>View a site user count</h3><div class="content-locale-en-US content-locale-en"><div id="t_experience_login_usage"><div class="body taskbody"><p class="shortdesc">You can view the number of unique users who accessed <span class="keyword">Ellucian Experience</span> in a particular month or year.</p>
+
+    <div class="tasklabel"><h2 class="sectiontitle tasklabel">Procedure</h2></div><ol class="ol steps"><li class="li step stepexpand">
+        
+        <span class="ph cmd" id="t_experience_login_usage__d123e216">Access <span class="keyword">Ellucian Experience Setup</span>:</span>
+        <ol type="a" class="ol substeps" id="t_experience_login_usage__d123e222">
+          <li class="li substep substepexpand" id="t_experience_login_usage__d123e224">
+            <span class="ph cmd" id="t_experience_login_usage__d123e226">In the <span class="keyword">Ellucian Customer Center</span>, click <span class="ph uicontrol">Tools</span> and then select the desired <span class="keyword">Experience Setup</span> instance under the <span class="ph uicontrol">Experience</span> category:</span>
+            <div class="itemgroup info" id="t_experience_login_usage__d123e241">
+              <ul class="ul">
+                <li class="li">Click <span class="ph uicontrol">Experience Setup</span> to access the Production instance of <span class="keyword">Experience Setup</span>.</li>
+
+                <li class="li">Click <span class="ph uicontrol">Experience Setup Test</span> to access the Test instance of <span class="keyword">Experience Setup</span>.</li>
+
+              </ul>
+
+            </div>
+          </li>
+
+          <li class="li substep substepexpand">
+            <span class="ph cmd" id="t_experience_login_usage__d123e268">(If applicable) In <span class="keyword">Experience Setup</span>, in the <span class="ph uicontrol">Environments</span> drop-down, select the desired <span class="keyword">Ethos</span> environment. </span>
+            <div class="itemgroup info"><span class="ph" id="t_experience_login_usage__d123e281">The option to select an environment is available only if multiple <span class="keyword">Ethos</span> environments are associated with this <span class="keyword">Experience Setup</span> instance.</span></div>
+          </li>
+
+        </ol>
+
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Click the <span class="ph uicontrol">User Activity</span> tab.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">In the <span class="ph uicontrol">Login Usage</span> section of the page, click <span class="ph uicontrol">Monthly</span> to view the number of users by month, or <span class="ph uicontrol">Annual</span> to view the number of users by year.</span>
+        <div class="itemgroup info">The table displays the number of unique users who accessed your <span class="keyword">Ellucian Experience</span> site. If a user accessed the site multiple times, that user is counted just one time.</div>
+      </li>
+</ol>
+
+  </div>
+
+</div></div></section>
+<section id="t-3270"><h3>View a user's available cards</h3><div class="content-locale-en-US content-locale-en"><div id="t_view_user_cards"><div class="body taskbody"><p class="shortdesc">Determine the cards that are visible to a particular user.</p>
+
+    <div class="section context"><div class="tasklabel"><h2 class="sectiontitle tasklabel">About this task</h2></div>You will first determine the user's assigned roles and then determine the available cards based on those roles.</div>
+
+    <div class="tasklabel"><h2 class="sectiontitle tasklabel">Procedure</h2></div><ol class="ol steps"><li class="li step">
+        <span class="ph cmd">Determine the user's assigned roles:</span>
+        <ol type="a" class="ol substeps">
+          <li class="li substep">
+            <span class="ph cmd">Sign in to <span class="keyword">Ellucian Experience</span> as that user.</span>
+          </li>
+
+          <li class="li substep">
+            <span class="ph cmd">Access the <span class="keyword wintitle">Profile</span> page.</span>
+          </li>
+
+          <li class="li substep">
+            <span class="ph cmd">In the <span class="ph uicontrol">Roles</span> section of the Profile page, determine the user's roles.</span>
+          </li>
+
+        </ol>
+
+      </li>
+<li class="li step">
+        <span class="ph cmd">Determine the cards visible to that user:</span>
+        <ol type="a" class="ol substeps">
+          <li class="li substep substepexpand">
+            <span class="ph cmd"><span class="ph">Access <span class="keyword">Ellucian Experience</span> as a user with the</span> Card Management administrative permission.</span>
+          </li>
+
+          <li class="li substep substepexpand">
+            <span class="ph cmd">Click the <span class="ph uicontrol">Main Menu</span> <span class="ph"><img class="image ell-icon" src="images/09-monitor-ellucian-experience-1.png" alt="" data-ft-asset-display-name="menu.png" data-ft-resource-id="WEdF~_f~XTJrsl1ZlZkvDA-~E0SOywQoPvkcEZ51gEr7Q"></span> icon and then click <span class="ph"><img class="image ell-icon" src="images/09-monitor-ellucian-experience-2.png" alt="" data-ft-asset-display-name="configuration.png" data-ft-resource-id="RSQLaBuwFWm84QiIySG9ig-~E0SOywQoPvkcEZ51gEr7Q"></span> <span class="ph uicontrol">Configuration</span> to access the <span class="ph"><span class="keyword wintitle">Configuration</span> page</span>.</span>
+          </li>
+
+          <li class="li substep substepexpand">
+            <span class="ph cmd">Click the <span class="ph uicontrol">Card Management</span> tab.</span>
+          </li>
+
+          <li class="li substep substepexpand">
+            <span class="ph cmd">In the <span class="ph uicontrol">Filter cards by roles</span> drop-down list, select the user's assigned roles that you determined above.</span>
+            <div class="itemgroup stepresult">The Card Management table displays only the cards visible to that user, which includes cards assigned specifically to that user's roles and cards assigned to <span class="ph uicontrol">Select all users</span>.</div>
+          </li>
+
+        </ol>
+
+      </li>
+</ol>
+
+  </div>
+
+</div></div></section>
+<section id="t-3280"><h3>Generate a user information report</h3><div class="content-locale-en-US content-locale-en"><div id="t_experience_user_info_report"><div class="body taskbody"><p class="shortdesc">Generate a report of personal data stored and maintained in <span class="keyword">Ellucian Experience</span> for a user. You can use this report to fulfill a user's request for personal data as required by the General Data Protection Regulation (GDPR).</p>
+
+    <div class="tasklabel"><h2 class="sectiontitle tasklabel">Procedure</h2></div><ol class="ol steps"><li class="li step stepexpand">
+        
+        <span class="ph cmd" id="t_experience_user_info_report__d123e216">Access <span class="keyword">Ellucian Experience Setup</span>:</span>
+        <ol type="a" class="ol substeps" id="t_experience_user_info_report__d123e222">
+          <li class="li substep substepexpand" id="t_experience_user_info_report__d123e224">
+            <span class="ph cmd" id="t_experience_user_info_report__d123e226">In the <span class="keyword">Ellucian Customer Center</span>, click <span class="ph uicontrol">Tools</span> and then select the desired <span class="keyword">Experience Setup</span> instance under the <span class="ph uicontrol">Experience</span> category:</span>
+            <div class="itemgroup info" id="t_experience_user_info_report__d123e241">
+              <ul class="ul">
+                <li class="li">Click <span class="ph uicontrol">Experience Setup</span> to access the Production instance of <span class="keyword">Experience Setup</span>.</li>
+
+                <li class="li">Click <span class="ph uicontrol">Experience Setup Test</span> to access the Test instance of <span class="keyword">Experience Setup</span>.</li>
+
+              </ul>
+
+            </div>
+          </li>
+
+          <li class="li substep substepexpand">
+            <span class="ph cmd" id="t_experience_user_info_report__d123e268">(If applicable) In <span class="keyword">Experience Setup</span>, in the <span class="ph uicontrol">Environments</span> drop-down, select the desired <span class="keyword">Ethos</span> environment. </span>
+            <div class="itemgroup info"><span class="ph" id="t_experience_user_info_report__d123e281">The option to select an environment is available only if multiple <span class="keyword">Ethos</span> environments are associated with this <span class="keyword">Experience Setup</span> instance.</span></div>
+          </li>
+
+        </ol>
+
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Click the <span class="ph uicontrol">User Activity</span> tab.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">In the <span class="ph uicontrol">User Information</span> section, in the <span class="ph uicontrol">User ID</span> field, enter either of the following:</span>
+        <div class="itemgroup info">
+          <ul class="ul">
+            <li class="li">This person's ID of the type specified in the <span class="ph uicontrol">Person identifier type</span> field on the <span class="ph uicontrol">Claims</span> tab in <span class="keyword">Ellucian Experience</span> Setup (for example, the Banner ID, Colleague Person ID, or PowerCampus ID).</li>
+
+            <li class="li">Any email address for this user stored in the ERP.</li>
+
+          </ul>
+
+        </div>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Click <span class="ph uicontrol">Export</span>.</span>
+        <div class="itemgroup info">Experience generates and downloads to your computer a <span class="ph filepath">.json</span> file that contains all user data and log activity stored and maintained in Experience for this user.</div>
+      </li>
+</ol>
+
+  </div>
+
+</div></div></section>
+<section id="t-3290"><h3>User data tracking options</h3><div class="content-locale-en-US content-locale-en"><div id="c_experience_data_tracking_options"><div class="body conbody"><p class="shortdesc">Users can choose whether to permit <span class="keyword">Experience</span> to track their data with cookies and analytics tools.</p>
+
+    <p class="p">On first login, <span class="keyword">Ellucian Experience</span> users are presented with an <span class="keyword wintitle">Enhance Your Experience</span> dialog where they can choose whether to allow the use of non-essential cookies and third-party analytics to improve <span class="keyword">Ellucian Experience</span>. The dialog includes a link to the <span class="xref ft-internal-link" title="Ellucian Experience uses non-essential cookies and third-party analytics tools to help Ellucian understand how users interact with our product. This information helps us improve your experience by refining features and optimizing the functionality of the platform for your daily use." data-ft-warning="excluded-from-rendering" data-mapid="~E0SOywQoPvkcEZ51gEr7Q" data-tocid="nqqJIIlqfxsOKzrzVe8eFg">What is tracked in Experience</span> page in this documentation. That documentation page is publicly-accessible, not requiring a login to the <span class="keyword">Ellucian Documentation site</span>.</p>
+
+    <p class="p">Users can change their decision later from the <span class="ph uicontrol">Settings</span> area of the <span class="keyword">Experience</span> user profile.</p>
+
+  </div>
+
+</div></div></section>
+<section id="t-3300"><h4>What is tracked in Experience</h4><div class="content-locale-en-US content-locale-en"><div id="c_experience_data_tracking"><div class="body conbody"><p class="shortdesc"><span class="keyword">Ellucian Experience</span> uses non-essential cookies and third-party analytics tools to help Ellucian understand how users interact with our product. This information helps us improve your experience by refining features and optimizing the functionality of the platform for your daily use.</p>
+
+    <div class="section"><h2 class="title sectiontitle">Cookies</h2>
+      
+      <div class="p">Cookies make your experience smoother and help us understand what you enjoy most. Here’s how they work:<ol class="ol">
+        <li class="li">When you visit a site, the site places a cookie on your device. This cookie is like a digital note that can store information, such as what pages you visit or how long you stay.</li>
+
+        <li class="li">As you interact with the site, the cookie collects data (such as clicks, time spent, and your device type).</li>
+
+        <li class="li">The cookie sends this data back to the site’s analytics software. This software gathers and organizes data from many users to show patterns, such as which pages are popular or where people tend to leave.</li>
+
+        <li class="li">The site uses these patterns to improve features, fix issues, or make pages more useful based on what people are actually doing on the site.</li>
+
+        </ol>
+</div>
+
+    </div>
+
+    <div class="section"><h2 class="title sectiontitle">What We Measure</h2>
+      
+      <div class="p">We track general interactions with our platform, such as:<ul class="ul">
+        <li class="li">Which pages you visit most often (for example, dashboard or profile page).</li>
+
+        <li class="li">How you engage with key features, such as buttons or menus.</li>
+
+        <li class="li">Your overall usage patterns, such as time spent on certain sections.</li>
+
+        <li class="li">Navigational paths through the platform to identify common workflows.</li>
+
+        <li class="li">Engagement with in-app guides, messages, and prompts.</li>
+
+        <li class="li">Which device you are using to access the portal, along with the browser type, browser version and operating system.</li>
+
+        </ul>
+</div>
+
+    </div>
+
+    <div class="section"><h2 class="title sectiontitle">Why We Collect This Data</h2>
+      
+      <div class="p">We collect this information to:<ul class="ul">
+        <li class="li">Understand which features are most valuable to users.</li>
+
+        <li class="li">Identify areas for improvement and make the platform more user-friendly.</li>
+
+        <li class="li">Track general trends in how users move through the platform, which helps us make data-driven decisions for new updates.</li>
+
+        </ul>
+</div>
+
+    </div>
+
+    <div class="section"><h2 class="title sectiontitle">How We Use This Data</h2>
+      
+      <p class="p">To answer questions like “How are students using this feature?”, the analytics tools use data from cookies you allowed. This data shows general behavior by role (like student or faculty) within a feature, all under a secure ID—no names or personal details are attached.</p>
+
+      <p class="p">The goal is to understand how groups, such as students across different universities, interact with the platform. By working with large data sets, patterns emerge, making it easier to improve the experience for everyone without focusing on any individual’s data.</p>
+
+    </div>
+
+    <div class="section"><h2 class="title sectiontitle">Your Control</h2>
+      
+      <p class="p">You have full control over whether non-essential cookies are used or not. Essential cookies are required for the platform to work properly, but you can opt in or out of additional analytics cookies at any time using the Share Usage Data setting in the user profile. If you opt out, only essential cookies will be used.</p>
+
+      <p class="p">For more detailed information, please review the full <a class="xref ft-external-link" href="https://www.ellucian.com/privacy" target="_blank" rel="noopener">Ellucian Privacy Notice</a>.</p>
+
+    </div>
+
+  </div>
+
+</div></div></section></main></body></html>

@@ -1,0 +1,1851 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>TCSI/HEIMS API Banner Student - Use — Banner integration with data packets</title><style>body{font-family:-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;line-height:1.55;color:#1a1a1a;max-width:920px;margin:0 auto;padding:24px}header{border-bottom:2px solid #5a16d6;margin-bottom:8px}h1{color:#3a0ca3}h2,h3,h4,h5,h6{margin-top:1.6em}.crumb{color:#666;font-size:13px;margin:0}.meta{color:#888;font-size:12px}nav.toc{background:#f6f4fc;border:1px solid #e3dcf5;border-radius:8px;padding:12px 18px;margin:18px 0}nav.toc h2{margin:.2em 0}nav.toc ul{list-style:none;padding-left:0}nav.toc a{text-decoration:none;color:#5a16d6}section{margin:1.2em 0;padding-top:.4em}img{max-width:100%;height:auto}table{border-collapse:collapse}td,th{border:1px solid #ccc;padding:4px 8px}code,pre{background:#f4f4f4;border-radius:4px}pre{padding:10px;overflow:auto}</style></head><body><header><p class="crumb">Banner Student › TCSI/HEIMS API Banner Student - Use</p><h1>TCSI/HEIMS API Banner Student - Use — Banner integration with data packets</h1><p class="meta">Source: <a href="https://resources.elluciancloud.com/r/bundle/banner_student_acn_use_ascgenheimstcsiapi">https://resources.elluciancloud.com/r/bundle/banner_student_acn_use_ascgenheimstcsiapi</a> &middot; Retrieved 2026-06-17</p></header><nav class="toc"><h2>Contents</h2><ul><li style="margin-left:0px"><a href="#t-220">Banner integration with data packets</a></li><li style="margin-left:16px"><a href="#t-230">courses-of-study integration</a></li><li style="margin-left:16px"><a href="#t-240">courses integration</a></li><li style="margin-left:16px"><a href="#t-250">campuses integration</a></li><li style="margin-left:16px"><a href="#t-260">courses-on-campus integration</a></li><li style="margin-left:16px"><a href="#t-270">students integration</a></li><li style="margin-left:16px"><a href="#t-280">course-admissions integration</a></li><li style="margin-left:16px"><a href="#t-290">unit-enrolment integration</a></li><li style="margin-left:16px"><a href="#t-300">units-of-study integration</a></li><li style="margin-left:16px"><a href="#t-310">aggregated-awards integration</a></li><li style="margin-left:16px"><a href="#t-320">early-exit-awards integration</a></li><li style="margin-left:16px"><a href="#t-330">help balances integration</a></li><li style="margin-left:16px"><a href="#t-340">loans integration</a></li><li style="margin-left:16px"><a href="#t-350">course-applications integration</a></li><li style="margin-left:16px"><a href="#t-360">notifications integration</a></li></ul></nav><main><section id="t-220"><h2>Banner integration with data packets</h2><div class="content-locale-en-US content-locale-en"><div id="c_banner_integration_data_packets"><p class="shortdesc">The succeeding tables detail the endpoints, and the methods and options associated with each of the endpoints.</p>
+
+  
+</div></div></section>
+<section id="t-230"><h3>courses-of-study integration</h3><div class="content-locale-en-US content-locale-en"><div id="r_courses_of_study_integration"><div class="body refbody"><p class="shortdesc">See the table for methods and options associated with the <span class="keyword apiname">courses-of-study</span> endpoint.</p>
+
+    
+<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" class="table" frame="border" border="1" rules="all"><colgroup><col style="width:23.148148148148145%"><col style="width:24.305555555555554%"><col style="width:52.54629629629629%"></colgroup><thead class="thead" style="text-align:left;vertical-align:bottom;">
+          <tr class="row">
+            <th class="entry cellrowborder" colspan="2" style="text-align:center;vertical-align:bottom;" id="d6443e56">API endpoint</th>
+
+            <th class="entry cellrowborder" rowspan="2" style="text-align:center;vertical-align:bottom;" id="d6443e59">Description</th>
+
+          </tr>
+
+          <tr class="row">
+            <th class="entry cellrowborder" style="text-align:left;vertical-align:bottom;" id="d6443e65">Method</th>
+
+            <th class="entry cellrowborder" style="text-align:left;vertical-align:bottom;" id="d6443e68">Option</th>
+
+          </tr>
+
+        </thead>
+<tbody class="tbody">
+          <tr class="row">
+            <td class="entry cellrowborder" style="text-align:left;vertical-align:top;" headers="d6443e56 d6443e65 ">POST</td>
+
+            <td class="entry cellrowborder" style="text-align:left;vertical-align:top;" headers="d6443e56 d6443e68 ">^</td>
+
+            <td class="entry cellrowborder" style="text-align:left;vertical-align:top;" headers="d6443e59 ">Registration of one or more new courses of study offered by the provider.</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry cellrowborder" style="text-align:left;vertical-align:top;" headers="d6443e56 d6443e65 ">GET</td>
+
+            <td class="entry cellrowborder" style="text-align:left;vertical-align:top;" headers="d6443e56 d6443e68 ">^</td>
+
+            <td class="entry cellrowborder" style="text-align:left;vertical-align:top;" headers="d6443e59 ">Request information of all active courses of study offered by the education provider.</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry cellrowborder" style="text-align:left;vertical-align:top;" headers="d6443e56 d6443e65 ">GET</td>
+
+            <td class="entry cellrowborder" style="text-align:left;vertical-align:top;" headers="d6443e56 d6443e68 ">:uid</td>
+
+            <td class="entry cellrowborder" style="text-align:left;vertical-align:top;" headers="d6443e59 ">Request information with the use of the uid option returns data for a particular item that has a unique identifier associated with it.<p class="p">When used with the <span class="keyword apiname">courses-of-study</span> endpoint, this becomes the courses_of_study_uid.</p>
+<p class="p">It returns current information for the specific course of study with the unique identifier.</p>
+</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry cellrowborder" style="text-align:left;vertical-align:top;" headers="d6443e56 d6443e65 ">PATCH</td>
+
+            <td class="entry cellrowborder" style="text-align:left;vertical-align:top;" headers="d6443e56 d6443e68 ">:uid</td>
+
+            <td class="entry cellrowborder" style="text-align:left;vertical-align:top;" headers="d6443e59 ">Update information with the use of the uid option submits a request to update the particular item that has a unique identifier associated with it.<p class="p">When used with the <span class="keyword apiname">courses-of-study</span> endpoint, this becomes the courses_of_study_uid.</p>
+<p class="p">It updates the details of the specific course of study with the unique identifier.</p>
+</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry cellrowborder" style="text-align:left;vertical-align:top;" headers="d6443e56 d6443e65 ">DELETE</td>
+
+            <td class="entry cellrowborder" style="text-align:left;vertical-align:top;" headers="d6443e56 d6443e68 ">:uid</td>
+
+            <td class="entry cellrowborder" style="text-align:left;vertical-align:top;" headers="d6443e59 ">The use of the uid option submits a request to delete the particular item that has a unique identifier associated with it.<p class="p">When used with the <span class="keyword apiname">courses-of-study</span> endpoint, this becomes the courses_of_study_uid.</p>
+<p class="p">It removes the course of study record with the specific unique identifier.</p>
+</td>
+
+          </tr>
+
+        </tbody>
+</table>
+</div>
+
+  </div>
+
+</div></div></section>
+<section id="t-240"><h3>courses integration</h3><div class="content-locale-en-US content-locale-en"><div id="r_courses_integration"><div class="body refbody"><p class="shortdesc">See the table for methods and options associated with the <span class="keyword apiname">courses</span> endpoint.</p>
+
+    
+<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" class="table" frame="border" border="1" rules="all"><colgroup><col style="width:23.148148148148145%"><col style="width:24.305555555555554%"><col style="width:52.54629629629629%"></colgroup><thead class="thead" style="text-align:left;vertical-align:bottom;">
+          <tr class="row">
+            <th class="entry cellrowborder" colspan="2" style="text-align:center;vertical-align:bottom;" id="d19956e56">API endpoint</th>
+
+            <th class="entry cellrowborder" rowspan="2" style="text-align:center;vertical-align:bottom;" id="d19956e59">Description</th>
+
+          </tr>
+
+          <tr class="row">
+            <th class="entry cellrowborder" style="text-align:left;vertical-align:bottom;" id="d19956e65">Method</th>
+
+            <th class="entry cellrowborder" style="text-align:left;vertical-align:bottom;" id="d19956e68">Option</th>
+
+          </tr>
+
+        </thead>
+<tbody class="tbody">
+          <tr class="row">
+            <td class="entry cellrowborder" style="text-align:left;vertical-align:top;" headers="d19956e56 d19956e65 ">POST</td>
+
+            <td class="entry cellrowborder" style="text-align:left;vertical-align:top;" headers="d19956e56 d19956e68 ">^</td>
+
+            <td class="entry cellrowborder" style="text-align:left;vertical-align:top;" headers="d19956e59 ">Registration of one or more new courses offered by the provider.</td>
+
+          </tr>
+
+          <tr class="row landscape">
+            <td class="entry cellrowborder" style="text-align:left;vertical-align:top;" headers="d19956e56 d19956e65 ">POST</td>
+
+            <td class="entry cellrowborder" style="text-align:left;vertical-align:top;" headers="d19956e56 d19956e68 ">:uid/special-interest-courses</td>
+
+            <td class="entry cellrowborder" style="text-align:left;vertical-align:top;" headers="d19956e59 ">Registering one or more special interests for a course offered by the provider.<p class="p">The :uid referenced within this option denotes the courses_uid for which the special interests would apply.</p>
+</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry cellrowborder" style="text-align:left;vertical-align:top;" headers="d19956e56 d19956e65 ">POST</td>
+
+            <td class="entry cellrowborder" style="text-align:left;vertical-align:top;" headers="d19956e56 d19956e68 ">:uid/course-fields-of-education</td>
+
+            <td class="entry cellrowborder" style="text-align:left;vertical-align:top;" headers="d19956e59 ">Registering one or more fields of education for a course offered by the provider.<p class="p">The :uid referenced within this option denotes the courses_uid for which the course fields of education would apply.</p>
+</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry cellrowborder" style="text-align:left;vertical-align:top;" headers="d19956e56 d19956e65 ">GET</td>
+
+            <td class="entry cellrowborder" style="text-align:left;vertical-align:top;" headers="d19956e56 d19956e68 ">^</td>
+
+            <td class="entry cellrowborder" style="text-align:left;vertical-align:top;" headers="d19956e59 ">Request information of all active courses offered by the education provider.</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry cellrowborder" style="text-align:left;vertical-align:top;" headers="d19956e56 d19956e65 ">GET</td>
+
+            <td class="entry cellrowborder" style="text-align:left;vertical-align:top;" headers="d19956e56 d19956e68 ">:uid</td>
+
+            <td class="entry cellrowborder" style="text-align:left;vertical-align:top;" headers="d19956e59 ">Request information with the use of the uid option returns data for a particular item that has a unique identifier associated with it.<p class="p">When used with the <span class="keyword apiname">courses</span> endpoint, this becomes the courses_uid.</p>
+<p class="p">It returns current information for the specific course with the unique identifier.</p>
+</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry cellrowborder" style="text-align:left;vertical-align:top;" headers="d19956e56 d19956e65 ">PATCH</td>
+
+            <td class="entry cellrowborder" style="text-align:left;vertical-align:top;" headers="d19956e56 d19956e68 ">:uid</td>
+
+            <td class="entry cellrowborder" style="text-align:left;vertical-align:top;" headers="d19956e59 ">Update information with the use of the uid option submits a request to update the particular item that has a unique identifier associated with it.<p class="p">When used with the <span class="keyword apiname">courses</span> endpoint, the :uid is the courses_uid.</p>
+<p class="p">It updates the details of the specific course with the unique identifier.</p>
+</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry cellrowborder" style="text-align:left;vertical-align:top;" headers="d19956e56 d19956e65 ">PATCH</td>
+
+            <td class="entry cellrowborder" style="text-align:left;vertical-align:top;" headers="d19956e56 d19956e68 ">:uid/special-interest-courses/:special-interest-courses-uid</td>
+
+            <td class="entry cellrowborder" style="text-align:left;vertical-align:top;" headers="d19956e59 ">Update information with the use of the uid option submits a request to update the particular item that has a unique identifier associated with it.<p class="p">When used with the <span class="keyword apiname">courses</span> endpoint with the 'special-interest-courses' extension, the :uid is the courses_uid.</p>
+<p class="p">It updates the details of a specific special interest for a course offered by the provider, noted by the course identifier and the special interest unique identifier.</p>
+</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry cellrowborder" style="text-align:left;vertical-align:top;" headers="d19956e56 d19956e65 ">PATCH</td>
+
+            <td class="entry cellrowborder" style="text-align:left;vertical-align:top;" headers="d19956e56 d19956e68 ">:uid/course-fields-of-education/:course-fields-of-education-uid</td>
+
+            <td class="entry cellrowborder" style="text-align:left;vertical-align:top;" headers="d19956e59 ">
+              <p class="p">Update information with the use of the uid option submits a request to update the particular item that has a unique identifier associated with it.</p>
+
+              <p class="p">When used with the <span class="keyword apiname">courses</span> endpoint with the 'course-fields-of-education' extension, the :uid is the courses_uid.</p>
+
+              <p class="p">It updates the details of a specific field of education for a course offered by the provider, noted by the course identifier and the course fields of education unique identifier.</p>
+
+            </td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry cellrowborder" style="text-align:left;vertical-align:top;" headers="d19956e56 d19956e65 ">DELETE</td>
+
+            <td class="entry cellrowborder" style="text-align:left;vertical-align:top;" headers="d19956e56 d19956e68 ">:uid</td>
+
+            <td class="entry cellrowborder" style="text-align:left;vertical-align:top;" headers="d19956e59 ">The use of the uid option submits a request to delete the particular item that has a unique identifier associated with it.<p class="p">When used with the <code class="ph codeph">courses</code> endpoint, the option becomes the courses_uid.</p>
+<p class="p">It removes the course record with the specific unique identifier.  Deleting a course will also delete any associated field of education and special interest records.</p>
+</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry cellrowborder" style="text-align:left;vertical-align:top;" headers="d19956e56 d19956e65 ">DELETE</td>
+
+            <td class="entry cellrowborder" style="text-align:left;vertical-align:top;" headers="d19956e56 d19956e68 ">:uid/special-interest- courses/:special- interest-courses-uid</td>
+
+            <td class="entry cellrowborder" style="text-align:left;vertical-align:top;" headers="d19956e59 ">The use of the uid option submits a request to delete the particular item that has a unique identifier associated with it.<p class="p">When used with the <code class="ph codeph">courses</code> endpoint with the special-interest-courses' extension, the :uid is the courses_uid.</p>
+It deletes a specific special interest for a course that the provider offers, that is noted by the course identifier and the special interest unique identifier.</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry cellrowborder" style="text-align:left;vertical-align:top;" headers="d19956e56 d19956e65 ">DELETE</td>
+
+            <td class="entry cellrowborder" style="text-align:left;vertical-align:top;" headers="d19956e56 d19956e68 ">&nbsp;</td>
+
+            <td class="entry cellrowborder" style="text-align:left;vertical-align:top;" headers="d19956e59 ">The use of the uid option submits a request to delete the particular item that has a unique identifier associated with it.<p class="p">When used with the <code class="ph codeph">courses</code> endpoint with the course-fields-of-education' extension, the :uid is the courses_uid.</p>
+It deletes a specific field of education for a course that the provider offers, that is noted by the course identifier and the field of education unique identifier.</td>
+
+          </tr>
+
+        </tbody>
+</table>
+</div>
+
+  </div>
+
+</div></div></section>
+<section id="t-250"><h3>campuses integration</h3><div class="content-locale-en-US content-locale-en"><div id="r_campuses_integration"><div class="body refbody"><p class="shortdesc">See the table for methods and options associated with the <span class="keyword apiname">campuses</span> endpoint.</p>
+
+    
+<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" class="table" frame="border" border="1" rules="all"><colgroup><col style="width:23.148148148148145%"><col style="width:24.305555555555554%"><col style="width:52.54629629629629%"></colgroup><thead class="thead" style="text-align:left;vertical-align:bottom;">
+          <tr class="row">
+            <th class="entry cellrowborder" colspan="2" style="text-align:center;vertical-align:bottom;" id="d11511e56">API endpoint</th>
+
+            <th class="entry cellrowborder" rowspan="2" style="text-align:center;vertical-align:bottom;" id="d11511e59">Description</th>
+
+          </tr>
+
+          <tr class="row">
+            <th class="entry cellrowborder" style="text-align:left;vertical-align:bottom;" id="d11511e65">Method</th>
+
+            <th class="entry cellrowborder" style="text-align:left;vertical-align:bottom;" id="d11511e68">Option</th>
+
+          </tr>
+
+        </thead>
+<tbody class="tbody">
+          <tr class="row">
+            <td class="entry cellrowborder" style="text-align:left;vertical-align:top;" headers="d11511e56 d11511e65 ">POST</td>
+
+            <td class="entry cellrowborder" style="text-align:left;vertical-align:top;" headers="d11511e56 d11511e68 ">^</td>
+
+            <td class="entry cellrowborder" style="text-align:left;vertical-align:top;" headers="d11511e59 ">Register a new campus or a new delivery location operated by the education provider.</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry cellrowborder" style="text-align:left;vertical-align:top;" headers="d11511e56 d11511e65 ">PATCH</td>
+
+            <td class="entry cellrowborder" style="text-align:left;vertical-align:top;" headers="d11511e56 d11511e68 ">:uid</td>
+
+            <td class="entry cellrowborder" style="text-align:left;vertical-align:top;" headers="d11511e59 ">Update information with the use of the uid option submits a request to update the particular item that has a unique identifier associated with it.<p class="p">When used with the <span class="keyword apiname">campuses</span> endpoint, this becomes the campuses_uid.</p>
+<p class="p">It updates the details of the specific campus or delivery location with the unique identifier.</p>
+</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry cellrowborder" style="text-align:left;vertical-align:top;" headers="d11511e56 d11511e65 ">GET</td>
+
+            <td class="entry cellrowborder" style="text-align:left;vertical-align:top;" headers="d11511e56 d11511e68 ">^</td>
+
+            <td class="entry cellrowborder" style="text-align:left;vertical-align:top;" headers="d11511e59 ">Request information of all active campuses or delivery locations operated by the education provider.</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry cellrowborder" style="text-align:left;vertical-align:top;" headers="d11511e56 d11511e65 ">GET</td>
+
+            <td class="entry cellrowborder" style="text-align:left;vertical-align:top;" headers="d11511e56 d11511e68 ">:uid</td>
+
+            <td class="entry cellrowborder" style="text-align:left;vertical-align:top;" headers="d11511e59 ">Request information with the use of the uid option will return data for a particular item that has a unique identifier associated with it. <p class="p">When used with the <span class="keyword apiname">campuses</span> endpoint, this becomes the campuses_uid.</p>
+<p class="p">It returns the current information for the specific campus or delivery location with the unique identifier.</p>
+</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry cellrowborder" style="text-align:left;vertical-align:top;" headers="d11511e56 d11511e65 ">GET</td>
+
+            <td class="entry cellrowborder" style="text-align:left;vertical-align:top;" headers="d11511e56 d11511e68 ">:uid/courses-on-campus</td>
+
+            <td class="entry cellrowborder" style="text-align:left;vertical-align:top;" headers="d11511e59 ">Request information with the use of the uid option will return data for a particular item that has a unique identifier associated with it. <p class="p">When used with the <span class="keyword apiname">campuses</span> endpoint with the “courses-on-campus” extension, this becomes the campuses_uid.</p>
+<p class="p">It returns references to all courses on campus offered by the education provider at the specified campus.</p>
+</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry cellrowborder" style="text-align:left;vertical-align:top;" headers="d11511e56 d11511e65 ">DELETE</td>
+
+            <td class="entry cellrowborder" style="text-align:left;vertical-align:top;" headers="d11511e56 d11511e68 ">:uid</td>
+
+            <td class="entry cellrowborder" style="text-align:left;vertical-align:top;" headers="d11511e59 ">The use of the uid option will submit a request to delete the particular item that has a unique identifier associated with it. <p class="p">When used with the <span class="keyword apiname">campuses</span> endpoint, this becomes the campuses_uid.</p>
+<p class="p">It removes the campus or the delivery location record with the specific unique identifier.</p>
+</td>
+
+          </tr>
+
+        </tbody>
+</table>
+</div>
+
+  </div>
+
+</div></div></section>
+<section id="t-260"><h3>courses-on-campus integration</h3><div class="content-locale-en-US content-locale-en"><div id="r_courses_on_campus_integration"><div class="body refbody"><p class="shortdesc">See the table for methods and options associated with the <span class="keyword apiname">courses-on-campus</span> endpoint.</p>
+
+    
+<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" class="table" frame="border" border="1" rules="all"><colgroup><col style="width:23.148148148148145%"><col style="width:24.305555555555554%"><col style="width:52.54629629629629%"></colgroup><thead class="thead" style="text-align:left;vertical-align:bottom;">
+          <tr class="row">
+            <th class="entry cellrowborder" colspan="2" style="text-align:center;vertical-align:bottom;" id="d1071e56">API endpoint</th>
+
+            <th class="entry cellrowborder" rowspan="2" style="text-align:center;vertical-align:bottom;" id="d1071e59">Description</th>
+
+          </tr>
+
+          <tr class="row">
+            <th class="entry cellrowborder" style="text-align:left;vertical-align:bottom;" id="d1071e65">Method</th>
+
+            <th class="entry cellrowborder" style="text-align:left;vertical-align:bottom;" id="d1071e68">Option</th>
+
+          </tr>
+
+        </thead>
+<tbody class="tbody">
+          <tr class="row">
+            <td class="entry cellrowborder" style="text-align:left;vertical-align:top;" headers="d1071e56 d1071e65 ">POST</td>
+
+            <td class="entry cellrowborder" style="text-align:left;vertical-align:top;" headers="d1071e56 d1071e68 ">^</td>
+
+            <td class="entry cellrowborder" style="text-align:left;vertical-align:top;" headers="d1071e59 ">Associate one or more courses offered by the provider to a specific campus or a delivery location operated by the provider.</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry cellrowborder" style="text-align:left;vertical-align:top;" headers="d1071e56 d1071e65 ">POST</td>
+
+            <td class="entry cellrowborder" style="text-align:left;vertical-align:top;" headers="d1071e56 d1071e68 ">:uid/campus-course-fees</td>
+
+            <td class="entry cellrowborder" style="text-align:left;vertical-align:top;" headers="d1071e59 ">Setting tuition fees for a specific course at a specific campus for a particular year operated by the provider.<p class="p">The :uid referenced within this option denotes the courses_on_campus_uid for which the course fees would apply.</p>
+</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry cellrowborder" style="text-align:left;vertical-align:top;" headers="d1071e56 d1071e65 ">POST</td>
+
+            <td class="entry cellrowborder" style="text-align:left;vertical-align:top;" headers="d1071e56 d1071e68 ">:uid/courses-on-campus-tac-offers</td>
+
+            <td class="entry cellrowborder" style="text-align:left;vertical-align:top;" headers="d1071e59 ">Setting one or more TAC offer codes for a specific course at a specific campus operated by the provider.<p class="p">The :uid referenced within this option denotes the courses_on_campus_uid.</p>
+</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry cellrowborder" style="text-align:left;vertical-align:top;" headers="d1071e56 d1071e65 ">PATCH</td>
+
+            <td class="entry cellrowborder" style="text-align:left;vertical-align:top;" headers="d1071e56 d1071e68 ">:uid</td>
+
+            <td class="entry cellrowborder" style="text-align:left;vertical-align:top;" headers="d1071e59 ">Update information with the use of the uid option submits a request to update the particular item that has a unique identifier associated with it.<p class="p">When used with the <span class="keyword apiname">courses_on_campus</span> endpoint, the :uid becomes the courses_on_campus_uid.</p>
+<p class="p">It updates the details of a specific course offered at a specific campus noted by the unique identifier.</p>
+</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry cellrowborder" style="text-align:left;vertical-align:top;" headers="d1071e56 d1071e65 ">PATCH</td>
+
+            <td class="entry cellrowborder" style="text-align:left;vertical-align:top;" headers="d1071e56 d1071e68 ">:uid/campus-course-fees/:campus-course-fees-uid</td>
+
+            <td class="entry cellrowborder" style="text-align:left;vertical-align:top;" headers="d1071e59 ">Update information with the use of the uid option submits a request to update the particular item that has a unique identifier associated with it.<p class="p">When used with the <span class="keyword apiname">courses_on_campus</span> endpoint with the 'campus-course-fees' extension, the :uid becomes the courses_on_campus_uid.</p>
+<p class="p">It updates the details of a specific course fee for a specific course offered at a specific campus operated by the provider, which is noted by the course on campus identifier and the campus course fee unique identifier.</p>
+</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry cellrowborder" style="text-align:left;vertical-align:top;" headers="d1071e56 d1071e65 ">PATCH</td>
+
+            <td class="entry cellrowborder" style="text-align:left;vertical-align:top;" headers="d1071e56 d1071e68 ">:uid/courses-on-campus-tac-offers/:courses-on-campus-tac-uid</td>
+
+            <td class="entry cellrowborder" style="text-align:left;vertical-align:top;" headers="d1071e59 ">Update information with the use of the uid option submits a request to update the particular item that has a unique identifier associated with it.<p class="p">When used with the <span class="keyword apiname">courses_on_campus</span> endpoint with the 'courses-on-campus-tac-offers' extension, the :uid becomes the courses_on_campus_uid.</p>
+<p class="p">It updates the details of a specific TAC offer for a specific course offered at a specific campus operated by the provider, which is noted by the course on campus identifier and the TAC offer unique identifier.</p>
+</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry cellrowborder" style="text-align:left;vertical-align:top;" headers="d1071e56 d1071e65 ">GET</td>
+
+            <td class="entry cellrowborder" style="text-align:left;vertical-align:top;" headers="d1071e56 d1071e68 ">:uid</td>
+
+            <td class="entry cellrowborder" style="text-align:left;vertical-align:top;" headers="d1071e59 ">Request information with the use of the uid option will return data for a particular item that has a unique identifier associated with it. <p class="p">When used with the <span class="keyword apiname">courses_on_campus</span> endpoint, this becomes the courses_on_campus_uid.</p>
+<p class="p">It returns current information for a specific course at a specific campus identified by this unique identifier.</p>
+</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry cellrowborder" style="text-align:left;vertical-align:top;" headers="d1071e56 d1071e65 ">GET</td>
+
+            <td class="entry cellrowborder" style="text-align:left;vertical-align:top;" headers="d1071e56 d1071e68 ">:uid/campus-course-fees</td>
+
+            <td class="entry cellrowborder" style="text-align:left;vertical-align:top;" headers="d1071e59 ">Request information with the use of the uid option will return data for a particular item that has a unique identifier associated with it. <p class="p">When used with the <span class="keyword apiname">courses_on_campus</span> endpoint with the “campus-course-fees” extension, the :uid becomes the courses_on_campus_uid.</p>
+<p class="p">It returns details of all active course fees associated with the specific course offered at a specific campus operated by the provider.</p>
+</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry cellrowborder" style="text-align:left;vertical-align:top;" headers="d1071e56 d1071e65 ">GET</td>
+
+            <td class="entry cellrowborder" style="text-align:left;vertical-align:top;" headers="d1071e56 d1071e68 ">:uid/campus-course-fees/:campus-course-fees-uid</td>
+
+            <td class="entry cellrowborder" style="text-align:left;vertical-align:top;" headers="d1071e59 ">Request information with the use of the uid option will return data for a particular item that has a unique identifier associated with it. <p class="p">When used with the <span class="keyword apiname">courses_on_campus</span> endpoint with the “campus-course-fees” extension, the :uid becomes the courses_on_campus_uid.</p>
+<p class="p">It returns details of a specific fee for a course offered at a specific campus operated by the provider, noted by the course on campus identifier and the campus course fee unique identifier.</p>
+</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry cellrowborder" style="text-align:left;vertical-align:top;" headers="d1071e56 d1071e65 ">GET</td>
+
+            <td class="entry cellrowborder" style="text-align:left;vertical-align:top;" headers="d1071e56 d1071e68 ">:uid/courses-on-campus-tac-offers</td>
+
+            <td class="entry cellrowborder" style="text-align:left;vertical-align:top;" headers="d1071e59 ">Request information with the use of the uid option will return data for a particular item that has a unique identifier associated with it. <p class="p">When used with the <span class="keyword apiname">courses_on_campus</span> endpoint with the “courses-on-campus-tac-offers” extension, the :uid becomes the courses_on_campus_uid.</p>
+<p class="p">It returns details of all active TAC offers associated with the specific course offered at a specific campus operated by the provider.</p>
+</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry cellrowborder" style="text-align:left;vertical-align:top;" headers="d1071e56 d1071e65 ">DELETE</td>
+
+            <td class="entry cellrowborder" style="text-align:left;vertical-align:top;" headers="d1071e56 d1071e68 ">:uid</td>
+
+            <td class="entry cellrowborder" style="text-align:left;vertical-align:top;" headers="d1071e59 ">The use of the uid option submits a request to delete the particular item that has a unique identifier associated with it.<p class="p">When you use this option with the <code class="ph codeph">courses_on_campus</code>endpoint, the :uid becomes the courses_on_campus_uid.</p>
+It deletes the details of a specific course offered at a specific campus noted by the unique identifier.</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry cellrowborder" style="text-align:left;vertical-align:top;" headers="d1071e56 d1071e65 ">DELETE</td>
+
+            <td class="entry cellrowborder" style="text-align:left;vertical-align:top;" headers="d1071e56 d1071e68 ">:uid/campus-course- fees/:campus-course- fees-uid</td>
+
+            <td class="entry cellrowborder" style="text-align:left;vertical-align:top;" headers="d1071e59 ">The use of the uid option submits a request to delete the particular item that has a unique identifier associated with it.<p class="p">When you use this option the <code class="ph codeph">courses_on_campus</code>endpoint with the campus-course-fees extension, the :uid becomes the courses_on_campus_uid.</p>
+It deletes the details of a specific course fee for a specific course that the specific campus offers and operated by the provider, gets noted by the course on campus identifier and the campus course fee unique identifier.</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry cellrowborder" style="text-align:left;vertical-align:top;" headers="d1071e56 d1071e65 ">DELETE</td>
+
+            <td class="entry cellrowborder" style="text-align:left;vertical-align:top;" headers="d1071e56 d1071e68 ">
+              <p class="p">:uid/courses- on-campus-tac- offers/:courses-on- campus-tac-uid</p>
+
+            </td>
+
+            <td class="entry cellrowborder" style="text-align:left;vertical-align:top;" headers="d1071e59 ">The use of the uid option submits a request to delete the particular item that has a unique identifier associated with it.<p class="p">When you use this option with the <code class="ph codeph">courses_on_campus</code>endpoint with the courses-on-campus- tac-offers' extension, the :uid becomes the courses_on_campus_uid.</p>
+It deletes the details of a specific TAC offer for a specific course that the specific campus offers and operated by the provider, gets noted by the course on campus identifier and the TAC offer unique identifier.</td>
+
+          </tr>
+
+        </tbody>
+</table>
+</div>
+
+  </div>
+
+</div></div></section>
+<section id="t-270"><h3>students integration</h3><div class="content-locale-en-US content-locale-en"><div id="r_students_integration"><div class="body refbody"><p class="shortdesc">See the table for methods and options associated with the <span class="keyword apiname">students</span> endpoint.</p>
+
+    
+<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" class="table" frame="border" border="1" rules="all"><colgroup><col style="width:23.148148148148145%"><col style="width:24.305555555555554%"><col style="width:52.54629629629629%"></colgroup><thead class="thead" style="text-align:left;vertical-align:bottom;">
+          <tr class="row">
+            <th class="entry cellrowborder" colspan="2" style="text-align:center;vertical-align:bottom;" id="d4986e56">API endpoint</th>
+
+            <th class="entry cellrowborder" rowspan="2" style="text-align:center;vertical-align:bottom;" id="d4986e59">Description</th>
+
+          </tr>
+
+          <tr class="row">
+            <th class="entry cellrowborder" style="text-align:left;vertical-align:bottom;" id="d4986e65">Method</th>
+
+            <th class="entry cellrowborder" style="text-align:left;vertical-align:bottom;" id="d4986e68">Option</th>
+
+          </tr>
+
+        </thead>
+<tbody class="tbody">
+          <tr class="row">
+            <td class="entry cellrowborder" style="text-align:left;vertical-align:top;" headers="d4986e56 d4986e65 ">POST</td>
+
+            <td class="entry cellrowborder" style="text-align:left;vertical-align:top;" headers="d4986e56 d4986e68 ">^</td>
+
+            <td class="entry cellrowborder" style="text-align:left;vertical-align:top;" headers="d4986e59 ">Reporting one or more new student records with DE.</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry cellrowborder" style="text-align:left;vertical-align:top;" headers="d4986e56 d4986e65 ">POST</td>
+
+            <td class="entry cellrowborder" style="text-align:left;vertical-align:top;" headers="d4986e56 d4986e68 ">:uid/citizenships</td>
+
+            <td class="entry cellrowborder" style="text-align:left;vertical-align:top;" headers="d4986e59 ">Capture details of a new citizenship for an existing student.<p class="p">If the student has multiple citizenship rows in the Bulk Extract (SOTBCIT) table that have not been posted to TCSI, the one with the lowest surrogate ID will be posted with the Student POST. </p>
+<p class="p">That record gets a citizenship effective from date that is the same as the TCSI system date on the day it is successfully posted, so it will be immediately PATCHED to change the effective from date to the date stored for the record in SOTCIT. </p>
+<p class="p">After that, the remaining citizenship rows for the student will be POSTED in ascending order, starting with the next lowest surrogate ID. It is expected that institution will maintain changes to student citizenship correctly so that the effective from dates for the records will not overlap. </p>
+</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry cellrowborder" style="text-align:left;vertical-align:top;" headers="d4986e56 d4986e65 ">POST</td>
+
+            <td class="entry cellrowborder" style="text-align:left;vertical-align:top;" headers="d4986e56 d4986e68 ">:uid/cwlth-scholarships</td>
+
+            <td class="entry cellrowborder" style="text-align:left;vertical-align:top;" headers="d4986e59 ">Capture details of a new commonwealth scholarship grant awarded to an existing student.</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry cellrowborder" style="text-align:left;vertical-align:top;" headers="d4986e56 d4986e65 ">POST</td>
+
+            <td class="entry cellrowborder" style="text-align:left;vertical-align:top;" headers="d4986e56 d4986e68 ">:uid/disabilities</td>
+
+            <td class="entry cellrowborder" style="text-align:left;vertical-align:top;" headers="d4986e59 ">Capture details of a new disability reported by an existing student.</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry cellrowborder" style="text-align:left;vertical-align:top;" headers="d4986e56 d4986e65 ">GET</td>
+
+            <td class="entry cellrowborder" style="text-align:left;vertical-align:top;" headers="d4986e56 d4986e68 ">^</td>
+
+            <td class="entry cellrowborder" style="text-align:left;vertical-align:top;" headers="d4986e59 ">Request information of all active students at an education provider.</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry cellrowborder" style="text-align:left;vertical-align:top;" headers="d4986e56 d4986e65 ">GET</td>
+
+            <td class="entry cellrowborder" style="text-align:left;vertical-align:top;" headers="d4986e56 d4986e68 ">:uid</td>
+
+            <td class="entry cellrowborder" style="text-align:left;vertical-align:top;" headers="d4986e59 ">Request information with the use of the uid option returns data for a particular item that has a unique identifier associated with it.<p class="p">When used with the <span class="keyword apiname">students</span> endpoint, this becomes the students_uid.</p>
+<p class="p">It returns current information for the specific student with the unique identifier.</p>
+</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry cellrowborder" style="text-align:left;vertical-align:top;" headers="d4986e56 d4986e65 ">GET</td>
+
+            <td class="entry cellrowborder" style="text-align:left;vertical-align:top;" headers="d4986e56 d4986e68 ">:uid/citizenships</td>
+
+            <td class="entry cellrowborder" style="text-align:left;vertical-align:top;" headers="d4986e59 ">Request information with the use of the uid option returns data for a particular item that has a unique identifier associated with it. <p class="p">When used with the <span class="keyword apiname">students</span> endpoint with the 'citizenships' extension, the :uid becomes the students_uid.</p>
+<p class="p">It returns all active citizenships recorded for the specific student.</p>
+</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry cellrowborder" style="text-align:left;vertical-align:top;" headers="d4986e56 d4986e65 ">GET</td>
+
+            <td class="entry cellrowborder" style="text-align:left;vertical-align:top;" headers="d4986e56 d4986e68 ">:uid/citizenships/​:citizenships-uid</td>
+
+            <td class="entry cellrowborder" style="text-align:left;vertical-align:top;" headers="d4986e59 ">Update information with the use of the uid option submits a request to update the particular item that has a unique identifier associated with it. <p class="p">When used with the <span class="keyword apiname">students</span> endpoint with the 'citizenships' extension, the :uid becomes the students_uid.</p>
+<p class="p">It updates the details of a citizenship for a student by the provider, noted by the student identifier and the citizenship identifier.</p>
+</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry cellrowborder" style="text-align:left;vertical-align:top;" headers="d4986e56 d4986e65 ">GET</td>
+
+            <td class="entry cellrowborder" style="text-align:left;vertical-align:top;" headers="d4986e56 d4986e68 ">:uid/cwlth-scholarships</td>
+
+            <td class="entry cellrowborder" style="text-align:left;vertical-align:top;" headers="d4986e59 ">Update information with the use of the uid option submits a request to update the particular item that has a unique identifier associated with it. <p class="p">When used with the <span class="keyword apiname">students</span> endpoint with the 'cwlth-scholarship' extension, the :uid becomes the students_uid.</p>
+<p class="p">It updates the details of a commonwealth scholarship for a student by the provider, noted by the student identifier and the cwlth-scholarship identifier.</p>
+</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry cellrowborder" style="text-align:left;vertical-align:top;" headers="d4986e56 d4986e65 ">GET</td>
+
+            <td class="entry cellrowborder" style="text-align:left;vertical-align:top;" headers="d4986e56 d4986e68 ">:uid/cwlth-scholarships/:cwlth-scholarships-uid</td>
+
+            <td class="entry cellrowborder" style="text-align:left;vertical-align:top;" headers="d4986e59 ">Request information with the use of the uid option returns data for a particular item that has a unique identifier associated with it. <p class="p">When used with the <span class="keyword apiname">students</span> endpoint with the 'cwlth-scholarships' extension, the :uid becomes the students_uid.</p>
+<p class="p">It returns details of a specific commonwealth scholarship record noted by the commonwealth scholarship unique identifier for the specific student.</p>
+</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry cellrowborder" style="text-align:left;vertical-align:top;" headers="d4986e56 d4986e65 ">GET</td>
+
+            <td class="entry cellrowborder" style="text-align:left;vertical-align:top;" headers="d4986e56 d4986e68 ">:uid/disabilities</td>
+
+            <td class="entry cellrowborder" style="text-align:left;vertical-align:top;" headers="d4986e59 ">Request information with the use of the uid option returns data for a particular item that has a unique identifier associated with it.<p class="p">When used with the <span class="keyword apiname">students</span> endpoint with the 'disabilities' extension, the :uid becomes the students_uid.</p>
+<p class="p">It returns all active disabilities recorded for the specific student.</p>
+</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry cellrowborder" style="text-align:left;vertical-align:top;" headers="d4986e56 d4986e65 ">GET</td>
+
+            <td class="entry cellrowborder" style="text-align:left;vertical-align:top;" headers="d4986e56 d4986e68 ">:uid/disabilities/:disabilities-uid</td>
+
+            <td class="entry cellrowborder" style="text-align:left;vertical-align:top;" headers="d4986e59 ">Request information with the use of the uid option returns data for a particular item that has a unique identifier associated with it.<p class="p">When used with the <span class="keyword apiname">students</span> endpoint with the 'disabilities' extension, the :uid becomes the students_uid.</p>
+<p class="p">It returns details of a specific disability record noted by the unique identifier for the specific student.</p>
+</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry cellrowborder" style="text-align:left;vertical-align:top;" headers="d4986e56 d4986e65 ">PATCH</td>
+
+            <td class="entry cellrowborder" style="text-align:left;vertical-align:top;" headers="d4986e56 d4986e68 ">:uid</td>
+
+            <td class="entry cellrowborder" style="text-align:left;vertical-align:top;" headers="d4986e59 ">Update information with the use of the uid option submits a request to update the particular item that has a unique identifier associated with it. <p class="p">When used with the <span class="keyword apiname">students</span> endpoint, this becomes the students_uid.</p>
+<p class="p">It updates the details of the specific student with the unique identifier, and other information associated with the student’s citizenships, scholarship grants, and disabilities.</p>
+</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry cellrowborder" style="text-align:left;vertical-align:top;" headers="d4986e56 d4986e65 ">PATCH</td>
+
+            <td class="entry cellrowborder" style="text-align:left;vertical-align:top;" headers="d4986e56 d4986e68 ">:uid/citizenships/​:citizenships-uid</td>
+
+            <td class="entry cellrowborder" style="text-align:left;vertical-align:top;" headers="d4986e59 ">Update information with the use of the uid option submits a request to update the particular item that has a unique identifier associated with it.<p class="p">When used with the <span class="keyword apiname">students</span> endpoint with the 'citizenships' extension, the :uid becomes the students_uid.</p>
+<p class="p">It updates the details of a citizenship for a student by the provider, noted by the student identifier and the citizenship identifier.</p>
+</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry cellrowborder" style="text-align:left;vertical-align:top;" headers="d4986e56 d4986e65 ">PATCH</td>
+
+            <td class="entry cellrowborder" style="text-align:left;vertical-align:top;" headers="d4986e56 d4986e68 ">:uid/cwlth-scholarships/:cwlth-scholarships-uid</td>
+
+            <td class="entry cellrowborder" style="text-align:left;vertical-align:top;" headers="d4986e59 ">Update information with the use of the uid option submits a request to update the particular item that has a unique identifier associated with it.<p class="p">When used with the <span class="keyword apiname">students</span> endpoint with the 'cwlth-scholarship' extension, the :uid becomes the students_uid.</p>
+<p class="p">It updates the details of a commonwealth scholarship for a student by the provider, noted by the student identifier and the cwlth-scholarship identifier.</p>
+</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry cellrowborder" style="text-align:left;vertical-align:top;" headers="d4986e56 d4986e65 ">PATCH</td>
+
+            <td class="entry cellrowborder" style="text-align:left;vertical-align:top;" headers="d4986e56 d4986e68 ">:uid/disabilities/:disabilities-uid</td>
+
+            <td class="entry cellrowborder" style="text-align:left;vertical-align:top;" headers="d4986e59 ">Update information with the use of the uid option submits a request to update the particular item that has a unique identifier associated with it.<p class="p">When used with the <span class="keyword apiname">students</span> endpoint with the 'disabilities' extension, the :uid becomes the students_uid.</p>
+<p class="p">It updates the details of a disability for a student by the provider, noted by the student identifier and the disabilities identifier.</p>
+</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry cellrowborder" style="text-align:left;vertical-align:top;" headers="d4986e56 d4986e65 ">PATCH</td>
+
+            <td class="entry cellrowborder" style="text-align:left;vertical-align:top;" headers="d4986e56 d4986e68 ">:uid/first-reported-address</td>
+
+            <td class="entry cellrowborder" style="text-align:left;vertical-align:top;" headers="d4986e59 ">Update information with the use of the uid option submits a request to update the particular item that has a unique identifier associated with it. <p class="p">When used with the <span class="keyword apiname">students</span> endpoint with the 'first-reported-address' extension, the :uid becomes the students_uid.</p>
+<p class="p">It updates the details of the first reported address for the student.</p>
+</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry cellrowborder" style="text-align:left;vertical-align:top;" headers="d4986e56 d4986e65 ">DELETE</td>
+
+            <td class="entry cellrowborder" style="text-align:left;vertical-align:top;" headers="d4986e56 d4986e68 ">:uid</td>
+
+            <td class="entry cellrowborder" style="text-align:left;vertical-align:top;" headers="d4986e59 ">The use of the uid option will submit a request to delete the particular item that has a unique identifier associated with it.<p class="p">When used with the <span class="keyword apiname">students</span> endpoint, it removes the student record with the specific unique identifier.</p>
+</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry cellrowborder" style="text-align:left;vertical-align:top;" headers="d4986e56 d4986e65 ">DELETE</td>
+
+            <td class="entry cellrowborder" style="text-align:left;vertical-align:top;" headers="d4986e56 d4986e68 ">:uid/citizenships/​:citizenships-uid</td>
+
+            <td class="entry cellrowborder" style="text-align:left;vertical-align:top;" headers="d4986e59 ">The use of the uid option will submit a request to delete the particular item that has a unique identifier associated with it. <p class="p">When used with the <span class="keyword apiname">students</span> endpoint and the “citizenships” extension, the :uid becomes the students_uid.</p>
+<p class="p">It removes the citizenship record noted by the citizenship unique identifier.</p>
+</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry cellrowborder" style="text-align:left;vertical-align:top;" headers="d4986e56 d4986e65 ">DELETE</td>
+
+            <td class="entry cellrowborder" style="text-align:left;vertical-align:top;" headers="d4986e56 d4986e68 ">:uid/cwlth-scholarships/:cwlth-scholarships-uid</td>
+
+            <td class="entry cellrowborder" style="text-align:left;vertical-align:top;" headers="d4986e59 ">The use of the uid option will submit a request to delete the particular item that has a unique identifier associated with it. <p class="p">When used with the <span class="keyword apiname">students</span> endpoint and the “cwlth-scholarships” extension, the :uid becomes the students_uid.</p>
+<p class="p">It removes the commonwealth scholarship record noted by the unique identifier.</p>
+</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry cellrowborder" style="text-align:left;vertical-align:top;" headers="d4986e56 d4986e65 ">DELETE</td>
+
+            <td class="entry cellrowborder" style="text-align:left;vertical-align:top;" headers="d4986e56 d4986e68 ">:uid/disabilities/:disabilities-uid</td>
+
+            <td class="entry cellrowborder" style="text-align:left;vertical-align:top;" headers="d4986e59 ">The use of the uid option will submit a request to delete the particular item that has a unique identifier associated with it. <p class="p">When used with <span class="keyword apiname">students</span> endpoint and the “disabilities” extension, the :uid becomes the students_uid.</p>
+<p class="p">It removes the disability record noted by the disability unique identifier.</p>
+</td>
+
+          </tr>
+
+        </tbody>
+</table>
+</div>
+
+  </div>
+
+</div></div></section>
+<section id="t-280"><h3>course-admissions integration</h3><div class="content-locale-en-US content-locale-en"><div id="r_course_admissions_integration"><div class="body refbody"><p class="shortdesc">See the table for methods and options associated with the <span class="keyword apiname">course-admissions</span> endpoint.</p>
+
+    
+<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" class="table" frame="border" border="1" rules="all"><colgroup><col style="width:23.148148148148145%"><col style="width:24.305555555555554%"><col style="width:52.54629629629629%"></colgroup><thead class="thead" style="text-align:left;vertical-align:bottom;">
+          <tr class="row">
+            <th class="entry cellrowborder" colspan="2" style="text-align:center;vertical-align:bottom;" id="d20322e56">API endpoint</th>
+
+            <th class="entry cellrowborder" rowspan="2" style="text-align:center;vertical-align:bottom;" id="d20322e59">Description</th>
+
+          </tr>
+
+          <tr class="row">
+            <th class="entry cellrowborder" style="text-align:left;vertical-align:bottom;" id="d20322e65">Method</th>
+
+            <th class="entry cellrowborder" style="text-align:left;vertical-align:bottom;" id="d20322e68">Option</th>
+
+          </tr>
+
+        </thead>
+<tbody class="tbody">
+          <tr class="row">
+            <td class="entry cellrowborder" style="text-align:left;vertical-align:top;" headers="d20322e56 d20322e65 ">POST</td>
+
+            <td class="entry cellrowborder" style="text-align:left;vertical-align:top;" headers="d20322e56 d20322e68 ">^</td>
+
+            <td class="entry cellrowborder" style="text-align:left;vertical-align:top;" headers="d20322e59 ">Admission of one or more students to courses offered by the provider.</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry cellrowborder" style="text-align:left;vertical-align:top;" headers="d20322e56 d20322e65 ">POST</td>
+
+            <td class="entry cellrowborder" style="text-align:left;vertical-align:top;" headers="d20322e56 d20322e68 ">:uid/bases-for admission</td>
+
+            <td class="entry cellrowborder" style="text-align:left;vertical-align:top;" headers="d20322e59 ">Capture one or more additional basis for admission information for a specific student course admission.</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry cellrowborder" style="text-align:left;vertical-align:top;" headers="d20322e56 d20322e65 ">POST</td>
+
+            <td class="entry cellrowborder" style="text-align:left;vertical-align:top;" headers="d20322e56 d20322e68 ">:uid/course-prior-credits</td>
+
+            <td class="entry cellrowborder" style="text-align:left;vertical-align:top;" headers="d20322e59 ">Capture one or more additional prior course credits for a specific student course admission.</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry cellrowborder" style="text-align:left;vertical-align:top;" headers="d20322e56 d20322e65 ">POST</td>
+
+            <td class="entry cellrowborder" style="text-align:left;vertical-align:top;" headers="d20322e56 d20322e68 ">:uid/course-specialisations</td>
+
+            <td class="entry cellrowborder" style="text-align:left;vertical-align:top;" headers="d20322e59 ">Capture one or more course specialisations for a specific course admission.</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry cellrowborder" style="text-align:left;vertical-align:top;" headers="d20322e56 d20322e65 ">POST</td>
+
+            <td class="entry cellrowborder" style="text-align:left;vertical-align:top;" headers="d20322e56 d20322e68 ">:uid/hdr-end-user-engagements</td>
+
+            <td class="entry cellrowborder" style="text-align:left;vertical-align:top;" headers="d20322e59 ">Capture details of one or more end user engagements of a higher degree by research student for a specific course admission by the higher degree by research student.</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry cellrowborder" style="text-align:left;vertical-align:top;" headers="d20322e56 d20322e65 ">POST</td>
+
+            <td class="entry cellrowborder" style="text-align:left;vertical-align:top;" headers="d20322e56 d20322e68 ">:uid/scholarships</td>
+
+            <td class="entry cellrowborder" style="text-align:left;vertical-align:top;" headers="d20322e59 ">Capture details of one or more scholarships for a specific course admission.</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry cellrowborder" style="text-align:left;vertical-align:top;" headers="d20322e56 d20322e65 ">POST</td>
+
+            <td class="entry cellrowborder" style="text-align:left;vertical-align:top;" headers="d20322e56 d20322e68 ">:uid/rtp-stipends</td>
+
+            <td class="entry cellrowborder" style="text-align:left;vertical-align:top;" headers="d20322e59 ">Capture details of a research training program stipend for a specific course admission by a student in the research training program.</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry cellrowborder" style="text-align:left;vertical-align:top;" headers="d20322e56 d20322e65 ">PATCH</td>
+
+            <td class="entry cellrowborder" style="text-align:left;vertical-align:top;" headers="d20322e56 d20322e68 ">:uid</td>
+
+            <td class="entry cellrowborder" style="text-align:left;vertical-align:top;" headers="d20322e59 ">Update information with the use of the uid option submits a request to update the particular item that has a unique identifier associated with it.<p class="p">When used with the <span class="keyword apiname">course-admissions</span> endpoint, this becomes the course_admissions_uid.</p>
+<p class="p">It updates the details of the specific course admission, or the additional attributes such as prior credits, according to the unique identifiers provided.</p>
+</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry cellrowborder" style="text-align:left;vertical-align:top;" headers="d20322e56 d20322e65 ">PATCH</td>
+
+            <td class="entry cellrowborder" style="text-align:left;vertical-align:top;" headers="d20322e56 d20322e68 ">:uid/basis-for-admission/:basis-for-admission-uid</td>
+
+            <td class="entry cellrowborder" style="text-align:left;vertical-align:top;" headers="d20322e59 ">Update information with the use of the uid option submits a request to update the particular item that has a unique identifier associated with it.<p class="p">When used with the <span class="keyword apiname">course-admissions</span> endpoint with the 'bases-for-admission' extension, the :uid becomes the course_admissions_uid.</p>
+<p class="p">It returns details of a specific basis for admission for a course admission, noted by the course admission unique identifier.</p>
+</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry cellrowborder" style="text-align:left;vertical-align:top;" headers="d20322e56 d20322e65 ">PATCH</td>
+
+            <td class="entry cellrowborder" style="text-align:left;vertical-align:top;" headers="d20322e56 d20322e68 ">:uid/course-prior-credits/:course-prior-credits-uid</td>
+
+            <td class="entry cellrowborder" style="text-align:left;vertical-align:top;" headers="d20322e59 ">Update information with the use of the uid option submits a request to update the particular item that has a unique identifier associated with it.<p class="p">When used with the <span class="keyword apiname">course-admissions</span> endpoint with the 'course-prior-credits' extension, the :uid becomes the course_admissions_uid.</p>
+<p class="p">It returns details of a specific course prior credit for a course admission, noted by the course admission unique identifier.</p>
+</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry cellrowborder" style="text-align:left;vertical-align:top;" headers="d20322e56 d20322e65 ">PATCH</td>
+
+            <td class="entry cellrowborder" style="text-align:left;vertical-align:top;" headers="d20322e56 d20322e68 ">:uid/course-specialisations/​:specialisations-uid</td>
+
+            <td class="entry cellrowborder" style="text-align:left;vertical-align:top;" headers="d20322e59 ">Update information with the use of the uid option submits a request to update the particular item that has a unique identifier associated with it.<p class="p">When used with the <span class="keyword apiname">course-admissions</span> endpoint with the 'course-specialisations' extension, the :uid becomes the course_admissions_uid.</p>
+<p class="p">It returns details of a specific course specialisation for a course admission, noted by the course admission unique identifier.</p>
+</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry cellrowborder" style="text-align:left;vertical-align:top;" headers="d20322e56 d20322e65 ">PATCH</td>
+
+            <td class="entry cellrowborder" style="text-align:left;vertical-align:top;" headers="d20322e56 d20322e68 ">:uid/hdr-end-user-engagements/:hdr-end-user-engagements-uid</td>
+
+            <td class="entry cellrowborder" style="text-align:left;vertical-align:top;" headers="d20322e59 ">Update information with the use of the uid option submits a request to update the particular item that has a unique identifier associated with it.<p class="p">When used with the <span class="keyword apiname">course-admissions</span> endpoint with the 'hdr-end-user-engagement' extension, the :uid becomes the course_admissions_uid.</p>
+<p class="p">It returns details of a specific hdr end user engagement for a course admission, noted by the course admission unique identifier.</p>
+</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry cellrowborder" style="text-align:left;vertical-align:top;" headers="d20322e56 d20322e65 ">PATCH</td>
+
+            <td class="entry cellrowborder" style="text-align:left;vertical-align:top;" headers="d20322e56 d20322e68 ">:uid/scholarships/​:scholarships-uid</td>
+
+            <td class="entry cellrowborder" style="text-align:left;vertical-align:top;" headers="d20322e59 ">Update information with the use of the uid option submits a request to update the particular item that has a unique identifier associated with it.<p class="p">When used with the <span class="keyword apiname">course-admissions</span> endpoint with the 'scholarships' extension, the :uid becomes the course_admissions_uid.</p>
+<p class="p">It returns details of a specific scholarship for a course admission, noted by the course admission unique identifier.</p>
+</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry cellrowborder" style="text-align:left;vertical-align:top;" headers="d20322e56 d20322e65 ">PATCH</td>
+
+            <td class="entry cellrowborder" style="text-align:left;vertical-align:top;" headers="d20322e56 d20322e68 ">:uid/rtp-stipends/:rtp-stipends-uid</td>
+
+            <td class="entry cellrowborder" style="text-align:left;vertical-align:top;" headers="d20322e59 ">Update information with the use of the uid option submits a request to update the particular item that has a unique identifier associated with it.<p class="p">When used with the <span class="keyword apiname">course-admissions</span> endpoint with the 'rtp-stipends' extension, the :uid becomes the course_admissions_uid.</p>
+<p class="p">It returns details of a specific research training program stipend for a course admission, noted by the course admission unique identifier.</p>
+</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry cellrowborder" style="text-align:left;vertical-align:top;" headers="d20322e56 d20322e65 ">GET</td>
+
+            <td class="entry cellrowborder" style="text-align:left;vertical-align:top;" headers="d20322e56 d20322e68 ">^</td>
+
+            <td class="entry cellrowborder" style="text-align:left;vertical-align:top;" headers="d20322e59 ">Request information for all course admissions for one education provider</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry cellrowborder" style="text-align:left;vertical-align:top;" headers="d20322e56 d20322e65 ">GET</td>
+
+            <td class="entry cellrowborder" style="text-align:left;vertical-align:top;" headers="d20322e56 d20322e68 ">:uid</td>
+
+            <td class="entry cellrowborder" style="text-align:left;vertical-align:top;" headers="d20322e59 ">Request information with the use of the uid option will return data for a particular item that has a unique identifier associated with it. <p class="p">When used with the <span class="keyword apiname">course-admissions</span> endpoint, this becomes course_admissions_uid.</p>
+<p class="p">It returns current information for the specific student course admission noted by the unique identifier.</p>
+</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry cellrowborder" style="text-align:left;vertical-align:top;" headers="d20322e56 d20322e65 ">GET</td>
+
+            <td class="entry cellrowborder" style="text-align:left;vertical-align:top;" headers="d20322e56 d20322e68 ">:uid/bases-for-admission</td>
+
+            <td class="entry cellrowborder" style="text-align:left;vertical-align:top;" headers="d20322e59 ">Request information with the use of the uid option will return data for a particular item that has a unique identifier associated with it. <p class="p">When used with the <span class="keyword apiname">course-admissions</span> endpoint with the “bases-for-admission” extension, the :uid becomes the course_admissions_uid.</p>
+<p class="p">It returns all active basis for admission for the specific student course admission noted by the course admission unique identifier.</p>
+</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry cellrowborder" style="text-align:left;vertical-align:top;" headers="d20322e56 d20322e65 ">GET</td>
+
+            <td class="entry cellrowborder" style="text-align:left;vertical-align:top;" headers="d20322e56 d20322e68 ">:uid/bases-for-admission/:bases-for-admission-uid</td>
+
+            <td class="entry cellrowborder" style="text-align:left;vertical-align:top;" headers="d20322e59 ">Request information with the use of the uid option will return data for a particular item that has a unique identifier associated with it. <p class="p">When used with the <span class="keyword apiname">course-admissions</span> endpoint with the “bases-for-admission” extension, the :uid becomes the course_admissions_uid.</p>
+<p class="p">It returns details of a specific basis for admission for the specific student course admission, noted by the basis for admission and the course admission unique identifiers respectively.</p>
+</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry cellrowborder" style="text-align:left;vertical-align:top;" headers="d20322e56 d20322e65 ">GET</td>
+
+            <td class="entry cellrowborder" style="text-align:left;vertical-align:top;" headers="d20322e56 d20322e68 ">:uid/course-prior-credits</td>
+
+            <td class="entry cellrowborder" style="text-align:left;vertical-align:top;" headers="d20322e59 ">Request information with the use of the uid option will return data for a particular item that has a unique identifier associated with it. <p class="p">When used with the <span class="keyword apiname">course-admissions</span> endpoint with the “course-prior-credits” extension, the :uid becomes the course_admissions_uid.</p>
+<p class="p">It returns all active prior course credits for the specific student course admission noted by the course admission unique identifier.</p>
+</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry cellrowborder" style="text-align:left;vertical-align:top;" headers="d20322e56 d20322e65 ">GET</td>
+
+            <td class="entry cellrowborder" style="text-align:left;vertical-align:top;" headers="d20322e56 d20322e68 ">:uid/course-prior-credits/:course-prior-credits-uid</td>
+
+            <td class="entry cellrowborder" style="text-align:left;vertical-align:top;" headers="d20322e59 ">Request information with the use of the uid option will return data for a particular item that has a unique identifier associated with it. <p class="p">When used with the <span class="keyword apiname">course-admissions</span> endpoint with the “course-prior-credits” extension, the :uid becomes the course_admissions_uid.</p>
+<p class="p">It returns details of a specific prior course credit for the specific student course admission, noted by the prior course credit and the course admission unique identifiers respectively.</p>
+</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry cellrowborder" style="text-align:left;vertical-align:top;" headers="d20322e56 d20322e65 ">GET</td>
+
+            <td class="entry cellrowborder" style="text-align:left;vertical-align:top;" headers="d20322e56 d20322e68 ">:uid/course-specialisations</td>
+
+            <td class="entry cellrowborder" style="text-align:left;vertical-align:top;" headers="d20322e59 ">Request information with the use of the uid option will return data for a particular item that has a unique identifier associated with it. <p class="p">When used with the <span class="keyword apiname">course-admissions</span> endpoint with the “course-specialisations” extension, the :uid becomes the course_admissions_uid.</p>
+<p class="p">It returns all active course specialisations for the specific student course admission noted by the course admission unique identifier.</p>
+</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry cellrowborder" style="text-align:left;vertical-align:top;" headers="d20322e56 d20322e65 ">GET</td>
+
+            <td class="entry cellrowborder" style="text-align:left;vertical-align:top;" headers="d20322e56 d20322e68 ">:uid/course-specialisations/:course-specialisations-uid</td>
+
+            <td class="entry cellrowborder" style="text-align:left;vertical-align:top;" headers="d20322e59 ">Request information with the use of the uid option will return data for a particular item that has a unique identifier associated with it. <p class="p">When used with the <span class="keyword apiname">course-admissions</span> endpoint with the “course-specialisations” extension, the :uid becomes the course_admissions_uid.</p>
+<p class="p">It returns details of a specific course specialisation for the specific student course admission, noted by the course specialisation and the course admission unique identifiers respectively.</p>
+</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry cellrowborder" style="text-align:left;vertical-align:top;" headers="d20322e56 d20322e65 ">GET</td>
+
+            <td class="entry cellrowborder" style="text-align:left;vertical-align:top;" headers="d20322e56 d20322e68 ">:uid/hdr-end-user-engagements</td>
+
+            <td class="entry cellrowborder" style="text-align:left;vertical-align:top;" headers="d20322e59 ">Request information with the use of the uid option will return data for a particular item that has a unique identifier associated with it. <p class="p">When used with the <span class="keyword apiname">course-admissions</span> endpoint with the “hdr-end-user-engagements” extension, the :uid becomes the course_admissions_uid.</p>
+<p class="p">It returns all active end user engagement records for a specific course admission, noted by the course admission unique identifier.</p>
+</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry cellrowborder" style="text-align:left;vertical-align:top;" headers="d20322e56 d20322e65 ">GET</td>
+
+            <td class="entry cellrowborder" style="text-align:left;vertical-align:top;" headers="d20322e56 d20322e68 ">:uid/hdr-end-user-engagements/:hdr-end-user-engagements-uid</td>
+
+            <td class="entry cellrowborder" style="text-align:left;vertical-align:top;" headers="d20322e59 ">Request information with the use of the uid option will return data for a particular item that has a unique identifier associated with it. <p class="p">When used with the <span class="keyword apiname">course-admissions</span> endpoint with the “hdr-end-user-engagements” extension, the :uid becomes the course_admissions_uid.</p>
+<p class="p">It returns details of a specific end user engagement record for a course admission, noted by the admission unique identifier.</p>
+</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry cellrowborder" style="text-align:left;vertical-align:top;" headers="d20322e56 d20322e65 ">GET</td>
+
+            <td class="entry cellrowborder" style="text-align:left;vertical-align:top;" headers="d20322e56 d20322e68 ">:uid/scholarships</td>
+
+            <td class="entry cellrowborder" style="text-align:left;vertical-align:top;" headers="d20322e59 ">Request information with the use of the uid option will return data for a particular item that has a unique identifier associated with it. <p class="p">When used with the <span class="keyword apiname">course-admissions</span> endpoint with the “scholarships” extension, the :uid becomes the course_admissions_uid.</p>
+<p class="p">It returns all active scholarship records for a specific course admission, noted by the course admission unique identifier.</p>
+</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry cellrowborder" style="text-align:left;vertical-align:top;" headers="d20322e56 d20322e65 ">GET</td>
+
+            <td class="entry cellrowborder" style="text-align:left;vertical-align:top;" headers="d20322e56 d20322e68 ">:uid/scholarships/​:scholarships-uid</td>
+
+            <td class="entry cellrowborder" style="text-align:left;vertical-align:top;" headers="d20322e59 ">Request information with the use of the uid option will return data for a particular item that has a unique identifier associated with it. <p class="p">When used with the <span class="keyword apiname">course-admissions</span> endpoint with the “scholarships” extension, the :uid becomes the course_admissions_uid.</p>
+<p class="p">It returns details of a specific scholarship record for a course admission, noted by the course admission unique identifier.</p>
+</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry cellrowborder" style="text-align:left;vertical-align:top;" headers="d20322e56 d20322e65 ">GET</td>
+
+            <td class="entry cellrowborder" style="text-align:left;vertical-align:top;" headers="d20322e56 d20322e68 ">:uid/rtp-stipends</td>
+
+            <td class="entry cellrowborder" style="text-align:left;vertical-align:top;" headers="d20322e59 ">Request information with the use of the uid option will return data for a particular item that has a unique identifier associated with it. <p class="p">When used with the <span class="keyword apiname">course-admissions</span> endpoint with the “rtp-stipends” extension, the :uid becomes the course_admissions_uid.</p>
+<p class="p">It returns all active research training program stipends for a specific course admission, noted by the course admission unique identifier.</p>
+</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry cellrowborder" style="text-align:left;vertical-align:top;" headers="d20322e56 d20322e65 ">GET</td>
+
+            <td class="entry cellrowborder" style="text-align:left;vertical-align:top;" headers="d20322e56 d20322e68 ">:uid/rtp-stipends/:rtp-stipends-uid</td>
+
+            <td class="entry cellrowborder" style="text-align:left;vertical-align:top;" headers="d20322e59 ">Request information with the use of the uid option will return data for a particular item that has a unique identifier associated with it. <p class="p">When used with the <span class="keyword apiname">course-admissions</span> endpoint with the “rtp-stipends” extension, the :uid becomes the course_admissions_uid.</p>
+<p class="p">It returns details of a specific research training program stipend for a course admission, noted by the course admission unique identifier.</p>
+</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry cellrowborder" style="text-align:left;vertical-align:top;" headers="d20322e56 d20322e65 ">GET</td>
+
+            <td class="entry cellrowborder" style="text-align:left;vertical-align:top;" headers="d20322e56 d20322e68 ">:uid/early-exit-awards</td>
+
+            <td class="entry cellrowborder" style="text-align:left;vertical-align:top;" headers="d20322e59 ">Request information with the use of the uid option will return data for a particular item that has a unique identifier associated with it. <p class="p">When used with the <span class="keyword apiname">course-admissions</span> endpoint with the “early-exit-awards” extension, the :uid becomes the course_admissions_uid.</p>
+<p class="p">It returns all active early exit awards for a specific course admission, noted by the course admission unique identifier.</p>
+</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry cellrowborder" style="text-align:left;vertical-align:top;" headers="d20322e56 d20322e65 ">DELETE</td>
+
+            <td class="entry cellrowborder" style="text-align:left;vertical-align:top;" headers="d20322e56 d20322e68 ">:uid</td>
+
+            <td class="entry cellrowborder" style="text-align:left;vertical-align:top;" headers="d20322e59 ">The use of the uid option will submit a request to delete the particular item that has a unique identifier associated with it. <p class="p">When used with the <span class="keyword apiname">course-admissions</span> endpoint, the :uid referenced becomes the course_admissions_uid.</p>
+<p class="p">It removes the course admission noted by the unique identifier.</p>
+</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry cellrowborder" style="text-align:left;vertical-align:top;" headers="d20322e56 d20322e65 ">DELETE</td>
+
+            <td class="entry cellrowborder" style="text-align:left;vertical-align:top;" headers="d20322e56 d20322e68 ">:uid/bases-for-admission/:bases-for-admission-uid</td>
+
+            <td class="entry cellrowborder" style="text-align:left;vertical-align:top;" headers="d20322e59 ">The use of the uid option will submit a request to delete the particular item that has a unique identifier associated with it. <p class="p">When used with the <span class="keyword apiname">course-admissions</span> endpoint and the “bases-for-admission” extension, the :uid becomes the course_admissions_uid.</p>
+<p class="p">It removes the specific basis for admission record for the course admission identified by its basis for admission unique identifier.</p>
+</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry cellrowborder" style="text-align:left;vertical-align:top;" headers="d20322e56 d20322e65 ">DELETE</td>
+
+            <td class="entry cellrowborder" style="text-align:left;vertical-align:top;" headers="d20322e56 d20322e68 ">:uid/course-prior-credits/:course-prior-credits-uid</td>
+
+            <td class="entry cellrowborder" style="text-align:left;vertical-align:top;" headers="d20322e59 ">The use of the uid option will submit a request to delete the particular item that has a unique identifier associated with it. <p class="p">When used with the <span class="keyword apiname">course-admissions</span> endpoint and the “course-prior-credits” extension, the :uid becomes the course_admissions_uid.</p>
+<p class="p">It removes the specific course prior credit record for the course admission identified by its prior credits unique identifier.</p>
+</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry cellrowborder" style="text-align:left;vertical-align:top;" headers="d20322e56 d20322e65 ">DELETE</td>
+
+            <td class="entry cellrowborder" style="text-align:left;vertical-align:top;" headers="d20322e56 d20322e68 ">:uid/course-specialisations/​:specialisations-uid</td>
+
+            <td class="entry cellrowborder" style="text-align:left;vertical-align:top;" headers="d20322e59 ">The use of the uid option will submit a request to delete the particular item that has a unique identifier associated with it. <p class="p">When used with the <span class="keyword apiname">course-admissions</span> endpoint and the “course-specialisations” extension, the :uid becomes the course_admissions_uid.</p>
+<p class="p">It removes the specific course specialisation for the course admission identified by its course specialisation unique identifier.</p>
+</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry cellrowborder" style="text-align:left;vertical-align:top;" headers="d20322e56 d20322e65 ">DELETE</td>
+
+            <td class="entry cellrowborder" style="text-align:left;vertical-align:top;" headers="d20322e56 d20322e68 ">:uid/hdr-end-user-engagements/:hdr-end-user-engagements-uid</td>
+
+            <td class="entry cellrowborder" style="text-align:left;vertical-align:top;" headers="d20322e59 ">The use of the uid option will submit a request to delete the particular item that has a unique identifier associated with it. <p class="p">When used with the <span class="keyword apiname">course-admissions</span> endpoint with the “hdr-end-user-engagements” extension, the :uid becomes the course_admissions_uid.</p>
+<p class="p">It removes the specific end user engagement record for the specific course admission, noted by their respective unique identifier.</p>
+</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry cellrowborder" style="text-align:left;vertical-align:top;" headers="d20322e56 d20322e65 ">DELETE</td>
+
+            <td class="entry cellrowborder" style="text-align:left;vertical-align:top;" headers="d20322e56 d20322e68 ">:uid/scholarships/​:scholarships-uid</td>
+
+            <td class="entry cellrowborder" style="text-align:left;vertical-align:top;" headers="d20322e59 ">The use of the uid option will submit a request to delete the particular item that has a unique identifier associated with it. <p class="p">When used with the <span class="keyword apiname">course-admissions</span> endpoint with the “scholarships” extension, the :uid becomes the course_admissions_uid.</p>
+<p class="p">It removes the specific scholarship record for a specific course admission, noted by their respective unique identifier.</p>
+</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry cellrowborder" style="text-align:left;vertical-align:top;" headers="d20322e56 d20322e65 ">DELETE</td>
+
+            <td class="entry cellrowborder" style="text-align:left;vertical-align:top;" headers="d20322e56 d20322e68 ">:uid/rtp-stipends/:rtp-stipends-uid</td>
+
+            <td class="entry cellrowborder" style="text-align:left;vertical-align:top;" headers="d20322e59 ">The use of the uid option will submit a request to delete the particular item that has a unique identifier associated with it. <p class="p">When used with the <span class="keyword apiname">course-admissions</span> endpoint with the “rtp-stipends” extension, the :uid becomes the course_admissions_uid.</p>
+<p class="p">It removes the specific stipend record for a specific course admission, noted by their respective unique identifier.</p>
+</td>
+
+          </tr>
+
+        </tbody>
+</table>
+</div>
+
+  </div>
+
+</div></div></section>
+<section id="t-290"><h3>unit-enrolment integration</h3><div class="content-locale-en-US content-locale-en"><div id="r_unit_enrolment_integration"><div class="body refbody"><p class="shortdesc">See the table for methods and options associated with the <span class="keyword apiname">unit-enrolment</span> endpoint.</p>
+
+    
+<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" class="table" frame="border" border="1" rules="all"><colgroup><col style="width:23.148148148148145%"><col style="width:24.305555555555554%"><col style="width:52.54629629629629%"></colgroup><thead class="thead" style="text-align:left;vertical-align:bottom;">
+          <tr class="row">
+            <th class="entry cellrowborder" colspan="2" style="text-align:center;vertical-align:bottom;" id="d7443e56">API endpoint</th>
+
+            <th class="entry cellrowborder" rowspan="2" style="text-align:center;vertical-align:bottom;" id="d7443e59">Description</th>
+
+          </tr>
+
+          <tr class="row">
+            <th class="entry cellrowborder" style="text-align:left;vertical-align:bottom;" id="d7443e65">Method</th>
+
+            <th class="entry cellrowborder" style="text-align:left;vertical-align:bottom;" id="d7443e68">Option</th>
+
+          </tr>
+
+        </thead>
+<tbody class="tbody">
+          <tr class="row">
+            <td class="entry cellrowborder" style="text-align:left;vertical-align:top;" headers="d7443e56 d7443e65 ">POST</td>
+
+            <td class="entry cellrowborder" style="text-align:left;vertical-align:top;" headers="d7443e56 d7443e68 ">^</td>
+
+            <td class="entry cellrowborder" style="text-align:left;vertical-align:top;" headers="d7443e59 ">Register one or more unit of study enrolments for units of study offered by the provider.</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry cellrowborder" style="text-align:left;vertical-align:top;" headers="d7443e56 d7443e65 ">POST</td>
+
+            <td class="entry cellrowborder" style="text-align:left;vertical-align:top;" headers="d7443e56 d7443e68 ">:uid/aou</td>
+
+            <td class="entry cellrowborder" style="text-align:left;vertical-align:top;" headers="d7443e59 ">Report the equivalent full-time student load and financial elements associated with this unit enrolment, by their academic organisational units at the provider.</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry cellrowborder" style="text-align:left;vertical-align:top;" headers="d7443e56 d7443e65 ">GET</td>
+
+            <td class="entry cellrowborder" style="text-align:left;vertical-align:top;" headers="d7443e56 d7443e68 ">^</td>
+
+            <td class="entry cellrowborder" style="text-align:left;vertical-align:top;" headers="d7443e59 ">Request one or more unit of study enrolments for units of study offered by the provider.</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry cellrowborder" style="text-align:left;vertical-align:top;" headers="d7443e56 d7443e65 ">GET</td>
+
+            <td class="entry cellrowborder" style="text-align:left;vertical-align:top;" headers="d7443e56 d7443e68 ">:uid</td>
+
+            <td class="entry cellrowborder" style="text-align:left;vertical-align:top;" headers="d7443e59 ">Request information with the use of the uid option returns data for a particular item that has a unique identifier associated with it.<p class="p">When used with the <span class="keyword apiname">unit-enrolments</span> endpoint, this becomes the unit_enrolments_uid.</p>
+<p class="p">It returns current information for the specific unit of study enrolment with the unique identifier.</p>
+</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry cellrowborder" style="text-align:left;vertical-align:top;" headers="d7443e56 d7443e65 ">PATCH</td>
+
+            <td class="entry cellrowborder" style="text-align:left;vertical-align:top;" headers="d7443e56 d7443e68 ">:uid</td>
+
+            <td class="entry cellrowborder" style="text-align:left;vertical-align:top;" headers="d7443e59 ">Update information with the use of the uid option submits a request to update the particular item that has a unique identifier associated with it. <p class="p">When used with the <span class="keyword apiname">unit-enrolments</span> endpoint, this becomes the unit_enrolments_uid.</p>
+<p class="p">It updates the details of the specific unit of study enrolment identified by the unique identifier.</p>
+</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry cellrowborder" style="text-align:left;vertical-align:top;" headers="d7443e56 d7443e65 ">PATCH</td>
+
+            <td class="entry cellrowborder" style="text-align:left;vertical-align:top;" headers="d7443e56 d7443e68 ">:uid/aou/:unit-enrolments-AOUs-uid</td>
+
+            <td class="entry cellrowborder" style="text-align:left;vertical-align:top;" headers="d7443e59 ">Update information with the use of the uid option submits a request to update the particular item that has a unique identifier associated with it. <p class="p">When used with the <span class="keyword apiname">unit-enrolments</span> endpoint with the 'aou' extension, the :uid will be the unit_enrolment_uid.</p>
+<p class="p">It updates the details of an aou for a student by the provider, noted by the unit enrolment identifier and the aou identifier.</p>
+</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry cellrowborder" style="text-align:left;vertical-align:top;" headers="d7443e56 d7443e65 ">DELETE</td>
+
+            <td class="entry cellrowborder" style="text-align:left;vertical-align:top;" headers="d7443e56 d7443e68 ">:uid</td>
+
+            <td class="entry cellrowborder" style="text-align:left;vertical-align:top;" headers="d7443e59 ">The use of the uid option will submit a request to delete the particular item that has a unique identifier associated with it. <p class="p">When used with the <span class="keyword apiname">unit-enrolments</span> endpoint, this becomes the unit_enrolments_uid.</p>
+<p class="p">It removes the unit of study enrolment record with the specific unique identifier.</p>
+</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry cellrowborder" style="text-align:left;vertical-align:top;" headers="d7443e56 d7443e65 ">DELETE</td>
+
+            <td class="entry cellrowborder" style="text-align:left;vertical-align:top;" headers="d7443e56 d7443e68 ">:uid/aou/:unit-enrolments-aous-uid</td>
+
+            <td class="entry cellrowborder" style="text-align:left;vertical-align:top;" headers="d7443e59 ">The use of the uid option will submit a request to delete the particular item that has a unique identifier associated with it. <p class="p">When used with the <span class="keyword apiname">unit-enrolments</span> endpoint and the “aou” extension, the :uid becomes the unit_enrolments_uid.</p>
+<p class="p">It removes the aou record noted by the aou unique identifier.</p>
+</td>
+
+          </tr>
+
+        </tbody>
+</table>
+</div>
+
+  </div>
+
+</div></div></section>
+<section id="t-300"><h3>units-of-study integration</h3><div class="content-locale-en-US content-locale-en"><div id="r_units_of_study_integration"><div class="body refbody"><p class="shortdesc">See the table for methods and options associated with the <span class="keyword apiname">units-of-study</span> endpoint.</p>
+
+    
+<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" class="table" frame="border" border="1" rules="all"><colgroup><col style="width:23.148148148148145%"><col style="width:24.305555555555554%"><col style="width:52.54629629629629%"></colgroup><thead class="thead" style="text-align:left;vertical-align:bottom;">
+          <tr class="row">
+            <th class="entry cellrowborder" colspan="2" style="text-align:center;vertical-align:bottom;" id="d25978e56">API endpoint</th>
+
+            <th class="entry cellrowborder" rowspan="2" style="text-align:center;vertical-align:bottom;" id="d25978e59">Description</th>
+
+          </tr>
+
+          <tr class="row">
+            <th class="entry cellrowborder" style="text-align:left;vertical-align:bottom;" id="d25978e65">Method</th>
+
+            <th class="entry cellrowborder" style="text-align:left;vertical-align:bottom;" id="d25978e68">Option</th>
+
+          </tr>
+
+        </thead>
+<tbody class="tbody">
+          <tr class="row">
+            <td class="entry cellrowborder" style="text-align:left;vertical-align:top;" headers="d25978e56 d25978e65 ">GET</td>
+
+            <td class="entry cellrowborder" style="text-align:left;vertical-align:top;" headers="d25978e56 d25978e68 ">^</td>
+
+            <td class="entry cellrowborder" style="text-align:left;vertical-align:top;" headers="d25978e59 ">Request information of all active units of study offered by the education provider.</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry cellrowborder" style="text-align:left;vertical-align:top;" headers="d25978e56 d25978e65 ">GET</td>
+
+            <td class="entry cellrowborder" style="text-align:left;vertical-align:top;" headers="d25978e56 d25978e68 ">:uid</td>
+
+            <td class="entry cellrowborder" style="text-align:left;vertical-align:top;" headers="d25978e59 ">Request information with the use of the uid option will return data for a particular item that has a unique identifier associated with it. <p class="p">When used with the <span class="keyword apiname">units-of-study</span> endpoint, this becomes the units_of_study_uid.</p>
+<p class="p">It returns current information for the specific unit of study with the unique identifier.</p>
+</td>
+
+          </tr>
+
+        </tbody>
+</table>
+</div>
+
+  </div>
+
+</div></div></section>
+<section id="t-310"><h3>aggregated-awards integration</h3><div class="content-locale-en-US content-locale-en"><div id="r_aggregated_awards_integration"><div class="body refbody"><p class="shortdesc">See the table for methods and options associated with the <span class="keyword apiname">aggregated-awards</span> endpoint.</p>
+
+    
+<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" class="table" frame="border" border="1" rules="all"><colgroup><col style="width:23.148148148148145%"><col style="width:24.305555555555554%"><col style="width:52.54629629629629%"></colgroup><thead class="thead" style="text-align:left;vertical-align:bottom;">
+          <tr class="row">
+            <th class="entry cellrowborder" colspan="2" style="text-align:center;vertical-align:bottom;" id="d22051e56">API endpoint</th>
+
+            <th class="entry cellrowborder" rowspan="2" style="text-align:center;vertical-align:bottom;" id="d22051e59">Description</th>
+
+          </tr>
+
+          <tr class="row">
+            <th class="entry cellrowborder" style="text-align:left;vertical-align:bottom;" id="d22051e65">Method</th>
+
+            <th class="entry cellrowborder" style="text-align:left;vertical-align:bottom;" id="d22051e68">Option</th>
+
+          </tr>
+
+        </thead>
+<tbody class="tbody">
+          <tr class="row">
+            <td class="entry cellrowborder" style="text-align:left;vertical-align:top;" headers="d22051e56 d22051e65 ">POST</td>
+
+            <td class="entry cellrowborder" style="text-align:left;vertical-align:top;" headers="d22051e56 d22051e68 ">^</td>
+
+            <td class="entry cellrowborder" style="text-align:left;vertical-align:top;" headers="d22051e59 ">Create an aggregated award for one student (existing) who are not currently enrolled at the provider.</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry cellrowborder" style="text-align:left;vertical-align:top;" headers="d22051e56 d22051e65 ">GET</td>
+
+            <td class="entry cellrowborder" style="text-align:left;vertical-align:top;" headers="d22051e56 d22051e68 ">^</td>
+
+            <td class="entry cellrowborder" style="text-align:left;vertical-align:top;" headers="d22051e59 ">Return all aggregated awards for one or more students who are not currently enrolled at the provider.</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry cellrowborder" style="text-align:left;vertical-align:top;" headers="d22051e56 d22051e65 ">GET</td>
+
+            <td class="entry cellrowborder" style="text-align:left;vertical-align:top;" headers="d22051e56 d22051e68 ">:uid</td>
+
+            <td class="entry cellrowborder" style="text-align:left;vertical-align:top;" headers="d22051e59 ">Request information with the use of the uid option will return data for a particular item that has a unique identifier associated with it. <p class="p">When used with the <span class="keyword apiname">aggregated-awards</span> endpoint, this becomes the aggregated_awards_uid.</p>
+<p class="p">It returns current information for the specific aggregated award with the unique identifier.</p>
+</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry cellrowborder" style="text-align:left;vertical-align:top;" headers="d22051e56 d22051e65 ">PATCH</td>
+
+            <td class="entry cellrowborder" style="text-align:left;vertical-align:top;" headers="d22051e56 d22051e68 ">:uid</td>
+
+            <td class="entry cellrowborder" style="text-align:left;vertical-align:top;" headers="d22051e59 ">Update information with the use of the uid option will submit a request to update the particular item that has a unique identifier associated with it. <p class="p">When used with the <span class="keyword apiname">aggregated-awards</span> endpoint, this becomes the aggregated_awards_uid.</p>
+<p class="p">It updates the details of the student aggregated award with the unique identifier.</p>
+</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry cellrowborder" style="text-align:left;vertical-align:top;" headers="d22051e56 d22051e65 ">DELETE</td>
+
+            <td class="entry cellrowborder" style="text-align:left;vertical-align:top;" headers="d22051e56 d22051e68 ">:uid</td>
+
+            <td class="entry cellrowborder" style="text-align:left;vertical-align:top;" headers="d22051e59 ">The use of the uid option will submit a request to delete the particular item that has a unique identifier associated with it. <p class="p">When used with the <span class="keyword apiname">aggregated-awards</span> endpoint, this becomes the aggregated_awards_uid.</p>
+<p class="p">It removes the aggregated awards record with the specific unique identifier.</p>
+</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry cellrowborder" style="text-align:left;vertical-align:top;" headers="d22051e56 d22051e65 ">DELETE</td>
+
+            <td class="entry cellrowborder" style="text-align:left;vertical-align:top;" headers="d22051e56 d22051e68 ">:uid/course-specialisations/:course-specialisations-uid</td>
+
+            <td class="entry cellrowborder" style="text-align:left;vertical-align:top;" headers="d22051e59 ">The use of the uid option will submit a request to delete the particular item that has a unique identifier associated with it. <p class="p">When used with the <span class="keyword apiname">aggregated-awards</span> endpoint with the “course_specialisations” extension, the :uid becomes the aggregated_awards_uid.</p>
+<p class="p">It updates the details of a specific course specialisation created by the provider, noted by the aggregated awards identifier and the course specialisations unique identifier.</p>
+</td>
+
+          </tr>
+
+        </tbody>
+</table>
+</div>
+
+  </div>
+
+</div></div></section>
+<section id="t-320"><h3>early-exit-awards integration</h3><div class="content-locale-en-US content-locale-en"><div id="r_early_exit_awards_integration"><div class="body refbody"><p class="shortdesc">See the table for methods and options associated with the <span class="keyword apiname">early-exit-awards</span> endpoint.</p>
+
+    
+<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" class="table" frame="border" border="1" rules="all"><colgroup><col style="width:23.148148148148145%"><col style="width:24.305555555555554%"><col style="width:52.54629629629629%"></colgroup><thead class="thead" style="text-align:left;vertical-align:bottom;">
+          <tr class="row">
+            <th class="entry cellrowborder" colspan="2" style="text-align:center;vertical-align:bottom;" id="d16618e56">API endpoint</th>
+
+            <th class="entry cellrowborder" rowspan="2" style="text-align:center;vertical-align:bottom;" id="d16618e59">Description</th>
+
+          </tr>
+
+          <tr class="row">
+            <th class="entry cellrowborder" style="text-align:left;vertical-align:bottom;" id="d16618e65">Method</th>
+
+            <th class="entry cellrowborder" style="text-align:left;vertical-align:bottom;" id="d16618e68">Option</th>
+
+          </tr>
+
+        </thead>
+<tbody class="tbody">
+          <tr class="row">
+            <td class="entry cellrowborder" style="text-align:left;vertical-align:top;" headers="d16618e56 d16618e65 ">POST</td>
+
+            <td class="entry cellrowborder" style="text-align:left;vertical-align:top;" headers="d16618e56 d16618e68 ">^</td>
+
+            <td class="entry cellrowborder" style="text-align:left;vertical-align:top;" headers="d16618e59 ">Create an early exit award for one or more students who are not currently enrolled at the provider.</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry cellrowborder" style="text-align:left;vertical-align:top;" headers="d16618e56 d16618e65 ">GET</td>
+
+            <td class="entry cellrowborder" style="text-align:left;vertical-align:top;" headers="d16618e56 d16618e68 ">:uid</td>
+
+            <td class="entry cellrowborder" style="text-align:left;vertical-align:top;" headers="d16618e59 ">Request information with the use of the uid option will return data for a particular item that has a unique identifier associated with it. <p class="p">When used with the <span class="keyword apiname">early-exit-awards</span> endpoint, this becomes the early_exit_awards_uid.</p>
+<p class="p">It returns current information for the specific early exit award with the unique identifier.</p>
+</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry cellrowborder" style="text-align:left;vertical-align:top;" headers="d16618e56 d16618e65 ">PATCH</td>
+
+            <td class="entry cellrowborder" style="text-align:left;vertical-align:top;" headers="d16618e56 d16618e68 ">:uid</td>
+
+            <td class="entry cellrowborder" style="text-align:left;vertical-align:top;" headers="d16618e59 ">Update information with the use of the uid option will submit a request to update the particular item that has a unique identifier associated with it. <p class="p">When used with the <span class="keyword apiname">early-exit-awards</span> endpoint, the :uid becomes the early_exit_awards_uid.</p>
+<p class="p">It updates the details of the early exit award noted by the unique identifier.</p>
+</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry cellrowborder" style="text-align:left;vertical-align:top;" headers="d16618e56 d16618e65 ">DELETE</td>
+
+            <td class="entry cellrowborder" style="text-align:left;vertical-align:top;" headers="d16618e56 d16618e68 ">:uid</td>
+
+            <td class="entry cellrowborder" style="text-align:left;vertical-align:top;" headers="d16618e59 ">The use of the uid option will submit a request to delete the particular item that has a unique identifier associated with it. <p class="p">When used with the <span class="keyword apiname">early-exit-awards</span> endpoint, this removes the early exit award record with the specific unique identifier.</p>
+</td>
+
+          </tr>
+
+        </tbody>
+</table>
+</div>
+
+  </div>
+
+</div></div></section>
+<section id="t-330"><h3>help balances integration</h3><div class="content-locale-en-US content-locale-en"><div id="r_help_balances_integration"><div class="body refbody"><p class="shortdesc">See the table for methods and options associated with the <span class="keyword apiname">help balances</span> endpoint.</p>
+
+    
+<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" class="table" frame="border" border="1" rules="all"><colgroup><col style="width:23.148148148148145%"><col style="width:24.305555555555554%"><col style="width:52.54629629629629%"></colgroup><thead class="thead" style="text-align:left;vertical-align:bottom;">
+          <tr class="row">
+            <th class="entry cellrowborder" colspan="2" style="text-align:center;vertical-align:bottom;" id="d4434e56">API endpoint</th>
+
+            <th class="entry cellrowborder" rowspan="2" style="text-align:center;vertical-align:bottom;" id="d4434e59">Description</th>
+
+          </tr>
+
+          <tr class="row">
+            <th class="entry cellrowborder" style="text-align:left;vertical-align:bottom;" id="d4434e65">Method</th>
+
+            <th class="entry cellrowborder" style="text-align:left;vertical-align:bottom;" id="d4434e68">Option</th>
+
+          </tr>
+
+        </thead>
+<tbody class="tbody">
+          <tr class="row">
+            <td class="entry cellrowborder" style="text-align:left;vertical-align:top;" headers="d4434e56 d4434e65 ">GET</td>
+
+            <td class="entry cellrowborder" style="text-align:left;vertical-align:top;" headers="d4434e56 d4434e68 ">students/:uid</td>
+
+            <td class="entry cellrowborder" style="text-align:left;vertical-align:top;" headers="d4434e59 ">Request information with the use of the students-uid will return data for a particular item that has a unique identifier associated with it. <p class="p">When used with the “help-balances” endpoint and the “students” extension, this will return help-balances for the specific student noted by the student’s unique identifier.</p>
+</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry cellrowborder" style="text-align:left;vertical-align:top;" headers="d4434e56 d4434e65 ">GET</td>
+
+            <td class="entry cellrowborder" style="text-align:left;vertical-align:top;" headers="d4434e56 d4434e68 ">chessn/:chessn </td>
+
+            <td class="entry cellrowborder" style="text-align:left;vertical-align:top;" headers="d4434e59 ">Request information with the use of the CHESSN option will return data for a particular item that has a unique identifier associated with it. <p class="p"> When used with the “help-balances” endpoint and the “CHESSN” extension, this will return help-balances for the specific student noted by the student’s CHESSN.</p>
+</td>
+
+          </tr>
+
+        </tbody>
+</table>
+</div>
+
+  </div>
+
+</div></div></section>
+<section id="t-340"><h3>loans integration</h3><div class="content-locale-en-US content-locale-en"><div id="r_loans_integration"><div class="body refbody"><p class="shortdesc">See the table for methods and options associated with the <span class="keyword apiname">loans</span> endpoint.</p>
+
+    
+<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" class="table" frame="border" border="1" rules="all"><colgroup><col style="width:23.148148148148145%"><col style="width:24.305555555555554%"><col style="width:52.54629629629629%"></colgroup><thead class="thead" style="text-align:left;vertical-align:bottom;">
+          <tr class="row">
+            <th class="entry cellrowborder" colspan="2" style="text-align:center;vertical-align:bottom;" id="d2362e56">API endpoint</th>
+
+            <th class="entry cellrowborder" rowspan="2" style="text-align:center;vertical-align:bottom;" id="d2362e59">Description</th>
+
+          </tr>
+
+          <tr class="row">
+            <th class="entry cellrowborder" style="text-align:left;vertical-align:bottom;" id="d2362e65">Method</th>
+
+            <th class="entry cellrowborder" style="text-align:left;vertical-align:bottom;" id="d2362e68">Option</th>
+
+          </tr>
+
+        </thead>
+<tbody class="tbody">
+          <tr class="row">
+            <td class="entry cellrowborder" style="text-align:left;vertical-align:top;" headers="d2362e56 d2362e65 ">POST</td>
+
+            <td class="entry cellrowborder" style="text-align:left;vertical-align:top;" headers="d2362e56 d2362e68 ">os-help-loans</td>
+
+            <td class="entry cellrowborder" style="text-align:left;vertical-align:top;" headers="d2362e59 ">Register the details of a new OS-HELP student loan.</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry cellrowborder" style="text-align:left;vertical-align:top;" headers="d2362e56 d2362e65 ">POST</td>
+
+            <td class="entry cellrowborder" style="text-align:left;vertical-align:top;" headers="d2362e56 d2362e68 ">sa-help-loans </td>
+
+            <td class="entry cellrowborder" style="text-align:left;vertical-align:top;" headers="d2362e59 ">Register the details of a new SA-HELP student loan.</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry cellrowborder" style="text-align:left;vertical-align:top;" headers="d2362e56 d2362e65 ">GET</td>
+
+            <td class="entry cellrowborder" style="text-align:left;vertical-align:top;" headers="d2362e56 d2362e68 ">:uid </td>
+
+            <td class="entry cellrowborder" style="text-align:left;vertical-align:top;" headers="d2362e59 ">Request information with the use of the uid option will return data for a particular item that has a unique identifier associated with it. <p class="p">When used with the “loans” endpoint, this will be the student_loans_uid, and this will return current information of the specific student loan with the unique identifier.</p>
+</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry cellrowborder" style="text-align:left;vertical-align:top;" headers="d2362e56 d2362e65 ">GET</td>
+
+            <td class="entry cellrowborder" style="text-align:left;vertical-align:top;" headers="d2362e56 d2362e68 ">students-uid/:students-uid</td>
+
+            <td class="entry cellrowborder" style="text-align:left;vertical-align:top;" headers="d2362e59 ">Request information with the use of the uid option will return data for a particular item that has a unique identifier associated with it. <p class="p">When used with the “loans” endpoint and the “students-uid” extension, this will return all student loans for the specific student noted by the student’s unique identifier.</p>
+</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry cellrowborder" style="text-align:left;vertical-align:top;" headers="d2362e56 d2362e65 ">PATCH</td>
+
+            <td class="entry cellrowborder" style="text-align:left;vertical-align:top;" headers="d2362e56 d2362e68 ">os-help-loans/:uid</td>
+
+            <td class="entry cellrowborder" style="text-align:left;vertical-align:top;" headers="d2362e59 ">Update information with the use of the uid option will submit a request to update the particular item that has a unique identifier associated with it. <p class="p">When used with the “loans” endpoint, the :uid will be the student_loans_uid, and this will update the details of a specific student loan noted by the unique identifier.</p>
+</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry cellrowborder" style="text-align:left;vertical-align:top;" headers="d2362e56 d2362e65 ">PATCH</td>
+
+            <td class="entry cellrowborder" style="text-align:left;vertical-align:top;" headers="d2362e56 d2362e68 ">sa-help-loans/:uid</td>
+
+            <td class="entry cellrowborder" style="text-align:left;vertical-align:top;" headers="d2362e59 ">Update information with the use of the uid option will submit a request to update the particular item that has a unique identifier associated with it. <p class="p">When used with the “loans” endpoint with the “sa-help-loans” extension, the :uid will be the student_loans_uid, and this will update the details of the specific SA-HELP student loan noted by the unique identifier.</p>
+</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry cellrowborder" style="text-align:left;vertical-align:top;" headers="d2362e56 d2362e65 ">DELETE</td>
+
+            <td class="entry cellrowborder" style="text-align:left;vertical-align:top;" headers="d2362e56 d2362e68 ">:uid</td>
+
+            <td class="entry cellrowborder" style="text-align:left;vertical-align:top;" headers="d2362e59 ">The use of the uid option will submit a request to delete the particular item that has a unique identifier associated with it.</td>
+
+          </tr>
+
+        </tbody>
+</table>
+</div>
+
+  </div>
+
+</div></div></section>
+<section id="t-350"><h3>course-applications integration</h3><div class="content-locale-en-US content-locale-en"><div id="r_course_applications_integration"><div class="body refbody"><p class="shortdesc">See the table for methods and options associated with the <span class="keyword apiname">course-applications</span> endpoint.</p>
+
+    
+<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" class="table" frame="border" border="1" rules="all"><colgroup><col style="width:23.364485981308412%"><col style="width:27.102803738317753%"><col style="width:49.532710280373834%"></colgroup><thead class="thead" style="text-align:left;vertical-align:bottom;">
+          <tr class="row">
+            <th class="entry cellrowborder" colspan="2" style="text-align:center;vertical-align:bottom;" id="d9583e56">API endpoint</th>
+
+            <th class="entry cellrowborder" rowspan="2" style="text-align:center;vertical-align:bottom;" id="d9583e59">Description</th>
+
+          </tr>
+
+          <tr class="row">
+            <th class="entry cellrowborder" style="text-align:left;vertical-align:bottom;" id="d9583e65">Method</th>
+
+            <th class="entry cellrowborder" style="text-align:left;vertical-align:bottom;" id="d9583e68">Option</th>
+
+          </tr>
+
+        </thead>
+<tbody class="tbody">
+          <tr class="row">
+            <td class="entry cellrowborder" style="text-align:left;vertical-align:top;" headers="d9583e56 d9583e65 ">POST</td>
+
+            <td class="entry cellrowborder" style="text-align:left;vertical-align:top;" headers="d9583e56 d9583e68 ">^</td>
+
+            <td class="entry cellrowborder" style="text-align:left;vertical-align:top;" headers="d9583e59 ">Create a course application for one or more students.</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry cellrowborder" style="text-align:left;vertical-align:top;" headers="d9583e56 d9583e65 ">POST</td>
+
+            <td class="entry cellrowborder" style="text-align:left;vertical-align:top;" headers="d9583e56 d9583e68 ">:uid/offers</td>
+
+            <td class="entry cellrowborder" style="text-align:left;vertical-align:top;" headers="d9583e59 ">Create one or more course offers for a course application record.</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry cellrowborder" style="text-align:left;vertical-align:top;" headers="d9583e56 d9583e65 ">POST</td>
+
+            <td class="entry cellrowborder" style="text-align:left;vertical-align:top;" headers="d9583e56 d9583e68 ">:uid/preferences</td>
+
+            <td class="entry cellrowborder" style="text-align:left;vertical-align:top;" headers="d9583e59 ">Create one or more preferences for a course application record.</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry cellrowborder" style="text-align:left;vertical-align:top;" headers="d9583e56 d9583e65 ">POST</td>
+
+            <td class="entry cellrowborder" style="text-align:left;vertical-align:top;" headers="d9583e56 d9583e68 ">/offers/:uid/bases-for-admission</td>
+
+            <td class="entry cellrowborder" style="text-align:left;vertical-align:top;" headers="d9583e59 ">Create an extra basis for admission record for a course offer</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry cellrowborder" style="text-align:left;vertical-align:top;" headers="d9583e56 d9583e65 ">GET</td>
+
+            <td class="entry cellrowborder" style="text-align:left;vertical-align:top;" headers="d9583e56 d9583e68 ">:uid</td>
+
+            <td class="entry cellrowborder" style="text-align:left;vertical-align:top;" headers="d9583e59 ">
+              <p class="p">Request information with the use of the uid option will return data for a particular item that has a unique identifier associated with it.  </p>
+
+              <p class="p">When used with the course-applications endpoint, this becomes the course-applications-uid.</p>
+
+              <p class="p">It returns current information for the specific course application with the unique identifier.</p>
+
+            </td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry cellrowborder" style="text-align:left;vertical-align:top;" headers="d9583e56 d9583e65 ">GET</td>
+
+            <td class="entry cellrowborder" style="text-align:left;vertical-align:top;" headers="d9583e56 d9583e68 ">:uid/preferences</td>
+
+            <td class="entry cellrowborder" style="text-align:left;vertical-align:top;" headers="d9583e59 ">Request information with the use of the uid option will return data for a particular item that has a unique identifier associated with it.<p class="p">When used with the course-applications endpoint, with the preferences extension, the :uid will be the course-applications_uid.</p>
+<p class="p">It returns details of all active course preference records for a specific course application at the provider.</p>
+</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry cellrowborder" style="text-align:left;vertical-align:top;" headers="d9583e56 d9583e65 ">GET</td>
+
+            <td class="entry cellrowborder" style="text-align:left;vertical-align:top;" headers="d9583e56 d9583e68 ">/preferences/:preferences-uid</td>
+
+            <td class="entry cellrowborder" style="text-align:left;vertical-align:top;" headers="d9583e59 ">Request information with the use of the uid option will return data for a particular item that has a unique identifier associated with it.<p class="p">When used with the course-applications endpoint with the preferences extension, the :uid will be the preferences_uid.</p>
+<p class="p">It returns details of a specific course preferences records for a specific course application record at the provider.</p>
+</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry cellrowborder" style="text-align:left;vertical-align:top;" headers="d9583e56 d9583e65 ">GET</td>
+
+            <td class="entry cellrowborder" style="text-align:left;vertical-align:top;" headers="d9583e56 d9583e68 ">:uid/offers</td>
+
+            <td class="entry cellrowborder" style="text-align:left;vertical-align:top;" headers="d9583e59 ">Request information with the use of the uid option will return data for a particular item that has a unique identifier associated with it.<p class="p">When used with the course-applications endpoint with the offers extension, the :uid will be the course_applications_uid.</p>
+<p class="p">It returns details of all active course offer records for a specific course application at the provider.</p>
+</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry cellrowborder" style="text-align:left;vertical-align:top;" headers="d9583e56 d9583e65 ">GET</td>
+
+            <td class="entry cellrowborder" style="text-align:left;vertical-align:top;" headers="d9583e56 d9583e68 ">/offers/:offers-uid</td>
+
+            <td class="entry cellrowborder" style="text-align:left;vertical-align:top;" headers="d9583e59 ">Request information with the use of the uid option will return data for a particular item that has a unique identifier associated with it.<p class="p">When used with course-applications endpoint with the offers extension, the :uid will be the offer_uid.</p>
+<p class="p">It returns details of a specific course offer records for a specific course application record at the provider.</p>
+</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry cellrowborder" style="text-align:left;vertical-align:top;" headers="d9583e56 d9583e65 ">GET</td>
+
+            <td class="entry cellrowborder" style="text-align:left;vertical-align:top;" headers="d9583e56 d9583e68 ">/offers/bases-for-admission/:bases-for-admission-uid</td>
+
+            <td class="entry cellrowborder" style="text-align:left;vertical-align:top;" headers="d9583e59 ">Request details of a specific basis-for-admission record for a specific course application record at the provider.</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry cellrowborder" style="text-align:left;vertical-align:top;" headers="d9583e56 d9583e65 ">GET</td>
+
+            <td class="entry cellrowborder" style="text-align:left;vertical-align:top;" headers="d9583e56 d9583e68 ">/reporting-year/:year</td>
+
+            <td class="entry cellrowborder" style="text-align:left;vertical-align:top;" headers="d9583e59 ">Request details of all active course application records for a specific year at the provider</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry cellrowborder" style="text-align:left;vertical-align:top;" headers="d9583e56 d9583e65 ">PATCH</td>
+
+            <td class="entry cellrowborder" style="text-align:left;vertical-align:top;" headers="d9583e56 d9583e68 ">:uid</td>
+
+            <td class="entry cellrowborder" style="text-align:left;vertical-align:top;" headers="d9583e59 ">Update information with the use of the uid option will submit a request to update the particular item that has a unique identifier associated with it.<p class="p">When used with the course-applications endpoint, the :uid becomes course_applications_uid, and this option updates the details of the specific course application noted by the unique identifier.</p>
+</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry cellrowborder" style="text-align:left;vertical-align:top;" headers="d9583e56 d9583e65 ">PATCH</td>
+
+            <td class="entry cellrowborder" style="text-align:left;vertical-align:top;" headers="d9583e56 d9583e68 ">:uid/offers/:offers-uid</td>
+
+            <td class="entry cellrowborder" style="text-align:left;vertical-align:top;" headers="d9583e59 ">Update information with the use of the uid option willsubmit a request to update the particular item that has a unique identifier associated with it. <p class="p">When used with the course-applications endpoint with the offers extension, the :uid becomes course_applications_uid, and this option updates the details of the specific offer, noted by the course application identifier and the offer identifier.</p>
+</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry cellrowborder" style="text-align:left;vertical-align:top;" headers="d9583e56 d9583e65 ">PATCH</td>
+
+            <td class="entry cellrowborder" style="text-align:left;vertical-align:top;" headers="d9583e56 d9583e68 ">:uid/preferences/:preferences-uid</td>
+
+            <td class="entry cellrowborder" style="text-align:left;vertical-align:top;" headers="d9583e59 ">Update information with the use of the uid option submits a request to update the particular item that has a unique identifier associated with it. <p class="p">When used with the course-applications endpoint with the preferences extension, the :uid becomes course_applications_uid, and this option updates the details of the specific preference, noted by the course application identifier and the preference identifier.</p>
+</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry cellrowborder" style="text-align:left;vertical-align:top;" headers="d9583e56 d9583e65 ">DELETE</td>
+
+            <td class="entry cellrowborder" style="text-align:left;vertical-align:top;" headers="d9583e56 d9583e68 ">:uid</td>
+
+            <td class="entry cellrowborder" style="text-align:left;vertical-align:top;" headers="d9583e59 ">The use of the uid option submits a request to delete the particular item that has a unique identifier associated with it. <p class="p">When used with the course-applications endpoint, this option removes the specific course application record.</p>
+</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry cellrowborder" style="text-align:left;vertical-align:top;" headers="d9583e56 d9583e65 ">DELETE</td>
+
+            <td class="entry cellrowborder" style="text-align:left;vertical-align:top;" headers="d9583e56 d9583e68 ">:uid/preferences/:preferences-uid</td>
+
+            <td class="entry cellrowborder" style="text-align:left;vertical-align:top;" headers="d9583e59 ">The use of the uid option submits a request to delete the particular item that has a unique identifier associated with it. <p class="p">When used with the course-applications endpoint and preferences extension, this option removes a single course preference record for a specific course application record.</p>
+</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry cellrowborder" style="text-align:left;vertical-align:top;" headers="d9583e56 d9583e65 ">DELETE</td>
+
+            <td class="entry cellrowborder" style="text-align:left;vertical-align:top;" headers="d9583e56 d9583e68 ">:uid/offers/:offers-uid</td>
+
+            <td class="entry cellrowborder" style="text-align:left;vertical-align:top;" headers="d9583e59 ">The use of the uid option submits a request to delete the particular item that has a unique identifier associated with it. <p class="p">When used with the course-applications endpoint and offers extension, this option removes a single course offer record for a specific course application record.</p>
+</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry cellrowborder" style="text-align:left;vertical-align:top;" headers="d9583e56 d9583e65 ">DELETE</td>
+
+            <td class="entry cellrowborder" style="text-align:left;vertical-align:top;" headers="d9583e56 d9583e68 ">/offers/:offers-uid/bases-for-admission/bases-for-admission-uid</td>
+
+            <td class="entry cellrowborder" style="text-align:left;vertical-align:top;" headers="d9583e59 ">The use of the uid option submita a request to delete the particular item that has a unique identifier associated with it.<p class="p">When used with the course-applications endpoint and offers extension, this option remoevs one of the basis for admission records on an offer.</p>
+<div class="note"><span class="notetitle">Note:</span> Although there is a PATCH method for /offers/:offers-uid/bases-for-admission/bases-for-admission-uid, the primary key of the table for course offer bases for admission means that if you need to change a basis for admission, you must delete the incorrect record and post the correct record.</div>
+</td>
+
+          </tr>
+
+        </tbody>
+</table>
+</div>
+
+  </div>
+
+</div></div></section>
+<section id="t-360"><h3>notifications integration</h3><div class="content-locale-en-US content-locale-en"><div id="r_notifications_integration"><div class="body refbody"><p class="shortdesc">See the table for methods and options associated with the <span class="keyword apiname">notifications</span> endpoint.</p>
+
+    
+<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" class="table" frame="border" border="1" rules="all"><colgroup><col style="width:23.148148148148145%"><col style="width:24.305555555555554%"><col style="width:52.54629629629629%"></colgroup><thead class="thead" style="text-align:left;vertical-align:bottom;">
+          <tr class="row">
+            <th class="entry cellrowborder" colspan="2" style="text-align:center;vertical-align:bottom;" id="d6325e56">API endpoint</th>
+
+            <th class="entry cellrowborder" rowspan="2" style="text-align:center;vertical-align:bottom;" id="d6325e59">Description</th>
+
+          </tr>
+
+          <tr class="row">
+            <th class="entry cellrowborder" style="text-align:left;vertical-align:bottom;" id="d6325e65">Method</th>
+
+            <th class="entry cellrowborder" style="text-align:left;vertical-align:bottom;" id="d6325e68">Option</th>
+
+          </tr>
+
+        </thead>
+<tbody class="tbody">
+          <tr class="row">
+            <td class="entry cellrowborder" style="text-align:left;vertical-align:top;" headers="d6325e56 d6325e65 ">GET</td>
+
+            <td class="entry cellrowborder" style="text-align:left;vertical-align:top;" headers="d6325e56 d6325e68 ">^</td>
+
+            <td class="entry cellrowborder" style="text-align:left;vertical-align:top;" headers="d6325e59 ">Request a summary view of the list of current notifications for the provider.</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry cellrowborder" style="text-align:left;vertical-align:top;" headers="d6325e56 d6325e65 ">GET</td>
+
+            <td class="entry cellrowborder" style="text-align:left;vertical-align:top;" headers="d6325e56 d6325e68 ">:notification-id</td>
+
+            <td class="entry cellrowborder" style="text-align:left;vertical-align:top;" headers="d6325e59 ">Request all the details of a single notification for the provider.</td>
+
+          </tr>
+
+        </tbody>
+</table>
+</div>
+
+  </div>
+
+</div></div></section></main></body></html>

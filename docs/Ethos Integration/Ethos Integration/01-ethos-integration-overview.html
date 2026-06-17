@@ -1,0 +1,609 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Ethos Integration — Ethos Integration overview</title><style>body{font-family:-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;line-height:1.55;color:#1a1a1a;max-width:920px;margin:0 auto;padding:24px}header{border-bottom:2px solid #5a16d6;margin-bottom:8px}h1{color:#3a0ca3}h2,h3,h4,h5,h6{margin-top:1.6em}.crumb{color:#666;font-size:13px;margin:0}.meta{color:#888;font-size:12px}nav.toc{background:#f6f4fc;border:1px solid #e3dcf5;border-radius:8px;padding:12px 18px;margin:18px 0}nav.toc h2{margin:.2em 0}nav.toc ul{list-style:none;padding-left:0}nav.toc a{text-decoration:none;color:#5a16d6}section{margin:1.2em 0;padding-top:.4em}img{max-width:100%;height:auto}table{border-collapse:collapse}td,th{border:1px solid #ccc;padding:4px 8px}code,pre{background:#f4f4f4;border-radius:4px}pre{padding:10px;overflow:auto}</style></head><body><header><p class="crumb">Ethos Integration › Ethos Integration</p><h1>Ethos Integration — Ethos Integration overview</h1><p class="meta">Source: <a href="https://resources.elluciancloud.com/r/bundle/ethos_integration">https://resources.elluciancloud.com/r/bundle/ethos_integration</a> &middot; Retrieved 2026-06-17</p></header><nav class="toc"><h2>Contents</h2><ul><li style="margin-left:0px"><a href="#t-10">Ethos Integration overview</a></li><li style="margin-left:16px"><a href="#t-20">Ethos Integration concepts</a></li><li style="margin-left:32px"><a href="#t-30">Ethos Integration components and terminology</a></li><li style="margin-left:48px"><a href="#t-40">What is Ellucian Ethos Integration?</a></li><li style="margin-left:48px"><a href="#t-50">What are the Ellucian Ethos Integration participation guidelines?</a></li><li style="margin-left:48px"><a href="#t-60">What are RESTful APIs?</a></li><li style="margin-left:48px"><a href="#t-70">What is the Ellucian Ethos Data Model?</a></li><li style="margin-left:48px"><a href="#t-80">What are the roles and responsibilities for authoritative systems supporting the Ellucian Ethos Data Model?</a></li><li style="margin-left:48px"><a href="#t-90">What are the roles and responsibilities for non-authoritative systems supporting the Ellucian Ethos Data Model?</a></li><li style="margin-left:48px"><a href="#t-100">What is an API key?</a></li><li style="margin-left:48px"><a href="#t-110">What is an access token?</a></li><li style="margin-left:32px"><a href="#t-120">Tenants, environments, and applications</a></li><li style="margin-left:32px"><a href="#t-130">Data exchange methods in Ethos Integration</a></li><li style="margin-left:48px"><a href="#t-140">Publish and subscribe</a></li><li style="margin-left:48px"><a href="#t-150">Proxy API requests</a></li><li style="margin-left:64px"><a href="#t-160">Example: Proxy API request</a></li><li style="margin-left:48px"><a href="#t-170">GraphQL requests</a></li><li style="margin-left:32px"><a href="#t-180">Responsibilities of participating applications</a></li><li style="margin-left:32px"><a href="#t-190">Data security</a></li><li style="margin-left:48px"><a href="#t-200">Data sovereignty</a></li><li style="margin-left:48px"><a href="#t-210">Communication hub</a></li><li style="margin-left:48px"><a href="#t-220">API key authentication</a></li><li style="margin-left:48px"><a href="#t-230">Privacy controls</a></li><li style="margin-left:48px"><a href="#t-240">Shared responsibility model</a></li><li style="margin-left:64px"><a href="#t-250">Ellucian</a></li><li style="margin-left:64px"><a href="#t-260">The user</a></li><li style="margin-left:32px"><a href="#t-270">Support for multiple ownership of resources</a></li><li style="margin-left:48px"><a href="#t-280">Multiple owner use cases</a></li><li style="margin-left:48px"><a href="#t-290">Ethos Integration capabilities that support multiple ownership of resources</a></li><li style="margin-left:48px"><a href="#t-300">Example: Banner MEP and Campus Card System</a></li><li style="margin-left:32px"><a href="#t-310">Download end user agreement</a></li><li style="margin-left:16px"><a href="#t-320">Ethos Integration domains</a></li></ul></nav><main><section id="t-10"><h2>Ethos Integration overview</h2><div class="content-locale-en-US content-locale-en"><div id="c_ethos_integration_overview"><div class="body conbody"><p class="shortdesc"><span class="keyword">Ellucian Ethos Integration</span> acts as a data conduit between applications, allowing them to participate in a messaging enterprise that is configurable by each individual institution.</p>
+
+    <p class="p">Based on open standards and a microservices architecture, <span class="keyword">Ellucian Ethos Integration</span> allows applications to integrate in real-time regardless of whether they are deployed on premises or in the cloud. </p>
+
+    <br><img class="image" alt="Sample hub and spoke diagram of Ellucian Ethos Integration" data-ft-asset-display-name="i-hub_concept.png" src="images/01-ethos-integration-overview-1.png" data-ft-resource-id="KEHXOPyGUFMKElocamnIVw-pn5inywLRPHrt3dIdaUWYw"><br>
+  </div>
+
+</div></div></section>
+<section id="t-20"><h3>Ethos Integration concepts</h3></section>
+<section id="t-30"><h4>Ethos Integration components and terminology</h4></section>
+<section id="t-40"><h5>What is Ellucian Ethos Integration?</h5><div class="content-locale-en-US content-locale-en"><div id="c_overview_getting_started"><div class="body conbody"><p class="shortdesc">The cloud-native <span class="keyword">Ellucian Ethos Integration</span> leverages Amazon Web Services. You can use it to provide a single <dfn class="term">hub</dfn> that interacts with RESTful APIs, and to subscribe and publish <span class="keyword">Ellucian Ethos Data Model</span> data changes. </p>
+
+    <div class="p"><span class="keyword">Ellucian Ethos Integration</span> uses the following concepts:<ul class="ul"> <li class="li"> <a class="xref ft-external-link" href="http://aws.amazon.com/" target="_blank" rel="noopener">Amazon Web Services</a> </li>
+ <li class="li"> <a class="xref ft-external-link" href="https://github.com/restfulapi/api-strategy" target="_blank" rel="noopener">RESTful APIs</a> </li>
+ <li class="li"><span class="xref ft-internal-link" title="The Ellucian Ethos Data Model is a collection of key concepts within the domain of Higher Education that unifies information across all systems at an institution in a single source of truth." data-ft-warning="excluded-from-rendering" data-mapid="pn5inywLRPHrt3dIdaUWYw" data-tocid="6uebjj9sVq6_CTF5qtnFpw">Ellucian Ethos Data Model</span> data changes</li>
+ </ul>
+</div>
+
+  </div>
+
+</div></div></section>
+<section id="t-50"><h5>What are the Ellucian Ethos Integration participation guidelines?</h5><div class="content-locale-en-US content-locale-en"><div id="c_define_applications"><div class="body conbody"><p class="shortdesc"><span class="keyword">Ellucian Ethos Integration</span> supports two system application messaging flows. There are authoritative and non-authoritative messaging flows.</p>
+
+    <p class="p"><dfn class="term">Publish and Subscribe</dfn> messaging involves publishing changed entities to <span class="keyword">Ellucian Ethos Integration</span>, which is responsible for delivering a change notification to a queue for each configured subscriber of the resource that was changed.</p>
+
+    <p class="p"><dfn class="term">Request and Reply</dfn> messaging is a means by which applications can make requests of resources and <span class="keyword">Ellucian Ethos Integration</span> can proxy those requests to an application that is authoritative for the resource.</p>
+
+  </div>
+
+</div></div></section>
+<section id="t-60"><h5>What are RESTful APIs?</h5><div class="content-locale-en-US content-locale-en"><div id="c_define_restful"><div class="body conbody"><p class="shortdesc"><span class="keyword">Ellucian Ethos Integration</span> uses a set of RESTful APIs.</p>
+
+    <p class="p">An API is a specification used as an interface by software components to communicate with each other. REpresentational State Transfer (REST) is a set of principles that define how web standards, such as HTTP and URI, are to be used. APIs that adopt REST principles are stateless and resource-orientated, expose a uniform interface, and use hypermedia as the engine of application state. The client interacting with an application is provided with appropriate options at each step within a work flow.</p>
+
+    <div class="p">RESTful APIs have the following characteristics:<ul class="ul"> <li class="li">They expose resources to represent important concepts and objects.</li>
+ <li class="li">They ensure that each resource is uniquely addressable by way of a URI, so that clients can interact with them over HTTP.</li>
+ <li class="li">They expose one or more representation (for example, using JSON or XML) of those resources.</li>
+ <li class="li">They provide a consistent, standard interface based on standard HTTP methods.</li>
+
+      <li class="li">They ensure that interaction with the API is stateless in nature to provide flexibility in deployment to promote scalability.</li>
+ <li class="li">They use hypermedia as the engine of application state.</li>
+ </ul>
+</div>
+
+  </div>
+
+</div></div></section>
+<section id="t-70"><h5>What is the Ellucian Ethos Data Model?</h5><div class="content-locale-en-US content-locale-en"><div id="c_what_is_hedm"><div class="body conbody"><p class="shortdesc">The <span class="keyword">Ellucian Ethos Data Model</span> is a collection of key concepts within the domain of Higher Education that unifies information across all systems at an institution in a single source of truth.</p>
+
+    <p class="p">Each concept is a separate entity in the model, and introduces a common vocabulary to be used across business and technical audiences, and enable integration between systems. The model is expressed in the form of JSON Schema documents. <span class="keyword">Ellucian</span> solutions and third-party certified partner applications are frequently developed to support the <span class="keyword">Ellucian Ethos Data Model</span> for system integration purposes.</p>
+
+  </div>
+
+<div class="related-links">
+<div class="linklist relinfo relconcepts" xml:lang="en-US" lang="en-US"><strong>Related concepts</strong><br>
+<ul class="linklist">
+<li class="linklist"><span class="link ft-internal-xlink" data-ft-warning="excluded-from-rendering" data-clusterid="id_ethos/ethos_integration/c_about_eedm">About the Ellucian Ethos Data Model</span></li></ul></div>
+</div></div></div></section>
+<section id="t-80"><h5>What are the roles and responsibilities for authoritative systems supporting the Ellucian Ethos Data Model?</h5><div class="content-locale-en-US content-locale-en"><div id="c_roles_authoritative_systems"><div class="body conbody"><p class="shortdesc">Authoritative systems must implement <span class="keyword">Ellucian Ethos Data Model</span> RESTful APIs using the following standards.</p>
+
+    <ul class="ul">
+      <li class="li"><span class="keyword">Ellucian Ethos Data Model</span> APIs require support for GET, PUT, POST, DELETE, and PATCH operations.</li>
+
+      <li class="li">Authoritative systems must support all properties.<div class="note"><span class="notetitle">Note:</span> This includes optional properties that may not currently exist in the authoritative source.</div>
+</li>
+
+      <li class="li">The authoritative source must be a good <span class="keyword">Ellucian Ethos Data Model</span> citizen and support storing and publishing all <span class="keyword">Ellucian Ethos Data Model</span> data.</li>
+
+      <li class="li">Authoritative systems must publish <span class="keyword">Ellucian Ethos Data Model</span> data changes to <span class="keyword">Ellucian Ethos Integration</span> regardless of how authoritative source data changes occur.</li>
+
+    </ul>
+
+  </div>
+
+</div></div></section>
+<section id="t-90"><h5>What are the roles and responsibilities for non-authoritative systems supporting the Ellucian Ethos Data Model?</h5><div class="content-locale-en-US content-locale-en"><div id="c_roles_responsibilities_nonauthoritative"><div class="body conbody"><p class="shortdesc">Non-authoritative systems can subscribe to <span class="keyword">Ellucian Ethos Data Model</span> data changes.</p>
+
+    <p class="p">Non-authoritative systems should never publish an <span class="keyword">Ellucian Ethos Data Model</span> data change to <span class="keyword">Ellucian Ethos Integration</span>. because the application is not authoritative for this data, it should not publish a data change that could be rejected by the authoritative system and cause data inconsistency for all subscribing applications. Non-authoritative systems must invoke <span class="keyword">Ellucian Ethos Data Model</span> RESTful APIs through the <span class="keyword">Ellucian Ethos Integration</span> Proxy API end point to manipulate <span class="keyword">Ellucian Ethos Data Model</span> data. This is a synchronous API call that is fulfilled by the authoritative system. The response will indicate if the API operation succeeded or failed. Non-authoritative systems should not publicly expose <span class="keyword">Ellucian Ethos Data Model</span> RESTful APIs because they are not the authoritative systems. They may implement <span class="keyword">Ellucian Ethos Data Model</span> APIs for their internal use only.</p>
+
+  </div>
+
+</div></div></section>
+<section id="t-100"><h5>What is an API key?</h5><div class="content-locale-en-US content-locale-en"><div id="c_define_api_key"><div class="body conbody"><p class="shortdesc">An <dfn class="term">API key</dfn> is a code passed in by the programs calling an API to identify the calling program, its developer, or its user to the website. </p>
+
+    <p class="p">API keys track and control API details and use. An API key can act as a unique identifier and a secret token for authentication, and generally has a set of access rights on the API associated with it. <span class="keyword">Ellucian Ethos Integration</span> services, such as publish, subscribe, or proxy, require a valid access token, which can be attained only if the application has a valid API key. An API key is automatically generated for each application configured in <span class="keyword">Ellucian Ethos Integration</span>.</p>
+
+  </div>
+
+</div></div></section>
+<section id="t-110"><h5>What is an access token?</h5><div class="content-locale-en-US content-locale-en"><div id="c_access_token"><div class="body conbody"><p class="shortdesc">An <dfn class="term">access token</dfn> is an object encapsulating the security identity of an application that is connected to <span class="keyword">Ellucian Ethos Integration</span>. Access tokens store tamper-proof information about the application and are used by <span class="keyword">Ellucian Ethos Integration</span> services to make security decisions.</p>
+
+    <p class="p">For an application to use <span class="keyword">Ellucian Ethos Integration</span> services, the application must have a valid access token. An access token is returned by the Authentication service upon validation of the application’s API key, which the application provides when invoking the Authentication service. </p>
+
+    <p class="p">Access tokens include an expiration datetime, which is the time of creation plus 5 minutes. When an access token expires, the application must invoke the token service again with its API key to get a new access token.</p>
+
+  </div>
+
+</div></div></section>
+<section id="t-120"><h4>Tenants, environments, and applications</h4><div class="content-locale-en-US content-locale-en"><div id="c_tenant_env_app"><div class="body conbody"><p class="shortdesc">The <span class="keyword">Ethos Integration</span> tenant for your institution contains multiple <span class="keyword">Ethos Integration</span> environments (Test, Production, and potentially others), and each environment contains multiple <span class="keyword">Ethos Integration</span> applications.</p>
+
+    <div class="section"><h2 class="title sectiontitle">Tenants</h2>
+      
+      <p class="p">Within <span class="keyword">Ethos Integration</span>, each institution has its own tenant. Multi-campus institutions might have multiple tenants, one for each campus.</p>
+
+    </div>
+
+    <div class="section"><h2 class="title sectiontitle">Environments</h2>
+      
+      <p class="p">Each tenant initially contains two <span class="keyword">Ethos Integration</span> environments: Test and Production. You can license additional environments if needed to support your <span class="keyword">Ethos Integration</span> implementation. Environments are independent - data exchanged between applications is contained within a single environment.</p>
+
+    </div>
+
+    <div class="section"><h2 class="title sectiontitle">Applications</h2>
+      
+      <p class="p">Within an environment, you create an <span class="keyword">Ethos Integration</span> application for each software system that you want to share data through <span class="keyword">Ethos Integration</span>. For example, you would likely create an application for your SIS (Banner or Colleague), and additional applications for other Ellucian products, third-party products, and your own custom applications. There is no limit on the number of applications within an environment.</p>
+
+    </div>
+
+    <div class="section">
+      <br><img class="image" alt="Tenants, environments, and applications" data-ft-asset-display-name="tenant_env_app.png" src="images/01-ethos-integration-overview-2.png" data-ft-resource-id="GO1GW8hBOAYBYI_dtfcZNQ-pn5inywLRPHrt3dIdaUWYw"><br>
+    </div>
+
+  </div>
+
+</div></div></section>
+<section id="t-130"><h4>Data exchange methods in Ethos Integration</h4><div class="content-locale-en-US content-locale-en"><div id="c_data_exchange_methods"><div class="body conbody"><p class="shortdesc"><span class="keyword">Ethos Integration</span> supports the exchange of data through publish/subscribe, proxy API requests, and GraphQL requests.</p>
+</div>
+
+</div></div></section>
+<section id="t-140"><h5>Publish and subscribe</h5><div class="content-locale-en-US content-locale-en"><div id="c_publish_subscribe"><div class="body conbody"><p class="shortdesc">With publish/subscribe, one application publishes change notifications to <span class="keyword">Ethos Integration</span> and other applications retrieve and process those changes.</p>
+
+    <p class="p">An application that owns an Ethos resource (the authoritative application) is responsible for publishing change notifications for changes related to that resource to <span class="keyword">Ethos Integration</span>. For example, an application that owns the <code class="ph codeph">persons</code> resource (typically Banner or Colleague) publishes changes to person information. Other applications can subscribe to those changes. <span class="keyword">Ethos Integration</span> queues the change notifications for subscribing applications, and the subscribing applications retrieve and process the change notifications that have been queued for them.</p>
+
+    <div class="section"><h2 class="title sectiontitle">Change notifications</h2>
+      
+      <p class="p">These are resource based messages that give the current state of a resource at the time a change occurred. This is what you get when you subscribe to changes for a specific resource that an authoritative application owns.</p>
+
+      <p class="p">A change notification does not contain information about what specifically changed in the source system (before and after values). It tells you what happened to the resource (operation) and what data the resource contains (content) at the time of the change.</p>
+
+    </div>
+
+    <div class="section"><h2 class="title sectiontitle">Business events</h2>
+      
+      <p class="p">These are event-based messages that show specifically what changed in a source system as a result of some event, such as an address change for a person. A business-event is not tied to a resource that is exposed through an API.</p>
+
+      <p class="p">The content of a business-event does not have a full representation of any data model. It is more based around the event that occurred in the source system. The content contains details about what exactly was changed.</p>
+
+      <p class="p">See <span class="xref ft-internal-link" title="Applications that are configured as subscribers to resources must request the messages that Ellucian Ethos Integration stores for them." data-ft-warning="excluded-from-rendering" data-mapid="pn5inywLRPHrt3dIdaUWYw" data-tocid="ijRNCeJvv6lyyfv7XnEkMA">Retrieve messages</span>.</p>
+
+    </div>
+
+    <div class="section"><h2 class="title sectiontitle">Example: Publish and subscribe</h2>
+      
+      <br><img class="image" width="462" alt="Sample subscribe and publish messaging for Ellucian Ethos Integration using the Publisher service and Message Queue service" data-ft-asset-display-name="flw_pubsub.png" style="aspect-ratio: 462/509;" data-ft-resize-ratio="0.6" src="images/01-ethos-integration-overview-3.png" data-ft-resource-id="CZLCLzhMYHGTjnVw0GB4gg-pn5inywLRPHrt3dIdaUWYw"><br>
+      <ol class="ol">
+        <li class="li">The Student Information System authenticates with <span class="keyword">Ellucian Ethos Integration</span> and receives a session token response.</li>
+
+        <li class="li">The Student Information System authenticates using the session token to publish change notifications to <span class="keyword">Ellucian Ethos Integration</span>.</li>
+
+        <li class="li"><span class="keyword">Ellucian Ethos Integration</span> queues the message for interested subscribers.</li>
+
+        <li class="li">Ellucian CRM Advise and Ellucian Elevate authenticate with <span class="keyword">Ellucian Ethos Integration</span> and receive a session token response.</li>
+
+        <li class="li">Ellucian CRM Advise and Ellucian Elevate invoke the Message Queue service to retrieve change notifications.</li>
+
+      </ol>
+
+    </div>
+
+  </div>
+
+</div></div></section>
+<section id="t-150"><h5>Proxy API requests</h5><div class="content-locale-en-US content-locale-en"><div id="c_proxy_services"><div class="body conbody"><p class="shortdesc">With proxy API requests, one application can read or modify data in an authoritative application by making a call through <span class="keyword">Ethos Integration</span> to the Ethos APIs of the authoritative application. </p>
+
+    
+    <p class="p">The Proxy service provides a layer of indirection so that non-authoritative applications do not need to know which application is authoritative for the resource. Making requests of resources through the Proxy service is similar to making direct requests without <span class="keyword">Ellucian Ethos Integration</span>. The payload of a request is a properly formatted <span class="keyword">Ellucian Ethos Data Model</span> entity (or defined custom resource). The same methods are used to create (POST), retrieve (GET), update (PUT), and delete (DELETE) resources, with the following differences. </p>
+
+    <div class="section"><h2 class="title sectiontitle">Credentials</h2>
+      
+      <p class="p">While <span class="keyword">Ellucian Ethos Integration</span> prevents applications from having to know what application is authoritative for a given resource, <span class="keyword">Ellucian Ethos Integration</span> administrators must know to configure <span class="keyword">Ellucian Ethos Integration</span> correctly. </p>
+
+      <div class="p">Proper configuration is based on the following principles:<ul class="ul"> <li class="li">In addition to publishing change requests for resources for which they are authoritative, authoritative applications are expected to expose APIs for CRUD operations – Create, Read, Update, Delete – on those resources. </li>
+ <li class="li">APIs exposed by authoritative applications are governed by the applications’ security policies; each application is responsible for securing access to its APIs.</li>
+
+        <li class="li">HTTP basic auth is the lowest common denominator for authenticating requests from client applications. Consequently, service requests are expected to include an established set of credentials.</li>
+ <li class="li">To eliminate the need for applications to store credentials locally for every application whose resources need to be invoked, maintenance of application credentials has been centralized in <span class="keyword">Ellucian Ethos Integration</span>. Each application record can store credentials for the applications whose resources need to be invoked. </li>
+ </ul>
+</div>
+
+    </div>
+
+    <div class="section"><h2 class="title sectiontitle">Access Token</h2>
+      
+      <p class="p">Invoking resources through <span class="keyword">Ellucian Ethos Integration</span> requires the inclusion of an access token in the Authorization header. </p>
+
+    </div>
+
+    <div class="section"><h2 class="title sectiontitle">Use Cases</h2>
+      
+      <div class="p">Example <span class="keyword">Ellucian Ethos Data Model</span> Proxy API Service use cases include:<ul class="ul"> <li class="li">Create client application data - A client application creates a new grade, but is not authoritative for grades. It issues a <span class="keyword cmdname">POST</span> request against the Proxy API Service, including a null ID in the <span class="keyword">Ellucian Ethos Data Model</span> object. The Proxy API identifies the authoritative system for grades and routes the request there. The authoritative system updates its data, assigns an ID (GUID), and issues a response to the Proxy API Service.</li>
+
+        <li class="li">Update client application data - A client application modifies data for a grade, but is not authoritative for grades. It issues a <span class="keyword cmdname">PUT</span> request against the Proxy API Service, which identifies the system that is authoritative for grades. It routes the request to that system, which updates its data and responds to the Proxy AP Service, and routes the response to the client application. The authoritative system is then responsible for publishing the change to <span class="keyword">Ellucian Ethos Integration</span> by way of a change notification.</li>
+ <li class="li">Request client application data - A client application needs to know more information about a person. The client application issues a <span class="keyword cmdname">GET</span> request for the person based on an <span class="keyword">Ellucian Ethos Data Model</span> ID on the Proxy API Service. The Proxy API Service identifies the authoritative system for the person and routes the request there. The authoritative system builds the <span class="keyword">Ellucian Ethos Data Model</span> object and returns it in the response.</li>
+ </ul>
+</div>
+
+    </div>
+
+  </div>
+
+</div></div></section>
+<section id="t-160"><h6>Example: Proxy API request</h6><div class="content-locale-en-US content-locale-en"><div id="c_proxy_request_example"><div class="body conbody"><p class="shortdesc">The following is an example of how the <span class="keyword">Ellucian Ethos Integration</span> Proxy API service facilitates request/reply messaging between non-authoritative client applications and authoritative systems.</p>
+
+    <br><img class="image" width="451" alt="Sample request and reply messaging for Ellucian Ethos Integration using the Proxy API service" data-ft-asset-display-name="flw_proxy.png" style="aspect-ratio: 451/509;" data-ft-resize-ratio="0.59973407" src="images/01-ethos-integration-overview-4.png" data-ft-resource-id="PY25mMJ7GoLA0G528hTCMQ-pn5inywLRPHrt3dIdaUWYw"><br>
+    <ol class="ol">
+      <li class="li">Ellucian Elevate authenticates with <span class="keyword">Ellucian Ethos Integration</span> and receives a session token response.</li>
+
+      <li class="li">Ellucian Elevate uses the session token to call the Proxy API service and requests information.</li>
+
+      <li class="li"><span class="keyword">Ellucian Ethos Integration</span> determines the authoritative application is the Student Information System and routes the request to the Student Information System’s RESTful API.</li>
+
+      <li class="li">The Student Information System’s API receives the request, processes it, and responds.</li>
+
+      <li class="li"><span class="keyword">Ellucian Ethos Integration</span> returns the response to Ellucian Elevate.</li>
+
+    </ol>
+
+  </div>
+
+</div></div></section>
+<section id="t-170"><h5>GraphQL requests</h5><div class="content-locale-en-US content-locale-en"><div id="c_graphql_requests"><div class="body conbody"><p class="shortdesc">With GraphQL requests, data from the authoritative application is loaded into <span class="keyword">Ellucian Ethos Data Access</span>, and other applications can read that data by making GraphQL requests through <span class="keyword">Ethos Integration</span> to Data Access.</p>
+
+    <p class="p">These requests use GraphQL, an open-source language and tool for querying data.</p>
+
+    <div class="p">To retrieve data through <span class="keyword">Ethos Integration</span>, you can use either GraphQL requests to Data Access or proxy API requests to the Ethos APIs of the authoritative source. In deciding which of these methods to use in your own applications, consider the following:<ul class="ul">
+      <li class="li">The key benefit of GraphQL requests is improved performance. GraphQL requests can retrieve, in one request, data that would require multiple proxy API requests to the Ethos APIs. For example, consider retrieving a section roster. For a proxy API call to get all students in a section, you would need to write code that calls multiple Ethos APIs such as sections, section-registrations, and persons. With GraphQL, you can design a query that is executed one time, and data is returned from a highly-performant cloud data lake (Data Access).</li>
+
+      <li class="li">GraphQL requests require setting up the authoritative source (such as Banner or Colleague) to load the required data into Data Access. </li>
+ <li class="li">GraphQL requests support only reading data. Any requests to modify data will continue to use proxy API calls.</li>
+ </ul>
+</div>
+
+    <p class="p">GraphQL requests provide the same data security capabilities as proxy API requests. When you set up an application to make GraphQL requests to Data Access, you specify the Ethos resources to which that application has access. You can also restrict specific properties. For example, you could specify that an application can access data in the persons resource, but deny access to social security number.</p>
+
+    <p class="p">See <span class="xref ft-internal-link" title="An application can make GraphQL requests using the Ethos Integration Proxy API." data-ft-warning="excluded-from-rendering" data-mapid="pn5inywLRPHrt3dIdaUWYw" data-tocid="ae0ohw2PeKp7lXTI73jhBg">Make GraphQL requests to Data Access</span>.</p>
+
+  </div>
+
+</div></div></section>
+<section id="t-180"><h4>Responsibilities of participating applications</h4><div class="content-locale-en-US content-locale-en"><div id="c_participating_applications"><div class="body conbody"><p class="shortdesc">Applications that participate in <span class="keyword">Ethos Integration</span> have specific responsibilities.</p>
+
+    <div class="section"><h2 class="title sectiontitle">Responsibilities of an authoritative source application</h2>
+      
+      <p class="p">Authoritative applications must both publish data changes and respond to requests for data.</p>
+
+      <p class="p">To support the publish/subscribe workflow, authoritative applications are responsible for publishing <dfn class="term">change notifications</dfn> to <span class="keyword">Ethos Integration</span> for resources for which they are authoritative. They always publish a change notification containing the most recent version of the <span class="keyword">Ellucian Ethos Data Model</span></p>
+
+      <p class="p">To support requests for data, authoritative applications must respond to request and reply messaging through the <span class="keyword">Ethos Integration</span> Proxy API Service by way of their RESTful APIs. They are responsible for exposing both the most recent version and prior supported versions of <span class="keyword">Ellucian Ethos Data Model</span> resources through their RESTful APIs.</p>
+
+    </div>
+
+    <div class="section"><h2 class="title sectiontitle">Responsibilities of a subscribing application</h2>
+      
+      <p class="p">Subscribing applications are not authoritative for a particular resource, although they may be authoritative for other resources. To keep the subscribing application’s data store synchronized with the application that is authoritative for the resource, subscribing applications are responsible for retrieving and processing change notifications that have been queued for them. They retrieve change notifications through the <span class="keyword">Ellucian Ethos Integration</span> Message Queue service.</p>
+
+      <p class="p">As non-authoritative systems – at least for specific resources – subscribing applications additionally might request specific data by issuing Create, Read, Update, or Delete (CRUD) requests on resources through the <span class="keyword">Ethos Integration</span> Proxy API service, or Read requests to <span class="keyword">Ellucian Ethos Data Access</span> through the GraphQL service. </p>
+
+      
+    </div>
+
+  </div>
+
+</div></div></section>
+<section id="t-190"><h4>Data security</h4><div class="content-locale-en-US content-locale-en"><div id="c_data_security"><div class="body conbody"><p class="shortdesc">Protecting sensitive data is imperative for modern enterprises, as attackers find increasingly innovative ways to compromise systems and steal data.</p>
+
+    <p class="p"><span class="keyword">Ellucian</span> provides technology and features that are designed to keep your data secure. Encryption plays a major role in data protection, securing data both in transit and at rest.</p>
+
+  </div>
+
+</div></div></section>
+<section id="t-200"><h5>Data sovereignty</h5><div class="content-locale-en-US content-locale-en"><div id="c_data_sovereignty"><div class="body conbody"><p class="shortdesc">To help comply with varying data sovereignty requirements from region to region, <span class="keyword">Ellucian</span> provides a cloud solution in a number of geographic regions.</p>
+
+    <p class="p">These regions include:</p>
+
+    <ul class="ul">
+      <li class="li">United States</li>
+
+      <li class="li">Canada</li>
+
+      <li class="li">Europe</li>
+
+      <li class="li">Asia-Pacific</li>
+
+      <li class="li">Middle East</li>
+
+    </ul>
+
+    <p class="p">Refer to <span class="xref ft-internal-link" title="Some procedures require that you specify the domain for Ethos Integration in the Ellucian cloud. Use the domain for your region." data-ft-warning="excluded-from-rendering" data-mapid="pn5inywLRPHrt3dIdaUWYw" data-tocid="JbUlWZ4A5fEWKmYBdsZr9w">Ethos Integration domains</span> for information regarding calls to the <span class="ph">Ethos Integration</span> APIs to include the region-specific domain.</p>
+
+  </div>
+
+</div></div></section>
+<section id="t-210"><h5>Communication hub</h5><div class="content-locale-en-US content-locale-en"><div id="c_communication_hub"><div class="body conbody"><p class="shortdesc"><span class="ph">Ethos Integration</span> is the communication hub that allows central access to facilitate communication with many different systems.</p>
+
+    <p class="p"><span class="ph">Ethos Integration</span> defines which applications are authoritative for resources and applications that subscribe to <span class="ph">Ellucian Ethos Data Model</span> changes.</p>
+
+    <p class="p">Applications that want to invoke Ethos APIs require a credential for <span class="ph">Ethos Integration</span> to authenticate to the authoritative system.</p>
+
+    <p class="p"><span class="ph">Ethos Integration</span> provides applications an API key, which is used to authenticate to <span class="ph">Ethos Integration</span>.</p>
+
+    <p class="p"><span class="ph">Ethos Integration</span> is in control of defining what information applications are allowed to access. The administrator who configures <span class="ph">Ethos Integration</span> on behalf of the authoritative system needs to understand the security controls for the authoritative system to be able to set up those applications in a secure manner.</p>
+
+  </div>
+
+</div></div></section>
+<section id="t-220"><h5>API key authentication</h5><div class="content-locale-en-US content-locale-en"><div id="c_api_key_authentication"><div class="body conbody"><p class="shortdesc"><span class="ph">Ethos Integration</span> generates an API key for each application when application definitions are created on the <span class="ph">Ethos Integration</span> Admin console. These API keys are used to uniquely identify each application in the given tenant environment.</p>
+
+    <p class="p">Each integrated application uses its API key to authenticate with <span class="ph">Ethos Integration</span>, which returns an access token in JSON Web Token (JWT) format required to invoke APIs. Refer to <span class="xref ft-internal-link" title="Applications that interact with Ellucian Ethos Integration services – Publisher, Message Queue, Proxy, Error Reporting – require a valid access token." data-ft-warning="excluded-from-rendering" data-mapid="pn5inywLRPHrt3dIdaUWYw" data-tocid="jL87OKDU8zD9IK9HjrfRpQ">Invoke the Authentication service to get an access token</span>.</p>
+
+    <p class="p"><span class="keyword">Ellucian</span> recommends that you set up an API key expiration policy, just as you have a password expiration policy. If an API key is potentially exposed, shared, or stolen, you should generate a new API key.</p>
+
+  </div>
+
+</div></div></section>
+<section id="t-230"><h5>Privacy controls</h5><div class="content-locale-en-US content-locale-en"><div id="c_privacy_controls"><div class="body conbody"><p class="shortdesc">If access to the API is invoked, the authoritative system returns a data model supporting the authoritative source security requirements, which might remove properties that are considered personally identifiable information (PII). </p>
+
+    <p class="p">An authoritative system might remove properties from a data model that are considered sensitive, or PII. Ethos Integration delegates API security to the authoritative system.</p>
+
+  </div>
+
+</div></div></section>
+<section id="t-240"><h5>Shared responsibility model</h5><div class="content-locale-en-US content-locale-en"><div id="c_shared_responsibility"><div class="body conbody"><p class="shortdesc"><span class="keyword">Ellucian</span> and our users follow the shared responsibility model to ensure data is secure.</p>
+</div>
+
+</div></div></section>
+<section id="t-250"><h6>Ellucian</h6><div class="content-locale-en-US content-locale-en"><div id="c_ellucian"><div class="body conbody"><p class="shortdesc"><span class="keyword">Ellucian</span> provides capabilities within the Ethos API application toolset to restrict access to data and filter data model properties on a per-application basis.</p>
+
+    <p class="p"><span class="keyword">Ellucian</span> implements Amazon Web Services (AWS) security best practices. All <span class="keyword">Ellucian</span> cloud solutions have the same logging format, enabling <span class="keyword">Ellucian</span> to track when applications request data. This enables <span class="keyword">Ellucian</span> to support audit and incident management requests.</p>
+
+    <div class="section"><h2 class="title sectiontitle">Configuration</h2>
+      
+      <p class="p">Applications integrated through <span class="ph">Ellucian Ethos</span> are allowed access only to the data that the client authorizes them to access. This is controlled in <span class="ph">Ethos Integration</span> and in the authoritative system’s security implementation.</p>
+
+    </div>
+
+    <div class="section"><h2 class="title sectiontitle">Secure data in transit</h2>
+      
+      <p class="p">Data in transit, or data in motion, is data actively moving from one location to another such as across the internet or through a private network. Data protection in transit is the protection of this data while it is traveling from network to network or being transferred from a local storage device to a cloud storage device. Wherever data is moving, effective data protection measures for in-transit data are critical as data is often considered less secure while in motion.</p>
+
+      <p class="p">All applications that connect to <span class="ph">Ethos Integration</span> to make data requests must use safe encryption technology TLS 1.1 or 1.2 protocols. This includes <span class="keyword">Ellucian</span> cloud-native applications.</p>
+
+    </div>
+
+    <div class="section"><h2 class="title sectiontitle">Secure data at rest</h2>
+      
+      <p class="p">Data at rest is data that is not actively moving from device to device or network to network, such as data stored on a hard drive, laptop, flash drive, or stored in some other way. Data protection at rest aims to secure inactive data stored on any device or network. While data at rest is sometimes considered to be less vulnerable than data in transit, attackers often find data at rest a more valuable target than data in motion. The risk profile for data in transit or data at rest depends on the security measures that are in place to secure data in either state.</p>
+
+      <p class="p">All data that is queued in the Ethos Cloud, waiting for subscribing systems to collect, is encrypted at rest. Data is encrypted at rest with AWS storage encryption.</p>
+
+    </div>
+
+  </div>
+
+</div></div></section>
+<section id="t-260"><h6>The user</h6><div class="content-locale-en-US content-locale-en"><div id="c_the_user"><div class="body conbody"><p class="shortdesc">Every application definition in <span class="ph">Ethos Integration</span> should have a separate credential to the authoritative system. That is the only way to track what the applications do.</p>
+
+    <p class="p">The API key is a sensitive credential and should not be shared. <span class="keyword">Ellucian</span> recommends that you define an API Key expiration policy.</p>
+
+    <p class="p"><span class="keyword">Ellucian</span> recommends that you support a least-privileged-access security model. Define rules for the application and what APIs are accessible to an application and, if accessible, what operations users can perform (such as read versus write access). Define content filtering rules that are applicable for every application requesting data. For normal abilities, personally identifiable information (PII) data is often not needed and can be filtered.</p>
+
+  </div>
+
+</div></div></section>
+<section id="t-270"><h4>Support for multiple ownership of resources</h4><div class="content-locale-en-US content-locale-en"><div id="c_support_multi_owner"><div class="body conbody"><p class="shortdesc">In <span class="keyword">Ellucian Ethos Integration</span>, multiple authoritative sources can own the same resource.</p>
+
+    <div class="p"><span class="ph">For each Ethos data model, there is generally one application that is logically responsible for maintaining the data in the data model. However, in some cases, multiple applications, or multiple instances of an application, maintain the same data.</span> Use cases include:<ul class="ul"> <li class="li">Multiple vendors manage the same information</li>
+ <li class="li">Multiple instances of a vendor application</li>
+ <li class="li">Banner Multi-Entity Processing (MEP)</li>
+ </ul>
+</div>
+
+    <p class="p">This section provides a description of multiple ownership. See the links below for the procedures for implementing multiple ownership.</p>
+
+  </div>
+
+</div></div></section>
+<section id="t-280"><h5>Multiple owner use cases</h5><div class="content-locale-en-US content-locale-en"><div id="c_use_cases_multi_owner"><div class="body conbody"><p class="shortdesc">The multi-owner capability of <span class="keyword">Ellucian Ethos Integration</span> supports situations where more than one application is responsible for the data in a data model.</p>
+
+    <p class="p">Several use cases are described below. These descriptions show only the authoritative applications. For an example that shows both the authoritative applications and an application that accesses the data, see <span class="xref ft-internal-link" title="This example shows both the authoritative application (Banner) and a Campus Card System application that needs access to Banner-owned resources." data-ft-warning="excluded-from-rendering" data-mapid="pn5inywLRPHrt3dIdaUWYw" data-tocid="xE1q5MPM0f6RdmASOcCoNQ">Example: Banner MEP and Campus Card System</span>.</p>
+
+    <div class="section"><h2 class="title sectiontitle">Multiple vendors manage the same information</h2>
+      
+      <p class="p">Example: You use two vendor applications that both manage events on campus. Each vendor application maintains information about the events that it manages, so each needs to own the Ethos resources related to events (including, for example, the constituent-event-participations resource).</p>
+
+      <br><img class="image" alt="Multiple vendors own the same resource" data-ft-asset-display-name="multi_vendors.png" src="images/01-ethos-integration-overview-5.png" data-ft-resource-id="qeFBL7QQv~lpePYwOC~QLQ-pn5inywLRPHrt3dIdaUWYw"><br>
+    </div>
+
+    <div class="section"><h2 class="title sectiontitle">Multiple instances of a vendor application</h2>
+      
+      <p class="p">Example: You use a vendor application that manages events on campus. You have installed two instances of that vendor application, one to manage events on the Main Campus and one to manage events on the North Campus. Each instance of the vendor application maintains information about the events that it manages, so each needs to own the Ethos resources related to events (including, for example, the constituent-event-participations resource).</p>
+
+      <br><img class="image" alt="Multiple vendor instances own the same resource" data-ft-asset-display-name="multi_vendor_instances.png" src="images/01-ethos-integration-overview-6.png" data-ft-resource-id="wJ_4d4xjjvzAq4_HVupFJA-pn5inywLRPHrt3dIdaUWYw"><br>
+    </div>
+
+    <div class="section"><h2 class="title sectiontitle">Banner Multi-Entity Processing (MEP)</h2>
+      
+      <p class="p">Example: You have set up Banner MEP with two instances: Main Campus and North Campus. Each instance maintains information about its campus, so each needs to own all of the Ethos resources for which Banner is responsible (including, for example, the email-types resource).</p>
+
+      <br><img class="image" alt="Multiple MEP instances own the same resource" data-ft-asset-display-name="multi_mep_instances.png" src="images/01-ethos-integration-overview-7.png" data-ft-resource-id="JM0EFAMvyhFzVtaDdR9V8g-pn5inywLRPHrt3dIdaUWYw"><br>
+      <div class="note"><span class="notetitle">Note:</span> Banner requires two <span class="keyword">Ethos Integration</span> applications for each MEP instance, one for the Integration API and another for the Student API, and also requires applications for shared resources. For simplicity, the diagram shows only the Integration API applications for each instance.</div>
+
+    </div>
+
+  </div>
+
+</div></div></section>
+<section id="t-290"><h5>Ethos Integration capabilities that support multiple ownership of resources</h5><div class="content-locale-en-US content-locale-en"><div id="c_ethos_features_multi_owner"><div class="body conbody"><p class="shortdesc">The setup of resource ownership, subscriptions, and proxy API requests all support multiple ownership of resources.</p>
+
+    
+<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" class="table" frame="border" border="1" rules="all"><colgroup><col style="width:21.50537634408602%"><col style="width:78.49462365591397%"></colgroup><thead class="thead" style="text-align:left;">
+          <tr class="row">
+            <th class="entry nocellnorowborder" style="vertical-align:top;" id="d10427e42">Feature</th>
+
+            <th class="entry cell-norowborder" style="vertical-align:top;" id="d10427e45"><span class="keyword">Ethos Integration</span> multi-owner capability</th>
+
+          </tr>
+
+        </thead>
+<tbody class="tbody">
+          <tr class="row">
+            <td class="entry nocellnorowborder" style="vertical-align:top;" headers="d10427e42 ">Resource ownership</td>
+
+            <td class="entry cell-norowborder" style="vertical-align:top;" headers="d10427e45 ">Multiple applications can own the same resource. One application is the default owner. The first application to which you assign a resource is initially the default owner, but you can specify a different default owner for a resource.</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry nocellnorowborder" style="vertical-align:top;" headers="d10427e42 ">Subscriptions</td>
+
+            <td class="entry cell-norowborder" style="vertical-align:top;" headers="d10427e45 ">When you assign subscriptions to a consuming application, all of the instances of a resource (from all owners) are available for selection. You select the appropriate instance for this application.</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="vertical-align:top;" headers="d10427e42 ">Proxy API requests</td>
+
+            <td class="entry cellrowborder" style="vertical-align:top;" headers="d10427e45 ">A consuming application can make proxy API requests to the owner of a resource. When a resource is owned by multiple authoritative sources, you can create a <dfn class="term">resource request</dfn> to specify which authoritative source the proxy API request goes to. Proxy API requests go to the default owner of a resource unless you create a resource request.</td>
+
+          </tr>
+
+        </tbody>
+</table>
+</div>
+
+  </div>
+
+</div></div></section>
+<section id="t-300"><h5>Example: Banner MEP and Campus Card System</h5><div class="content-locale-en-US content-locale-en"><div id="p_example_multi_owner"><div class="body conbody"><p class="shortdesc">This example shows both the authoritative application (Banner) and a Campus Card System application that needs access to Banner-owned resources.</p>
+
+    <p class="p">The Campus Card System needs access to building information that is in the housing-assignments data model, so that it can control access to campus housing. Banner is authoritative for the housing-assignments data model.</p>
+
+    <div class="section"><h2 class="title sectiontitle">One-to-one relationship between authoritative and consuming applications</h2>
+      
+      <p class="p">This first example assumes that you have installed two instances of the Campus Card System application, one for each campus. In this example, the Main Campus instance of the Campus Card System application needs access to data in the Main Campus MEP instance, while the North Campus instance of the Campus Card System application needs access to data in the North Campus MEP instance.</p>
+
+      <br><img class="image" alt="Multiple MEP instances and multiple subscriber app instances" data-ft-asset-display-name="multi_mep_multi_subscriber.png" src="images/01-ethos-integration-overview-8.png" data-ft-resource-id="4BU~j1bZ~ulCqQHvZiJNmg-pn5inywLRPHrt3dIdaUWYw"><br>
+      <div class="note"><span class="notetitle">Note:</span> Banner requires two <span class="keyword">Ethos Integration</span> applications for each MEP instance, one for the Integration API and another for the Student API, and also requires applications for shared resources. For simplicity, the diagram shows only the Integration API applications for each instance.</div>
+
+      <div class="p">To support this, you would do the following:<ol class="ol"> <li class="li">Create the following <span class="keyword">Ethos Integration</span> applications:<ul class="ul"> <li class="li">Banner Main Campus Integration API</li>
+ <li class="li">Banner Main Campus Student API</li>
+ <li class="li">Banner North Campus Integration API</li>
+ <li class="li">Banner North Campus Student API</li>
+ <li class="li">Campus Card System Main Campus</li>
+ <li class="li">Campus Card System North Campus</li>
+ </ul>
+</li>
+ <li class="li">Assign resources to the four <span class="keyword">Ethos Integration</span> applications for Banner. The housing-assignments data model would be owned by both the Banner Main Campus Integration API application and the Banner North Campus Integration API application.</li>
+ <li class="li">If you want the Campus Card System to subscribe to Banner-published changes for housing assignments:<ul class="ul"> <li class="li">Set up subscriptions for the Main Campus:<ul class="ul"> <li class="li">In the <span class="keyword">Ethos Integration</span> application for Campus Card System Main Campus, add a subscription to the housing-assignments resource. Because that resource is owned by two Banner applications, you would need to select the instance of the resource that is owned by Banner Main Campus Integration API.</li>
+ <li class="li">Set up the Campus Card System application itself (Main Campus instance) to retrieve change notifications through Ethos Integration, using the API key for the <span class="keyword">Ethos Integration</span> application for Campus Card System Main Campus when generating the authentication token.</li>
+ </ul>
+</li>
+ <li class="li">Use the same process to set up a subscription from the Campus Card System North Campus instance to changes published by Banner North Campus.</li>
+ </ul>
+</li>
+ <li class="li">If you want the Campus Card System to make proxy API requests to Banner for housing assignments data:<ul class="ul"> <li class="li">Set up proxy API requests for the Main Campus:<ul class="ul"> <li class="li">In the <span class="keyword">Ethos Integration</span> application for Campus Card System Main Campus, set up proxy API requests to the housing-assignments resource. Create a resource request to ensure that the proxy API request goes to Banner Main Campus Integration API (not required if Banner Main Campus Integration API is the default owner of housing-assignments).</li>
+ <li class="li">Set up the Campus Card System application itself (Main Campus instance) to make proxy API requests through Ethos Integration, using the API key for the <span class="keyword">Ethos Integration</span> application for Campus Card System Main Campus when generating the authentication token.</li>
+ </ul>
+</li>
+ <li class="li">Use the same process to set up proxy API requests from the Campus Card System North Campus to Banner North Campus.</li>
+ </ul>
+</li>
+ </ol>
+</div>
+
+    </div>
+
+    <div class="section"><h2 class="title sectiontitle">Many-to-one relationship between authoritative and consuming applications</h2>
+      
+      <p class="p">This example assumes that you have installed one instance of the Campus Card System application, which needs access to data in both the Main Campus and North Campus Banner applications.</p>
+
+      <br><img class="image" alt="Multiple MEP instances and one subscriber app instances" data-ft-asset-display-name="multi_mep_one_subscriber.png" src="images/01-ethos-integration-overview-9.png" data-ft-resource-id="kBKhCMFsNWn69FyO5YH9Cg-pn5inywLRPHrt3dIdaUWYw"><br>
+      <div class="note"><span class="notetitle">Note:</span> Banner requires two <span class="keyword">Ethos Integration</span> applications for each MEP instance, one for the Integration API and another for the Student API, and also requires applications for shared resources. For simplicity, the diagram shows only the Integration API applications for each instance.</div>
+
+      <div class="p">To support this, you would do the following:<ol class="ol"> <li class="li">Create the following <span class="keyword">Ethos Integration</span> applications:<ul class="ul"> <li class="li">Banner Main Campus Integration API</li>
+ <li class="li">Banner Main Campus Student API</li>
+ <li class="li">Banner North Campus Integration API</li>
+ <li class="li">Banner North Campus Student API</li>
+ <li class="li">Campus Card System Main Campus</li>
+ <li class="li">Campus Card System North Campus</li>
+ </ul>
+<p class="p">Note that you create two <span class="keyword">Ethos Integration</span> applications for the Campus Card System, even though there is only one instance of the Campus Card System itself.</p>
+</li>
+ <li class="li">Assign resources to the four <span class="keyword">Ethos Integration</span> applications for Banner. The housing-assignments data model would be owned by both the Banner Main Campus Integration API application and the Banner North Campus Integration API application.</li>
+
+        <li class="li">If you want the Campus Card System to subscribe to Banner-published changes for housing assignments:<ul class="ul"> <li class="li">Set up subscriptions for the Main Campus:<ul class="ul"> <li class="li">In the <span class="keyword">Ethos Integration</span> application for Campus Card System Main Campus, add a subscription to the housing-assignments resource. Because that resource is owned by two Banner applications, you would need to select the instance of the resource that is owned by Banner Main Campus Integration API.</li>
+
+        <li class="li">Set up the Campus Card System application itself to retrieve change notifications through Ethos Integration, using the API key for the <span class="keyword">Ethos Integration</span> application for Campus Card System Main Campus when generating the authentication token.</li>
+ </ul>
+</li>
+ <li class="li">Use the same process to set up a subscription from the Campus Card System to changes published by Banner North Campus.</li>
+ </ul>
+</li>
+
+        <li class="li">If you want the Campus Card System to make proxy API requests to Banner for housing assignments data:<ul class="ul"> <li class="li">Set up proxy API requests for the Main Campus:<ul class="ul"> <li class="li">In the <span class="keyword">Ethos Integration</span> application for Campus Card System Main Campus, set up proxy API requests to the housing-assignments resource. Create a resource request to ensure that the proxy API request goes to Banner Main Campus Integration API (not required if Banner Main Campus Integration API is the default owner of housing-assignments).</li>
+ <li class="li">Set up the Campus Card System application itself to make proxy API requests through Ethos Integration, using the API key for the <span class="keyword">Ethos Integration</span> application for Campus Card System Main Campus when generating the authentication token.</li>
+ </ul>
+</li>
+ <li class="li">Use the same process to set up proxy API requests from the Campus Card System to Banner North Campus.</li>
+ </ul>
+</li>
+ </ol>
+</div>
+
+    </div>
+
+  </div>
+
+</div></div></section>
+<section id="t-310"><h4>Download end user agreement</h4><div class="content-locale-en-US content-locale-en"><div id="c_ethos_end_user_agreement"><div class="body conbody"><p class="shortdesc"><span class="ph">Ellucian</span> does not require a signed copy of this agreement before you can use <span class="ph">Ellucian Ethos</span>. However, you can download and sign it if you would like to have a copy for your own records. </p>
+
+    <p class="p">To download the end user agreement, click <span class="ph uicontrol">Attachment</span><span class="ph"><img class="image ell-icon" src="images/01-ethos-integration-overview-10.png" alt="" data-ft-asset-display-name="paperclip_vertical.png" data-ft-resource-id="bZp~XU7407Lvc9vc8HT8Vw-pn5inywLRPHrt3dIdaUWYw"></span> on this page.</p>
+
+    <p class="p">If your institution requires a copy of this agreement that is signed by you and countersigned by <span class="ph">Ellucian</span>, you can return a signed copy to us by mail at:</p>
+
+    <p class="lines">Ellucian<br>
+2003 Edmund Halley Drive, Suite 500<br>
+Reston, VA 20191</p>
+
+    <p class="p">We also will accept a copy of this Amendment with your authorized signature transmitted to us electronically, to <a class="xref ft-external-link" href="mailto:ContractManagement@ellucian.com" target="_blank" rel="noopener">ContractsManagement@ellucian.com</a>.</p>
+
+  </div>
+
+</div></div></section>
+<section id="t-320"><h3>Ethos Integration domains</h3><div class="content-locale-en-US content-locale-en"><div id="r_region_domain_ip_addresses"><div class="body refbody"><p class="shortdesc">Some procedures require that you specify the domain for <span class="keyword">Ethos Integration</span> in the <span class="ph">Ellucian</span> cloud. Use the domain for your region.</p>
+
+    
+<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" class="table" frame="vsides" border="1" rules="all"><colgroup><col style="width:33.33333333333333%"><col style="width:66.66666666666666%"></colgroup><thead class="thead" style="text-align:left;">
+          <tr class="row">
+            <th class="entry nocellnorowborder" style="vertical-align:top;" id="d92512e46">Region</th>
+
+            <th class="entry cell-norowborder" style="vertical-align:top;" id="d92512e49">Domain</th>
+
+          </tr>
+
+        </thead>
+<tbody class="tbody">
+          <tr class="row">
+            <td class="entry nocellnorowborder" style="vertical-align:top;" headers="d92512e46 ">U.S.</td>
+
+            <td class="entry cell-norowborder" style="vertical-align:top;" headers="d92512e49 ">integrate.elluciancloud.com</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry nocellnorowborder" style="vertical-align:top;" headers="d92512e46 ">Canada</td>
+
+            <td class="entry cell-norowborder" style="vertical-align:top;" headers="d92512e49 ">integrate.elluciancloud.ca</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry nocellnorowborder" style="vertical-align:top;" headers="d92512e46 ">Europe</td>
+
+            <td class="entry cell-norowborder" style="vertical-align:top;" headers="d92512e49 ">integrate.elluciancloud.ie</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry nocellnorowborder" style="vertical-align:top;" headers="d92512e46 ">Asia-Pacific</td>
+
+            <td class="entry cell-norowborder" style="vertical-align:top;" headers="d92512e49 ">integrate.elluciancloud.com.au</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry nocellnorowborder" style="vertical-align:top;" headers="d92512e46 ">Middle East</td>
+
+            <td class="entry cell-norowborder" style="vertical-align:top;" headers="d92512e49 ">integrate.elluciancloud.me</td>
+
+          </tr>
+
+        </tbody>
+</table>
+</div>
+
+  </div>
+
+</div></div></section></main></body></html>

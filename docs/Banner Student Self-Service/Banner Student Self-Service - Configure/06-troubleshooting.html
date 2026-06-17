@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Banner Student Self-Service - Configure — Troubleshooting</title><style>body{font-family:-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;line-height:1.55;color:#1a1a1a;max-width:920px;margin:0 auto;padding:24px}header{border-bottom:2px solid #5a16d6;margin-bottom:8px}h1{color:#3a0ca3}h2,h3,h4,h5,h6{margin-top:1.6em}.crumb{color:#666;font-size:13px;margin:0}.meta{color:#888;font-size:12px}nav.toc{background:#f6f4fc;border:1px solid #e3dcf5;border-radius:8px;padding:12px 18px;margin:18px 0}nav.toc h2{margin:.2em 0}nav.toc ul{list-style:none;padding-left:0}nav.toc a{text-decoration:none;color:#5a16d6}section{margin:1.2em 0;padding-top:.4em}img{max-width:100%;height:auto}table{border-collapse:collapse}td,th{border:1px solid #ccc;padding:4px 8px}code,pre{background:#f4f4f4;border-radius:4px}pre{padding:10px;overflow:auto}</style></head><body><header><p class="crumb">Banner Student Self-Service › Banner Student Self-Service - Configure</p><h1>Banner Student Self-Service - Configure — Troubleshooting</h1><p class="meta">Source: <a href="https://resources.elluciancloud.com/r/bundle/banner_stuss_acn_configure">https://resources.elluciancloud.com/r/bundle/banner_stuss_acn_configure</a> &middot; Retrieved 2026-06-17</p></header><nav class="toc"><h2>Contents</h2><ul><li style="margin-left:0px"><a href="#t-4500">Troubleshooting</a></li><li style="margin-left:16px"><a href="#t-4510">TWBKWBIS package error</a></li><li style="margin-left:16px"><a href="#t-4520">Blank Student Profile page</a></li><li style="margin-left:16px"><a href="#t-4530">Common Drop Roster configuration problems</a></li></ul></nav><main><section id="t-4500"><h2>Troubleshooting</h2><div class="content-locale-en-US content-locale-en"><div id="c_troubleshooting"><p class="shortdesc">This section discusses potential issues and resolutions.</p>
+
+</div></div></section>
+<section id="t-4510"><h3>TWBKWBIS package error</h3><div class="content-locale-en-US content-locale-en"><div id="c_twbkwbis_package_error"><div class="body conbody"><p class="shortdesc">An error may occur after a change is made to the TWBKWBIS package and the package is recompiled. The error is displayed as the connection reloads the package when the user attempts to view a student's profile.</p>
+
+    <p class="p">
+      <samp class="ph msgph">Sorry, the server received an internal error.</samp>
+    </p>
+
+    <p class="p">
+      <samp class="ph msgph">Error Message: ORA-04068: existing state of packages has been discarded ORA-04061: existing state of package body "WTAILOR.TWBKWBIS" has not been validated ORA-04065: not executed, altered or dropped package body "WTAILOR.TWBKWBIS"</samp>
+    </p>
+
+    <p class="p">The error is received the first time a connection in the connection pool calls TWBKWBIS. Subsequent calls are successful.</p>
+
+    <p class="p">It is necessary to restart Tomcat for Advising Student Profile to resolve the error. The application also needs to be restarted on WebLogic, The server does not need to be restarted.</p>
+
+  </div>
+
+</div></div></section>
+<section id="t-4520"><h3>Blank Student Profile page</h3><div class="content-locale-en-US content-locale-en"><div id="c_blank_student_profile_page"><div class="body conbody"><p class="shortdesc">You may access the Student Profile page and find that it does not display any expected data and is blank. This usually occurs when the application cannot find the applicable entries in GUACONF.</p>
+
+    <p class="p">When the information is present and can be read, then ensure that the user logging in has the persona you are expecting and the configuration is set up to display information for that persona.</p>
+
+  </div>
+
+</div></div></section>
+<section id="t-4530"><h3>Common Drop Roster configuration problems</h3><div class="content-locale-en-US content-locale-en"><div id="r_common_drop_roster_config_probs"><div class="body refbody"><p class="shortdesc">The following table is an incomplete list of reasons why Drop Rosters do not look or work as you expect and what you might do to fix the problem.</p>
+
+    
+<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" class="table" frame="hsides" border="1" rules="rows"><colgroup><col style="width:32.467532467532465%"><col style="width:67.53246753246754%"></colgroup><thead class="thead" style="text-align:left;vertical-align:bottom;">
+          <tr class="row">
+            <th class="entry row-nocellborder" style="text-align:left;vertical-align:bottom;" id="d47554e42">Field</th>
+
+            <th class="entry row-nocellborder" style="text-align:left;vertical-align:bottom;" id="d47554e45">Description</th>
+
+          </tr>
+
+        </thead>
+<tbody class="tbody">
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d47554e42 ">No Drop Rosters are showing up</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d47554e45 ">Term is not enabled on SFADRPC</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d47554e42 ">CRN is in disabled section</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d47554e45 ">CRN is disabled on SFADRPC</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d47554e42 ">CRN is in disabled section</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d47554e45 ">CRN does not have any attendance method set on SSASECT</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d47554e42 ">CRN is in disabled section</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d47554e45 ">CRN does not have appropriate attendance method set on SSASECT</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d47554e42 ">CRN is in disabled section</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d47554e45 ">Drop code specified on SFARORL isn't valid (check SFARSTS &amp; STVRSTS</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d47554e42 ">CRN is in conflicts section</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d47554e45 ">Ensure that the appropriate date is set on SSAACCL to use for beginning and end date calculations (That is, W-grade rosters need SSBSECT_DROP_CUT_OFF_DATE set, Total rosters need SSBSECT_PTRM_END_DATE set, Census 1 rosters need SSBSECT_CENSUS_ENRL_DATE set, Census 2 rosters need SSBSECT_CENSUS_2_DATE set and Opening day rosters need a start date)</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d47554e42 ">Expecting CRN to be a 2 census roster, but only see one census</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d47554e45 ">Either attribute not specified on GORICCR or on the section or both</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d47554e42 ">Expecting CRN to be a 2 census roster but in error section</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d47554e45 ">Check that a census 2 date has been specified</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d47554e42 ">Maintenance page does not show registered students</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d47554e45 ">RSTS code for Drop code on rule (or from Calculated Drop) may not be active according to SFARSTS</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d47554e42 ">"The registration status code needed to drop students from this CRN is not valid at this time."</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d47554e45 ">RSTS code for "drop" code on rule (or from Calculated Drop) may not be active according to SFARSTS, it may not be on SFARSTS, it may not be enabled for Web on STVRSTS or it may not be Withdrawn or Dropped on STVRSTS</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d47554e42 ">Specified No Show code not in drop-down on Maintenance page</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d47554e45 ">RSTS code may not be valid for date based on SFARSTS</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d47554e42 ">Specified No Show code not in drop-down on Maintenance page</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d47554e45 ">RSTS code may not be on SFARSTS for term &amp; part-of-term</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d47554e42 ">Specified No Show code not in drop-down on Maintenance page</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d47554e45 ">RSTS code may not be defined as a Dropped or Withdrawn type on STVRSTS</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d47554e42 ">Specified No Show code not in drop-down on Maintenance page</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d47554e45 ">RSTS code may not be defined as "display on Web" on STVRSTS</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d47554e42 ">Specified No Show code not in drop-down on Maintenance page</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d47554e45 ">Today's date may be past the end date specified on SFARORL</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d47554e42 ">Specified No Show code not in drop-down on Maintenance page</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d47554e45 ">“No Show cut-off” end date chosen on SFARORL may not be specified for the CRN on SSAACCL</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d47554e42 ">Expected Calculated Drop code in drop-down on Maintenance page but it was not</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d47554e45 ">Calculated Drop not enabled for term on SOATERM</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d47554e42 ">Expected Calculated Drop code in drop-down on Maintenance page but it was not</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d47554e45 ">SFARORL needs a blank status code</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d47554e42 ">Expected Calculated Drop code in drop-down on Maintenance page but it was not</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d47554e45 ">Calculated Drop not set up correctly on SFADROP</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d47554e42 ">Drop fails with "You are not eligible to register" message</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d47554e45 ">The registration model code on SMAPROG must be compatible with the registration model on SOATERM</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d47554e42 ">SFISECH has no information and no message</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d47554e45 ">Section may need to have attendance method defined on SSASECT</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d47554e42 ">After confirming a drop, user get this message: <samp class="ph msgph">Invalid drop code. Please contact the registration office.</samp></td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d47554e45 ">Drop code matches the WEBRSTSDRP code; this STVRSTS code should NOT have "include in assessment" or "section enrollment" checked</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d47554e42 ">Drop fails with <samp class="ph msgph">Processed with error. Term not eligible for registration</samp> message.</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d47554e45 ">Be sure that the current date is active according to the Web Registration Dates set on SOATERM for the part-of-term.</td>
+
+          </tr>
+
+        </tbody>
+</table>
+</div>
+
+  </div>
+
+</div></div></section></main></body></html>

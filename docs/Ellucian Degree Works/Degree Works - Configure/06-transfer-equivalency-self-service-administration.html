@@ -1,0 +1,1437 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Degree Works - Configure — Transfer Equivalency Self-Service Administration</title><style>body{font-family:-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;line-height:1.55;color:#1a1a1a;max-width:920px;margin:0 auto;padding:24px}header{border-bottom:2px solid #5a16d6;margin-bottom:8px}h1{color:#3a0ca3}h2,h3,h4,h5,h6{margin-top:1.6em}.crumb{color:#666;font-size:13px;margin:0}.meta{color:#888;font-size:12px}nav.toc{background:#f6f4fc;border:1px solid #e3dcf5;border-radius:8px;padding:12px 18px;margin:18px 0}nav.toc h2{margin:.2em 0}nav.toc ul{list-style:none;padding-left:0}nav.toc a{text-decoration:none;color:#5a16d6}section{margin:1.2em 0;padding-top:.4em}img{max-width:100%;height:auto}table{border-collapse:collapse}td,th{border:1px solid #ccc;padding:4px 8px}code,pre{background:#f4f4f4;border-radius:4px}pre{padding:10px;overflow:auto}</style></head><body><header><p class="crumb">Ellucian Degree Works › Degree Works - Configure</p><h1>Degree Works - Configure — Transfer Equivalency Self-Service Administration</h1><p class="meta">Source: <a href="https://resources.elluciancloud.com/r/bundle/dgrwrks_acn_configure">https://resources.elluciancloud.com/r/bundle/dgrwrks_acn_configure</a> &middot; Retrieved 2026-06-17</p></header><nav class="toc"><h2>Contents</h2><ul><li style="margin-left:0px"><a href="#t-2530">Transfer Equivalency Self-Service Administration</a></li><li style="margin-left:16px"><a href="#t-2540">Initial Transfer Equivalency Self-Service setup and configuration</a></li><li style="margin-left:16px"><a href="#t-2550">Transfer Equivalency Self-Service database table structure</a></li><li style="margin-left:16px"><a href="#t-2560">Transfer Equivalency Self-Service deployment</a></li><li style="margin-left:32px"><a href="#t-2570">Transfer Equivalency Self-Service environment settings</a></li><li style="margin-left:32px"><a href="#t-2580">Move to the 5.1.4 version of Transfer Equivalency Self-Service</a></li><li style="margin-left:16px"><a href="#t-2590">Transfer Equivalency Self-Service navigation</a></li><li style="margin-left:16px"><a href="#t-2600">Getting started with Transfer Equivalency Self-Service</a></li><li style="margin-left:16px"><a href="#t-2610">Academic goals selection</a></li><li style="margin-left:32px"><a href="#t-2620">Academic goals with no filtering</a></li><li style="margin-left:32px"><a href="#t-2630">Academic goals with curriculum-rule filtering</a></li><li style="margin-left:32px"><a href="#t-2640">Academic goals with degree-drives-major filtering</a></li><li style="margin-left:32px"><a href="#t-2650">Academic goals with major-drives-degree/school/college filtering</a></li><li style="margin-left:32px"><a href="#t-2660">Academic goals with major-drives-college filtering</a></li><li style="margin-left:16px"><a href="#t-2670">Transfer classes entry</a></li><li style="margin-left:16px"><a href="#t-2680">My transfer work panel</a></li><li style="margin-left:16px"><a href="#t-2690">Placement exams entry</a></li><li style="margin-left:16px"><a href="#t-2700">Audit generation</a></li><li style="margin-left:32px"><a href="#t-2710">Auto resolution</a></li><li style="margin-left:16px"><a href="#t-2720">Transfer Equivalency Self-Service localization</a></li><li style="margin-left:16px"><a href="#t-2730">Transfer Equivalency Self-Service debugging</a></li></ul></nav><main><section id="t-2530"><h2>Transfer Equivalency Self-Service Administration</h2><div class="content-locale-en-US content-locale-en"><div id="c_transfer_equivalency_self_service_administration"><div class="body conbody"><p class="shortdesc">Transfer Equivalency Self-Service is a tool used outside of the standard Degree Works interface to allow students who are considering transferring to your school to see how their transfer classes might articulate and apply to a degree at your institution.</p>
+
+    <div class="p">To see how classes articulate, prospective students should:<ul class="ul"> <li class="li">Choose an intended degree and major, and enter a starting term.</li>
+ <li class="li">Choose a transfer school, and enter the grade, credits, and term for each transfer class.</li>
+ <li class="li">Enter placement exam scores.</li>
+ <li class="li">Process to see the articulation and degree audit.</li>
+ </ul>
+</div>
+
+  </div>
+
+</div></div></section>
+<section id="t-2540"><h3>Initial Transfer Equivalency Self-Service setup and configuration</h3><div class="content-locale-en-US content-locale-en"><div id="c_treqss_init_setup_config"><div class="body conbody"><p class="shortdesc">Before deploying Transfer Equivalency Self-Service, you must set up and configure the tool.</p>
+
+    <div class="section"><h2 class="title sectiontitle">Transfer Equivalency Self-Service user access</h2>
+      
+      <p class="p">Transfer Equivalency Self-Service is an anonymous application, meaning users do not need to have an access ID to use it. However, the application requires that the TREQER user exists. This user is typically delivered when Degree Works is initially installed. The TREQER user must have the DWTESELF, RSAUDIT, and SDWORKS Shepherd keys. Use the Users function of Controller to verify and add these keys if necessary.</p>
+
+      <p class="p">When a user creates an account, they will be assigned the Shepherd keys defined in the core.security.newUser.roles setting and the user class defined in the core.security.newUser.userClass setting. These Shepherd settings are delivered with the standard default values. Note that the user class defined in core.security.newUser.userClass must be valid in AUD012.</p>
+
+      <p class="p">The core.security.referenceUser.password must be the same as the TREQER user's password on the SHP_USER_MST.</p>
+
+      <p class="p">Transfer Equivalency Self-Service allows only SHP authentication. If you are using an authentication method like SAML for other Degree Works applications, you will need to add a specification to the core.security.authenticationType Shepherd setting for Transfer Equivalency Self-Service:</p>
+
+      <ul class="ul">
+        <li class="li">core.security.authenticationType = SHP</li>
+
+        <li class="li">specification = treqss</li>
+
+      </ul>
+
+      <p class="p">If your environment is configured to use SHP as your default authentication method, you should remove the treqss specification for the core.security.authenticationType Shepherd setting so Transfer Equivalency Self-Service will also use that default specification.</p>
+
+    </div>
+
+    <div class="section"><h2 class="title sectiontitle">Transfer Equivalency Self-Service Shepherd settings</h2>
+      
+      <p class="p">You can maintain most configurations to manage the behavior of Transfer Equivalency Self-Service using the <span class="keyword">Controller</span> Configuration tab.</p>
+
+      <p class="p">Review
+        all
+        entries with the treq.selfService prefix, and
+        ensure that they are configured correctly for your environment.</p>
+
+      <div class="p">Review the following Shepherd settings to ensure they are configured correctly for your environment:<ul class="ul">
+        <li class="li">core.credit.format</li>
+
+        <li class="li">core.security.newUser.roles</li>
+
+        <li class="li">core.security.newUser.userClass</li>
+
+        <li class="li">core.security.referenceUser.password</li>
+
+        <li class="li">core.security.referenceUser.username</li>
+
+        <li class="li">core.security.stateless.secretkey</li>
+
+        <li class="li">core.site.displayName</li>
+
+        <li class="li">core.treq.selfService.auditArticulate.report.default</li>
+
+        <li class="li">core.whatIf.filterMode</li>
+
+        <li class="li">treq.selfService.*</li>
+
+        </ul>
+</div>
+
+    </div>
+
+    <div class="section"><h2 class="title sectiontitle">UCX tables</h2>
+      
+      <p class="p">The values that display in the Goals, Classes, and Exams drop-down lists are defined in UCX tables. You should review them to ensure they contain the necessary entries and the descriptions are clear and accurate. After updating a UCX table, refresh the page in the browser to load the changes. It is not necessary to restart the application. </p>
+
+      <p class="p">Review the following UCX tables to ensure that they are configured correctly for your Transfer Equivalency Self-Service environment:</p>
+
+      <ul class="ul">
+        <li class="li">Show in Transfer Equivalency Self-Service in AUD027, AUD029, STU016, STU035, STU307, STU316, STU346, STU350, STU398, STU560, STU563, STU576</li>
+
+        <li class="li">Credit-By-Exam in STU314</li>
+
+        <li class="li">Description in TRQ065</li>
+
+      </ul>
+
+    </div>
+
+  </div>
+
+</div></div></section>
+<section id="t-2550"><h3>Transfer Equivalency Self-Service database table structure</h3><div class="content-locale-en-US content-locale-en"><div id="c_database_table_structure"><div class="body conbody"><p class="shortdesc">Transfer Equivalency Self-Service uses several tables in its database table structure.</p>
+
+    <div class="section"><h2 class="title sectiontitle">SHP_USER_MST</h2>
+      
+      <p class="p">When a user creates an account, a SHP_USER_MST record is created for that user with the email stored as the SHP_ALT_ID, the password in the SHP_ACCESS_CODE, and the name in SHP_NAME. The value in core.security.newUser.roles is stored in SHP_KEY_LIST, and the value in core.security.newUser.userClass is stored in SHP_FILTER.</p>
+
+    </div>
+
+    <div class="section"><h2 class="title sectiontitle">DAP_APPLICNT_MST</h2>
+      
+      <p class="p">A DAP_APPLICNT_MST record is added when a user saves goal data. The selected school and degree goals are stored in the DAP_SCHOOL and DAP_DEGREE fields, while the selected term is converted to the correct catalog year using the STU016 <span class="ph uicontrol">Catalog Year</span> and is stored in DAP_CATALOG_YR.</p>
+
+    </div>
+
+    <div class="section"><h2 class="title sectiontitle">DAP_APPDATA_DTL</h2>
+      
+      <p class="p">A DAP_APPDATA_DTL record is created for each goal item selected when a user saves goal data. The goal type is stored in DAP_GOAL_CODE. Valid values are CAMPUS, COLLEGE, CONC, MAJOR, MINOR, and PROGRAM. The selected goal value code is stored in DAP_GOAL_VALUE.</p>
+
+    </div>
+
+    <div class="section"><h2 class="title sectiontitle">DAP_TRANSFER_DTL</h2>
+      
+      <p class="p">A DAP_TRANSFER_DTL record should be created for each class or exam the user enters.</p>
+
+      <p class="p">For classes, the DAP_SCHOOL_ID is the RAD_ETS_CODE for the selected school while the DAP_TR_DISC, DAP_TR_CRSE_NUM, DAP_TR_TITLE, DAP_TR_CREDITS, DAP_TR_CR_METHOD, and DAP_TR_GRADE should be the values provided for the selected class.</p>
+
+      <p class="p">For exams, the DAP_SCHOOL_ID is TESTS, while the DAP_TR_DISC is the test code, the DAP_TR_TITLE is the test description from STU314, DAP_TR_START is the test date (if entered), and DAP_TR_GRADE is the score provided for the exam.</p>
+
+    </div>
+
+    <div class="section"><h2 class="title sectiontitle">RAD_PRIMARY_MST</h2>
+      
+      <p class="p">When a user creates an account, a RAD_PRIMARY_MST record is created for that user with the email stored in RAD_EMAIL and the name in RAD_NAME.</p>
+
+    </div>
+
+  </div>
+
+</div></div></section>
+<section id="t-2560"><h3>Transfer Equivalency Self-Service deployment</h3><div class="content-locale-en-US content-locale-en"><div id="c_deploy_trek_ss_admin"><div class="body conbody"><p class="shortdesc">Transfer Equivalency Self-Service is designed to deploy equally well in on-premise and cloud-hosted scenarios on all supported platforms. It provides a mobile-ready, responsive user interface communicating with the servers using lightweight, stateless, restful API over HTTP SSL.</p>
+
+    <p class="p">The TransferApplication deployment artifact is a JAR file that is executable using java and includes an embedded container.</p>
+
+    <div class="section"><h2 class="title sectiontitle">Prerequisites</h2>
+      
+      <p class="p">Transfer Equivalency Self-Service requires prerequisites in its setup.</p>
+
+      <ul class="ul">
+        <li class="li">Java: <p class="p">Java version 17 is the only third-party dependency required to run this application. Oracle Java and OpenJDK are supported.</p>
+</li>
+
+        <li class="li">SSL: <p class="p"><span class="keyword">Ellucian</span> recommends SSL, because the security implementation uses stateless tokens. Using signed certificates is recommended for all deployment scenarios, including test or development environments. Self-signed certificates, even for internal test deployments, can be problematic because of browser requirements and warnings. The SSL certificate needs to be configured in a keystore, and that keystore needs to be accessible in the deployment environment. There are various options for how to do this, for example using Java's keytool command.</p>
+</li>
+
+      </ul>
+
+    </div>
+
+    <div class="section"><h2 class="title sectiontitle">Deployment examples</h2>
+      
+      <p class="p">When the prerequisites and configuration are in place, start the application using a java -jar command.</p>
+
+      <pre class="pre codeblock"><code>java $JAVA_OPTIONS -jar TransferApplication.jar</code></pre>
+      
+<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" class="table" frame="hsides" border="1" rules="rows"><colgroup><col style="width:50%"><col style="width:50%"></colgroup><thead class="thead" style="text-align:left;">
+            <tr class="row">
+              <th class="entry row-nocellborder" style="vertical-align:top;" id="d2417e85">Example</th>
+
+              <th class="entry row-nocellborder" style="vertical-align:top;" id="d2417e88">Description</th>
+
+            </tr>
+
+          </thead>
+<tbody class="tbody">
+            <tr class="row">
+              <td class="entry row-nocellborder" style="vertical-align:top;" headers="d2417e85 ">TransferApplication example startup script</td>
+
+              <td class="entry row-nocellborder" style="vertical-align:top;" headers="d2417e88 ">You can employ a shell script to start the application.<p class="p">The <var class="keyword varname">TransferApplication.jar</var> file must be staged at the DEPLOY_LOCATION.</p>
+<pre class="pre codeblock"><code>#!/bin/ksh
+export DW_DATASOURCE_URL="jdbc:oracle:thin:@MyServer:1521/service_name"
+export DW_DATASOURCE_USERNAME="my-user"
+export DW_DATASOURCE_PASSWORD="my-password"
+export SERVER_PORT="8451"
+export SERVER_SERVLET_CONTEXT_PATH=""
+export SERVER_SSL_KEY_STORE="/usr/local/my-keystore.jks"
+export SERVER_SSL_KEY_STORE_PASSWORD="my-key-password"
+export SERVER_SSL_KEYSTORETYPE="jks"
+export SERVER_SSL_KEY_ALIAS="my-keystore-alias"
+export DW_DATASOURCE_INITIAL_SIZE=10
+export DW_DATASOURCE_MIN_IDLE=10
+export DW_DATASOURCE_MAX_IDLE=10
+export DW_DATASOURCE_MAX_TOTAL=300
+export DEPLOY_LOCATION="/path/to/jarfile"
+export JAVA_OPTIONS="-Xms1024m -Xmx1024m";
+export DEBUG="false"
+# To enable full-time debug log output, remove the # from the line below
+#export LOG_DEFAULT_THRESHOLD=DEBUG
+java -jar $JAVA_OPTIONS DEPLOY_LOCATION/TransferApplication.jar &gt; startup-log-file.log &amp;</code></pre></td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry row-nocellborder" style="vertical-align:top;" headers="d2417e85 ">TransferApplication example stop script</td>
+
+              <td class="entry row-nocellborder" style="vertical-align:top;" headers="d2417e88 ">If you use a start script, you must also use a corresponding stop script.<pre class="pre codeblock"><code>#!/bin/ksh
+pkill -f TransferApplication</code></pre></td>
+
+            </tr>
+
+          </tbody>
+</table>
+</div>
+
+    </div>
+
+    <div class="section"><h2 class="title sectiontitle">Monitoring</h2>
+      
+      <p class="p">There are several built-in monitoring API which are accessible to users who are assigned the DWTEADMN Shepherd key.</p>
+
+      <div class="p">These endpoints are enabled by default but they can be disabled by configuring the environment variable <var class="keyword varname">endpoints_actuator_enabled=false</var>. For more information, see the <a class="xref ft-external-link" href="https://docs.spring.io/spring-boot/index.html" target="_blank" rel="noopener">Spring Boot</a> documentation.<ul class="ul">
+        <li class="li">/health</li>
+
+        <li class="li">/actuator</li>
+
+        <li class="li">/dump</li>
+
+        <li class="li">/info</li>
+
+        <li class="li">/beans</li>
+
+        <li class="li">/autoconfig</li>
+
+        <li class="li">/env</li>
+
+        <li class="li">/mappings</li>
+
+        <li class="li">/configprops</li>
+
+        <li class="li">/trace</li>
+
+        <li class="li">/logfile</li>
+
+        <li class="li">/metrics</li>
+
+        </ul>
+</div>
+
+    </div>
+
+  </div>
+
+</div></div></section>
+<section id="t-2570"><h4>Transfer Equivalency Self-Service environment settings</h4><div class="content-locale-en-US content-locale-en"><div id="c_tess_environment_settings"><div class="body conbody"><p class="shortdesc">Several environment variables are required to be configured before running the application. Several Shepherd settings are also required but they are only used at runtime so they can be configured or changed while the application is running without restarting.</p>
+
+    <p class="p">Depending on the desired deployment platform there are many options for how these environment variables can be configured. The only requirement is that they are available in the environment where the product's JAR files will be executed. For example, it may be desirable to configure them in a shell script, in a specific user's profile, a startup instruction like <span class="ph filepath">init.d</span>, or in a continuous deployment tool like Jenkins.</p>
+
+    <p class="p">The minimum required variables are documented here. But many optional variables are provided in the Spring Boot platform, for example tuning the embedded container. Please refer to Spring documentation for those: <a class="xref ft-external-link" href="http://docs.spring.io/spring-boot/appendix/application-properties/index.html" target="_blank" rel="noopener">http://docs.spring.io/spring-boot/appendix/application-properties/index.html</a>.</p>
+
+    <p class="p">Environment Variables are the recommended method to configure these properties. But there are various other ways these can be configured. Please refer to this documentation for more information:  <a class="xref ft-external-link" href="https://docs.spring.io/spring-boot/reference/features/external-config.html" target="_blank" rel="noopener">https://docs.spring.io/spring-boot/reference/features/external-config.html</a>.</p>
+
+    <div class="section"><h2 class="title sectiontitle">Required environment variables for TransferApplication</h2>
+      
+      <ul class="ul">
+        <li class="li">DW_DATASOURCE_URL: A JDBC connection string for the Degree Works database. For example <span class="ph filepath">jdbc:oracle:thin:@{SERVER}:{PORT}/{SERVICE_NAME}</span> where <span class="ph filepath">{SERVER}</span> is the address, <span class="ph filepath">{PORT}</span> is the port of the listener, and <span class="ph filepath">{SERVICE_NAME}</span> is the service name of the database. </li>
+
+        <li class="li">DW_DATASOURCE_USERNAME: The database username.</li>
+
+        <li class="li">DW_DATASOURCE_PASSWORD: The database password. If you want to hide this password using an encrypted string, see the <span class="xref ft-internal-xlink" title="When you change the database user or password for the configured Degree Works user (see the DB_LOGIN environment variable) or the SIS database user (see the DB_LOGIN_BANNER environment variable), you must configure the new credentials in three different areas." data-ft-warning="excluded-from-rendering" data-clusterid="id_crm/dgrwrks/c_database_credentials_changes">Database credentials changes</span> topic.</li>
+
+        <li class="li">SERVER_PORT: The desired port for TransferApplication. This must be different from the ports used by other applications on this server.</li>
+
+        <li class="li">SERVER_SERVLET_CONTEXT_PATH: An optional context path. If this is blank, the application will be deployed at the root URL like https://myserver.edu:NNNN (where NNNN is the SERVER_PORT). If a value is specified like /my-context-path, the application would be accessible at a URL like https://myserver.edu:NNNN/my-context-path (where NNNN is the SERVER_PORT).</li>
+
+        <li class="li">SERVER_SSL_KEY_STORE: The path to a keystore file you created to contain your SSL certificate. </li>
+
+        <li class="li">SERVER_SSL_KEY_STORE_PASSWORD: The password for your keystore file. </li>
+
+        <li class="li">SERVER_SSL_KEYSTORETYPE: The type of your keystore. JKS is the default. </li>
+
+        <li class="li">SERVER_SSL_KEY_ALIAS: The alias of the key you created.</li>
+
+      </ul>
+
+    </div>
+
+    <div class="section"><h2 class="title sectiontitle">Optional environment variables</h2>
+      
+      <ul class="ul">
+        <li class="li">JAVA_OPTIONS: The memory allocation for the application can be defined using this variable, and is recommended. The value defines the initial heap size and max heap size and is in the following format: <span class="ph filepath">-Xms1024m -Xmx1024m</span>. The heap size values should be adjusted as appropriate for your server. </li>
+
+        <li class="li">SERVER_MAX_HTTP_HEADER_SIZE: This setting allows you to set the maximum size of the HTTP message header. By default, this is 8KB, and for some users with a large number of Shepherd access keys, this can be too small. It’s recommended to use this variable and set it to at least 12KB. For example:<pre class="pre codeblock"><code>export SERVER_MAX_HTTP_HEADER_SIZE=12288</code></pre></li>
+
+        <li class="li">SERVER_TOMCAT_REDIRECT_CONTEXT_ROOT: Embedded Tomcat for Spring Boot has a default behavior to redirect a request without a trailing slash to one with a trailing slash. However, that redirect happens without evaluating forward headers like <span class="ph filepath">X-Forwarded-Proto</span>. So, when SSL offloading is in place, the redirect happens to <var class="keyword varname">http</var> instead of <var class="keyword varname">https</var>. This can be an issue especially for load balanced environments. To disable the default behavior, set this variable to false.<div class="note warning"><span class="warningtitle">Warning:</span> You should do this only if the default behavior is not working. If you are offloading SSL at a proxy or load balancer, see the <span class="xref ft-internal-xlink" title="Load balancing is the technique of creating multiple physical or virtual servers that run the same application. Reverse proxies are used for many reasons, including caching content and offloading SSL encryption. Both load balancers and proxies involve intercepting traffic going to and from the Degree Works server." data-ft-warning="excluded-from-rendering" data-clusterid="id_crm/dgrwrks/c_load_balancing">Load balancing and proxies</span> topic. Then, if you have problems accessing the application in the browser when you do not include a trailing slash at the end of the request, try setting this variable to false.</div>
+</li>
+
+        <li class="li">DEBUG: A boolean <var class="keyword varname">true</var> or <var class="keyword varname">false</var> which will enable or disable debug logging. The log file is by default named <span class="ph filepath">treqss.log</span>. But, the location and name of that file can be customized by setting an environment variable <span class="ph filepath">LOGGING_FILE</span>. The log can also be accessible through an API with administrative authorization. Please refer to logfile in the Monitoring section of this documentation, below.</li>
+
+        <li class="li">DEPLOY_LOCATION: the location of the <var class="keyword varname">TransferApplication.jar</var> file. This location should be set then referenced in the <var class="keyword varname">java -jar</var> command that starts the application.</li>
+
+        <li class="li">LOGGING_FILE: the name of the file including the path location. If this is specified, the <span class="ph filepath">LOG_PATH</span> should not be used.</li>
+
+        <li class="li">LOG_PATH: the location of the log file. The default PATH location is the Java temporary java folder from the Java property <span class="ph filepath">java.io.tmpdir</span>. This is usually <var class="keyword varname">/tmp</var>. The file name will be <span class="ph filepath">treqss.log</span> for TransferApplication.</li>
+
+        <li class="li">LOG_DEFAULT_THRESHOLD: If set to DEBUG, the application will output more verbose logging. Debug output will be sent to the log during the startup process and for all requests thereafter. Warning: this will result in very large log files. If not set, the debug threshold is INFO.</li>
+
+        <li class="li">DW_ENABLE_MONITOR - This environment variable can be set to enable /health, /metrics, /prometheus, and /status endpoints for health and monitoring metrics. By default, this monitoring functionality is not enabled. Adding this variable to an application's startup script and setting it to true would enable these endpoints for the application. See individual API documentation in the API Catalog for additional information.</li>
+
+        <li class="li">DW_RABBITMQ_SSLALGORITHM: Specify the SSL algorithm to use when connecting to the RabbitMQ broker using SSL. If not specified, it uses the current RabbitMQ driver's default (at least TLSv1.2). This is only considered if the Shepherd setting core.amqp.useSsl is set to true.</li>
+
+      </ul>
+
+    </div>
+
+    <div class="section"><h2 class="title sectiontitle">Database pooling configuration</h2>
+      
+      <p class="p">For production deployments, you can configure the size of the database connection pool through the following environment variables:</p>
+
+      <div class="p">
+        <ul class="ul">
+          <li class="li">DW_DATASOURCE_INITIAL_SIZE: The initial number of connections that are created when the pool is started.</li>
+
+          <li class="li">DW_DATASOURCE_MIN_IDLE: The minimum number of active connections that can remain idle in the pool, without extra ones being created.</li>
+
+          <li class="li">DW_DATASOURCE_MAX_IDLE: The maximum number of connections that can remain idle in the pool, without extra ones being released.</li>
+
+          <li class="li">DW_DATASOURCE_MAX_TOTAL: The maximum number of active connections that can be allocated from this pool at the same time.</li>
+
+        </ul>
+
+      </div>
+
+      <p class="p">For more information, see the <span class="xref ft-internal-xlink" title="Java programs obtain a database connection from a pool of open connections." data-ft-warning="excluded-from-rendering" data-clusterid="id_crm/dgrwrks/c_java_database_pooling_configuration">Java database pooling configuration</span> topic.</p>
+
+    </div>
+
+  </div>
+
+</div></div></section>
+<section id="t-2580"><h4>Move to the 5.1.4 version of Transfer Equivalency Self-Service</h4><div class="content-locale-en-US content-locale-en"><div id="t_treqss_move_to_514_version"><div class="body taskbody"><p class="shortdesc">Release 5.1.4 delivers a new Transfer Equivalency Self-Service application. If you configured Transfer Equivalency Self-Service before updating to Release 5.1.4, you must migrate to the new application.</p>
+
+    <div class="tasklabel"><h2 class="sectiontitle tasklabel">Procedure</h2></div><ol class="ol steps"><li class="li step stepexpand">
+        <span class="ph cmd">Verify user access configuration.</span>
+        <div class="itemgroup info">Use the Users function of Controller to confirm that the TREQER user has been assigned the DWTESELF, RSAUDIT, and SDWORKS Shepherd keys.</div>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Configure the required environment variables and deploy the TransferApplication jar.</span>
+        <ol type="a" class="ol substeps">
+          <li class="li substep substepexpand">
+            <span class="ph cmd">Copy the TransferApplication Spring Boot JAR file to your Java application server.</span>
+          </li>
+
+          <li class="li substep substepexpand">
+            <span class="ph cmd">Configure the required environment variables using the same method you use when deploying your Degree Works Java applications – that is, shell script, in a specific user's profile, a startup instruction like init.d, or in a continuous deployment tool like Jenkins. For more information about these methods and other optional environment variables, see the <span class="xref ft-internal-link" title="Transfer Equivalency Self-Service is designed to deploy equally well in on-premise and cloud-hosted scenarios on all supported platforms. It provides a mobile-ready, responsive user interface communicating with the servers using lightweight, stateless, restful API over HTTP SSL." data-ft-warning="excluded-from-rendering" data-mapid="igXg2AijGFGkGiTrAzay5w" data-tocid="p48bo0H9nKMHWo1V6taEWA">Transfer Equivalency Self-Service deployment</span> topic.</span>
+            <div class="itemgroup info">
+              <ul class="ul">
+                <li class="li">DW_DATASOURCE_URL</li>
+
+                <li class="li">DW_DATASOURCE_USERNAME</li>
+
+                <li class="li">DW_DATASOURCE_PASSWORD</li>
+
+                <li class="li">SERVER_PORT</li>
+
+                <li class="li">SERVER_SERVLET_CONTEXT_PATH</li>
+
+                <li class="li">SERVER_SSL_KEY_STORE</li>
+
+                <li class="li">SERVER_SSL_KEY_STORE_PASSWORD</li>
+
+                <li class="li">SERVER_SSL_KEYSTORETYPE</li>
+
+                <li class="li">SERVER_SSL_KEY_ALIAS</li>
+
+                <li class="li">DW_DATASOURCE_INITIAL_SIZE</li>
+
+                <li class="li">DW_DATASOURCE_MIN_IDLE</li>
+
+                <li class="li">DW_DATASOURCE_MAX_IDLE</li>
+
+                <li class="li">DW_DATASOURCE_MAX_TOTAL</li>
+
+              </ul>
+
+            </div>
+            <div class="itemgroup info">If you are using a shell script to start the application, the <span class="ph filepath">TransferApplication.jar</span> file must be staged at the DEPLOY_LOCATION. For example:<pre class="pre codeblock"><code>#!/bin/ksh
+export DW_DATASOURCE_URL="jdbc:oracle:thin:@MyServer:1521/service_name"
+export DW_DATASOURCE_USERNAME="my-user"
+export DW_DATASOURCE_PASSWORD="my-password"
+export SERVER_PORT="8451"
+export SERVER_SERVLET_CONTEXT_PATH=""
+export SERVER_SSL_KEY_STORE="/usr/local/my-keystore.jks"
+export SERVER_SSL_KEY_STORE_PASSWORD="my-key-password"
+export SERVER_SSL_KEYSTORETYPE="jks"
+export SERVER_SSL_KEY_ALIAS="my-keystore-alias"
+export DW_DATASOURCE_INITIAL_SIZE="10"
+export DW_DATASOURCE_MIN_IDLE="10"
+export DW_DATASOURCE_MAX_IDLE="10"
+export DW_DATASOURCE_MAX_TOTAL="300"
+export DEPLOY_LOCATION="/path/to/jarfile"
+export JAVA_OPTIONS="-Xms256m -Xmx512m";
+export DEBUG="false"
+java -jar $JAVA_OPTIONS $DEPLOY_LOCATION/TransferApplication.jar &gt; startup-log-file.log &amp;
+</code></pre><p class="p">Additionally, configure the stop script for the TransferApplication. For example:</p>
+<pre class="pre codeblock"><code>#!/bin/ksh
+pkill -f TransferApplication
+</code></pre></div>
+          </li>
+
+          <li class="li substep substepexpand">
+            <span class="ph cmd">When the configuration is in place, start the application.</span>
+          </li>
+
+        </ol>
+
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Review and update Shepherd settings.</span>
+        <div class="itemgroup info">
+          <div class="note"><span class="notetitle">Note:</span> Transfer Equivalency Self-Service no longer uses the following settings:<ul class="ul">
+            <li class="li">core.whatIf.enableCurriculumRules</li>
+
+            <li class="li">treq.selfService.authentication.social.facebook.appId</li>
+
+            <li class="li">treq.selfService.createAuditPDF</li>
+
+            <li class="li">treq.selfService.degreeMajorFilter</li>
+
+            <li class="li">treq.selfService.goalPresentation</li>
+
+            <li class="li">treq.selfService.persistence.enableSocial.facebook</li>
+
+            </ul>
+</div>
+
+        </div>
+        <ol type="a" class="ol substeps">
+          <li class="li substep substepexpand">
+            <span class="ph cmd">Determine how the following new settings should be configured for your site. By default they are set to true.</span>
+            <div class="itemgroup info">
+              <ul class="ul">
+                <li class="li">treq.selfService.showCalendarType</li>
+
+                <li class="li">treq.selfService.showPlacementExams</li>
+
+              </ul>
+
+            </div>
+          </li>
+
+          <li class="li substep substepexpand">
+            <span class="ph cmd">Add a specification for treqss for core.whatIf.filterMode and set it to either R (curriculum rules), D (degree drives major), M (major drives degree), C (major drives college) or N (no filtering). Transfer Equivalency Self-Service now uses the core.whatIf.filterMode setting to determine the type of filtering for the academic goals instead of the core.whatIf.enableCurriculumRules setting. </span>
+          </li>
+
+          <li class="li substep substepexpand"><strong>Optional: </strong>
+            <span class="ph cmd">If using core.whatIf.filterMode= R (curriculum rules), you may also want to add a specification for treqss for the following settings to allow you to configure the behavior in Transfer Equivalency Self-Service differently than Responsive Dashboard What-If.</span>
+            <div class="itemgroup info">
+              <ul class="ul">
+                <li class="li">core.whatIf.showCampus</li>
+
+                <li class="li">core.whatIf.showProgramPrimary</li>
+
+                <li class="li">core.whatIf.showSchool</li>
+
+                <li class="li">core.whatIf.showCollege</li>
+
+                <li class="li">core.whatIf.degreeBeforeCollege</li>
+
+                <li class="li">core.whatIf.showConcentration</li>
+
+                <li class="li">core.whatIf.concTiedToMajor</li>
+
+                <li class="li">core.whatIf.showAllConcsInPrimary</li>
+
+                <li class="li">core.whatIf.showMinor</li>
+
+                <li class="li">core.whatIf.showAllMinors</li>
+
+              </ul>
+
+            </div>
+          </li>
+
+        </ol>
+
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Set the RPT036 report format, and review the RPT036 flags for that format.</span>
+        <ol type="a" class="ol substeps">
+          <li class="li substep">
+            <span class="ph cmd">Configure the report format for the Transfer Equivalency Self-Service audit in the core.treq.selfService.auditArticulate.report.default Shepherd setting. Typically, it is TRQ31.</span>
+          </li>
+
+          <li class="li substep">
+            <span class="ph cmd">Review the RPT036 flags for the format set in core.treq.selfService.auditArticulate.report.default, and make sure they are configured correctly for your site.</span>
+          </li>
+
+        </ol>
+
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Review the UCX flags used by Transfer Equivalency Self-Service.</span>
+        <ol type="a" class="ol substeps">
+          <li class="li substep">
+            <span class="ph cmd">Set the new <span class="ph uicontrol">Show in Transfer Equivalency Self-Service</span> flag in AUD027 and AUD029 to the appropriate value for your majors and minors.</span>
+          </li>
+
+          <li class="li substep">
+            <span class="ph cmd">Review the <span class="ph uicontrol">Show in Transfer Equivalency Self-Service</span> flag in STU016, STU035, STU307, STU316, STU350, STU563, STU560, and STU576. When using core.whatIf.filterMode= R (curriculum rules), the <span class="ph uicontrol">Show in Transfer Equivalency Self-Service</span> flag in these tables will now be used instead of the <span class="ph uicontrol">Show in What-If</span> flag. This allows you to configure the behavior in Transfer Equivalency Self-Service differently than Responsive Dashboard What-If.</span>
+          </li>
+
+        </ol>
+
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Localize the theme, add header text, and define next steps.</span>
+        <ol type="a" class="ol substeps">
+          <li class="li substep">
+            <span class="ph cmd">Define the color and logo used by Transfer Equivalency Self-Service in the theme.* Shepherd settings. If you have localized these settings for Responsive Dashboard with the default specification, Transfer Equivalency Self-Service automatically uses these as well. Optionally, you can define different values for Transfer Equivalency Self-Service by adding a treqss specification.</span>
+          </li>
+
+          <li class="li substep"><strong>Optional: </strong>
+            <span class="ph cmd">Provide instructions and additional information to prospective students on each page by localizing the transfer.selfService.*.headerText properties on TransferMessages.properties.</span>
+          </li>
+
+          <li class="li substep">
+            <span class="ph cmd">If you have any treq.selfService.nextSteps.* defined in TransferEquivalencyMessages.properties, copy them to TransferMessages.properties.</span>
+          </li>
+
+        </ol>
+
+        <div class="itemgroup info">
+          <div class="note"><span class="notetitle">Note:</span> You can localize all Transfer Equivalency Self-Service user interface or audit properties using TransferMessages.properties or PDFAuditMessages.properties in Controller.</div>
+
+        </div>
+      </li>
+</ol>
+
+  </div>
+
+</div></div></section>
+<section id="t-2590"><h3>Transfer Equivalency Self-Service navigation</h3><div class="content-locale-en-US content-locale-en"><div id="c_trek_admin_navigation"><div class="body conbody"><p class="shortdesc">Users can navigate
+    through Transfer Equivalency Self-Service using the application header bar and icons on each
+    page.</p>
+
+    <div class="section"><h2 class="title sectiontitle">Help</h2>
+      
+      <p class="p">Users can access online help by clicking the help icon on the header bar.</p>
+
+    </div>
+
+    <div class="section"><h2 class="title sectiontitle">Mega menu</h2>
+      
+      <p class="p">Users on a mobile device can navigate through the application using the mega menu on the
+        header bar. </p>
+
+    </div>
+
+    <div class="section"><h2 class="title sectiontitle">Log out</h2>
+      
+      <p class="p">The log out button displays on the header bar only if the user logs in to an existing
+        account, or creates an account either from the landing page or while saving data from within
+        the application. When the application is used anonymously, the log out button does not
+        display. </p>
+
+    </div>
+
+    <div class="section"><h2 class="title sectiontitle">Breadcrumbs</h2>
+      
+      <p class="p">On the header of each page in Transfer Equivalency Self-Service, breadcrumbs indicate user
+        progress and allow navigation between the steps.</p>
+
+      <p class="p">A breadcrumb is bold for the current step, active but not bold for a previous stage, and
+        greyed out for a future stage.</p>
+
+      <p class="p">When a user is on the academic goals page, the Goals process waypoint is bold, while
+        Classes, Exams, and Audit are greyed out and inactive. When a user selects all of the
+        required goal data, the Classes, Exams, and Audit process waypoints become active and the
+        user can click them to navigate to other steps in the process.</p>
+
+    </div>
+
+    <div class="section"><h2 class="title sectiontitle">Start over</h2>
+      
+      <p class="p">The start over button displays on the header of each page in Transfer Equivalency Self-Service and is enabled when unsaved edits exist. Selecting the start over button takes the user back to the academic goals page and resets input data. For a user who hasn't saved any data, all selected goals and entered classes/exams are cleared. For a user who has saved data and logged in, all selected goals and entered classes/exams are reset to the values from the last save, and any changes to selected goals and entered classes/exams are lost.</p>
+
+    </div>
+
+    <div class="section" id="c_trek_admin_navigation__section_qvg_yvy_cdc"><h2 class="title sectiontitle">Save</h2>
+      
+      <p class="p">The Save button displays on the header of each page in Transfer Equivalency Self-Service and will be inactive until the user makes a change to goals or classes/exams. If the user is logged in, clicking the button updates the saved goals, classes, and exams in the database. If the user is not logged in, a prompt appears to create a new account to save data. The user is not able to log in to an existing account from within the application, only from the landing page.</p>
+
+    </div>
+
+    <div class="section"><h2 class="title sectiontitle">External links</h2>
+      
+      <p class="p">You can configure an unlimited number of external links to display on the header of each
+        page in Transfer Equivalency Self-Service, which show in the More menu.</p>
+
+      <p class="p">To add an external link, you need to add the label for the button in
+        TransferMessages.properties and add a Shepherd setting in Controller with the URL. The
+        Shepherd setting and properties file label should be in the format
+        treq.selfService.nextSteps.##, where # is a sequence number and must match. The sequence
+        numbers do not need to be consecutive, but the links display in sequence order. A good
+        practice is to use sequence numbers with a gap that leave some room to insert additional
+        links at a future date, positioned as desired, without having to modify existing settings.
+        For example, sequence numbers of 10, 20, 30 would be a good pattern because then you can
+        decide later that you want to insert a new one at the second position by giving it a key of
+        15.</p>
+
+      <p class="p">For an example, you could add the following settings in Controller:</p>
+
+      
+<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" id="c_trek_admin_navigation__table_elh_v15_fdc" class="table" frame="hsides" border="1" rules="rows"><colgroup><col style="width:50%"><col style="width:50%"></colgroup><thead class="thead" style="text-align:left;">
+            <tr class="row">
+              <th class="entry row-nocellborder" style="text-align:left;vertical-align:top;" id="d51388e122">Key</th>
+
+              <th class="entry row-nocellborder" style="text-align:left;vertical-align:top;" id="d51388e125">Value</th>
+
+            </tr>
+
+          </thead>
+<tbody class="tbody">
+            <tr class="row">
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d51388e122 ">treq.selfService.nextSteps.10</td>
+
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d51388e125 ">https://www.yourschool.edu/application</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d51388e122 ">treq.selfService.nextSteps.20</td>
+
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d51388e125 ">https://www.yourschool.edu/moreinformation</td>
+
+            </tr>
+
+          </tbody>
+</table>
+</div>
+
+      <p class="p">In TransferMessages.properties, you would add the following labels: </p>
+
+      <pre class="pre codeblock" id="c_trek_admin_navigation__codeblock_id5_z15_fdc"><code>treq.selfService.nextSteps.10=Apply for Admission
+treq.selfService.nextSteps.20=More Information</code></pre>
+    </div>
+
+  </div>
+
+</div></div></section>
+<section id="t-2600"><h3>Getting started with Transfer Equivalency Self-Service</h3><div class="content-locale-en-US content-locale-en"><div id="c_landing_page"><div class="body conbody"><p class="shortdesc">On the landing page, prospective students can select how they want to use the application.</p>
+
+    <p class="p">The user has the option to continue anonymously without signing in, logging in with a previously created account, or creating a new account. </p>
+
+    <p class="p">If the treq.selfService.enableAnonymous Shepherd setting is false, the <span class="ph uicontrol">Continue without signing in</span> button does not display. </p>
+
+    <p class="p">If the treq.selfService.persistence.enableShpAccount Shepherd setting is false, the <span class="ph uicontrol">Have an account? Log in</span> and <span class="ph uicontrol">Create an account</span> buttons and the <span class="ph uicontrol">Save</span> icon on other pages do not display. </p>
+
+    <div class="note"><span class="notetitle">Note:</span> Both of these settings cannot be false, at least one should be true.</div>
+
+    <div class="section"><h2 class="title sectiontitle">Account creation</h2>
+      
+      <p class="p">When a user clicks the <span class="ph uicontrol">Create an account</span> button, they are prompted to provide an email address, name, and password. These are required fields and cannot be left blank. A SHP_USR_MST record is created for the user and the data provided by the user is stored as the SHP_ALT_ID, SHP_NAME, and SHP_ACCESS_CODE, respectively. This user is able to save their work and log in again with these credentials. The values for core.security.newUser.roles and core.security.newUser.userClass are stored as SHP_KEY_LIST and SHP_FILTER, respectively.</p>
+
+      <div class="p">You must review the following Shepherd settings to ensure they are configured correctly for your environment:<ul class="ul">
+        <li class="li">core.idFactory.idPrefix</li>
+
+        <li class="li">core.security.newUser.roles</li>
+
+        <li class="li">core.security.newUser.userClass</li>
+
+        <li class="li">treq.selfService.enableAnonymous</li>
+
+        <li class="li">treq.selfService.persistence.enableShpAccount</li>
+
+        </ul>
+</div>
+
+    </div>
+
+    <div class="section"><h2 class="title sectiontitle">Existing account login</h2>
+      
+      <p class="p">When a user clicks the <span class="ph uicontrol">Have an account? Log in</span> button, they will be prompted for a previously saved email address and password. These are required fields and cannot be left blank.</p>
+
+    </div>
+
+  </div>
+
+</div></div></section>
+<section id="t-2610"><h3>Academic goals selection</h3><div class="content-locale-en-US content-locale-en"><div id="c_goals_page"><div class="body conbody"><p class="shortdesc">To get started on the Select your academic goals page, users provide some information about their degree goals by answering questions about their intended enrollment term, degree, major, level, and other information, making selections from the drop-down lists. </p>
+
+    <p class="p">Mandatory questions are designated with an *, and users will not be allowed to proceed until they select an answer from the drop-down list.</p>
+
+    <p class="p">As selections are made, the response will show under the question. </p>
+
+    <p class="p">Users can jump to different questions if they want to make a change to their responses. However, they will not be able to jump to optional questions until all required questions have been answered.</p>
+
+    <p class="p">When they have completed their selections, the wizard moves to the Classes page. If any required fields have been skipped, users are not able to move forward until they are answered.</p>
+
+    <p class="p">You can configure Transfer Equivalency Self-Service to use no filtering, curriculum rules, or a specific form of filtering to filter the goal data drop-down lists with the core.whatIf.filterMode Shepherd setting. Additionally, you can configure which goal data can be used for filtering, required goal data and other behavior.</p>
+
+  </div>
+
+</div></div></section>
+<section id="t-2620"><h4>Academic goals with no filtering</h4><div class="content-locale-en-US content-locale-en"><div id="c_use_standard_ucx_filters"><div class="body conbody"><p class="shortdesc">When Transfer Equivalency Self-Service is configured for no filtering rules (core.whatIf.filterMode = N), standard UCX filtering will be used in the academic goals drop-down lists. </p>
+
+    <p class="p"><span class="ph uicontrol">Term</span>, <span class="ph uicontrol">Level</span>, <span class="ph uicontrol">Degree</span>, and <span class="ph uicontrol">Major</span> are required goal data items for a transfer audit. Additional academic goals can be configured to display.</p>
+
+    <p class="p"><span class="ph uicontrol">Term</span> will always display and is a required field. The term drop-down list will be populated with all STU016 values with <span class="ph uicontrol">Show in Transfer Equivalency Self-Service</span> = Q or B. Note that the value in STU016 <span class="ph uicontrol">Catalog Year</span> for each term configured to display in Transfer Equivalency Self-Service must be valid in STU035 and have STU035 <span class="ph uicontrol">Show in Transfer Equivalency Self-Service Picklist</span> = Y.</p>
+
+    <p class="p"><span class="ph uicontrol">Level</span> will always display and is a required field. The level drop-down list will be populated with all STU350 values with <span class="ph uicontrol">Show in Transfer Equivalency Self-Service Picklist</span> = Y.</p>
+
+    <p class="p"><span class="ph uicontrol">Degree</span> will always display and is a required field. The degree drop-down list will be populated with all STU307 values with <span class="ph uicontrol">Show in Transfer Equivalency Self-Service Picklist</span> = Y.</p>
+
+    <p class="p"><span class="ph uicontrol">Program</span> can be configured to display and will be optional if displayed. The program drop-down list will be populated with all STU316 values with <span class="ph uicontrol">Show in Transfer Equivalency Self-Service</span> = Y.</p>
+
+    <p class="p"><span class="ph uicontrol">Major</span> will always display and is a required field. The values in the major drop-down list will be all AUD027 values with <span class="ph uicontrol">Show in Transfer Equivalency Self-Service</span> = Y.</p>
+
+    <p class="p"><span class="ph uicontrol">Campus</span> can be configured to display and will be optional if displayed. The campus drop-down list will be populated with all STU576 values with <span class="ph uicontrol">Show in Transfer Equivalency Self-Service Picklist</span> = Y.</p>
+
+    <p class="p"><span class="ph uicontrol">Minor</span> can be configured to display and will be optional if displayed. The minor drop-down list will be populated with all AUD029 values with <span class="ph uicontrol">Show in Transfer Equivalency Self-Service</span> = Y.</p>
+
+    <p class="p"><span class="ph uicontrol">College</span> can be configured to display and will be optional if displayed. The college drop-down list will be populated with all STU560 values with <span class="ph uicontrol">Show in Transfer Equivalency Self-Service Picklist</span> = Y.</p>
+
+    <p class="p"><span class="ph uicontrol">Concentration</span> can be configured to display and will be optional if displayed. The concentration drop-down list will be populated with all STU563 values with <span class="ph uicontrol">Show in Transfer Equivalency Self-Service Picklist</span> = Y.</p>
+
+    <div class="section" id="c_use_standard_ucx_filters__section_i1r_fhn_ddc"><h2 class="title sectiontitle">Configuration</h2>
+      
+      <ul class="ul" id="c_use_standard_ucx_filters__ul_ehr_nhn_ddc">
+        <li class="li">Review the <span class="ph uicontrol">Show in Transfer Equivalency Self-Service</span> flag in the following tables to ensure it is configured correctly:<ul class="ul">
+          <li class="li">AUD027 (Major)</li>
+
+          <li class="li">AUD029 (Minor)</li>
+
+          <li class="li">STU016 (Term)</li>
+
+          <li class="li">STU035 (Catalog Year)</li>
+
+          <li class="li">STU307 (Degree)</li>
+
+          <li class="li">STU316 (Program)</li>
+
+          <li class="li">STU350 (Level)</li>
+
+          <li class="li">STU560 (College)</li>
+
+          <li class="li">STU563 (Concentration)</li>
+
+          <li class="li">STU576 (Campus)</li>
+
+          </ul>
+</li>
+
+        <li class="li">Review the following Shepherd settings to ensure they are configured correctly:<ul class="ul">
+          <li class="li">core.whatIf.filtermode</li>
+
+          <li class="li">core.whatIf.showCampus</li>
+
+          <li class="li">core.whatIf.showCollege</li>
+
+          <li class="li">core.whatIf.showConcentration</li>
+
+          <li class="li">core.whatIf.showMinor</li>
+
+          <li class="li">core.whatIf.showProgramPrimary</li>
+
+          </ul>
+</li>
+
+      </ul>
+
+    </div>
+
+  </div>
+
+</div></div></section>
+<section id="t-2630"><h4>Academic goals with curriculum-rule filtering</h4><div class="content-locale-en-US content-locale-en"><div id="c_use_curriculam_filter"><div class="body conbody"><p class="shortdesc">When Transfer Equivalency Self-Service is configured to use curriculum rules (core.whatIf.filterMode = R), the values that appear in the drop-down lists come from the curriculum rules loaded in RAD_CURRRULE_DTL.</p>
+
+    <p class="p">The <span class="ph uicontrol">Term</span> and <span class="ph uicontrol">Degree</span> drop-down lists will always display, while <span class="ph uicontrol">Campus</span>, <span class="ph uicontrol">Program</span>, <span class="ph uicontrol">Level</span>, <span class="ph uicontrol">College</span>, <span class="ph uicontrol">Major</span>, <span class="ph uicontrol">Concentration</span>, and <span class="ph uicontrol">Minor</span> can be configured to display.</p>
+
+    <p class="p"><span class="ph uicontrol">Term</span> will always display and is a required field. The terms that are in the drop-down list come from the codes in STU016 with <span class="ph uicontrol">Show in Transfer Equivalency Self-Service</span> = Q or B. Note that the value in STU016 <span class="ph uicontrol">Catalog Year</span> for each term configured to display in Transfer Equivalency Self-Service must be valid in STU035 and have STU035 <span class="ph uicontrol">Show in Transfer Equivalency Self-Service Picklist</span> = Y. </p>
+
+    <p class="p"><span class="ph uicontrol">Campus</span> will display when core.whatIf.showCampus is true and will be a required field. The values in the campus drop-down list will only be those from STU576 with <span class="ph uicontrol">Show in Transfer Equivalency Self-Service Picklist</span> = Y and are on the selected curriculum rule.</p>
+
+    <p class="p"><span class="ph uicontrol">Program</span> will display when core.whatIf.showProgramPrimary is true and will be a required field. The <span class="ph uicontrol">Level</span>, <span class="ph uicontrol">Degree</span>, and <span class="ph uicontrol">College</span> (if displayed) will display but be inactive. The values in the program drop-down list will only be those from STU316 with <span class="ph uicontrol">Show in Transfer Equivalency Self-Service</span> = Y and are on the selected curriculum rule.</p>
+
+    <p class="p"><span class="ph uicontrol">Level</span> will display when core.whatIf.showSchool is true and will be a required field. The values in the level drop-down list will only be those from STU350 with <span class="ph uicontrol">Show in Transfer Equivalency Self-Service Picklist</span> = Y and are on the selected curriculum rule.</p>
+
+    <p class="p"><span class="ph uicontrol">Degree</span> will always display and is a required field. The values in the degree drop-down list will only be those from STU307 with <span class="ph uicontrol">Show in Transfer Equivalency Self-Service Picklist</span> = Y and are on the selected curriculum rule. When core.whatIf.degreeBeforeCollege is true, degree will display before college and drive the college in the curriculum rule filtering.</p>
+
+    <p class="p"><span class="ph uicontrol">College</span> will display when core.whatIf.showCollege is true and will be
+      a required field.
+      The
+      values in the college drop-down list
+      will
+      only be those from STU560 with <span class="ph uicontrol">Show in Transfer Equivalency Self-Service
+        Picklist</span> = Y and are on the selected curriculum rule. When
+      core.whatIf.degreeBeforeCollege is false, college will display before degree and drive the
+      degree in the curriculum rule filtering.</p>
+
+    <p class="p"><span class="ph uicontrol">Major</span> will display when core.whatIf.showMajor is true and will be a required field when core.whatIf.majorRequired is true. The values in the major drop-down list will only be those from AUD027 with <span class="ph uicontrol">Show in Transfer Equivalency Self-Service</span> = Y and are on the selected curriculum rule.</p>
+
+    <p class="p"><span class="ph uicontrol">Concentration</span> will display when core.whatIf.showConcentration is true and will be a required field if the selected major has AUD027 <span class="ph uicontrol">Concentration Required</span> = Y. The values in the concentration drop-down list will only be those from STU563 with <span class="ph uicontrol">Show in Transfer Equivalency Self-Service Picklist</span> = Y and are on the selected curriculum rule. When core.whatIf.concTiedToMajor is true, the concentration drop-down list will be populated with only the concentration values on the curriculum rule where the RAD_ATTACH_CODE = MAJOR and RAD_ATTACH_VALUE is equal to the selected major. When core.whatIf.showAllConcsInPrimary = true, if there are no concentrations attached to the selected curriculum rule, all values in STU563 where STU563 <span class="ph uicontrol">Show in Transfer Equivalency Self-Service Picklist</span> = Y will be displayed in the concentration drop-down list. </p>
+
+    <p class="p"><span class="ph uicontrol">Minor</span> will display when core.whatIf.showMinor is true. The values in the minor drop-down list will only be those from AUD029 with <span class="ph uicontrol">Show in Transfer Equivalency Self-Service</span> = Y and are on the selected curriculum rule. When core.whatIf.showAllMinors is true, if there are no minors attached to the selected curriculum rule, all values in AUD029 with <span class="ph uicontrol">Show in Transfer Equivalency Self-Service</span> = Y will be displayed in the minor drop-down list.</p>
+
+    <div class="section" id="c_use_curriculam_filter__section_p4r_dmn_ddc"><h2 class="title sectiontitle">Configuration</h2>
+      
+      <div class="p">
+        <ul class="ul">
+          <li class="li">Review the <span class="ph uicontrol">Show in Transfer Equivalency Self-Service</span> flag in the following tables to ensure it is configured correctly:<ul class="ul">
+            <li class="li">AUD027 (Major)</li>
+
+            <li class="li">AUD029 (Minor)</li>
+
+            <li class="li">STU016 (Term)</li>
+
+            <li class="li">STU035 (Catalog Year)</li>
+
+            <li class="li">STU307 (Degree)</li>
+
+            <li class="li">STU316 (Program)</li>
+
+            <li class="li">STU350 (Level)</li>
+
+            <li class="li">STU560 (College)</li>
+
+            <li class="li">STU563 (Concentration)</li>
+
+            <li class="li">STU576 (Campus)</li>
+
+            </ul>
+</li>
+
+          <li class="li">Review the following Shepherd settings to ensure they are configured correctly:<ul class="ul">
+            <li class="li">core.whatIf.concTiedToMajor</li>
+
+            <li class="li">core.whatIf.degreeBeforeCollege</li>
+
+            <li class="li">core.whatIf.filtermode</li>
+
+            <li class="li">core.whatIf.showAllConcsInPrimary</li>
+
+            <li class="li">core.whatIf.showAllMinors</li>
+
+            <li class="li">core.whatIf.showCampus</li>
+
+            <li class="li">core.whatIf.showCollege</li>
+
+            <li class="li">core.whatIf.showConcentration</li>
+
+            <li class="li">core.whatIf.showMinor</li>
+
+            <li class="li">core.whatIf.showProgramPrimary</li>
+
+            <li class="li">core.whatIf.showSchool</li>
+
+            </ul>
+</li>
+
+        </ul>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</div></div></section>
+<section id="t-2640"><h4>Academic goals with degree-drives-major filtering</h4><div class="content-locale-en-US content-locale-en"><div id="c_academic_goals_degree_drives_major_filtering"><div class="body conbody"><p class="shortdesc">When Transfer Equivalency Self-Service is configured for degree-drives-major (core.whatIf.filterMode = D), the Major drop-down list populates with only the values that are valid for the selected degree.</p>
+
+    <p class="p"><span class="ph uicontrol">Term</span> always displays and is a required field. The terms in the drop-down list come from the codes in STU016 with <span class="ph uicontrol">Show in Transfer Equivalency Self-Service</span> = Q or B. Note that the value in STU016 <span class="ph uicontrol">Catalog Year</span> for each term configured to display in Transfer Equivalency Self-Service must be valid in STU035 and have STU035 <span class="ph uicontrol">Show in Transfer Equivalency Self-Service Picklist</span> = Y.</p>
+
+    <p class="p"><span class="ph uicontrol">Degree</span> always displays and is a required field. The degree drop-down list populates with all STU307 values with <span class="ph uicontrol">Show in Transfer Equivalency Self-Service Picklist</span> flag = Y.</p>
+
+    <p class="p"><span class="ph uicontrol">Level</span> displays when core.whatIf.showSchool is true and is a required field. The values in the level drop-down list are only those from STU350 with <span class="ph uicontrol">Show in Transfer Equivalency Self-Service Picklist</span> = Y.</p>
+
+    <p class="p"><span class="ph uicontrol">Program</span> displays when core.whatIf.showProgramPrimary is true and is a required field. The program drop-down list is populated with all STU316 values with<span class="ph uicontrol"> Show in Transfer Equivalency Self-Service flag</span> = Y.</p>
+
+    <p class="p"><span class="ph uicontrol">Major</span> always shows and is a required field regardless of the core.whatIf.showMajor and core.whatIf.majorRequired settings. The values in the major drop-down list are all AUD027 values with <span class="ph uicontrol">Show in Transfer Equivalency Self-Service</span> = Y and that have the selected degree in an AUD027 Degree Filter* field.</p>
+
+    <p class="p"><span class="ph uicontrol">Campus</span> displays when core.whatIf.showCampus is true and is a required field. The values in the campus drop-down list are only those from STU576 with <span class="ph uicontrol">Show in Transfer Equivalency Self-Service Picklist</span> = Y.</p>
+
+    <p class="p"><span class="ph uicontrol">Minor</span> displays when core.whatIf.showMinor is true. The values in the minor drop-down list are only those from AUD029 with <span class="ph uicontrol">Show in Transfer Equivalency Self-Service</span> = Y.</p>
+
+    <p class="p"><span class="ph uicontrol">College</span> displays when core.whatIf.showCollege is true. The values in the college drop-down are only those from STU560 with <span class="ph uicontrol">Show in Transfer Equivalency Self-Service Picklist</span> = Y.</p>
+
+    <p class="p"><span class="ph uicontrol">Concentration</span> can be configured to display based on core.whatIf.showConcentration. The concentration drop-down list is populated with all STU563 values with <span class="ph uicontrol">Show in Transfer Equivalency Self-Service Picklist flag</span> = Y. However, if core.whatIf.filterConcentrationByMajor is true, the concentration drop-down list is populated based on the selected major and the Major Filter* fields in STU563. Additionally, the concentration shows regardless of the core.whatIf.showConcentration setting and the STU563 <span class="ph uicontrol">Show in Transfer Equivalency Self-Service Picklist</span> flag. If the selected major is not found in any of the filter fields in STU563, the concentration drop-down list is empty.</p>
+
+    <div class="section"><h2 class="title sectiontitle">Configuration</h2>
+      
+      <ul class="ul">
+        <li class="li">Review the <span class="ph uicontrol">Degree Filter</span> 1 – 5 fields in AUD027 to ensure they are configured correctly.</li>
+
+        <li class="li">Review the <span class="ph uicontrol">Major Filter</span> 1 – 4 fields in STU563 to ensure they are configured correctly. These fields are used only if core.whatIf.filterConcentrationByMajor is enabled.</li>
+
+        <li class="li">Review the <span class="ph uicontrol">Show in Transfer Equivalency Self-Service</span> flag in the following tables to ensure it is configured correctly:<ul class="ul">
+          <li class="li">AUD027 (Major)</li>
+
+          <li class="li">AUD029 (Minor)</li>
+
+          <li class="li">STU016 (Term)</li>
+
+          <li class="li">STU035 (Catalog Year)</li>
+
+          <li class="li">STU307 (Degree)</li>
+
+          <li class="li">STU316 (Program)</li>
+
+          <li class="li">STU350 (Level)</li>
+
+          <li class="li">STU560 (College)</li>
+
+          <li class="li">STU563 (Concentration)</li>
+
+          <li class="li">STU576 (Campus) </li>
+
+          </ul>
+</li>
+
+        <li class="li">Review the following Shepherd settings to ensure they are configured correctly:<ul class="ul">
+          <li class="li">core.whatIf.filterMode</li>
+
+          <li class="li">core.whatIf.filterConcentrationByMajor</li>
+
+          <li class="li">core.whatIf.showCampus</li>
+
+          <li class="li">core.whatIf.showCollege</li>
+
+          <li class="li">core.whatIf.showConcentration</li>
+
+          <li class="li">core.whatIf.showMinor</li>
+
+          <li class="li">core.whatIf.showProgramPrimary</li>
+
+          <li class="li">core.whatIf.showSchool</li>
+
+          </ul>
+</li>
+
+      </ul>
+
+    </div>
+
+  </div>
+
+</div></div></section>
+<section id="t-2650"><h4>Academic goals with major-drives-degree/school/college filtering</h4><div class="content-locale-en-US content-locale-en"><div id="c_academic_goals_major_drives_degree_school_college_filtering"><div class="body conbody"><p class="shortdesc">When Transfer Equivalency Self-Service is configured for major-drives-degree (core.whatIf.filterMode=M), the Degree, Level (aka School), and College drop-down lists are populated with only the values that are valid for the selected major.</p>
+
+    <p class="p"><span class="ph uicontrol">Term</span> always displays and is a required field. The terms in the drop-down list come from the codes in STU016 with <span class="ph uicontrol">Show in Transfer Equivalency Self-Service</span> = Q or B. Note that the value in STU016 Catalog Year for each term configured to display in Transfer Equivalency Self-Service must be valid in STU035 and have STU035 <span class="ph uicontrol">Show in Transfer Equivalency Self-Service Picklist</span> = Y.</p>
+
+    <p class="p"><span class="ph uicontrol">Major</span> always shows and is a required field regardless of the core.whatIf.showMajor and core.whatIf.majorRequired settings. The values in the major drop-down list are all AUD027 values with <span class="ph uicontrol">Show in Transfer Equivalency Self-Service</span> = Y. After a major has been selected, the <span class="ph uicontrol">Degree</span>, <span class="ph uicontrol">School</span>, and <span class="ph uicontrol">College</span> fields on AUD027 are used to return the appropriate values for the respective UCX tables: STU307, STU350, STU560. The <span class="ph uicontrol">Degree</span>, <span class="ph uicontrol">Level</span>, and <span class="ph uicontrol">College</span> drop-downs show as disabled.</p>
+
+    <p class="p">Note that an error displays when the following conditions are encountered:</p>
+
+    <ul class="ul" id="c_academic_goals_major_drives_degree_school_college_filtering__ul_jcy_bft_fdc">
+      <li class="li">The <span class="ph uicontrol">Degree</span> field is blank in AUD027 for the selected major.</li>
+
+      <li class="li">The <span class="ph uicontrol">School</span> field is blank in AUD027 for the selected major and if core.whatIf.showSchool= true.</li>
+
+      <li class="li">The <span class="ph uicontrol">College</span> field is blank in AUD027 for the selected major and if core.whatIf.showCollege= true. </li>
+
+    </ul>
+
+    <p class="p"><span class="ph uicontrol">Degree</span> always displays and is disabled.</p>
+
+    <p class="p"><span class="ph uicontrol">Level</span> displays when core.whatIf.showSchool is true and is disabled.</p>
+
+    <p class="p"><span class="ph uicontrol">College</span> displays when core.whatIf.showCollege is true and is disabled.</p>
+
+    <p class="p"><span class="ph uicontrol">Concentration</span> can be configured to display based on core.whatIf.showConcentration. The concentration drop-down list is populated with all STU563 values with <span class="ph uicontrol">Show in Transfer Equivalency Self-Service Picklist</span> flag = Y. However, if core.whatIf.filterConcentrationByMajor is true, the concentration drop-down list is populated based on the selected major and the filter fields in STU563. Additionally, the concentration shows regardless of the core.whatIf.showConcentration setting and the STU563 <span class="ph uicontrol">Show in Transfer Equivalency Self-Service Picklist</span> flag. If the selected major is not found in any of the filter fields in STU563, the concentration drop-down list is empty.</p>
+
+    <p class="p"><span class="ph uicontrol">Campus</span> displays when core.whatIf.showCampus is true. The values in the campus drop-down list are only those from STU576 with <span class="ph uicontrol">Show in Transfer Equivalency Self-Service Picklist</span> = Y.</p>
+
+    <p class="p"><span class="ph uicontrol">Program</span> will display when core.whatIf.showProgramPrimary is true. The program drop-down list is populated with all STU316 values with <span class="ph uicontrol">Show in Transfer Equivalency Self-Service flag</span> = Y.</p>
+
+    <p class="p"><span class="ph uicontrol">Minor</span> displays when core.whatIf.showMinor is true. The values in the minor drop-down are only those from AUD029 with <span class="ph uicontrol">Show in Transfer Equivalency Self-Service</span> = Y.</p>
+
+    <div class="section" id="c_academic_goals_major_drives_degree_school_college_filtering__section_asv_cft_fdc"><h2 class="title sectiontitle">Configuration</h2>
+      
+      <ul class="ul" id="c_academic_goals_major_drives_degree_school_college_filtering__ul_rqk_fft_fdc">
+        <li class="li">Review the <span class="ph uicontrol">Degree</span>, <span class="ph uicontrol">School</span>, and <span class="ph uicontrol">College</span> fields in AUD027 to ensure they are configured correctly.</li>
+
+        <li class="li">Review the Major Filter 1 – 4 fields in STU563 to ensure they are configured correctly; only used if core.whatIf.filterConcentrationByMajor is enabled.</li>
+
+        <li class="li">Review the Show in Transfer Equivalency Self-Service flag in the following tables to ensure it is configured correctly:<ul class="ul" id="c_academic_goals_major_drives_degree_school_college_filtering__ul_asw_fft_fdc">
+          <li class="li">AUD027 (Major)</li>
+
+          <li class="li">AUD029 (Minor)</li>
+
+          <li class="li">STU016 (Term)</li>
+
+          <li class="li">STU035 (Catalog Year)</li>
+
+          <li class="li">STU307 (Degree)</li>
+
+          <li class="li">STU316 (Program)</li>
+
+          <li class="li">STU350 (Level)</li>
+
+          <li class="li">STU560 (College)</li>
+
+          <li class="li">STU563 (Concentration)</li>
+
+          <li class="li">STU576 (Campus) </li>
+
+          </ul>
+</li>
+
+        <li class="li">Review the following Shepherd settings to ensure they are configured correctly:<ul class="ul" id="c_academic_goals_major_drives_degree_school_college_filtering__ul_lbn_gft_fdc">
+          <li class="li">core.whatIf.filterMode</li>
+
+          <li class="li">core.whatIf.filterConcentrationByMajor</li>
+
+          <li class="li">core.whatIf.showCampus</li>
+
+          <li class="li">core.whatIf.showCollege</li>
+
+          <li class="li">core.whatIf.showConcentration</li>
+
+          <li class="li">core.whatIf.showMinor</li>
+
+          <li class="li">core.whatIf.showProgramPrimary</li>
+
+          <li class="li">core.whatIf.showSchool</li>
+
+          </ul>
+</li>
+
+      </ul>
+
+    </div>
+
+  </div>
+
+</div></div></section>
+<section id="t-2660"><h4>Academic goals with major-drives-college filtering</h4><div class="content-locale-en-US content-locale-en"><div id="c_academic_goals_major_drives_college_filtering"><div class="body conbody"><p class="shortdesc">When you configure Transfer Equivalency Self-Service for major-drives-college (core.whatIf.filterMode = C), the College drop-down list is populated with only the values that are valid for the selected major.</p>
+
+    <p class="p"><span class="ph uicontrol">Term</span> always displays and is a required field. The terms in the drop-down list come from the codes in STU016 with<span class="ph uicontrol"> Show in Transfer Equivalency Self-Service</span> = Q or B. Note that the value in STU016 Catalog Year for each term configured to display in Transfer Equivalency Self-Service must be valid in STU035 and have STU035 <span class="ph uicontrol">Show in Transfer Equivalency Self-Service Picklist</span> = Y.</p>
+
+    <p class="p"><span class="ph uicontrol">Degree</span> always displays and is a required field. The values in the degree drop-down list are only those from STU307 with <span class="ph uicontrol">Show in Transfer Equivalency Self-Service Picklist</span> = Y. </p>
+
+    <p class="p"><span class="ph uicontrol">Level</span> displays when core.whatIf.showSchool is true and is a required field. The values in the level drop-down list are only those from STU350 with <span class="ph uicontrol">Show in Transfer Equivalency Self-Service Picklist</span> = Y.</p>
+
+    <p class="p"><span class="ph uicontrol">Program</span> displays when core.whatIf.showProgramPrimary is true. The program drop-down is populated with all STU316 values with <span class="ph uicontrol">Show in Transfer Equivalency Self-Service</span> flag = Y.</p>
+
+    <p class="p"><span class="ph uicontrol">Major</span> always shows and is a required field, regardless of the core.whatIf.showMajor and core.whatIf.majorRequired settings. The values in the major drop-down list are all AUD027 values with <span class="ph uicontrol">Show in Transfer Equivalency Self-Service</span> = Y. After a user selects a major, the <span class="ph uicontrol">College</span> fields on AUD027 are used to return the appropriate values for college, and the college drop-down shows as disabled.</p>
+
+    <p class="p">Note that an error displays if the <span class="ph uicontrol">College</span> field is blank in AUD027 for the selected major. </p>
+
+    <p class="p"><span class="ph uicontrol">Campus</span> displays when core.whatIf.showCampus is true. The values in the campus drop-down list are only those from STU576 with <span class="ph uicontrol">Show in Transfer Equivalency Self-Service Picklist</span> = Y.</p>
+
+    <p class="p"><span class="ph uicontrol">Minor</span> displays when core.whatIf.showMinor is true. The values in the minor drop-down list are only those from AUD029 with <span class="ph uicontrol">Show in Transfer Equivalency Self-Service</span> = Y.</p>
+
+    <p class="p"><span class="ph uicontrol">College</span> always shows and is a required field, regardless of the core.whatIf.showCollege setting.</p>
+
+    <p class="p">You can configure <span class="ph uicontrol">Concentration</span> to display based on core.whatIf.showConcentration. The concentration drop-down list is populated with all STU563 values with <span class="ph uicontrol">Show in Transfer Equivalency Self-Service Picklist</span> flag = Y. However, if core.whatIf.filterConcentrationByMajor is true, the concentration drop-down is populated based on the selected major and the filter fields in STU563, and the concentration shows regardless of the core.whatIf.showConcentration setting and the STU563 <span class="ph uicontrol">Show in Transfer Equivalency Self-Service Picklist</span> flag. If the selected major is not found in any of the filter fields in STU563, the concentration drop-down list is empty.</p>
+
+    <div class="section"><h2 class="title sectiontitle">Configuration</h2>
+      
+      <ul class="ul">
+        <li class="li">Review the <span class="ph uicontrol">College</span> fields in AUD027 to ensure they are configured correctly.</li>
+
+        <li class="li">Review the <span class="ph uicontrol">Major Filter</span> 1 – 4 fields in STU563 to ensure they are configured correctly; only used if core.whatIf.filterConcentrationByMajor is enabled.</li>
+
+        <li class="li">Review the <span class="ph uicontrol">Show in Transfer Equivalency Self-Service</span> flag in the following tables to ensure it is configured correctly:<ul class="ul">
+          <li class="li">AUD027 (Major)</li>
+
+          <li class="li">AUD029 (Minor)</li>
+
+          <li class="li">STU016 (Term)</li>
+
+          <li class="li">STU035 (Catalog Year)</li>
+
+          <li class="li">STU307 (Degree)</li>
+
+          <li class="li">STU316 (Program)</li>
+
+          <li class="li">STU350 (Level)</li>
+
+          <li class="li">STU560 (College)</li>
+
+          <li class="li">STU563 (Concentration)</li>
+
+          <li class="li">STU576 (Campus) </li>
+
+          </ul>
+</li>
+
+        <li class="li">Review the following Shepherd settings to ensure they are configured correctly:<ul class="ul">
+          <li class="li">core.whatIf.filterMode</li>
+
+          <li class="li">core.whatIf.filterConcentrationByMajor</li>
+
+          <li class="li">core.whatIf.showCampus</li>
+
+          <li class="li">core.whatIf.showConcentration</li>
+
+          <li class="li">core.whatIf.showMinor</li>
+
+          <li class="li">core.whatIf.showProgramPrimary</li>
+
+          <li class="li">core.whatIf.showSchool</li>
+
+          </ul>
+</li>
+
+      </ul>
+
+    </div>
+
+  </div>
+
+</div></div></section>
+<section id="t-2670"><h3>Transfer classes entry</h3><div class="content-locale-en-US content-locale-en"><div id="c_transfer_page"><div class="body conbody"><p class="shortdesc">On the Classes page, users can enter transfer class information that could be articulated and applied to their intended goal. </p>
+
+    <p class="p">Entering transfer classes is optional. Users can proceed to Exams or Audit without adding transfer classes by clicking <span class="ph uicontrol">Skip</span>.</p>
+
+    <p class="p">To add a transfer class, the user must first select a transfer school, then select the transfer class, and then enter in the class information.  </p>
+
+    <p class="p">The list of transfer schools is populated with the schools for which you have mappings in DAP_MAPPING_DTL. The city and state that displays comes from the RAD_ETS_MST for that school, if this record exists. Schools are listed in alphabetical order by school name.</p>
+
+    <p class="p">The list of transfer courses is populated from the mappings for the selected school. Courses are listed in alphabetical order by transfer course discipline and number.</p>
+
+    <p class="p">For the class details, the user selects the term in which they took the class, how many credits they received, the grade they earned, and if enabled, the credit type.</p>
+
+    <p class="p">The options in the <span class="ph uicontrol">Term</span> drop-down list are all terms in STU016 with the <span class="ph uicontrol">Show in Transfer Equivalency Self-Service</span> flag = Y or B.</p>
+
+    <p class="p">The <span class="ph uicontrol">Credits</span> field allows numeric values only and follows the format defined in the core.credit.format Shepherd setting.</p>
+
+    <p class="p">The options in the <span class="ph uicontrol">Grade</span> drop-down are all grades in STU398 with the <span class="ph uicontrol">Show in Transfer Equivalency Self-Service</span> flag = Y.</p>
+
+    <p class="p">When treq.selfService.showCalendarType is true, the <span class="ph uicontrol">Credit Type</span> drop-down displays. It contains all values in STU346 with the <span class="ph uicontrol">Show in Transfer Equivalency Self-Service</span> flag = Y. If the RAD_CALENDAR field on the selected schools RAD_ETS_MST is a valid value in STU346, the value loads as the initial default. If it is not, the core.institution.calendarType Shepherd setting value loads as the default.</p>
+
+    <p class="p">When treq.selfService.showCalendarType is false, the user does not have to select the credit type when adding a transfer class. The articulation engine uses the RAD_CALENDAR value from RAD_ETS_MST for the selected school if it matches a valid entry in STU346; otherwise, it uses the core.institution.calendarType Shepherd setting.</p>
+
+    <p class="p">After entering the transfer class details, the user can select to add another class from the same school, a class at a different school, a placement exam, or run the transfer audit. After selecting one of the options, the class data the user entered is added to the My transfer work panel. Classes are not saved to the database until they have been added to My transfer work and the user clicks <span class="ph uicontrol">Save</span>.</p>
+
+    <div class="section"><h2 class="title sectiontitle">Configuration</h2>
+      
+      <ul class="ul">
+        <li class="li">Review the following UCX tables to ensure that they are configured correctly for your Transfer Equivalency Self-Service environment:<ul class="ul">
+          <li class="li">Show in Transfer Equivalency Self-Service in STU016, STU346, STU398</li>
+
+          <li class="li">Convert Number in STU346</li>
+
+          </ul>
+</li>
+
+        <li class="li">Review the following Shepherd settings to ensure they are configured correctly:<ul class="ul">
+          <li class="li">core.credit.format</li>
+
+          <li class="li">treq.selfService.showCalendarType</li>
+
+          </ul>
+</li>
+
+      </ul>
+
+    </div>
+
+  </div>
+
+</div></div></section>
+<section id="t-2680"><h3>My transfer work panel</h3><div class="content-locale-en-US content-locale-en"><div id="c_transfer_work_panel"><div class="body conbody"><p class="shortdesc">Users can see all of the classes and exams they entered in the My transfer work side panel, and can edit or delete any of their classes or exams.</p>
+
+    <p class="p">The My transfer work displays transfer classes and placement exams. Exams are ordered by the test name, and classes are ordered by school then by course discipline and number.</p>
+
+    <p class="p">To edit a class, users click the <span class="ph uicontrol">Edit</span> icon to the right of the class. The class loads in the Edit Transfer Class dialog window, and after editing the transfer class, users should click <span class="ph uicontrol">Done</span>.</p>
+
+    <p class="p">To edit an exam, users click the <span class="ph uicontrol">Edit</span> icon next to the exam. The exam loads in the Edit Placement Exam dialog window, and after editing the placement exam, users should click <span class="ph uicontrol">Done</span>.</p>
+
+    <p class="p">To delete a class or exam, users click the <span class="ph uicontrol">Delete</span> icon next to the item.</p>
+
+    <p class="p">Classes and exams are not modified in or deleted from the database until they have been added to My transfer work and the user clicks <span class="ph uicontrol">Save</span>.</p>
+
+  </div>
+
+</div></div></section>
+<section id="t-2690"><h3>Placement exams entry</h3><div class="content-locale-en-US content-locale-en"><div id="c_add_exam"><div class="body conbody"><p class="shortdesc">On the Exams page, users can enter placement exam information that could be articulated and applied to their intended goal.</p>
+
+    <p class="p">When the treq.selfService.showPlacementExams Shepherd setting is true, the Exams page displays.</p>
+
+    <p class="p">Entering placement exams is optional. Users can proceed to Audit without adding exams by clicking <span class="ph uicontrol">Skip</span>.</p>
+
+    <p class="p">To add a placement exam, the user must first select the exam, enter the test score received, and select the date the test was taken.</p>
+
+    <p class="p">For the exam details, the contents of the placement exam drop-down list are all tests in STU314 with <span class="ph uicontrol">Credit by Exam flag</span> = Y. The exam score field allows alphanumeric values up to 4 digits. The test date is optional.</p>
+
+    <p class="p">After entering the placement exam details, users can select to add another placement exam or run the transfer audit. After selecting one of these options, the exam data the user entered is added to the My transfer work panel. Exams are not saved to the database until they have been added to My transfer work and the user clicks <span class="ph uicontrol">Save</span>.</p>
+
+    <div class="section" id="c_add_exam__section_ikq_vrt_fdc"><h2 class="title sectiontitle">Configuration</h2>
+      
+      <ul class="ul" id="c_add_exam__ul_ddd_fst_fdc">
+        <li class="li">Review the <span class="ph uicontrol">Credit by Exam</span> flag in STU314 to ensure the correct configuration for your Transfer Equivalency Self-Service environment.</li>
+
+        <li class="li">Review the treq.selfService.showPlacementExams Shepherd setting</li>
+
+      </ul>
+
+    </div>
+
+  </div>
+
+</div></div></section>
+<section id="t-2700"><h3>Audit generation</h3><div class="content-locale-en-US content-locale-en"><div id="c_result_page"><div class="body conbody"><p class="shortdesc">On the Audit page, prospective students can view transfer audits showing how the classes and exams they added might articulate and apply to their selected program goal.</p>
+
+    <p class="p">After the required goal questions have been answered, a prospective student can access the Audit page either by selecting the <span class="ph uicontrol">I'm all done and would like to run a transfer audit</span> option on the Classes or Exams pages, or by clicking the <span class="ph uicontrol">Audit</span> process waypoint in the navigation breadcrumb. When the Audit page is accessed, a request for a transfer audit will be generated. </p>
+
+    <p class="p">The classes and exams the prospective student entered and their selected goal data will be passed to the articulation and auditor engines, and an audit worksheet will be returned that includes both the transfer audit and the articulation results.</p>
+
+    <p class="p">You can define the report format to be used for the transfer audit in the core.treq.selfService.auditArticulate.report.default Shepherd setting. This must be a valid value in RPT036 and is typically TRQ31. The RPT036 flags for defined report format are used to configure the transfer audit. </p>
+
+    <p class="p">The course equivalencies section is organized by each transfer school, and the transfer course number, title, grade, credits, and term taken display above the equivalent course number, title, grade, and credits.</p>
+
+    <p class="p">Many-to-One (MTO1), One-to-Many (1TOM), and Many-to-Many (MTOM) equivalencies will be grouped together by mapping to visually demonstrate the relationship between the classes.</p>
+
+    <p class="p">The prospective student can generate and download a PDF file of the audit and articulation results by clicking the print icon.</p>
+
+    <div class="section"><h2 class="title sectiontitle">Configuration</h2>
+      
+      <ul class="ul">
+        <li class="li">Review the flags in RPT036 for the transfer audit report format to ensure correct configuration for your Transfer Equivalency Self-Service environment.</li>
+
+        <li class="li">Review the following Shepherd settings:<ul class="ul">
+          <li class="li">core.site.displayName</li>
+
+          <li class="li">core.treq.selfService.auditArticulate.report.default</li>
+
+          </ul>
+</li>
+
+      </ul>
+
+    </div>
+
+  </div>
+
+</div></div></section>
+<section id="t-2710"><h4>Auto resolution</h4><div class="content-locale-en-US content-locale-en"><div id="c_auto_resolution"><div class="body conbody"><p class="shortdesc">You can configure Transfer Equivalency Self-Service to resolve duplicate and undecided situations automatically based on a set of defined rules. </p>
+
+    <p class="p">Rather than returning an unresolved articulation, if more than one matching mapping is found (an undecided scenario), or if the student has more than one transfer class that maps to the same course(s) at the transfer school (a duplicate scenario), you can define a hierarchy of resolution rules, and if a match still cannot be determined after working through the hierarchy, it will check the defined rule of last resort.</p>
+
+    <p class="p">You can configure transfer classes for which no mapping is found to map to a generic course in the articulation.leftoverCourse.courseDiscipline and articulation.leftoverCourse.courseNumber Shepherd settings. These classes are then be counted in the overall degree credits and can apply to rules on the transfer audit.</p>
+
+    <p class="p">There are several resolution options that you can use in the articulation.resolutionRules.duplicate and articulation.resolutionRules.undecided Shepherd settings. These options are applied in list order until a final mapping is found or until all resolution options have been tried.</p>
+
+    <div class="section" id="c_auto_resolution__section_a4q_jyt_fdc"><h2 class="title sectiontitle">CREDITMAX</h2>
+      
+      <p class="p">For all the potential mappings, add up the total amount of credits that would be awarded in each. The mapping that would result in the most transfer credits wins.</p>
+
+      <p class="p">For example, you can have the following Undecided situations:</p>
+
+      <pre class="pre codeblock" id="c_auto_resolution__codeblock_b4q_jyt_fdc"><code>a. MATH 101, MATH 102 -&gt; MATH 200, MATH 300, MATH 400
+b. MATH 101, MATH 103 -&gt;MATH 51, MATH 22</code></pre>
+      <p class="p">or</p>
+
+      <pre class="pre codeblock" id="c_auto_resolution__codeblock_c4q_jyt_fdc"><code>c. ENG 35, ENG 36, ENG 37 -&gt; HUMN 104
+d. ENG 35, ENG 38 -&gt; ENG 200</code></pre>
+      <p class="p">In case a, MATH 101 is part of a pair of transfer classes that maps to three local classes. In case b, the transfer class pair maps to a pair of local classes. Though all that matters is the total number of credits awarded by the local classes. If the total transfer credits in the case b is 10 and case a is 8, CREDITMAX says the articulation engine would choose case b.</p>
+
+      <p class="p">Similarly, in Case c and d, even though ENG 35 is part of a transfer class pair in one mapping and a trio in another, all that matters is if HUMN 104 awards more or fewer credits than ENG 200.</p>
+
+    </div>
+
+    <div class="section" id="c_auto_resolution__section_d4q_jyt_fdc"><h2 class="title sectiontitle">LOCALHIGH</h2>
+      
+      <p class="p">Use the mapping with the highest numbered local course (course at the target school). You can use it any time transfer classes can be mapped to more than local course.</p>
+
+      <pre class="pre codeblock" id="c_auto_resolution__codeblock_e4q_jyt_fdc"><code>a. MATH 101, MATH 102 -&gt; MATH 200, MATH 300, MATH 400
+b. MATH 101, MATH 103 -&gt;MATH 51, MATH 22</code></pre>
+      <p class="p">or</p>
+
+      <pre class="pre codeblock" id="c_auto_resolution__codeblock_f4q_jyt_fdc"><code>c. ENG 101 -&gt;ENG 200
+d. ENG 101 -&gt; ENG 500</code></pre>
+      <p class="p">or</p>
+
+      <pre class="pre codeblock" id="c_auto_resolution__codeblock_g4q_jyt_fdc"><code>e. ENG 101 -&gt; ENG 200
+f. ENG 102 -&gt; ENG 200</code></pre>
+      <p class="p">In case a and case b, MATH 400 is the highest numbered local course in any of the resulting mapping options, so that is the option the articulation engine would choose.</p>
+
+      <p class="p">Similarly, in case c and case d, ENG 500 is the highest numbered local course, so the articulation engine would choose it if using LOCALHIGH.</p>
+
+      <p class="p">In case e and f, both local courses are the same, which is a duplicate situation. In this case, LOCALHIGH would have no effect in resolving the mapping and the auditor engine would move to the next resolution option, so it really should not be used at all. However, if it is used, it would not cause any errors.</p>
+
+      <p class="p">Course numbers are compared numerically to determine which is highest (alpha characters are stripped out and the resulting integer is used). That means that MATH 30L, CALC 30, and STAT 3H0 are the same number.</p>
+
+    </div>
+
+    <div class="section" id="c_auto_resolution__section_h4q_jyt_fdc"><h2 class="title sectiontitle">TRANSFERHIGH</h2>
+      
+      <p class="p">Use the mapping with the highest numbered source class (the classes taken by the student).</p>
+
+      <pre class="pre codeblock" id="c_auto_resolution__codeblock_i4q_jyt_fdc"><code>a. MATH 101, MATH 102 -&gt; MATH 200, MATH 300, MATH 400
+b. MATH 101, MATH 103 -&gt;MATH 51, MATH 22</code></pre>
+      <p class="p">or</p>
+
+      <pre class="pre codeblock" id="c_auto_resolution__codeblock_j4q_jyt_fdc"><code>c. ENG 101 -&gt;ENG 500
+d. ENG 102 -&gt; ENG 200</code></pre>
+      <p class="p">or</p>
+
+      <pre class="pre codeblock" id="c_auto_resolution__codeblock_k4q_jyt_fdc"><code>e. ENG 101 -&gt; ENG 200
+f. ENG 101 -&gt; ENG 500</code></pre>
+      <p class="p">In case a and case b, MATH 103 is the highest numbered transfer class in any of the resulting mapping options, so that is the option the articulation engine would choose.</p>
+
+      <p class="p">In case c and case d, ENG 102 is the highest numbered transfer class, so it is the option the articulation engine would choose.</p>
+
+      <p class="p">In case e and case f, the same transfer class is used in both mapping pairs, so TRANSFERHIGH would not lead to a resolution, and the articulation engine would need to move to the next option.</p>
+
+      <p class="p">As with LOCALHIGH, class numbers are compared numerically.</p>
+
+    </div>
+
+    <div class="section" id="c_auto_resolution__section_l4q_jyt_fdc"><h2 class="title sectiontitle">RECENT</h2>
+      
+      <p class="p">Use the class that was taken most recently. This applies only to transfer classes. The term would determine which class was most recent (for example, Spring 2023 is more recent than Fall 2022).</p>
+
+    </div>
+
+    <div class="section" id="c_auto_resolution__section_m4q_jyt_fdc"><h2 class="title sectiontitle">RANDOM AND NONE</h2>
+      
+      <p class="p">RANDOM allows the auditor to pick a mapping arbitrarily. This resolution option could lead to different results each time. NONE tells the auditor to not resolve this mapping.</p>
+
+      <pre class="pre codeblock" id="c_auto_resolution__codeblock_n4q_jyt_fdc"><code>a. MATH 101, MATH 102 -&gt; MATH 200, MATH 300, MATH 400
+b. MATH 101, MATH 103 -&gt;MATH 51, MATH 22</code></pre>
+      <p class="p">In case a and case b, RANDOM means the auditor may choose a one time and b the next.</p>
+
+      <p class="p">Ellucian recommends using RANDOM as the rule of last resort rather than NONE.</p>
+
+    </div>
+
+    <div class="section" id="c_auto_resolution__section_o4q_jyt_fdc"><h2 class="title sectiontitle">REPEAT POLICY AND RESOLUTION OPTIONS</h2>
+      
+      <p class="p">The RAD_COURSE_MST.RAD_REPEAT_MAX for the target school class can affect the resolution option. That field can be set to a value between 1 and 99 or Y, which indicates that a class can be repeated an infinite number of times.</p>
+
+      <p class="p">For duplicate situations, this means that multiple source school classes can articulate to the same target class. For example:</p>
+
+      <pre class="pre codeblock" id="c_auto_resolution__codeblock_p4q_jyt_fdc"><code>MATH 101 -&gt; CALC 100
+MATH 102 -&gt; CALC 100</code></pre>
+      <p class="p">If CALC 100 has RAD_REPEAT_MAX set to 1-99 or Y, both classes articulate to CALC 100 in a transfer audit.</p>
+
+    </div>
+
+    <div class="section" id="c_auto_resolution__section_q4q_jyt_fdc"><h2 class="title sectiontitle">Configuration</h2>
+      
+      <div class="p">Review the following Shepherd settings to ensure they are configured correctly:<ul class="ul" id="c_auto_resolution__ul_fqr_lyt_fdc">
+        <li class="li">articulation.leftoverCourse.courseDiscipline</li>
+
+        <li class="li">articulation.leftoverCourse.courseNumber</li>
+
+        <li class="li">articulation.resolutionRules.duplicate</li>
+
+        <li class="li">articulation.resolutionRules.undecided</li>
+
+        <li class="li">articulation.ruleOfLastResort</li>
+
+        </ul>
+</div>
+
+    </div>
+
+  </div>
+
+</div></div></section>
+<section id="t-2720"><h3>Transfer Equivalency Self-Service localization</h3><div class="content-locale-en-US content-locale-en"><div id="c_trek_admin_ss_localize"><div class="body conbody"><p class="shortdesc">You can localize the color scheme, logo, text, labels, and messages in Transfer Equivalency Self-Service for your institution.</p>
+
+    <div class="section"><h2 class="title sectiontitle">Theme</h2>
+      
+      <p class="p">Use Controller to define the color and logo to be used by Transfer Equivalency Self-Service in the theme.* Shepherd settings. If you have localized these settings for Responsive Dashboard with the default specification, Transfer Equivalency Self-Service automatically uses them as well. Optionally, you can define different values for Transfer Equivalency Self-Service by adding a treqss specification.</p>
+
+      <p class="p">To change the color theme of your Transfer Equivalency Self-Service deployment, specify the Hex color code for the primary color in the theme.color.primary Shepherd setting and secondary color in the theme.color.secondary Shepherd setting. The call to action color has limited configurability and is defined in the theme.color.tertiaryName Shepherd setting. You must select an option from the drop-down of available colors.</p>
+
+      <p class="p">To change the logo, specify the URL of the graphic to be used in the theme.url.logo Shepherd setting. This URL must be accessible to users of Transfer Equivalency Self-Service and so may need to reside outside your network and firewall. You must also add the host server to the Content Security Policy (CSP) by adding it to the core.security.contentSecurityPolicy.imgSrc Shepherd setting.</p>
+
+    </div>
+
+    <div class="section"><h2 class="title sectiontitle">Language properties</h2>
+      
+      <p class="p">You can localize the text, labels, and messages in Transfer Equivalency Self-Service for your institution using the Properties function of Controller. The properties used by Transfer Equivalency Self-Service are:</p>
+
+      <ul class="ul">
+        <li class="li">TransferMessages.properties</li>
+
+        <li class="li">PDFAuditMessages.properties</li>
+
+      </ul>
+
+      <p class="p">You can add header text to each page using the *.headerText properties. By default, most of these properties have an empty value so that no text shows.</p>
+
+      <p class="p">To add header text to any page, copy and paste the properties you want to localize from the Baseline Language Property editor pane to the Localized Language Property editor pane. For example, to add header text to the top of the Goals page, copy transfer.selfService.academicGoal.headerText from the baseline editor and paste into the localized editor and add whatever text you like.</p>
+
+      <p class="p">The header text default color is black. To change the default color to be used in your header text, localize the *.headerText.fontColor properties. The color options are primary, secondary, and cta (call to action), each corresponding to the three colors defined in Transfer Equivalency Self-Service. For example, to set the Goals page header text to a different color, set its property like this:</p>
+
+      <pre class="pre codeblock"><code> transfer.selfService.academicGoal.headerText.fontColor=secondary</code></pre>
+      <p class="p">You can do the same for the font weight, which is either bold or normal. The default weight is normal. To set the default weight for the Goals page header text to bold, set the fontWeight property like this:</p>
+
+      <pre class="pre codeblock"><code>transfer.selfService.academicGoal.headerText.fontWeight=bold</code></pre>
+      <p class="p">To add line breaks and tabs in your header text, use newline (\n) and tab (\t) characters. For example:</p>
+
+      <pre class="pre codeblock"><code>transfer.selfService.academicGoal.headerText=This is line 1 of the text.\nThis text is on line 2.\nThis text is on line 3.There is a tab \t here also.</code></pre>
+      <p class="p">The text would appear on the Goals page like this:</p>
+
+      <pre class="pre codeblock"><code>This is line 1 of the text.
+This text is on line 2.
+This text is on line 3. There is a tab     here also.</code></pre>
+      <p class="p">In the following example, you would also use the line-continuation backslash character to make it easier to read and edit in Controller. Any time you use newline (\n), it is good to also use the line-continuation character (\) and place the next set of text on the next line. The formatting of the text in Controller will then closely match what you see on the dashboard. Be sure there is not a space after the line-continuation backslash. A space after a backslash will prevent the header text from displaying.</p>
+
+      <pre class="pre codeblock"><code>transfer.selfService.academicGoal.headerText=After entering in your intended academic program goals you can: \n\
+\t * Enter the classes you completed at other institutions \n\
+\t * Provide the placement exam scores you have received \n\
+\t * Generate a transfer audit to see how your coursework might apply \n\
+Please contact an admissions counsellor if you need assistance.</code></pre>
+      <p class="p">For more information about how to localize application properties, see the <span class="xref ft-internal-xlink" title="The Language Properties page allows you to enable localizations in an application." data-ft-warning="excluded-from-rendering" data-clusterid="id_crm/dgrwrks/t_language_properties_in_application_localize">Localize language properties in an application</span> topic.</p>
+
+    </div>
+
+  </div>
+
+</div></div></section>
+<section id="t-2730"><h3>Transfer Equivalency Self-Service debugging</h3><div class="content-locale-en-US content-locale-en"><div id="c_debug_trek_admin_ss"><div class="body conbody"><p class="shortdesc">Transfer Equivalency Self-Service users can enable debugging from the application to troubleshoot session issues.</p>
+
+    <p class="p">Users with access to this functionality can enable and disable debug from a page in Transfer Equivalency Self-Service. Most debugging output for the application is aggregated into one file, even if multiple applications or APIs are involved. Access to the application server is not needed, and the application does not need to be restarted. However, access to the server is required to access the generated log file, which will be in the logs directory of the application server. </p>
+
+    <p class="p">To debug issues for anonymous users, the DEBUG Shepherd key should be assigned to the user defined in the core.security.referenceUser.username setting, which is typically TREQER, using the Users function of Controller. All anonymous users will then see the <span class="ph uicontrol">Debug</span> link in the header bar. Note that if core.security.referenceUser.username has the DEBUG key and a user signs in with an existing account or creates an account, they may see the <span class="ph uicontrol">Debug</span> link while on the landing page. However, it will no longer appear after they enter credentials, unless the DEBUG key has also been assigned to that user.</p>
+
+    <p class="p">For users with an existing account to debug issues, you should assign the DEBUG Shepherd key to that user with the Users function of Controller. After logging in, they will then see the <span class="ph uicontrol">Debug</span> link in the header bar.</p>
+
+    <p class="p">For
+      users creating an account to debug issues, you should assign the DEBUG Shepherd key in the
+      core.security.newUser.roles Shepherd setting. After creating an account, they will then see
+      the <span class="ph uicontrol">Debug</span> link in the header
+      bar.</p>
+
+    <p class="p">Clicking the <span class="ph uicontrol">Debug</span> link will take users to the Debug page. On that page, they should select the <span class="ph uicontrol">Enable Debug</span> toggle to turn debugging on for the Transfer Equivalency Self-Service application.</p>
+
+    <p class="p">A random Debug Tag will be generated, and users can copy this to their clipboard by clicking on the page icon. The debug tag is appended to each line of debug in the log file so that users can easily identify which lines are from their session, as opposed to other users using the application at the same time.</p>
+
+    <p class="p">After enabling debug, users can resume using Transfer Equivalency Self-Service by clicking the <span class="ph uicontrol">Goals</span> process waypoint and then executing the steps to duplicate the issue they are experiencing. Debug should be turned off by going back to the Debug page and selecting the <span class="ph uicontrol">Enable Debug</span> toggle when the issue has been duplicated. Debug for this session is also turned off when they log out of the application.</p>
+
+    <p class="p">Debug will appear in the Transfer Equivalency Self-Service log file on the application server. This is typically defined by the $LOGGING_FILE environment variable. Searching for a user's Debug Tag will isolate the lines of debug specific to their actions. For example:</p>
+
+    <pre class="pre codeblock" id="c_debug_trek_admin_ss__codeblock_k5v_mc5_fdc"><code>2023-10-24 16:22:23,144 68b4e19d-3fb4-4975-9815-83eea01266ff DEBUG [41-exec-17] .h.d.s.s.StatelessPreAuthenticatedFilter : Checking secure context token: null</code></pre>
+    <p class="p">The packdebug script can be used to collect the log files generated for a user session Debug Tag. For more information, see the <span class="xref ft-internal-xlink" title="The packdebug script can be used to collect debug files from the server when a user has enabled debugging from the Java applications running on the Java Application Servers." data-ft-warning="excluded-from-rendering" data-clusterid="id_crm/dgrwrks/c_packdebug_script">packdebug script</span> topic.</p>
+
+  </div>
+
+</div></div></section></main></body></html>

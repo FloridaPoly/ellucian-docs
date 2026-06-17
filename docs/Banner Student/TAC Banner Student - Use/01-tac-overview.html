@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>TAC Banner Student - Use — TAC Overview</title><style>body{font-family:-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;line-height:1.55;color:#1a1a1a;max-width:920px;margin:0 auto;padding:24px}header{border-bottom:2px solid #5a16d6;margin-bottom:8px}h1{color:#3a0ca3}h2,h3,h4,h5,h6{margin-top:1.6em}.crumb{color:#666;font-size:13px;margin:0}.meta{color:#888;font-size:12px}nav.toc{background:#f6f4fc;border:1px solid #e3dcf5;border-radius:8px;padding:12px 18px;margin:18px 0}nav.toc h2{margin:.2em 0}nav.toc ul{list-style:none;padding-left:0}nav.toc a{text-decoration:none;color:#5a16d6}section{margin:1.2em 0;padding-top:.4em}img{max-width:100%;height:auto}table{border-collapse:collapse}td,th{border:1px solid #ccc;padding:4px 8px}code,pre{background:#f4f4f4;border-radius:4px}pre{padding:10px;overflow:auto}</style></head><body><header><p class="crumb">Banner Student › TAC Banner Student - Use</p><h1>TAC Banner Student - Use — TAC Overview</h1><p class="meta">Source: <a href="https://resources.elluciancloud.com/r/bundle/banner_student_acn_use_tac">https://resources.elluciancloud.com/r/bundle/banner_student_acn_use_tac</a> &middot; Retrieved 2026-06-17</p></header><nav class="toc"><h2>Contents</h2><ul><li style="margin-left:0px"><a href="#t-10">TAC Overview</a></li><li style="margin-left:16px"><a href="#t-20">TAC Processing</a></li><li style="margin-left:16px"><a href="#t-30">Functions and features</a></li><li style="margin-left:32px"><a href="#t-40">System parameters</a></li><li style="margin-left:16px"><a href="#t-50">Data reconciliation</a></li><li style="margin-left:32px"><a href="#t-60">Snapshot processing</a></li><li style="margin-left:32px"><a href="#t-70">Extract processing</a></li><li style="margin-left:32px"><a href="#t-80">Export processing</a></li><li style="margin-left:16px"><a href="#t-90">Prerequisites</a></li></ul></nav><main><section id="t-10"><h2>TAC Overview</h2><div class="content-locale-en-US content-locale-en"><div id="c_overview"><div class="body conbody"><p class="shortdesc">The <cite class="cite"><span class="keyword">TAC</span> Use</cite> content provides information about the <span class="keyword">Banner</span> Tertiary Admissions Centre (<span class="keyword">TAC</span>) product.</p>
+
+    <p class="p">The information includes the procedures, tables, and file details for processing South Australian Tertiary Admissions Centre (SATAC), Universities Admissions Centre (UAC), and Victorian Tertiary Admissions Centre (VTAC) applications and sending reconciliation data to each specific <span class="keyword">TAC</span>.</p>
+
+    <div class="note"><span class="notetitle">Note:</span> This 9x version corresponds to the <span class="keyword">Banner</span> <span class="keyword">TAC</span> 8.8 release version.</div>
+
+  </div>
+
+</div></div></section>
+<section id="t-20"><h3>TAC Processing</h3><div class="content-locale-en-US content-locale-en"><div id="c_tac_processing"><div class="body conbody"><p class="shortdesc"><span class="keyword">Banner</span> <span class="keyword">TAC</span> enables users to load <span class="keyword">TAC</span> files into <span class="keyword">Banner</span>, match <span class="keyword">TAC</span> courses to <span class="keyword">Banner</span> curriculum rules and produce reconciliation data to send back to each <span class="keyword">TAC</span>, covering application and return files for SATAC, UAC, and VTAC.</p>
+
+    <div class="p">The high-level processing flow is as follows:<ul class="ul"> <li class="li">Institution loads files to temporary tables</li>
+ <li class="li">Data in each file is matched against existing Banner data and loaded to standard tables</li>
+ <li class="li">Institution sends reconciliation data to <span class="keyword">TAC</span> after enrolments have been processed.</li>
+ </ul>
+This diagram show the typical process flow for <span class="keyword">TAC</span> processing.</div>
+
+    <div class="p">
+      <br><img class="image" alt="Typical process flow for TAC processing." data-ft-asset-display-name="TACprocessflowdiagram.JPG" src="images/01-tac-overview-1.jpeg" data-ft-resource-id="vJZ7zLs0JpccSUelGliDXA-vGfahdchqsK1UkDrWNSsfQ"><br>
+    </div>
+
+    <div class="p">
+      <br><img class="image" alt="Diagram element identification." data-ft-asset-display-name="Legend.JPG" src="images/01-tac-overview-2.jpeg" data-ft-resource-id="IjmuQJOH1p_NR1~BwcMnQg-vGfahdchqsK1UkDrWNSsfQ"><br>
+    </div>
+
+  </div>
+
+</div></div></section>
+<section id="t-30"><h3>Functions and features</h3><div class="content-locale-en-US content-locale-en"><div id="c_functions_features"><div class="body conbody"><p class="shortdesc"><span class="keyword">Banner</span> <span class="keyword">TAC</span> is made up of various procedures and pages to define elements, values, and processes that are required to set up and to process the <span class="keyword">Banner</span> load.</p>
+
+    <div class="note"><span class="notetitle">Note:</span> Configuring <span class="keyword">Banner</span> <span class="keyword">TAC</span> requires knowledge of the underlying database tables and is usually carried out with the assistance of technical staff within your institution or Professional Services.</div>
+
+    <div class="p">The steps for loading the files from the <span class="keyword">TAC</span> are organised as follows:<ul class="ul"> <li class="li">Load flat file data to the staging tables</li>
+ <li class="li">Match <span class="keyword">TAC</span> course codes to <span class="keyword">Banner</span> programs</li>
+ <li class="li">Load to baseline Electronic Admissions (EA) tables</li>
+ <li class="li">Run baseline process to match, verify, and load</li>
+ <li class="li">Load additional data to baseline tables</li>
+ <li class="li">Provide reconciliation data to <span class="keyword">TAC</span>.<div class="note"><span class="notetitle">Note:</span> User profiles are included in the release so that clients can use profile-based security to have control over users who are authorised to run the <span class="keyword">Banner</span> <span class="keyword">TAC</span> processes. Loading the user profiles for running the processes is optional.</div>
+</li>
+ </ul>
+</div>
+
+    <p class="p">Refer to the <cite class="cite">File Details</cite> section for more information on SATAC, UAC, and VTAC file details.</p>
+
+  </div>
+
+<div class="related-links">
+<div class="linklist relinfo relconcepts" xml:lang="en-US" lang="en-US"><strong>Related concepts</strong><br>
+<ul class="linklist">
+<li class="linklist"><span class="link ft-internal-link" title="This section provides more information about the files used by and generated by Banner TAC." data-ft-warning="excluded-from-rendering" data-mapid="vGfahdchqsK1UkDrWNSsfQ" data-tocid="aT9pLfia3OQMnrI59RFn4Q">TACfile details</span></li></ul></div>
+</div></div></div></section>
+<section id="t-40"><h4>System parameters</h4><div class="content-locale-en-US content-locale-en"><div id="c_system_parameters"><p class="shortdesc">A set of default system parameters, which are used to configure the system, is delivered with <span class="keyword">Banner</span> <span class="keyword">TAC</span>. Use the Report System Parameters (SKARSYS) page to configure this data to your institution's needs. Refer to the <cite class="cite">System Parameters</cite> section for details on these parameters.</p>
+
+</div></div></section>
+<section id="t-50"><h3>Data reconciliation</h3><div class="content-locale-en-US content-locale-en"><div id="c_data_reconcillation"><div class="body conbody"><p class="shortdesc">Details the functionality to produce <span class="keyword">TAC</span> reconciliation files.</p>
+
+    <p class="p">For each <span class="keyword">TAC</span>, a set of reconciliation MDUU activities is provided, allowing users to produce reports on enrolled students which can be matched back to <span class="keyword">TAC</span> application files. This allows institutions to complete their obligations to the <span class="keyword">TAC</span>s. Where a specific format for the reconciliation data is required, such as for VTAC, the activity produces the data in the required output format.</p>
+
+    <p class="p"><span class="keyword">Banner</span> <span class="keyword">TAC</span> uses rule sets in MDUU to generate the snapshot, extract, and export files for reconciliation. Seed data is delivered to enable you to begin designing your reconciliation processes.</p>
+
+    <p class="p">To understand how the reconciliation files are built, you must understand the process, task, and activity elements of MDUU. Refer to the <cite class="cite">Banner Mass Data Update Utility Use</cite> for a complete explanation of tasks and activities, and how these elements work to support <span class="keyword">TAC</span> processing requirements.</p>
+
+    <p class="p">This document uses the following key terms.</p>
+
+    <ul class="ul">
+      <li class="li">Process: This represents a set of tasks sharing a common business area. The MDUU security allows you to associate users and user classes to a given process. If this functionality is activated, only users assigned to a given process will be able to execute this process.</li>
+
+      <li class="li">Task: This is a set of activities that is carried out as part of a process, such as taking a snapshot of data from the original data sources and gathering them in more synthetic (eventually generated) tables.</li>
+
+      <li class="li">Activity: This is a processing element that is carried out as part of a task, such as a data copy, or a data transformation. An activity updates a single table and can be reused in several tasks.</li>
+
+    </ul>
+
+  </div>
+
+</div></div></section>
+<section id="t-60"><h4>Snapshot processing</h4><div class="content-locale-en-US content-locale-en"><div id="c_snapshot_processing"><div class="body conbody"><p class="shortdesc">The snapshot process populates <span class="keyword">TAC</span> reconciliation snapshot data from baseline tables, Solution Centre tables, locally developed tables, and tables from third-party applications.</p>
+
+    <p class="p">The process allows selected target tables in the snapshot data structure to be populated and can refresh (remove and insert) or update (add new rows and update existing rows) the snapshot.</p>
+
+    <p class="p">The structure of the snapshot tables is maintained by MDUU under a schema called MDUUREP.</p>
+
+    <p class="p">When running the snapshot, you can select which snapshot tables to populate. You can also purge the selected snapshot tables before re-inserting rows.</p>
+
+    <div class="p">This process allows you to do the following:<ul class="ul"> <li class="li">Create snapshot data</li>
+ <li class="li">Define the column mappings for the snapshot</li>
+ <li class="li">Define the rules to generate the snapshot population</li>
+ <li class="li">Initialise the snapshot</li>
+ <li class="li">Populate the snapshot</li>
+ <li class="li">Increment the snapshot (add or remove records without refreshing the snapshot from scratch).</li>
+ </ul>
+</div>
+
+  </div>
+
+</div></div></section>
+<section id="t-70"><h4>Extract processing</h4><div class="content-locale-en-US content-locale-en"><div id="c_extract_processing"><div class="body conbody"><p class="shortdesc">After the initial student data snapshot activity has taken place, it is transformed and organised before production of the reconciliation file.</p>
+
+    <p class="p">The extract process populates the extract based on snapshot data and, where necessary, it transforms the snapshot data into the format needed for the extract. The process allows selected target tables in the extract data structure to be populated and can refresh (remove and insert) or update (add new rows and update existing rows) the extract.</p>
+
+    <div class="p">This process allows you to do the following:<ul class="ul"> <li class="li">Create extract data</li>
+ <li class="li">Define the column mappings for the extract</li>
+ <li class="li">Define the rules to generate the extract population</li>
+ <li class="li">Use expressions and functions to derive values based on the contents of the snapshot</li>
+ <li class="li">Initialise the extract</li>
+ <li class="li">Populate the extract</li>
+ <li class="li">Increment the extract (add or remove records without refreshing the cohort from scratch).</li>
+ </ul>
+</div>
+
+  </div>
+
+</div></div></section>
+<section id="t-80"><h4>Export processing</h4><div class="content-locale-en-US content-locale-en"><div id="c_export_processing"><div class="body conbody"><p class="shortdesc">The export process populates the export based on extract data.</p>
+
+    <p class="p">The process allows selected target tables in the export data structure to be populated and can refresh (remove and insert) or update (add new rows and update existing rows) the export.</p>
+
+    <div class="p">This process allows you to do the following:<ul class="ul"> <li class="li">Create export data</li>
+ <li class="li">Define the mappings for the CLOB export column</li>
+ <li class="li">Define the rules to generate the export population</li>
+ <li class="li">Initialise the export</li>
+ <li class="li">Populate the export</li>
+ <li class="li">Increment the export (add and remove records without refreshing the cohort from scratch)</li>
+ <li class="li">View the export.</li>
+ </ul>
+</div>
+
+    <p class="p">Refer to <cite class="cite">Providing reconciliation data to SATAC</cite> for SATAC activities, <cite class="cite">Provide reconciliation data to UAC</cite> for UAC activities, and <cite class="cite">Provide reconciliation data to VTAC</cite> for VTAC activities.</p>
+
+  </div>
+
+<div class="related-links">
+<div class="linklist relinfo relref" xml:lang="en-US" lang="en-US"><strong>Related reference</strong><br>
+<ul class="linklist">
+<li class="linklist"><span class="link ft-internal-link" title="The following table describes the reconciliation activities to SATAC." data-ft-warning="excluded-from-rendering" data-mapid="vGfahdchqsK1UkDrWNSsfQ" data-tocid="oua0rR0Nda1mRd2pJXOu7A">Providing reconciliation data to SATAC</span></li>
+<li class="linklist"><span class="link ft-internal-link" title="This table describes the activities to provide reconciliation data to UAC with ASC_UAC_RECONCILE as the process code and task code." data-ft-warning="excluded-from-rendering" data-mapid="vGfahdchqsK1UkDrWNSsfQ" data-tocid="0E3moT~6vOWc01dFunDdBQ">Provide reconciliation data to UAC</span></li>
+<li class="linklist"><span class="link ft-internal-link" title="This table describes the activities to provide reconciliation data to VTAC with ASC_VTAC_RECONCILE as the process code and task code." data-ft-warning="excluded-from-rendering" data-mapid="vGfahdchqsK1UkDrWNSsfQ" data-tocid="qTIl1nq0pqJSFO1guKTw_Q">Provide reconciliation data to VTAC</span></li></ul></div>
+</div></div></div></section>
+<section id="t-90"><h3>Prerequisites</h3><div class="content-locale-en-US content-locale-en"><div id="c_prerequisites"><div class="body conbody"><p class="shortdesc">Minimum required releases for <span class="keyword">Banner</span> <span class="keyword">TAC</span> 8.8.</p>
+
+    <ul class="ul">
+      <li class="li"><span class="keyword">Banner</span> <span class="keyword">TAC</span> 8.7</li>
+
+      <li class="li"><span class="keyword">Banner</span> General 8.9.3</li>
+
+      <li class="li"><span class="keyword">Banner</span> Student 8.13</li>
+
+      <li class="li"><span class="keyword">Banner</span> Accounts Receivable Release 8.5</li>
+
+      <li class="li"><span class="keyword">Banner</span> Mass Data Update Utility (MDUU) 8.2</li>
+
+      <li class="li"><span class="keyword">Banner</span> ASCGEN 8.7.0.1</li>
+
+    </ul>
+
+  </div>
+
+</div></div></section></main></body></html>

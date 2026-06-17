@@ -1,0 +1,23 @@
+{
+  "_comment": "Controls which Ellucian user documentation gets synced to HTML. 'products' are 'prodname_custom' FACET values from the portal; books are auto-discovered per product (ft:isBook=true) in the given locale. NOTE: prodname_custom is hierarchical 'Parent|Child' — e.g. Banner Student is 'Banner|Banner Student', while Ellucian Degree Works is top-level 'Ellucian Degree Works'. If a product returns 0 books, it almost certainly needs the 'Banner|' (or other parent) prefix. Each book becomes one consolidated HTML file; books with more than 'splitThreshold' topics are split into one file per top-level chapter. Images (including base64 data URIs) are downloaded into an images/ subfolder beside each HTML and referenced relatively. Defaults target Banner Student + Ellucian Degree Works user docs in English.",
+  "baseUrl": "https://resources.elluciancloud.com",
+  "locale": "en-US",
+  "perPage": 100,
+  "concurrency": 3,
+  "reqTimeoutMs": 20000,
+  "throttleMs": 150,
+  "splitThreshold": 40,
+  "outputNote": "Files are written as <Product>/<Book>/<file>.html with images in <Product>/<Book>/images/, under the folder you pick in the browser (point it at this repo's docs/ folder). A top-level index.html links everything.",
+  "products": [
+    "Banner|Banner Student",
+    "Ellucian Degree Works"
+  ],
+  "filters": {
+    "localeValue": "English"
+  },
+  "relatedProductsYouMightAdd": [
+    "Banner|Banner Student Self-Service",
+    "Banner|Banner Registration Self-Service",
+    "Banner|Banner Faculty and Advisor Self-Service"
+  ]
+}

@@ -1,0 +1,785 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Ethos Data Connect — Set up user access to Data Connect</title><style>body{font-family:-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;line-height:1.55;color:#1a1a1a;max-width:920px;margin:0 auto;padding:24px}header{border-bottom:2px solid #5a16d6;margin-bottom:8px}h1{color:#3a0ca3}h2,h3,h4,h5,h6{margin-top:1.6em}.crumb{color:#666;font-size:13px;margin:0}.meta{color:#888;font-size:12px}nav.toc{background:#f6f4fc;border:1px solid #e3dcf5;border-radius:8px;padding:12px 18px;margin:18px 0}nav.toc h2{margin:.2em 0}nav.toc ul{list-style:none;padding-left:0}nav.toc a{text-decoration:none;color:#5a16d6}section{margin:1.2em 0;padding-top:.4em}img{max-width:100%;height:auto}table{border-collapse:collapse}td,th{border:1px solid #ccc;padding:4px 8px}code,pre{background:#f4f4f4;border-radius:4px}pre{padding:10px;overflow:auto}</style></head><body><header><p class="crumb">Data Connect › Ethos Data Connect</p><h1>Ethos Data Connect — Set up user access to Data Connect</h1><p class="meta">Source: <a href="https://resources.elluciancloud.com/r/bundle/ethos_data_connect">https://resources.elluciancloud.com/r/bundle/ethos_data_connect</a> &middot; Retrieved 2026-06-17</p></header><nav class="toc"><h2>Contents</h2><ul><li style="margin-left:0px"><a href="#t-520">Set up user access to Data Connect</a></li><li style="margin-left:16px"><a href="#t-530">Set up user access to the Data Connect Integration Designer</a></li><li style="margin-left:32px"><a href="#t-540">Set up roles and users for the Integration Designer</a></li><li style="margin-left:32px"><a href="#t-550">Set up the Data Connect Designer card in Experience</a></li><li style="margin-left:32px"><a href="#t-560">Grant permissions for the Integration Designer</a></li><li style="margin-left:16px"><a href="#t-570">Set up user access to Data Connect integrations</a></li><li style="margin-left:32px"><a href="#t-580">Set up roles and users for Data Connect integrations</a></li><li style="margin-left:32px"><a href="#t-590">Set up the Data Connect Packages card in Experience</a></li><li style="margin-left:32px"><a href="#t-600">Grant permissions for Data Connect integrations</a></li><li style="margin-left:48px"><a href="#t-610">Data Connect permissions</a></li><li style="margin-left:32px"><a href="#t-620">Example: Set up access for NSC-PDP integration</a></li><li style="margin-left:16px"><a href="#t-630">Set up user access for Data Connect rulesets</a></li><li style="margin-left:32px"><a href="#t-640">Set up roles and users for Data Connect rulesets</a></li><li style="margin-left:32px"><a href="#t-650">Grant permissions for Data Connect rulesets</a></li></ul></nav><main><section id="t-520"><h2>Set up user access to Data Connect</h2></section>
+<section id="t-530"><h3>Set up user access to the Data Connect Integration Designer</h3><div class="content-locale-en-US content-locale-en"><div id="c_user_access_data_connect_designer"><div class="body conbody"><p class="shortdesc">Users access the <span class="keyword">Data Connect Integration Designer</span> through <span class="keyword">Ellucian Experience</span>, from either the Application menu or the Data Connect Designer card. </p>
+
+    
+<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" class="table" frame="border" border="1" rules="all"><colgroup><col style="width:33.33333333333333%"><col style="width:66.66666666666666%"></colgroup><thead class="thead" style="text-align:left;">
+          <tr class="row">
+            <th class="entry nocellnorowborder" style="vertical-align:top;" id="d41654e51">Starting point</th>
+
+            <th class="entry cell-norowborder" style="vertical-align:top;" id="d41654e54">User experience</th>
+
+          </tr>
+
+        </thead>
+<tbody class="tbody">
+          <tr class="row">
+            <td class="entry nocellnorowborder" style="vertical-align:top;" headers="d41654e51 ">Application menu</td>
+
+            <td class="entry cell-norowborder" style="vertical-align:top;" headers="d41654e54 ">The user clicks <span class="ph uicontrol">Integration Designer</span> on the Application menu to go to a page listing all of the integration packages for which they have Designer access. The user then selects a package on that page.</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="vertical-align:top;" headers="d41654e51 ">Data Connect Designer card</td>
+
+            <td class="entry cellrowborder" style="vertical-align:top;" headers="d41654e54 ">In the card, the user sees a list of all of the integration packages for which they have Designer access. The user can click any integration package to go directly to that package, or click <span class="ph uicontrol">View all results</span> to go to a page listing all of their packages.</td>
+
+          </tr>
+
+        </tbody>
+</table>
+</div>
+
+    <p class="p">To enable a user to access the <span class="keyword">Integration Designer</span> through both the Application menu and the card, you must grant that user access to both the <span class="keyword">Integration Designer</span> (in <span class="keyword">Experience Setup</span> permissions) and the Data Connect Designer card (in Experience Configuration).</p>
+
+    <p class="p">If you want to enable access only through the Application menu, rather than supporting both access options, you only need to configure the permissions in <span class="keyword">Experience Setup</span>. You can skip the card setup.</p>
+
+  </div>
+
+</div></div></section>
+<section id="t-540"><h4>Set up roles and users for the Integration Designer</h4><div class="content-locale-en-US content-locale-en"><div id="t_data_connect_designer_roles_users"><div class="body taskbody"><p class="shortdesc">To enable users to develop integrations using the <span class="keyword">Data Connect Integration Designer</span>, you must first set up the users and roles that need access.</p>
+
+    <div class="section context"><div class="tasklabel"><h2 class="sectiontitle tasklabel">About this task</h2></div>
+      <div class="p">For a user to access the <span class="keyword">Data Connect Integration Designer</span>, that user must have the following:<ul class="ul">
+        <li class="li">Access to the <span class="keyword">Integration Designer</span>. You grant that access by assigning permissions to roles or individual users in the Permissions area of Experience Setup.</li>
+
+        <li class="li">Access to the Data Connect Designer card (required only if you want users to be able to access the <span class="keyword">Integration Designer</span> from the card in addition to the Application menu). You grant card access by assigning roles to the Experience card in the Card Management area of <span class="keyword">Ellucian Experience</span>.</li>
+
+        </ul>
+</div>
+
+      <p class="p">For a description of the user access options (Application menu or card), see <span class="xref ft-internal-link" title="Users access the Data Connect Integration Designer through Ellucian Experience, from either the Application menu or the Data Connect Designer card." data-ft-warning="excluded-from-rendering" data-mapid="iMQvaoYt73FYcvYoiKcTHA" data-tocid="DBJgvu~_DawT07QD6oNhiw">Set up user access to the Data Connect Integration Designer</span>.</p>
+
+    </div>
+
+    <div class="tasklabel"><h2 class="sectiontitle tasklabel">Procedure</h2></div><ol class="ol steps"><li class="li step stepexpand">
+        <span class="ph cmd">Identify all of the people at your institution who need access to the <span class="keyword">Data Connect Integration Designer</span>.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Decide whether you want to grant <span class="keyword">Integration Designer</span> permissions to individual users, or grant permissions to roles and then assign those roles to individual users.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Set up the roles that you need for both card access and <span class="keyword">Integration Designer</span> permissions, and add those roles in Experience Setup.</span>
+        <div class="itemgroup info">See <span class="xref ft-internal-xlink" data-ft-warning="excluded-from-rendering" data-clusterid="id_ethos/ethos_data_connect/c_set_up_roles">Set up roles for Ellucian Experience</span>.</div>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">In Experience Setup, add the individual users to whom you want to grant <span class="keyword">Integration Designer</span> permissions.</span>
+        <div class="itemgroup info">See <span class="xref ft-internal-xlink" data-ft-warning="excluded-from-rendering" data-clusterid="id_ethos/ethos_data_connect/t_add_admin_users">Add administrative users</span>.</div>
+      </li>
+</ol>
+
+  </div>
+
+</div></div></section>
+<section id="t-550"><h4>Set up the Data Connect Designer card in Experience</h4><div class="content-locale-en-US content-locale-en"><div id="t_set_up_data_connect_designer_card"><div class="body taskbody"><p class="shortdesc">If you set up the Data Connect Designer card in <span class="keyword">Ellucian Experience</span>, users can access the <span class="keyword">Data Connect Integration Designer</span> through the card.</p>
+
+    <div class="section prereq p"><div class="tasklabel"><h2 class="sectiontitle tasklabel">Before you begin</h2></div>Before setting up the card, you need to set up the roles that you want to have access to the card. See <span class="xref ft-internal-link" title="To enable users to develop integrations using the Data Connect Integration Designer, you must first set up the users and roles that need access." data-ft-warning="excluded-from-rendering" data-mapid="iMQvaoYt73FYcvYoiKcTHA" data-tocid="7nO1h6KjVPwthIWYYKMnow">Set up roles and users for the Integration Designer</span>.</div>
+
+    <div class="section context"><div class="tasklabel"><h2 class="sectiontitle tasklabel">About this task</h2></div>As described in <span class="xref ft-internal-link" title="Users access the Data Connect Integration Designer through Ellucian Experience, from either the Application menu or the Data Connect Designer card." data-ft-warning="excluded-from-rendering" data-mapid="iMQvaoYt73FYcvYoiKcTHA" data-tocid="DBJgvu~_DawT07QD6oNhiw">Set up user access to the Data Connect Integration Designer</span>, <span class="keyword">Data Connect</span> supports two options for accessing the <span class="keyword">Integration Designer</span> through <span class="keyword">Ellucian Experience</span>: from the Application menu or from the Data Connect Designer card. If you choose to support access only through the Application menu, you can skip this procedure.</div>
+
+    <div class="tasklabel"><h2 class="sectiontitle tasklabel">Procedure</h2></div><div class="li step p">
+        <span class="ph cmd">Set up the Data Connect Designer card in the card setup wizard using the general card setup procedure in <span class="xref ft-internal-xlink" data-ft-warning="excluded-from-rendering" data-clusterid="id_ethos/ethos_data_connect/t_set_up_experience_card">Set up an Experience card</span>, with the considerations described below.</span>
+        <ol type="a" class="ol substeps">
+          <li class="li substep">
+            <span class="ph cmd">When selecting the card in the Card Management table, edit the card with <span class="ph uicontrol">Data Connect Designer</span> in the <span class="ph uicontrol">Card Type</span> column.</span>
+          </li>
+
+          <li class="li substep">
+            <span class="ph cmd">Complete the <span class="ph uicontrol">Details</span> section of the card setup page as described in <span class="xref ft-internal-xlink" data-ft-warning="excluded-from-rendering" data-clusterid="id_ethos/wh_experience/t_set_up_experience_card">Set up an Experience card</span>.</span>
+          </li>
+
+          <li class="li substep">
+            <span class="ph cmd">In the <span class="ph uicontrol">Roles</span> step of the card setup wizard, select the roles that you set up for access to the Data Connect Designer card.</span>
+          </li>
+
+        </ol>
+
+      </div>
+
+  </div>
+
+</div></div></section>
+<section id="t-560"><h4>Grant permissions for the Integration Designer</h4><div class="content-locale-en-US content-locale-en"><div id="t_grant_permissions_data_connect_designer"><div class="body taskbody"><p class="shortdesc">In <span class="keyword">Experience Setup</span>, grant the permissions that allow users to access the <span class="keyword">Data Connect Integration Designer</span>.</p>
+
+    <div class="section prereq p"><div class="tasklabel"><h2 class="sectiontitle tasklabel">Before you begin</h2></div>Before granting permissions, you need to set up the roles and users that you want to have access to the <span class="keyword">Integration Designer</span>. See <span class="xref ft-internal-link" title="To enable users to develop integrations using the Data Connect Integration Designer, you must first set up the users and roles that need access." data-ft-warning="excluded-from-rendering" data-mapid="iMQvaoYt73FYcvYoiKcTHA" data-tocid="7nO1h6KjVPwthIWYYKMnow">Set up roles and users for the Integration Designer</span>.</div>
+
+    <div class="section context"><div class="tasklabel"><h2 class="sectiontitle tasklabel">About this task</h2></div>The <span class="keyword">Integration Designer</span> uses a single <span class="keyword">Experience</span> permission to support targeted user access. For example, this permission will allow the roles or individuals to: <ul class="ul">
+      <li class="li">Create and maintain all of the <span class="keyword">Integration Designer</span> integrations that your institution has licensed.</li>
+
+      <li class="li">Create, view and maintain <span class="keyword">Integration Designer</span> crosswalks in the Integration Designer Experience card.</li>
+
+      <li class="li">View all the <span class="keyword">Integration Designer</span> integrations in the Integration Designer Experience card.</li>
+
+      </ul>
+</div>
+
+    <div class="tasklabel"><h2 class="sectiontitle tasklabel">Procedure</h2></div><ol class="ol steps"><li class="li step stepexpand">
+        
+        <span class="ph cmd" id="t_grant_permissions_data_connect_designer__d105e216">Access <span class="keyword">Ellucian Experience Setup</span>:</span>
+        <ol type="a" class="ol substeps" id="t_grant_permissions_data_connect_designer__d105e222">
+          <li class="li substep substepexpand" id="t_grant_permissions_data_connect_designer__d105e224">
+            <span class="ph cmd" id="t_grant_permissions_data_connect_designer__d105e226">In the <span class="keyword">Ellucian Customer Center</span>, click <span class="ph uicontrol">Tools</span> and then select the desired <span class="keyword">Experience Setup</span> instance under the <span class="ph uicontrol">Experience</span> category:</span>
+            <div class="itemgroup info" id="t_grant_permissions_data_connect_designer__d105e241">
+              <ul class="ul">
+                <li class="li">Click <span class="ph uicontrol">Experience Setup</span> to access the Production instance of <span class="keyword">Experience Setup</span>.</li>
+
+                <li class="li">Click <span class="ph uicontrol">Experience Setup Test</span> to access the Test instance of <span class="keyword">Experience Setup</span>.</li>
+
+              </ul>
+
+            </div>
+          </li>
+
+          <li class="li substep substepexpand">
+            <span class="ph cmd" id="t_grant_permissions_data_connect_designer__d105e268">(If applicable) In <span class="keyword">Experience Setup</span>, in the <span class="ph uicontrol">Environments</span> menu, select the desired <span class="keyword">Ethos</span> environment. </span>
+            <div class="itemgroup info"><span class="ph" id="t_grant_permissions_data_connect_designer__d105e281">The option to select an environment is available only if multiple <span class="keyword">Ethos</span> environments are associated with this <span class="keyword">Experience Setup</span> instance.</span></div>
+          </li>
+
+        </ol>
+
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd" id="t_grant_permissions_data_connect_designer__d105e607">In the <span class="keyword">Experience Setup</span> header, click <span class="ph uicontrol">Permissions</span>.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">On the <span class="keyword wintitle">Permissions</span> page, click <span class="ph uicontrol">Data Connect Designer</span>.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">On the <span class="keyword wintitle">Data Connect Designer Permissions</span> page, in the left pane, click <span class="ph uicontrol">Designer</span>.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">In the right pane, select the <span class="ph uicontrol">Develop</span> check box for each role or user who you want to be able to access the <span class="keyword">Integration Designer</span>.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Click <span class="ph uicontrol">Save</span>.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd" id="t_grant_permissions_data_connect_designer__d105e702">In the <span class="keyword wintitle">Confirm Changes to Permissions</span> dialog, review the permissions changes and then click <span class="ph uicontrol">SAVE</span> to complete the process or click <span class="ph uicontrol">CANCEL</span> to go back and modify your selections.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd" id="t_grant_permissions_data_connect_designer__d105e718">Instruct any user whose permissions have changed to log out of <span class="keyword">Experience</span> and log back in.</span>
+        <div class="itemgroup info" id="t_grant_permissions_data_connect_designer__d105e724"><span class="keyword">Experience</span> permissions are cached. Logging out and back in refreshes the cache and ensures that the user has the granted permissions within <span class="keyword">Experience</span>.</div>
+      </li>
+</ol>
+
+  </div>
+
+</div></div></section>
+<section id="t-570"><h3>Set up user access to Data Connect integrations</h3><div class="content-locale-en-US content-locale-en"><div id="c_user_access_data_connect"><div class="body conbody"><p class="shortdesc">Users manage <span class="keyword">Data Connect</span> integrations through <span class="keyword">Ellucian Experience</span>, from either the Application menu or the Data Connect Packages card.</p>
+
+    
+<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" class="table" frame="border" border="1" rules="all"><colgroup><col style="width:33.33333333333333%"><col style="width:66.66666666666666%"></colgroup><thead class="thead" style="text-align:left;">
+          <tr class="row">
+            <th class="entry nocellnorowborder" style="vertical-align:top;" id="d31898e51">Starting point</th>
+
+            <th class="entry cell-norowborder" style="vertical-align:top;" id="d31898e54">User experience</th>
+
+          </tr>
+
+        </thead>
+<tbody class="tbody">
+          <tr class="row">
+            <td class="entry nocellnorowborder" style="vertical-align:top;" headers="d31898e51 ">Application menu</td>
+
+            <td class="entry cell-norowborder" style="vertical-align:top;" headers="d31898e54 ">The user clicks <span class="ph uicontrol">Integration Packages</span> on the Application menu to go to a page listing all of the integrations for which they have access. The user then selects an integration on that page.</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="vertical-align:top;" headers="d31898e51 ">Data Connect Packages card</td>
+
+            <td class="entry cellrowborder" style="vertical-align:top;" headers="d31898e54 ">In the card, the user sees a list of all of the integrations for which they have access. The user can click any integration to go directly to that integration.</td>
+
+          </tr>
+
+        </tbody>
+</table>
+</div>
+
+    <p class="p">To enable a user to manage a <span class="keyword">Data Connect</span> integration through both the Application menu and the card, you must grant that user access to both the <span class="keyword">Data Connect</span> integration (in <span class="keyword">Experience Setup</span> permissions) and the Data Connect Packages card (in Experience Configuration).</p>
+
+    <p class="p">If you want to enable access only through the Application menu, rather than supporting both access options, you only need to configure the permissions in <span class="keyword">Experience Setup</span>. You can skip the card setup.</p>
+
+  </div>
+
+</div></div></section>
+<section id="t-580"><h4>Set up roles and users for Data Connect integrations</h4><div class="content-locale-en-US content-locale-en"><div id="t_data_connect_integrations_roles_users"><div class="body taskbody"><p class="shortdesc">To enable users to manage <span class="keyword">Data Connect</span> integrations, you must first set up the users and roles that need access.</p>
+
+    <div class="section context"><div class="tasklabel"><h2 class="sectiontitle tasklabel">About this task</h2></div>
+      <div class="p">For a user to manage a <span class="keyword">Data Connect</span> integration, that user must have the following:<ul class="ul">
+        <li class="li">Access to the appropriate integration. You grant that access by assigning permissions to roles or individual users in the Permissions area of <span class="keyword">Experience Setup</span>.</li>
+
+        <li class="li">Access to the Data Connect Packages card (required only if you want users to be able to access Data Connect integrations from the card in addition to the Application menu). You grant card access by assigning roles to the <span class="keyword">Experience</span> card in the Card Management area of <span class="keyword">Ellucian Experience</span>.</li>
+
+        </ul>
+</div>
+
+      <p class="p">For a description of the user access options (Application menu or card), see <span class="xref ft-internal-link" title="Users manage Data Connect integrations through Ellucian Experience, from either the Application menu or the Data Connect Packages card." data-ft-warning="excluded-from-rendering" data-mapid="iMQvaoYt73FYcvYoiKcTHA" data-tocid="XzNL4H3D7ZRfwdQy8ssHvg">Set up user access to Data Connect integrations</span>.</p>
+
+      <p class="p">For example, there might be a few people at your institution who should be able to manage all <span class="keyword">Data Connect</span> settings and integrations, others who should be able to manage just one integration, and others who should be able to view, but not modify, an integration. You could grant all of those users access to the <span class="keyword">Experience</span> card and then assign appropriate permissions to limit their access within <span class="keyword">Data Connect</span>.</p>
+
+    </div>
+
+    <div class="tasklabel"><h2 class="sectiontitle tasklabel">Procedure</h2></div><ol class="ol steps"><li class="li step">
+        <span class="ph cmd">Identify all of the people at your institution who need access to <span class="keyword">Data Connect</span> integrations.</span>
+      </li>
+<li class="li step">
+        <span class="ph cmd">Review the list of permissions in <span class="xref ft-internal-link" title="To access a Data Connect integration through Ellucian Experience, a user must be granted permissions to manage or view Data Connect features." data-ft-warning="excluded-from-rendering" data-mapid="iMQvaoYt73FYcvYoiKcTHA" data-tocid="6KpKHr2Xnn82h1zGMQx~kQ">Data Connect permissions</span>, and identify the people who should have each type of access within <span class="keyword">Data Connect</span>.</span>
+      </li>
+<li class="li step">
+        <span class="ph cmd">Decide whether you want to grant <span class="keyword">Data Connect</span> permissions to individual users, or grant permissions to roles and then assign those roles to individual users.</span>
+      </li>
+<li class="li step">
+        <span class="ph cmd">Set up the roles that you need for both card access and <span class="keyword">Data Connect</span> permissions, and add those roles in <span class="keyword">Experience Setup</span>. See <span class="xref ft-internal-xlink" data-ft-warning="excluded-from-rendering" data-clusterid="id_ethos/ethos_data_connect/c_set_up_roles">Set up roles for Ellucian Experience</span>.</span>
+      </li>
+<li class="li step">
+        <span class="ph cmd">In <span class="keyword">Experience Setup</span>, add the individual users to whom you want to grant <span class="keyword">Data Connect</span> permissions. See <span class="xref ft-internal-xlink" data-ft-warning="excluded-from-rendering" data-clusterid="id_ethos/ethos_data_connect/t_add_admin_users">Add administrative users</span>.</span>
+      </li>
+</ol>
+
+  </div>
+
+</div></div></section>
+<section id="t-590"><h4>Set up the Data Connect Packages card in Experience</h4><div class="content-locale-en-US content-locale-en"><div id="t_set_up_int_packages_card"><div class="body taskbody"><p class="shortdesc">If you set up the Data Connect Packages card in <span class="keyword">Ellucian Experience</span>, users can access <span class="keyword">Data Connect</span> integrations through the card.</p>
+
+    <div class="section prereq p"><div class="tasklabel"><h2 class="sectiontitle tasklabel">Before you begin</h2></div>Before setting up the card, you need to set up the roles that you want to have access to the card. See <span class="xref ft-internal-link" title="To enable users to manage Data Connect integrations, you must first set up the users and roles that need access." data-ft-warning="excluded-from-rendering" data-mapid="iMQvaoYt73FYcvYoiKcTHA" data-tocid="x877lhfDjF93ZK~omb9Phg">Set up roles and users for Data Connect integrations</span>.</div>
+
+    <div class="section context"><div class="tasklabel"><h2 class="sectiontitle tasklabel">About this task</h2></div>As described in <span class="xref ft-internal-link" title="Users manage Data Connect integrations through Ellucian Experience, from either the Application menu or the Data Connect Packages card." data-ft-warning="excluded-from-rendering" data-mapid="iMQvaoYt73FYcvYoiKcTHA" data-tocid="XzNL4H3D7ZRfwdQy8ssHvg">Set up user access to Data Connect integrations</span>, <span class="keyword">Data Connect</span> supports two options for accessing integration packages through <span class="keyword">Ellucian Experience</span>: from the Application menu or from the Data Connect Packages card. If you choose to support access only through the Application menu, you can skip this procedure.</div>
+
+    <div class="tasklabel"><h2 class="sectiontitle tasklabel">Procedure</h2></div><div class="li step p">
+        <span class="ph cmd">Set up the Data Connect Packages card in the card setup wizard using the general card setup procedure in <span class="xref ft-internal-xlink" data-ft-warning="excluded-from-rendering" data-clusterid="id_ethos/ethos_data_connect/t_set_up_experience_card">Set up an Experience card</span>, with the considerations described below.</span>
+        <ol type="a" class="ol substeps">
+          <li class="li substep">
+            <span class="ph cmd">When selecting the card in the Card Management table, edit the card with <span class="ph uicontrol">Data Connect Packages</span> in the <span class="ph uicontrol">Card Type</span> column.</span>
+          </li>
+
+          <li class="li substep">
+            <span class="ph cmd">Complete the <span class="ph uicontrol">Details</span> section of the card setup page as described in <span class="xref ft-internal-xlink" data-ft-warning="excluded-from-rendering" data-clusterid="id_ethos/wh_experience/t_set_up_experience_card">Set up an Experience card</span>.</span>
+          </li>
+
+          <li class="li substep">
+            <span class="ph cmd">In the <span class="ph uicontrol">Roles</span> step of the card setup wizard, select the roles that you set up for access to the Data Connect Packages card.</span>
+          </li>
+
+        </ol>
+
+      </div>
+
+  </div>
+
+</div></div></section>
+<section id="t-600"><h4>Grant permissions for Data Connect integrations</h4><div class="content-locale-en-US content-locale-en"><div id="t_grant_permissions_data_connect_integrations"><div class="body taskbody"><p class="shortdesc">Grant the permissions that allow users to view and manage <span class="keyword">Data Connect</span> integrations.</p>
+
+    <div class="section prereq p"><div class="tasklabel"><h2 class="sectiontitle tasklabel">Before you begin</h2></div>Before granting permissions, you need to set up the roles and users that you want to have different permissions. See <span class="xref ft-internal-link" title="To enable users to manage Data Connect integrations, you must first set up the users and roles that need access." data-ft-warning="excluded-from-rendering" data-mapid="iMQvaoYt73FYcvYoiKcTHA" data-tocid="x877lhfDjF93ZK~omb9Phg">Set up roles and users for Data Connect integrations</span>.</div>
+
+    <div class="section context"><div class="tasklabel"><h2 class="sectiontitle tasklabel">About this task</h2></div>
+      <div class="p"><span class="keyword">Data Connect</span> leverages <span class="keyword">Experience</span> permissions to support targeted user access. For example, you can specify different users and roles who can:<ul class="ul">
+        <li class="li">Specify pipeline-level parameters for one or all of the <span class="keyword">Data Connect</span> integrations that your institution has licensed. </li>
+
+        <li class="li">Create, maintain, and run pipeline jobs for one or all of the <span class="keyword">Data Connect</span> integrations that your institution has licensed.</li>
+
+        <li class="li">View, but not modify, those pipeline jobs; and view job run results.</li>
+
+        <li class="li">Create and maintain <span class="keyword">Data Connect</span> crosswalks.</li>
+
+        <li class="li">View, but not modify, those crosswalks.</li>
+
+        <li class="li">Manage global <span class="keyword">Data Connect</span> settings that apply to all integrations.</li>
+
+        </ul>
+</div>
+
+      <p class="p">For general information about <span class="keyword">Experience</span> permissions, and the detailed procedure for granting permissions, see <span class="xref ft-internal-xlink" data-ft-warning="excluded-from-rendering" data-clusterid="id_ethos/ethos_data_connect/t_grant_admin_permissions_application">Grant Experience application permissions</span>.</p>
+
+    </div>
+
+    <div class="tasklabel"><h2 class="sectiontitle tasklabel">Procedure</h2></div><ol class="ol steps"><li class="li step stepexpand">
+        
+        <span class="ph cmd" id="t_grant_permissions_data_connect_integrations__d105e216">Access <span class="keyword">Ellucian Experience Setup</span>:</span>
+        <ol type="a" class="ol substeps" id="t_grant_permissions_data_connect_integrations__d105e222">
+          <li class="li substep substepexpand" id="t_grant_permissions_data_connect_integrations__d105e224">
+            <span class="ph cmd" id="t_grant_permissions_data_connect_integrations__d105e226">In the <span class="keyword">Ellucian Customer Center</span>, click <span class="ph uicontrol">Tools</span> and then select the desired <span class="keyword">Experience Setup</span> instance under the <span class="ph uicontrol">Experience</span> category:</span>
+            <div class="itemgroup info" id="t_grant_permissions_data_connect_integrations__d105e241">
+              <ul class="ul">
+                <li class="li">Click <span class="ph uicontrol">Experience Setup</span> to access the Production instance of <span class="keyword">Experience Setup</span>.</li>
+
+                <li class="li">Click <span class="ph uicontrol">Experience Setup Test</span> to access the Test instance of <span class="keyword">Experience Setup</span>.</li>
+
+              </ul>
+
+            </div>
+          </li>
+
+          <li class="li substep substepexpand">
+            <span class="ph cmd" id="t_grant_permissions_data_connect_integrations__d105e268">(If applicable) In <span class="keyword">Experience Setup</span>, in the <span class="ph uicontrol">Environments</span> menu, select the desired <span class="keyword">Ethos</span> environment. </span>
+            <div class="itemgroup info"><span class="ph" id="t_grant_permissions_data_connect_integrations__d105e281">The option to select an environment is available only if multiple <span class="keyword">Ethos</span> environments are associated with this <span class="keyword">Experience Setup</span> instance.</span></div>
+          </li>
+
+        </ol>
+
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd" id="t_grant_permissions_data_connect_integrations__d105e607">In the <span class="keyword">Experience Setup</span> header, click <span class="ph uicontrol">Permissions</span>.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">On the <span class="keyword wintitle">Permissions</span> page, click <span class="ph uicontrol">Data Connect</span>.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">On the <span class="keyword wintitle">Data Connect Permissions</span> page, assign permissions by selecting a feature in the left pane and then assigning the desired permissions to roles and individual users in the right pane.</span>
+        <div class="itemgroup info">See <span class="xref ft-internal-link" title="To access a Data Connect integration through Ellucian Experience, a user must be granted permissions to manage or view Data Connect features." data-ft-warning="excluded-from-rendering" data-mapid="iMQvaoYt73FYcvYoiKcTHA" data-tocid="6KpKHr2Xnn82h1zGMQx~kQ">Data Connect permissions</span> for details about <span class="keyword">Data Connect</span> features and the access granted by each permission.</div>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Click <span class="ph uicontrol">Save</span>.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd" id="t_grant_permissions_data_connect_integrations__d105e702">In the <span class="keyword wintitle">Confirm Changes to Permissions</span> dialog, review the permissions changes and then click <span class="ph uicontrol">SAVE</span> to complete the process or click <span class="ph uicontrol">CANCEL</span> to go back and modify your selections.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd" id="t_grant_permissions_data_connect_integrations__d105e718">Instruct any user whose permissions have changed to log out of <span class="keyword">Experience</span> and log back in.</span>
+        <div class="itemgroup info" id="t_grant_permissions_data_connect_integrations__d105e724"><span class="keyword">Experience</span> permissions are cached. Logging out and back in refreshes the cache and ensures that the user has the granted permissions within <span class="keyword">Experience</span>.</div>
+      </li>
+</ol>
+
+  </div>
+
+</div></div></section>
+<section id="t-610"><h5>Data Connect permissions</h5><div class="content-locale-en-US content-locale-en"><div id="c_data_connect_permissions"><div class="body conbody"><p class="shortdesc">To access a <span class="keyword">Data Connect</span> integration through <span class="keyword">Ellucian Experience</span>, a user must be granted permissions to manage or view <span class="keyword">Data Connect</span> features.</p>
+
+    
+<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" class="table" frame="border" border="1" rules="all"><colgroup><col style="width:33.33333333333333%"><col style="width:16.666666666666664%"><col style="width:50%"></colgroup><thead class="thead" style="text-align:left;">
+          <tr class="row">
+            <th class="entry cellrowborder" style="vertical-align:top;" id="d19742e56">Feature</th>
+
+            <th class="entry cellrowborder" style="vertical-align:top;" id="d19742e59">Permission</th>
+
+            <th class="entry cellrowborder" style="vertical-align:top;" id="d19742e62">Available functions</th>
+
+          </tr>
+
+        </thead>
+<tbody class="tbody">
+          <tr class="row">
+            <td class="entry cellrowborder" rowspan="2" style="vertical-align:top;" headers="d19742e56 ">Global Configuration</td>
+
+            <td class="entry cellrowborder" style="vertical-align:top;" headers="d19742e59 ">View</td>
+
+            <td class="entry cellrowborder" style="vertical-align:top;" headers="d19742e62 ">View global <span class="keyword">Data Connect</span> settings.</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry cellrowborder" style="vertical-align:top;" headers="d19742e59 ">Edit</td>
+
+            <td class="entry cellrowborder" style="vertical-align:top;" headers="d19742e62 ">Modify global <span class="keyword">Data Connect</span> settings.</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry cellrowborder" rowspan="2" style="vertical-align:top;" headers="d19742e56 ">Crosswalks</td>
+
+            <td class="entry cellrowborder" style="vertical-align:top;" headers="d19742e59 ">View</td>
+
+            <td class="entry cellrowborder" style="vertical-align:top;" headers="d19742e62 ">View <span class="keyword">Data Connect</span> crosswalks.</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry cellrowborder" style="vertical-align:top;" headers="d19742e59 ">Edit</td>
+
+            <td class="entry cellrowborder" style="vertical-align:top;" headers="d19742e62 ">Create and modify <span class="keyword">Data Connect</span> crosswalks.</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry cellrowborder" rowspan="3" style="vertical-align:top;" headers="d19742e56 ">
+              <div class="p">Integration Packages<ul class="ul">
+                <li class="li">&lt;integration package 1&gt;</li>
+
+                <li class="li">&lt;integration package 2&gt;</li>
+
+                </ul>
+</div>
+
+              <p class="p">Select <span class="ph uicontrol">Integration Packages</span> to grant permissions to all of your integration packages, or select a specific integration package to grant permissions to only that integration package.</p>
+
+              <div class="note"><span class="notetitle">Note:</span> A user who has been granted the Develop permission for the <span class="keyword">Data Connect Integration Designer</span> will be able to view the list of all of your institution's integration packages in the Data Connect integration packages card. However, to view or manage an integration package, that user will also need to have the View or Manage permission on the integration package.</div>
+
+            </td>
+
+            <td class="entry cellrowborder" style="vertical-align:top;" headers="d19742e59 ">View</td>
+
+            <td class="entry cellrowborder" style="vertical-align:top;" headers="d19742e62 ">See this integration package listed in the <span class="keyword">Experience</span> card, and click the link to access the <span class="keyword">Experience</span> page with detailed information.<div class="p">View pipeline job information:<ul class="ul">
+              <li class="li">View job parameters.</li>
+
+              <li class="li">View job run information, including job run history and errors.</li>
+
+              </ul>
+</div>
+</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry cellrowborder" style="vertical-align:top;" headers="d19742e59 ">Manage</td>
+
+            <td class="entry cellrowborder" style="vertical-align:top;" headers="d19742e62 ">Same functions listed above for the View permission, plus the ability to manage pipeline jobs:<ul class="ul"> <li class="li">Create a new job.</li>
+ <li class="li">Schedule recurring job runs.</li>
+ <li class="li">Run an existing job.</li>
+ <li class="li">Enter and modify job-level parameters.</li>
+ <li class="li">Upload a supplemental file.</li>
+ <li class="li">Download a job run file.</li>
+ <li class="li">Disable or enable a job.</li>
+ <li class="li">Terminate a job run.</li>
+ <li class="li">Delete a job.</li>
+ </ul>
+</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry cellrowborder" style="vertical-align:top;" headers="d19742e59 ">Setup</td>
+
+            <td class="entry cellrowborder" style="vertical-align:top;" headers="d19742e62 ">Enter and modify pipeline-level parameters and sub-pipeline settings.<p class="p">The Setup column is displayed only if at least one integration package includes pipeline-level parameters or sub-pipeline settings.</p>
+<p class="p">Not all integration packages include pipeline-level parameters or sub-pipeline settings. For integration packages that do not include either of those, you do not need to assign the Setup permission to any users.</p>
+</td>
+
+          </tr>
+
+        </tbody>
+</table>
+</div>
+
+  </div>
+
+</div></div></section>
+<section id="t-620"><h4>Example: Set up access for NSC-PDP integration</h4><div class="content-locale-en-US content-locale-en"><div id="c_example_data_connect_access"><div class="body conbody"><p class="shortdesc">This example provides a high-level procedure for setting up users to access the NSC-PDP integration in <span class="keyword">Data Connect Integration Designer</span> and <span class="keyword">Ellucian Experience</span>. You can reference this example as you follow the detailed procedures.</p>
+
+    <div class="p">This example assumes:<ul class="ul"> <li class="li">You have identified the following types of users who need access to <span class="keyword">Data Connect Integration Designer</span> and the NSC-PDP integration:<ul class="ul">
+        <li class="li">Administrators who can edit global <span class="keyword">Data Connect Integration Designer</span> parameters.</li>
+
+        <li class="li">Users who can manage the NSC-PDP integration, including creating and managing NSC-PDP pipeline jobs and crosswalks.</li>
+
+        <li class="li">Users who can view, but not modify, information about NSC-PDP pipelines and crosswalks.</li>
+
+        </ul>
+</li>
+
+      <li class="li">You choose to use roles for all access (rather than assigning permissions to individual users).</li>
+ </ul>
+</div>
+
+    
+<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" class="table" frame="border" border="1" rules="all"><caption><span class="tablecap"><span class="table--title-label">Table 1. </span>High-level procedure example: NSC-PDP</span></caption><colgroup><col style="width:60%"><col style="width:40%"></colgroup><thead class="thead" style="text-align:left;">
+          <tr class="row">
+            <th class="entry cellrowborder" style="vertical-align:top;" id="d9325e89">Step</th>
+
+            <th class="entry cellrowborder" style="vertical-align:top;" id="d9325e92">Reference</th>
+
+          </tr>
+
+        </thead>
+<tbody class="tbody">
+          <tr class="row">
+            <td class="entry cellrowborder" style="vertical-align:top;" headers="d9325e89 ">In your identity provider or ERP, create the roles for each group of users described above (the role names are examples):<ul class="ul">
+              <li class="li">data-connect-manage</li>
+
+              <li class="li">data-connect-nscpdp-manage</li>
+
+              <li class="li">data-connect-nscpdp-view</li>
+
+              </ul>
+</td>
+
+            <td class="entry cellrowborder" rowspan="2" style="vertical-align:top;" headers="d9325e92 "><span class="xref ft-internal-xlink" data-ft-warning="excluded-from-rendering" data-clusterid="id_ethos/ethos_data_connect/c_set_up_roles">Set up roles for Ellucian Experience</span> </td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry cellrowborder" style="vertical-align:top;" headers="d9325e89 ">In your identity provider or ERP, assign those roles to the appropriate people.<p class="p">Note that, in this example, you might give some users both the data-connect-manage and data-connect-nscpdp-manage roles.</p>
+</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry cellrowborder" style="vertical-align:top;" headers="d9325e89 ">In Experience Setup, add the following roles:<ul class="ul"> <li class="li">data-connect-manage</li>
+ <li class="li">data-connect-nscpdp-manage</li>
+ <li class="li">data-connect-nscpdp-view</li>
+ </ul>
+</td>
+
+            <td class="entry cellrowborder" style="vertical-align:top;" headers="d9325e92 ">
+              <span class="xref ft-internal-xlink" data-ft-warning="excluded-from-rendering" data-clusterid="id_ethos/ethos_data_connect/t_specify_roles_onboarding">Add the roles in Ellucian Experience Setup</span>
+            </td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry cellrowborder" style="vertical-align:top;" headers="d9325e89 ">From the <span class="ph uicontrol">Permissions</span> area of <span class="keyword">Experience Setup</span>, assign the appropriate permissions to each role as shown in <span class="xref ft-internal-link" data-ft-warning="excluded-from-rendering" data-mapid="iMQvaoYt73FYcvYoiKcTHA" data-tocid="2s0vy0CZ_fxxAp~ObOb0Lw" data-section="c_example_data_connect_access__j3f_gxs_qtb">Table 2</span></td>
+
+            <td class="entry cellrowborder" style="vertical-align:top;" headers="d9325e92 "> <span class="xref ft-internal-link" title="Grant the permissions that allow users to view and manage Data Connect integrations." data-ft-warning="excluded-from-rendering" data-mapid="iMQvaoYt73FYcvYoiKcTHA" data-tocid="FcdOYeNio46VfXsIhBN_Bg">Grant permissions for Data Connect integrations</span> </td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry cellrowborder" style="vertical-align:top;" headers="d9325e89 ">
+              <div class="note"><span class="notetitle">Note:</span> If you choose to support access only through the Application menu, and not through the card, you can skip this step.</div>
+
+              <div class="p">In the <span class="ph uicontrol">Configuration</span> area of the <span class="keyword">Experience</span> site, set up the Data Connect integration packages card using the card setup wizard. In the Roles step of the wizard, select the following roles:<ul class="ul">
+                <li class="li">data-connect-manage</li>
+
+                <li class="li">data-connect-nscpdp-manage</li>
+
+                <li class="li">data-connect-nscpdp-view</li>
+
+                </ul>
+</div>
+
+            </td>
+
+            <td class="entry cellrowborder" style="vertical-align:top;" headers="d9325e92 ">
+              <span class="xref ft-internal-xlink" data-ft-warning="excluded-from-rendering" data-clusterid="id_ethos/ethos_data_connect/t_set_up_experience_card">Set up an Experience card</span>
+            </td>
+
+          </tr>
+
+        </tbody>
+</table>
+</div>
+
+    
+<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" id="c_example_data_connect_access__j3f_gxs_qtb" class="table" frame="border" border="1" rules="all"><caption><span class="tablecap"><span class="table--title-label">Table 2. </span>Permissions example: NSC-PDP Integration</span></caption><colgroup><col style="width:40%"><col style="width:40%"><col style="width:20%"></colgroup><thead class="thead" style="text-align:left;">
+          <tr class="row">
+            <th class="entry cellrowborder" style="vertical-align:top;" id="d9325e259">Feature</th>
+
+            <th class="entry cellrowborder" style="vertical-align:top;" id="d9325e262">Role</th>
+
+            <th class="entry cellrowborder" style="vertical-align:top;" id="d9325e265">Permission</th>
+
+          </tr>
+
+        </thead>
+<tbody class="tbody">
+          <tr class="row">
+            <td class="entry cellrowborder" style="vertical-align:top;" headers="d9325e259 ">Global Configuration</td>
+
+            <td class="entry cellrowborder" style="vertical-align:top;" headers="d9325e262 ">data-connect-manage</td>
+
+            <td class="entry cellrowborder" style="vertical-align:top;" headers="d9325e265 ">Edit</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry cellrowborder" rowspan="2" style="vertical-align:top;" headers="d9325e259 ">Crosswalks</td>
+
+            <td class="entry cellrowborder" style="vertical-align:top;" headers="d9325e262 ">data-connect-nscpdp-manage</td>
+
+            <td class="entry cellrowborder" style="vertical-align:top;" headers="d9325e265 ">Edit</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry cellrowborder" style="vertical-align:top;" headers="d9325e262 ">data-connect-nscpdp-view</td>
+
+            <td class="entry cellrowborder" style="vertical-align:top;" headers="d9325e265 ">View</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry cellrowborder" rowspan="2" style="vertical-align:top;" headers="d9325e259 ">Integration Packages &gt; National Student Clearinghouse Postsecondary Partnership</td>
+
+            <td class="entry cellrowborder" style="vertical-align:top;" headers="d9325e262 ">data-connect-nscpdp-manage</td>
+
+            <td class="entry cellrowborder" style="vertical-align:top;" headers="d9325e265 ">Manage</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry cellrowborder" style="vertical-align:top;" headers="d9325e262 ">data-connect-nscpdp-view</td>
+
+            <td class="entry cellrowborder" style="vertical-align:top;" headers="d9325e265 ">View</td>
+
+          </tr>
+
+        </tbody>
+</table>
+</div>
+
+  </div>
+
+</div></div></section>
+<section id="t-630"><h3>Set up user access for Data Connect rulesets</h3><div class="content-locale-en-US content-locale-en"><div id="c_user_access_data_connect_rulesets"><div class="body conbody"><p class="shortdesc">Define permissions to determine who can create and view <span class="keyword">Data Connect</span> rulesets.</p>
+
+    <div class="p">Users manage <span class="keyword">Data Connect</span> rulesets from the Integration Packages page in <span class="keyword">Ellucian Experience</span>. The Integration Packages page can be accessed from either the Application menu or the Data Connect Packages card:<ul class="ul">
+      <li class="li">To enable a user to manage rulesets through both the Application menu and the card, you must grant that user access to both <span class="keyword">Data Connect</span> rulesets (in <span class="keyword">Experience Setup</span> permissions) and the Data Connect Packages card (in Experience Configuration).</li>
+
+      <li class="li">If you want to enable access only through the Application menu, rather than supporting both access options, you only need to configure the permissions in <span class="keyword">Experience Setup</span>. You can skip the card setup.</li>
+
+      </ul>
+</div>
+
+  </div>
+
+</div></div></section>
+<section id="t-640"><h4>Set up roles and users for Data Connect rulesets</h4><div class="content-locale-en-US content-locale-en"><div id="t_data_connect_rulesets_roles_users"><div class="body taskbody"><p class="shortdesc">To enable users to manage <span class="keyword">Data Connect</span> rulesets, you must first set up the users and roles that need access.</p>
+
+    <div class="section context"><div class="tasklabel"><h2 class="sectiontitle tasklabel">About this task</h2></div>
+      <div class="p">For a user to manage a <span class="keyword">Data Connect</span> ruleset, that user must have the following:<ul class="ul">
+        <li class="li">Access to manage rulesets. You grant that access by assigning permissions to roles or individual users in the Permissions area of <span class="keyword">Experience Setup</span>.</li>
+
+        <li class="li">Access to the Data Connect Packages card (required only if you want users to be able to manage Data Connect rulesets from the card in addition to the Application menu). You grant card access by assigning roles to the <span class="keyword">Experience</span> card in the Card Management area of <span class="keyword">Ellucian Experience</span>.</li>
+
+        </ul>
+</div>
+
+      <p class="p">For a description of the user access options (Application menu or card), see <span class="xref ft-internal-link" title="Define permissions to determine who can create and view Data Connect rulesets." data-ft-warning="excluded-from-rendering" data-mapid="iMQvaoYt73FYcvYoiKcTHA" data-tocid="lHw5guWP9lnHA6mYYBbG0Q">Set up user access for Data Connect rulesets</span>.</p>
+
+      <p class="p">For example, there might be a few people at your institution who should be able to create rulesets and others who should be able to view, but not modify, rulesets. You could grant all of those users access to the <span class="keyword">Experience</span> card and then assign appropriate permissions to limit their access within <span class="keyword">Data Connect</span>.</p>
+
+    </div>
+
+    <div class="tasklabel"><h2 class="sectiontitle tasklabel">Procedure</h2></div><ol class="ol steps"><li class="li step">
+        <span class="ph cmd">Identify all of the people at your institution who need to be able to either manage or view <span class="keyword">Data Connect</span> rulesets.</span>
+      </li>
+<li class="li step">
+        <span class="ph cmd">Decide whether you want to grant <span class="keyword">Data Connect</span> rulesets permissions to individual users, or grant permissions to roles and then assign those roles to individual users.</span>
+      </li>
+<li class="li step">
+        <span class="ph cmd">Set up the roles that you need for both card access and <span class="keyword">Data Connect</span> rulesets permissions, and add those roles in <span class="keyword">Experience Setup</span>. See <span class="xref ft-internal-xlink" data-ft-warning="excluded-from-rendering" data-clusterid="id_ethos/ethos_data_connect/c_set_up_roles">Set up roles for Ellucian Experience</span>.</span>
+      </li>
+<li class="li step">
+        <span class="ph cmd">In <span class="keyword">Experience Setup</span>, add the individual users to whom you want to grant <span class="keyword">Data Connect</span> rulesets permissions. See <span class="xref ft-internal-xlink" data-ft-warning="excluded-from-rendering" data-clusterid="id_ethos/ethos_data_connect/t_add_admin_users">Add administrative users</span>.</span>
+      </li>
+</ol>
+
+  </div>
+
+</div></div></section>
+<section id="t-650"><h4>Grant permissions for Data Connect rulesets</h4><div class="content-locale-en-US content-locale-en"><div id="t_grant_permissions_data_connect_rulesets"><div class="body taskbody"><p class="shortdesc">Grant the permissions that allow users to view and manage <span class="keyword">Data Connect</span> rulesets.</p>
+
+    <div class="section prereq p"><div class="tasklabel"><h2 class="sectiontitle tasklabel">Before you begin</h2></div>Before granting permissions, you need to set up the roles and users that you want to have different permissions. See <span class="xref ft-internal-link" title="To enable users to manage Data Connect rulesets, you must first set up the users and roles that need access." data-ft-warning="excluded-from-rendering" data-mapid="iMQvaoYt73FYcvYoiKcTHA" data-tocid="lqomTRbuaqQoYykWkNRtAQ">Set up roles and users for Data Connect rulesets</span>.</div>
+
+    <div class="section context"><div class="tasklabel"><h2 class="sectiontitle tasklabel">About this task</h2></div>
+      <div class="p"><span class="keyword">Data Connect</span> leverages <span class="keyword">Experience</span> permissions to support targeted user access. For example, you can specify different users and roles who can:<ul class="ul">
+        <li class="li">Create, test, and publish rulesets.</li>
+
+        <li class="li">View, but not modify, those rulesets.</li>
+
+        </ul>
+</div>
+
+      <p class="p">For general information about <span class="keyword">Experience</span> permissions, and the detailed procedure for granting permissions, see <span class="xref ft-internal-xlink" data-ft-warning="excluded-from-rendering" data-clusterid="id_ethos/ethos_data_connect/t_grant_admin_permissions_application">Grant Experience application permissions</span>.</p>
+
+    </div>
+
+    <div class="tasklabel"><h2 class="sectiontitle tasklabel">Procedure</h2></div><ol class="ol steps"><li class="li step stepexpand">
+        
+        <span class="ph cmd" id="t_grant_permissions_data_connect_rulesets__d105e216">Access <span class="keyword">Ellucian Experience Setup</span>:</span>
+        <ol type="a" class="ol substeps" id="t_grant_permissions_data_connect_rulesets__d105e222">
+          <li class="li substep substepexpand" id="t_grant_permissions_data_connect_rulesets__d105e224">
+            <span class="ph cmd" id="t_grant_permissions_data_connect_rulesets__d105e226">In the <span class="keyword">Ellucian Customer Center</span>, click <span class="ph uicontrol">Tools</span> and then select the desired <span class="keyword">Experience Setup</span> instance under the <span class="ph uicontrol">Experience</span> category:</span>
+            <div class="itemgroup info" id="t_grant_permissions_data_connect_rulesets__d105e241">
+              <ul class="ul">
+                <li class="li">Click <span class="ph uicontrol">Experience Setup</span> to access the Production instance of <span class="keyword">Experience Setup</span>.</li>
+
+                <li class="li">Click <span class="ph uicontrol">Experience Setup Test</span> to access the Test instance of <span class="keyword">Experience Setup</span>.</li>
+
+              </ul>
+
+            </div>
+          </li>
+
+          <li class="li substep substepexpand">
+            <span class="ph cmd" id="t_grant_permissions_data_connect_rulesets__d105e268">(If applicable) In <span class="keyword">Experience Setup</span>, in the <span class="ph uicontrol">Environments</span> menu, select the desired <span class="keyword">Ethos</span> environment. </span>
+            <div class="itemgroup info"><span class="ph" id="t_grant_permissions_data_connect_rulesets__d105e281">The option to select an environment is available only if multiple <span class="keyword">Ethos</span> environments are associated with this <span class="keyword">Experience Setup</span> instance.</span></div>
+          </li>
+
+        </ol>
+
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd" id="t_grant_permissions_data_connect_rulesets__d105e607">In the <span class="keyword">Experience Setup</span> header, click <span class="ph uicontrol">Permissions</span>.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">On the <span class="keyword wintitle">Permissions</span> page, click <span class="ph uicontrol">Rules Engine</span>.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">On the <span class="keyword wintitle">Rules Engine Permissions</span> page, expand <span class="ph uicontrol">Data Connect</span>.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Assign permissions by selecting a feature in the left pane and then assigning the desired permissions to roles and individual users in the right pane.</span>
+        <div class="itemgroup info">
+          <ul class="ul">
+            <li class="li">To grant a role or user the same permission (Edit or View) on both Rulesets and Facts, select <span class="ph uicontrol">Data Connect</span>.</li>
+
+            <li class="li">To grant a role or user permission to manage facts, select <span class="ph uicontrol">Facts</span>.</li>
+
+            <li class="li">To grant a role or user permission to manage rulesets, select <span class="ph uicontrol">Rulesets</span>.</li>
+
+          </ul>
+
+          <p class="p">The table below shows the permissions required for either managing or viewing rulesets.</p>
+
+          
+<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" class="table" frame="border" border="1" rules="all"><colgroup><col style="width:50%"><col style="width:50%"></colgroup><thead class="thead" style="text-align:left;">
+                <tr class="row">
+                  <th class="entry cellrowborder" style="vertical-align:top;" id="d32049e238">User functions</th>
+
+                  <th class="entry cellrowborder" style="vertical-align:top;" id="d32049e241">Minimum required permissions</th>
+
+                </tr>
+
+              </thead>
+<tbody class="tbody">
+                <tr class="row">
+                  <td class="entry cellrowborder" style="vertical-align:top;" headers="d32049e238 ">Manage (create, edit, test, publish, copy, and archive) rulesets on the Rulesets tab in Integration Packages.</td>
+
+                  <td class="entry cellrowborder" style="vertical-align:top;" headers="d32049e241 ">Rulesets = Edit<p class="p">Facts = View</p>
+</td>
+
+                </tr>
+
+                <tr class="row">
+                  <td class="entry cellrowborder" style="vertical-align:top;" headers="d32049e238 ">View, but not manage, rulesets on the Rulesets tab.</td>
+
+                  <td class="entry cellrowborder" style="vertical-align:top;" headers="d32049e241 ">Rulesets = View<p class="p">Facts = View</p>
+</td>
+
+                </tr>
+
+                <tr class="row">
+                  <td class="entry cellrowborder" style="vertical-align:top;" headers="d32049e238 ">Configure the Run Ruleset fitting in the <span class="keyword">Integration Designer</span>.</td>
+
+                  <td class="entry cellrowborder" style="vertical-align:top;" headers="d32049e241 ">Rulesets = View</td>
+
+                </tr>
+
+              </tbody>
+</table>
+</div>
+
+          <div class="p">Note the following:<ul class="ul">
+            <li class="li">The View permission for Facts enables users to see and use the Elements list in ruleset configuration.</li>
+
+            <li class="li">The Edit permission for Facts is currently not used to support <span class="keyword">Data Connect</span> ruleset configuration. <span class="keyword">Data Connect</span> rulesets use Ellucian-delivered facts (elements) for which only the View permission is required.</li>
+
+            </ul>
+</div>
+
+        </div>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Click <span class="ph uicontrol">Save</span>.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd" id="t_grant_permissions_data_connect_rulesets__d105e702">In the <span class="keyword wintitle">Confirm Changes to Permissions</span> dialog, review the permissions changes and then click <span class="ph uicontrol">SAVE</span> to complete the process or click <span class="ph uicontrol">CANCEL</span> to go back and modify your selections.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd" id="t_grant_permissions_data_connect_rulesets__d105e718">Instruct any user whose permissions have changed to log out of <span class="keyword">Experience</span> and log back in.</span>
+        <div class="itemgroup info" id="t_grant_permissions_data_connect_rulesets__d105e724"><span class="keyword">Experience</span> permissions are cached. Logging out and back in refreshes the cache and ensures that the user has the granted permissions within <span class="keyword">Experience</span>.</div>
+      </li>
+</ol>
+
+  </div>
+
+</div></div></section></main></body></html>

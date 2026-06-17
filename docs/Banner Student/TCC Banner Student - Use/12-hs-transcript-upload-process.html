@@ -1,0 +1,480 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>TCC Banner Student - Use — HS Transcript Upload Process</title><style>body{font-family:-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;line-height:1.55;color:#1a1a1a;max-width:920px;margin:0 auto;padding:24px}header{border-bottom:2px solid #5a16d6;margin-bottom:8px}h1{color:#3a0ca3}h2,h3,h4,h5,h6{margin-top:1.6em}.crumb{color:#666;font-size:13px;margin:0}.meta{color:#888;font-size:12px}nav.toc{background:#f6f4fc;border:1px solid #e3dcf5;border-radius:8px;padding:12px 18px;margin:18px 0}nav.toc h2{margin:.2em 0}nav.toc ul{list-style:none;padding-left:0}nav.toc a{text-decoration:none;color:#5a16d6}section{margin:1.2em 0;padding-top:.4em}img{max-width:100%;height:auto}table{border-collapse:collapse}td,th{border:1px solid #ccc;padding:4px 8px}code,pre{background:#f4f4f4;border-radius:4px}pre{padding:10px;overflow:auto}</style></head><body><header><p class="crumb">Banner Student › TCC Banner Student - Use</p><h1>TCC Banner Student - Use — HS Transcript Upload Process</h1><p class="meta">Source: <a href="https://resources.elluciancloud.com/r/bundle/banner_stu_tcc_acn_use">https://resources.elluciancloud.com/r/bundle/banner_stu_tcc_acn_use</a> &middot; Retrieved 2026-06-17</p></header><nav class="toc"><h2>Contents</h2><ul><li style="margin-left:0px"><a href="#t-4260">HS Transcript Upload Process</a></li><li style="margin-left:16px"><a href="#t-4270">Troubleshooting</a></li><li style="margin-left:32px"><a href="#t-4280">Troubleshoot data processing issues</a></li><li style="margin-left:32px"><a href="#t-4290">Troubleshoot data load to TCC Student temporary tables</a></li><li style="margin-left:32px"><a href="#t-4300">Troubleshoot data load to TCC Student permanent tables</a></li><li style="margin-left:16px"><a href="#t-4310">Database Tables for Incoming HS Transcripts</a></li><li style="margin-left:32px"><a href="#t-4320">Temporary Table – High School Transcript (SZTHSTR)</a></li><li style="margin-left:32px"><a href="#t-4330">Temporary Table – High School Courses (SZTHSTC)</a></li><li style="margin-left:32px"><a href="#t-4340">Temporary Table – Test Scores (SZTTEST)</a></li></ul></nav><main><section id="t-4260"><h2>HS Transcript Upload Process</h2></section>
+<section id="t-4270"><h3>Troubleshooting</h3></section>
+<section id="t-4280"><h4>Troubleshoot data processing issues</h4><div class="content-locale-en-US content-locale-en"><div id="r_troubleshooting_data_processing_issues"><div class="body refbody"><p class="shortdesc">During routine operation the user may encounter data processing issues that were caused by factors such as file error, middleware or <span class="ph">TCC Student</span>.</p>
+
+    <div class="section">
+      <p class="p">Follow the recommended procedures below to determine the cause of the error and suggested steps for resolution. These instructions encompass processing from the time the file is received from the UT Speede server until the transcript is stored in the <span class="ph">TCC Student</span> temporary tables.</p>
+
+      
+<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" class="table" frame="hsides" border="1" rules="rows"><caption><span class="tablecap"><span class="table--title-label">Table 1. </span>Troubleshooting data processing errors</span></caption><colgroup><col style="width:11.862396204033216%"><col style="width:22.65717674970344%"><col style="width:33.096085409252666%"><col style="width:32.38434163701068%"></colgroup><thead class="thead" style="text-align:left;">
+            <tr class="row">
+              <th class="entry row-nocellborder" style="vertical-align:top;" id="d111696e69">Module</th>
+
+              <th class="entry row-nocellborder" style="vertical-align:top;" id="d111696e72">Functionality</th>
+
+              <th class="entry row-nocellborder" style="vertical-align:top;" id="d111696e75">Verification or Notification</th>
+
+              <th class="entry row-nocellborder" style="vertical-align:top;" id="d111696e78">Recommended Resolution Steps</th>
+
+            </tr>
+
+          </thead>
+<tbody class="tbody">
+            <tr class="row">
+              <td class="entry row-nocellborder" colspan="4" style="vertical-align:top;" headers="d111696e69 d111696e72 d111696e75 d111696e78 ">UT-Speede Server </td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry row-nocellborder" style="vertical-align:top;" headers="d111696e69 "> </td>
+
+              <td class="entry row-nocellborder" style="vertical-align:top;" headers="d111696e72 ">Receive HS transcript file in institutionally defined folder.</td>
+
+              <td class="entry row-nocellborder" style="vertical-align:top;" headers="d111696e75 ">
+                <p class="p">Verify incoming transcript file is received and is in EDI format.</p>
+
+                <p class="p">The incoming transcript file is required for further processing. Absence of the file will cause processing to stop.</p>
+
+              </td>
+
+              <td class="entry row-nocellborder" style="vertical-align:top;" headers="d111696e78 ">Contact UT at Austin, <span class="ph">TREx</span> project. Verify receiving folder.<p class="p">Proceed to next step.</p>
+</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry row-nocellborder" colspan="4" style="vertical-align:top;" headers="d111696e69 d111696e72 d111696e75 d111696e78 ">EDI.Smart </td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry row-nocellborder" style="vertical-align:top;" headers="d111696e69 "> </td>
+
+              <td class="entry row-nocellborder" style="vertical-align:top;" headers="d111696e72 ">Transcript conversion and transfer to <span class="ph">TCC Student</span> processing folder.<p class="p"> </p>
+</td>
+
+              <td class="entry row-nocellborder" style="vertical-align:top;" headers="d111696e75 ">
+                <p class="p">Verify incoming transcript file is in the designated folder for EDI Smart processing.</p>
+
+                <p class="p">This may be verified by utilization of the EDI.Smart Transaction Log (click on the Transaction Log link on the EDI.Smart front page)</p>
+
+                <p class="p">Absence of the file in EDI.Smart designated folder will cause processing to stop.</p>
+
+              </td>
+
+              <td class="entry row-nocellborder" style="vertical-align:top;" headers="d111696e78 ">Verify steps above are working correctly.<p class="p">Verify EDI Smart is configured to process files in the designated folder. See the <span class="ph">TCC</span> delivered EDI.Smart documentation included in the <span class="ph">TCC</span> install package (T<span class="ph filepath">TCC_S_8.x_20130331_EDISmart_P_5197.zip</span>)</p>
+<p class="p">Verify EDI.Smart places file in the designated out-going folder. </p>
+<p class="p">Proceed to next step.</p>
+</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry row-nocellborder" colspan="4" style="vertical-align:top;" headers="d111696e69 d111696e72 d111696e75 d111696e78 ">
+                <span class="ph">TCC Student</span>
+              </td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry row-nocellborder" style="vertical-align:top;" headers="d111696e69 "> </td>
+
+              <td class="entry row-nocellborder" style="vertical-align:top;" headers="d111696e72 ">Transcript data created in the <span class="ph">TCC Student</span> Temporary Tables using the SZREHSL process and viewable through SZAEHTA.</td>
+
+              <td class="entry row-nocellborder" style="vertical-align:top;" headers="d111696e75 ">No records are viewable using SZAEHTA or transcripts records are not viewable through SZAEHTA.</td>
+
+              <td class="entry row-nocellborder" style="vertical-align:top;" headers="d111696e78 ">Verify steps above are working correctly.<p class="p">Review the SZREHSL LIS file.</p>
+<p class="p">Review the number of transcripts received, loaded and failed.</p>
+<p class="p">The transcripts failed should NOT be viewable on SZAEHTA.</p>
+<div class="note"><span class="notetitle">Note:</span> Note: Some transcripts may have an informational or error message in the LIS file but are still viewable for pushing to the permanent <span class="ph">TCC Student</span> tables using SZAEHTA.</div>
+</td>
+
+            </tr>
+
+          </tbody>
+</table>
+</div>
+
+    </div>
+
+    <div class="section"><h2 class="title sectiontitle">Additional notes</h2>
+      
+      <p class="p">In case of messages or errors, review the above table and perform steps to diagnose or resolve the problem. If additional assistance is needed contact the Ellucian Customer Support Center and submit a Service Request.</p>
+
+      <p class="p">Before submitting an SR the following checklist should be completed:</p>
+
+      <ul class="ul">
+        <li class="li">Verify all <span class="ph">TREx</span> related patches and releases are installed. Following are helpful tips:<ul class="ul"> <li class="li">Register for the <span class="ph">TCC</span> Student Commons as all patches and releases are announced in that community.</li>
+ <li class="li">Check the Student Product Release Matrix for a listing and compare to the releases at your institution.<ul class="ul"> <li class="li">Obtain a list of <span class="ph">TCC</span> software installed at your institution using either GZITCCV or GZRTCCV.</li>
+ <li class="li">Obtain a list of <span class="ph">TCC</span> software available by going to the <span class="ph">TCC</span> Student Commons and click on the following links:<ul class="ul"> <li class="li">Find It Fast → Product Release Matrix for Student</li>
+ <li class="li">Product Release Matrix</li>
+ <li class="li">Click Open</li>
+ <li class="li">Click the tab titled TCC_BannerStudent. Included is a list of all software patches and RTEs.</li>
+ </ul>
+</li>
+ <li class="li">Compare the list of <span class="ph">TCC</span> software installed at your institution to the list of <span class="ph">TCC</span> software available.</li>
+
+          </ul>
+</li>
+ </ul>
+</li>
+
+        <li class="li">Errors appear on both the SZAEHTA Review Results tab and on the GZIERRS form. A purge of the transcript in the temporary tables using either the Electronic HS Transcript Activity page (SZAHETA) or the Electronic HS Transcript Purge process (SZREHPG) will remove the messages from viewing on GZIERRS.</li>
+
+        <li class="li">If errors are found in the LOG file indicating a date format that is not valid (ORA-01480: trailing null missing from STR bind value) the issue may be with the format of the transcript file. If the post EDI.Smart file is transferred to a Linux machine the format of the file may need to be modified to ensure it is in UNIX format. A command such as <code class="ph codeph">dos2unix</code> can be used to convert the file to UNIX format.</li>
+
+        <li class="li">File Format - The file must be in ASCII format with no Carriage Returns (CR) at the end of each record. The format required may be referred to as UNIX line endings or UNIX (LF).</li>
+
+      </ul>
+
+    </div>
+
+  </div>
+
+</div></div></section>
+<section id="t-4290"><h4>Troubleshoot data load to TCC Student temporary tables</h4><div class="content-locale-en-US content-locale-en"><div id="r_troubleshooting_data_load_to_banner_temporary_tables"><div class="body refbody"><p class="shortdesc">If an issue is encountered during the data load to the Banner temporary tables an informational message is written to the GZRERRS table which is viewable through the General Errors Inquiry form (GZIERRS).</p>
+
+    <div class="section">
+      <p class="p">This same message is viewable through the Electronic HS Transcript Activity page (SZAEHTA) on the Review Results tab. Following are examples of common messages written by the HS Transcript Load process (SZREHSL) during the temporary table load along with recommended resolution steps.</p>
+
+      <p class="p">When viewing these messages using the form SZAEHTA on the Review Results tab the Document ID is included in the bottom section of the form in the Doc Seq # field and the incoming file name is included in Key Value 11.</p>
+
+      
+<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" class="table" frame="hsides" border="1" rules="rows"><colgroup><col><col></colgroup><thead class="thead" style="text-align:left;">
+            <tr class="row">
+              <th class="entry row-nocellborder" style="vertical-align:top;" id="d108665e62">Posted Message</th>
+
+              <th class="entry row-nocellborder" style="vertical-align:top;" id="d108665e65">Recommended Resolution Steps </th>
+
+            </tr>
+
+          </thead>
+<tbody class="tbody">
+            <tr class="row">
+              <td class="entry row-nocellborder" colspan="2" style="vertical-align:top;" headers="d108665e62 d108665e65 ">SZREHSL Log file </td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry row-nocellborder" style="vertical-align:top;" headers="d108665e62 ">
+                <samp class="ph msgph">*ERROR* Cannot open input file [/data/path/file.txt]. </samp>
+              </td>
+
+              <td class="entry row-nocellborder" style="vertical-align:top;" headers="d108665e65 ">Check path for accuracy and spelling.<p class="p">Check file name for spelling.</p>
+<p class="p">Verify the user has access to the server path and file.</p>
+<p class="p">Change Incoming HS File Path parameter to match the existing path.</p>
+<p class="p">Change incoming HS File Name parameter to match the existing file.</p>
+</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry row-nocellborder" colspan="2" style="vertical-align:top;" headers="d108665e62 d108665e65 ">SZREHSL LIS file</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry row-nocellborder" style="vertical-align:top;" headers="d108665e62 ">Document ID <p class="p">Transcript Load Status</p>
+<p class="p">Informational Text</p>
+</td>
+
+              <td class="entry row-nocellborder" style="vertical-align:top;" headers="d108665e65 ">The actual transcript record causing this message displays immediately beneath the posted message.<p class="p">Most messages contain 3 elements which are outlined below. </p>
+<ul class="ul"> <li class="li">Document ID<p class="p">An identifier of this transcript in the received <span class="ph">TREx</span> file. This transcript number is used to search the transcript file for this particular transcript.</p>
+</li>
+ <li class="li">Transcript Load Status<p class="p">Indicates if the transcript will load to the temporary tables.</p>
+</li>
+
+                <li class="li">Informational Text<p class="p">Indicates the exact message, such as a missing value.</p>
+</li>
+ </ul>
+</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry row-nocellborder" style="vertical-align:top;" headers="d108665e62 ">
+                <samp class="ph msgph">File NO Transcripts Loaded Banner - Missing SAAERUL Rules (SAAERUL - TREX Group).</samp>
+              </td>
+
+              <td class="entry row-nocellborder" style="vertical-align:top;" headers="d108665e65 ">Banner is missing the SAAERULs with a group of <span class="ph">TREx</span>.<p class="p">No transcripts will load to the temporary tables.</p>
+<p class="p">Recommendation: Add the <span class="ph">TREx</span> rules to SAAERUL and run the process again for this transcript file.</p>
+</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry row-nocellborder" style="vertical-align:top;" headers="d108665e62 ">
+                <samp class="ph msgph">8mt04gh8o Transcript NOT Loaded Record has Invalid Format or Number of pipes</samp>
+              </td>
+
+              <td class="entry row-nocellborder" style="vertical-align:top;" headers="d108665e65 ">The first record of the transcript has an invalid number of pipes (|) which may signify the transcript is corrupt or missing valuable data.<p class="p">No further transcripts in the file will load as the process stops when this issue is found.</p>
+<p class="p">Recommendation:Edit the transcript and fix or remove the transcript with a record containing an invalid number of pipes.</p>
+</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry row-nocellborder" style="vertical-align:top;" headers="d108665e62 ">
+                <samp class="ph msgph">7oy49gh8o Transcript NOT Loaded Invalid HEA1 found – </samp>
+                <p class="p">-or-</p>
+
+                <p class="p">
+                  <samp class="ph msgph">8mt02gh8o Transcript NOT Loaded Unsuccessful Load - Error in processing line – </samp>
+                </p>
+
+              </td>
+
+              <td class="entry row-nocellborder" style="vertical-align:top;" headers="d108665e65 ">The expected first record of the transcript was not found or an invalid key word was found in the first 4 characters of a record.<p class="p">This transcript will not load to the temporary tables in Banner.</p>
+<p class="p">This transcript may load if the first record of this transcript is changed and HEA1 is replaced with HEAD in the received file.</p>
+<p class="p">The SZREHSL process will stop and not load any additional transcripts from the transcript file.</p>
+<p class="p">The process looks for specific key words in the first four characters of each record received. If the first four characters contain an invalid Key word, an error is indicated in the LIS file and the transcript may not load to the temporary tables. </p>
+<p class="p">The list of Key words includes the following:</p>
+<p class="p">HEAD, HDR3, HDR4, IDEN, ACAD, TR00, TR10, TR11, ASUM, ASES, CRSR, CNTE, COIN</p>
+<p class="p">Recommendation: Edit the transcript file and modify the keyword to match one of those listed above.</p>
+</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry row-nocellborder" style="vertical-align:top;" headers="d108665e62 ">
+                <samp class="ph msgph">8vx29gh8o Transcript NOT Loaded Missing Last Name</samp>
+              </td>
+
+              <td class="entry row-nocellborder" style="vertical-align:top;" headers="d108665e65 ">The Last Name is missing from the IDEN record and the transcript did NOT load to the temporary tables as Banner requires a Last Name.<p class="p">Recommendation: The incoming transcript file may be edited and a last name included, if known.</p>
+</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry row-nocellborder" style="vertical-align:top;" headers="d108665e62 ">
+                <samp class="ph msgph">8xx29gh8o Transcript Loaded Invalid Format or Missing Data Item -&gt; City </samp>
+                <p class="p">-or-</p>
+
+                <p class="p">
+                  <samp class="ph msgph">8xx29gh8o Transcript Loaded Invalid Format or Missing Data Item -&gt; State</samp>
+                </p>
+
+                <p class="p">-or-</p>
+
+                <p class="p">
+                  <samp class="ph msgph">8xx29gh8o Transcript Loaded Invalid Format or Missing Data Item -&gt; Zip Code</samp>
+                </p>
+
+              </td>
+
+              <td class="entry row-nocellborder" style="vertical-align:top;" headers="d108665e65 ">The City, State or Zip is missing from the incoming student transcript address.<p class="p">This transcript will cause an ID Suspended unless the SAAERUL HSADDRMISSING rule is set to Y to allow loading of a transcript with a missing address.</p>
+<p class="p">Recommendation: Allow the transcript to go to an ID Suspended state and then purge the transcript –or- set the SAAERUL HSADDRMISSING rule to Y and process using the SZAEHTA form.</p>
+</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry row-nocellborder" style="vertical-align:top;" headers="d108665e62 ">
+                <samp class="ph msgph">8sx29gh80 Transcript Loaded Banner - Missing County Code (GTVZIPC) for Zip- Code - 77521-1111 and City- Houston</samp>
+              </td>
+
+              <td class="entry row-nocellborder" style="vertical-align:top;" headers="d108665e65 ">The Zip Code and City combination are not defined on the baseline GTVZIPC form, thus a County cannot be assigned to the Address for this student.<p class="p">Recommendation: Verify the City and Zip Code combination is valid. Verify the City and Zip Code combination is </p>
+</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry row-nocellborder" style="vertical-align:top;" headers="d108665e62 ">
+                <samp class="ph msgph">8tx29gh8o Transcript Loaded Missing SSN -</samp>
+                <p class="p">-or-</p>
+
+                <p class="p">
+                  <samp class="ph msgph">8sx29gh80 Transcript Loaded Invalid Format or Missing Data Item -&gt; Date of Birth -</samp>
+                </p>
+
+                <p class="p">-or-</p>
+
+                <p class="p">
+                  <samp class="ph msgph">8rx29gh80 Transcript Loaded Invalid Format or Missing Data Item -&gt; Gender</samp>
+                </p>
+
+              </td>
+
+              <td class="entry row-nocellborder" style="vertical-align:top;" headers="d108665e65 ">The SSN, DOB or Gender are missing from the HEAD record. The transcript loaded to the temporary tables and will push to the permanent tables without those data items.<p class="p">Recommendation: The transcript will push to permanent tables as Banner does not require an SSN, Gender or DOB.</p>
+</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry row-nocellborder" style="vertical-align:top;" headers="d108665e62 ">
+                <samp class="ph msgph">7oy59gh8o Transcript Loaded Missing course grade –</samp>
+                <p class="p">-or-</p>
+
+                <p class="p">
+                  <samp class="ph msgph">7oy59gh8o Transcript Loaded Missing course Level –</samp>
+                </p>
+
+              </td>
+
+              <td class="entry row-nocellborder" style="vertical-align:top;" headers="d108665e65 ">Informational only.<p class="p">The received Course is not graded and may still be in progress in the CRSR record. Or the Level is not included in the ASES record.</p>
+<p class="p">Recommendation: No actions needed.</p>
+</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry row-nocellborder" style="vertical-align:top;" headers="d108665e62 ">
+                <samp class="ph msgph">7oy59gh8o Transcript Loaded Successful Load</samp>
+              </td>
+
+              <td class="entry row-nocellborder" style="vertical-align:top;" headers="d108665e65 ">Informational only.<p class="p">This transcript loaded to the temporary tables.</p>
+<p class="p">Review all messages to this transcript to determine if <span class="ph">TCC Student</span> setup is needed.</p>
+</td>
+
+            </tr>
+
+          </tbody>
+</table>
+</div>
+
+    </div>
+
+  </div>
+
+</div></div></section>
+<section id="t-4300"><h4>Troubleshoot data load to TCC Student permanent tables</h4><div class="content-locale-en-US content-locale-en"><div id="r_troubleshooting_data_load_to_banner_permanent_tables"><div class="body refbody"><p class="shortdesc">If an issue is encountered during the data load to the <span class="ph">TCC Student</span> permanent tables an informational message is written to the GZRERRS table which is viewable using the General Errors Inquiry form (GZIERRS).</p>
+
+    <div class="section">
+      <p class="p">This same message is viewable using the Electronic HS Transcript Activity page (SZAEHTA) on the Review Results tab.</p>
+
+      <p class="p">When viewing these messages using the form SZAEHTA on the Review Results tab various additional information items are included in the bottom section of the form and may be used for trouble-shooting purposes.</p>
+
+      <p class="p">Following are examples of common messages written during the permanent table load along with recommended resolution steps.</p>
+
+      
+<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" class="table" frame="hsides" border="1" rules="rows"><colgroup><col><col></colgroup><thead class="thead" style="text-align:left;">
+            <tr class="row">
+              <th class="entry row-nocellborder" style="vertical-align:top;" id="d3622e68">Posted Message</th>
+
+              <th class="entry row-nocellborder" style="vertical-align:top;" id="d3622e71">Recommended Resolution Steps</th>
+
+            </tr>
+
+          </thead>
+<tbody class="tbody">
+            <tr class="row">
+              <td class="entry row-nocellborder" colspan="2" style="vertical-align:top;" headers="d3622e68 d3622e71 ">SZAEHTA Review Results tab or SZREHSP.LIS file</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry row-nocellborder" style="vertical-align:top;" headers="d3622e68 ">Document ID <p class="p">Transcript Load Status</p>
+<p class="p">Informational Text </p>
+</td>
+
+              <td class="entry row-nocellborder" style="vertical-align:top;" headers="d3622e71 ">The actual transcript record causing this message displays immediately beneath the posted message.<p class="p">Most messages contain 3 elements which are outlined below. </p>
+<ul class="ul"> <li class="li">Document ID<p class="p">An identifier of this transcript in the received <span class="ph">TREx</span> file. This transcript number is used to search the transcript file for this particular transcript.</p>
+</li>
+ <li class="li">Transcript Load Status<p class="p">Indicates if the transcript will load to the temporary tables.</p>
+</li>
+
+                <li class="li">Informational Text<p class="p">Indicates the exact message, such as a missing value.</p>
+</li>
+ </ul>
+</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry row-nocellborder" style="vertical-align:top;" headers="d3622e68 ">
+                <samp class="ph msgph">Banner Common Matching issue. Please create Person record manually.</samp>
+              </td>
+
+              <td class="entry row-nocellborder" style="vertical-align:top;" headers="d3622e71 ">The process could not automatically assign an existing <span class="ph">TCC Student</span> ID or create a new <span class="ph">TCC Student</span> ID for this person.<p class="p">Recommendation: Use the pull-down Options menu to access GOAMTCH and assign a <span class="ph">TCC Student</span> ID manually.</p>
+</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry row-nocellborder" style="vertical-align:top;" headers="d3622e68 ">
+                <samp class="ph msgph">Banner - Missing Texas ID Name Type (SAAERUL HSALTIDTYPE or GTVNTYP).</samp>
+              </td>
+
+              <td class="entry row-nocellborder" style="vertical-align:top;" headers="d3622e71 ">The SAAERUL HSALTIDTYPE rule is missing or the SAAERUL HSALTIDTYPE assigned is missing on GTVNTYP or is a value that is not valid, such as UPDATE ME is assigned.<p class="p">Recommendation: Create a defined value for the HS Alternate ID on GTVNTYP and assign this value to the SAAERUL HSALTIDTYPE rule.</p>
+</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry row-nocellborder" style="vertical-align:top;" headers="d3622e68 ">
+                <samp class="ph msgph">Banner – SAAERUL EXISTSETHNIC is not Y or N – data not used.</samp>
+              </td>
+
+              <td class="entry row-nocellborder" style="vertical-align:top;" headers="d3622e71 ">The SAAERUL EXISTSETHNIC rule is missing or is not assigned a value of Y or N.<p class="p">Recommendation: Create the SAAERUL EXISTSETHNIC rule and ensure the assigned value is Y or N.</p>
+</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry row-nocellborder" style="vertical-align:top;" headers="d3622e68 ">
+                <samp class="ph msgph">Banner - Ethnicity Not Used.</samp>
+              </td>
+
+              <td class="entry row-nocellborder" style="vertical-align:top;" headers="d3622e71 ">Due to the value of SAAERUL EXISTSETHNIC the Ethnic value received is not updated in <span class="ph">TCC Student</span>.<p class="p">Recommendation: If the institution prefers to load the received Ethnic value, adjust the SAAERUL EXISTSETHNIC value to Y or N.</p>
+</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry row-nocellborder" style="vertical-align:top;" headers="d3622e68 ">
+                <samp class="ph msgph">Banner - SAAERUL EXISTSETHNIC is not Y or N - data not used.</samp>
+              </td>
+
+              <td class="entry row-nocellborder" style="vertical-align:top;" headers="d3622e71 ">The SAAERUL EXISTSETHNIC assigned value is not Y or N. Thus the EXISTSETHNIC rule is not used.<p class="p">Recommendation: Modify the SAERUL EXISTSETHNIC rule assigned value.</p>
+</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry row-nocellborder" style="vertical-align:top;" headers="d3622e68 ">
+                <samp class="ph msgph">Banner - Missing STVSBGI code for incoming CEEB Code (STVSBGI or SOAXREF STVSBGIH) for CEEB 440012</samp>
+              </td>
+
+              <td class="entry row-nocellborder" style="vertical-align:top;" headers="d3622e71 ">The incoming High School CEEB code is not defined on either STVSBGI or SOAXREF using STVSBGIH.<p class="p">Recommendation: Define the incoming High School CEEB code on either STVSBGI or on SOAXREF using STVSBGIH.</p>
+</td>
+
+            </tr>
+
+          </tbody>
+</table>
+</div>
+
+    </div>
+
+  </div>
+
+</div></div></section>
+<section id="t-4310"><h3>Database Tables for Incoming HS Transcripts</h3></section>
+<section id="t-4320"><h4>Temporary Table – High School Transcript (SZTHSTR)</h4><div class="content-locale-en-US content-locale-en"><div id="r_temporary_table_high_school_transcript_szthstr"><div class="body refbody"><p class="shortdesc">Following is a listing of fields in the Oracle table that stores the data specific to a High School student. The data is in <span class="ph">TCC Student</span> format and may copy to <span class="ph">TCC Student</span> permanent tables.</p>
+
+    <div class="section">
+      <br><div class="imageleft"><img class="image imageleft" alt="Listing of fields in the Oracle table that stores the data specific to a High School student" data-ft-asset-display-name="tempdatabasetable.PNG" src="images/12-hs-transcript-upload-process-1.png" data-ft-resource-id="lw4vmOrnWZLpCljCNmPymg-TBLFPgHynBsCejI2IJBciQ"></div><br>
+    </div>
+
+  </div>
+
+</div></div></section>
+<section id="t-4330"><h4>Temporary Table – High School Courses (SZTHSTC)</h4><div class="content-locale-en-US content-locale-en"><div id="r_temporary_table_high_school_courses_szthstc"><div class="body refbody"><p class="shortdesc">Following is a listing of fields in the Oracle table that stores the data specific to a High School courses for a student. The data is in <span class="ph">TCC Student</span> format and may copy to <span class="ph">TCC Student</span> permanent tables.</p>
+
+    <div class="section">
+      <br><img class="image" alt="Listing of fields in the Oracle table that stores the data specific to a High School courses" data-ft-asset-display-name="hscoursestempdatabasetable.PNG" src="images/12-hs-transcript-upload-process-2.png" data-ft-resource-id="pCeURkiVWPrcSudo8CXBcw-TBLFPgHynBsCejI2IJBciQ"><br>
+    </div>
+
+  </div>
+
+</div></div></section>
+<section id="t-4340"><h4>Temporary Table – Test Scores (SZTTEST)</h4><div class="content-locale-en-US content-locale-en"><div id="r_temporary_table_test_scores_szttest"><div class="body refbody"><p class="shortdesc">Following is a listing of fields in the Oracle table that stores the data specific to a test scores for a High School student. The data is in <span class="ph">TCC Student</span> format and may copy to <span class="ph">TCC Student</span> permanent tables.</p>
+
+    <div class="section">
+      <br><img class="image" alt="Listing of fields in the Oracle table that stores the data specific to a test scores for a High School student" data-ft-asset-display-name="testscorestempdatabasetable.PNG" src="images/12-hs-transcript-upload-process-3.png" data-ft-resource-id="W0PMbgRZvIt8581Y2k2pNA-TBLFPgHynBsCejI2IJBciQ"><br>
+    </div>
+
+  </div>
+
+</div></div></section></main></body></html>

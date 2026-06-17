@@ -1,0 +1,884 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>UCAS Banner Student - Reports</title><style>body{font-family:-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;line-height:1.55;color:#1a1a1a;max-width:920px;margin:0 auto;padding:24px}header{border-bottom:2px solid #5a16d6;margin-bottom:8px}h1{color:#3a0ca3}h2,h3,h4,h5,h6{margin-top:1.6em}.crumb{color:#666;font-size:13px;margin:0}.meta{color:#888;font-size:12px}nav.toc{background:#f6f4fc;border:1px solid #e3dcf5;border-radius:8px;padding:12px 18px;margin:18px 0}nav.toc h2{margin:.2em 0}nav.toc ul{list-style:none;padding-left:0}nav.toc a{text-decoration:none;color:#5a16d6}section{margin:1.2em 0;padding-top:.4em}img{max-width:100%;height:auto}table{border-collapse:collapse}td,th{border:1px solid #ccc;padding:4px 8px}code,pre{background:#f4f4f4;border-radius:4px}pre{padding:10px;overflow:auto}</style></head><body><header><p class="crumb">Banner Student › UCAS Banner Student - Reports</p><h1>UCAS Banner Student - Reports</h1><p class="meta">Source: <a href="https://resources.elluciancloud.com/r/bundle/banner_student_ref_reports_ucas">https://resources.elluciancloud.com/r/bundle/banner_student_ref_reports_ucas</a> &middot; Retrieved 2026-06-17</p></header><nav class="toc"><h2>Contents</h2><ul><li style="margin-left:0px"><a href="#t-10">UCAS Banner Student - Reports</a></li><li style="margin-left:16px"><a href="#t-20">UCAS Data Transfer (SKPUHER) process</a></li><li style="margin-left:16px"><a href="#t-30">UCAS Purge (SKPURGE) process</a></li><li style="margin-left:32px"><a href="#t-40">Report Sample — UCAS Purge (SKPURGE) process</a></li><li style="margin-left:16px"><a href="#t-50">Value Mapping Process Import (SOPSSDT) process</a></li><li style="margin-left:16px"><a href="#t-60">Awarding Body Linkage Data (SOPUABL) Process</a></li><li style="margin-left:16px"><a href="#t-70">WINC Institution Code Update (SOPUWIN) process</a></li><li style="margin-left:32px"><a href="#t-80">Run the SOPUWIN process</a></li></ul></nav><main><section id="t-10"><h2>UCAS Banner Student - Reports</h2><div class="content-locale-en-US content-locale-en"><div id="c_ucas_processing"><p class="shortdesc">Lists the processes and reports available in <span class="keyword"> Banner</span><span class="keyword">UCAS</span>.</p>
+
+  
+</div></div></section>
+<section id="t-20"><h3>UCAS Data Transfer (SKPUHER) process</h3><div class="content-locale-en-US content-locale-en"><div id="t_ucas_data_transfer_skpuher_process"><div class="body taskbody"><p class="shortdesc">This process is used to upload data to and download data from XML-Link.</p>
+
+    <div class="section context"><div class="tasklabel"><h2 class="sectiontitle tasklabel">About this task</h2></div>
+      <p class="p">This process can be launched any time from job submission or directly from the command line (for example, in a Cron script). To run the process automatically, you must edit the <code class="ph codeph"> SKPUHERD.SHL </code> and <code class="ph codeph"> SKPUHERU.SHL </code> scripts (see “Edit the SKPUHER scripts”).</p>
+
+      <p class="p">This process needs to be called twice in the following sequence: first with the <span class="ph uicontrol">Transfer Flag</span> parameter set to <kbd class="ph userinput">U</kbd> (upload) to send the transactions to <span class="ph">UCAS</span>, and then with the <span class="ph uicontrol">Transfer Flag</span> parameter set to <kbd class="ph userinput">D</kbd> (download) to receive the acknowledgements from <span class="ph">UCAS</span>. The XML-Link methods on the <span class="ph">UCAS</span> Data Processing (SKAUHPR) page for which the <span class="ph uicontrol">Auto</span> check box is selected will be downloaded.</p>
+
+      <p class="p">When launched, this process will do the following for a download:</p>
+
+    </div>
+
+    <div class="tasklabel"><h2 class="sectiontitle tasklabel">Procedure</h2></div><ol class="ol steps"><li class="li step">
+        <span class="ph cmd">Select all of the new data from <span class="ph">UCAS</span>. The <span class="ph">UCAS</span> data will be considered new when the <span class="ph">UCAS</span> timestamp is later than the <span class="ph">Banner</span> timestamp The data will be stored in interim tables.</span>
+      </li>
+<li class="li step">
+        <span class="ph cmd">Check for duplicates </span>
+      </li>
+<li class="li step">
+        <span class="ph cmd">Process the information from the interim tables into the <span class="ph"><span class="ph">Banner</span></span> <span class="ph">UCAS</span> tables.</span>
+      </li>
+</ol>
+
+    <div class="section result"><div class="tasklabel"><h2 class="sectiontitle tasklabel">Results</h2></div>
+      <p class="p">When launched for an upload, this process will select all of the new data from the <span class="ph"><span class="ph">Banner</span></span> <span class="ph">UCAS</span> module and send it to <span class="ph">UCAS</span>.</p>
+
+      <div class="p">There is also the ability for an e-mail to be sent to confirm the success or failure of the process. The following parameters must be set up on the System Parameter Maintenance (GKAKSYS) page for this e-mail process to function: <ul class="ul"> <li class="li">ODBC RECIPIENT EMAIL ADDRESS</li>
+ <li class="li">ODBC EMAIL SENDER</li>
+ <li class="li">ODBC EMAIL SENDER NAME</li>
+ <li class="li">ODBC EMAIL SERVER</li>
+ <li class="li">ODBC FAILED EMAIL SUBJECT</li>
+ <li class="li">ODBC SUCCESSFUL EMAIL SUBJECT <div class="note"><span class="notetitle">Note:</span> All of these parameters are used for XML-Link, although the parameter names have not been changed to reflect this.</div>
+ 
+<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" id="t_ucas_data_transfer_skpuher_process__t_ucas_data_transfer_skpuher_process-utbl1" class="table" frame="hsides" border="1" rules="rows"><colgroup><col><col><col><col></colgroup><thead class="thead" style="text-align:left;vertical-align:bottom;"> <tr class="row"> <th class="entry row-nocellborder" style="text-align:left;vertical-align:bottom;" id="d2034e169">Parameter Name</th>
+ <th class="entry row-nocellborder" style="text-align:left;vertical-align:bottom;" id="d2034e172">Required?</th>
+
+        <th class="entry row-nocellborder" style="text-align:left;vertical-align:bottom;" id="d2034e175">Description</th>
+ <th class="entry row-nocellborder" style="text-align:left;vertical-align:bottom;" id="d2034e178">Values</th>
+ </tr>
+ </thead>
+<tbody class="tbody"> <tr class="row"> <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d2034e169 ">Institution Code</td>
+ <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d2034e172 ">Yes</td>
+ <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d2034e175 ">The institution code. AAA format (for example, X01).</td>
+ <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d2034e178 ">&nbsp;</td>
+ </tr>
+ <tr class="row"> <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d2034e169 ">Transfer Flag</td>
+ <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d2034e172 ">Yes</td>
+ <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d2034e175 ">Indicates if a download or upload should be performed.</td>
+ <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d2034e178 "><kbd class="ph userinput">U</kbd>: Upload <p class="p"><kbd class="ph userinput">D</kbd>: Download</p>
+</td>
+ </tr>
+ </tbody>
+</table>
+</div>
+</li>
+ </ul>
+</div>
+
+    </div>
+
+  </div>
+
+</div></div></section>
+<section id="t-30"><h3>UCAS Purge (SKPURGE) process</h3><div class="content-locale-en-US content-locale-en"><div id="r_ucas_purge_skpurge_process"><div class="body refbody"><p class="shortdesc">The purge routine permits the user to clear unwanted data from finalised admission cycles, such as old <span class="ph">UCAS</span> Marvin file data, previous application data, <span class="ph">Banner</span> copy view data, and so on.</p>
+
+    <div class="section">
+      <p class="p">Generally, this process will be run one time a year between one admission cycle closing and a new one beginning. It can also be used during the implementation phase for clearing test databases to provide a clear install for re-testing admission processes.</p>
+
+      <p class="p">The purge process allows institutions to clear out old Marvin transaction and <span class="ph">Banner</span> copy view data from previous years. A process parameter allows you to delete copy view data with activity dates earlier than a specified value. You can delete applicant data in <span class="ph">Banner</span> <span class="ph">UCAS</span> for specific entry years or admissions systems. You can also delete old SWAS and NMAS applicant records,and records from the current admissions systems.</p>
+
+      <div class="note warning"><span class="warningtitle">Warning:</span> ODS users should be aware that deleting <span class="ph">Banner</span> <span class="ph">UCAS</span> applicant data through this process will result in that data being removed from the ODS reporting repository when it is next refreshed.</div>
+
+      <p class="p">Data downloaded from XML-Link, which is initially stored in PRGNREP temporary tables, is deleted after it has been transferred into the <span class="ph">Banner</span> <span class="ph">UCAS</span> interim tables (‘copy view tables’) by the MDUU rules and so is not covered by SKPURGE.</p>
+
+      
+<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" id="r_ucas_purge_skpurge_process__r_ucas_purge_skpurge_process-utbl1" class="table" frame="hsides" border="1" rules="rows"><colgroup><col><col><col><col></colgroup><thead class="thead" style="text-align:left;vertical-align:bottom;">
+            <tr class="row">
+              <th class="entry row-nocellborder" style="text-align:left;vertical-align:bottom;" id="d176e87">Parameter Name</th>
+
+              <th class="entry row-nocellborder" style="text-align:left;vertical-align:bottom;" id="d176e90">Required?</th>
+
+              <th class="entry row-nocellborder" style="text-align:left;vertical-align:bottom;" id="d176e93">Description</th>
+
+              <th class="entry row-nocellborder" style="text-align:left;vertical-align:bottom;" id="d176e96">Values</th>
+
+            </tr>
+
+          </thead>
+<tbody class="tbody">
+            <tr class="row">
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d176e87 ">Purge ODBC Reference Data</td>
+
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d176e90 ">Y</td>
+
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d176e93 ">Indicates whether ODBC reference data is to be purged. <p class="p">If this parameter is set to <kbd class="ph userinput">Y</kbd>, data will be deleted from the following reference data interim (copy view) tables (some of which are now redundant).</p>
+ <div class="p">The following is a list of the tables: <ul class="ul"> <li class="li">SKBUABR cvRefOfferAbbrev and getRefStandardOfferAbbreviations data</li>
+ <li class="li">SKBUAWB cvRefAwardBody and getReferenceAwardingBodies data</li>
+ <li class="li">SKBUCAR cvRefCare and getReferenceCare data</li>
+
+                <li class="li">SKBUCRD cvRefCareDuration data</li>
+ <li class="li">SKBUCRS cvCourse, getGTTRReferenceCourses and getUCASReferenceCourses data</li>
+ <li class="li">SKBUCTY cvRefCountry and getReferenceCountriesOfBirth data</li>
+ <li class="li">SKBUDGS cvgRefDegreeSubject and getGTTRReferenceDegreeSubjects data</li>
+ <li class="li">SKBUDIS cvRefDis and getReferenceDisabilities data</li>
+ <li class="li">SKBUDOM cvRefAPR and getRefPermanentResidenceAreas data</li>
+ <li class="li">SKBUEBL cvEBLSubject and getReferenceABLSubjects data</li>
+
+                <li class="li">SKBUEGP cvRefEstGroup and getReferenceEstablishGroups data</li>
+ <li class="li">SKBUERR cvRefError and getReferenceErrors data</li>
+ <li class="li">SKBUETH cvRefEthnic and getReferenceEthnics data</li>
+ </ul>
+</div>
+</td>
+
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d176e96 "><kbd class="ph userinput">Y</kbd>: Yes <p class="p"><kbd class="ph userinput">N</kbd>: No</p>
+</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d176e87 ">Purge ODBC Reference Data <em class="ph i">(continued)</em></td>
+
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d176e90 ">Y</td>
+
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d176e93 ">
+                <ul class="ul">
+                  <li class="li">SKBUEXA cvRefExam and getReferenceExamLevels data</li>
+
+                  <li class="li">SKBUFEE cvRefFee and getReferenceFeePayers data</li>
+
+                  <li class="li">SKBUHUS HercUsers data</li>
+
+                  <li class="li">SKBUINS cvInstitution, getGTTRReferenceInstitutions and getUCASReferenceInstitutions data</li>
+
+                  <li class="li">SKBUJNT cvJointAdmissions and getReferenceJointAdmissions data</li>
+
+                  <li class="li">SKBUKEY cvRefKeyword data</li>
+
+                  <li class="li">SKBULEA cvRefLEA and getRefLocalEducationAuthorities data</li>
+
+                  <li class="li">SKBUNAT cvRefNationality and getReferenceNationalitys data</li>
+
+                  <li class="li">SKBUOEQ cvRefOEQ and getRefOtherExamQualifications data</li>
+
+                  <li class="li">SKBUOSB cvRefOfferSubj and getReferenceOfferSubjects data</li>
+
+                  <li class="li">SKBUPAR cvRefParentInHE and getRefParentalHE data</li>
+
+                  <li class="li">SKBUPOC cvRefPOCC and getReferenceParentalOccupations data</li>
+
+                  <li class="li">SKBUPSP cvRefPrepSponsor and getReferenceActivitySponsorType data</li>
+
+                  <li class="li">SKBUQUA cvnRefQua data</li>
+
+                  <li class="li">SKBUQUO cvnRefQuota data</li>
+
+                  <li class="li">SKBURCA cvRefResCat and getReferenceResidentialCategories data</li>
+
+                </ul>
+
+              </td>
+
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d176e96 ">&nbsp;</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d176e87 ">Purge ODBC Reference Data <em class="ph i">(continued)</em></td>
+
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d176e90 ">Y</td>
+
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d176e93 ">
+                <ul class="ul">
+                  <li class="li">SKBUREG cvnRefRegion and getUCASReferenceNHSRegions data</li>
+
+                  <li class="li">SKBURUG cvRefUnits and getReferenceUnits data</li>
+
+                  <li class="li">SKBUSCL cvSchool and getReferenceSchools data</li>
+
+                  <li class="li">SKBUSCN cvSchoolContact and getReferenceSchoolContacts data</li>
+
+                  <li class="li">SKBUSCT cvRefSchoolType and getReferenceSchoolTypes data</li>
+
+                  <li class="li">SKBUSEC cvRefSocioEconomic and getReferenceSocialEconomic data</li>
+
+                  <li class="li">SKBUSOC cvRefSocialClass data</li>
+
+                  <li class="li">SKBUSUB cvRefSubj data</li>
+
+                  <li class="li">SKBUSYR cvRefSchoolYear and getReferenceSchoolYear data</li>
+
+                  <li class="li">SKBUTAR cvRefTariff and getReferenceTariffs data</li>
+
+                  <li class="li">The system identifies the tables to clear dynamically, so SKPURGE will not need to be modified if <span class="ph">UCAS</span> add new reference views to ODBC-Link.</li>
+
+                </ul>
+
+                <p class="p">SKPURGE uses the entries in the SKBUCAT table to identify the tables to delete, so if a table is not listed there (because you do not want it to display on SKAUHPR) then records will not be deleted.</p>
+
+                <div class="note"><span class="notetitle">Note:</span> If this parameter is set to <kbd class="ph userinput">Y</kbd>, a value must be entered in the Activity Date parameter.</div>
+
+              </td>
+
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d176e96 ">&nbsp;</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d176e87 ">Purge ODBC Applicant Data</td>
+
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d176e90 ">Y</td>
+
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d176e93 ">Indicates whether <span class="ph">UCAS</span> and <span class="ph">UCAS</span> Teacher Training (UTT, formerly GTTR) applicant data is to be purged. <p class="p">If this parameter is set to <kbd class="ph userinput">Y</kbd>, data will be deleted from the following interim applicant data (copy view) tables (some of which are now redundant).</p>
+ <div class="p">The following is a list of the tables: <ul class="ul"> <li class="li">SKBUCON ivContextual and getUCASApplicantContextualData data</li>
+
+                <li class="li">SKBUFDG ivgFirstDegree and getGTTRApplicantFirstDegrees data</li>
+ <li class="li">SKBUDCN ivgDegreeContents and getGTTRApplicantDegreeContents data</li>
+ <li class="li">SKBUEDU ivEducation, ivgEducation, getGTTRApplicantEducation and getUCASApplicantEducation data</li>
+ <li class="li">SKBUEMP ivEmployment and getUCASApplicantsEmployment data</li>
+ <li class="li">SKBUFQL ivFormQuals, ivgFormQuals, getGTTRApplicantQualifications and getUCASApplicantQualifications data</li>
+ <li class="li">SKBUOFF ivOffer data</li>
+
+                <li class="li">SKBUOLG ivgOtherLanguages and getGTTRApplicantsOtherLanguages data</li>
+ <li class="li">SKBUPAC ivPrepActivities and getUCASApplicantActivity data</li>
+ <li class="li">SKBUPQR ivStarPQR and getUCASApplicantsResults data</li>
+ <li class="li">SKBUQUL ivQualifications and getUCASResultsMatchStatus data</li>
+ </ul>
+</div>
+</td>
+
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d176e96 "><kbd class="ph userinput">Y</kbd>: Yes <p class="p"><kbd class="ph userinput">N</kbd>: No</p>
+</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d176e87 ">Purge ODBC Applicant Data <em class="ph i">(continued)</em></td>
+
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d176e90 ">Y</td>
+
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d176e93 ">
+                <ul class="ul">
+                  <li class="li">SKBUREF ivReference, ivgReference, getGTTRApplicantReferees, getGTTRApplicantReferees_U, getUCASApplicantReferees and getUCASApplicantReferees_U data</li>
+
+                  <li class="li">SKBUSMT ivStatement, ivgStatement, getGTTRApplicantStatements, getGTTRApplicantStatements_U, getUCASApplicantStatements and getUCASApplicantStatements_U data</li>
+
+                  <li class="li">SKBUSTA ivStarA, ivgStarA, ivnStarA, getGTTRApplicantsDetails address, getGTTRApplicantsDetails_U address getUCASApplicantsDetails address and getUCASApplicantsDetails_U data</li>
+
+                  <li class="li">SKBUSTC ivStarC and ivnStarC data</li>
+
+                  <li class="li">SKBUSTG ivgStarG and getGTTRApplicantChoices data</li>
+
+                  <li class="li">SKBUSTH ivStarH, ivgStarH, ivnStarH, getGTTRApplicantsBackground and getUCASApplicantsBackground data</li>
+
+                  <li class="li">SKBUSTJ ivStarJ, ivgStarJ, ivnStarJ, getGTTRHesaData and getUCASHesaData data</li>
+
+                  <li class="li">SKBUSTK ivStarK, ivgStarK, ivnStarK, getGTTRApplicantsDetails coded, getUCASApplicantsDetails coded, getUCASApplicantAnswers, getGTTRAppsCompletelyWithdrawn, getUCASAppsCompletelyWithdrawn, getGTTRApplicantsReinstated and getUCASApplicantsReinstated data</li>
+
+                </ul>
+
+              </td>
+
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d176e96 ">&nbsp;</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d176e87 ">Purge ODBC Applicant Data <em class="ph i">(continued)</em></td>
+
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d176e90 ">Y</td>
+
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d176e93 ">
+                <ul class="ul">
+                  <li class="li">SKBUSTN ivStarN, ivgStarN, ivnStarN, getGTTRApplicantsDetails name and getUCASApplicantsDetails name data</li>
+
+                  <li class="li">SKBUSTX ivStarX, ivgStarX, ivnStarX, getGTTRApplicantsBackground and getUCASApplicantsBackground data</li>
+
+                  <li class="li">SKBUSTW ivStarW, ivgStarW, getGTTRApplicantsCancelled and getUCASApplicantsCancelled data</li>
+
+                  <li class="li">SKBUSUM ivSummerSchool data</li>
+
+                  <li class="li">SKBUSZA ivStarZ1 data</li>
+
+                  <li class="li">SKBUTIN Tranin and Set Method data</li>
+
+                  <li class="li">SKBUUGD ivUnitGrades and getUCASApplicantsUnits data</li>
+
+                  <li class="li">SKBUWEX ivgWorkExperience, getGTTRApplicantsWorkExperience and getGTTRApplicantsWorkExperience_U data</li>
+
+                  <li class="li">SKRUHDP UCAS Duplicates data</li>
+
+                </ul>
+
+                <p class="p">SKRUHDP data will be deleted only if the associated ivStarN/ivgStar/ivnStarN record is being deleted (that is, SKRUHDP_SEQNO = SKBUSTN_SEQ).</p>
+
+                <p class="p">The system identifies the tables to clear dynamically, so SKPURGE will not need to be modified if <span class="ph">UCAS</span> add new institution (applicant data) views to ODBC-Link.</p>
+
+                <p class="p">SKPURGE uses the entries in the SKBUCAT table to identify the tables to delete, so if a table is not listed there (because you do not want it to display on SKAUHPR) then records will not be deleted.</p>
+
+                <div class="note"><span class="notetitle">Note:</span> If this parameter is set to <kbd class="ph userinput">Y</kbd>, a value must be entered in the Activity Date parameter.</div>
+
+              </td>
+
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d176e96 ">&nbsp;</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d176e87 ">Purge ODBC Update Data</td>
+
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d176e90 ">Y</td>
+
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d176e93 ">Indicates whether ODBC update data is to be purged. <p class="p">If this parameter is set to <kbd class="ph userinput">Y</kbd>, data will be deleted from the following ODBC-Link update data copy view tables.</p>
+ <div class="p">The following is a list of the tables: <ul class="ul"> <li class="li">SKBUUAB uvOfferAbbrev data</li>
+ <li class="li">SKBUUCS uvCourse data</li>
+ <li class="li">SKBUUCK uvCourseKeyword data</li>
+ <li class="li">SKBUUIN uvInstitution data</li>
+ <li class="li">SKBUUQU uvnQuota data</li>
+
+                </ul>
+</div>
+ The system identifies the tables to clear dynamically, so SKPURGE will not need to be modified if <span class="ph">UCAS</span> add new update views to ODBC-Link. <p class="p">SKPURGE uses the entries in the SKBUCAT table to identify the tables to delete, so if a table is not listed there (because you do not want it to display on SKAUHPR) then records will not be deleted.</p>
+<div class="note"><span class="notetitle">Note:</span> If this parameter is set to <kbd class="ph userinput">Y</kbd>, a value must be entered in the Activity Date parameter.</div>
+</td>
+
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d176e96 "><kbd class="ph userinput">Y</kbd>: Yes <p class="p"><kbd class="ph userinput">N</kbd>: No</p>
+</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d176e87 ">Purge ODBC Transfer Data</td>
+
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d176e90 ">Y</td>
+
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d176e93 ">Indicates whether ODBC transfer data is to be purged. <p class="p">If this parameter is set to <kbd class="ph userinput">Y</kbd>, data will be deleted from the following ODBC-Link transfer data tables.</p>
+ Here is a list of the tables: <ul class="ul"> <li class="li">SKBUHPS ODBC-Link processing summary data</li>
+ <li class="li">SKBUHTS ODBC-Link transfer summary data</li>
+ <li class="li">SKCUREC Potential duplicates collector data</li>
+
+                </ul>
+ The activity date is required if this parameter is set to <kbd class="ph userinput">Y</kbd> to ensure that current generated applicant numbers are not deleted.</td>
+
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d176e96 "><kbd class="ph userinput">Y</kbd>: Yes <p class="p"><kbd class="ph userinput">N</kbd>: No</p>
+</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d176e87 ">Purge <span class="ph">UCAS</span> Applicant Data</td>
+
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d176e90 ">Y</td>
+
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d176e93 ">Indicates whether <span class="ph">UCAS</span> applicant data is to be purged. <p class="p">If this parameter is set to <kbd class="ph userinput">Y</kbd>, data will be deleted from the following <span class="ph">UCAS</span> applicant data tables.</p>
+The following is a list of the tables: <ul class="ul"> <li class="li">SKBUAFD Applicant First Degree data</li>
+ <li class="li">SKBUARF Applicant References</li>
+ <li class="li">SKBUAST Applicant Statements</li>
+ <li class="li">SKBUAWX Applicant Work Experience data</li>
+
+                <li class="li">SKBUCOM Clearing Comments</li>
+ <li class="li">SKRUADC Applicant Degree Contents data</li>
+ <li class="li">SKRUAED Applicant Education data</li>
+ <li class="li">SKRUAEM Applicant Employment data</li>
+ <li class="li">SKRUAFQ Applicant Form Qualifications</li>
+ <li class="li">SKRUAOL Applicant Other Languages data</li>
+ </ul>
+</td>
+
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d176e96 "><kbd class="ph userinput">Y</kbd>: Yes <p class="p"><kbd class="ph userinput">N</kbd>: No</p>
+</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d176e87 ">Purge <span class="ph">UCAS</span> Applicant Data <em class="ph i">(continued)</em></td>
+
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d176e90 ">Y</td>
+
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d176e93 ">
+                <ul class="ul">
+                  <li class="li">SKRULOG <span class="ph">UCAS</span> Applicant history data</li>
+
+                  <li class="li">SKRURES Clearing Other results</li>
+
+                  <li class="li">SKRUAPA Applicant Prep Activities data</li>
+
+                  <li class="li">SKRUASM Applicant Summer School data</li>
+
+                  <li class="li">SKRUAUG Applicant Unit Grades</li>
+
+                  <li class="li">SKRUCCR <span class="ph">UCAS</span> Applicant Choices</li>
+
+                  <li class="li">SKRUCLR <span class="ph">UCAS</span> Clearing Applicant data</li>
+
+                  <li class="li">SKRUDAP <span class="ph">UCAS</span> Applicant Choice data</li>
+
+                  <li class="li">SKRUDEC <span class="ph">UCAS</span> Decisions</li>
+
+                </ul>
+
+                <p class="p">The Entry Year is required if this parameter is set to <kbd class="ph userinput">Y</kbd> to ensure that only applicant data for specified entry years are deleted.</p>
+
+                <div class="p">This parameter also can be used together with one or more of the following parameters to delete only records for <span class="ph">UCAS</span> applicants for whom SKRSAIN_SOURCE is the relevant system: <ul class="ul"> <li class="li"><span class="ph">UCAS</span> Data</li>
+ <li class="li">UTT Data</li>
+ <li class="li">NMAS Data</li>
+ <li class="li">SWAS Data</li>
+ <li class="li">Direct Data</li>
+ </ul>
+At least one admissions system must be selected, otherwise no data will be deleted.</div>
+
+              </td>
+
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d176e96 ">&nbsp;</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d176e87 ">Purge <span class="ph">UCAS</span> Applicant Data <em class="ph i">(continued)</em></td>
+
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d176e90 ">Y</td>
+
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d176e93 ">
+                <div class="p">Applicant data is deleted in the following order: <ol class="ol"> <li class="li">SKBUAFD, SKBUARF, SKBUAST, SKBUAWX, SKRUADC, SKRUAED, SKRUAEM, SKRUAFQ, SKRUAOL, SKRUAPA, SKRUASM, SKRUAUG (these tables will be deleted only if there are no other SKRUCCR records left for the same applicant number)</li>
+ <li class="li">SKRULOG</li>
+ <li class="li">SKRURES</li>
+ <li class="li">SKBUCOM</li>
+ <li class="li">SKRUCLR</li>
+ <li class="li">SKRUDEC</li>
+ <li class="li">SKRUDAP</li>
+ <li class="li">SKRUCCR</li>
+ </ol>
+</div>
+
+              </td>
+
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d176e96 ">&nbsp;</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d176e87 ">Purge SKRSAIN</td>
+
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d176e90 ">Y</td>
+
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d176e93 ">Indicates whether the data in the SKRSAIN table is to be purged. <p class="p">If this parameter is set to <kbd class="ph userinput">Y</kbd>, a value must be entered in the Activity Date parameter to ensure that a wholesale delete of SKRSAIN data does not take place.</p>
+SKRSAIN records will only be deleted if there are no related SKRUCCR or SKRUDAP records. <div class="p">This parameter is also used together with one or more of the following parameters to delete only records for SKRSAIN data for applicants for whom SKRSAIN_SOURCE is the relevant system: <ul class="ul">
+                <li class="li"><span class="ph">UCAS</span> Data</li>
+ <li class="li">UTT Data</li>
+ <li class="li">NMAS Data</li>
+ <li class="li">SWAS Data</li>
+ <li class="li">Direct Data</li>
+ </ul>
+</div>
+ At least one admissions system must be selected, otherwise no data will be deleted.</td>
+
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d176e96 "><kbd class="ph userinput">Y</kbd>: Yes <p class="p"><kbd class="ph userinput">N</kbd>: No</p>
+</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d176e87 "><span class="ph">UCAS</span> Data</td>
+
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d176e90 ">N</td>
+
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d176e93 ">Indicates whether <span class="ph">UCAS</span> applicant data is to be deleted from the <span class="ph">Banner</span> <span class="ph">UCAS</span> system. If this is null, <span class="ph">UCAS</span> data will not be deleted.</td>
+
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d176e96 "><kbd class="ph userinput">U</kbd>: <span class="ph">UCAS</span> Data</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d176e87 ">GTTR Data</td>
+
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d176e90 ">N</td>
+
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d176e93 ">Indicates whether UTT applicant data is to be deleted. If this is null, UTT data will not be deleted.</td>
+
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d176e96 "><kbd class="ph userinput">G</kbd>: UTT Data</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d176e87 ">NMAS Data</td>
+
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d176e90 ">N</td>
+
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d176e93 ">Indicates whether NMAS applicant data is to be deleted. If this is null, NMAS data will not be deleted. <p class="p">The NMAS system was included to allow you to delete old data for this system.</p>
+</td>
+
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d176e96 "><kbd class="ph userinput">N</kbd>: NMAS Data</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d176e87 ">SWAS Data</td>
+
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d176e90 ">N</td>
+
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d176e93 ">Indicates whether SWAS applicant data is to be deleted. If this is null, SWAS data will not be deleted. <p class="p">The SWAS system was included to allow you to delete old data for this system.</p>
+</td>
+
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d176e96 "><kbd class="ph userinput">S</kbd>: SWAS Data</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d176e87 ">Direct Data</td>
+
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d176e90 ">N</td>
+
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d176e93 ">Indicates whether direct-entry <span class="ph">Banner</span> <span class="ph">UCAS</span> applicant data is to be deleted. If this is null, direct applicant data will not be deleted.</td>
+
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d176e96 "><kbd class="ph userinput">D</kbd>: Direct Data</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d176e87 ">Entry Year</td>
+
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d176e90 ">N</td>
+
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d176e93 ">Year of entry for which <span class="ph">Banner</span> <span class="ph">UCAS</span> applicant data is to be deleted. The parameter is required when the Purge <span class="ph">UCAS</span> Applicant Data parameter is set to <kbd class="ph userinput">Y</kbd>.</td>
+
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d176e96 ">&nbsp;</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d176e87 ">Activity Date</td>
+
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d176e90 ">N</td>
+
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d176e93 ">Date until which data is to be purged. Records with activity dates before the date entered here will be purged. For example, if you enter <kbd class="ph userinput">01-SEP-2008</kbd>, all records that have activity dates through 31 August, 2008, will be purged, and records with activity dates of 1 September, 2008, and later will not be purged. <div class="p">This parameter is required if either of the following are true: <ul class="ul">
+                <li class="li">Purge ODBC Transfer Data parameter is set to <kbd class="ph userinput">Y</kbd> (this ensures that current generated applicant numbers are not deleted)</li>
+ <li class="li">Purge SKRSAIN parameter is set to <kbd class="ph userinput">Y</kbd> (this ensures that a wholesale delete of SKRSAIN data does not take place)</li>
+ </ul>
+</div>
+</td>
+
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d176e96 ">&nbsp;</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d176e87 ">Run Mode</td>
+
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d176e90 ">N</td>
+
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d176e93 ">Mode in which processing is to take place.</td>
+
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d176e96 "><kbd class="ph userinput">A</kbd>: (default) Audit: Produces an audit report without purging any data. <p class="p"><kbd class="ph userinput">U</kbd>: Update: Purges records that meet the specified criteria and produces the report.</p>
+</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d176e87 ">Excl. Apps with Students Records</td>
+
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d176e90 ">N</td>
+
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d176e93 ">Verifies if the applicants are student or not. If the applicant is a student the data will be retained.If this parameter is set to Y, then, at least one of the following parameters must be set to Y: <ul class="ul"> <li class="li">Purge <span class="ph">UCAS</span> applicants Data parameter.<div class="note"><span class="notetitle">Note:</span> If this parameter is set to <kbd class="ph userinput">Y</kbd>, a value must be entered in the Entry Year parameter.</div>
+</li>
+ <li class="li">Purge SKRSAIN parameter.<div class="note"><span class="notetitle">Note:</span> If this parameter is set to <kbd class="ph userinput">Y</kbd>, a value must be entered in the Activity Date parameter.</div>
+</li>
+ </ul>
+If one of the above-mentioned purge parameter is set to Y, then, atleast one of the following admission systems must be selected. Else, no data will be deleted.<ul class="ul"> <li class="li"><span class="ph">UCAS</span> Data</li>
+ <li class="li">UTT Data</li>
+ <li class="li">NMAS Data</li>
+ <li class="li">SWAS Data</li>
+ <li class="li">Direct Data</li>
+ </ul>
+</td>
+
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d176e96 "><kbd class="ph userinput">Y</kbd>: Excludes student records with history.<p class="p"><kbd class="ph userinput">N</kbd>: Purges all student records.</p>
+ </td>
+
+            </tr>
+
+          </tbody>
+</table>
+</div>
+
+    </div>
+
+  </div>
+
+</div></div></section>
+<section id="t-40"><h4>Report Sample — UCAS Purge (SKPURGE) process</h4><div class="content-locale-en-US content-locale-en"><div id="r_sample_report_ucas_purge_skpurge_process"><div class="body refbody">
+
+<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" id="r_sample_report_ucas_purge_skpurge_process__r_sample_report_ucas_purge_skpurge_process-utbl1" class="table" frame="hsides" border="1" rules="rows"><colgroup><col></colgroup><tbody class="tbody">
+<tr class="row">
+<td class="entry row-nocellborder" style="text-align:left;vertical-align:top;">
+<pre class="pre codeblock"><code>
+
+
+<code class="ph codeph">"skpurge.lis" [Read only] 53 lines, 1167 characters</code>UCAS Purge Report
+Version 7.6.0
+Executed on 15-JUL-2009 05:52 AM in Audit Mode
+==============================================
+PARAMETERS
+==========
+Job Submission number (Batch ID) : NONE
+Purge Marvin Tables : N
+Purge ODBC Reference Data : N
+Purge ODBC Applicant Data : N
+Purge ODBC Update Data : N
+Purge ODBC TransferData : N
+Purge UCAS Applicant Data : Y
+Purge SKRSAIN : N
+Purge UCAS Data : U
+Purge GTTR Data :
+Purge NMAS Data :
+Purge SWAS Data :
+Purge DirectData :
+Entry Year : 2005
+Activity Date :
+PURGE UCAS APPLICANT DATA
+============================================
+Table                 Deletions
+====================  =========
+SKRUCCR               1
+SKRUDAP               1
+SKRURES               0
+SKBUCOM               0
+SKRUCLR               1
+SKRUDEC               2
+SKRUADC               0
+SKBUAFD               0
+SKBUARF               0
+SKBUAST               0
+SKBUAWX               0
+SKRUAED               0
+SKRUAEM               0
+SKRUAFQ               0
+SKRUAOL               0
+SKRUAPA               0
+SKRUASM               0
+SKRUAUG               0
+SKRULOG               15
+Table                 Exceptions
+====================  ==========
+</code></pre></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div></div></section>
+<section id="t-50"><h3>Value Mapping Process Import (SOPSSDT) process</h3><div class="content-locale-en-US content-locale-en"><div id="r_sopssdt_value_mapping_process_import"><div class="body refbody"><p class="shortdesc">The SOPSSDT process allows you to import extensive seed data to the SKVSSDT table for the input Attribute and Entity. To run this process, ensure that you import the input seed data file in .xlsx first to the Jobsub directory. </p>
+
+    <div class="section">
+      <p class="p">The file should comprise of the Option 1, Option 2, Option 3, Title, and Short Title values respectively. See the attachment to refer to the information in detail.</p>
+
+      <p class="p">Ensure that you also have the Entity and Attribute for the seed data that you want to import as per the definition in the SKAUFDS page. If you have not defined Attribute and Entity in the SKAUFDS page, you cannot import the seed data file.</p>
+
+      <p class="p">The process parameters are:</p>
+
+    </div>
+
+    
+<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" id="r_sopssdt_value_mapping_process_import__t_ucas_data_transfer_skpuher_process-utbl1" class="table" frame="hsides" border="1" rules="rows"><colgroup><col style="width:23.909531502423263%"><col style="width:19.38610662358643%"><col style="width:40.54927302100161%"><col style="width:16.15508885298869%"></colgroup><thead class="thead" style="text-align:left;vertical-align:bottom;">
+          <tr class="row">
+            <th class="entry row-nocellborder" style="text-align:left;vertical-align:bottom;" id="d2355e65">Parameter Name</th>
+
+            <th class="entry row-nocellborder" style="text-align:left;vertical-align:bottom;" id="d2355e68">Required?</th>
+
+            <th class="entry row-nocellborder" style="text-align:left;vertical-align:bottom;" id="d2355e71">Description</th>
+
+            <th class="entry row-nocellborder" style="text-align:left;vertical-align:bottom;" id="d2355e74">Values</th>
+
+          </tr>
+
+        </thead>
+<tbody class="tbody">
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d2355e65 ">Path of the file</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d2355e68 ">Yes</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d2355e71 ">Enter the path of the file name containing the seed data.</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d2355e74 ">&nbsp;</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d2355e65 ">Name of the file</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d2355e68 ">Yes</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d2355e71 ">Name of the .xlsx file comprising the seed data</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d2355e74 ">&nbsp;</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d2355e65 ">Entity</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d2355e68 ">Yes</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d2355e71 ">The entity used on SKVSSDT to store the mapping</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d2355e74 ">&nbsp;</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d2355e65 ">Attribute</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d2355e68 ">Yes</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d2355e71 ">The attribute used on SKVSSDT to store the mapping</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d2355e74 ">&nbsp;</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d2355e65 ">Run Mode</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d2355e68 ">Yes</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d2355e71 ">Enter A for Audit mode or U for Update mode</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d2355e74 ">&nbsp;</td>
+
+          </tr>
+
+        </tbody>
+</table>
+</div>
+
+    <div class="section">
+      <div class="p">Ellucian recommends you ensure the following as prerequisites.<ul class="ul"> <li class="li">Import the seed data file to the job directory and copy the file name and file path.</li>
+ <li class="li">Define the Entity and Attribute in the SKAUFDS page.</li>
+ <li class="li">Create the seed data in the .xlsx format only.</li>
+ </ul>
+</div>
+
+    </div>
+
+    <div class="section">
+      <div class="p">For the process to run, ensure the following.<ul class="ul"> <li class="li">Enter the path of the file, file name, SKVSSDT entity, and SKVSSDT attribute. The process parses the data from the .xlsx file and creates seed data records in the SKVSSDT table, that can be viewed on the SKASSDT page.</li>
+ <li class="li">If a value for an entity and attribute already exists in SKVSSDT for the same, the process will not load the value. </li>
+
+        <li class="li">The system creates the seed data records in the SKVSSDT table only when the process is run in the Update Mode (U). </li>
+ <li class="li">The system inserts all the records in the .log file for you to view.</li>
+ <li class="li">In the Audit Mode, the system validates the data and the .log file provides the snapshot of the results.</li>
+ </ul>
+</div>
+
+    </div>
+
+  </div>
+
+</div></div></section>
+<section id="t-60"><h3>Awarding Body Linkage Data (SOPUABL) Process</h3><div class="content-locale-en-US content-locale-en"><div id="r_sopuabl_awarding_body_linkage_data_process"><div class="body refbody"><p class="shortdesc">The Awarding Body Linkage (ABL) data that is retrieved from the GET Reference endpoints;<code class="ph codeph">getReferenceAwardingBodies</code>, <code class="ph codeph">getReferenceExamLevels</code>, and <code class="ph codeph">getReferenceOfferSubjects)</code> is acquired through XML-Link and then populated into the respective  SKBUAWB, SKBUEXA, and SKBUSUB MDUU tables.</p>
+
+    <div class="section">
+      <p class="p">The downloaded data might contain descriptions of up to 250 characters. However, when transferring this data into  <span class="ph">Banner</span> tables, it is necessary to condense the descriptions to 30 characters after removing special characters such as the ampersand (&amp;). This abbreviation is crucial for compatibility with the <span class="ph">Banner</span> tables.</p>
+
+      <p class="p">In the past, the abbreviation of descriptions was achieved using the Awarding Body Linkage (ABL) scripts. These scripts were provided separately from the release. After clients downloaded the GET Reference Endpoints, they manually executed these Awarding Body Linkage (ABL) scripts and then initiated the <span class="ph uicontrol">Load into Banner</span> process from the SKAUHPR page.</p>
+
+      <p class="p">The SOPUABL process streamlines the procedure by replacing the need for ABL scripts, eliminating manual steps. It involves populating the STVTSRC table with data from the SKBUAWB table after abbreviating the descriptions. However, unlike SKBUAWB, the data from SKBUSUB and SKBUEXA is not directly transferred to the target <span class="ph">Banner</span> tables.</p>
+
+      <p class="p">Initially, all descriptions from these tables are added to the newly established <span class="ph">Banner</span> table (SOBUABL) designed specifically to manage both the original and abbreviated descriptions. Users can access and modify these descriptions through the new <span class="ph">UCAS</span> page SOAUABL. When adding descriptions into the SOBUABL tables, the abbreviated versions consist of the initial 30 characters from the <span class="ph uicontrol">descriptions</span> column, with <em class="ph i">&amp;</em> replaced by <em class="ph i">+</em>. This setup allows for easy management and viewing of both the complete and shortened descriptions.</p>
+
+      <p class="p">Afterward, the abbreviated descriptions are updated back into the original MDUU tables. Specifically, columns SKBUSUB_SUBJTEXT_COPY and SKBUEXA_EXAMTEXT_COPY are populated with the abbreviated descriptions from the SOBUABL table.  Then, data from SKBUEXA is transferred to tables SKVUSBJ, SKVSSDT, and STVTADM. Similarly, data from SKBUSUB is populated into tables STVTESC and SRBRITC. Whenever there's a modification in the descriptions during the download for existing data, that particular description is inserted into SOBUABL and subsequently updated in the Banner tables when this process runs.</p>
+
+    </div>
+
+    
+<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" id="r_sopuabl_awarding_body_linkage_data_process__t_ucas_data_transfer_skpuher_process-utbl1" class="table" frame="hsides" border="1" rules="rows"><colgroup><col style="width:23.909531502423263%"><col style="width:19.38610662358643%"><col style="width:40.54927302100161%"><col style="width:16.15508885298869%"></colgroup><thead class="thead" style="text-align:left;vertical-align:bottom;">
+          <tr class="row">
+            <th class="entry row-nocellborder" style="text-align:left;vertical-align:bottom;" id="d2934e107">Parameter Name</th>
+
+            <th class="entry row-nocellborder" style="text-align:left;vertical-align:bottom;" id="d2934e110">Required?</th>
+
+            <th class="entry row-nocellborder" style="text-align:left;vertical-align:bottom;" id="d2934e113">Description</th>
+
+            <th class="entry row-nocellborder" style="text-align:left;vertical-align:bottom;" id="d2934e116">Values</th>
+
+          </tr>
+
+        </thead>
+<tbody class="tbody">
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d2934e107 ">Exam Year</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d2934e110 ">Yes</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d2934e113 ">Exam year processes Awarding Body Linkage data into STVTSRC.</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d2934e116 ">&nbsp;</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d2934e107 ">Sitting Code</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d2934e110 ">Yes</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d2934e113 ">You can provide multiple sitting codes. The process utilizes these codes to also handle data into STVTSRC.</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d2934e116 ">&nbsp;</td>
+
+          </tr>
+
+        </tbody>
+</table>
+</div>
+
+    <div class="section">
+      <p class="p">The process efficiently populates all new or updated descriptions related to Awarding Body Linkage (ABL), Exam Levels, and Offer Subjects into the <span class="ph">Banner</span> tables within a single run</p>
+
+      <div class="note"><span class="notetitle">Note:</span> The parameters supplied for this process are solely utilized in handling the Awarding Body Linkage (ABL) data for STVTSRC and aren't involved in processing Exam Level or Offer Subject data.</div>
+
+    </div>
+
+  </div>
+
+</div></div></section>
+<section id="t-70"><h3>WINC Institution Code Update (SOPUWIN) process</h3><div class="content-locale-en-US content-locale-en"><div id="c_spouwin_win_institution_code_update_process"><div class="body conbody"><p class="shortdesc">The SOPUWIN process supports the WINC data updates for the institution code. </p>
+
+    <p class="p"><span class="keyword">Ellucian</span> delivers the WINC scripts with Z89 as the default institution code. The SOPUWIN process reads institution code from the GKAKSYS page and updates the WINC scripts with the University's institution code.</p>
+
+    <p class="p">The SOPUWIN process accepts the UCAS User ID as the parameter.  This process asks for the UCAS User ID of client ( for example USER_Z89) and this will be used to update UserID values in GKAWSPV page which is used in UCAS processing.</p>
+
+    <div class="note important"><span class="importanttitle">Important:</span> You must maintain the institution code as a first value in the GKAKSYS page for the Institute Code parameter. The SOPUWIN java process uses this institution code to update the WINC scripts. After the institutions run the SOPUWIN process, the changes cannot be undone. <p class="p">Hence, the appropriate institution code with which the institutions download and upload the data from UCAS, must be the first value in the GKAKSYS page for the Institute Code parameter.</p>
+<div class="p">For example:<ul class="ul">
+      <li class="li">Parameter Name: INSTITUTION CODE</li>
+
+      <li class="li">Parameter Value: Z70, Z89, Z95</li>
+
+      </ul>
+After you run the SOPUWIN process, the WINC scripts gets updated with the Z70 institution code.</div>
+</div>
+
+  </div>
+
+</div></div></section>
+<section id="t-80"><h4>Run the SOPUWIN process</h4><div class="content-locale-en-US content-locale-en"><div id="t_run_sopuwin_process"><div class="body taskbody"><p class="shortdesc">Steps to run the SOPUWIN process.</p>
+
+    <div class="section prereq p"><div class="tasklabel"><h2 class="sectiontitle tasklabel">Before you begin</h2></div>Users who run the SOPUWIN process, must have the following permissions. For example, if the user is UCAS_USER:<ul class="ul">
+      <li class="li">GRANT DROP ANY INDEX TO "BANINST1";</li>
+
+      <li class="li">GRANT ALTER ANY INDEX TO "BANINST1";</li>
+
+      <li class="li">GRANT CREATE ANY INDEX TO "BANINST1";</li>
+
+      </ul>
+</div>
+
+    <div class="tasklabel"><h2 class="sectiontitle tasklabel">Procedure</h2></div><ol class="ol steps"><li class="li step stepexpand">
+        <span class="ph cmd">Access the <span class="keyword wintitle">Process Submission Control (GJAPCTL)</span> page.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">In the <span class="ph uicontrol">Process Name</span> field, enter <kbd class="ph userinput">SOPUWIN</kbd>.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Click Go.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">In the <span class="keyword wintitle">Printer Control</span> section, enter <kbd class="ph userinput">DATABASE</kbd> in the <span class="ph uicontrol">Printer</span> field.</span>
+        <div class="itemgroup info">The process requires no parameter values.</div>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Move your cursor to the <span class="keyword wintitle">Submission</span> section and select the <span class="ph uicontrol">Submit</span> option button.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Click <span class="ph uicontrol">Save</span>.</span>
+        <div class="itemgroup info">The process generates the LOG and LIS files. You can view both the files in the Review Output (GJIREVO) page using the <span class="ph uicontrol">Related</span> menu.</div>
+      </li>
+</ol>
+
+  </div>
+
+</div></div></section></main></body></html>

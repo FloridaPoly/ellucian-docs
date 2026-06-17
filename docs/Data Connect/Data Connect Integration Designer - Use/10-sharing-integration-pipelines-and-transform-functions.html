@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Data Connect Integration Designer - Use — Sharing integration pipelines and transform functions</title><style>body{font-family:-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;line-height:1.55;color:#1a1a1a;max-width:920px;margin:0 auto;padding:24px}header{border-bottom:2px solid #5a16d6;margin-bottom:8px}h1{color:#3a0ca3}h2,h3,h4,h5,h6{margin-top:1.6em}.crumb{color:#666;font-size:13px;margin:0}.meta{color:#888;font-size:12px}nav.toc{background:#f6f4fc;border:1px solid #e3dcf5;border-radius:8px;padding:12px 18px;margin:18px 0}nav.toc h2{margin:.2em 0}nav.toc ul{list-style:none;padding-left:0}nav.toc a{text-decoration:none;color:#5a16d6}section{margin:1.2em 0;padding-top:.4em}img{max-width:100%;height:auto}table{border-collapse:collapse}td,th{border:1px solid #ccc;padding:4px 8px}code,pre{background:#f4f4f4;border-radius:4px}pre{padding:10px;overflow:auto}</style></head><body><header><p class="crumb">Data Connect › Data Connect Integration Designer - Use</p><h1>Data Connect Integration Designer - Use — Sharing integration pipelines and transform functions</h1><p class="meta">Source: <a href="https://resources.elluciancloud.com/r/bundle/ethos_data_connect_int_design_acn_use">https://resources.elluciancloud.com/r/bundle/ethos_data_connect_int_design_acn_use</a> &middot; Retrieved 2026-06-17</p></header><nav class="toc"><h2>Contents</h2><ul><li style="margin-left:0px"><a href="#t-340">Sharing integration pipelines and transform functions</a></li><li style="margin-left:16px"><a href="#t-350">Share individual pipelines</a></li><li style="margin-left:16px"><a href="#t-360">Share multiple pipelines</a></li><li style="margin-left:16px"><a href="#t-370">Share transform functions</a></li><li style="margin-left:16px"><a href="#t-380">Unshare</a></li><li style="margin-left:16px"><a href="#t-390">Rollback</a></li><li style="margin-left:16px"><a href="#t-400">Share serverless APIs</a></li></ul></nav><main><section id="t-340"><h2>Sharing integration pipelines and transform functions</h2><div class="content-locale-en-US content-locale-en"><div id="c_dc_designer_sharing"><div class="body conbody"><p class="shortdesc">Pipelines and transform functions can be shared with another tenant, if required.</p>
+
+    <p class="p">Sharing an artifact will also automatically share the package that the pipeline belongs to, however the shared package in the target tenant will only contain the shared pipelines and transform functions. Unshared artifacts in the original package will not be visible in the target tenant. Only published pipelines can be shared with another tenant.</p>
+
+    <p class="p">A shared artifact will appear in the <span class="ph uicontrol">Integration Packages</span> user interface (UI) of the target tenant under the original package name. From here, you can create jobs for the pipeline, however the shared pipeline or transform function will not be available under the <span class="ph uicontrol">Integration Designer</span> for you to edit or use to create drafts. It will only be available in <span class="ph uicontrol">Integration Packages</span> UI.</p>
+
+    <p class="p">Major versions of a pipeline are treated as different pipelines; consequently, each major version of the pipeline can be shared separately. Pipelines and transform functions can be shared from the <span class="ph uicontrol">Integration Designer</span>.</p>
+
+  </div>
+
+</div></div></section>
+<section id="t-350"><h3>Share individual pipelines</h3><div class="content-locale-en-US content-locale-en"><div id="t_dc_designer_share_individual"><div class="body taskbody"><p class="shortdesc">You can share a single pipeline.</p>
+
+    <div class="tasklabel"><h2 class="sectiontitle tasklabel">Procedure</h2></div><ol class="ol steps"><li class="li step stepexpand">
+        <span class="ph cmd">To share, access the <span class="ph uicontrol">Integration Designer</span>. Each version of the published pipeline has a <span class="ph uicontrol">Share pipeline</span> link that is shown when doing click on the three dots icon under <span class="ph uicontrol">Actions</span> tab. This link can be used to view the tenants with which the pipeline has already been shared with and to then share it with additional tenants, if needed.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Clicking on this link will take you to the <span class="keyword wintitle">Pipeline Shared With</span> screen which displays all tenants with which the pipeline has been shared. If the pipeline has not been shared, the<samp class="ph msgph"> Not shared with any tenants message</samp> message displays. Click the <span class="ph uicontrol">SHARE</span> button on the upper-right corner to share the pipeline.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Clicking on the <span class="ph uicontrol">SHARE</span> button opens up a Share Pipeline dialog box. This dialog shows a list of tenants that belongs to the current account, will also include all member institutions in the case of a multi-institution account.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Below the name of the pipeline, there is a <span class="ph uicontrol">Search</span> bar that you can use to search within the displayed tenant list by tenant id, tenant name, or account name. You can enter a complete or partial value for any of these identifiers and the table below will be filtered to display the tenants whose tenant ID, name, or account name contains the search string. The search is not case sensitive.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">When the search results display, you can select the required tenants from the search results, or if you want to share the pipeline with all tenants that are part of the search results, click <span class="ph uicontrol">Select all search results</span>.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Click <span class="ph uicontrol">Select all search results</span> to select all tenants across multiple pages. If your search has a total of 14 results displayed across three pages, <span class="ph uicontrol">Select all search results</span> selects all 14 available items. To clear the search, click the <span class="ph uicontrol">x Clear</span> icon on the <span class="ph uicontrol">Search</span> bar to display the original tenants list; however, if you selected all or some of your search results, those tenants remain selected as shown by the "number Selected" text at the bottom left corner of dialog.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">If you want to share the artifact with all the tenants that belong to your account, you can choose the <span class="ph uicontrol">Select all n</span> option where <span class="ph uicontrol">n</span> is the total number of tenants displayed. You can manually unselect any of the selected tenants or use the <span class="ph uicontrol">CLEAR SELECTION</span> button to clear all your selections. <span class="ph uicontrol">Select All</span> and <span class="ph uicontrol">CLEAR SELECTION</span> only appear in the dialog if you have selected at least one tenant in list already.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">When you are satisfied with your selections, click the <span class="ph uicontrol">SHARE</span> button to proceed with sharing the pipeline with the selected tenants.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">This action opens up a confirmation dialog that shows a list of your selections so you can verify and confirm that you want to proceed with the share. Click <span class="ph uicontrol">BACK</span> to return to the tenant selection screen and click <span class="ph uicontrol">CANCEL</span> to exit out of the entire process. Click the <span class="ph uicontrol">SHARE</span> button to share the pipeline with the selected tenants.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">If sharing is successful, you are returned to the <span class="keyword wintitle">Pipeline Shared With</span> screen where a <samp class="ph msgph">Pipeline shared successfully</samp> message and the tenants that you shared the pipeline with display. If an error occurs during sharing, an error message displays on the screen. This screen also contains a search bar where you can search within the tenants with which the pipeline has been shared.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">If you publish a new patch or minor version of the shared pipeline, the tenants that you have already shared the pipeline with do not have the updated version of the pipeline. To ensure that the shared tenants have the latest update of that major version, use the <span class="ph uicontrol">UPDATE ALL</span> button in <span class="keyword wintitle">Pipeline Shared With</span> screen.</span>
+        <div class="itemgroup info">
+          <div class="note"><span class="notetitle">Note:</span> The <span class="ph uicontrol">SHARE</span> button does not appear until you have clicked <span class="ph uicontrol">UPDATE ALL</span>.</div>
+
+        </div>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Click <span class="ph uicontrol">UPDATE ALL</span> to display a confirmation dialog asking you to confirm the update. Click <span class="ph uicontrol">UPDATE ALL</span> from the confirmation dialog to update the shared tenants with the latest version.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">As each major version of the pipeline is considered to be a different pipeline, the update all functionality only becomes available to new patch or minor versions of an already shared major version. For example, if v1.0.0 has been shared, update all is available to all 1.x versions (1.0.1, 1.1.0 and so on). A new major version, such as v2.0.0, is not considered as shared.</span>
+      </li>
+</ol>
+
+  </div>
+
+</div></div></section>
+<section id="t-360"><h3>Share multiple pipelines</h3><div class="content-locale-en-US content-locale-en"><div id="t_dc_designer_share_multiple"><div class="body taskbody"><p class="shortdesc">You can share multiple pipelines at the same time.</p>
+
+    <div class="tasklabel"><h2 class="sectiontitle tasklabel">Procedure</h2></div><ol class="ol steps"><li class="li step">
+        <span class="ph cmd">If you want to share multiple pipelines all at once, you can do so from the <span class="ph uicontrol">Integration Designer</span> screen. When selecting a pipeline by clicking on the check box, a share icon displays on the top right corner. Next to the share icon is a <span class="ph uicontrol">CLEAR SELECTION</span> button to clear all selections, a <span class="ph uicontrol">Select All</span> button to select all pipelines, and text showing the number of pipelines selected. Clicking on the share icon opens up the <span class="keyword wintitle">Sharing</span> dialog.</span>
+      </li>
+<li class="li step">
+        <span class="ph cmd">The Sharing dialog is the same as that for sharing individual pipelines. However, in this case the names of all the pipelines that are shared display at the top.</span>
+      </li>
+<li class="li step">
+        <span class="ph cmd">Search for, select, and add tenants in the exact same way as for individual pipelines. When you are done, click <span class="ph uicontrol">SHARE</span> to open the confirmation dialog with the list of selected tenants.</span>
+      </li>
+<li class="li step">
+        <span class="ph cmd">Click the <span class="ph uicontrol">SHARE</span> button to share all the selected pipelines with the selected tenants. A <samp class="ph msgph">Pipeline shared successfully</samp> message displays when sharing is successful. Click <span class="ph uicontrol">Share Pipeline</span> for each pipeline to confirm the share.</span>
+      </li>
+</ol>
+
+  </div>
+
+</div></div></section>
+<section id="t-370"><h3>Share transform functions</h3><div class="content-locale-en-US content-locale-en"><div id="t_dc_designer_share_transform"><div class="body taskbody"><p class="shortdesc">Pipelines and transform functions can be shared with other tenants.</p>
+
+    <div class="tasklabel"><h2 class="sectiontitle tasklabel">Procedure</h2></div><ol class="ol steps"><li class="li step stepexpand">
+        <span class="ph cmd">The process for sharing transform functions is very similar to pipelines. The link for sharing individual transform functions display when you click the three dots icon under the <span class="ph uicontrol">Actions</span> tab for each transform function. Selecting at least one of the transform functions displays the multiple sharing icon.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Clicking either sharing option displays the share dialog with the tenant selection. Sharing each transform function or multiple transform functions at the same time is exactly the same the pipelines steps.</span>
+        <div class="itemgroup stepresult">Pipeline and transform functions can now be shared with other tenants.</div>
+      </li>
+</ol>
+
+  </div>
+
+</div></div></section>
+<section id="t-380"><h3>Unshare</h3><div class="content-locale-en-US content-locale-en"><div id="t_dc_designer_unshare"><div class="body taskbody"><p class="shortdesc">There are certain situations, such as when you accidentally share a pipeline to a wrong tenant or discover a critical issue with a shared pipeline, when a pipeline needs to be unshared from a certain tenant. To address this, Designer provides the unsharing feature.</p>
+
+    <div class="section context"><div class="tasklabel"><h2 class="sectiontitle tasklabel">About this task</h2></div>
+      <p class="p">You have the ability, using the unsharing functionality, to remove previously shared pipelines and transform functions from a target tenant. However, there are some things to take into consideration before unsharing:</p>
+
+      <ul class="ul">
+        <li class="li">Ellucian recommends that the target tenants terminate any active or scheduled jobs before unsharing a pipeline from them. Unshare carefully and communicate beforehand.</li>
+
+        <li class="li">Major versions of a pipeline are treated as different pipelines. Consequently, they are unshared by major version; This means that you can unshare Pipeline 2.X.X but the target tenant can still see and use Pipeline 1.X.X in their <span class="ph uicontrol">Integration Packages</span> UI.</li>
+
+        <li class="li">When unsharing happens, the unshared pipeline are no longer visible in the <span class="ph uicontrol">Integration Packages</span> UI of the target tenant so they are not able to create more Jobs or make new job runs from it.</li>
+
+        <li class="li">If no more pipelines and transform functions belonging to the same integration package are left shared in the target tenant, the package is not listed any longer in their <span class="ph uicontrol">Integration Packages</span> UI.</li>
+
+        <li class="li">Unsharing a transform function can result in unexpected behavior: Transform functions are cached by jobs for up to one (1) hour, and therefore can still be used for some time by an active job.</li>
+
+        <li class="li">It is not recommended to unshare transform functions before unsharing the pipelines that use them first.</li>
+
+      </ul>
+
+      <p class="p">It is important to note that unsharing a pipeline and a transform function are the exact same process, in this example a transform function will be unshared.</p>
+
+    </div>
+
+    <div class="tasklabel"><h2 class="sectiontitle tasklabel">Procedure</h2></div><ol class="ol steps"><li class="li step stepexpand">
+        <span class="ph cmd">To unshare, access the <span class="ph uicontrol">Integration Designer</span> screen and select a transform function. Click the three dots icon under the <span class="ph uicontrol">Actions</span> tab and then select <span class="ph uicontrol">Share</span>.</span>
+        <div class="itemgroup stepresult">The Sharing Details screen displays.</div>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">All current tenants that the transform function is shared with display in the main table. Select and unshare multiple tenants in one batch or unshare them individually. To unshare in one batch, select the tenants you want to target for unsharing by clicking the check box on the left hand side of the table, and then click on the <span class="ph uicontrol">UNSHARE TRANSFORM FUNCTION</span> button located in the top right corner.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">This will prompt a confirmation dialog showing the selected tenants. Click the <span class="ph uicontrol">UNSHARE TRANSFORM FUNCTION</span> button.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">This transform function has been successfully unshared from the target tenants. Only this major version of the function has been unshared; other major versions of this function (if shared earlier) are still shared. To unshare any other major version you can repeat this process by selecting that specific version.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Click the <span class="ph uicontrol">UNSHARE TRANSFORM FUNCTION</span> located inside the rows of the main table to unshare the transform function individually.</span>
+        <div class="itemgroup info">
+          <div class="note"><span class="notetitle">Note:</span> This action does not ask for a confirmation and the unshare is done instantly.</div>
+
+        </div>
+      </li>
+</ol>
+
+  </div>
+
+</div></div></section>
+<section id="t-390"><h3>Rollback</h3><div class="content-locale-en-US content-locale-en"><div id="t_dc_designer_rollback"><div class="body taskbody"><p class="shortdesc">The rollback feature allows you to remove the last shared version from tenants it was shared with.</p>
+
+    <div class="tasklabel"><h2 class="sectiontitle tasklabel">Procedure</h2></div><p class="li stepsection">
+        </p><p class="p">Any previous versions that were shared will remain intact and users on the shared tenant side will still be able to view and run previous versions. If you need to completely remove a pipeline, see the <span class="xref ft-internal-link" title="There are certain situations, such as when you accidentally share a pipeline to a wrong tenant or discover a critical issue with a shared pipeline, when a pipeline needs to be unshared from a certain tenant. To address this, Designer provides the unsharing feature." data-ft-warning="excluded-from-rendering" data-mapid="zhfyvwrmd60S_3CkIOx9xA" data-tocid="UzVGIenJLB4ZFL8Sx4hlrg">Unshare</span> process.</p>
+
+        <p class="p">Considerations to be taken into account while rolling back a version of the pipeline are similar to that of unsharing:</p>
+
+        <ul class="ul">
+          <li class="li">It is recommended that the target tenants terminate any active or scheduled jobs before rolling back a pipeline from them. Rollback should be done carefully and with communication beforehand.</li>
+
+          <li class="li">If any previous versions of the pipeline were shared with the target tenant, that version will still be visible on the <span class="ph uicontrol">Integration Packages</span> UI of the target tenant.</li>
+
+          <li class="li">After a rollback, the package may not be listed in the target tenant. If no more pipelines and transform functions, belonging to the same Integration package, are left shared in the target tenant, the package will not be listed any longer in the Data Connect <span class="ph uicontrol">Integration Packages</span> user interface.</li>
+
+          <li class="li">Use the same process to rollback a transform function.</li>
+
+        </ul>
+
+        <p class="p">For example:</p>
+
+      <ol class="ol steps"><li class="li step stepexpand">
+        <span class="ph cmd">Tenant A has shared pipeline version 1.1.0 and 1.1.1 shared with Tenant E.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">On Tenant E's <span class="ph uicontrol">Integration Packages</span> UI only the latest version (1.1.1) is visible.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">To rollback pipeline v1.1.1, you need to access the <span class="ph uicontrol">Integration Designer</span> screen of the owner tenant (Tenant A). Click the <span class="ph uicontrol">Share Pipeline</span> action of pipeline v1.1.1 to display the <span class="keyword wintitle">Pipeline Shared With</span> screen.</span>
+        <div class="itemgroup stepresult">A <span class="ph uicontrol">ROLLBACK ALL</span> button is present on the top right corner of the screen.</div>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Click the <span class="ph uicontrol">ROLLBACK ALL</span> button to display a confirmation dialog asking you to confirm that this particular version is being rolled back from all shared tenants. You will also be informed that if only this version has been shared, the tenant will no longer have the artifact.</span>
+        <div class="itemgroup stepresult">A <samp class="ph msgph">Pipeline rolled back from tenants successfully</samp> message displays.</div>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">When the process completes, the <span class="keyword wintitle">Pipeline Shared with</span> screen displays the <span class="ph uicontrol">UPDATE ALL</span> button, because the older version is still shared with tenants. This is to prompt you to update shared tenants with latest version (v1.1.1).</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Now on Tenant E's <span class="ph uicontrol">Integration Packages</span> UI, only the previous version of the shared pipeline (v1.1.0) displays.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">The rollback process for the transform function is the same as that of the pipeline.</span>
+      </li>
+</ol>
+
+  </div>
+
+</div></div></section>
+<section id="t-400"><h3>Share serverless APIs</h3><div class="content-locale-en-US content-locale-en"><div id="c_dc_designer_share_serverless"><div class="body conbody"><p class="shortdesc">You can share serverless APIs.</p>
+
+    <p class="p">Sharing serverless APIs follows the same general rules as <span class="xref ft-internal-link" title="Pipelines and transform functions can be shared with another tenant, if required." data-ft-warning="excluded-from-rendering" data-mapid="zhfyvwrmd60S_3CkIOx9xA" data-tocid="lG7V1w1q_4zdw0O19gSqLQ">Sharing integration pipelines and transform functions</span>. After a serverless API is shared with a target tenant, it needs to be setup to be called by enabling the proper <span class="xref ft-internal-link" title="Grant the permission that allows users to invoke a serverless API that authorizes with a Ethos token or a user (OAuth) token." data-ft-warning="excluded-from-rendering" data-mapid="zhfyvwrmd60S_3CkIOx9xA" data-tocid="jaM3P~kEssHWjt~q3eGaTQ">Authorization</span> according to its type.</p>
+
+  </div>
+
+</div></div></section></main></body></html>

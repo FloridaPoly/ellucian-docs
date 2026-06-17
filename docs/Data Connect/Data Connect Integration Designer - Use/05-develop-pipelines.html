@@ -1,0 +1,558 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Data Connect Integration Designer - Use — Develop pipelines</title><style>body{font-family:-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;line-height:1.55;color:#1a1a1a;max-width:920px;margin:0 auto;padding:24px}header{border-bottom:2px solid #5a16d6;margin-bottom:8px}h1{color:#3a0ca3}h2,h3,h4,h5,h6{margin-top:1.6em}.crumb{color:#666;font-size:13px;margin:0}.meta{color:#888;font-size:12px}nav.toc{background:#f6f4fc;border:1px solid #e3dcf5;border-radius:8px;padding:12px 18px;margin:18px 0}nav.toc h2{margin:.2em 0}nav.toc ul{list-style:none;padding-left:0}nav.toc a{text-decoration:none;color:#5a16d6}section{margin:1.2em 0;padding-top:.4em}img{max-width:100%;height:auto}table{border-collapse:collapse}td,th{border:1px solid #ccc;padding:4px 8px}code,pre{background:#f4f4f4;border-radius:4px}pre{padding:10px;overflow:auto}</style></head><body><header><p class="crumb">Data Connect › Data Connect Integration Designer - Use</p><h1>Data Connect Integration Designer - Use — Develop pipelines</h1><p class="meta">Source: <a href="https://resources.elluciancloud.com/r/bundle/ethos_data_connect_int_design_acn_use">https://resources.elluciancloud.com/r/bundle/ethos_data_connect_int_design_acn_use</a> &middot; Retrieved 2026-06-17</p></header><nav class="toc"><h2>Contents</h2><ul><li style="margin-left:0px"><a href="#t-130">Develop pipelines</a></li></ul></nav><main><section id="t-130"><h2>Develop pipelines</h2><div class="content-locale-en-US content-locale-en"><div id="c_dc_designer_developing_pipelines"><div class="body conbody"><p class="shortdesc">Several concepts apply to both Integration Pipelines and Serverless APIs.</p>
+
+    <div class="section"><h2 class="title sectiontitle">Packages</h2>
+      
+      <p class="p">A package, also known as an integration package, logically groups one or more pipelines. The package can also include other artifacts, such as transform functions. The Designer provides a seamless workflow to create and maintain integration packages.</p>
+
+      <p class="p">While only a name is required, having a brief package description helps identify its purpose. it is recommended that all pipelines contained in a package share a common use-case scenario, or purpose.</p>
+
+    </div>
+
+    <div class="section"><h2 class="title sectiontitle">Pipelines</h2>
+      
+      <p class="p">A pipeline is a collection of sequential steps called segments. By properly organizing and configuring each segment, a myriad of simple and complex tasks can be achieved. Each segment in a pipeline is an instance of a <dfn class="term">fitting</dfn> precisely configured to perform a specific task.</p>
+
+      <p class="p">Like <dfn class="term">packages</dfn>, pipelines are internally managed as versioned JSON documents. The pipeline Designer provides simple drag-and-drop user interface to effectively build pipelines without any of the JSON configuration complexities.</p>
+
+      <p class="p">Example of a pipeline created with the Designer and exported</p>
+
+      <pre class="pre codeblock json"><code>{
+  "name": "extractDataFromServerA",
+  "pipeline": [
+    "getApplicants",
+    "forEachApplicant",
+    "getApplicantChoices",
+    "mergeChoicesWithApplicant"
+  ],
+  "segments": {
+    "getApplicants": {
+      "class": "ethosProxyGet",
+      "config": { "resource": "applicants", "acceptVersions": ["1"] }
+    },
+    "forEachApplicant": {
+      "class": "forEach"
+    },
+    "getApplicantChoices": {
+      "class": "ethosProxyGetFilter",
+      "config": {
+        "resource": "applicant-choices",
+        "acceptVersions": ["1"],
+        "filter": "?applicant={{applicant.id}}"
+      }
+    },
+    "mergeChoicesWithApplicant": {
+      "class": "JavaScriptTransform",
+      "config": { "artifactName": "mergeData" }
+    }
+  }
+}</code></pre>
+    </div>
+
+    <div class="section"><h2 class="title sectiontitle">Fittings and segments</h2>
+      
+      <p class="p">The relationship between fittings and segments is tightly coupled.</p>
+
+      <p class="p">A pipeline contains a set of segments and each defines and configures fitting execution, thus one cannot execute without the other. It is important to know the differences between fittings and segments.</p>
+
+    </div>
+
+    <div class="section"><h2 class="title sectiontitle">Fittings</h2>
+      
+      <p class="p">Fittings are basic building blocks capable of performing functions. They are configured with <dfn class="term">segments</dfn>.</p>
+
+      <p class="p">Each fitting has a very specific purpose. Fittings are classified into three main types:</p>
+
+      <ul class="ul">
+        <li class="li">Sources - enable the pipeline to fetch data from internal and external resources.</li>
+
+        <li class="li">Transformations - allow for data to be changed or acted upon.</li>
+
+        <li class="li">Destinations - enable the pipeline to send data to internal and external resources.</li>
+
+      </ul>
+
+      <p class="p">Most fittings provide a configuration setting to fine-tune their execution logic, making them highly customizable and versatile. Their execution logic gets triggered as soon as a <dfn class="term">message</dfn> is received. And while many fittings will produce another message in return, that is not the case with some <span class="ph uicontrol">Destination</span> types.</p>
+
+      <p class="p">Among many other things, fittings can be used to:</p>
+
+      <ul class="ul">
+        <li class="li">Consume Ethos resources</li>
+
+        <li class="li">Parse and format JSON, XML, fixed-width, and delimited files</li>
+
+        <li class="li">Request generic HTTP resources</li>
+
+        <li class="li">Transform data</li>
+
+      </ul>
+
+      <p class="p">A list of currently supported fittings can be found in the <span class="xref ft-internal-link" title="This section details available Designer fittings divided by functionality." data-ft-warning="excluded-from-rendering" data-mapid="zhfyvwrmd60S_3CkIOx9xA" data-tocid="dRPPXc0Sp~fmWg~gdegH9Q">Available fittings documentation</span>.</p>
+
+    </div>
+
+    <div class="section"><h2 class="title sectiontitle">Segments</h2>
+      
+      <p class="p">Segments are instances of fittings configured to perform a specific task. Every segment has three base configuration settings: name, description, and execution condition.</p>
+
+      
+<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" class="table" frame="border" border="1" rules="all"><colgroup><col><col><col></colgroup><thead class="thead" style="text-align:left;">
+            <tr class="row">
+              <th class="entry nocellnorowborder" style="vertical-align:top;" id="d11554e170">Field</th>
+
+              <th class="entry nocellnorowborder" style="vertical-align:top;" id="d11554e173">Description</th>
+
+              <th class="entry cell-norowborder" style="vertical-align:top;" id="d11554e176">Required</th>
+
+            </tr>
+
+          </thead>
+<tbody class="tbody">
+            <tr class="row">
+              <td class="entry nocellnorowborder" style="vertical-align:top;" headers="d11554e170 ">
+                <code class="ph codeph">Name</code>
+              </td>
+
+              <td class="entry nocellnorowborder" style="vertical-align:top;" headers="d11554e173 ">Segment name. The Designer will automatically set it to the fitting name, this can be changed to something more appropriate with no negative consequences.</td>
+
+              <td class="entry cell-norowborder" style="vertical-align:top;" headers="d11554e176 ">Yes</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry nocellnorowborder" style="vertical-align:top;" headers="d11554e170 ">
+                <code class="ph codeph">Description</code>
+              </td>
+
+              <td class="entry nocellnorowborder" style="vertical-align:top;" headers="d11554e173 ">Self-documenting field that describes the purpose of the segment.</td>
+
+              <td class="entry cell-norowborder" style="vertical-align:top;" headers="d11554e176 ">No</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry row-nocellborder" style="vertical-align:top;" headers="d11554e170 ">
+                <code class="ph codeph">Execution Condition</code>
+              </td>
+
+              <td class="entry row-nocellborder" style="vertical-align:top;" headers="d11554e173 ">Provides a way to conditionally execute the segment based on a defined reference from a context field, message header, or message payload. Evaluated at run-time, the resulting value must be of type <code class="ph codeph">boolean</code> (<code class="ph codeph">true</code> or <code class="ph codeph">false</code>). When <code class="ph codeph">true</code> the segment will be executed, otherwise it will be skipped.</td>
+
+              <td class="entry cellrowborder" style="vertical-align:top;" headers="d11554e176 ">No</td>
+
+            </tr>
+
+          </tbody>
+</table>
+</div>
+
+      <p class="p">Some fittings will provide additional configuration fields, in addition to name, description, and execution condition. Additional configurations will be explained in the <span class="xref ft-internal-link" title="This section details available Designer fittings divided by functionality." data-ft-warning="excluded-from-rendering" data-mapid="zhfyvwrmd60S_3CkIOx9xA" data-tocid="dRPPXc0Sp~fmWg~gdegH9Q">Available fittings documentation</span>.</p>
+
+    </div>
+
+    <div class="section"><h2 class="title sectiontitle">Messages</h2>
+      
+      <p class="p">Data moves through a pipeline using messages. A message is an envelope composed of two main parts: a header and a payload.</p>
+
+      <p class="p">The header is an <code class="ph codeph">object</code> structure designed to contain metadata, and is mainly used for informational purposes. Some fittings will automatically add header fields to report certain execution aspects. These headers are useful when debugging a pipeline. The header can also be leveraged as a vehicle for auxiliary data storage by using the <span class="ph uicontrol">JavascriptTransform</span> fitting. However, header persistence is not guaranteed. Some fittings will pluck the header out of the message, or even reset it, making it a volatile aspect of a message.</p>
+
+      <p class="p">The payload, on the other hand, is the container that transports the data being processed and transformed by the pipeline. A payload can contain data of the following types:</p>
+
+      
+<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" class="table" frame="border" border="1" rules="all"><colgroup><col><col><col></colgroup><thead class="thead" style="text-align:left;">
+            <tr class="row">
+              <th class="entry nocellnorowborder" style="vertical-align:top;" id="d11554e289">Type</th>
+
+              <th class="entry nocellnorowborder" style="vertical-align:top;" id="d11554e292">Description</th>
+
+              <th class="entry cell-norowborder" style="vertical-align:top;" id="d11554e295">Example</th>
+
+            </tr>
+
+          </thead>
+<tbody class="tbody">
+            <tr class="row">
+              <td class="entry nocellnorowborder" style="vertical-align:top;" headers="d11554e289 ">
+                <code class="ph codeph">string</code>
+              </td>
+
+              <td class="entry nocellnorowborder" style="vertical-align:top;" headers="d11554e292 ">Plain and simple text value.</td>
+
+              <td class="entry cell-norowborder" style="vertical-align:top;" headers="d11554e295 ">
+                <code class="ph codeph">"Hello, my name is John."</code>
+              </td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry nocellnorowborder" style="vertical-align:top;" headers="d11554e289 ">
+                <code class="ph codeph">array</code>
+              </td>
+
+              <td class="entry nocellnorowborder" style="vertical-align:top;" headers="d11554e292 ">List of values. Each value in the list can be of type <code class="ph codeph">string</code>, <code class="ph codeph">number</code>, <code class="ph codeph">boolean</code> (<code class="ph codeph">true</code> or <code class="ph codeph">false</code> flags), <code class="ph codeph">object</code>, or another <code class="ph codeph">array</code>.</td>
+
+              <td class="entry cell-norowborder" style="vertical-align:top;" headers="d11554e295 ">
+                <code class="ph codeph">["Foo", "Bar", "Baz"]</code>
+              </td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry nocellnorowborder" style="vertical-align:top;" headers="d11554e289 ">
+                <code class="ph codeph">object</code>
+              </td>
+
+              <td class="entry nocellnorowborder" style="vertical-align:top;" headers="d11554e292 ">Complex structure consisting of key and value pairs where key is the name of a property, and the value can be of type <code class="ph codeph">string</code>, <code class="ph codeph">number</code>, <code class="ph codeph">boolean</code> (<code class="ph codeph">true</code> or <code class="ph codeph">false</code> flags), <code class="ph codeph">array</code>, or another <code class="ph codeph">object</code>.</td>
+
+              <td class="entry cell-norowborder" style="vertical-align:top;" headers="d11554e295 ">
+                <code class="ph codeph">{ first: "John", last: "Smith", age: 43, married: true }</code>
+              </td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry row-nocellborder" style="vertical-align:top;" headers="d11554e289 ">
+                <code class="ph codeph">buffer</code>
+              </td>
+
+              <td class="entry row-nocellborder" style="vertical-align:top;" headers="d11554e292 ">Used to represent a continuous sequence of text characters, mainly used when streaming data from one segment to another.</td>
+
+              <td class="entry cellrowborder" style="vertical-align:top;" headers="d11554e295 ">N/A</td>
+
+            </tr>
+
+          </tbody>
+</table>
+</div>
+
+      <p class="p">The payload content can (and will) change as data moves from one segment to the other. It is also important to be aware of what type of payload a fitting expects, and what type of payload it will return. For instance, the <span class="ph uicontrol">DelimitedFormatter</span> fitting accepts <code class="ph codeph">string</code> payloads, and produces <code class="ph codeph">object</code> payloads. This input or output criteria is very important when connecting one segment with another.</p>
+
+      <p class="p">There are some exceptional fittings that don't use messages to transport data, learn about these in the <span class="xref ft-internal-link" title="This section details available Designer fittings divided by functionality." data-ft-warning="excluded-from-rendering" data-mapid="zhfyvwrmd60S_3CkIOx9xA" data-tocid="dRPPXc0Sp~fmWg~gdegH9Q">Available fittings documentation</span>.</p>
+
+    </div>
+
+    <div class="section"><h2 class="title sectiontitle">Pipeline parameters and context</h2>
+      
+      <p class="p">Even though messages are used to transport data from one segment to another, they are dynamic by nature — their values will inevitably change as the pipeline progresses. Use message data references on a segment configuration only when it is certain data will exist within the header or payload.</p>
+
+      <p class="p">Pipeline parameters and the context can be used for a more consistent source of information across all segments.</p>
+
+    </div>
+
+    <div class="section"><h2 class="title sectiontitle">Parameters</h2>
+      
+      <p class="p">Parameters are values that can be defined by the user before pipeline execution.</p>
+
+      <p class="p">For example, consider a pipeline built to extract and process data for students of a certain year. The year can be hard-coded right into the pipeline's configuration, but it would make for a very rigid one, limited to that very specific year. Instead, a parameter can be defined to hold the year and be used within the pipeline's logic. The pipeline is then flexible enough to be used for any year.</p>
+
+      <p class="p">Parameters are optional, a pipeline can declare one or more, or no parameters at all.</p>
+
+      <p class="p">The pipeline Designer provides an easy way to add new parameters. Clicking the drop-down menu aside the pipeline name and then selecting <span class="ph uicontrol">Edit Pipeline Settings</span> opens the Pipeline Settings panel. With the Pipeline Parameters tab selected, existing parameters can be updated or deleted, and new parameters can be added by clicking the <span class="ph uicontrol">+ PARAMETER</span> button.</p>
+
+      <p class="p">The only required field for a parameter declaration is its <span class="ph uicontrol">Name</span>, but a wide array of options are available for a deeper parameter customization:</p>
+
+      
+<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" class="table" frame="border" border="1" rules="all"><colgroup><col><col><col></colgroup><thead class="thead" style="text-align:left;">
+            <tr class="row">
+              <th class="entry nocellnorowborder" style="vertical-align:top;" id="d11554e498">Field</th>
+
+              <th class="entry nocellnorowborder" style="vertical-align:top;" id="d11554e501">Description</th>
+
+              <th class="entry cell-norowborder" style="vertical-align:top;" id="d11554e504">Example</th>
+
+            </tr>
+
+          </thead>
+<tbody class="tbody">
+            <tr class="row">
+              <td class="entry nocellnorowborder" style="vertical-align:top;" headers="d11554e498 ">Persistent parameter</td>
+
+              <td class="entry nocellnorowborder" style="vertical-align:top;" headers="d11554e501 ">
+                <p class="p">When this check box is selected, this parameter will be persisted across all jobs. It can be assigned with the "Setup" permission.</p>
+
+                <p class="p">Changing a Required parameter from persistent to non-persistent, or from non-persistent to persistent, will force a major version upgrade. </p>
+
+              </td>
+
+              <td class="entry cell-norowborder" style="vertical-align:top;" headers="d11554e504 "><code class="ph codeph">true</code></td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry nocellnorowborder" style="vertical-align:top;" headers="d11554e498 ">Name</td>
+
+              <td class="entry nocellnorowborder" style="vertical-align:top;" headers="d11554e501 ">
+                <p class="p">It should be a single word (no spaces). This name will serve a access key within the context object. Reserved parameter names (see note below) are not allowed to be declared.</p>
+
+                <p class="p">If the user types the keyword <code class="ph codeph">ethosApiKey</code>, an alert displays and it is automatically marked as sensitive.</p>
+
+              </td>
+
+              <td class="entry cell-norowborder" style="vertical-align:top;" headers="d11554e504 ">
+                <code class="ph codeph">year</code>
+              </td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry nocellnorowborder" style="vertical-align:top;" headers="d11554e498 ">Label</td>
+
+              <td class="entry nocellnorowborder" style="vertical-align:top;" headers="d11554e501 ">User friendly label. It is displayed on pipeline execution forms. It supports localization.</td>
+
+              <td class="entry cell-norowborder" style="vertical-align:top;" headers="d11554e504 "> <code class="ph codeph">Academic Year</code> </td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry nocellnorowborder" style="vertical-align:top;" headers="d11554e498 ">Description</td>
+
+              <td class="entry nocellnorowborder" style="vertical-align:top;" headers="d11554e501 ">Extended parameter description (currently used for documentation purposes). It supports localization.</td>
+
+              <td class="entry cell-norowborder" style="vertical-align:top;" headers="d11554e504 "> <code class="ph codeph">Year used to extract students.</code> </td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry nocellnorowborder" style="vertical-align:top;" headers="d11554e498 ">Required</td>
+
+              <td class="entry nocellnorowborder" style="vertical-align:top;" headers="d11554e501 ">Defines if the parameter value must be provided before executing a pipeline job.</td>
+
+              <td class="entry cell-norowborder" style="vertical-align:top;" headers="d11554e504 ">
+                <code class="ph codeph">true</code>
+              </td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry nocellnorowborder" style="vertical-align:top;" headers="d11554e498 ">Sensitive</td>
+
+              <td class="entry nocellnorowborder" style="vertical-align:top;" headers="d11554e501 ">
+                <p class="p">Defines if the parameter value needs to be obfuscated to protect its content. Parameters marked as Sensitive cannot have default values.</p>
+
+              </td>
+
+              <td class="entry cell-norowborder" style="vertical-align:top;" headers="d11554e504 ">
+                <code class="ph codeph">false</code>
+              </td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry nocellnorowborder" style="vertical-align:top;" headers="d11554e498 ">Type</td>
+
+              <td class="entry nocellnorowborder" style="vertical-align:top;" headers="d11554e501 ">Data type the parameter will accept. The following types are supported: <code class="ph codeph">String</code>, <code class="ph codeph">Number</code>, <code class="ph codeph">Boolean</code>, <code class="ph codeph">Array</code>, <code class="ph codeph">Date Time</code>, and <code class="ph codeph">File</code>. Some types will reveal additional validation fields. For the File Type, the maximum file size supported is 650 MB.</td>
+
+              <td class="entry cell-norowborder" style="vertical-align:top;" headers="d11554e504 ">
+                <code class="ph codeph">Number</code>
+              </td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry nocellnorowborder" style="vertical-align:top;" headers="d11554e498 ">Default Value</td>
+
+              <td class="entry nocellnorowborder" style="vertical-align:top;" headers="d11554e501 ">
+                <p class="p">Value the parameter will have if the field is left blank on pipeline execution forms. This is not supported on parameters of type <code class="ph codeph">File</code>.</p>
+
+                <p class="p">Default values are not allowed (blocked) if you are using sensitive parameters.</p>
+
+                <p class="p">When testing, values for sensitive parameters are saved in the browser for the duration of the <span class="keyword">Integration Designer</span> session.</p>
+
+                <p class="p">If you test the pipeline, you can use the default value in the memory.</p>
+
+              </td>
+
+              <td class="entry cell-norowborder" style="vertical-align:top;" headers="d11554e504 ">
+                <code class="ph codeph">2021</code>
+              </td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry row-nocellborder" style="vertical-align:top;" headers="d11554e498 ">Enum</td>
+
+              <td class="entry row-nocellborder" style="vertical-align:top;" headers="d11554e501 ">Short for Enumeration, it contains a list of possible values a parameter can contain. Only available for types <code class="ph codeph">String</code> and <code class="ph codeph">Number</code>, it provides a restricted value selection experience on pipeline execution forms.</td>
+
+              <td class="entry cellrowborder" style="vertical-align:top;" headers="d11554e504 ">N/A</td>
+
+            </tr>
+
+          </tbody>
+</table>
+</div>
+
+      <p class="p">All pipeline execution forms present the operational user with a section where parameter values can be entered. After the pipeline is executed, all parameter values are transferred to the context.</p>
+
+    </div>
+
+    <div class="section"><h2 class="title sectiontitle">Persistent parameters</h2>
+      
+      <p class="p">To make a parameter available for all jobs after you create or edit it, click the <span class="ph uicontrol">This parameter will be persisted across all jobs. It can be assigned with the "Setup" permission</span> check box.</p>
+
+      <p class="p">After a job is created or edited with persistent parameters, you will need to save the pipeline and publish a new version. Because previously-created jobs will still have the sensitive values visible, <span class="keyword">Ellucian</span> recommends that after you successfully create all the new jobs, you delete your previous jobs, so that users are not able to go in and view the sensitive values you want hidden, such as the API key. The final user requires Experience Setup permissions to set up the parameter. </p>
+
+      <p class="p">The pipeline can then be published. When you publish, the system will force you to update to a new version.</p>
+
+      <p class="p">After publishing, the values can be assigned on the Integration Packages card, by selecting the pipeline and navigating to the Pipeline parameters tab. To access this page, the user requires the Setup permissions, in addition to either View or Manage permissions for the parent package of the pipeline.</p>
+
+      <p class="p">When parameters are also marked as sensitive, after they are saved and the user navigates back to the page, they can no longer see that value. Only <code class="ph codeph">String</code>, <code class="ph codeph">Number</code> or <code class="ph codeph">Array</code> parameters can be marked as persistent and sensitive.</p>
+
+    </div>
+
+    <div class="section"><h2 class="title sectiontitle">Sensitive parameters</h2>
+      
+      <p class="p">When a value is flagged as Sensitive, it is masked in the user interface and in diagnostic logs.</p>
+
+      <p class="p">Parameters marked as Sensitive cannot have default values.</p>
+
+      <p class="p">The types of values that should be flagged as sensitive include API keys, SFTP passwords or private keys, OAuth Client ID, and Secret values for third party OAuth endpoints.</p>
+
+    </div>
+
+    <div class="section"><h2 class="title sectiontitle">About reserved parameter names</h2>
+      
+      <p class="p">Any parameter that starts with double underscore (<code class="ph codeph">__</code>) is deemed reserved and may not be declared as a pipeline parameter.</p>
+
+      <p class="p">The following parameters (entries in pipeline context) are automatically populated by the framework:</p>
+
+      <ul class="ul">
+        <li class="li"><code class="ph codeph">__runId</code> - Unique identifier for the current pipeline execution. Always set.</li>
+
+        <li class="li"><code class="ph codeph">__tenantId</code> - GUID of the tenant for which the pipeline is executing. Always set.</li>
+
+        <li class="li"><code class="ph codeph">__lastRunCreated</code> - The date and time of the last run of the current pipeline was initialized. Not guaranteed to be set.</li>
+
+        <li class="li"><code class="ph codeph">__lastSuccessfulRunCreated</code> - The date and time of the last run of the current pipeline was successfully completed. Not guaranteed to be set.</li>
+
+        <li class="li"><code class="ph codeph">__pipelineName</code> - The name of the pipeline being executed. Always set.</li>
+
+        <li class="li"><code class="ph codeph">__user</code> - User object. Only set when at least one user field is included.</li>
+
+        <li class="li"><code class="ph codeph">id</code> - Set to the Ethos Person ID of the end user, if available.</li>
+
+        <li class="li"><code class="ph codeph">__region</code> - AWS region.</li>
+
+        <li class="li"><code class="ph codeph">__stage</code> - Indicates if is Dev, Test or Prod.</li>
+
+        <li class="li"><code class="ph codeph">__regionTld</code> - This changes depending on the region, Example: .com for usa or .au for Australia.</li>
+
+      </ul>
+
+      <p class="p">Legacy parameters names <code class="ph codeph">runId</code>, <code class="ph codeph">tenantId</code>, <code class="ph codeph">lastRunCreated</code>, and <code class="ph codeph">lastSuccessfulRunCreated</code> are still supported for backwards compatibility. <span class="keyword">Ellucian</span> recommends use of the double underscore (<code class="ph codeph">__</code>) convention to invoke reserved parameters.</p>
+
+    </div>
+
+    <div class="section"><h2 class="title sectiontitle">Special reserved parameters</h2>
+      
+      <p class="p">The following parameters can be set by the pipeline logic, allowing the modification of a pipeline result.</p>
+
+      <ul class="ul">
+        <li class="li"><code class="ph codeph">__httpStatusCode</code> (number) - If set, when invoking an API Pipeline, the value will be used as the HTTP Status code response.</li>
+
+        <li class="li"><code class="ph codeph">__httpStatusMessage</code> (string|object|number) - If set, when invoking an API Pipeline, the value will be used as the HTTP Status code message.</li>
+
+      </ul>
+
+      <p class="p">See: <span class="xref ft-internal-link" title="The HTTP code and return result can be overridden to enable specific use cases." data-ft-warning="excluded-from-rendering" data-mapid="zhfyvwrmd60S_3CkIOx9xA" data-tocid="rbRHxOFlUIORixwJFa9nNA">Return custom HTTP status</span>.</p>
+
+    </div>
+
+    <div class="section"><h2 class="title sectiontitle">Context</h2>
+      
+      <p class="p">The context is a centralized data repository accessible to all segments. As soon as a pipeline job is started, all parameter values are made available through the context. The context can also be leveraged by pipeline creators; the <span class="ph uicontrol">AddToContext</span> and <span class="ph uicontrol">JavaScriptTransform</span> fittings provide a convenient interface to create segments that extend the context with new fields. When a new field is added to the context, it is automatically accessible to all segments in the pipeline.</p>
+
+      <p class="p">The only caveat when using the context is that, after a field is added, its value cannot be updated or deleted.</p>
+
+      <div class="note"><span class="notetitle">Note:</span>  Context fields are immutable. This feature is meant to maintain the integrity of input parameters (and other internal fields) across the pipeline execution lifetime.</div>
+
+      <p class="p">Be aware that context might not be shared during distributed execution of pipelines. See <span class="xref ft-internal-link" title="Integration pipelines should be used for long running and scheduled batch jobs." data-ft-warning="excluded-from-rendering" data-mapid="zhfyvwrmd60S_3CkIOx9xA" data-tocid="AXsOfsSWxeGMY8WQr9Ol7A">Integration pipelines</span> for more information.</p>
+
+    </div>
+
+    <div class="section"><h2 class="title sectiontitle">Crosswalks</h2>
+      
+      <p class="p">Crosswalks are powerful dictionaries you can tailor per tenant, allowing one pipeline to generate different outputs.</p>
+
+      <p class="p">For example, "Client A wants to convert a code 'ABC' to 'BCD' and client B wants to convert the same code to 'XYZ'," is a perfect fit for crosswalks, as it allows different clients to specify different outputs.</p>
+
+    </div>
+
+    <div class="section"><h2 class="title sectiontitle">JavaScript transform functions</h2>
+      
+      <p class="p">JavaScript (JS) Transform Functions are a way to handle data in a custom manner, allowing you to interact with messages and the pipeline’s context to transform any data into a desired output.</p>
+
+      <p class="p">A JS Transform Function is used by the <span class="ph uicontrol">JavaScriptTransform</span> fitting with the option to write an inline function in the Designer, that is available only when that fitting is being executed, or referencing an <span class="xref ft-internal-link" title="A JS Transform function can also be externalized so it can be referenced any time in a pipeline for any amount of times without having to rewrite the function every time you want to use it." data-ft-warning="excluded-from-rendering" data-mapid="zhfyvwrmd60S_3CkIOx9xA" data-tocid="lq1L8xSz_Ctq86GLzmZSMg">Externalize JavaScript transform functions</span> JS file which is available through the whole lifecycle of a pipeline. Externalized JS Transform Functions, can be referenced in any amount of pipelines within the same integration package.</p>
+
+      <p class="p">The function must be named <code class="ph codeph">transform</code> and it must accept at least one parameter, which is the message. It can also accept a second parameter that will hold the pipeline’s context. Values may be obtained from the pipeline context using <code class="ph codeph">context.get('key')</code>. New values can also be added to the context from within a transform function by using the <code class="ph codeph">context.set</code> function, which accepts a key and a value as parameters.</p>
+
+      <p class="p">In addition, the JS Transform Function should always end with a return statement. The returned value will be pushed forward to the next pipeline segment. However, returning a message is not strictly required.</p>
+
+      <p class="p">If the function throws an exception (or external conditions throw an exception, for example an execution timeout) and a <span class="ph uicontrol">stopOnError</span> flag has been configured inside the <span class="ph uicontrol">JavaScriptTransform</span> fitting to be true, any further messages will be dropped, effectively stopping the pipeline.</p>
+
+      <p class="p">Here is an example of a JavaScript Transform Function:</p>
+
+      <pre class="pre codeblock javascript"><code>function transform (message, context) {
+  // Transform logic here
+  return message;
+}</code></pre>
+      <p class="p">It is important to note that a JS Transform Function is executed in a sandbox, and may not require or import any modules.</p>
+
+    </div>
+
+    <div class="section"><h2 class="title sectiontitle">Pipeline execution lifecycle</h2>
+      
+      <p class="p">Whether they are scheduled or ad-hoc, when a pipeline is executed its lifecycle depends entirely on messages flowing between segments. As soon as message emission stops, pipeline execution ends.</p>
+
+    </div>
+
+    <div class="section"><h2 class="title sectiontitle">Starting</h2>
+      
+      <p class="p">By default, an empty message is automatically fed into the first segment to jump-start the pipeline execution. It is good practice to retrieve (or generate) data at the beginning of the pipeline so that it is processed along the way.</p>
+
+      <p class="p">Source fittings are particularly useful to retrieve data from Ethos, SFTP, or the built-in file repository among other sources. These fittings will accept an incoming message, and either extend or replace its data before forwarding a message to the next segment. Other source fittings will stream data through multiple messages, easing the transmission burden of big data loads. Refer to the <span class="xref ft-internal-link" title="This section details available Designer fittings divided by functionality." data-ft-warning="excluded-from-rendering" data-mapid="zhfyvwrmd60S_3CkIOx9xA" data-tocid="dRPPXc0Sp~fmWg~gdegH9Q">Available fittings documentation</span> for more details.</p>
+
+    </div>
+
+    <div class="section"><h2 class="title sectiontitle">Message processing</h2>
+      
+      <p class="p">When a pipeline is in progress, segments sequentially receive and emit messages until all messages have been processed. Even though the pipeline starts with just one message, some fittings are designed to emit one or more messages.</p>
+
+      <p class="p">As long as there is a message in transit, each segment in the pipeline sequence gets an opportunity to execute its underlying logic.</p>
+
+      <div class="note"><span class="notetitle">Note:</span> The only way to conditionally include (or exclude) a segment from the execution chain is by configuring its <dfn class="term">Execute Condition</dfn>. Execute conditions are references that can point to context, message header, or message payload values. When specified, only if the reference evaluates to true the segment will be executed; otherwise, the segment will be skipped and the message forwarded to the next segment in line (if any).</div>
+
+    </div>
+
+    <div class="section"><h2 class="title sectiontitle">Ending</h2>
+      
+      <p class="p">A pipeline execution ends when one of the following events happen:</p>
+
+      <ul class="ul">
+        <li class="li">Last message reaches the end of the pipeline or endpoint segment.</li>
+
+        <li class="li">Exceptions thrown by <span class="ph uicontrol">JavascriptTransform</span> segments.</li>
+
+      </ul>
+
+      <p class="p">It is good practice to save transformed data on or before the end of the pipeline. Destination fittings are particularly useful to send data to Ethos, SFTP, or the built-in file repository among other destinations. Be aware that most destination fittings will produce endpoint segments. Refer to the <span class="xref ft-internal-link" title="This section details available Designer fittings divided by functionality." data-ft-warning="excluded-from-rendering" data-mapid="zhfyvwrmd60S_3CkIOx9xA" data-tocid="dRPPXc0Sp~fmWg~gdegH9Q">Available fittings documentation</span> for more details.</p>
+
+      <p class="p">When the very last message is processed by the last pipeline segment, the execution job will naturally reach its end. Endpoint segments, on the other hand, can create a premature end even when located by mid-pipeline; effectively stopping a message transmission before reaching the last segment.</p>
+
+    </div>
+
+    <div class="section"><h2 class="title sectiontitle">About endpoint segments</h2>
+      
+      <p class="p">The word endpoint is used to describe a segment that receives and processes a message, but will not emit any. Consequently, any following segments are not executed. Most destination fittings will produce endpoint segments, while some can be configured to avoid this default behavior.</p>
+
+      <p class="p">An exception, in most cases, is an unexpected situation found within a segment's logic for a given message. These exceptions get reported for future troubleshooting but the pipeline continues. There is also the possibility of using the <span class="ph uicontrol">JavascriptTransform</span> fitting to configure a segment that can voluntarily raise an exception to completely halt the pipeline execution; any current or pending messages will not be processed.</p>
+
+    </div>
+
+    <div class="section"><h2 class="title sectiontitle">Available Fittings</h2>
+      
+      <p class="p">A list of fittings divided by functionality can be found in <span class="xref ft-internal-link" title="This section details available Designer fittings divided by functionality." data-ft-warning="excluded-from-rendering" data-mapid="zhfyvwrmd60S_3CkIOx9xA" data-tocid="dRPPXc0Sp~fmWg~gdegH9Q">Available fittings documentation</span>.</p>
+
+    </div>
+
+  </div>
+
+</div></div></section></main></body></html>

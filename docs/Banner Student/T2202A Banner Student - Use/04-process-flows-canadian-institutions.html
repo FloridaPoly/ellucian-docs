@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>T2202A Banner Student - Use — Process Flows (Canadian Institutions)</title><style>body{font-family:-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;line-height:1.55;color:#1a1a1a;max-width:920px;margin:0 auto;padding:24px}header{border-bottom:2px solid #5a16d6;margin-bottom:8px}h1{color:#3a0ca3}h2,h3,h4,h5,h6{margin-top:1.6em}.crumb{color:#666;font-size:13px;margin:0}.meta{color:#888;font-size:12px}nav.toc{background:#f6f4fc;border:1px solid #e3dcf5;border-radius:8px;padding:12px 18px;margin:18px 0}nav.toc h2{margin:.2em 0}nav.toc ul{list-style:none;padding-left:0}nav.toc a{text-decoration:none;color:#5a16d6}section{margin:1.2em 0;padding-top:.4em}img{max-width:100%;height:auto}table{border-collapse:collapse}td,th{border:1px solid #ccc;padding:4px 8px}code,pre{background:#f4f4f4;border-radius:4px}pre{padding:10px;overflow:auto}</style></head><body><header><p class="crumb">Banner Student › T2202A Banner Student - Use</p><h1>T2202A Banner Student - Use — Process Flows (Canadian Institutions)</h1><p class="meta">Source: <a href="https://resources.elluciancloud.com/r/bundle/banner_cdn_t2202a_acn_use">https://resources.elluciancloud.com/r/bundle/banner_cdn_t2202a_acn_use</a> &middot; Retrieved 2026-06-17</p></header><nav class="toc"><h2>Contents</h2><ul><li style="margin-left:0px"><a href="#t-270">Process Flows (Canadian Institutions)</a></li><li style="margin-left:16px"><a href="#t-280">T2202A setup</a></li><li style="margin-left:16px"><a href="#t-290">T2202A data flow</a></li><li style="margin-left:16px"><a href="#t-300">Relevé 8 setup</a></li><li style="margin-left:16px"><a href="#t-310">Relevé 8 data flow</a></li></ul></nav><main><section id="t-270"><h2>Process Flows (Canadian Institutions)</h2><div class="content-locale-en-US content-locale-en"><div id="c_process_flows_canadian_institutions"><p class="shortdesc">Includes the process flow diagrams for Canadian Institutions.</p>
+
+</div></div></section>
+<section id="t-280"><h3>T2202A setup</h3><div class="content-locale-en-US content-locale-en"><div id="c_t2202a_setup"><div class="body conbody"><p class="shortdesc">The following flow chart describes the steps involved in setting up for <span class="ph">Banner</span> <span class="ph">T2202A</span> processing.</p>
+
+    <p class="p">
+      <span class="ph uicontrol">Setup</span>
+    </p>
+
+    <p class="p">Load data into the SVBTXTP table.</p>
+
+    <p class="p">Do not perform this step if completed during installation.</p>
+
+    <p class="p">
+      <span class="ph uicontrol">SVAFRYR</span>
+    </p>
+
+    <p class="p">Set up terms applicable to the tax year.</p>
+
+    <p class="p">
+      <span class="ph uicontrol">SVATAXL</span>
+    </p>
+
+    <p class="p">Set up tax year limits and the calculation method.</p>
+
+    <p class="p">
+      <span class="ph uicontrol">SVAINAD</span>
+    </p>
+
+    <p class="p">Set up addresses for multi-institutional database users.</p>
+
+    <p class="p">
+      <span class="ph uicontrol">SVAESTS, SVARSTS</span>
+    </p>
+
+    <p class="p">Set up enrollment and CRN registration status codes.</p>
+
+    <p class="p">
+      <span class="ph uicontrol">SVAHWER</span>
+    </p>
+
+    <p class="p">Set up rules for all terms in the tax year.</p>
+
+    <p class="p">
+      <span class="ph uicontrol">SVATPRI</span>
+    </p>
+
+    <p class="p">Set up priority rules.</p>
+
+    <p class="p">
+      <span class="ph uicontrol">GTVSDAX</span>
+    </p>
+
+    <p class="p">Set up crosswalk entries.</p>
+
+    <p class="p">
+      <span class="ph uicontrol">SVATXRP</span>
+    </p>
+
+    <p class="p">Set up reporting periods.</p>
+
+    <p class="p">
+      <span class="ph uicontrol">SVACHAR</span>
+    </p>
+
+    <p class="p">Set up charitable donation codes.</p>
+
+    <p class="p">
+      <span class="ph uicontrol">t2202a_admin_web.sql</span>
+    </p>
+
+    <p class="p">(Optional) Add administrator web pages to <span class="ph">Banner</span> Self-Service.</p>
+
+    <p class="p">
+      <span class="ph uicontrol">SVAXLTM</span>
+    </p>
+
+    <p class="p">Enter the transmitter information.</p>
+
+  </div>
+
+</div></div></section>
+<section id="t-290"><h3>T2202A data flow</h3><div class="content-locale-en-US content-locale-en"><div id="c_t2202a_data_flow"><div class="body conbody"><p class="shortdesc">The following flow describes the flow of data during the <span class="ph">Banner</span> <span class="ph">T2202A</span> process.</p>
+
+    <p class="p">
+      <span class="ph uicontrol">SVPTAXE</span>
+    </p>
+
+    <p class="p">Run the cleanup process.</p>
+
+    <p class="p">
+      <span class="ph uicontrol">SVPTAXC</span>
+    </p>
+
+    <p class="p">Run the calculation process.</p>
+
+    <p class="p">
+      <span class="ph uicontrol">SVATXEX</span>
+    </p>
+
+    <p class="p">Enter T2202A exception data.</p>
+
+    <p class="p">
+      <span class="ph uicontrol">SVATAXC</span>
+    </p>
+
+    <p class="p">Review and recalculate T2202s.</p>
+
+    <p class="p">
+      <span class="ph uicontrol">SVRTAXC</span>
+    </p>
+
+    <p class="p">Print T2202 forms using a dot matrix printer.</p>
+
+    <p class="p">
+      <span class="ph uicontrol">SVRTXML</span>
+    </p>
+
+    <p class="p">Generate the T2202 XML file.</p>
+
+    <p class="p">
+      <span class="ph uicontrol">SVRTXLP</span>
+    </p>
+
+    <p class="p">Create T2202 data file for a laser printer.</p>
+
+    <p class="p"><span class="ph uicontrol">Data Process</span>SVPTAXC Process</p>
+
+    <p class="p">Select student records for which the term is in SVRFRYR and SFBETRM, for which TBRACCD records exist, or for which SARADAP records exist (only when processing application fees through Self-Service is turned on.</p>
+
+    <p class="p">Calculate qualifying months for the tax year.</p>
+
+    <p class="p">Calculate eligible tuition by term for the tax year.</p>
+
+    <p class="p">Build student records in the SVBTAXC, SVBTAXT, SVBTAXS, and SVBTAXR tables.</p>
+
+    <p class="p">
+      <span class="ph uicontrol">T2202A Self-Service</span>
+    </p>
+
+    <p class="p">Print T2202 form from a web Form.</p>
+
+  </div>
+
+</div></div></section>
+<section id="t-300"><h3>Relevé 8 setup</h3><div class="content-locale-en-US content-locale-en"><div id="c_releve_8_setup"><div class="body conbody"><p class="shortdesc">The following flow chart describes the steps involved in setting up for Relevé 8 processing.</p>
+
+    <p class="p">
+      <span class="ph uicontrol">Setup</span>
+    </p>
+
+    <p class="p">
+      <span class="ph uicontrol">SVAFRYR</span>
+    </p>
+
+    <p class="p">Set up terms applicable to the tax year.</p>
+
+    <p class="p">
+      <span class="ph uicontrol">SVATAXL</span>
+    </p>
+
+    <p class="p">Set up tax year limits and the calculation method.</p>
+
+    <p class="p">
+      <span class="ph uicontrol">SVAINAD</span>
+    </p>
+
+    <p class="p">Set up addresses for multi-institutional database users.</p>
+
+    <p class="p">
+      <span class="ph uicontrol">SVAESTS, SVARSTS</span>
+    </p>
+
+    <p class="p">Set up enrollment and CRN registration status codes.</p>
+
+    <p class="p">
+      <span class="ph uicontrol">SVAHWER</span>
+    </p>
+
+    <p class="p">Set up rules for all terms in the tax year.</p>
+
+    <p class="p">
+      <span class="ph uicontrol">SVARXSQ</span>
+    </p>
+
+    <p class="p">Enter the XML sequence numbers.</p>
+
+    <p class="p">
+      <span class="ph uicontrol">SVAXLTM</span>
+    </p>
+
+    <p class="p">Enter the transmitter information.</p>
+
+    <p class="p">
+      <span class="ph uicontrol">SVARL8S</span>
+    </p>
+
+    <p class="p">Set up sessions.</p>
+
+    <p class="p">
+      <span class="ph uicontrol">t2202a_admin_web.sql</span>
+    </p>
+
+    <p class="p">(Optional) Add administrator web pages to Banner Self-Service.</p>
+
+    <p class="p">
+      <span class="ph uicontrol">GTVSDAX</span>
+    </p>
+
+    <p class="p">Set up crosswalk entries.</p>
+
+  </div>
+
+</div></div></section>
+<section id="t-310"><h3>Relevé 8 data flow</h3><div class="content-locale-en-US content-locale-en"><div id="c_releve_8_data_flow"><div class="body conbody"><p class="shortdesc">The following flow describes the flow of data during the Relevé 8 process.</p>
+
+    <p class="p">
+      <span class="ph uicontrol">SVPTAXE</span>
+    </p>
+
+    <p class="p">Run the cleanup process.</p>
+
+    <p class="p">
+      <span class="ph uicontrol">SVARXVS</span>
+    </p>
+
+    <p class="p">Enter the validation status from Revenu Québec.</p>
+
+    <p class="p">Correct the data depending on Revenu Québec feedback.</p>
+
+    <p class="p">
+      <span class="ph uicontrol">SVRREL8 or T2202A Self-Service</span>
+    </p>
+
+    <p class="p">Create Relevé 8 data files for a laser printer. </p>
+
+    <p class="p">Print Relevé 8 forms from a Web page.</p>
+
+    <p class="p">
+      <span class="ph uicontrol">SVPREL8</span>
+    </p>
+
+    <p class="p">Run the calculation process.</p>
+
+    <p class="p">
+      <span class="ph uicontrol">SVAREL8</span>
+    </p>
+
+    <p class="p">Review and recalculate Relevé 8s.</p>
+
+    <p class="p">
+      <span class="ph uicontrol">SVARELX</span>
+    </p>
+
+    <p class="p">Generate the XML file.</p>
+
+    <p class="p">Valid status?</p>
+
+    <p class="p">Allow printing of Relevé 8 slips?</p>
+
+    <p class="p">Invalid or rejected</p>
+
+    <p class="p">Valid</p>
+
+  </div>
+
+</div></div></section></main></body></html>

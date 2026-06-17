@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Data Connect Integration Designer - Use — Publish integration pipelines</title><style>body{font-family:-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;line-height:1.55;color:#1a1a1a;max-width:920px;margin:0 auto;padding:24px}header{border-bottom:2px solid #5a16d6;margin-bottom:8px}h1{color:#3a0ca3}h2,h3,h4,h5,h6{margin-top:1.6em}.crumb{color:#666;font-size:13px;margin:0}.meta{color:#888;font-size:12px}nav.toc{background:#f6f4fc;border:1px solid #e3dcf5;border-radius:8px;padding:12px 18px;margin:18px 0}nav.toc h2{margin:.2em 0}nav.toc ul{list-style:none;padding-left:0}nav.toc a{text-decoration:none;color:#5a16d6}section{margin:1.2em 0;padding-top:.4em}img{max-width:100%;height:auto}table{border-collapse:collapse}td,th{border:1px solid #ccc;padding:4px 8px}code,pre{background:#f4f4f4;border-radius:4px}pre{padding:10px;overflow:auto}</style></head><body><header><p class="crumb">Data Connect › Data Connect Integration Designer - Use</p><h1>Data Connect Integration Designer - Use — Publish integration pipelines</h1><p class="meta">Source: <a href="https://resources.elluciancloud.com/r/bundle/ethos_data_connect_int_design_acn_use">https://resources.elluciancloud.com/r/bundle/ethos_data_connect_int_design_acn_use</a> &middot; Retrieved 2026-06-17</p></header><nav class="toc"><h2>Contents</h2><ul><li style="margin-left:0px"><a href="#t-150">Publish integration pipelines</a></li></ul></nav><main><section id="t-150"><h2>Publish integration pipelines</h2><div class="content-locale-en-US content-locale-en"><div id="t_dc_designer_publishing_pipelines"><div class="body taskbody"><p class="shortdesc">A pipeline that has already been developed in the Designer can be published so it becomes available to Integration Packages.</p>
+
+    <div class="section context"><div class="tasklabel"><h2 class="sectiontitle tasklabel">About this task</h2></div>
+      <p class="p">Publishing a pipeline makes it available to clients to create jobs. A job is a pipeline that is scheduled to run, either as soon as possible or in the future. After a job is created and executed at least once, a job run is available to view on the Pipeline Runtime dashboard. If a job is scheduled to run once, it only ever has one job run. If a job is scheduled to run on a recurring basis, it has a job run for every recurrence.</p>
+
+      <p class="p">An unpublished pipeline is considered a draft. Draft pipelines are viewed from the <span class="ph uicontrol">Integration Designer</span>. A draft pipeline can be deleted by clicking on the <span class="ph uicontrol">trash</span> icon under the Actions menu. After a pipeline is published, it can only be deleted if is not currently shared.</p>
+
+      <p class="p">Clicking on the name of the draft pipeline opens up the pipeline in Designer where you can either edit or publish the pipeline.</p>
+
+    </div>
+
+    <div class="tasklabel"><h2 class="sectiontitle tasklabel">Procedure</h2></div><ol class="ol steps"><li class="li step stepexpand">
+        <span class="ph cmd">Click the name of the draft pipeline to open the pipeline in Designer.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">If all fitting configurations are complete and if all the fittings are enabled, the <span class="ph uicontrol">PUBLISH</span> button is enabled. If <span class="ph uicontrol">PUBLISH</span> is disabled, check the errors badge at the left of the test button to make sure that a fitting does not have an incomplete configuration or is disabled. </span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">When ready, click on the <span class="ph uicontrol">PUBLISH</span> button. This action displays the <span class="keyword wintitle">Publish Pipeline</span> dialog.</span>
+        <div class="itemgroup info">This dialog asks for confirmation of pipeline publish and recommends a test run to ensure that the pipeline is valid. The recommended release version options are displayed. See: <span class="xref ft-internal-link" title="There are versioning guidelines for pipelines." data-ft-warning="excluded-from-rendering" data-mapid="zhfyvwrmd60S_3CkIOx9xA" data-tocid="C9X9WQDwJ05_gWSoAeFJzA">Pipeline versioning guidelines</span></div>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Select the required version (following the guidelines above) and click <span class="ph uicontrol">PUBLISH</span>.</span>
+        <div class="itemgroup stepresult">On successful publication, the Designer closes and the <span class="ph uicontrol">Integration Designer</span> displays with the updated pipeline status. In case of failure, the dialog closes and you are returned to Designer where an error message displays at the top of the designer.</div>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">After your pipeline is successfully published, if it needs to be further edited, create a new draft of the pipeline. To do this, click on the name of the pipeline to enter Designer. The Designer displays the pipeline in "read only" mode. Fittings cannot be added and pipeline configuration cannot be edited.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">To create a new draft of this pipeline, click the <span class="ph uicontrol">CREATE DRAFT</span> button.</span>
+        <div class="itemgroup info">This creates a draft version of the pipeline. The <samp class="ph msgph">pipeline saved successfully</samp> message displays and any edits can now be performed on the pipeline. On the <span class="ph uicontrol">Integration Designer</span> the new draft pipeline displays and the draft column displays an info icon. Hover over the icon or tab to it to display the original pipeline from which the draft was created.</div>
+        <div class="itemgroup info">The draft pipeline can be edited, new fittings can be added, or parameters can be edited or added as per your requirements. If any change is made to required parameters or if any new required parameters are added, you need to publish a major version of the pipeline.</div>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">After development is completed on the draft, click the <span class="ph uicontrol">PUBLISH</span> button to publish this pipeline. As a new required parameter has been added, the publish pipeline dialog informs you that pipeline version will be updated to the next major version. If no breaking changes are made, the dialog displays with options to choose next patch, minor, or major version.</span>
+        <div class="itemgroup info">When you click <span class="ph uicontrol">PUBLISH</span>, the pipeline publishes with version, as per your selection (or next major version in case of breaking changes) and the newly published pipeline displays in the <span class="ph uicontrol">Integration Designer</span>.</div>
+        <div class="itemgroup info">If you do not make any breaking changes and publish a patch or minor version of the pipeline, then only the latest patch or minor version (of each major version) displays. If, for example, you published 0.0.1, 0.0.2 and 1.0.0 versions, only 0.0.2 and 1.0.0 display because they are the latest versions of 0.x and 1.x major versions respectively.</div>
+        <div class="itemgroup stepresult">The pipeline is now successfully published.</div>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Apply permissions for roles before the pipeline is visible. For an Integration pipeline, permissions for the package need to be given to a role. Then, it will be available in the <span class="ph uicontrol">Integration Packages</span> UI.</span>
+      </li>
+<li class="li step stepexpand"><strong>Optional: </strong>
+        <span class="ph cmd">If there is an Integration Pipeline breaking change, the following scenarios require a new major version number:</span>
+        <div class="itemgroup info"><span class="ph uicontrol">Regular parameters</span>
+<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" class="table" frame="border" border="1" rules="all"><colgroup><col style="width:25.04288164665523%"><col style="width:17.152658662092623%"><col style="width:18.181818181818183%"><col style="width:39.62264150943396%"></colgroup><thead class="thead" style="text-align:left;">
+              <tr class="row">
+                <th class="entry nocellnorowborder" style="vertical-align:top;" id="d13741e194">Case</th>
+
+                <th class="entry nocellnorowborder" style="vertical-align:top;" id="d13741e197">Marked as required</th>
+
+                <th class="entry nocellnorowborder" style="vertical-align:top;" id="d13741e200">Force major</th>
+
+                <th class="entry cell-norowborder" style="vertical-align:top;" id="d13741e203">Justification</th>
+
+              </tr>
+
+            </thead>
+<tbody class="tbody">
+              <tr class="row">
+                <td class="entry nocellnorowborder" style="vertical-align:top;" headers="d13741e194 ">A parameter name is changed.</td>
+
+                <td class="entry nocellnorowborder" style="vertical-align:top;" headers="d13741e197 ">Yes</td>
+
+                <td class="entry nocellnorowborder" style="vertical-align:top;" headers="d13741e200 ">Yes</td>
+
+                <td class="entry cell-norowborder" style="vertical-align:top;" headers="d13741e203 ">Any existing <span class="keyword">Experience</span> page could fail to start the pipeline because the parameter is not registered with a value. </td>
+
+              </tr>
+
+              <tr class="row">
+                <td class="entry nocellnorowborder" style="vertical-align:top;" headers="d13741e194 ">A parameter name is changed.</td>
+
+                <td class="entry nocellnorowborder" style="vertical-align:top;" headers="d13741e197 ">No</td>
+
+                <td class="entry nocellnorowborder" style="vertical-align:top;" headers="d13741e200 ">No</td>
+
+                <td class="entry cell-norowborder" style="vertical-align:top;" headers="d13741e203 ">Because the parameter is optional, it should not be considered necessary to execute the pipeline.</td>
+
+              </tr>
+
+              <tr class="row">
+                <td class="entry nocellnorowborder" style="vertical-align:top;" headers="d13741e194 ">A parameter type is changed.</td>
+
+                <td class="entry nocellnorowborder" style="vertical-align:top;" headers="d13741e197 ">Yes</td>
+
+                <td class="entry nocellnorowborder" style="vertical-align:top;" headers="d13741e200 ">Yes</td>
+
+                <td class="entry cell-norowborder" style="vertical-align:top;" headers="d13741e203 ">Any existing <span class="keyword">Experience</span> page could fail  to start the pipeline because the parameter is the wrong type.</td>
+
+              </tr>
+
+              <tr class="row">
+                <td class="entry nocellnorowborder" style="vertical-align:top;" headers="d13741e194 ">A parameter type is changed.</td>
+
+                <td class="entry nocellnorowborder" style="vertical-align:top;" headers="d13741e197 ">No</td>
+
+                <td class="entry nocellnorowborder" style="vertical-align:top;" headers="d13741e200 ">Yes</td>
+
+                <td class="entry cell-norowborder" style="vertical-align:top;" headers="d13741e203 ">If the pipeline starts failing due to validation then this is considered a breaking change if the parameter was provided, so it requires a major version update.</td>
+
+              </tr>
+
+              <tr class="row">
+                <td class="entry nocellnorowborder" style="vertical-align:top;" headers="d13741e194 ">A parameter is added.</td>
+
+                <td class="entry nocellnorowborder" style="vertical-align:top;" headers="d13741e197 ">Yes</td>
+
+                <td class="entry nocellnorowborder" style="vertical-align:top;" headers="d13741e200 ">Yes</td>
+
+                <td class="entry cell-norowborder" style="vertical-align:top;" headers="d13741e203 ">If it has no default value, the pipeline may fail to start.</td>
+
+              </tr>
+
+              <tr class="row">
+                <td class="entry nocellnorowborder" style="vertical-align:top;" headers="d13741e194 ">A parameter is added.</td>
+
+                <td class="entry nocellnorowborder" style="vertical-align:top;" headers="d13741e197 ">No</td>
+
+                <td class="entry nocellnorowborder" style="vertical-align:top;" headers="d13741e200 ">No</td>
+
+                <td class="entry cell-norowborder" style="vertical-align:top;" headers="d13741e203 ">Because the parameter is optional, it should not be considered necessary to execute the pipeline.</td>
+
+              </tr>
+
+              <tr class="row">
+                <td class="entry nocellnorowborder" style="vertical-align:top;" headers="d13741e194 ">A parameter is deleted.</td>
+
+                <td class="entry nocellnorowborder" style="vertical-align:top;" headers="d13741e197 ">Yes</td>
+
+                <td class="entry nocellnorowborder" style="vertical-align:top;" headers="d13741e200 ">Yes</td>
+
+                <td class="entry cell-norowborder" style="vertical-align:top;" headers="d13741e203 ">When a parameter is removed, it should be considered a breaking change.</td>
+
+              </tr>
+
+              <tr class="row">
+                <td class="entry nocellnorowborder" style="vertical-align:top;" headers="d13741e194 ">A parameter is deleted.</td>
+
+                <td class="entry nocellnorowborder" style="vertical-align:top;" headers="d13741e197 ">No</td>
+
+                <td class="entry nocellnorowborder" style="vertical-align:top;" headers="d13741e200 ">No</td>
+
+                <td class="entry cell-norowborder" style="vertical-align:top;" headers="d13741e203 ">Because the parameter is optional, it should not be considered necessary to execute the pipeline.</td>
+
+              </tr>
+
+              <tr class="row">
+                <td class="entry nocellnorowborder" style="vertical-align:top;" headers="d13741e194 ">A parameter was changed to Required from Optional.</td>
+
+                <td class="entry nocellnorowborder" style="vertical-align:top;" headers="d13741e197 ">Yes</td>
+
+                <td class="entry nocellnorowborder" style="vertical-align:top;" headers="d13741e200 ">Yes</td>
+
+                <td class="entry cell-norowborder" style="vertical-align:top;" headers="d13741e203 ">Changing a parameter from optional to required means that because it was optional before, it may not have been registered with a value, and therefore the pipeline could fail to start.</td>
+
+              </tr>
+
+              <tr class="row">
+                <td class="entry nocellnorowborder" style="vertical-align:top;" headers="d13741e194 ">A parameter was changed to Optional from Required.</td>
+
+                <td class="entry nocellnorowborder" style="vertical-align:top;" headers="d13741e197 ">No</td>
+
+                <td class="entry nocellnorowborder" style="vertical-align:top;" headers="d13741e200 ">No</td>
+
+                <td class="entry cell-norowborder" style="vertical-align:top;" headers="d13741e203 ">When a required parameter changes to optional, it should not be considered a breaking change.</td>
+
+              </tr>
+
+              <tr class="row">
+                <td class="entry row-nocellborder" style="vertical-align:top;" headers="d13741e194 ">A required parameter with a default value is changed to a sensitive parameter.</td>
+
+                <td class="entry row-nocellborder" style="vertical-align:top;" headers="d13741e197 ">Yes</td>
+
+                <td class="entry row-nocellborder" style="vertical-align:top;" headers="d13741e200 ">Yes</td>
+
+                <td class="entry cellrowborder" style="vertical-align:top;" headers="d13741e203 ">When a required parameter changes from normal to sensitive and there is a default value, the default value is removed and needs to be set by the end user.</td>
+
+              </tr>
+
+            </tbody>
+</table>
+</div>
+</div>
+      </li>
+</ol>
+
+  </div>
+
+</div></div></section></main></body></html>

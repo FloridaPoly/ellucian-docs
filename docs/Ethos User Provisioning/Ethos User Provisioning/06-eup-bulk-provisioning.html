@@ -1,0 +1,603 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Ethos User Provisioning — EUP bulk provisioning</title><style>body{font-family:-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;line-height:1.55;color:#1a1a1a;max-width:920px;margin:0 auto;padding:24px}header{border-bottom:2px solid #5a16d6;margin-bottom:8px}h1{color:#3a0ca3}h2,h3,h4,h5,h6{margin-top:1.6em}.crumb{color:#666;font-size:13px;margin:0}.meta{color:#888;font-size:12px}nav.toc{background:#f6f4fc;border:1px solid #e3dcf5;border-radius:8px;padding:12px 18px;margin:18px 0}nav.toc h2{margin:.2em 0}nav.toc ul{list-style:none;padding-left:0}nav.toc a{text-decoration:none;color:#5a16d6}section{margin:1.2em 0;padding-top:.4em}img{max-width:100%;height:auto}table{border-collapse:collapse}td,th{border:1px solid #ccc;padding:4px 8px}code,pre{background:#f4f4f4;border-radius:4px}pre{padding:10px;overflow:auto}</style></head><body><header><p class="crumb">Ethos User Provisioning › Ethos User Provisioning</p><h1>Ethos User Provisioning — EUP bulk provisioning</h1><p class="meta">Source: <a href="https://resources.elluciancloud.com/r/bundle/ethos_user_provisioning">https://resources.elluciancloud.com/r/bundle/ethos_user_provisioning</a> &middot; Retrieved 2026-06-17</p></header><nav class="toc"><h2>Contents</h2><ul><li style="margin-left:0px"><a href="#t-1020">EUP bulk provisioning</a></li><li style="margin-left:16px"><a href="#t-1030">Provision or update users in bulk from Banner</a></li><li style="margin-left:16px"><a href="#t-1040">Provision or update users in bulk from Colleague</a></li></ul></nav><main><section id="t-1020"><h2>EUP bulk provisioning</h2><div class="content-locale-en-US content-locale-en"><div id="c_bulk_provisioning"><div class="body conbody"><p class="shortdesc">You can enable <span class="keyword">EUP</span> bulk provisioning with an <span class="keyword">Ethos Data Connect</span> pipeline job to extract data from <span class="keyword">Banner</span> or <span class="keyword">Colleague</span> through user-identity-profile API endpoints. The system then pushes this data to an AWS SQS Queue, where the provisioning service can read the records.</p>
+
+    <p class="p">The bulk provisioning process consists of three parts: Extract, Transform, and Load.</p>
+
+    <p class="p">You can bulk provision users to multiple identity provider targets in this release of <span class="keyword">EUP</span>, but must create a dedicated pipeline job for each target. You cannot, however, bulk provision users to targets that you have created for Okta and SCIM, and the job will fail if you create a job for these targets.</p>
+
+    <div class="note tip"><span class="tiptitle">Tip:</span> The <span class="keyword">Colleague</span> bulk provisioning pipeline now supports all features available in the <span class="keyword">Banner</span> pipeline, including OFFSET parameters, job report files, and bulk update operations. See <span class="xref ft-internal-link" title="You can create the Ethos Data Connect pipeline job to bulk provision or update users from Colleague using a dedicated EUP bulk provisioning integration package provided by Ellucian. You can then run and monitor the pipeline job using the functionality in Data Connect." data-ft-warning="excluded-from-rendering" data-mapid="Tq0RIb300EzoUBnGOk5Nsg" data-tocid="Rhow28OSS~3TP6j~~20f_A">Provision or update users in bulk from Colleague</span> for details.</div>
+
+    <div class="section"><h2 class="title sectiontitle">Extract</h2>
+      
+      <div class="p">Fetch the user-identity-profiles API records (that is, Person records) from the <span class="keyword">Ellucian</span> ERP (<span class="keyword">Banner</span>, <span class="keyword">Colleague</span>) through Ethos Proxy Fitting. You can extract data from the ERP in two ways:<ul class="ul">
+        <li class="li">Extract and forward all user-identity-profiles ahead to the to the SQS queue.</li>
+
+        <li class="li">Filter user-identity-profiles records based on the Population Selection (PopSel) criteria you define for the ERP. As a result, the system only extracts and provisions data that matches the PopSel record sent in the request.</li>
+
+        </ul>
+</div>
+
+      <p class="p">For <span class="keyword">Banner</span>, you can enter four parameters—<span class="ph uicontrol">Application</span>, <span class="ph uicontrol">Selection</span>, <span class="ph uicontrol">Creator Id</span>, and <span class="ph uicontrol">User Id</span>—when requesting a PopSel call.</p>
+
+      <p class="p">For <span class="keyword">Colleague</span>, you can enter a single parameter, a filter code that filters the <span class="keyword">Colleague</span> person records.</p>
+
+      <div class="note"><span class="notetitle">Note:</span> If you want to extract and load all the user-identity-profile records, that is, all the person records from <span class="keyword">Banner</span> or <span class="keyword">Colleague</span>, leave the PopSel parameters blank when defining the parameters for the pipeline job.</div>
+
+    </div>
+
+    <div class="section"><h2 class="title sectiontitle">Transform</h2>
+      
+      <p class="p">Using the <span class="keyword">Banner</span> or <span class="keyword">Colleague</span> API, convert all <span class="keyword">EEDM</span> JSON records into <span class="keyword">EUP</span> agent-specific JSON records. In Transform Fitting, this is implemented. Create the Payloads in <span class="keyword">Ethos</span> based on the <span class="keyword">EUP</span> overall configuration, which is managed through the <span class="keyword">EUP</span> Administrative UI.</p>
+
+      <p class="p">The pipeline validates the mandatory fields for both LDAP and AD as configured. If the source field, in <span class="keyword">Banner</span> or <span class="keyword">Colleague</span>, for a mandatory target field is not present in the API response, <span class="keyword">Ethos</span> would post an error. In this case, the agent cannot consume these records from the SQS queue.</p>
+
+    </div>
+
+    <div class="section"><h2 class="title sectiontitle">Load</h2>
+      
+      <p class="p">After the record transformation, you can make an API call to send the JSON record list to an <span class="keyword">EUP</span> Provisioning queue in SQS. You can accomplish it by integrating SQS with an AWS API Gateway.</p>
+
+      <p class="p">As part of the API Gateway, you can use an OAuth Token to authenticate API calls, which is validated by an AWS Lambda function (OAuth validation).</p>
+
+      <p class="p">The <span class="keyword">EUP</span> agent reads the messages, that is, the JSON records, and then provisions the user records to the appropriate directory service.</p>
+
+    </div>
+
+  </div>
+
+</div></div></section>
+<section id="t-1030"><h3>Provision or update users in bulk from Banner</h3><div class="content-locale-en-US content-locale-en"><div id="t_eup_dc_pipeline_banner"><div class="body taskbody"><p class="shortdesc">You can create the <span class="keyword">Ethos Data Connect</span> pipeline job to bulk provision or update users from <span class="keyword">Banner</span> using a dedicated <span class="keyword">EUP</span> bulk provisioning integration package provided by <span class="keyword">Ellucian</span>. You can then run and monitor the pipeline job using the functionality in <span class="keyword">Data Connect</span>.</p>
+
+    <div class="section prereq p"><div class="tasklabel"><h2 class="sectiontitle tasklabel">Before you begin</h2></div>
+      <ul class="ul">
+        <li class="li">Ensure that you have created and configured the necessary <span class="keyword">Ethos</span> applications for <span class="keyword">EUP</span> and <span class="keyword">Banner</span>.</li>
+
+        <li class="li">Ensure that you can access the <span class="keyword">Data Connect</span> integration packages card on your <span class="keyword">Experience</span> dashboard. See <span class="xref ft-internal-xlink" data-ft-warning="excluded-from-rendering" data-clusterid="id_services/eup/t_set_up_int_packages_card">Set up the Data Connect Packages card in Experience</span> for details.</li>
+
+        <li class="li">Ensure you have the required <span class="keyword">Data Connect</span> permissions to access the <span class="keyword">EUP</span> bulk provisioning integration package for <span class="keyword">Banner</span>. See <span class="xref ft-internal-xlink" data-ft-warning="excluded-from-rendering" data-clusterid="id_services/eup/t_grant_permissions_data_connect_integrations">Grant permissions for Data Connect integrations</span> for details. </li>
+
+      </ul>
+
+      <div class="note tip"><span class="tiptitle">Tip:</span> The <span class="keyword">Banner</span> bulk provisioning pipeline supports the optional IDP RoleName feature. When you configure IDP role names in the <span class="keyword">EUP</span> Administrative UI, the pipeline uses these IDP role names for provisioning operations instead of ERP role names. See <span class="xref ft-internal-link" title="Administrators must define and maintain roles for each identity provider target that match the institution roles retrieved from the integrated ERP so that EUP can successfully provision users to that target." data-ft-warning="excluded-from-rendering" data-mapid="Tq0RIb300EzoUBnGOk5Nsg" data-tocid="sqJ3wnNLsZZ8UOaJQqZmtQ">Define and maintain identity provider target roles</span> for more information about IDP role names.</div>
+
+    </div>
+
+    <div class="tasklabel"><h2 class="sectiontitle tasklabel">Procedure</h2></div><ol class="ol steps"><li class="li step stepexpand">
+        <span class="ph cmd">Log in to <span class="keyword">Experience</span> as an administrator in the <span class="keyword">Ethos</span> environment where you want to run the <span class="keyword">EUP</span> pipeline job to bulk provision users in <span class="keyword">EUP</span>.</span>
+      </li>
+<li class="li step stepexpand">
+        
+        <span class="ph cmd" id="t_eup_dc_pipeline_banner__d95e2266">From the <span class="keyword">Experience</span> dashboard, use either of these methods to access the <span class="keyword">EUP</span> bulk provisioning integration package for <span class="keyword">Banner</span>:</span>
+        
+<table border="1" frame="hsides" rules="rows" cellpadding="4" cellspacing="0" summary="" class="simpletable choicetable choicetableborder" id="t_eup_dc_pipeline_banner__d95e2278">
+<colgroup><col style="width:33.33333333333333%"><col style="width:66.66666666666666%"></colgroup><thead><tr class="sthead chhead"><th class="stentry choptionhd" style="vertical-align:bottom;text-align:left;" id="d22165e154-option">Method</th>
+<th class="stentry chdeschd" style="vertical-align:bottom;text-align:left;" id="d22165e154-desc">Description</th></tr></thead>
+<tbody><tr class="strow chrow">
+            <th style="vertical-align:top;" headers="d22165e154-option" id="d22165e167" class="stentry choption">From the Application menu</th>
+
+            <td style="vertical-align:top;" headers="d22165e154-desc d22165e167" class="stentry chdesc">
+              <ol class="ol" type="a" id="t_eup_dc_pipeline_banner__d95e2296">
+                <li class="li">Click the applications icon <span class="ph" id="t_eup_dc_pipeline_banner__dm5_s4r_dfc"><img class="image ell-icon" src="images/06-eup-bulk-provisioning-1.png" alt="" data-ft-asset-display-name="grid.png" data-ft-resource-id="rcjHe4WMeJ1jBuw_rGS_uw-Tq0RIb300EzoUBnGOk5Nsg"></span> in the <span class="keyword">Experience</span> global navigation bar and then click <span class="ph uicontrol" id="t_eup_dc_pipeline_banner__d95e2305">Integration Packages</span>.</li>
+
+                <li class="li">On the <span class="keyword wintitle">Integration Packages</span> page, in the list of packages displayed at the side of this page, expand the entry for the <span class="keyword">EUP</span> bulk provisioning package.</li>
+
+              </ol>
+
+            </td>
+
+          </tr>
+<tr class="strow chrow">
+            <th style="vertical-align:top;" headers="d22165e154-option" id="d22165e203" class="stentry choption">From the <span class="ph uicontrol" id="t_eup_dc_pipeline_banner__d95e2325"><span class="keyword">Integration Packages</span></span> card (if supported at your institution):</th>
+
+            <td style="vertical-align:top;" headers="d22165e154-desc d22165e203" class="stentry chdesc">
+              <ol class="ol" type="a" id="t_eup_dc_pipeline_banner__d95e2332">
+                <li class="li">On the <span class="keyword">Data Connect</span> integration packages card on the <span class="keyword">Experience</span> dashboard, click the link for the <span class="keyword">EUP</span> bulk provisioning package.<p class="p">The title of the card on your dashboard is the name specified during card configuration by an administrator at your institution. The default title is <span class="ph uicontrol" id="t_eup_dc_pipeline_banner__d95e2347"><span class="keyword">Integration Packages</span></span>.</p>
+</li>
+
+              </ol>
+
+            </td>
+
+          </tr>
+</tbody></table>
+
+        <div class="itemgroup info" id="t_eup_dc_pipeline_banner__d95e2356">You must have the required <span class="keyword">Data Connect</span> permissions for an integration package to view the link for that package in the <span class="ph uicontrol"><span class="keyword">Integration Packages</span></span> card or on the <span class="keyword wintitle">Integration Packages</span> page. The following steps assume you have the Manage permission for the <span class="keyword">EUP</span> bulk provisioning package that you use with <span class="keyword">Banner</span>.</div>
+        <div class="itemgroup stepresult" id="t_eup_dc_pipeline_banner__d95e2375">When you access an integration package in <span class="keyword">Experience</span>, the system displays links to the pipelines for this package, both in the packages list, under the name of the package, and in the main body of the page. The list of pipelines can include different versions of the same pipeline, and you can click the link for a specific pipeline version to create, run, and manage its pipeline jobs.</div>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Click the latest version of the <span class="keyword">EUP</span> bulk provisioning pipeline from the list.</span>
+        <div class="itemgroup stepresult">The system opens the page that contains a list of the existing jobs for this pipeline, if any. You can check the progress of each job on this page, manage these jobs, or create a new job.</div>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Click the <span class="ph uicontrol">New Job</span> button, near the top of the page, to create a new <span class="keyword">EUP</span> bulk provisioning pipeline job.</span>
+        <div class="itemgroup stepresult">The system opens the <span class="keyword wintitle">New Job</span> page, which contains some sections where you can enter details for the new job, and control when to run this job.</div>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">In the <span class="ph uicontrol">Basic Details</span> section of the page, enter key information about the job.</span>
+        <div class="itemgroup info">
+          
+<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" class="table" frame="hsides" border="1" rules="rows"><colgroup><col style="width:33.33333333333333%"><col style="width:66.66666666666666%"></colgroup><thead class="thead" style="text-align:left;">
+                <tr class="row">
+                  <th class="entry row-nocellborder" style="vertical-align:top;" id="d22165e314">Field</th>
+
+                  <th class="entry row-nocellborder" style="vertical-align:top;" id="d22165e317">Description</th>
+
+                </tr>
+
+              </thead>
+<tbody class="tbody">
+                <tr class="row">
+                  <td class="entry row-nocellborder" style="vertical-align:top;" headers="d22165e314 ">Job name</td>
+
+                  <td class="entry row-nocellborder" style="vertical-align:top;" headers="d22165e317 ">(Required) Enter a descriptive name for this job. If you create multiple jobs for this pipeline, you can use this name to find this job in the list of pipelines.<p class="p">The descriptive name for the job should include the pipeline name, the environment, and an indication of the scheduled frequency. For example: Test EUP-applications-banner every 2 minutes.</p>
+<p class="p">You must enter a unique name for this job. You cannot save a job with a name that matches an existing job, as the system checks for this issue and does not activate the <span class="ph uicontrol">Save</span> button on this page if a job already exists with the name you enter in this field. </p>
+</td>
+
+                </tr>
+
+              </tbody>
+</table>
+</div>
+
+        </div>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">In the <span class="ph uicontrol">Job Parameters</span> section of the page, enter the parameters for this pipeline job.</span>
+        <div class="itemgroup info">
+          <div class="note tip"><span class="tiptitle">Tip:</span> <span class="keyword">Ellucian</span> strongly recommend that you enter values of the parameters required to define a population selection for bulk provisioning pipeline jobs. This ensures that the job provisions or updates a specific population of users to the IdP. A population is a set of <span class="keyword">Banner</span> IDs that identify a particular cohort of students or other persons. Typical examples include first year students, active students, recent graduates, and alumni. If you do not define a population selection, the job provisions or updates all users, which adds unnecessary data to the IdP, including historical data, and requires a much longer time to complete.</div>
+
+          
+<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" class="table" frame="hsides" border="1" rules="rows"><colgroup><col style="width:33.33333333333333%"><col style="width:66.66666666666666%"></colgroup><thead class="thead" style="text-align:left;">
+                <tr class="row">
+                  <th class="entry row-nocellborder" style="vertical-align:top;" id="d22165e376">Parameter</th>
+
+                  <th class="entry row-nocellborder" style="vertical-align:top;" id="d22165e379">Description</th>
+
+                </tr>
+
+              </thead>
+<tbody class="tbody">
+                <tr class="row">
+                  <td class="entry row-nocellborder" style="vertical-align:top;" headers="d22165e376 ">Ethos API Key</td>
+
+                  <td class="entry row-nocellborder" style="vertical-align:top;" headers="d22165e379 ">(Required) Enter the API key of the <span class="keyword">Ethos</span> application for EUP, which has credentials into the <span class="keyword">Banner Integration API</span> <span class="keyword">Ethos</span> application that owns the user-identity-profiles resource. <p class="p">The system uses this key to authenticate and call an API endpoint through an <span class="keyword">Ethos</span> Proxy Fitting. <span class="keyword">Ellucian</span> recommends that you copy the API key by opening the <span class="keyword">Ethos</span> application in <span class="keyword">Ethos Integration</span>, and on the <span class="keyword wintitle">Application Overview</span> page, copy the key from the <span class="ph uicontrol">API Keys</span> tab. You should not enter this key directly, or copy it from another application.</p>
+<p class="p">The system obfuscates or masks the value of this field for security reasons by default. You can click the <span class="ph uicontrol">Show</span> button in this field to display this value. If it already displays the value, the system displays a <span class="ph uicontrol">Hide</span> button, instead of the <span class="ph uicontrol">Show</span> button, which you can click to conceal the value again. If you want to add a new key, you must delete the existing key first.</p>
+</td>
+
+                </tr>
+
+                <tr class="row">
+                  <td class="entry row-nocellborder" style="vertical-align:top;" headers="d22165e376 ">Page Limit</td>
+
+                  <td class="entry row-nocellborder" style="vertical-align:top;" headers="d22165e379 ">(Optional) The page size of the Ethos API call. <p class="p">It should be between 1 to 1000, and the default value is 500. This is used to limit the JSON records fetched in a single page of an API call.</p>
+</td>
+
+                </tr>
+
+                <tr class="row">
+                  <td class="entry row-nocellborder" style="vertical-align:top;" headers="d22165e376 ">Total Count</td>
+
+                  <td class="entry row-nocellborder" style="vertical-align:top;" headers="d22165e379 ">(Optional) Enter the total count if you need to override the API response header count. Testing is easier if you do not want to extract all records based on the API total.</td>
+
+                </tr>
+
+                <tr class="row">
+                  <td class="entry row-nocellborder" style="vertical-align:top;" headers="d22165e376 ">Max Error Limit</td>
+
+                  <td class="entry row-nocellborder" style="vertical-align:top;" headers="d22165e379 ">(Optional) The maximum error limit value after which the bulk provisioning process will stop. <p class="p">A blank value means the system will continue irrespective of the numbers of errors. If you enter a value of -1, it will stop at the first error.</p>
+</td>
+
+                </tr>
+
+                <tr class="row">
+                  <td class="entry row-nocellborder" style="vertical-align:top;" headers="d22165e376 ">SQS API Hostname</td>
+
+                  <td class="entry row-nocellborder" style="vertical-align:top;" headers="d22165e379 ">(Required) The base API URL to post messages to SQS. <div class="note tip"><span class="tiptitle">Tip:</span> The system sets this value to eup-agent-sqs. You must not change this value for production servers.</div>
+</td>
+
+                </tr>
+
+                <tr class="row">
+                  <td class="entry row-nocellborder" style="vertical-align:top;" headers="d22165e376 ">Application</td>
+
+                  <td class="entry row-nocellborder" style="vertical-align:top;" headers="d22165e379 ">(Optional) The <span class="ph uicontrol">Application</span> for the population selection in <span class="keyword">Banner</span>. It is the functional area that controls the population and one of the values that uniquely identify the population in the system.<p class="p">You can locate this value in the corresponding field on the Population Selection Extract Data (GLAEXTR) page in <span class="keyword">Banner</span>. See <span class="xref ft-internal-xlink" data-ft-warning="excluded-from-rendering" data-clusterid="id_services/eup/c_glaextr_population_selection_extract_data_form">Population Selection Extract Data (GLAEXTR) page</span> for more information. <span class="keyword">Ellucian</span> strongly recommend that you define a population selection for bulk provisioning pipeline jobs, as noted.</p>
+</td>
+
+                </tr>
+
+                <tr class="row">
+                  <td class="entry row-nocellborder" style="vertical-align:top;" headers="d22165e376 ">Selection</td>
+
+                  <td class="entry row-nocellborder" style="vertical-align:top;" headers="d22165e379 ">(Optional) The <span class="ph uicontrol">Selection ID</span> for the population selection in <span class="keyword">Banner</span>. This ID identifies the selection, the set of rules that select the Banner IDs in the population and is one of the values that uniquely identify the population in the system.<p class="p">You can locate this ID in the corresponding field on the Population Selection Extract Data (GLAEXTR) page in <span class="keyword">Banner</span>. See <span class="xref ft-internal-xlink" data-ft-warning="excluded-from-rendering" data-clusterid="id_services/eup/c_glaextr_population_selection_extract_data_form">Population Selection Extract Data (GLAEXTR) page</span> for more information. <span class="keyword">Ellucian</span> strongly recommend that you define a population selection for bulk provisioning pipeline jobs, as noted and you must provide the <span class="ph uicontrol">Selection ID</span> to define the selection for a job.</p>
+</td>
+
+                </tr>
+
+                <tr class="row">
+                  <td class="entry row-nocellborder" style="vertical-align:top;" headers="d22165e376 ">Creator Id</td>
+
+                  <td class="entry row-nocellborder" style="vertical-align:top;" headers="d22165e379 ">(Optional) The <span class="ph uicontrol">Creator ID</span> for the population selection in <span class="keyword">Banner</span>. This ID is the Oracle ID of the user who created the population selection, and is one of the values that uniquely identify the population in the system.<p class="p">You can locate this ID in the corresponding field on the Population Selection Extract Data (GLAEXTR) page in <span class="keyword">Banner</span>. See <span class="xref ft-internal-xlink" data-ft-warning="excluded-from-rendering" data-clusterid="id_services/eup/c_glaextr_population_selection_extract_data_form">Population Selection Extract Data (GLAEXTR) page</span> for more information. <span class="keyword">Ellucian</span> strongly recommend that you define a population selection for bulk provisioning pipeline jobs, as noted.</p>
+</td>
+
+                </tr>
+
+                <tr class="row">
+                  <td class="entry row-nocellborder" style="vertical-align:top;" headers="d22165e376 ">User Id</td>
+
+                  <td class="entry row-nocellborder" style="vertical-align:top;" headers="d22165e379 ">(Optional) The User ID for the population selection in <span class="keyword">Banner</span>. This ID is the Oracle ID of the user who selected (as opposed to created) the population selection, and is one of the values that uniquely identify the population in the system.<p class="p">You can locate this value in the corresponding field on the Population Selection Extract Data (GLAEXTR) page in <span class="keyword">Banner</span>. See <span class="xref ft-internal-xlink" data-ft-warning="excluded-from-rendering" data-clusterid="id_services/eup/c_glaextr_population_selection_extract_data_form">Population Selection Extract Data (GLAEXTR) page</span> for more information. <span class="keyword">Ellucian</span> strongly recommend that you define a population selection for bulk provisioning pipeline jobs, as noted.</p>
+</td>
+
+                </tr>
+
+                <tr class="row">
+                  <td class="entry row-nocellborder" style="vertical-align:top;" headers="d22165e376 ">IDP Label</td>
+
+                  <td class="entry row-nocellborder" style="vertical-align:top;" headers="d22165e379 ">(Required) The label of the Identity Provider (IdP) target to which you want to bulk provision users with this pipeline job.<p class="p"><span class="keyword">EUP</span> can provision users to one or more identity provider targets, where each target has a label, which identifies the target, and a platform type, the third-party identity provider service associated with the target. See <span class="xref ft-internal-link" title="You can create and configure one or more identity provider targets in the EUP Administrative UI. Each target has a unique identifier or label and a platform type, where the platform type corresponds to one of the third-party identity provider services currently supported by EUP." data-ft-warning="excluded-from-rendering" data-mapid="Tq0RIb300EzoUBnGOk5Nsg" data-tocid="Jl2p3p3Glvp66U4Ejiz9Mw">Create an identity provider target</span> for details.</p>
+<div class="note tip"><span class="tiptitle">Tip:</span> You can only enter one label when configuring a pipeline job, which means you can only bulk provision users to one target only with a single job. If you want to bulk provision users to another target or targets, you must create a dedicated pipeline job for each target. </div>
+<p class="p">The label you enter here must exactly match the label you have defined for the target in the <span class="keyword">EUP</span> Administrative UI. As such, <span class="keyword">Ellucian</span> recommends that you copy and paste this label from the UI. It displays the label in the corresponding column of the identity provider target list, which you can access by clicking the <span class="ph uicontrol">Identity Provider Configuration</span> link in the header bar of the UI. It also displays the label when you open a target from this list, in the <span class="ph uicontrol">Identity Provider Label</span> field on the <span class="ph uicontrol">Global Configuration</span> tab and with the <span class="ph uicontrol">IDP Label</span> subtitle on the <span class="ph uicontrol">Role Provisioning Rules</span> tab.</p>
+<p class="p">If you enter an incorrect label, the pipeline job fails immediately with an error message that refers to the label issue. You cannot bulk provision users to Okta or SCIM targets in this release of <span class="keyword">EUP</span>, and if you enter a label for these targets here, the job will also fail, again with an error message to this effect.</p>
+</td>
+
+                </tr>
+
+                <tr class="row">
+                  <td class="entry row-nocellborder" style="vertical-align:top;" headers="d22165e376 ">Offset From</td>
+
+                  <td class="entry row-nocellborder" style="vertical-align:top;" headers="d22165e379 ">Enter the <span class="ph uicontrol">Offset From</span> value to filter user records returned by the person-filters query. The specified value determines the starting point for retrieving results. For example, setting the <span class="ph uicontrol">Offset From</span> value to 10 will skip the first nine records and begin returning results from the tenth record onward. <p class="p">The <span class="ph uicontrol">Offset From</span> setting enables you to identify specific users with data issues, making it easier to locate and resolve those issues. The default <span class="ph uicontrol">Offset From</span> value is zero.</p>
+<div class="note"><span class="notetitle">Note:</span> Enter a numeric value in this field. The system generates a validation error if you enter non-numeric values. Do not enter a negative value.</div>
+</td>
+
+                </tr>
+
+                <tr class="row">
+                  <td class="entry row-nocellborder" style="vertical-align:top;" headers="d22165e376 ">Offset To</td>
+
+                  <td class="entry row-nocellborder" style="vertical-align:top;" headers="d22165e379 ">Enter the <span class="ph uicontrol">Offset To</span> value to specify the endpoint for user records returned by the person-filters query. The value determines the maximum number of records to retrieve. For example, setting <span class="ph uicontrol">Offset To</span> to 20 will return records up to the 20th record in the result set. The default <span class="ph uicontrol">Offset To</span> value is set to the last record of the query.<div class="note"><span class="notetitle">Note:</span> Enter a numeric value in this field. The system generates a validation error if you enter non-numeric values. Do not enter a negative value.</div>
+</td>
+
+                </tr>
+
+                <tr class="row">
+                  <td class="entry row-nocellborder" style="vertical-align:top;" headers="d22165e376 ">Operation Type</td>
+
+                  <td class="entry row-nocellborder" style="vertical-align:top;" headers="d22165e379 ">Select the operation type.<ul class="ul">
+                    <li class="li">Create—Select this type if you only want this pipeline job run to bulk create users in the IdP, only.</li>
+
+                    <li class="li">Create/Update—Select this type if you want this pipeline job run to bulk create or update users in the IdP. That is, the job considers all users in the IdP. If a user does not exist in the IdP, it provisions a new user, based on the latest data for that user in the ERP. If a user already exists in the IdP, it updates that user, again using the latest data in the ERP.</li>
+
+                    </ul>
+<div class="p">When selecting the operation type, consider the following issues:<ul class="ul">
+                    <li class="li">The create or update operation sends bulk users to the real-time workflow for AgentLDAP and AgentAD, but the patch update flow for Microsoft Entra ID.</li>
+
+                    <li class="li"><span class="keyword">Ellucian</span> strongly recommended that you use the same population selection criteria for both types.</li>
+
+                    <li class="li">A pipeline job run for the Create/Update operation type requires considerably more time to complete, compared to bulk create job runs.</li>
+
+                    <li class="li">If you expect that the pipeline job run will only create new users in the IdP, then select the Create type when configuring the job, and not the Create/Update type.</li>
+
+                    </ul>
+</div>
+</td>
+
+                </tr>
+
+              </tbody>
+</table>
+</div>
+
+        </div>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">In the <span class="ph uicontrol">Job Run Details</span> section of the page, specify when you want the job to run.</span>
+        <div class="itemgroup info">You can decide whether to run the job immediately or on a schedule that you can define in this section. See <span class="xref ft-internal-xlink" data-ft-warning="excluded-from-rendering" data-clusterid="id_services/eup/t_create_pipeline_job">Create a pipeline job</span> for details and examples,</div>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">In the <span class="ph uicontrol">Advanced Options</span> section of the page, modify the default settings if needed.</span>
+        <div class="itemgroup info">See <span class="xref ft-internal-xlink" data-ft-warning="excluded-from-rendering" data-clusterid="id_services/eup/t_create_pipeline_job">Create a pipeline job</span> for more information.</div>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Turn on the <span class="ph uicontrol">Enable Diagnostic Log</span> switch if you want diagnostic logs to be created for this job run.</span>
+        <div class="itemgroup info">
+          <p class="p">After the job run is complete, you can view the diagnostic logs for it using the menu in the <span class="ph uicontrol">Actions</span> column on the job runs page for the pipeline.</p>
+
+          <p class="p">If you enable this setting, diagnostic logging is enabled only for the current job run. If you run the job again and want to generate diagnostic logs, you will need to edit the job parameters and enable the diagnostic log again. Similarly, for a scheduled job, diagnostic logging is enabled only for the first scheduled run. If you want to enable diagnostic logging for subsequent runs, you will need to edit the job parameters.</p>
+
+        </div>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Click <span class="ph uicontrol">Save</span> to create a new pipeline job.</span>
+        <div class="itemgroup info">The system only actives the <span class="ph uicontrol">Save</span> button when you have entered values for all required parameters, including a unique name for the job. It does not activate the button if the name you have entered already exists.</div>
+        <div class="itemgroup stepresult">When you click <span class="ph uicontrol">Save</span>, the system creates the new pipeline job and returns you to the job runs page for the pipeline. If you decided to run the job immediately, it starts the job now. Otherwise, it will run the job according to the schedule you defined.<p class="p">Click the refresh icon <span class="ph"><img class="image ell-icon" src="images/06-eup-bulk-provisioning-2.png" alt="" data-ft-asset-display-name="refresh.png" data-ft-resource-id="w~paTLwolXuiDP1c64JJFg-Tq0RIb300EzoUBnGOk5Nsg"></span> to update the information as the job run progresses. See <span class="xref ft-internal-xlink" data-ft-warning="excluded-from-rendering" data-clusterid="id_services/eup/t_monitor_pipeline_job">Monitor a pipeline job</span> for information on how to monitor a <span class="keyword">Data Connect</span> pipeline job.</p>
+</div>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">When the job finishes, check the overall status of the job run and troubleshoot any errors.</span>
+        <div class="itemgroup info">See <span class="xref ft-internal-xlink" data-ft-warning="excluded-from-rendering" data-clusterid="id_services/eup/t_troubleshoot_pipeline_job">Troubleshoot a pipeline job</span> and related topics for more information. For an <span class="keyword">EUP</span> bulk provisioning pipeline job, you can:<ul class="ul">
+          <li class="li">View the job report file to check the number of error records and the number of records successfully sent to SQS.</li>
+
+          <li class="li">Check the <span class="keyword">EUP</span> agent logs after completing the job.</li>
+
+          <li class="li">Verify that the job run provisioned users in the respective identity providers.</li>
+
+          </ul>
+<div class="note"><span class="notetitle">Note:</span> If the job run fails, it might be due to specific records, while the remaining records are processed successfully. View the job reports for more details and click the <span class="ph uicontrol">View Errors</span> link to identify the failed users.</div>
+<div class="p">You can open the job report file from the <span class="keyword wintitle">Job</span> page, in the table of job runs, by clicking the file icon <span class="ph"><img class="image ell-icon" src="images/06-eup-bulk-provisioning-3.png" alt="" data-ft-asset-display-name="file_text.png" data-ft-resource-id="X6Nr5cuYgDY3YOmKQhtAnw-Tq0RIb300EzoUBnGOk5Nsg"></span> in the <span class="ph uicontrol">Actions</span> column in this table for the job. The report file is a text file, so you can view it online. You can also download the file, which contains the following entries:<ul class="ul">
+          <li class="li">USER GIVEN COUNT</li>
+
+          <li class="li">POPULATION FILTER</li>
+
+          <li class="li">IDP LABEL</li>
+
+          <li class="li">MAXIMUM RETRIEVABLE COUNT</li>
+
+          <li class="li">PROCESSED RECORDS COUNT</li>
+
+          <li class="li">PROCESSED PAYLOADS COUNT</li>
+
+          <li class="li">PROCESSED ERRORS COUNT</li>
+
+          </ul>
+</div>
+<p class="p">For a successful job run, the error count (PROCESSED ERRORS COUNT) should be zero, whereas the values for the other counts should match. </p>
+</div>
+      </li>
+</ol>
+
+  </div>
+
+</div></div></section>
+<section id="t-1040"><h3>Provision or update users in bulk from Colleague</h3><div class="content-locale-en-US content-locale-en"><div id="t_eup_dc_pipeline_coll"><div class="body taskbody"><p class="shortdesc">You can create the <span class="keyword">Ethos Data Connect</span> pipeline job to bulk provision or update users from <span class="keyword">Colleague</span> using a dedicated <span class="keyword">EUP</span> bulk provisioning integration package provided by <span class="keyword">Ellucian</span>. You can then run and monitor the pipeline job using the functionality in <span class="keyword">Data Connect</span>.</p>
+
+    <div class="section prereq p"><div class="tasklabel"><h2 class="sectiontitle tasklabel">Before you begin</h2></div>
+      <ul class="ul">
+        <li class="li">Ensure that you have created and configured the necessary <span class="keyword">Ethos</span> applications for <span class="keyword">EUP</span> and <span class="keyword">Colleague</span>.</li>
+
+        <li class="li">Ensure that you can access the <span class="keyword">Data Connect</span> integration packages card on your <span class="keyword">Experience</span> dashboard. See <span class="xref ft-internal-xlink" data-ft-warning="excluded-from-rendering" data-clusterid="id_services/eup/t_set_up_int_packages_card">Set up the Data Connect Packages card in Experience</span> for details.</li>
+
+        <li class="li">Ensure you have the required <span class="keyword">Data Connect</span> permissions to access the <span class="keyword">EUP</span> bulk provisioning integration package for <span class="keyword">Colleague</span>. See <span class="xref ft-internal-xlink" data-ft-warning="excluded-from-rendering" data-clusterid="id_services/eup/t_grant_permissions_data_connect_integrations">Grant permissions for Data Connect integrations</span> for details. </li>
+
+      </ul>
+
+    </div>
+
+    <div class="tasklabel"><h2 class="sectiontitle tasklabel">Procedure</h2></div><ol class="ol steps"><li class="li step stepexpand">
+        <span class="ph cmd">Log in to <span class="keyword">Experience</span> as an administrator in the <span class="keyword">Ethos</span> environment where you want to run the <span class="keyword">EUP</span> pipeline job to bulk provision users in <span class="keyword">EUP</span>.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">From the <span class="keyword">Experience</span> dashboard, use either of these methods to access the <span class="keyword">EUP</span> bulk provisioning integration package for <span class="keyword">Colleague</span>:</span>
+        
+<table border="1" frame="hsides" rules="rows" cellpadding="4" cellspacing="0" summary="" class="simpletable choicetable choicetableborder">
+<colgroup><col style="width:33.33333333333333%"><col style="width:66.66666666666666%"></colgroup><thead><tr class="sthead chhead"><th class="stentry choptionhd" style="vertical-align:bottom;text-align:left;" id="d20225e135-option">Method</th>
+<th class="stentry chdeschd" style="vertical-align:bottom;text-align:left;" id="d20225e135-desc">Description</th></tr></thead>
+<tbody><tr class="strow chrow">
+            <th style="vertical-align:top;" headers="d20225e135-option" id="d20225e148" class="stentry choption">From the Application menu</th>
+
+            <td style="vertical-align:top;" headers="d20225e135-desc d20225e148" class="stentry chdesc">
+              <ol class="ol" type="a" id="t_eup_dc_pipeline_coll__d95e2296">
+                <li class="li">Click the applications icon <span class="ph" id="t_eup_dc_pipeline_coll__dm5_s4r_dfc"><img class="image ell-icon" src="images/06-eup-bulk-provisioning-1.png" alt="" data-ft-asset-display-name="grid.png" data-ft-resource-id="rcjHe4WMeJ1jBuw_rGS_uw-Tq0RIb300EzoUBnGOk5Nsg"></span> in the <span class="keyword">Experience</span> global navigation bar and then click <span class="ph uicontrol" id="t_eup_dc_pipeline_coll__d95e2305">Integration Packages</span>.</li>
+
+                <li class="li">On the <span class="keyword wintitle">Integration Packages</span> page, in the list of packages displayed at the side of this page, expand the entry for the <span class="keyword">EUP</span> bulk provisioning package.</li>
+
+              </ol>
+
+            </td>
+
+          </tr>
+<tr class="strow chrow">
+            <th style="vertical-align:top;" headers="d20225e135-option" id="d20225e184" class="stentry choption">From the <span class="ph uicontrol" id="t_eup_dc_pipeline_coll__d95e2325"><span class="keyword">Integration Packages</span></span> card (if supported at your institution):</th>
+
+            <td style="vertical-align:top;" headers="d20225e135-desc d20225e184" class="stentry chdesc">
+              <ol class="ol" type="a" id="t_eup_dc_pipeline_coll__d95e2332">
+                <li class="li">On the <span class="keyword">Data Connect</span> integration packages card on the <span class="keyword">Experience</span> dashboard, click the link for the <span class="keyword">EUP</span> bulk provisioning package.<p class="p">The title of the card on your dashboard is the name specified during card configuration by an administrator at your institution. The default title is <span class="ph uicontrol" id="t_eup_dc_pipeline_coll__d95e2347"><span class="keyword">Integration Packages</span></span>.</p>
+</li>
+
+              </ol>
+
+            </td>
+
+          </tr>
+</tbody></table>
+
+        <div class="itemgroup info">You must have the required <span class="keyword">Data Connect</span> permissions for an integration package to view the link for that package in the <span class="ph uicontrol"><span class="keyword">Integration Packages</span></span> card or on the <span class="keyword wintitle">Integration Packages</span> page. The following steps assume you have the Manage permission for the <span class="keyword">EUP</span> bulk provisioning package that you use with <span class="keyword">Colleague</span>.</div>
+        <div class="itemgroup stepresult">When you access an integration package in <span class="keyword">Experience</span>, the system displays links to the pipelines for this package, both in the packages list, under the name of the package, and in the main body of the page. The list of pipelines can include different versions of the same pipeline, and you can click the link for a specific pipeline version to create, run, and manage its pipeline jobs.</div>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Click the latest version of the <span class="keyword">EUP</span> bulk provisioning pipeline from the list.</span>
+        <div class="itemgroup stepresult">The system opens the page that contains a list of the existing jobs for this pipeline, if any. You can check the progress of each job on this page, manage these jobs, or create a new job.</div>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Click the <span class="ph uicontrol">New Job</span> button, near the top of the page, to create a new <span class="keyword">EUP</span> bulk provisioning pipeline job.</span>
+        <div class="itemgroup stepresult">The system opens the <span class="keyword wintitle">New Job</span> page, which contains some sections where you can enter details for the new job, and control when to run this job.</div>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">In the <span class="ph uicontrol">Basic Details</span> section of the page, enter key information about the job.</span>
+        <div class="itemgroup info">
+          
+<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" class="table" frame="hsides" border="1" rules="rows"><colgroup><col style="width:33.33333333333333%"><col style="width:66.66666666666666%"></colgroup><thead class="thead" style="text-align:left;">
+                <tr class="row">
+                  <th class="entry row-nocellborder" style="vertical-align:top;" id="d20225e295">Field</th>
+
+                  <th class="entry row-nocellborder" style="vertical-align:top;" id="d20225e298">Description</th>
+
+                </tr>
+
+              </thead>
+<tbody class="tbody">
+                <tr class="row">
+                  <td class="entry row-nocellborder" style="vertical-align:top;" headers="d20225e295 ">Job name</td>
+
+                  <td class="entry row-nocellborder" style="vertical-align:top;" headers="d20225e298 ">(Required) Enter a descriptive name for this job. If you create multiple jobs for this pipeline, you can use this name to find this job in the list of pipelines.<p class="p">The descriptive name for the job should include the pipeline name, the environment, and an indication of the scheduled frequency. For example: Test EUP-applications-colleague every 2 minutes.</p>
+<p class="p">You must enter a unique name for this job. You cannot save a job with a name that matches an existing job, as the system checks for this issue and does not activate the <span class="ph uicontrol">Save</span> button on this page if a job already exists with the name you enter in this field. </p>
+</td>
+
+                </tr>
+
+              </tbody>
+</table>
+</div>
+
+        </div>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">In the <span class="ph uicontrol">Job Parameters</span> section of the page, enter the parameters for this pipeline job.</span>
+        <div class="itemgroup info">
+          <div class="note tip"><span class="tiptitle">Tip:</span> <span class="keyword">Ellucian</span> strongly recommend that you enter values of the parameters required to define a population selection for bulk provisioning pipeline jobs. This ensures that the job provisions or updates a specific population of users to the IdP. A population is a set of  <span class="keyword">Colleague</span> users associated with a particular cohort of students or other persons. Typical examples include first year students, active students, recent graduates, and alumni. If you do not define a population selection, the job provisions or updates all users, which adds unnecessary data to the IdP, including historical data, and requires a much longer time to complete.</div>
+
+          
+<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" class="table" frame="hsides" border="1" rules="rows"><colgroup><col style="width:33.33333333333333%"><col style="width:66.66666666666666%"></colgroup><thead class="thead" style="text-align:left;">
+                <tr class="row">
+                  <th class="entry row-nocellborder" style="vertical-align:top;" id="d20225e357">Field</th>
+
+                  <th class="entry row-nocellborder" style="vertical-align:top;" id="d20225e360">Description</th>
+
+                </tr>
+
+              </thead>
+<tbody class="tbody">
+                <tr class="row">
+                  <td class="entry row-nocellborder" style="vertical-align:top;" headers="d20225e357 ">Ethos API Key</td>
+
+                  <td class="entry row-nocellborder" style="vertical-align:top;" headers="d20225e360 ">(Required) Enter the API key of the <span class="keyword">Ethos</span> application for <span class="keyword">EUP</span>, which has credentials into the <span class="keyword">Colleague</span> <span class="keyword">Ethos</span> application that owns the user-identity-profiles resource. <p class="p">The system uses this key to authenticate and call an API endpoint through an <span class="keyword">Ethos</span> Proxy Fitting. <span class="keyword">Ellucian</span> recommends that you copy the API key by opening the <span class="keyword">Ethos</span> application in <span class="keyword">Ethos Integration</span>, and on the <span class="keyword wintitle">Application Overview</span> page, copy the key from the <span class="ph uicontrol">API Keys</span> tab. You should not enter this key directly, or copy it from another application.</p>
+<p class="p">The system obfuscates or masks the value of this field for security reasons by default. You can click the <span class="ph uicontrol">Show</span> button in this field to display this value. If it already displays the value, the system displays a <span class="ph uicontrol">Hide</span> button, instead of the <span class="ph uicontrol">Show</span> button, which you can click to conceal the value again. If you want to add a new key, you must delete the existing key first.</p>
+</td>
+
+                </tr>
+
+                <tr class="row">
+                  <td class="entry row-nocellborder" style="vertical-align:top;" headers="d20225e357 ">Page Limit</td>
+
+                  <td class="entry row-nocellborder" style="vertical-align:top;" headers="d20225e360 ">(Optional) The page size of the <span class="keyword">Ethos</span> API call. <p class="p">It should be between 1 to 1000, and the default value is 500. This is used to limit the JSON records fetched in a single page of an API call.</p>
+</td>
+
+                </tr>
+
+                <tr class="row">
+                  <td class="entry row-nocellborder" style="vertical-align:top;" headers="d20225e357 ">Total Count</td>
+
+                  <td class="entry row-nocellborder" style="vertical-align:top;" headers="d20225e360 ">(Optional) Enter the total count if you need to override the API response header count. Testing is easier if you do not want to extract all records based on the API total.</td>
+
+                </tr>
+
+                <tr class="row">
+                  <td class="entry row-nocellborder" style="vertical-align:top;" headers="d20225e357 ">Max Error Limit</td>
+
+                  <td class="entry row-nocellborder" style="vertical-align:top;" headers="d20225e360 ">(Optional) The maximum error limit value after which the bulk provisioning process will stop. <p class="p">A blank value means the system will continue irrespective of the numbers of errors. If you enter a value of -1, it will stop at the first error.</p>
+</td>
+
+                </tr>
+
+                <tr class="row">
+                  <td class="entry row-nocellborder" style="vertical-align:top;" headers="d20225e357 ">SQS API Hostname</td>
+
+                  <td class="entry row-nocellborder" style="vertical-align:top;" headers="d20225e360 ">(Required) The base API URL to post messages to SQS. <div class="note tip"><span class="tiptitle">Tip:</span> The system sets this value to eup-agent-sqs. You must not change this value for production servers.</div>
+</td>
+
+                </tr>
+
+                <tr class="row">
+                  <td class="entry row-nocellborder" style="vertical-align:top;" headers="d20225e357 ">Filter With Code</td>
+
+                  <td class="entry row-nocellborder" style="vertical-align:top;" headers="d20225e360 ">(Optional) The <span class="keyword">Colleague</span> filter for code option, which enables you to identify the population selection for the job using the save list features in <span class="keyword">Colleague</span>. <p class="p">So, you can identify the population by creating a saved list in the <span class="keyword wintitle">Savedlist Creation (SLCR)</span> form. You can then link this saved list, or query, to another saved list in the <span class="keyword wintitle">Person Save List Creation (SLC)</span>, and include a reference to this SLC list here. See <span class="xref ft-internal-xlink" data-ft-warning="excluded-from-rendering" data-clusterid="id_services/eup/t_eip_create_slcr_query">Use an SLCR query in an SLC saved list</span> for details. This resource emphasizes the requirement to set up a regular refresh schedule for the SLCR list when you use it in this way, to ensure that the list remains up to date.</p>
+<p class="p"><span class="keyword">Ellucian</span> strongly recommend that you define a population selection for bulk provisioning pipeline jobs, as noted.</p>
+</td>
+
+                </tr>
+
+                <tr class="row">
+                  <td class="entry row-nocellborder" style="vertical-align:top;" headers="d20225e357 ">IDP Label</td>
+
+                  <td class="entry row-nocellborder" style="vertical-align:top;" headers="d20225e360 ">(Required) The label of the Identity Provider (IdP) target to which you want to bulk provision users with this pipeline job.<p class="p"><span class="keyword">EUP</span> can provision users to one or more identity provider targets, where each target has a label, which identifies the target, and a platform type, the third-party identity provider service associated with the target. See <span class="xref ft-internal-link" title="You can create and configure one or more identity provider targets in the EUP Administrative UI. Each target has a unique identifier or label and a platform type, where the platform type corresponds to one of the third-party identity provider services currently supported by EUP." data-ft-warning="excluded-from-rendering" data-mapid="Tq0RIb300EzoUBnGOk5Nsg" data-tocid="Jl2p3p3Glvp66U4Ejiz9Mw">Create an identity provider target</span> for details.</p>
+<div class="note tip"><span class="tiptitle">Tip:</span> You can only enter one label when configuring a pipeline job, which means you can only bulk provision users to one target only with a single job. If you want to bulk provision users to another target or targets, you must create pipeline jobs for each target. </div>
+<p class="p">The label you enter here must exactly match the label you have defined for the target in the <span class="keyword">EUP</span> Administrative UI. As such, <span class="keyword">Ellucian</span> recommends that you copy and paste this label from the UI. It displays the label in the corresponding column of the identity provider target list, which you can access by clicking the <span class="ph uicontrol">Identity Provider Configuration</span> link in the header bar of the UI. It also displays the label when you open a target from this list, in the <span class="ph uicontrol">Identity Provider Label</span> field on the <span class="ph uicontrol">Global Configuration</span> tab and with the <span class="ph uicontrol">IDP Label</span> subtitle on the <span class="ph uicontrol">Role Provisioning Rules</span> tab.</p>
+<p class="p">If you enter an incorrect label, the pipeline job fails immediately with an error message that refers to the label issue. You cannot bulk provision users to Okta or SCIM targets in this release of <span class="keyword">EUP</span>, and if you enter a label for these targets here, the job will also fail, again with an error message to this effect.</p>
+</td>
+
+                </tr>
+
+                <tr class="row">
+                  <td class="entry row-nocellborder" style="vertical-align:top;" headers="d20225e357 ">OFFSET From</td>
+
+                  <td class="entry row-nocellborder" style="vertical-align:top;" headers="d20225e360 ">(Optional) Enter the starting offset number for processing user records. Use this parameter with <span class="ph uicontrol">OFFSET To</span> to process a specific range of user records in the population. This is useful for testing or processing large populations in smaller batches. Leave blank to start from the first record.</td>
+
+                </tr>
+
+                <tr class="row">
+                  <td class="entry row-nocellborder" style="vertical-align:top;" headers="d20225e357 ">OFFSET To</td>
+
+                  <td class="entry row-nocellborder" style="vertical-align:top;" headers="d20225e360 ">(Optional) Enter the ending offset number for processing user records. Use this parameter with <span class="ph uicontrol">OFFSET From</span> to process a specific range of user records in the population. Leave blank to process through the last record.</td>
+
+                </tr>
+
+                <tr class="row">
+                  <td class="entry row-nocellborder" style="vertical-align:top;" headers="d20225e357 ">Operation Type</td>
+
+                  <td class="entry row-nocellborder" style="vertical-align:top;" headers="d20225e360 ">Select the operation type.<ul class="ul">
+                    <li class="li">Create—Select this type if you only want this pipeline job run to bulk create users in the IdP, only.</li>
+
+                    <li class="li">Create/Update—Select this type if you want this pipeline job run to bulk create or update users in the IdP. That is, the job considers all users in the IdP. If a user does not exist in the IdP, it provisions a new user, based on the latest data for that user in the ERP. If a user already exists in the IdP, it updates that user, again using the latest data in the ERP.</li>
+
+                    </ul>
+<div class="p">When selecting the operation type, consider the following issues:<ul class="ul">
+                    <li class="li">The create or update operation sends bulk users to the real-time workflow for AgentLDAP and AgentAD, but the patch update flow for Microsoft Entra ID.</li>
+
+                    <li class="li"><span class="keyword">Ellucian</span> strongly recommended that you use the same population selection criteria for both types.</li>
+
+                    <li class="li">A pipeline job run for the Create/Update operation type requires considerably more time to complete, compared to bulk create job runs.</li>
+
+                    <li class="li">If you expect that the pipeline job run will only create new users in the IdP, then select the Create type when configuring the job, and not the Create/Update type.</li>
+
+                    <li class="li">The <span class="keyword">Colleague</span> bulk provisioning pipeline now supports bulk update operations, matching the functionality available in the <span class="keyword">Banner</span> pipeline.</li>
+
+                    </ul>
+</div>
+</td>
+
+                </tr>
+
+              </tbody>
+</table>
+</div>
+
+        </div>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">In the <span class="ph uicontrol">Job Run Details</span> section of the page, specify when you want the job to run.</span>
+        <div class="itemgroup info">You can decide whether to run the job immediately or on a schedule that you can define in this section. See <span class="xref ft-internal-xlink" data-ft-warning="excluded-from-rendering" data-clusterid="id_services/eup/t_create_pipeline_job">Create a pipeline job</span> for details and examples,</div>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">In the <span class="ph uicontrol">Advanced Options</span> section of the page, modify the default settings if needed.</span>
+        <div class="itemgroup info">See <span class="xref ft-internal-xlink" data-ft-warning="excluded-from-rendering" data-clusterid="id_services/eup/t_create_pipeline_job">Create a pipeline job</span> for more information.</div>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Turn on the <span class="ph uicontrol">Enable Diagnostic Log</span> switch if you want diagnostic logs to be created for this job run.</span>
+        <div class="itemgroup info">
+          <p class="p">After the job run is complete, you can view the diagnostic logs for it using the menu in the <span class="ph uicontrol">Actions</span> column on the job runs page for the pipeline.</p>
+
+          <p class="p">If you enable this setting, diagnostic logging is enabled only for the current job run. If you run the job again and want to generate diagnostic logs, you will need to edit the job parameters and enable the diagnostic log again. Similarly, for a scheduled job, diagnostic logging is enabled only for the first scheduled run. If you want to enable diagnostic logging for subsequent runs, you will need to edit the job parameters.</p>
+
+        </div>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Click <span class="ph uicontrol">Save</span> to create a new pipeline job.</span>
+        <div class="itemgroup info">The system only actives the <span class="ph uicontrol">Save</span> button when you have entered values for all required parameters, including a unique name for the job. It does not activate the button if the name you have entered already exists.</div>
+        <div class="itemgroup stepresult">When you click <span class="ph uicontrol">Save</span>, the system creates the new pipeline job and returns you to the job runs page for the pipeline. If you decided to run the job immediately, it starts the job now. Otherwise, it will run the job according to the schedule you defined.<p class="p">Click the refresh icon <span class="ph"><img class="image ell-icon" src="images/06-eup-bulk-provisioning-2.png" alt="" data-ft-asset-display-name="refresh.png" data-ft-resource-id="w~paTLwolXuiDP1c64JJFg-Tq0RIb300EzoUBnGOk5Nsg"></span> to update the information as the job run progresses. See <span class="xref ft-internal-xlink" data-ft-warning="excluded-from-rendering" data-clusterid="id_services/eup/t_monitor_pipeline_job">Monitor a pipeline job</span> for information on how to monitor a <span class="keyword">Data Connect</span> pipeline job.</p>
+</div>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">When the job finishes, check the overall status of the job run and troubleshoot any errors.</span>
+        <div class="itemgroup info">See <span class="xref ft-internal-xlink" data-ft-warning="excluded-from-rendering" data-clusterid="id_services/eup/t_troubleshoot_pipeline_jobl">Troubleshoot a pipeline job</span> and related topics for more information. For an <span class="keyword">EUP</span> bulk provisioning pipeline job, you can:<ul class="ul">
+          <li class="li">View the output files for the job to check the number of error records and the number of records successfully sent to SQS.</li>
+
+          <li class="li">Check the <span class="keyword">EUP</span> agent logs after completing the job.</li>
+
+          <li class="li">Verify that the job run provisioned users in the respective identity providers.</li>
+
+          </ul>
+<div class="note"><span class="notetitle">Note:</span> If the job run fails, it might be due to specific records, while the remaining records are processed successfully. View the job reports for more details and click the <span class="ph uicontrol">View Errors</span> link to identify the failed users.</div>
+</div>
+      </li>
+</ol>
+
+  </div>
+
+</div></div></section></main></body></html>

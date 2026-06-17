@@ -1,0 +1,1120 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>T2202A Banner Student - Use — Setup</title><style>body{font-family:-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;line-height:1.55;color:#1a1a1a;max-width:920px;margin:0 auto;padding:24px}header{border-bottom:2px solid #5a16d6;margin-bottom:8px}h1{color:#3a0ca3}h2,h3,h4,h5,h6{margin-top:1.6em}.crumb{color:#666;font-size:13px;margin:0}.meta{color:#888;font-size:12px}nav.toc{background:#f6f4fc;border:1px solid #e3dcf5;border-radius:8px;padding:12px 18px;margin:18px 0}nav.toc h2{margin:.2em 0}nav.toc ul{list-style:none;padding-left:0}nav.toc a{text-decoration:none;color:#5a16d6}section{margin:1.2em 0;padding-top:.4em}img{max-width:100%;height:auto}table{border-collapse:collapse}td,th{border:1px solid #ccc;padding:4px 8px}code,pre{background:#f4f4f4;border-radius:4px}pre{padding:10px;overflow:auto}</style></head><body><header><p class="crumb">Banner Student › T2202A Banner Student - Use</p><h1>T2202A Banner Student - Use — Setup</h1><p class="meta">Source: <a href="https://resources.elluciancloud.com/r/bundle/banner_cdn_t2202a_acn_use">https://resources.elluciancloud.com/r/bundle/banner_cdn_t2202a_acn_use</a> &middot; Retrieved 2026-06-17</p></header><nav class="toc"><h2>Contents</h2><ul><li style="margin-left:0px"><a href="#t-40">Setup</a></li><li style="margin-left:16px"><a href="#t-50">Load data into the SVBTXTP table</a></li><li style="margin-left:16px"><a href="#t-60">Set up terms for a tax year</a></li><li style="margin-left:16px"><a href="#t-70">Set up tax year limits</a></li><li style="margin-left:16px"><a href="#t-80">Set up addresses for multi-institutional database users</a></li><li style="margin-left:16px"><a href="#t-90">Set up enrollment status codes</a></li><li style="margin-left:16px"><a href="#t-100">Set up CRN registration status codes</a></li><li style="margin-left:16px"><a href="#t-110">Set up rules for all terms</a></li><li style="margin-left:16px"><a href="#t-120">Set up charitable donations codes</a></li><li style="margin-left:16px"><a href="#t-130">Set up ancillary fee detail codes</a></li><li style="margin-left:32px"><a href="#t-140">Copy ancillary fee detail codes from one tax year to another</a></li><li style="margin-left:16px"><a href="#t-150">Set up reporting periods for T2202s and TL11s</a></li><li style="margin-left:16px"><a href="#t-160">Set up priority rules</a></li><li style="margin-left:16px"><a href="#t-170">Add administrators</a></li><li style="margin-left:16px"><a href="#t-180">Set up sessions for Relevé 8s</a></li><li style="margin-left:16px"><a href="#t-190">Set up numbers for Relevé 8s</a></li><li style="margin-left:16px"><a href="#t-200">Set up transmitter data for Relevé 8s</a></li><li style="margin-left:16px"><a href="#t-210">Set up transmitter data for T2202</a></li><li style="margin-left:16px"><a href="#t-220">Set up XML sequence numbers</a></li><li style="margin-left:16px"><a href="#t-230">Set up crosswalk entries</a></li><li style="margin-left:16px"><a href="#t-240">Add administrator Web pages to Banner Self-Service</a></li><li style="margin-left:16px"><a href="#t-250">Enable PDF printing of RL-8 forms, T2202 forms, and charitable donation receipts</a></li></ul></nav><main><section id="t-40"><h2>Setup</h2><div class="content-locale-en-US content-locale-en"><div id="c_setup"><p class="shortdesc">The procedures in this section explain how to install <span class="ph">Banner</span> <span class="ph">T2202A</span> application.</p>
+
+</div></div></section>
+<section id="t-50"><h3>Load data into the SVBTXTP table</h3><div class="content-locale-en-US content-locale-en"><div id="t_load_data_into_svbtxtp_table"><div class="body taskbody"><p class="shortdesc">This procedure applies to T2202, Relevé 8, and TL11x.</p>
+
+    <div class="section context"><div class="tasklabel"><h2 class="sectiontitle tasklabel">About this task</h2></div>
+      <p class="p">Use this optional procedure if your institution has terms that cross a tax year. This is only used the first time that T2202 or TL11A/TL11C objects are used. If you completed this step during the installation, you do not have to perform it again. The SVPTXTP table is used to load data from prior tax years for split terms (terms that cross tax years).</p>
+
+    </div>
+
+    <div class="tasklabel"><h2 class="sectiontitle tasklabel">Procedure</h2></div><ol class="ol steps"><li class="li step stepexpand">
+        <span class="ph cmd">Create a data file named <code class="ph codeph"> svbtxtp.dat </code> using the following format (fields must be separated by a comma):</span>
+        <div class="itemgroup info">
+          
+<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" id="t_load_data_into_svbtxtp_table__t_load_data_into_svbtxtp_table-utbl1" class="table" frame="hsides" border="1" rules="rows"><colgroup><col><col></colgroup><tbody class="tbody">
+                <tr class="row">
+                  <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;">
+                    <pre class="pre codeblock"><code>svbtxtp_pidm
+</code></pre>
+                  </td>
+
+                  <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;">
+                    <pre class="pre codeblock"><code>FLOAT EXTERNAL,
+</code></pre>
+                  </td>
+
+                </tr>
+
+                <tr class="row">
+                  <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;">
+                    <pre class="pre codeblock"><code>svbtxtp_txyr
+</code></pre>
+                  </td>
+
+                  <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;">
+                    <pre class="pre codeblock"><code>CHAR(4),
+</code></pre>
+                  </td>
+
+                </tr>
+
+                <tr class="row">
+                  <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;">
+                    <pre class="pre codeblock"><code>svbtxtp_term_code
+</code></pre>
+                  </td>
+
+                  <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;">
+                    <pre class="pre codeblock"><code>CHAR(6),
+</code></pre>
+                  </td>
+
+                </tr>
+
+                <tr class="row">
+                  <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;">
+                    <pre class="pre codeblock"><code>svbtxtp_amount
+</code></pre>
+                  </td>
+
+                  <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;">
+                    <pre class="pre codeblock"><code>FLOAT EXTERNAL,
+</code></pre>
+                  </td>
+
+                </tr>
+
+                <tr class="row">
+                  <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;">
+                    <pre class="pre codeblock"><code>svbtxtp_non_claimable_amount
+</code></pre>
+                  </td>
+
+                  <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;">
+                    <pre class="pre codeblock"><code>FLOAT EXTERNAL,
+</code></pre>
+                  </td>
+
+                </tr>
+
+                <tr class="row">
+                  <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;">
+                    <pre class="pre codeblock"><code>svbtxtp_char_amount
+</code></pre>
+                  </td>
+
+                  <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;">
+                    <pre class="pre codeblock"><code>FLOAT EXTERNAL,
+</code></pre>
+                  </td>
+
+                </tr>
+
+                <tr class="row">
+                  <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;">
+                    <pre class="pre codeblock"><code>svbtxtp_resi_cde
+</code></pre>
+                  </td>
+
+                  <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;">
+                    <pre class="pre codeblock"><code>CHAR(1),
+</code></pre>
+                  </td>
+
+                </tr>
+
+                <tr class="row">
+                  <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;">
+                    <pre class="pre codeblock"><code>svbtxtp_activity_date
+</code></pre>
+                  </td>
+
+                  <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;">
+                    <pre class="pre codeblock"><code>DATE "DD-MON-YYYY",
+</code></pre>
+                  </td>
+
+                </tr>
+
+                <tr class="row">
+                  <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;">
+                    <pre class="pre codeblock"><code>svbtxtp_data_origin
+</code></pre>
+                  </td>
+
+                  <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;">
+                    <pre class="pre codeblock"><code>CHAR(30),
+</code></pre>
+                  </td>
+
+                </tr>
+
+                <tr class="row">
+                  <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;">
+                    <pre class="pre codeblock"><code>svbtxtp_create_user_id
+</code></pre>
+                  </td>
+
+                  <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;">
+                    <pre class="pre codeblock"><code>CHAR(30),
+</code></pre>
+                  </td>
+
+                </tr>
+
+                <tr class="row">
+                  <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;">
+                    <pre class="pre codeblock"><code>svbtxtp_create_date
+</code></pre>
+                  </td>
+
+                  <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;">
+                    <pre class="pre codeblock"><code>DATE "DD-MON-YYYY",
+</code></pre>
+                  </td>
+
+                </tr>
+
+                <tr class="row">
+                  <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;">
+                    <pre class="pre codeblock"><code>svbtxtp_user_id
+</code></pre>
+                  </td>
+
+                  <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;">
+                    <pre class="pre codeblock"><code>CHAR(30)
+</code></pre>
+                  </td>
+
+                </tr>
+
+              </tbody>
+</table>
+</div>
+
+          <p class="p">A record must exist in this file for each tuition fee amount corresponding to splits terms from the prior year for each student (PIDM). See a sample of this file in the installation ZIP file.</p>
+
+        </div>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Run the <code class="ph codeph"> t2202a_load_svbtxtp.shl </code> script.</span>
+        <div class="itemgroup info">
+          <p class="p">This script loads the <code class="ph codeph"> svbtxtp.dat </code> file into the SVBTXTP table.</p>
+
+        </div>
+      </li>
+</ol>
+
+  </div>
+
+</div></div></section>
+<section id="t-60"><h3>Set up terms for a tax year</h3><div class="content-locale-en-US content-locale-en"><div id="t_set_up_terms_a_tax_year"><div class="body taskbody"><p class="shortdesc">This procedure applies to T2202 and TL11x.</p>
+
+    <div class="tasklabel"><h2 class="sectiontitle tasklabel">Procedure</h2></div><ol class="ol steps"><li class="li step stepexpand">
+        <span class="ph cmd">Access the Federal Reporting Year Rules (SVAFRYR) page.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Enter the year to which you want to add terms, and go to the next block.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Enter the term code in the <span class="ph uicontrol">Term</span> field.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Enter a value in the <span class="ph uicontrol">Percent Fee</span> field.</span>
+        <div class="itemgroup info">
+          <p class="p">The Percent Fee values represent the portion of the term that falls in the tax year. The default is 100 but the value can be changed if necessary. The Percent Fee values are used only if the student calculation rules are used. If the CRN calculation rules are used, then the Percent Fee value is calculated based on the start and end date of the CRNs.</p>
+
+        </div>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Save the record(s).</span>
+      </li>
+</ol>
+
+  </div>
+
+</div></div></section>
+<section id="t-70"><h3>Set up tax year limits</h3><div class="content-locale-en-US content-locale-en"><div id="t_set_up_tax_year_limits"><div class="body taskbody"><p class="shortdesc">This procedure applies to T2202, Relevé 8, and TL11x.</p>
+
+    <div class="tasklabel"><h2 class="sectiontitle tasklabel">Procedure</h2></div><ol class="ol steps"><li class="li step stepexpand">
+        <span class="ph cmd">Access the Education/Tuition Amount Limits (SVATAXL) page.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">In a <span class="ph uicontrol">Tax Year</span> field, enter the desired year.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Enter an amount in the <span class="ph uicontrol">Full-time Amount</span> and <span class="ph uicontrol">Part-time Amount</span> fields to identify the education amount that is available for a tax credit per month as designated by the Canada Customs and Revenue Agency.</span>
+        <div class="itemgroup info">
+          <p class="p">This is for information only and is not used in any calculations.</p>
+
+        </div>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Enter an amount in the <span class="ph uicontrol">Full-time Hours per Week</span> field to identify the minimum number of hours per week needed to be considered full-time by the institution. </span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Enter an amount in the <span class="ph uicontrol">Part-time Hours per Week</span> field to identify the minimum number of hours per week needed to qualify for part-time status. </span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Enter a value in the <span class="ph uicontrol">Number of Reporting Periods</span> field.</span>
+        <div class="itemgroup info">
+          <p class="p">This value is the maximum number of reporting periods an institution sets for printing on the T2202 or TL11 form. The maximum number of reporting periods is four.</p>
+
+        </div>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Enter a <kbd class="ph userinput">P</kbd> or <kbd class="ph userinput">C</kbd> in the <span class="ph uicontrol">Paid or Charged</span> field to indicate if the eligible fees for calculating the Tuition Tax Credit (TTC) should be based on charged amounts (<kbd class="ph userinput">C</kbd>) or on paid amounts (<kbd class="ph userinput">P</kbd>).</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Check the <span class="ph uicontrol">Display on Web</span> field if yours is a Canadian institution that allows students to display and print their own T2202 or Relevé 8 forms from the Web.</span>
+        <div class="itemgroup info">
+          <div class="note"><span class="notetitle">Note:</span> United States institutions should not check this field because the TL11 forms must be signed by the administrators of the institution.</div>
+
+        </div>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">If your institution produces Relevé 8 forms, perform the following steps.</span>
+        <ol type="a" class="ol substeps">
+          <li class="li substep substepexpand">
+            <span class="ph cmd">Using the limits set by the Government of Quebec for Relevé 8 processing, enter values in the <span class="ph uicontrol">Session Amount</span> and <span class="ph uicontrol">Annual Amount</span> fields.</span>
+          </li>
+
+          <li class="li substep substepexpand">
+            <span class="ph cmd">Enter a value in the <span class="ph uicontrol">Maximum Number of Sessions</span> field.</span>
+            <div class="itemgroup info">
+              <p class="p">This value is the limit an institution will set for what constitutes a Relevé 8 session. The number of sessions usually resembles the same months that are associated with the institution’s term structure for full-time students. The maximum number of sessions is four.</p>
+
+            </div>
+          </li>
+
+        </ol>
+
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Enter <kbd class="ph userinput">1</kbd> or <kbd class="ph userinput">2</kbd> in the <span class="ph uicontrol">Mode Same Start Date Term</span> field to specify which term is to be used when two or more term codes share the same start date in the Student Table (SGBSTDN): the maximum term code (<kbd class="ph userinput">1</kbd>) or the term based on the student’s registration and the priority of the term (<kbd class="ph userinput">2</kbd>).</span>
+        <div class="itemgroup info">If you enter <kbd class="ph userinput">2</kbd> in the <span class="ph uicontrol">Mode Same Start Date Term</span> field, you must set up your priority rules.</div>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Save the record(s).</span>
+      </li>
+</ol>
+
+  </div>
+
+</div></div></section>
+<section id="t-80"><h3>Set up addresses for multi-institutional database users</h3><div class="content-locale-en-US content-locale-en"><div id="t_set_up_addresses_multi-institutional_database_users"><div class="body taskbody"><p class="shortdesc">This procedure applies to T2202 and TL11x.</p>
+
+    <div class="tasklabel"><h2 class="sectiontitle tasklabel">Procedure</h2></div><ol class="ol steps"><li class="li step">
+        <span class="ph cmd">Access the Campus Address Submission (SVAINAD) page.</span>
+      </li>
+<li class="li step">
+        <span class="ph cmd">Select the campus code, and go to the next block.</span>
+      </li>
+<li class="li step">
+        <span class="ph cmd">Enter the necessary address information.</span>
+      </li>
+<li class="li step">
+        <span class="ph cmd">Save the record(s).</span>
+      </li>
+</ol>
+
+  </div>
+
+</div></div></section>
+<section id="t-90"><h3>Set up enrollment status codes</h3><div class="content-locale-en-US content-locale-en"><div id="t_set_up_enrollment_status_codes"><div class="body taskbody"><p class="shortdesc">This procedure applies to T2202, Relevé 8, and TL11x.</p>
+
+    <div class="section context"><div class="tasklabel"><h2 class="sectiontitle tasklabel">About this task</h2></div>
+      <p class="p">The Enrollment Status Code Rules Definition (SVAESTS) page is used in combination with the student calculation rules. For each term a student is enrolled in a given tax year and student calculation rules are used, the enrollment status code rules calculate the qualifying months. For a term that does not have an enrollment status code defined in the tax year, the qualifying months calculation is ignored but the TTC calculation is performed.</p>
+
+    </div>
+
+    <div class="tasklabel"><h2 class="sectiontitle tasklabel">Procedure</h2></div><ol class="ol steps"><li class="li step stepexpand">
+        <span class="ph cmd">Access the Enrollment Status Code Rules Definition (SVAESTS) page.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Enter the year to which you want to add enrollment status codes, then go to the next block.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Enter the enrollment status code in the <span class="ph uicontrol">Enrollment Status Code</span> field.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Select the <span class="ph uicontrol">Default</span> indicator to use the term start and end dates for processing.</span>
+        <div class="itemgroup info">
+          <p class="p">-OR-</p>
+
+          <p class="p">Select the <span class="ph uicontrol">Early Exit</span> indicator to use the enrollment status date as the end date for processing.</p>
+
+        </div>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Save the record(s).</span>
+      </li>
+</ol>
+
+  </div>
+
+</div></div></section>
+<section id="t-100"><h3>Set up CRN registration status codes</h3><div class="content-locale-en-US content-locale-en"><div id="t_set_up_crn_registration_status_codes"><div class="body taskbody"><p class="shortdesc">This procedure applies to T2202, Relevé 8, and TL11x.</p>
+
+    <div class="section context"><div class="tasklabel"><h2 class="sectiontitle tasklabel">About this task</h2></div>
+      <p class="p">The Registration Status Code Rules Definition (SVARSTS) page is used in combination with the CRN calculation rules. An entry must be made for all registration status codes that will be used in the CRN base tax calculation. Registration status codes with missing entries are ignored in the qualifying month calculation.</p>
+
+    </div>
+
+    <div class="tasklabel"><h2 class="sectiontitle tasklabel">Procedure</h2></div><ol class="ol steps"><li class="li step stepexpand">
+        <span class="ph cmd">Access the Registration Status Code Rules Definition (SVARSTS) page.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Enter the year to which you want to add registration status codes.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Enter the registration status code in the <span class="ph uicontrol">Registration Status Code</span> field.</span>
+      </li>
+<li class="li step stepexpand" id="t_set_up_crn_registration_status_codes__t_set_up_crn_registration_status_codes-step1">
+        <span class="ph cmd">Select the <span class="ph uicontrol">Section Dates</span>, <span class="ph uicontrol">Meeting/Section</span>, <span class="ph uicontrol">Early Exit,</span> or <span class="ph uicontrol">Schedule Rules</span> option button to specify which start and end dates are to be used to calculate qualifying months.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">If you selected <span class="ph uicontrol">Schedule Rules</span> in <span class="xref ft-internal-link" data-ft-warning="excluded-from-rendering" data-mapid="xgr218WP_3TUOGeBZBRNng" data-tocid="ZMx4JTHJSM3eSoGZkWOjuA" data-section="t_set_up_crn_registration_status_codes__t_set_up_crn_registration_status_codes-step1">4</span>, select one of the following in the Registration <span class="ph uicontrol">Status Code Exception Rules</span> block:</span>
+        <div class="itemgroup info">
+          <ul class="ul">
+            <li class="li">
+              <span class="ph uicontrol">Open Entry/Open Exit</span>
+            </li>
+
+            <li class="li">
+              <span class="ph uicontrol">Section Dates</span>
+            </li>
+
+            <li class="li">
+              <span class="ph uicontrol">Meeting/Section</span>
+            </li>
+
+          </ul>
+
+        </div>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Save the record(s).</span>
+      </li>
+</ol>
+
+  </div>
+
+</div></div></section>
+<section id="t-110"><h3>Set up rules for all terms</h3><div class="content-locale-en-US content-locale-en"><div id="t_set_up_rules_all_terms"><div class="body taskbody"><p class="shortdesc">This procedure applies to T2202, Relevé 8, and TL11x.</p>
+
+    <div class="section context"><div class="tasklabel"><h2 class="sectiontitle tasklabel">About this task</h2></div>
+      <p class="p">You should attempt to capture most of the processing rules with the CRN calculation rules, and only use the student calculation rules when the data will not accurately reflect student activity.</p>
+
+      <p class="p">The HWE Rules (SVAHWER) page defines the rules used in the selection of student records, registration records and course records for calculation of qualifying months.</p>
+
+      <p class="p">Qualifying months and eligible tuition fees are somewhat independent of each other. Even if a student or a student’s CRNs are excluded from a term, the process checks to see if any eligible fees were paid for that term.</p>
+
+    </div>
+
+    <div class="tasklabel"><h2 class="sectiontitle tasklabel">Procedure</h2></div><ol class="ol steps"><li class="li step stepexpand">
+        <span class="ph cmd">Access the HWE Rules (SVAHWER) page.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Enter the term for which you want to define the rules, and go to the next block.</span>
+        <div class="itemgroup info">The following steps apply to all of the blocks in SVAHWER page:</div>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Enter a number in the <span class="ph uicontrol">Rule Number</span> field.</span>
+        <div class="itemgroup info">The order in the Rule Number field is very important because rules are processed from lowest to highest. When setting up the rules, do not enter consecutive numbers in case a rule has to be added in the future.</div>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Enter the characteristics that specify which students and which CRNs are calculated and excluded.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Save the record(s).</span>
+      </li>
+</ol>
+
+  </div>
+
+</div></div></section>
+<section id="t-120"><h3>Set up charitable donations codes</h3><div class="content-locale-en-US content-locale-en"><div id="t_set_up_charitable_donations_codes"><div class="body taskbody"><p class="shortdesc">This procedure applies to T2202. This procedure is not used by United States institutions or institutions that do not record charitable donation amounts.</p>
+
+    <div class="section context"><div class="tasklabel"><h2 class="sectiontitle tasklabel">About this task</h2></div>
+      <p class="p">The Charitable Donation Definition (SVACHAR) page captures charitable donation data for institutions that report this information on T2202s. The charitable donation detail codes must be on the student's account records for the tax year and cannot be a T2202 eligible detail code.</p>
+
+    </div>
+
+    <div class="tasklabel"><h2 class="sectiontitle tasklabel">Procedure</h2></div><ol class="ol steps"><li class="li step">
+        <span class="ph cmd">Access the <span class="keyword wintitle">Charitable Donation Definition (SVACHAR)</span> page.</span>
+      </li>
+<li class="li step">
+        <span class="ph cmd">Enter the tax year, and go to the next block.</span>
+      </li>
+<li class="li step">
+        <span class="ph cmd">Enter each charitable donation detail code applicable to the tax year specified in the Key block. </span>
+      </li>
+<li class="li step">
+        <span class="ph cmd">Save the record(s).</span>
+      </li>
+</ol>
+
+  </div>
+
+</div></div></section>
+<section id="t-130"><h3>Set up ancillary fee detail codes</h3><div class="content-locale-en-US content-locale-en"><div id="t_set_up_ancillary_fee_detail_codes"><div class="body taskbody"><p class="shortdesc">Use the procedure listed in this section to set up ancillary fee detail codes.</p>
+
+    <div class="section context"><div class="tasklabel"><h2 class="sectiontitle tasklabel">About this task</h2></div>
+      <p class="p">When ancillary fees or charges paid in respect of an individual's enrolment at a post-secondary educational institution would qualify for the tuition tax credit, but the payment of those fees or charges is not required from all of the institution's full-time students or part-time students, an amount not in excess of the value in the Ancillary Limit field of the Education/Tuition Amount Limits (SVATAXL) page for a tax year in respect of those ancillary fees can be included in computing the individual's tuition tax credit. This is applicable for 2014 and subsequent years in respect of those ancillary fees that can be included in computing the individual's tuition tax credit.</p>
+
+    </div>
+
+    <div class="tasklabel"><h2 class="sectiontitle tasklabel">Procedure</h2></div><ol class="ol steps"><li class="li step">
+        <span class="ph cmd">Access the <span class="keyword wintitle">Ancillary Fees Detail Code (SVAANCI)</span> page.</span>
+      </li>
+<li class="li step">
+        <span class="ph cmd">Enter the tax year and go to the next block.</span>
+      </li>
+<li class="li step">
+        <span class="ph cmd">Add a record for each T2202 eligible ancillary fee detail code to be used for the specified tax year.</span>
+      </li>
+<li class="li step">
+        <span class="ph cmd">Save your changes.</span>
+      </li>
+</ol>
+
+  </div>
+
+</div></div></section>
+<section id="t-140"><h4>Copy ancillary fee detail codes from one tax year to another</h4><div class="content-locale-en-US content-locale-en"><div id="t_copy_ancillary_fee_detail_codes_from_one_tax_year_another"><div class="body taskbody"><p class="shortdesc">You can copy the ancillary fee detail codes from one tax year to another using the following method.</p>
+
+    <div class="tasklabel"><h2 class="sectiontitle tasklabel">Procedure</h2></div><ol class="ol steps"><li class="li step">
+        <span class="ph cmd">Access the <span class="keyword wintitle">Ancillary Fees Detail Code (SVAANCI)</span> page.</span>
+      </li>
+<li class="li step">
+        <span class="ph cmd">Enter the tax year from which records are to be copied and go to the next block.</span>
+      </li>
+<li class="li step">
+        <span class="ph cmd">Select Copy from the Options menu.</span>
+      </li>
+<li class="li step">
+        <span class="ph cmd">Enter the tax to which records are to be copied.</span>
+      </li>
+<li class="li step">
+        <span class="ph cmd">Click <span class="ph uicontrol">OK</span>.</span>
+      </li>
+</ol>
+
+  </div>
+
+</div></div></section>
+<section id="t-150"><h3>Set up reporting periods for T2202s and TL11s</h3><div class="content-locale-en-US content-locale-en"><div id="t_set_up_reporting_periods_t2202as_tl11s"><div class="body taskbody"><p class="shortdesc">This procedure applies to T2202 and TL11x.</p>
+
+    <div class="tasklabel"><h2 class="sectiontitle tasklabel">Procedure</h2></div><ol class="ol steps"><li class="li step stepexpand">
+        <span class="ph cmd">Access the <span class="keyword wintitle">T2202A Reporting Period (SVATXRP)</span> page.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Enter the tax year and go to the next block.</span>
+      </li>
+<li class="li step stepexpand" id="t_set_up_reporting_periods_t2202as_tl11s__t_set_up_reporting_periods_t2202as_tl11s-step1">
+        <span class="ph cmd">Enter the last month of the first reporting period in the <strong class="ph b">To Month</strong> field.</span>
+        <div class="itemgroup info">The first value in the From Month field is 1, and the subsequent values are the To Month value plus 1.</div>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Repeat <span class="xref ft-internal-link" data-ft-warning="excluded-from-rendering" data-mapid="xgr218WP_3TUOGeBZBRNng" data-tocid="ZbCPZutzsm258~Tdg8mOcg" data-section="t_set_up_reporting_periods_t2202as_tl11s__t_set_up_reporting_periods_t2202as_tl11s-step1">3</span> for each reporting period.</span>
+        <div class="itemgroup info">The final value in the To Month field must be 12 to ensure all twelve calendar months are covered.</div>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Save the records.</span>
+      </li>
+<li class="li step stepexpand" id="t_set_up_reporting_periods_t2202as_tl11s__t_set_up_reporting_periods_t2202as_tl11s-step2">
+        <span class="ph cmd">Select the record for the first reporting period in the base block, then go to the next block.</span>
+      </li>
+<li class="li step stepexpand" id="t_set_up_reporting_periods_t2202as_tl11s__t_set_up_reporting_periods_t2202as_tl11s-step3">
+        <span class="ph cmd">Enter the desired term in the <span class="ph uicontrol">Associated Term to Report Period</span> field.</span>
+        <div class="itemgroup info">A term can be used in multiple reporting periods, if needed.</div>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">If you want to associate multiple terms with the selected reporting period repeat <span class="xref ft-internal-link" data-ft-warning="excluded-from-rendering" data-mapid="xgr218WP_3TUOGeBZBRNng" data-tocid="ZbCPZutzsm258~Tdg8mOcg" data-section="t_set_up_reporting_periods_t2202as_tl11s__t_set_up_reporting_periods_t2202as_tl11s-step3">7</span> for each additional term.</span>
+      </li>
+<li class="li step stepexpand" id="t_set_up_reporting_periods_t2202as_tl11s__t_set_up_reporting_periods_t2202as_tl11s-step4">
+        <span class="ph cmd">Save the record(s).</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Repeat <span class="xref ft-internal-link" data-ft-warning="excluded-from-rendering" data-mapid="xgr218WP_3TUOGeBZBRNng" data-tocid="ZbCPZutzsm258~Tdg8mOcg" data-section="t_set_up_reporting_periods_t2202as_tl11s__t_set_up_reporting_periods_t2202as_tl11s-step2">6</span> through <span class="xref ft-internal-link" data-ft-warning="excluded-from-rendering" data-mapid="xgr218WP_3TUOGeBZBRNng" data-tocid="ZbCPZutzsm258~Tdg8mOcg" data-section="t_set_up_reporting_periods_t2202as_tl11s__t_set_up_reporting_periods_t2202as_tl11s-step4">9</span> for each reporting period.</span>
+      </li>
+</ol>
+
+  </div>
+
+</div></div></section>
+<section id="t-160"><h3>Set up priority rules</h3><div class="content-locale-en-US content-locale-en"><div id="t_set_up_priority_rules"><div class="body taskbody"><p class="shortdesc">This procedure applies to T2202 and TL11x.</p>
+
+    <div class="section context"><div class="tasklabel"><h2 class="sectiontitle tasklabel">About this task</h2></div>
+      <p class="p">This procedure is optional and must be performed only if you entered 2 in the Mode Same Start Date Term field of the Education/Tuition Amount Limits (SVATAXL) page when you set up your tax year limits.</p>
+
+    </div>
+
+    <div class="tasklabel"><h2 class="sectiontitle tasklabel">Procedure</h2></div><ol class="ol steps"><li class="li step stepexpand">
+        <span class="ph cmd">Access the <span class="keyword wintitle">T2202A Based Terms Priority Rules Maintenance (SVATPRI)</span> page.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Enter the year to which you want to assign priority rules, then go to the next block.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">(optional) Select the <span class="ph uicontrol">Load Terms</span> option to populate SVATPRI with multiple terms that have the same start date defined on the Term Code Validation (STVTERM) page.</span>
+        <div class="itemgroup info">Only new terms will be loaded. Any terms that already exist on SVATPRI for the current tax year will not be updated using the <span class="ph uicontrol">Load Terms</span> option.<p class="p">-OR-</p>
+<p class="p">(optional) Select <span class="ph uicontrol">Copy Terms</span> from the Option menu to copy all of the terms that exist in the SVRTPRI table for the current tax year to a specified target year.</p>
+</div>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Enter values in the following fields:</span>
+        <div class="itemgroup info">
+          <ul class="ul">
+            <li class="li">
+              <span class="ph uicontrol">Term Code</span>
+            </li>
+
+            <li class="li">
+              <span class="ph uicontrol">Priority</span>
+            </li>
+
+          </ul>
+
+        </div>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Save the record(s). </span>
+      </li>
+</ol>
+
+  </div>
+
+</div></div></section>
+<section id="t-170"><h3>Add administrators</h3><div class="content-locale-en-US content-locale-en"><div id="t_add_administrators"><div class="body taskbody"><p class="shortdesc">This procedure applies to T2202 and Relevé 8.</p>
+
+    <div class="tasklabel"><h2 class="sectiontitle tasklabel">Procedure</h2></div><ol class="ol steps"><li class="li step stepexpand">
+        <span class="ph cmd">Access the <span class="ph">T2202A</span> Administrator (SVATADM) page</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Enter the ID of each user who has been designated as a <span class="ph">T2202A</span> administrator.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Save the record(s).</span>
+        <div class="itemgroup info">A WebTailor administrator must assign the new T2202A Canadian Tax Form Administrator web role to the T2202A administrator, so that they can view students' T2202 and Relevé 8 forms in Banner Student Self-Service 9.x. </div>
+      </li>
+</ol>
+
+  </div>
+
+</div></div></section>
+<section id="t-180"><h3>Set up sessions for Relevé 8s</h3><div class="content-locale-en-US content-locale-en"><div id="t_set_up_sessions_releve_8s"><div class="body taskbody"><p class="shortdesc">This procedure applies to Relevé 8. This procedure is not used by United States institutions or institutions that do not produce Relevé 8 forms.</p>
+
+    <div class="tasklabel"><h2 class="sectiontitle tasklabel">Procedure</h2></div><ol class="ol steps"><li class="li step stepexpand">
+        <span class="ph cmd">Access the <span class="keyword wintitle">Relevé 8 Session Definition (SVARL8S)</span> page.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Enter the tax year and go to the next block.</span>
+      </li>
+<li class="li step stepexpand" id="t_set_up_sessions_releve_8s__t_set_up_sessions_releve_8s-step1">
+        <span class="ph cmd">Enter the last month of the first session in the <strong class="ph b">To Month</strong> field.</span>
+        <div class="itemgroup info">The first value in the From Month field is 1, and the subsequent values are the To Month value plus 1.</div>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Repeat <span class="xref ft-internal-link" data-ft-warning="excluded-from-rendering" data-mapid="xgr218WP_3TUOGeBZBRNng" data-tocid="nveBPjRut0q4DWhPTihImw" data-section="t_set_up_sessions_releve_8s__t_set_up_sessions_releve_8s-step1">3</span> for each session.</span>
+        <div class="itemgroup info">The final value in the To Month field must be 12 to ensure all twelve calendar months are covered.</div>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Save the records.</span>
+      </li>
+</ol>
+
+  </div>
+
+</div></div></section>
+<section id="t-190"><h3>Set up numbers for Relevé 8s</h3><div class="content-locale-en-US content-locale-en"><div id="r_set_up_numbers_releve_8s"><div class="body refbody"><p class="shortdesc">This procedure applies to Relevé 8. Your institution needs to have the following numbers and codes before you can submit an XML file to Revenu Québec.</p>
+
+    
+<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" id="r_set_up_numbers_releve_8s__r_set_up_numbers_releve_8s-utbl1" class="table" frame="hsides" border="1" rules="rows"><colgroup><col><col></colgroup><thead class="thead" style="text-align:left;vertical-align:bottom;">
+          <tr class="row">
+            <th class="entry row-nocellborder" style="text-align:left;vertical-align:bottom;" id="d9369e46">Number or Code</th>
+
+            <th class="entry row-nocellborder" style="text-align:left;vertical-align:bottom;" id="d9369e49">Contact</th>
+
+          </tr>
+
+        </thead>
+<tbody class="tbody">
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d9369e46 ">Transmitter Number</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d9369e49 ">Division de l'acquisition des données électroniques - Revenu Québec</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d9369e46 ">XML Sequence Number Range</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d9369e49 ">Division de l'acquisition des données électroniques - Revenu Québec</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d9369e46 ">Educational Institution Code</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d9369e49 ">Department de l'Éducation, du Loisir et du Sport</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d9369e46 ">Québec Enterprise Number (NEQ)</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d9369e49 ">Services Québec</td>
+
+          </tr>
+
+        </tbody>
+</table>
+</div>
+
+  </div>
+
+</div></div></section>
+<section id="t-200"><h3>Set up transmitter data for Relevé 8s</h3><div class="content-locale-en-US content-locale-en"><div id="t_set_up_transmitter_data_releve_8s"><div class="body taskbody"><p class="shortdesc">This procedure applies to Relevé 8. This procedure is not used by United States institutions or institutions that do not produce Relevé 8 forms.</p>
+
+    <div class="section context"><div class="tasklabel"><h2 class="sectiontitle tasklabel">About this task</h2></div>
+      <p class="p">This procedure should be performed for each new year. You can use the Copy option to copy existing data to a target year.</p>
+
+    </div>
+
+    <div class="tasklabel"><h2 class="sectiontitle tasklabel">Procedure</h2></div><ol class="ol steps"><li class="li step stepexpand">
+        <span class="ph cmd">Access the <span class="keyword wintitle">XML Transmission Information Control (SVAXLTM)</span> page.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Enter the year and report type code (REL8) to which you want to enter information, and go to the next block.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Enter the information in the <span class="ph uicontrol">Transmitter</span> block.</span>
+        <div class="itemgroup info">The Transmitter Number is acquired from the Division de l'acquisition des données électroniques. Canadian postal codes must be entered without spaces in the following format: A1A1A1. If a valid postal code does not exist, enter <kbd class="ph userinput">A1A1A1</kbd>. If entering a US ZIP code, enter the first five or six digits.</div>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Enter information about the IT contact in the <span class="ph uicontrol">Computer Resource</span> block.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Enter information about the accountant contact in the <span class="ph uicontrol">Accounting Resources</span> block.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Enter information in the <span class="ph uicontrol">Institution</span> block.</span>
+        <div class="itemgroup info">The code is acquired from Department de l'Éducation, du Loisir et du Sport. If the address fields are left blank, the information from the Installation Controls (GUAINST) page is used. Canadian postal codes must be entered without spaces in the following format: A1A1A1. If a valid postal code does not exist, enter <kbd class="ph userinput">A1A1A1</kbd>. If entering a US ZIP code, enter the first five or six digits. The Québec enterprise number is acquired from Services Québec.</div>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Save the record.</span>
+      </li>
+</ol>
+
+  </div>
+
+</div></div></section>
+<section id="t-210"><h3>Set up transmitter data for T2202</h3><div class="content-locale-en-US content-locale-en"><div id="t_set_up_transmitter_data_t2202a"><div class="body taskbody"><p class="shortdesc">This procedure applies to T2202. </p>
+
+    <div class="section context"><div class="tasklabel"><h2 class="sectiontitle tasklabel">About this task</h2></div>
+      <p class="p">This procedure should be performed for each new year. You can use the <span class="ph uicontrol">Copy</span> option to copy existing data to a target year.</p>
+
+    </div>
+
+    <div class="tasklabel"><h2 class="sectiontitle tasklabel">Procedure</h2></div><ol class="ol steps"><li class="li step">
+        <span class="ph cmd">Access the <span class="keyword wintitle">XML Transmission Information Control (SVAXLTM)</span> page.</span>
+      </li>
+<li class="li step">
+        <span class="ph cmd">Enter the year and report type code (T2202) to which you want to enter information, and go to the next block.</span>
+      </li>
+<li class="li step">
+        <span class="ph cmd">Enter the information in the <span class="ph uicontrol">Transmitter</span> block.</span>
+      </li>
+<li class="li step">
+        <span class="ph cmd">Enter information about the IT contact in the <span class="ph uicontrol">Computer Resource</span> block.</span>
+      </li>
+<li class="li step">
+        <span class="ph cmd">Enter information about the accountant contact in the <span class="ph uicontrol">Accounting Resources</span> block.</span>
+      </li>
+<li class="li step">
+        <span class="ph cmd">Enter information in the <span class="ph uicontrol">Institution</span> block.</span>
+      </li>
+<li class="li step">
+        <span class="ph cmd">Save the record.</span>
+      </li>
+</ol>
+
+  </div>
+
+</div></div></section>
+<section id="t-220"><h3>Set up XML sequence numbers</h3><div class="content-locale-en-US content-locale-en"><div id="t_set_up_xml_sequence_numbers"><div class="body taskbody"><p class="shortdesc">This procedure applies to Relevé 8.</p>
+
+    <div class="tasklabel"><h2 class="sectiontitle tasklabel">Procedure</h2></div><ol class="ol steps"><li class="li step">
+        <span class="ph cmd">Access the <span class="keyword wintitle">Relevé 8 Institution XML Sequence Number Control (SVARXSQ)</span> page.</span>
+      </li>
+<li class="li step">
+        <span class="ph cmd">Enter the tax year for which Revenu Québec assigned the range of XML sequence numbers.</span>
+      </li>
+<li class="li step">
+        <span class="ph cmd">In the <span class="ph uicontrol">First XML Number</span> field, enter the first XML number of the range given by Revenu Québec to calculate a check digit.</span>
+      </li>
+<li class="li step">
+        <span class="ph cmd">In the <span class="ph uicontrol">Maximum XML Numbers Allowed</span> field, enter the maximum amount of XML numbers that fall under the range assigned by Revenu Québec.</span>
+      </li>
+<li class="li step">
+        <span class="ph cmd">Save the record(s).</span>
+      </li>
+</ol>
+
+  </div>
+
+</div></div></section>
+<section id="t-230"><h3>Set up crosswalk entries</h3><div class="content-locale-en-US content-locale-en"><div id="t_set_up_crosswalk_entries"><div class="body taskbody"><p class="shortdesc">This procedure applies to T2202 and Relevé 8. This procedure describes how to set up crosswalk values needed for <span class="ph">T2202A</span> processing.</p>
+
+    <div class="tasklabel"><h2 class="sectiontitle tasklabel">Procedure</h2></div><ol class="ol steps"><li class="li step stepexpand">
+        <span class="ph cmd">Access the <span class="keyword wintitle">Crosswalk Validation (GTVSDAX)</span> page.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Create records with the following values.</span>
+        <div class="itemgroup info">
+          
+<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" id="t_set_up_crosswalk_entries__t_set_up_crosswalk_entries-utbl1" class="table" frame="hsides" border="1" rules="rows"><colgroup><col><col><col><col><col></colgroup><thead class="thead" style="text-align:left;vertical-align:bottom;">
+                <tr class="row">
+                  <th class="entry row-nocellborder" style="text-align:left;vertical-align:bottom;" id="d11608e74">Internal Code</th>
+
+                  <th class="entry row-nocellborder" style="text-align:left;vertical-align:bottom;" id="d11608e77">Internal Seq</th>
+
+                  <th class="entry row-nocellborder" style="text-align:left;vertical-align:bottom;" id="d11608e80">Internal Group</th>
+
+                  <th class="entry row-nocellborder" style="text-align:left;vertical-align:bottom;" id="d11608e83">Description</th>
+
+                  <th class="entry row-nocellborder" style="text-align:left;vertical-align:bottom;" id="d11608e86">External Code</th>
+
+                </tr>
+
+              </thead>
+<tbody class="tbody">
+                <tr class="row">
+                  <td class="entry nocellnorowborder" style="text-align:left;vertical-align:top;" headers="d11608e74 ">ADDR_HIER</td>
+
+                  <td class="entry nocellnorowborder" style="text-align:left;vertical-align:top;" headers="d11608e77 ">1</td>
+
+                  <td class="entry nocellnorowborder" style="text-align:left;vertical-align:top;" headers="d11608e80 ">T2202A</td>
+
+                  <td class="entry nocellnorowborder" style="text-align:left;vertical-align:top;" headers="d11608e83 ">1MA</td>
+
+                  <td class="entry nocellnorowborder" style="text-align:left;vertical-align:top;" headers="d11608e86 ">ADDR_HIER</td>
+
+                </tr>
+
+                <tr class="row">
+                  <td class="entry row-nocellborder" colspan="5" style="text-align:left;vertical-align:top;" headers="d11608e74 d11608e77 d11608e80 d11608e83 d11608e86 ">
+                    <div class="note"><span class="notetitle">Note:</span> For the ADDR_HIER internal code, if the default address type is different than the one in your system, edit the description field to replace the value. If there are multiple address types in your system, you must add new entries with different sequence numbers that match the hierarchy you have defined in the SVPTAXC and SVPREL8 processes for the Address Type Hierarchy parameter.</div>
+
+                  </td>
+
+                </tr>
+
+                <tr class="row">
+                  <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d11608e74 ">BN</td>
+
+                  <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d11608e77 ">1</td>
+
+                  <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d11608e80 ">T2202A</td>
+
+                  <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d11608e83 ">Charity Registration Number</td>
+
+                  <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d11608e86 ">Charitable Donation Business registration number</td>
+
+                </tr>
+
+                <tr class="row">
+                  <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d11608e74 ">CAN</td>
+
+                  <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d11608e77 ">1</td>
+
+                  <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d11608e80 ">T2202A</td>
+
+                  <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d11608e83 ">T2202A Canadian Nation Code</td>
+
+                  <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d11608e86 ">(your institution’s nation code for Canada on STVNATN)</td>
+
+                </tr>
+
+                <tr class="row">
+                  <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d11608e74 ">OLR_SEG</td>
+
+                  <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d11608e77 ">1</td>
+
+                  <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d11608e80 ">T2202A</td>
+
+                  <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d11608e83 ">OLR course segments selection</td>
+
+                  <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d11608e86 ">1 if you want all segments to be selected for Open Learning Registration calculations. (Default) <p class="p">2 if you want only segment zero to be selected for Open Learning Registration calculations.</p>
+</td>
+
+                </tr>
+
+                <tr class="row">
+                  <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d11608e74 ">USA</td>
+
+                  <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d11608e77 ">1</td>
+
+                  <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d11608e80 ">T2202A</td>
+
+                  <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d11608e83 ">T2202A USA Nation Code</td>
+
+                  <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d11608e86 ">(your institution’s nation code for the US on STVNATN)</td>
+
+                </tr>
+
+              </tbody>
+</table>
+</div>
+
+        </div>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Save the record(s).</span>
+      </li>
+</ol>
+
+  </div>
+
+</div></div></section>
+<section id="t-240"><h3>Add administrator Web pages to Banner Self-Service</h3><div class="content-locale-en-US content-locale-en"><div id="t_add_administrator_web_pages_banner_self-service"><div class="body taskbody"><p class="shortdesc">This procedure applies to T2202 and Relevé 8.</p>
+
+    <div class="section context"><div class="tasklabel"><h2 class="sectiontitle tasklabel">About this task</h2></div>
+      <p class="p">Use this procedure to add the Canadian Tax Forms link to a Self-Service menu. The Canadian Tax Forms link will go to the <span class="ph">T2202A</span> web pages. This allows administrators who are set up in the <span class="ph">T2202A</span> Administrator (SVATADM) page but are not part of the Student module to access <span class="ph">T2202A</span> Web pages for a student.</p>
+
+      <p class="p">If this task is not performed, only administrators who are part of the Student module will be able to access the <span class="ph">T2202A</span> web pages.</p>
+
+      <p class="p">The <code class="ph codeph"> t2202a_admin_web.sql </code> script must be run for each module menu to which you want to add the Canadian Tax Forms link. For example, if you want to add the link to all seven <span class="ph">Banner</span> modules, the script needs to be run seven times.</p>
+
+      <div class="note warning"><span class="warningtitle">Warning:</span> Before you run the <code class="ph codeph"> t2202a_admin_web.sql </code> script, you must be sure of where you want to add the link. When a link is added, the only way to remove it is by using Web Tailor.</div>
+
+      <p class="p">The following table provide a list of modules, roles, and menus used by the script to create the link.</p>
+
+      
+<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" id="t_add_administrator_web_pages_banner_self-service__t_add_administrator_web_pages_banner_self-service-utbl1" class="table" frame="hsides" border="1" rules="rows"><colgroup><col style="width:20%"><col style="width:20%"><col style="width:20%"><col style="width:20%"><col style="width:20%"></colgroup><thead class="thead" style="text-align:left;vertical-align:bottom;">
+            <tr class="row">
+              <th class="entry row-nocellborder" style="text-align:left;vertical-align:bottom;" id="d26550e92">Option</th>
+
+              <th class="entry row-nocellborder" style="text-align:left;vertical-align:bottom;" id="d26550e95">Module</th>
+
+              <th class="entry row-nocellborder" style="text-align:left;vertical-align:bottom;" id="d26550e98">Web Role</th>
+
+              <th class="entry row-nocellborder" style="text-align:left;vertical-align:bottom;" id="d26550e101">Menu Link</th>
+
+              <th class="entry row-nocellborder" style="text-align:left;vertical-align:bottom;" id="d26550e104">Menu Name (Baseline)</th>
+
+            </tr>
+
+          </thead>
+<tbody class="tbody">
+            <tr class="row">
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d26550e92 ">Employee Self-Service</td>
+
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d26550e95 ">Employee Self Service</td>
+
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d26550e98 ">EMPLOYEE</td>
+
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d26550e101 ">pmenu.P_​​MainMnu</td>
+
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d26550e104 ">Employee</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d26550e92 ">Faculty and Advisors Self-Service</td>
+
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d26550e95 ">Faculty and Advisors Self-Service</td>
+
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d26550e98 ">FACULTY</td>
+
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d26550e101 ">bmenu.P_​FacMainMnu</td>
+
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d26550e104 ">Faculty and Advisors</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d26550e92 ">Financial Aid Self-Service</td>
+
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d26550e95 ">Student Self-Service - Financial Aid Menu</td>
+
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d26550e98 ">STUDENT</td>
+
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d26550e101 ">bmenu.P_​FAApplStuMnu</td>
+
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d26550e104 ">Financial Aid</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d26550e92 ">Student Self-Service</td>
+
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d26550e95 ">Student Self-Service</td>
+
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d26550e98 ">STUDENT</td>
+
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d26550e101 ">bmenu.P_​StuMainMnu</td>
+
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d26550e104 ">Student and Financial Aid</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d26550e92 ">Accounts Receivable Self-Service</td>
+
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d26550e95 ">Student Self-Service - Student Account Menu</td>
+
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d26550e98 ">STUDENT</td>
+
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d26550e101 ">bmenu.P_​ARMnu</td>
+
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d26550e104 ">Student Account</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d26550e92 ">Finance Self-Service</td>
+
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d26550e95 ">Finance Self-Service</td>
+
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d26550e98 ">FINANCE</td>
+
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d26550e101 ">bmenu.P_​FinanceMnu</td>
+
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d26550e104 ">Finance</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d26550e92 ">Alumni and Friends Self-Service</td>
+
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d26550e95 ">Alumni Self-Service</td>
+
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d26550e98 ">ALUMNI</td>
+
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d26550e101 ">bmenu.P_AluMnu</td>
+
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d26550e104 ">Alumni and Friends</td>
+
+            </tr>
+
+          </tbody>
+</table>
+</div>
+
+    </div>
+
+    <div class="tasklabel"><h2 class="sectiontitle tasklabel">Procedure</h2></div><ol class="ol steps"><li class="li step stepexpand">
+        <span class="ph cmd">Run the <code class="ph codeph"> t2202a_admin_web.sql </code> script as follows.</span>
+        <ol type="a" class="ol substeps">
+          <li class="li substep substepexpand">
+            <span class="ph cmd">Enter <kbd class="ph userinput">sqlplus /nolog @t2202a_admin_web.sql</kbd> in the Command Prompt window.</span>
+          </li>
+
+          <li class="li substep substepexpand">
+            <span class="ph cmd">When the instructions are displayed on the screen, press Enter.</span>
+          </li>
+
+          <li class="li substep substepexpand">
+            <span class="ph cmd">Enter the number of the module to which you want to add the new menu entry, and press Enter.</span>
+            <div class="itemgroup info">
+              <p class="p">You can only enter one module number at a time. You must rerun the <code class="ph codeph"> t2202a_admin_web.sql </code> script for each module to which you want to add the Canadian Tax Forms link.</p>
+
+              <p class="p">The following illustration shows the scripts that are automatically run when the desired module has been entered. The scripts will create a link on the menu of the selected module. For the purpose of providing an example, the following screen shot displays the data associated with choice 5 (Accounts Receivable) as the module.</p>
+
+            </div>
+          </li>
+
+        </ol>
+
+        <div class="itemgroup info">
+          <div class="p">
+            <br><img class="image" alt="sql_script" data-ft-asset-display-name="SqlScript_3_scripts.gif" src="images/02-setup-1.gif" data-ft-resource-id="7baaSsjxXdYfXMt81rugQA-xgr218WP_3TUOGeBZBRNng"><br>
+          </div>
+
+        </div>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Go to the Self-Service menu of the entered module and verify that the <span class="ph uicontrol">Canadian Tax Form</span> link has been added, as shown in the following illustration.</span>
+        <div class="itemgroup info">
+          <p class="p">In the illustration, the link was added to the Main menu (bmenu.P_MainMnu).</p>
+
+        </div>
+      </li>
+</ol>
+
+    <div class="section result"><div class="tasklabel"><h2 class="sectiontitle tasklabel">Results</h2></div>
+      <div class="p">
+        <br><img class="image" alt="menu_1" data-ft-asset-display-name="Menu_1.gif" src="images/02-setup-2.gif" data-ft-resource-id="0C6SLcwwvaceXIeqznF9kw-xgr218WP_3TUOGeBZBRNng"><br>
+      </div>
+
+    </div>
+
+  </div>
+
+</div></div></section>
+<section id="t-250"><h3>Enable PDF printing of RL-8 forms, T2202 forms, and charitable donation receipts</h3><div class="content-locale-en-US content-locale-en"><div id="t_enable_pdf_printing_rl-8_forms_t2202a_forms_charitable_donation_receipts"><div class="body taskbody"><p class="shortdesc">This procedure applies to T2202 and Relevé 8.</p>
+
+    <div class="section context"><div class="tasklabel"><h2 class="sectiontitle tasklabel">About this task</h2></div>
+      <div class="p">The following procedure explains how to allow student and administrative users to print the following in PDF format using Self-Service: <ul class="ul"> <li class="li">RL-8 forms</li>
+ <li class="li">T2202 forms</li>
+ <li class="li">Charitable donation receipts</li>
+ </ul>
+</div>
+
+      <p class="p">
+        <strong class="ph b">Prerequisite</strong>
+      </p>
+
+      <p class="p">Your system administrator must deploy the <span class="ph">T2202A</span>_PDF.war file properly. For more information, please refer to the <span class="ph">T2202A</span> Java PDF Application Deployment Guide. The URL that points to the JAVA application will be used in this procedure.</p>
+
+      <div class="note"><span class="notetitle">Note:</span> The WAR file includes XSL templates that are written in Extensible Stylesheet Language Formatting Objects (XSL-FO), per W3C recommendations. The Java application uses Apache Formatting Objects Processor (FOP), a print formatter driven by XSL-FO, to transform an XML document into PDF format. The XML document contains T2202 data, charitable donation receipt data, or RL-8 data, which is extracted from the database.</div>
+
+    </div>
+
+    <div class="tasklabel"><h2 class="sectiontitle tasklabel">Procedure</h2></div><ol class="ol steps"><li class="li step stepexpand">
+        <span class="ph cmd">Access the <span class="keyword wintitle">Crosswalk Validation (GTVSDAX)</span> page.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Enter the URL used for PDF processing in the <span class="ph uicontrol">Description</span> field for internal code PDF_URL in internal group <span class="ph">T2202A</span>.</span>
+        <div class="itemgroup info">If your URL is more than 30 characters, you must define a second row with sequence number 2, a third row (if necessary) with sequence number 3, and so on, each row with no more than 30 characters.
+<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" id="t_enable_pdf_printing_rl-8_forms_t2202a_forms_charitable_donation_receipts__t_enable_pdf_printing_rl-8_forms_t2202a_forms_charitable_donation_receipts-utbl1" class="table" frame="hsides" border="1" rules="rows"><colgroup><col style="width:11.534883720930232%"><col style="width:11.534883720930232%"><col style="width:9.953488372093023%"><col style="width:57.674418604651166%"><col style="width:9.30232558139535%"></colgroup><thead class="thead" style="text-align:left;vertical-align:bottom;"> <tr class="row"> <th class="entry row-nocellborder" style="text-align:left;vertical-align:bottom;" id="d36588e112">Internal Code</th>
+ <th class="entry row-nocellborder" style="text-align:left;vertical-align:bottom;" id="d36588e115">Internal Seq</th>
+ <th class="entry row-nocellborder" style="text-align:left;vertical-align:bottom;" id="d36588e118">Internal Group</th>
+ <th class="entry row-nocellborder" style="text-align:left;vertical-align:bottom;" id="d36588e121">Description</th>
+ <th class="entry row-nocellborder" style="text-align:left;vertical-align:bottom;" id="d36588e124">External Code</th>
+ </tr>
+ </thead>
+<tbody class="tbody"> <tr class="row"> <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d36588e112 ">PDF_URL</td>
+ <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d36588e115 ">1</td>
+ <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d36588e118 ">T2202A</td>
+ <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d36588e121 "> <a class="xref ft-external-link" href="http://www.thisuniversity.com:" target="_blank" rel="noopener">http://www.thisuniversity.com:</a> </td>
+
+          <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d36588e124 ">PDF_URL</td>
+ </tr>
+ <tr class="row"> <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d36588e112 ">PDF_URL</td>
+ <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d36588e115 ">2</td>
+ <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d36588e118 ">T2202A</td>
+ <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d36588e121 ">8080</td>
+ <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d36588e124 ">PDF_URL</td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<div class="note"><span class="notetitle">Note:</span> If your URL is over 30 characters, it does not matter where you divide the elements as long as no row contains more than 30 characters. For example, you could enter http:// for sequence 1 and www.thisuniversity.com:8080 for sequence 2.</div>
+</div>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Enter <kbd class="ph userinput">ON</kbd> in the <span class="ph uicontrol">Description</span> field for internal code PDF_SWITCH in internal group <span class="ph">T2202A</span>.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Save your changes.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">To support printing charitable donation receipts, replace the following delivered image files.</span>
+        <ol type="a" class="ol substeps">
+          <li class="li substep substepexpand">
+            <span class="ph cmd">Replace <code class="ph codeph"> bwvginstlogo.jpg </code> with your institution’s logo.</span>
+          </li>
+
+          <li class="li substep substepexpand">
+            <span class="ph cmd">Replace <code class="ph codeph"> bwvginstcharsig.jpg </code> with a scan of the signature of the person at your institution who is authorized to sign charitable donation receipts.</span>
+            <div class="itemgroup info">Your institution’s versions of these images must meet the following standards.<ul class="ul"> <li class="li">Both files must have the same names as the delivered ones, as these values are hard-coded into the software. If you use different names, your images will not be displayed on the charitable donation receipts.</li>
+
+              <li class="li">The logo size must be 93mm wide and 15mm high, and the signature must be 30mm wide and 10mm high. If your image sizes are different, the system will resize them to these sizes, which can cause them to appear distorted.</li>
+ </ul>
+</div>
+          </li>
+
+        </ol>
+
+      </li>
+</ol>
+
+  </div>
+
+</div></div></section></main></body></html>

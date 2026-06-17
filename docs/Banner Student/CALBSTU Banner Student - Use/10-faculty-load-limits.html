@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>CALBSTU Banner Student - Use — Faculty Load Limits</title><style>body{font-family:-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;line-height:1.55;color:#1a1a1a;max-width:920px;margin:0 auto;padding:24px}header{border-bottom:2px solid #5a16d6;margin-bottom:8px}h1{color:#3a0ca3}h2,h3,h4,h5,h6{margin-top:1.6em}.crumb{color:#666;font-size:13px;margin:0}.meta{color:#888;font-size:12px}nav.toc{background:#f6f4fc;border:1px solid #e3dcf5;border-radius:8px;padding:12px 18px;margin:18px 0}nav.toc h2{margin:.2em 0}nav.toc ul{list-style:none;padding-left:0}nav.toc a{text-decoration:none;color:#5a16d6}section{margin:1.2em 0;padding-top:.4em}img{max-width:100%;height:auto}table{border-collapse:collapse}td,th{border:1px solid #ccc;padding:4px 8px}code,pre{background:#f4f4f4;border-radius:4px}pre{padding:10px;overflow:auto}</style></head><body><header><p class="crumb">Banner Student › CALBSTU Banner Student - Use</p><h1>CALBSTU Banner Student - Use — Faculty Load Limits</h1><p class="meta">Source: <a href="https://resources.elluciancloud.com/r/bundle/banner_cal_calbstu_acn_use">https://resources.elluciancloud.com/r/bundle/banner_cal_calbstu_acn_use</a> &middot; Retrieved 2026-06-17</p></header><nav class="toc"><h2>Contents</h2><ul><li style="margin-left:0px"><a href="#t-420">Faculty Load Limits</a></li><li style="margin-left:16px"><a href="#t-430">Set up faculty load limits</a></li><li style="margin-left:16px"><a href="#t-440">FTE decimals - impact on load limiting</a></li><li style="margin-left:16px"><a href="#t-450">Faculty Load Limits Pages</a></li><li style="margin-left:16px"><a href="#t-460">Faculty Load Limits Tables</a></li><li style="margin-left:16px"><a href="#t-470">Faculty Load Limits Reports</a></li></ul></nav><main><section id="t-420"><h2>Faculty Load Limits</h2><div class="content-locale-en-US content-locale-en"><div id="c_faculty_load_limits"><div class="body conbody"><p class="shortdesc">This chapter discusses the Faculty Load Limit functionality for California Community College clients. This functionality allows institutions to track faculty load limits to ensure compliance with the 60% Rule.</p>
+
+    <p class="p">Baseline <span class="keyword">Banner</span>® Faculty Load functionality allows a faculty ID to have instructional (CRN) and non-instructional assignments in a term, with workload values for each. In the term setup is a full-time equivalent (FTE) factor, and this is used with the total term workload to calculate an ID’s total term FTE. This baseline functionality is used as the basis for the Faculty Load Limit functionality.</p>
+
+    <p class="p">The Faculty Load Limit functionality adds the ability to limit loads on certain categories of faculty members and certain terms. Terms can be coded to follow this new load-limiting logic, or to function as normal. Furthermore, the Faculty Staff Type Code Validation Page (STVFSTP) allows you to specify whether each faculty staff type code is subject to the load limit rule and establish the load limit percent (60% for regulation needs, or other percents for contract needs). If you indicate that a faculty staff type code is not subject to load limits, the IDs to which that type code is assigned will function the same as in baseline <span class="keyword">Banner</span>.</p>
+
+    <p class="p">You can also specify whether individual instructional (CRN) and non-instructional assignments are subject to load limits.</p>
+
+    <p class="p">The Faculty Load Limit functionality provides tools to review the multiple term loads in summary on a page or report after a warning or error has occurred. It does not check across multiple terms.</p>
+
+  </div>
+
+</div></div></section>
+<section id="t-430"><h3>Set up faculty load limits</h3><div class="content-locale-en-US content-locale-en"><div id="c_set_up_faculty_load_limits"><div class="body conbody"><p class="shortdesc">Where there are existing entries in baseline, the installation scripts for the Faculty Load Limit functionality enter the following default values in the <span class="ph uicontrol">Subject to Faculty Load Limit</span> fields for the new pages.</p>
+
+    <ul class="ul">
+      <li class="li">For the Faculty Staff Type Code Validation Page (STVFSTP), the <span class="ph uicontrol">Subject to Faculty Load Limit</span> check box defaults to unchecked (no).</li>
+
+      <li class="li">For the Assignment Type Code Validation Page (STVASTY), the <span class="ph uicontrol">Subject to Faculty Load Limit</span> check box defaults to checked (yes).</li>
+
+      <li class="li">For the Faculty Non-Instructional Type Code Validation Page (STVNIST), the <span class="ph uicontrol">Subject to Faculty Load Limit</span> check box defaults to checked (yes).</li>
+
+      <li class="li">For the Faculty Load Term Control Page (SIATERM), the <span class="ph uicontrol">Subject to Faculty Load Limit</span> check box defaults to unchecked (no).</li>
+
+    </ul>
+
+    <p class="p">You must review your pre-existing records on the new pages to ensure the settings are the way you want them to be.</p>
+
+    <p class="p">For SIATERM, because the load limit logic uses the FTE factor (that is, workload is divided by FTE factor), this allows you to review each term’s FTE factor before deciding whether to make the term subject to faculty load limits. If the FTE factor set up before you install the Faculty Load Limit functionality is incorrect or non-existent, load limiting messages will be inaccurate. You must, therefore, check the <span class="ph uicontrol">Term Subject to Faculty Load Limit</span> check box for each pre-existing term for which you want the use the Faculty Load Limit functionality.</p>
+
+  </div>
+
+</div></div></section>
+<section id="t-440"><h3>FTE decimals - impact on load limiting</h3><div class="content-locale-en-US content-locale-en"><div id="c_fte_decimals_-_impact_load_limiting"><div class="body conbody"><p class="shortdesc">Load limiting is on assignment FTE, not assignment workload. </p>
+
+    <p class="p">The load limit is compared to the sum of the rounded FTE calculations from each individual assignment. Because of the mathematical impact of repeating decimals (rounded or truncated), this can cause situations where the same total workload will sometimes be over the load limit and at other times be under the load limit. The reason for this is that the sum of the rounded FTEs on the assignments does not equal the same value.</p>
+
+    <div class="p">For example, let’s say you have the following: <ul class="ul"> <li class="li">Term FTE Factor = 15</li>
+ <li class="li">Instructor A and B both have load limits of 0.200</li>
+ <li class="li">Instructor A has one assignment with a workload of 3</li>
+ <li class="li">Instructor B has three assignments with workloads of 1 each (3 workload total)</li>
+ </ul>
+</div>
+
+    <p class="p">In this case, evaluating load limits would result in the following.</p>
+
+    
+<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" id="c_fte_decimals_-_impact_load_limiting__c_fte_decimals_-_impact_load_limiting-utbl1" class="table" frame="hsides" border="1" rules="rows"><colgroup><col><col><col></colgroup><thead class="thead" style="text-align:left;vertical-align:bottom;">
+          <tr class="row">
+            <th class="entry row-nocellborder" style="text-align:left;vertical-align:bottom;" id="d6723e74">&nbsp;</th>
+
+            <th class="entry row-nocellborder" style="text-align:left;vertical-align:bottom;" id="d6723e76">Instructor A</th>
+
+            <th class="entry row-nocellborder" style="text-align:left;vertical-align:bottom;" id="d6723e79">Instructor B</th>
+
+          </tr>
+
+        </thead>
+<tbody class="tbody">
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d6723e74 ">Assignment 1 FTE calculation</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d6723e76 ">3 / 15 = 0.200</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d6723e79 ">1 / 15 = 0.067</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d6723e74 ">Assignment 2 FTE calculation</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d6723e76 ">--</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d6723e79 ">1 / 15 = 0.067</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d6723e74 ">Assignment 3 FTE calculation</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d6723e76 ">--</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d6723e79 ">1 / 15 = 0.067</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d6723e74 ">Total FTE</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d6723e76 ">0.200</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d6723e79 ">0.201</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d6723e74 ">Load limit result</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d6723e76 ">No error: .2 &lt;= .2</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d6723e79 ">Over load limit: .201 &gt; .2</td>
+
+          </tr>
+
+        </tbody>
+</table>
+</div>
+
+    <p class="p">For both instructors, the total workload is 3, but workload is not the value used for load limiting. The sums of the assignments’ rounded FTEs are different for the instructors. Therefore, the one instructor is considered over the load limit, while the other is not.</p>
+
+  </div>
+
+</div></div></section>
+<section id="t-450"><h3>Faculty Load Limits Pages</h3><div class="content-locale-en-US content-locale-en"><div id="c_faculty_load_limits_forms"><div class="body conbody"><p class="shortdesc">The following pages were added or modified to support the Faculty Load Limits functionality.</p>
+
+    <ul class="ul">
+      <li class="li">Faculty Staff Type Code Validation Page (STVFSTP)</li>
+
+      <li class="li">Faculty Load Term Control Page (SIATERM)</li>
+
+      <li class="li">Faculty ID/Term-Specific Load Limits Page (SVALOLI)</li>
+
+      <li class="li">Assignment Type Code Validation Page (STVASTY)</li>
+
+      <li class="li">Faculty Non-Instructional Type Code Validation Page (STVNIST)</li>
+
+      <li class="li">Faculty Assignment (SIAASGN)</li>
+
+      <li class="li">Schedule Page (SSASECT)</li>
+
+      <li class="li">Faculty ID Load History Query Page (SVILOQR)</li>
+
+    </ul>
+
+    <p class="p">These pages are discussed in the <span class="keyword">Banner</span> CALBSTU Online Help.</p>
+
+  </div>
+
+</div></div></section>
+<section id="t-460"><h3>Faculty Load Limits Tables</h3><div class="content-locale-en-US content-locale-en"><div id="c_faculty_load_limits_tables"><div class="body conbody"><p class="shortdesc">The following tables were added or modified for the Faculty Load Limits functionality.</p>
+
+    <ul class="ul">
+      <li class="li">Faculty Load FTE and Calculation Factors Rules Base Table (SIBTERM)</li>
+
+      <li class="li">Faculty Member Instructional Assignment Repeating Table (SIRASGN)</li>
+
+      <li class="li">Assignment Type Validation Table (STVASTY)</li>
+
+      <li class="li">Faculty Staff Type Code Validation Table (STVFSTP)</li>
+
+      <li class="li">Faculty Non-Instructional Type Code Validation Table (STVNIST)</li>
+
+      <li class="li">Faculty ID/Term-Specific Load Limits Table (SVRLOLI)</li>
+
+      <li class="li">Non-Instructional Assignment Faculty Load Limit Overrides Table (SIRNIST)</li>
+
+    </ul>
+
+    <p class="p">These tables are discussed in <span class="xref ft-internal-link" title="This chapter discusses the baseline tables and the tables added for California processing." data-ft-warning="excluded-from-rendering" data-mapid="jL2UUBTQJR5uipmMJVsX5g" data-tocid="bErhqbDOVgv60Visq36Lqw" data-section="c_tables_used_california_processing">Tables used in California Processing</span>.</p>
+
+  </div>
+
+</div></div></section>
+<section id="t-470"><h3>Faculty Load Limits Reports</h3><div class="content-locale-en-US content-locale-en"><div id="c_faculty_load_limits_reports"><div class="body conbody"><p class="shortdesc">The following reports were added or modified for the Faculty Load Limits functionality.</p>
+
+    <ul class="ul">
+      <li class="li">Faculty ID/Term Load Limit Report (SVRLOLI)</li>
+
+      <li class="li">Faculty ID Load History Report (SVRLOQR)</li>
+
+      <li class="li">Term Analysis Report (SIRTRAL)</li>
+
+      <li class="li">Term Roll Report (SSRROLL)</li>
+
+    </ul>
+
+  </div>
+
+</div></div></section></main></body></html>

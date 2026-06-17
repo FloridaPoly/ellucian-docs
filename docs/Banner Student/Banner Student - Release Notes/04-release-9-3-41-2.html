@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Banner Student - Release Notes — Release 9.3.41.2</title><style>body{font-family:-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;line-height:1.55;color:#1a1a1a;max-width:920px;margin:0 auto;padding:24px}header{border-bottom:2px solid #5a16d6;margin-bottom:8px}h1{color:#3a0ca3}h2,h3,h4,h5,h6{margin-top:1.6em}.crumb{color:#666;font-size:13px;margin:0}.meta{color:#888;font-size:12px}nav.toc{background:#f6f4fc;border:1px solid #e3dcf5;border-radius:8px;padding:12px 18px;margin:18px 0}nav.toc h2{margin:.2em 0}nav.toc ul{list-style:none;padding-left:0}nav.toc a{text-decoration:none;color:#5a16d6}section{margin:1.2em 0;padding-top:.4em}img{max-width:100%;height:auto}table{border-collapse:collapse}td,th{border:1px solid #ccc;padding:4px 8px}code,pre{background:#f4f4f4;border-radius:4px}pre{padding:10px;overflow:auto}</style></head><body><header><p class="crumb">Banner Student › Banner Student - Release Notes</p><h1>Banner Student - Release Notes — Release 9.3.41.2</h1><p class="meta">Source: <a href="https://resources.elluciancloud.com/r/bundle/banner_student_rel_release_notes">https://resources.elluciancloud.com/r/bundle/banner_student_rel_release_notes</a> &middot; Retrieved 2026-06-17</p></header><nav class="toc"><h2>Contents</h2><ul><li style="margin-left:0px"><a href="#t-40">Release 9.3.41.2</a></li></ul></nav><main><section id="t-40"><h2>Release 9.3.41.2</h2><div class="content-locale-en-US content-locale-en"><div id="c_release_9.3.41.2"><div class="body conbody"><p class="shortdesc">The <span class="keyword">Banner Student</span> <span class="keyword">9.3.41.2</span> release includes quality improvements and technical currency updates.</p>
+
+    <div class="section supportnote"><h2 class="title sectiontitle">Support for Banner 8 Self-Service has ended</h2>
+      
+      <p class="p">As of January 1, 2026, <span class="keyword">Banner</span> 8 <span class="keyword">Self-Service</span> has moved out of Sustaining Support and has entered End of Support.</p>
+
+      <p class="p">For detailed information on support statuses, please review our <a class="xref ft-external-link" href="https://elluciansupport.service-now.com/customer_center?id=kb_article_view&amp;sysparm_article=000038478" target="_blank" rel="noopener">Support Assurance Policy</a>.</p>
+
+    </div>
+
+    <div class="section"><h2 class="title sectiontitle">Business Process APIs for CAPP Request Management</h2>
+      
+      <p class="p">A new <span class="keyword apiname">compliance-request-management</span> v1.0.0 BPAPI is introduced for the <span class="keyword wintitle">Compliance Request Management (SMARQCM)</span> page to enable automated, mass creation and management of CAPP Request records (SMRRQCM) as part of an integrated batch workflow with SMRBCMP.</p>
+
+      <p class="p">The GET and POST request methods are supported.</p>
+
+      <p class="p">The new BPAPI for SMARQCM allows institutions to:</p>
+
+      <ul class="ul">
+        <li class="li">POST CAPP requests (create SMRRQCM records) for a selected population or integration-driven workflow</li>
+
+        <li class="li">GET existing request records to validate and monitor request creation and status</li>
+
+      </ul>
+
+      <p class="p">The API enforces the same Banner validations and security as the SMARQCM Admin page and supports batch-scale processing patterns. The scope of the BPAPI is limited to the following sections of the SMARQCM Admin page:</p>
+
+      <ul class="ul">
+        <li class="li">Compliance Request Management</li>
+
+        <li class="li">Compliance Curriculum</li>
+
+      </ul>
+
+      <p class="p">Key benefits:</p>
+
+      <ul class="ul">
+        <li class="li">Minimizes operational errors and improves audit-ability through supported APIs</li>
+
+        <li class="li">Ensures timely CAPP outcomes for academic decision-making and downstream processes</li>
+
+        <li class="li">Enables evaluation of all active curricula, not just the first one processed by SMRBCMP, eliminating manual case-by-case handling</li>
+
+      </ul>
+
+      <p class="p">This enhancement addresses PE0007532 in the <span class="keyword">Ellucian Customer Center</span>.</p>
+
+    </div>
+
+    <div class="section"><h2 class="title sectiontitle">Business Process API for Study Path Management</h2>
+      
+      <p class="p">New <span class="keyword apiname">student-course-registration-study-path</span>, <span class="keyword apiname">general-student-study-path</span>, and <span class="keyword apiname">student-course-registration-enrollment-study-paths</span> v1.0.0 BPAPIs are introduced for the Study Path tab on the <span class="keyword wintitle">Student Course Registration (SFAREGS)</span> page to enable programmatic retrieval and updates of Study Path entries.</p>
+
+      <p class="p">The GET and PUT request methods are supported. The BPAPI for Study Path allows institutions to:</p>
+
+      <ul class="ul">
+        <li class="li">GET Study Path records to retrieve current status and details</li>
+
+        <li class="li">PUT updates to Study Path Status (<code class="ph codeph">SGRSTSP_STSP_CODE</code>) in line with Banner processing logic</li>
+
+      </ul>
+
+      <p class="p">Updating the Study Path Status is required across multiple stages of the academic lifecycle and academic processes, including:</p>
+
+      <ul class="ul">
+        <li class="li">Enrollment process</li>
+
+        <li class="li">Workflows</li>
+
+        <li class="li">Academic dismissal processes</li>
+
+        <li class="li">Graduation and degree conferral processes</li>
+
+        <li class="li">Program abandonment process</li>
+
+      </ul>
+
+      <p class="p">The API enforces the same data fields, validation, permissions, and business rules as the SFAREGS Admin page, preserving audit-ability and integrity checks without bypassing existing effective-dating or entity/MEP restrictions.</p>
+
+      <p class="p">Key benefits:</p>
+
+      <ul class="ul">
+        <li class="li">Enables safe automation of Study Path maintenance at scale, reducing manual effort and error</li>
+
+        <li class="li">Supports integration of Study Path updates into larger data pipelines for onboarding, curriculum changes, and corrections</li>
+
+        <li class="li">Improves operational efficiency and data consistency without compromising governance</li>
+
+        <li class="li">Preserves established business rules and audit trails</li>
+
+      </ul>
+
+      <p class="p">This enhancement addresses PE0007544 in the <span class="keyword">Ellucian Customer Center</span>.</p>
+
+    </div>
+
+    <div class="section"><h2 class="title sectiontitle">Business Process API for Enrollment Study Path</h2>
+      
+      <p class="p">A new <span class="keyword apiname">student-course-registration-enrollment-study-paths</span> v1.0.0 BPAPI is introduced for the Enrollment Study Path section on the <span class="keyword wintitle">Student Course Registration (SFAREGS)</span> page to support creation and maintenance of SFRENSP (Enrollment Study Path) records.</p>
+
+      <p class="p">The GET, POST, and PUT request methods are supported.</p>
+
+      <p class="p">The new BPAPI for Enrollment Study Path allows institutions to:</p>
+
+      <ul class="ul">
+        <li class="li">POST - Create new SFRENSP records during student enrollment to register the student's enrollment study path</li>
+
+        <li class="li">PUT - Update existing SFRENSP records to reflect changes in enrollment status, study path information, or academic status</li>
+
+        <li class="li">GET - Query existing SFRENSP records for validation, workflow processing, and downstream use</li>
+
+      </ul>
+
+      <p class="p">The API follows the same business rules and validations currently enforced through Banner Admin processing through SFAREGS, ensuring that automated updates (including downstream impact) behave consistently with manual maintenance. The API fully honors the existing SFAREGS page logic and functionality in the Enrollment Study Path section, ensuring consistent behavior and downstream impact across sections, fee assessment, refunds, and all other impacted areas.</p>
+
+      <p class="p">Key benefits:</p>
+
+      <ul class="ul">
+        <li class="li">Reduces operational effort and eliminates manual SFAREGS data entry for enrollment study path maintenance</li>
+
+        <li class="li">Minimizes risk of human error in student registration and study path management</li>
+
+        <li class="li">Improves student experience through faster, more accurate enrollment processing</li>
+
+      </ul>
+
+      <p class="p">This enhancement addresses PE0007835 in the <span class="keyword">Ellucian Customer Center</span>.</p>
+
+    </div>
+
+    <div class="section"><h2 class="title sectiontitle">Enhancement to Curricula Summary Learner Outcome API</h2>
+      
+      <p class="p">The <span class="keyword apiname">curricula-summary-learner-outcome</span> v2.0.0 BPAPI for the <span class="keyword wintitle">Degrees and Other Formal Awards (SHADEGR)</span> Admin page has been enhanced to support the PUT request method.</p>
+
+      <p class="p">The PUT request method enables programmatic updates to all fields on the Learner Outcome and Dual Degree tabs in SHADEGR, which are mapped to the SHRDGMR table in the database.</p>
+
+      <p class="p">The PUT method for <span class="keyword apiname">curricula-summary-learner-outcome</span> allows institutions to:</p>
+
+      <ul class="ul">
+        <li class="li">Update learner outcome information for degree programs programmatically</li>
+
+        <li class="li">Modify dual degree configuration and relationships at scale</li>
+
+        <li class="li">Integrate degree program maintenance into automated workflows</li>
+
+      </ul>
+
+      <p class="p">The API enforces the same data validation, permissions, and business rules as the SHADEGR Admin page, preserving data integrity and audit-ability.</p>
+
+      <p class="p">This enhancement addresses PE0008128 in the <span class="keyword">Ellucian Customer Center</span>.</p>
+
+    </div>
+
+    <div class="section"><h2 class="title sectiontitle">Business Process API for Qualifying Paper Management</h2>
+      
+      <p class="p">A new <span class="keyword apiname">qualifying-paper</span> v1.0.0 BPAPI is introduced for the <span class="keyword wintitle">Qualifying Papers for Student (SHAQPNO)</span> page to enable programmatic management of qualifying paper records for graduate students.</p>
+
+      <p class="p">The GET, POST, and PUT request methods are supported.</p>
+
+      <p class="p">The new BPAPI for Qualifying Paper Management allows institutions to:</p>
+
+      <ul class="ul">
+        <li class="li">POST - Create new qualifying paper records with student ID, paper sequence number, qualifying paper type, and title information</li>
+
+        <li class="li">PUT - Update existing qualifying paper records including title, dates, and qualifying paper type</li>
+
+        <li class="li">GET - Query qualifying paper records by student ID and paper sequence number for validation and reporting</li>
+
+      </ul>
+
+      <p class="p">The API enforces the same business rules and validations currently applied through the SHAQPNO form, ensuring data integrity and consistency. Required fields include student ID, paper sequence number, qualifying paper type code, and title line 1. Optional fields include additional title lines and descriptive text.</p>
+
+      <p class="p">Key benefits:</p>
+
+      <ul class="ul">
+        <li class="li">Enables automation of qualifying paper record creation and updates for graduate programs</li>
+
+        <li class="li">Reduces manual data entry effort and minimizes errors in qualifying paper tracking</li>
+
+        <li class="li">Supports integration with thesis and dissertation management systems</li>
+
+        <li class="li">Facilitates bulk updates for qualifying paper information across multiple students</li>
+
+        <li class="li">Improves operational efficiency for graduate schools managing large volumes of qualifying papers</li>
+
+        <li class="li">Ensures consistent application of date validation rules (acceptance criteria date cannot occur before application date)</li>
+
+      </ul>
+
+      <p class="p">This enhancement addresses PE0008135 in the <span class="keyword">Ellucian Customer Center</span>.</p>
+
+    </div>
+
+    <div class="section"><h2 class="title sectiontitle">Supporting Documentation</h2>
+      
+      <div class="p"><span class="ph">To download supporting documentation for this release, click the <span class="ph uicontrol">Attachments</span> <span class="ph"><img class="image ell-icon" src="images/04-release-9-3-41-2-1.png" alt="" data-ft-asset-display-name="paperclip.png" data-ft-resource-id="U1hxGZ~0RYMIz4qOJhMPjg-z2kSoEHYYdzJPAZFk1gBDw"></span> icon in the navigation on this page and then select the associated compressed file (.zip) from the displayed list. The zip file contains the following files:</span><ul class="ul">
+        <li class="li"><span class="keyword">Banner Student</span> Resolutions Report 9.3.41.2</li>
+
+        <li class="li"><span class="keyword">Banner Student</span> Release Notes 9.3.41.2</li>
+
+        </ul>
+</div>
+
+      <p class="p">The content published on the Documentation site for this release and the documentation included in the associated zip file (listed above) also support any associated hot fix releases.</p>
+
+    </div>
+
+    <div class="section"><h2 class="title sectiontitle">Supporting Documentation</h2>
+      
+      <div class="p"><span class="ph">To download supporting documentation for this release, click the <span class="ph uicontrol">Attachments</span> <span class="ph"><img class="image ell-icon" src="images/04-release-9-3-41-2-1.png" alt="" data-ft-asset-display-name="paperclip.png" data-ft-resource-id="U1hxGZ~0RYMIz4qOJhMPjg-z2kSoEHYYdzJPAZFk1gBDw"></span> icon in the navigation on this page and then select the associated compressed file (.zip) from the displayed list. The zip file contains the following files:</span><ul class="ul">
+        <li class="li"><span class="keyword">Banner Student</span> Resolutions Report 9.3.41.2</li>
+
+        <li class="li"><span class="keyword">Banner Student</span> Release Notes 9.3.41.2</li>
+
+        </ul>
+</div>
+
+      <p class="p">The content published on the Documentation site for this release and the documentation included in the associated zip file (listed above) also support any associated hot fix releases.</p>
+
+    </div>
+
+  </div>
+
+</div></div></section></main></body></html>

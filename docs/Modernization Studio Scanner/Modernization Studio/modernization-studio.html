@@ -1,0 +1,1074 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Modernization Studio</title><style>body{font-family:-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;line-height:1.55;color:#1a1a1a;max-width:920px;margin:0 auto;padding:24px}header{border-bottom:2px solid #5a16d6;margin-bottom:8px}h1{color:#3a0ca3}h2,h3,h4,h5,h6{margin-top:1.6em}.crumb{color:#666;font-size:13px;margin:0}.meta{color:#888;font-size:12px}nav.toc{background:#f6f4fc;border:1px solid #e3dcf5;border-radius:8px;padding:12px 18px;margin:18px 0}nav.toc h2{margin:.2em 0}nav.toc ul{list-style:none;padding-left:0}nav.toc a{text-decoration:none;color:#5a16d6}section{margin:1.2em 0;padding-top:.4em}img{max-width:100%;height:auto}table{border-collapse:collapse}td,th{border:1px solid #ccc;padding:4px 8px}code,pre{background:#f4f4f4;border-radius:4px}pre{padding:10px;overflow:auto}</style></head><body><header><p class="crumb">Modernization Studio Scanner › Modernization Studio</p><h1>Modernization Studio</h1><p class="meta">Source: <a href="https://resources.elluciancloud.com/r/bundle/modernization_studio_scanner">https://resources.elluciancloud.com/r/bundle/modernization_studio_scanner</a> &middot; Retrieved 2026-06-17</p></header><nav class="toc"><h2>Contents</h2><ul><li style="margin-left:0px"><a href="#t-10">Modernization Studio</a></li><li style="margin-left:0px"><a href="#t-20">Overview</a></li><li style="margin-left:0px"><a href="#t-30">Requirements and Considerations</a></li><li style="margin-left:0px"><a href="#t-40">Option 1: Download and Manually Run MSS on Environments</a></li><li style="margin-left:0px"><a href="#t-50">Option 2: Use ESM to Run MSS for Each Environment (Beta Customers Only)</a></li><li style="margin-left:0px"><a href="#t-60">Output</a></li><li style="margin-left:0px"><a href="#t-70">Resources</a></li><li style="margin-left:0px"><a href="#t-80">Tool Help</a></li></ul></nav><main><section id="t-10"><h2>Modernization Studio</h2><div class="content-locale-en-US content-locale-en"><div id="c_modernization_studio_scanner"><div class="body conbody"><p class="shortdesc"><span class="keyword">Ellucian</span> <span class="keyword">Modernization Studio Scanner</span> is an innovative platform designed to assist higher education institutions in evaluating legacy Enterprise Resource Planning (ERP) systems, databases, solutions, and connected third-party integrations. It supports a seamless transition to modern ERP Software as a Service (<span class="keyword">SaaS</span>) platforms, such <span class="keyword">Ellucian</span> Student powered by  <span class="keyword">Banner</span> <span class="keyword">SaaS</span> and the <span class="keyword">Ellucian Experience</span> platform. </p>
+
+    <p class="p">Modernization Studio platform provides a structured, efficient, and automated approach, leveraging real-time technology to address the complexities of data migration, transformation, integrations, and business operations. Modernization Studio scanners <span class="keyword">MSS</span> simplifies the process of identifying custom and modified objects within an ERP environment by comparing your objects to corresponding versions of <span class="keyword">Banner</span> baseline objects. It also queries databases to extract configuration data and statistics.</p>
+
+    <div class="note"><span class="notetitle">Note:</span> If you are actively engaged in a sales motion with an <span class="keyword">Ellucian</span> Sales Account Executive, the <span class="xref ft-internal-xlink" data-ft-warning="excluded-from-rendering" data-clusterid="id_ellucian_other/modernization_studio_scanner/c_banner_environment_comparison_tool">Blueprint Utilities</span> scanner must be executed alongside the <span class="keyword">Modernization Studio Scanner</span>.</div>
+
+    <div class="section"><h2 class="title sectiontitle">Key Tools</h2>
+      
+      <ul class="ul">
+        <li class="li">Comparison Tooling: Compares your objects with <span class="keyword">Banner</span> baseline objects to identify differences in code and schemas.</li>
+
+        <li class="li"><span class="keyword">Database Query Utility</span>: Retrieves configuration data and statistics to assess the size and complexity of your database.</li>
+
+      </ul>
+
+      <p class="p">By aligning with <span class="keyword">Ellucian's</span> Customer Architecture Reference Model (CARM), Modernization Studio supports institutions in transitioning from legacy on-premises systems to <span class="keyword">Ellucian</span> Software as a Service (<span class="keyword">SaaS</span>). Its consolidated features empower organizations to modernize legacy systems, reduce risks, streamline migrations, and make informed decisions throughout the process.</p>
+
+    </div>
+
+    <div class="section"><h2 class="title sectiontitle">Support Services</h2>
+      
+      <p class="p">The <span class="keyword">Ellucian Action Line</span> team supports the execution of the <span class="keyword">Modernization Studio Scanner</span>. However, they do not provide analysis or interpret results to explain why objects are flagged as different. To request assistance with running <span class="keyword">MSS</span>, submit a ServiceNow ticket/case in the <a class="xref ft-external-link" href="https://www.ellucian.com/customer-center" target="_blank" rel="noopener">Ellucian Customer Center</a>.</p>
+
+      <p class="p">Institutions can leverage <span class="keyword">MSS</span> output to conduct self-assessments or engage in pre-sales discovery if interested to discuss their move to <span class="keyword">SaaS</span> with an <span class="keyword">Ellucian</span> Sales Account Executive.</p>
+
+      <p class="p">If you require a deeper understanding or more detailed insights, we encourage you to reach out to your <span class="keyword">Ellucian</span> Sales Account Executive or Customer Success Manager (CSM) for consultation. They would assist in scheduling a thorough analysis with an <span class="keyword">Ellucian</span> team member to help you interpret the data and information, and offer recommendations tailored to your specific institutions’ needs.</p>
+
+    </div>
+
+  </div>
+
+</div></div></section>
+<section id="t-20"><h2>Overview</h2><div class="content-locale-en-US content-locale-en"><div id="c_mss_overview"><div class="body conbody"><p class="shortdesc">The following outlines the process for performing <span class="keyword">MSS</span> scans.</p>
+
+    <p class="p"><span class="keyword">Modernization Studio Scanner</span> (<span class="keyword">MSS</span>) are to be deployed within the <span class="keyword">Banner</span> Enterprise Resource Planning (ERP) platform, specifically on <span class="keyword">Banner</span> job submission JobSub server. These scanners are designed to comprehensively analyze various components of the system. They connect to <span class="keyword">Banner</span> and Operational Data Store or Cognos databases to uncover critical details about <span class="keyword">Banner</span> schemas, objects, and reports.</p>
+
+    <p class="p">Additionally, they delve into the underlying file structures within the <span class="keyword">Banner</span> environment and identify cron command-line utility “cron job” scheduler configured on the JobSub server, ensuring a thorough understanding of the environment’s configuration and operations. When the scanner is executed with all available scans enabled, it performs a detailed analysis of multiple areas.</p>
+
+    <p class="p">These scanning tools collect metadata from on-premise <span class="keyword">Banner</span> environments to support customers in planning their migration to <span class="keyword">Ellucian SaaS</span>. They gather information such as database structures, packages, rule and validation configuration files, identifiable scheduled jobs, and report metadata. Importantly, they do not collect institutional data or any Personally Identifiable Information (PII). Our primary goal is to gain a comprehensive understanding of your <span class="keyword">Banner</span> ecosystem to provide informed modernization recommendations. This includes identifying custom code, integrations, scheduled jobs, reports, and opportunities to align with <span class="keyword">Ellucian's</span> prescriptive templating.</p>
+
+    <p class="p">For each scan, a compressed ZIP file is created in the designated output folder, summarizing the findings.</p>
+
+    <p class="p">Below are the scans performed by <span class="keyword">MSS</span> and their respective purposes:</p>
+
+    <ol class="ol">
+      <li class="li"><span class="keyword">Banner</span> Database (banner db) Scan:<p class="p">This scan connects to the <span class="keyword">Banner</span> database to discover information about the objects stored within it, such as tables, views, stored procedures, and relationships. It provides a detailed inventory of the database structure and content relevant to <span class="keyword">Banner</span>.</p>
+</li>
+
+      <li class="li"><span class="keyword">Banner</span> Operational Data Store (ODS) Scan:<p class="p">This scan focuses on the Operational Data Store (ODS), analyzing its structure and configuration. It extracts details about how data flows between <span class="keyword">Banner</span> and ODS, providing insights into integration and reporting.</p>
+</li>
+
+      <li class="li">IBM Cognos Analytics (Cognos) Scan:<p class="p">The scanner examines Cognos reports and their configurations. It identifies report metadata, dependencies, and connections to the <span class="keyword">Banner</span> or ODS databases, offering a comprehensive view of reporting mechanisms.</p>
+</li>
+
+      <li class="li">Automic Automation (Automic) Scan:<p class="p">Allow users to analyze and examine the output of automated jobs or processes, by searching through log files or generated reports, to verify if a task was completed successfully. It acts as a quality check for automated workflows.</p>
+</li>
+
+      <li class="li">Database Extensibility:<p class="p">This scan retrieves information about database extensions from Supplemental Data Engine (SDE) tables.</p>
+</li>
+
+      <li class="li">Application Extensibility:<p class="p">Collect information about custom pages and custom RESTful services created by customers using the <span class="keyword">Self-Service</span> Page Builder.</p>
+</li>
+
+      <li class="li">File System Scan:<p class="p">The scanner explores the file system within the <span class="keyword">Banner</span> directories on the JobSub server. It catalogs configuration files, scripts, logs, and other relevant files stored within these directories.</p>
+</li>
+
+      <li class="li">Cron Jobs:<p class="p">This scan identifies all cron jobs set up on the JobSub server. It provides details about scheduled tasks, their execution schedules, and associated scripts, ensuring visibility into automated processes.</p>
+</li>
+
+    </ol>
+
+  </div>
+
+</div></div></section>
+<section id="t-30"><h2>Requirements and Considerations</h2><div class="content-locale-en-US content-locale-en"><div id="c_mss_requirements_planning_and_set_up"><div class="body conbody"><p class="shortdesc">Understand the environment requirements and setup steps before you run <span class="keyword">Modernization Studio Scanner</span>.</p>
+
+    <div class="section"><h2 class="title sectiontitle">Ellucian Solution Manager (ESM)</h2>
+      
+      <p class="p"><span class="keyword">ESM</span> 23.2 or higher is required. You must have the latest
+        version of <span class="keyword">ESM</span> installed to run the latest version of
+          <span class="keyword">Modernization Studio Scanner</span>.</p>
+
+    </div>
+
+    <div class="section"><h2 class="title sectiontitle">Run in isolation</h2>
+      
+      <p class="p"><span class="keyword">Modernization Studio Scanner</span> must be run in isolation. If running other
+          <span class="keyword">Banner</span> upgrades on the same day, you must wait until they have
+        completed before starting <span class="keyword">Modernization Studio Scanner</span>.</p>
+
+    </div>
+
+    <div class="section"><h2 class="title sectiontitle">Java 1.8 and above</h2>
+      
+      <p class="p"><span class="keyword">Modernization Studio Scanner</span> is a set of self-contained Java executables is not dependent on installations of any other software, aside from Java Runtime Environment 1.8 or above.</p>
+
+    </div>
+
+    <div class="section"><h2 class="title sectiontitle">Port 443</h2>
+      
+      <p class="p">Port 443 must be open for outbound to the internet from your JobSub server to run <span class="keyword">Modernization Studio Scanner</span> through <span class="keyword">ESM</span>. Port 443
+        should not be open for inbound network traffic. If you cannot open Port 443 for outbound
+        access, or if the complex firewall rules prohibit you from using Port 443, see <span class="xref ft-internal-link" title="Follow this procedure to manually run Modernization Studio Scanner (MSS) on your environments." data-ft-warning="excluded-from-rendering" data-mapid="~nVw1TR5h0BceyNCIBrUVw" data-tocid="WQ3O5SfBKE45uGfkPrK0vw">Option 1: Download and Manually Run MSS on Environments</span>.</p>
+
+    </div>
+
+    <div class="section"><h2 class="title sectiontitle">CentOS/Red Hat 7 and above </h2>
+      
+      <p class="p"><span class="keyword">Ellucian</span> does not support Red Hat Enterprise Linux 6, Solaris, HP-UX,
+        and AIX. </p>
+
+    </div>
+
+    <div class="section"><h2 class="title sectiontitle">Clean up <span class="ph filepath">$BANNER_HOME</span> (Linux only)</h2>
+      
+      <div class="note"><span class="notetitle">Note:</span> This is needed only when running the <span class="keyword">Modernization Studio Scanner</span> against your <span class="keyword">Banner</span> environment.</div>
+
+      <p class="p">Your <span class="ph filepath">$BANNER_Home</span> directory should be cleaned up before running the <span class="keyword">Modernization Studio Scanner</span>. This will shorten run time and lessen the likelihood of false positives being reported from the files in your <span class="ph filepath">$BANNER_HOME</span> directory. </p>
+
+    </div>
+
+    <div class="section"><h2 class="title sectiontitle">Additional information</h2>
+      
+      <p class="p">The <span class="keyword">Modernization Studio Scanner</span> runs on your job submission server from <span class="keyword">Ellucian Solution Manager</span> (<span class="keyword">ESM</span>). <span class="keyword">Ellucian</span> continues to enhance and improve the discovery capabilities of <span class="keyword">Modernization Studio Scanner</span>. Product enhancements will be published when the updated versions of tooling improvements are released.</p>
+
+      <p class="p">As a reminder, it is helpful to track access in <span class="keyword">Banner</span> to your jobsub
+        jobs, so the last run date for each job is recorded. If the last run date is recorded, it
+        can be reported in the Database Query Utility output. </p>
+
+      <div class="note"><span class="notetitle">Note:</span> The scanner should ideally be run during off-hours to minimize performance impact, as it queries the customer's database intensively to gather the necessary information. Depending on the database size and resource demands, the scanning process can take from 2 to 8 hours or more, as it throttles itself to be a good digital steward of resources.</div>
+
+    </div>
+
+    <div class="section"><h2 class="title sectiontitle">Auto-Run Modernization Studio Scanner (Opt-in/Opt-Out)</h2><p class="p">Automatically selected for any environment that has the Is Production field selected.</p>
+<img class="image" alt="Banner environment settings." data-ft-asset-display-name="scr_banner_env_settings.png" src="images/modernization-studio-1.png" data-ft-resource-id="QibK4G8TIxyXY4A7MVnxVg-~nVw1TR5h0BceyNCIBrUVw"><div class="note"><span class="notetitle">Note:</span> This option is automatically unselected if you clear the check box for the <span class="ph uicontrol">Is Production</span> field.</div>
+<div class="p">When this option is selected Solution Manager automatically adds Blueprint Utilities to an upgrade job that you prepare for the environment if one of the following conditions apply:<ul class="ul">
+      <li class="li">It has been 30 days or more from the date that is displayed in the <span class="ph uicontrol">Last Blueprint Run</span> field</li>
+
+      <li class="li">The <span class="ph uicontrol">Last Blueprint Run</span> field displays <samp class="ph systemoutput">Never</samp> (the default when you first upgrade to Solution Manager 24.1)<div class="note tip"><span class="tiptitle">Tip:</span> You can clear the check box if you want to disable the Solution Manager feature to automatically add Blueprint Utilities to your upgrade job.</div>
+<p class="p">For more information, see <span class="xref ft-internal-xlink" data-ft-warning="excluded-from-rendering" data-clusterid="id_ellucian_other/modernization_studio_scanner/t_add_existing_environment">Define Banner environment details</span>.</p>
+</li>
+
+      </ul>
+</div>
+</div>
+
+  </div>
+
+</div></div></section>
+<section id="t-40"><h2>Option 1: Download and Manually Run MSS on Environments</h2><div class="content-locale-en-US content-locale-en"><div id="t_mss_download_and_run_manually"><div class="body taskbody"><p class="shortdesc">Follow this procedure to manually run <span class="keyword">Modernization Studio Scanner</span> (<span class="keyword">MSS</span>) on your environments.</p>
+
+    <div class="section context"><div class="tasklabel"><h2 class="sectiontitle tasklabel">About this task</h2></div>You will perform these procedures on your JobSub server.<div class="note"><span class="notetitle">Note:</span> If you are actively engaged in a sales motion with an <span class="keyword">Ellucian</span> Sales Account Executive, the <span class="xref ft-internal-xlink" data-ft-warning="excluded-from-rendering" data-clusterid="id_ellucian_other/modernization_studio_scanner/c_banner_environment_comparison_tool">Blueprint Utilities</span> scanner must be executed alongside the <span class="keyword">Modernization Studio Scanner</span>.</div>
+</div>
+
+    <div class="tasklabel"><h2 class="sectiontitle tasklabel">Procedure</h2></div><ol class="ol steps"><li class="li step stepexpand">
+        <span class="ph cmd">As the "banner" user, create the following directories:</span>
+        <div class="itemgroup info">
+          <ul class="ul">
+            <li class="li"><span class="ph filepath">modernization_studio/db-scan</span></li>
+
+            <li class="li"><span class="ph filepath">modernization_studio/cron-scan</span></li>
+
+          </ul>
+
+        </div>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Retrieve the <span class="ph filepath">scanners-toolkit.zip</span> file from <a class="xref ft-external-link" href="https://ellucian.box.com/s/r8tu8yiulmfg0oj9vm40ev3xrcz8f5f4" target="_blank" rel="noopener">Ellucian secure Box</a>.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Copy the <span class="ph filepath">scanners-toolkit.zip</span> file into both the <span class="ph filepath">db-scan</span> and <span class="ph filepath">cron-scan</span> directories.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Change directory to <span class="ph filepath">modernization_studio/db-scan</span>.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Unzip the <span class="ph filepath">scanners-toolkit.zip</span> file.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Use <code class="ph codeph">chmod u+x run_scanner.sh</code> to add the execute permission to the shell script <span class="ph filepath">run_scanner.sh</span>.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Modify <span class="ph filepath">run_scanner.sh</span> to add the memory parameters (<code class="ph codeph">-Xms1024m -Xmx8192m</code>) as shown below:</span>
+        <div class="itemgroup info">
+          <pre class="pre codeblock"><code>java -jar -Xms1024m -Xmx8192m scanners-toolkit.jar exec config.cfg -bannerPassword BANNER_ENV -odsPassword ODS_ENV -cognosPassword COGNOS_ENV -auditPassword AUDIT_ENV -automicPassword AUTOMIC_ENV &gt; ./scanners-toolkit.log 2&gt;&amp;1</code></pre>
+        </div>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Navigate to <span class="ph filepath">config.cfg</span> file.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Modify <span class="ph filepath">config.cfg</span> file contents with the information provided below to enable scans for:</span>
+        <div class="itemgroup info">
+          <ul class="ul">
+            <li class="li"><span class="keyword">Banner</span> Database (banner db)</li>
+
+            <li class="li"><span class="keyword">Banner</span> Operational Data Store (ODS)</li>
+
+            <li class="li">IBM Cognos Analytics (Cognos)</li>
+
+            <li class="li">Automic Automation (Automic)</li>
+
+            <li class="li">Applications</li>
+
+          </ul>
+
+          <div class="note"><span class="notetitle">Note:</span> Be sure to update attributes with values specific to your environment. You may omit configurations for elements that are not present in your environment.</div>
+
+        </div>
+        <div class="itemgroup info">Configurations for <span class="ph filepath">config.cfg</span> <div class="note"><span class="notetitle">Note:</span> For each username type found in <span class="ph filepath">config.cfg</span>, you can use an existing system user or create a new user that must be able to connect and access metadata tables. If you create a new user, it must be named <code class="ph codeph">el_discoverer</code>. See <span class="xref ft-internal-link" title="These resources can be used as a reference for Modernization Studio Scanner." data-ft-warning="excluded-from-rendering" data-mapid="~nVw1TR5h0BceyNCIBrUVw" data-tocid="oWIrqdWYsMVDkay_8l6wNg">Resources</span> for information on how to create a new user.</div>
+<pre class="pre codeblock"><code>targetPath=./resultCli
+#
+connectionPoolSize=6
+email=&lt;your email id&gt;
+production=true
+esmEnvName=PROD
+#
+skipAge=true
+skipNTile=true
+#
+bannerTns=false
+bannerServer=&lt;banner db ip&gt;
+bannerPort=&lt;banner db port&gt;
+bannerServiceName=&lt;banner db ServicName&gt;
+bannerUsername=&lt;system user or create new user el_discoverer&gt;
+bannerCustAcctId=&lt;client salesforce account id, if not known, any alpha-numeric id that refers client&gt;
+bannerSaveType=schemas,users,dbExtensibility,appExtensibility,CustomerConfiguration,CustomerInformation,Jobs,Applications,Extensibility,Ssb8
+scan-db=banner
+#
+fsDir=&lt;/u02/banner,/u02/cusotm example:- BANNER_HOME folder /u02/banner and your folder with mods /u02/cusotm, separated by comma&gt;
+fsMode=JOBSUB
+fsName=PROD-JOBSUB
+scan-fs=true
+#
+odsServer=&lt;ods db server ip&gt;
+odsPort=&lt;ods db port&gt;
+odsServiceName=&lt;ODSP, ODS db service name&gt;
+odsUsername=&lt;system user or create new user el_discoverer&gt;
+odsBaselinePath=baseline-ods-signatures
+odsSaveType=schemas,users
+scan-db=ods
+#
+cognosTns=false
+cognosServer=&lt;cognos db ip&gt;
+cognosPort=&lt;cognos db port&gt;
+cognosServiceName=&lt;ODSP, ods/cognos db service name&gt;
+cognosSchema=&lt;COGNOS11, schema where all Cognos metadata tables exist, use the query below to find this&gt;
+cognosUsername=&lt;system user or create new user el_discoverer&gt;
+#
+auditTns=false
+auditServer=&lt;ods db ip&gt;
+auditPort=&lt;ods db port&gt;
+auditServiceName=&lt;ODSP, ODS db service name&gt;
+auditSchema=&lt;COGNOS11AU, schema where all Audit metadata tables exist, use the query below to find this&gt;
+auditUsername=&lt;system user or create new user el_discoverer&gt;
+scan-cognos=cognos audit
+#
+automicTns=false
+automicServer=&lt;automic db ip&gt;
+automicPort=&lt;automic db port&gt;
+automicServiceName=UC4P
+automicSchema=&lt;APPMGR, schema where all automic metadata tables exist, use the query below to find this&gt;
+automicUsername=&lt;system user or create new user el_discoverer&gt;
+automicSaveType=automic
+scan-db=automic
+#
+apsName=PROD-JOBSUB
+apsWarFilesDir=&lt;please see the note for the 'scan-app' below&gt;
+scan-app=true
+#
+#Update the "snapshotName" with SID, date and timestamp of the scanner run.
+snapshotName=prod-2024-10-10-07-10-59
+profile=dev
+upload-s3-api=false
+</code></pre><div class="note"><span class="notetitle">Note:</span> For 'scan-app' section above</div>
+</div>
+        <ol type="a" class="ol substeps">
+          <li class="li substep substepexpand">
+            <span class="ph cmd"><strong class="ph b">Admin WAR Files</strong></span>
+            <div class="itemgroup info">
+              <ol class="ol" type="i">
+                <li class="li">Identify the Admin WAR files:<ul class="ul">
+                  <li class="li">BannerAdmin.ws.war</li>
+
+                  <li class="li">BannerAccessMgmt.ws.war</li>
+
+                  <li class="li">BannerAdminBPAPI.ws.war</li>
+
+                  </ul>
+</li>
+
+                <li class="li">Choose a root folder (e.g., <span class="ph filepath">/u01/ban9home</span>).<ul class="ul">
+                  <li class="li">If you specify as the root folder the directory specified in ESM in the Banner 9 War File Staging Path field on the JobSub machine configuration page then the WAR files should already be in the locations that the scanner is looking for.</li>
+
+                  </ul>
+</li>
+
+                <li class="li">If necessary, copy each WAR file into its respective directory under the root folder, following this pattern:<p class="p"><code class="ph codeph">&lt;root-folder&gt;/javaforms-9&lt;n&gt;/&lt;AppName&gt;/dist</code></p>
+<div class="p">Where:<ul class="ul">
+                  <li class="li"><code class="ph codeph">&lt;root-folder&gt;</code> = chosen base directory</li>
+
+                  <li class="li"><code class="ph codeph">&lt;n&gt;</code> = a digit from 0 through 9</li>
+
+                  <li class="li"><code class="ph codeph">&lt;AppName&gt;</code> = BannerAdmin, BannerAccessMgmt, or BannerAdminBPAPI</li>
+
+                  </ul>
+</div>
+<div class="p">Example (if root folder = <span class="ph filepath">/u01/ban9home</span>):<ul class="ul">
+                  <li class="li"><span class="ph filepath">BannerAdmin.ws.war</span> -&gt; <span class="ph filepath">/u01/ban9home/javaforms-93/BannerAdmin/dist</span></li>
+
+                  <li class="li"><span class="ph filepath">BannerAccessMgmt.ws.war</span> -&gt; <span class="ph filepath">/u01/ban9home/javaforms-93/BannerAccessMgmt/dist</span></li>
+
+                  <li class="li"><span class="ph filepath">BannerAdminBPAPI.ws.war</span> -&gt; <span class="ph filepath">/u01/ban9home/javaforms-93/BannerAdminBPAPI/dist</span></li>
+
+                  </ul>
+</div>
+</li>
+
+              </ol>
+
+            </div>
+          </li>
+
+          <li class="li substep substepexpand">
+            <span class="ph cmd"><strong class="ph b">SSB WAR Files</strong></span>
+            <div class="itemgroup info">
+              <ol class="ol" type="i">
+                <li class="li">Copy all SSB WAR files into a single sub-directory under the chosen root folder.<ul class="ul">
+                  <li class="li">The sub-directory name is not fixed; you may choose any name.</li>
+
+                  </ul>
+</li>
+
+                <li class="li">Example (if root folder = <span class="ph filepath">/u01/ban9home</span>):<ul class="ul">
+                  <li class="li">Create sub-directory: <span class="ph filepath">/u01/ban9home/ssb9-wars</span></li>
+
+                  <li class="li">Copy all SSB9 WAR files into this sub-directory.</li>
+
+                  </ul>
+</li>
+
+              </ol>
+
+            </div>
+          </li>
+
+          <li class="li substep substepexpand">
+            <span class="ph cmd"><strong class="ph b">Example Configuration</strong></span>
+            <div class="itemgroup info">
+              <p class="p">Configure the application scan using the chosen root folder:</p>
+
+              <pre class="pre codeblock"><code>apsName=PROD-JOBSUB
+apsWarFilesDir=&lt;root-folder&gt;
+scan-app=true
+</code></pre>
+              <p class="p">Example:</p>
+
+              <pre class="pre codeblock"><code>apsName=PROD-JOBSUB
+apsWarFilesDir=/u01/ban9home
+scan-app=true
+</code></pre>
+            </div>
+          </li>
+
+        </ol>
+
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Change directory to <span class="ph filepath">modernization_studio/cron-scan</span>.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Unzip the <span class="ph filepath">scanners-toolkit.zip</span> file.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Use <code class="ph codeph">chmod u+x run_scanner.sh</code> to add the execute permission to the shell script <span class="ph filepath">run_scanner.sh</span>.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Modify <span class="ph filepath">config.cfg</span> file contents with the configurations listed below to run scan for cron jobs:</span>
+        <div class="itemgroup info">
+          <div class="note"><span class="notetitle">Note:</span> Be sure to update attributes with values specific to your environment. You may omit configurations for elements that are not present in your environment.</div>
+
+        </div>
+        <div class="itemgroup info">Configuration for <span class="ph filepath">config.cfg</span><pre class="pre codeblock"><code>targetPath=./resultCliCron
+#
+connectionPoolSize=6
+email=&lt;your email id&gt;
+production=true
+esmEnvName=PROD
+#
+cronEnvKey=PROD-JOBSUB
+scan-cron=true
+#
+#Update the "snapshotName" with SID, date and timestamp of the scanner run.
+snapshotName=prod-2024-10-10-07-10-59
+profile=dev
+upload-s3-api=false
+</code></pre></div>
+      </li>
+<li class="li step stepexpand" id="t_mss_download_and_run_manually__brs_hrb_j2c">
+        <span class="ph cmd">Configure the following environment variables with the passwords for <span class="keyword">Banner</span> db, ODS, Cognos, and Automic.</span>
+        <div class="itemgroup info">
+          <div class="note"><span class="notetitle">Note:</span> It is required to apply these environment variables in the shell/command window, before running the scanner.</div>
+
+          <div class="note"><span class="notetitle">Note:</span> Be sure to update attributes with values specific to your environment. You may omit configurations for elements that are not present in your environment.</div>
+
+        </div>
+        <div class="itemgroup info">Commands for environment variables<ul class="ul">
+          <li class="li"><code class="ph codeph">export BANNER_ENV=&lt;<var class="keyword varname">banner db password for baninst1</var>&gt;</code></li>
+
+          <li class="li"><code class="ph codeph">export ODS_ENV=&lt;<var class="keyword varname">ods db password for the username configured</var>&gt;</code></li>
+
+          <li class="li"><code class="ph codeph">export COGNOS_ENV=&lt;<var class="keyword varname">cognos db password for the username configured</var>&gt;</code></li>
+
+          <li class="li"><code class="ph codeph">export AUDIT_ENV=&lt;<var class="keyword varname">cognos/audit db password for the username configured</var>&gt;</code></li>
+
+          <li class="li"><code class="ph codeph">export AUTOMIC_ENV=&lt;<var class="keyword varname">automic db password for the username configured</var>&gt;</code></li>
+
+          </ul>
+</div>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Run the <span class="keyword parmname">cron</span> scanner</span>
+        <ol type="a" class="ol substeps">
+          <li class="li substep substepexpand">
+            <span class="ph cmd">Connect as "root".</span>
+          </li>
+
+          <li class="li substep substepexpand">
+            <span class="ph cmd">Change directory to <span class="ph filepath">modernization_studio/cron-scan</span>.</span>
+          </li>
+
+          <li class="li substep substepexpand">
+            <span class="ph cmd">Run the scanner by using <code class="ph codeph">nohup ./run_scanner.sh &amp;</code>.</span>
+          </li>
+
+          <li class="li substep substepexpand">
+            <span class="ph cmd">After the scan has completed, the following ZIP files will be directed to the output folder specified in the <code class="ph codeph">targetPath</code> attribute, which in this case is <code class="ph codeph">resultCliCron</code> and the two log files listed below will be created in the <span class="ph filepath">cron-scan</span> folder.</span>
+            <div class="itemgroup info">
+              <ul class="ul">
+                <li class="li"><span class="ph filepath">Jobs-x.x.x-CJ-PROD-JOBSUB-xxxxx-xxx.zip</span></li>
+
+                <li class="li"><span class="ph filepath">scanners-cli.log</span></li>
+
+                <li class="li"><span class="ph filepath">scanners-toolkit.log</span></li>
+
+                <li class="li"><span class="ph filepath">Summary-xxxxx-xxx.txt</span></li>
+
+              </ul>
+
+            </div>
+          </li>
+
+        </ol>
+
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Execute the database scanners for <span class="keyword">Banner</span> db, ODS, Cognos, and Automic.</span>
+        <ol type="a" class="ol substeps">
+          <li class="li substep">
+            <span class="ph cmd">Connect as "banner" user.</span>
+          </li>
+
+          <li class="li substep">
+            <span class="ph cmd">Change directory to <span class="ph filepath">modernization_studio/db-scan</span>.</span>
+          </li>
+
+          <li class="li substep">
+            <span class="ph cmd">Apply the environment variables as outlined in <span class="xref ft-internal-link" data-ft-warning="excluded-from-rendering" data-mapid="~nVw1TR5h0BceyNCIBrUVw" data-tocid="WQ3O5SfBKE45uGfkPrK0vw" data-section="t_mss_download_and_run_manually__brs_hrb_j2c">Step 15</span>.</span>
+          </li>
+
+          <li class="li substep">
+            <span class="ph cmd">Run the scanner by using <code class="ph codeph">nohup ./run_scanner.sh &amp;</code>.</span>
+          </li>
+
+        </ol>
+
+      </li>
+</ol>
+
+  </div>
+
+</div></div></section>
+<section id="t-50"><h2>Option 2: Use ESM to Run MSS for Each Environment (Beta Customers Only)</h2><div class="content-locale-en-US content-locale-en"><div id="c_mss_compare_your_envrionment_to_baseline"><div class="body conbody"><p class="shortdesc">Compare your environment to <span class="keyword">Banner</span> baseline to report potential customizations.</p>
+
+    <div class="section"><h2 class="title sectiontitle">Use ESM to run MSS for each environment</h2>
+      
+      <p class="p">Review and acknowledge each section listed by clicking the checkboxes to launch the <span class="keyword">Modernization Studio Scanner</span> and <span class="keyword">Blueprint Utilities</span>.</p>
+
+      <ol class="ol">
+        <li class="li">The Info section highlights the functionality of the <span class="keyword">Modernization Studio Scanner</span> and provides important information about running <span class="keyword">MSS</span>.</li>
+
+        <li class="li">The Blueprint section allows you to run two utilities: the <span class="keyword">Database Query Utility</span> and the <span class="keyword">Banner Environment Comparison Tool</span>.<p class="p">Field(s) in this section</p>
+
+<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" class="table" frame="border" border="1" rules="all"><colgroup><col style="width:312"><col style="width:312"></colgroup><thead class="thead" style="text-align:left;">
+              <tr class="row">
+                <th class="entry cellrowborder" style="vertical-align:top;" id="d138e81">Field</th>
+
+                <th class="entry cellrowborder" style="vertical-align:top;" id="d138e84">Description</th>
+
+              </tr>
+
+            </thead>
+<tbody class="tbody">
+              <tr class="row">
+                <td class="entry cellrowborder" style="vertical-align:top;" headers="d138e81 ">Choose which tool you want to run</td>
+
+                <td class="entry cellrowborder" style="vertical-align:top;" headers="d138e84 ">Prompts you to select the tool to launch.</td>
+
+              </tr>
+
+            </tbody>
+</table>
+</div>
+</li>
+
+        <li class="li">The Email section is required for <span class="keyword">Modernization Studio Scanner</span>.<p class="p">Field(s) in this section</p>
+
+<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" class="table" frame="border" border="1" rules="all"><colgroup><col style="width:312"><col style="width:312"></colgroup><thead class="thead" style="text-align:left;">
+              <tr class="row">
+                <th class="entry cellrowborder" style="vertical-align:top;" id="d138e122">Field</th>
+
+                <th class="entry cellrowborder" style="vertical-align:top;" id="d138e125">Description</th>
+
+              </tr>
+
+            </thead>
+<tbody class="tbody">
+              <tr class="row">
+                <td class="entry cellrowborder" style="vertical-align:top;" headers="d138e122 ">Enter the Email Address</td>
+
+                <td class="entry cellrowborder" style="vertical-align:top;" headers="d138e125 ">Prompts you to enter the email address of the person to contact in case <span class="keyword">Ellucian</span> has any questions.</td>
+
+              </tr>
+
+            </tbody>
+</table>
+</div>
+</li>
+
+        <li class="li">The Cron section enables a cron job scan for <span class="keyword">Modernization Studio Scanner</span>. In this section, you are required to enter the root user or a user with access to cron jobs across all users on the JobSub server. If the <span class="keyword">Banner</span> Install User has permission to read all cron job information, leave the username and password values as 'N/A' and retain the default value for the prompt.<p class="p">Field(s) in this section</p>
+
+<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" class="table" frame="border" border="1" rules="all"><colgroup><col style="width:312"><col style="width:312"></colgroup><thead class="thead" style="text-align:left;">
+              <tr class="row">
+                <th class="entry cellrowborder" style="vertical-align:top;" id="d138e169">Field</th>
+
+                <th class="entry cellrowborder" style="vertical-align:top;" id="d138e172">Description</th>
+
+              </tr>
+
+            </thead>
+<tbody class="tbody">
+              <tr class="row">
+                <td class="entry cellrowborder" style="vertical-align:top;" headers="d138e169 ">Please enter the user ID that has access to read all cron job information</td>
+
+                <td class="entry cellrowborder" style="vertical-align:top;" headers="d138e172 ">Prompts you to enter the user who has access to cron jobs across all users on the JobSub server.</td>
+
+              </tr>
+
+              <tr class="row">
+                <td class="entry cellrowborder" style="vertical-align:top;" headers="d138e169 ">Enter the password for the user mentioned above</td>
+
+                <td class="entry cellrowborder" style="vertical-align:top;" headers="d138e172 ">Prompts you to enter the password for the user entered above.</td>
+
+              </tr>
+
+              <tr class="row">
+                <td class="entry cellrowborder" style="vertical-align:top;" headers="d138e169 ">Enter the prompt for the user mentioned above</td>
+
+                <td class="entry cellrowborder" style="vertical-align:top;" headers="d138e172 ">Prompts you to configure the prompt when SSH'ing or using <code class="ph codeph">su</code> to switch to the user entered above.</td>
+
+              </tr>
+
+            </tbody>
+</table>
+</div>
+</li>
+
+        <li class="li">The JobSub section enables the scan for files scan on the JobSub server. It scans various folders under <span class="ph filepath">$BANNER_HOME</span>, and folders listed in the provided field where your mods are stored.<p class="p">Field(s) in this section</p>
+
+<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" class="table" frame="border" border="1" rules="all"><colgroup><col style="width:312"><col style="width:312"></colgroup><thead class="thead" style="text-align:left;">
+              <tr class="row">
+                <th class="entry cellrowborder" style="vertical-align:top;" id="d138e231">Field</th>
+
+                <th class="entry cellrowborder" style="vertical-align:top;" id="d138e234">Description</th>
+
+              </tr>
+
+            </thead>
+<tbody class="tbody">
+              <tr class="row">
+                <td class="entry cellrowborder" style="vertical-align:top;" headers="d138e231 ">Enter a comma-separated list of folders</td>
+
+                <td class="entry cellrowborder" style="vertical-align:top;" headers="d138e234 ">Prompts for folders where you store your customized <span class="keyword">Banner</span> source files. If you don’t have any customized sources, please retain the default value (N/A).</td>
+
+              </tr>
+
+            </tbody>
+</table>
+</div>
+</li>
+
+        <li class="li">The <span class="keyword">Banner</span> section enables the scan for <span class="keyword">Banner</span> database.<p class="p">Field(s) in this section</p>
+
+<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" class="table" frame="border" border="1" rules="all"><colgroup><col style="width:312"><col style="width:312"></colgroup><thead class="thead" style="text-align:left;">
+              <tr class="row">
+                <th class="entry cellrowborder" style="vertical-align:top;" id="d138e279">Field</th>
+
+                <th class="entry cellrowborder" style="vertical-align:top;" id="d138e282">Description</th>
+
+              </tr>
+
+            </thead>
+<tbody class="tbody">
+              <tr class="row">
+                <td class="entry cellrowborder" style="vertical-align:top;" headers="d138e279 ">Enter the IP address of the <span class="keyword">Banner</span> database server</td>
+
+                <td class="entry cellrowborder" style="vertical-align:top;" headers="d138e282 ">Prompts you to enter the IP address of the <span class="keyword">Banner</span> database server.</td>
+
+              </tr>
+
+              <tr class="row">
+                <td class="entry cellrowborder" style="vertical-align:top;" headers="d138e279 ">Enter the port number of the <span class="keyword">Banner</span> database</td>
+
+                <td class="entry cellrowborder" style="vertical-align:top;" headers="d138e282 ">Prompts you to enter the port number for the <span class="keyword">Banner</span> database.</td>
+
+              </tr>
+
+              <tr class="row">
+                <td class="entry cellrowborder" style="vertical-align:top;" headers="d138e279 ">Enter the service name of the <span class="keyword">Banner</span> database</td>
+
+                <td class="entry cellrowborder" style="vertical-align:top;" headers="d138e282 ">Prompts you to enter the service name for the <span class="keyword">Banner</span> database.</td>
+
+              </tr>
+
+            </tbody>
+</table>
+</div>
+</li>
+
+        <li class="li">The ODS section enables the scan for ODS database.<p class="p">Field(s) in this section</p>
+
+<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" class="table" frame="border" border="1" rules="all"><colgroup><col style="width:312"><col style="width:312"></colgroup><thead class="thead" style="text-align:left;">
+              <tr class="row">
+                <th class="entry cellrowborder" style="vertical-align:top;" id="d138e353">Field</th>
+
+                <th class="entry cellrowborder" style="vertical-align:top;" id="d138e356">Description</th>
+
+              </tr>
+
+            </thead>
+<tbody class="tbody">
+              <tr class="row">
+                <td class="entry cellrowborder" style="vertical-align:top;" headers="d138e353 ">Is an ODS server configured in your environment?</td>
+
+                <td class="entry cellrowborder" style="vertical-align:top;" headers="d138e356 ">If you have a ODS server provisioned for your environment, select Yes from the list.</td>
+
+              </tr>
+
+              <tr class="row">
+                <td class="entry cellrowborder" style="vertical-align:top;" headers="d138e353 ">Enter the IP address of the ODS server</td>
+
+                <td class="entry cellrowborder" style="vertical-align:top;" headers="d138e356 ">Prompts you to enter the IP address of the ODS database server.</td>
+
+              </tr>
+
+              <tr class="row">
+                <td class="entry cellrowborder" style="vertical-align:top;" headers="d138e353 ">Enter the port number of the ODS database</td>
+
+                <td class="entry cellrowborder" style="vertical-align:top;" headers="d138e356 ">Prompts you to enter the port number for the ODS database.</td>
+
+              </tr>
+
+              <tr class="row">
+                <td class="entry cellrowborder" style="vertical-align:top;" headers="d138e353 ">Enter the service name of the ODS database</td>
+
+                <td class="entry cellrowborder" style="vertical-align:top;" headers="d138e356 ">Prompts you to enter the service name for the ODS database.</td>
+
+              </tr>
+
+              <tr class="row">
+                <td class="entry cellrowborder" style="vertical-align:top;" headers="d138e353 ">Enter the username to connect to the ODS database</td>
+
+                <td class="entry cellrowborder" style="vertical-align:top;" headers="d138e356 ">
+                  <p class="p">Prompts you to enter a user to connect to the database. Use either SYSTEM user or create a new user with the privileges outlined in <span class="xref ft-internal-link" title="These resources can be used as a reference for Modernization Studio Scanner." data-ft-warning="excluded-from-rendering" data-mapid="~nVw1TR5h0BceyNCIBrUVw" data-tocid="oWIrqdWYsMVDkay_8l6wNg">Resources</span>.</p>
+
+                </td>
+
+              </tr>
+
+              <tr class="row">
+                <td class="entry cellrowborder" style="vertical-align:top;" headers="d138e353 ">Enter the password for the username above</td>
+
+                <td class="entry cellrowborder" style="vertical-align:top;" headers="d138e356 ">Prompts you to enter the password for the user entered above.</td>
+
+              </tr>
+
+            </tbody>
+</table>
+</div>
+</li>
+
+        <li class="li">The Cognos section enables the scan for Cognos database.<p class="p">Field(s) in this section</p>
+
+<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" class="table" frame="border" border="1" rules="all"><colgroup><col style="width:312"><col style="width:312"></colgroup><thead class="thead" style="text-align:left;">
+              <tr class="row">
+                <th class="entry cellrowborder" style="vertical-align:top;" id="d138e450">Field</th>
+
+                <th class="entry cellrowborder" style="vertical-align:top;" id="d138e453">Description</th>
+
+              </tr>
+
+            </thead>
+<tbody class="tbody">
+              <tr class="row">
+                <td class="entry cellrowborder" style="vertical-align:top;" headers="d138e450 ">Is an IBM Cognos server configured in your environment</td>
+
+                <td class="entry cellrowborder" style="vertical-align:top;" headers="d138e453 ">If you have a Cognos server provisioned for your environment, select Yes from the list.</td>
+
+              </tr>
+
+              <tr class="row">
+                <td class="entry cellrowborder" style="vertical-align:top;" headers="d138e450 ">
+                  <p class="p">Enter the IP address of the IBM Cognos server</p>
+
+                </td>
+
+                <td class="entry cellrowborder" style="vertical-align:top;" headers="d138e453 ">Prompts you to enter the IP address of the Cognos database server.</td>
+
+              </tr>
+
+              <tr class="row">
+                <td class="entry cellrowborder" style="vertical-align:top;" headers="d138e450 ">Enter the port number of the IBM Cognos database</td>
+
+                <td class="entry cellrowborder" style="vertical-align:top;" headers="d138e453 ">Prompts you to enter the port number for the Cognos database.</td>
+
+              </tr>
+
+              <tr class="row">
+                <td class="entry cellrowborder" style="vertical-align:top;" headers="d138e450 ">Enter the service name of the IBM Cognos database</td>
+
+                <td class="entry cellrowborder" style="vertical-align:top;" headers="d138e453 ">Prompts you to enter the service name for the Cognos database.</td>
+
+              </tr>
+
+              <tr class="row">
+                <td class="entry cellrowborder" style="vertical-align:top;" headers="d138e450 ">
+                  <p class="p">Enter the username to connect to the IBM Cognos database</p>
+
+                </td>
+
+                <td class="entry cellrowborder" style="vertical-align:top;" headers="d138e453 ">Prompts you to enter a user to connect to the database. Use either SYSTEM user or create a new user with the privileges outlined in <span class="xref ft-internal-link" title="These resources can be used as a reference for Modernization Studio Scanner." data-ft-warning="excluded-from-rendering" data-mapid="~nVw1TR5h0BceyNCIBrUVw" data-tocid="oWIrqdWYsMVDkay_8l6wNg">Resources</span>.</td>
+
+              </tr>
+
+              <tr class="row">
+                <td class="entry cellrowborder" style="vertical-align:top;" headers="d138e450 ">Enter the password for the username above</td>
+
+                <td class="entry cellrowborder" style="vertical-align:top;" headers="d138e453 ">Prompts you to enter the password for the user entered above. </td>
+
+              </tr>
+
+              <tr class="row">
+                <td class="entry cellrowborder" style="vertical-align:top;" headers="d138e450 ">Enter the schema name where all the Cognos metadata tables are located</td>
+
+                <td class="entry cellrowborder" style="vertical-align:top;" headers="d138e453 ">Prompts you to enter the schema name, where Cognos metadata tables are installed. <div class="note"><span class="notetitle">Note:</span> Use the SQL query found in <span class="xref ft-internal-link" title="These resources can be used as a reference for Modernization Studio Scanner." data-ft-warning="excluded-from-rendering" data-mapid="~nVw1TR5h0BceyNCIBrUVw" data-tocid="oWIrqdWYsMVDkay_8l6wNg">Resources</span> to find the schema name.</div>
+</td>
+
+              </tr>
+
+            </tbody>
+</table>
+</div>
+</li>
+
+        <li class="li">The Audit section enables the scan for AUDIT schema installed as part of Cognos database.<p class="p">Field(s) in this section</p>
+
+<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" class="table" frame="border" border="1" rules="all"><colgroup><col style="width:312"><col style="width:312"></colgroup><thead class="thead" style="text-align:left;">
+              <tr class="row">
+                <th class="entry cellrowborder" style="vertical-align:top;" id="d138e571">Field</th>
+
+                <th class="entry cellrowborder" style="vertical-align:top;" id="d138e574">Description</th>
+
+              </tr>
+
+            </thead>
+<tbody class="tbody">
+              <tr class="row">
+                <td class="entry cellrowborder" style="vertical-align:top;" headers="d138e571 ">Is an IBM Cognos server configured in your environment</td>
+
+                <td class="entry cellrowborder" style="vertical-align:top;" headers="d138e574 ">If you have a Cognos server provisioned for your environment and AUDIT schema enabled, select Yes from the list.</td>
+
+              </tr>
+
+              <tr class="row">
+                <td class="entry cellrowborder" style="vertical-align:top;" headers="d138e571 ">
+                  <p class="p">Enter the IP address of the IBM Cognos server</p>
+
+                </td>
+
+                <td class="entry cellrowborder" style="vertical-align:top;" headers="d138e574 ">Prompts you to enter the IP address of the Cognos database server.</td>
+
+              </tr>
+
+              <tr class="row">
+                <td class="entry cellrowborder" style="vertical-align:top;" headers="d138e571 ">Enter the port number of the IBM Cognos database</td>
+
+                <td class="entry cellrowborder" style="vertical-align:top;" headers="d138e574 ">Prompts you to enter the port number for the Cognos database.</td>
+
+              </tr>
+
+              <tr class="row">
+                <td class="entry cellrowborder" style="vertical-align:top;" headers="d138e571 ">Enter the service name of the IBM Cognos database</td>
+
+                <td class="entry cellrowborder" style="vertical-align:top;" headers="d138e574 ">Prompts you to enter the service name for the Cognos database.</td>
+
+              </tr>
+
+              <tr class="row">
+                <td class="entry cellrowborder" style="vertical-align:top;" headers="d138e571 ">
+                  <p class="p">Enter the username to connect to the IBM Cognos database</p>
+
+                </td>
+
+                <td class="entry cellrowborder" style="vertical-align:top;" headers="d138e574 ">
+                  <p class="p">Prompts you to enter a user to connect to the database. Use either SYSTEM user or create a new user with the privileges outlined in <span class="xref ft-internal-link" title="These resources can be used as a reference for Modernization Studio Scanner." data-ft-warning="excluded-from-rendering" data-mapid="~nVw1TR5h0BceyNCIBrUVw" data-tocid="oWIrqdWYsMVDkay_8l6wNg">Resources</span>.</p>
+
+                </td>
+
+              </tr>
+
+              <tr class="row">
+                <td class="entry cellrowborder" style="vertical-align:top;" headers="d138e571 ">Enter the password for the username above</td>
+
+                <td class="entry cellrowborder" style="vertical-align:top;" headers="d138e574 ">Prompts you to enter the password for the user entered above.</td>
+
+              </tr>
+
+              <tr class="row">
+                <td class="entry cellrowborder" style="vertical-align:top;" headers="d138e571 ">Enter the schema name where all the Cognos metadata tables are located</td>
+
+                <td class="entry cellrowborder" style="vertical-align:top;" headers="d138e574 ">Prompts you to enter the schema name, where Cognos AUDIT metadata tables are installed. <div class="note"><span class="notetitle">Note:</span> Use the SQL query found in <span class="xref ft-internal-link" title="These resources can be used as a reference for Modernization Studio Scanner." data-ft-warning="excluded-from-rendering" data-mapid="~nVw1TR5h0BceyNCIBrUVw" data-tocid="oWIrqdWYsMVDkay_8l6wNg">Resources</span> to find the schema name.</div>
+</td>
+
+              </tr>
+
+            </tbody>
+</table>
+</div>
+</li>
+
+        <li class="li">The Automic section enables the scan for Automic jobs.<p class="p">Field(s) in this section</p>
+
+<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" class="table" frame="border" border="1" rules="all"><colgroup><col style="width:312"><col style="width:312"></colgroup><thead class="thead" style="text-align:left;">
+              <tr class="row">
+                <th class="entry cellrowborder" style="vertical-align:top;" id="d138e695">Field</th>
+
+                <th class="entry cellrowborder" style="vertical-align:top;" id="d138e698">Description</th>
+
+              </tr>
+
+            </thead>
+<tbody class="tbody">
+              <tr class="row">
+                <td class="entry cellrowborder" style="vertical-align:top;" headers="d138e695 ">Is an Automic server configured in your environment?</td>
+
+                <td class="entry cellrowborder" style="vertical-align:top;" headers="d138e698 ">If you have an Automic server provisioned for your environment, please select Yes from the list.</td>
+
+              </tr>
+
+              <tr class="row">
+                <td class="entry cellrowborder" style="vertical-align:top;" headers="d138e695 ">
+                  <p class="p">Enter the IP address of the Automic server</p>
+
+                </td>
+
+                <td class="entry cellrowborder" style="vertical-align:top;" headers="d138e698 ">Prompts you to enter the IP address of the Automic database server.</td>
+
+              </tr>
+
+              <tr class="row">
+                <td class="entry cellrowborder" style="vertical-align:top;" headers="d138e695 ">Enter the port number of the Automic database</td>
+
+                <td class="entry cellrowborder" style="vertical-align:top;" headers="d138e698 ">Prompts you to enter the port number for the Automic database.</td>
+
+              </tr>
+
+              <tr class="row">
+                <td class="entry cellrowborder" style="vertical-align:top;" headers="d138e695 ">Enter the service name of the Automic database</td>
+
+                <td class="entry cellrowborder" style="vertical-align:top;" headers="d138e698 ">Prompts you to enter the service name for the Automic database.</td>
+
+              </tr>
+
+              <tr class="row">
+                <td class="entry cellrowborder" style="vertical-align:top;" headers="d138e695 ">
+                  <p class="p">Enter the username to connect to the Automic database</p>
+
+                </td>
+
+                <td class="entry cellrowborder" style="vertical-align:top;" headers="d138e698 ">Prompts you to enter a user to connect to the database. Use either SYSTEM user or create a new user with the privileges outlined in the section below.</td>
+
+              </tr>
+
+              <tr class="row">
+                <td class="entry cellrowborder" style="vertical-align:top;" headers="d138e695 ">Enter the password for the username above</td>
+
+                <td class="entry cellrowborder" style="vertical-align:top;" headers="d138e698 ">Prompts you to enter the password for the user entered above.</td>
+
+              </tr>
+
+              <tr class="row">
+                <td class="entry cellrowborder" style="vertical-align:top;" headers="d138e695 ">Enter the schema name where all the Automic metadata tables are located</td>
+
+                <td class="entry cellrowborder" style="vertical-align:top;" headers="d138e698 ">Prompts you to enter the schema name, where Automic jobs metadata tables are installed. <div class="note"><span class="notetitle">Note:</span> Use the SQL query found in <span class="xref ft-internal-link" title="These resources can be used as a reference for Modernization Studio Scanner." data-ft-warning="excluded-from-rendering" data-mapid="~nVw1TR5h0BceyNCIBrUVw" data-tocid="oWIrqdWYsMVDkay_8l6wNg">Resources</span> to find the schema name.</div>
+</td>
+
+              </tr>
+
+            </tbody>
+</table>
+</div>
+</li>
+
+      </ol>
+
+    </div>
+
+  </div>
+
+</div></div></section>
+<section id="t-60"><h2>Output</h2><div class="content-locale-en-US content-locale-en"><div id="c_mss_output"><div class="body conbody"><p class="shortdesc">After the scan is completed, the scanner will generate raw output results based on the configuration of <span class="keyword">Ellucian Solution Manager</span> (<span class="keyword">ESM</span>). These results will be uploaded to a secure Amazon Simple Storage Service (S3) bucket within the <span class="keyword">Ellucian</span> <span class="keyword">AWS</span> account.</p>
+
+    <p class="p">For customers who did not use <span class="keyword">ESM</span> and ran scans manually, they will be will be directed to the output folder specified in the <code class="ph codeph">targetPath</code> attribute, which in this case is <code class="ph codeph">resultCli</code>.</p>
+
+    <ul class="ul">
+      <li class="li"><span class="ph filepath">Databases-v.v.vv-xxxx.PROD-yyyymmdd-nnnn.zip</span></li>
+
+      <li class="li"><span class="ph filepath">Databases-v.v.vv-ODS-xxxx.ODSPROD-yyyymmdd-nnnn.zip</span></li>
+
+      <li class="li"><span class="ph filepath">Cognos_Reports-v.v.vv-Cognos_Reports-yyyymmdd-nnnn.zip</span></li>
+
+      <li class="li"><span class="ph filepath">Extensibility-v.v.vv-EX-xxxx.PROD-yyyymmdd-nnnn.zip</span></li>
+
+      <li class="li"><span class="ph filepath">Applications-v.v.vv-DB_APP-xxxx.PROD-yyyymmdd-nnnn.zip</span></li>
+
+      <li class="li"><span class="ph filepath">Applications-v.v.vv-WAR_APP-xxxx.PROD-yyyymmdd-nnnn.zip</span></li>
+
+      <li class="li"><span class="ph filepath">Applications-v.v.vv-SSB8-xxxx.PROD-yyyymmdd-nnnn.zip</span></li>
+
+      <li class="li"><span class="ph filepath">Jobs-v.v.vv-AJ-xxxx.UC4P-yyyymmdd-nnnn.zip</span></li>
+
+      <li class="li"><span class="ph filepath">Jobs-v.v.vv-CJ-xxxx-JOBSUB-yyyymmdd-nnnn.zip</span></li>
+
+      <li class="li"><span class="ph filepath">Jobs-v.v.vv-DB_JOBS-xxxx.PROD-yyyymmdd-nnnn.zip</span></li>
+
+      <li class="li"><span class="ph filepath">Customer_Information-v.v.vv-CI-xxxx.PROD-yyyymmdd-nnnn.zip</span></li>
+
+      <li class="li"><span class="ph filepath">Customer_configurations-v.v.vv-xxxx.PROD-yyyymmdd-nnnn.zip</span></li>
+
+      <li class="li"><span class="ph filepath">Files-v.v.vv-xxxx-JOBSUB-yyyymmdd-nnnn.zip</span></li>
+
+      <li class="li"><span class="ph filepath">Log-yyyymmdd-nnnn.zip</span></li>
+
+      <li class="li"><span class="ph filepath">Summary-yyyymmdd-nnnn.txt</span></li>
+
+    </ul>
+
+    <div class="p">Additionally, two log files will be created in the <span class="ph filepath">db-scan</span> folder.<ul class="ul">
+      <li class="li"><span class="ph filepath">scanners-cli.log</span></li>
+
+      <li class="li"><span class="ph filepath">scanners-toolkit.log</span></li>
+
+      </ul>
+</div>
+
+    <p class="p">Save all output results in a single file and convert it into a ZIP (Zipped Information Package) file. Name the ZIP file using the format: <span class="ph filepath">MSS-&lt;Institution-Name&gt;-&lt;YYYYMMDD&gt;.zip</span>. For example, <span class="ph filepath">MSS-Eloyce-University-20250219.zip</span>.</p>
+
+    <p class="p">When ready, upload your ZIP file to this <a class="xref ft-external-link" href="https://ellucian.app.box.com/f/03ed02e437c14c7ab6839c8738c1ae52" target="_blank" rel="noopener">Ellucian secure Box</a>. </p>
+
+    <div class="note"><span class="notetitle">Note:</span> This ZIP file must include all files from <code class="ph codeph">resultCli</code> and <code class="ph codeph">resultCliCron</code>, and all log files from the <span class="ph filepath">db-scan</span> and <span class="ph filepath">cron-scan</span> folders.</div>
+
+    <p class="p">If you require a deeper understanding or more detailed insights, we encourage you to reach out to your <span class="keyword">Ellucian</span> Customer Success Manager or Sales Account Executive for consultation. They would assist in scheduling a thorough analysis with an <span class="keyword">Ellucian</span> team member to help you interpret the data and information, and offer recommendations tailored to your specific institutions’ needs.</p>
+
+  </div>
+
+</div></div></section>
+<section id="t-70"><h2>Resources</h2><div class="content-locale-en-US content-locale-en"><div id="r_mss_resources"><div class="body refbody"><p class="shortdesc">These resources can be used as a reference for <span class="keyword">Modernization Studio Scanner</span>.</p>
+
+    
+<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" class="table" frame="hsides" border="1" rules="rows"><colgroup><col style="width:28.011204481792717%"><col style="width:71.98879551820728%"></colgroup><thead class="thead" style="text-align:left;vertical-align:bottom;">
+          <tr class="row">
+            <th class="entry row-nocellborder" style="vertical-align:bottom;" id="d1869e50">Question</th>
+
+            <th class="entry row-nocellborder" style="vertical-align:bottom;" id="d1869e53">Answer</th>
+
+          </tr>
+
+        </thead>
+<tbody class="tbody">
+          <tr class="row">
+            <td class="entry row-nocellborder" style="vertical-align:top;" headers="d1869e50 ">How to find the Cognos schema that hosts all the metadata tables?</td>
+
+            <td class="entry row-nocellborder" style="vertical-align:top;" headers="d1869e53 ">Execute the following:<pre class="pre codeblock"><code>select t.owner, t.table_name, nvl(to_number(extractvalue(xmltype(dbms_xmlgen.getxml('select count(*) c from "' || t.owner || '"."' || t.table_name || '"')), '/ROWSET/ROW/C')), 0) rows_count,
+ extractvalue(xmltype(dbms_xmlgen.getxml('select propvalue c from "' || t.owner || '"."CMSYSPROPS" where ci_propname = ''CMSTOREVERSION''')), '/ROWSET/ROW/C') cs_version
+ from dba_tables t
+ where t.table_name = 'CMOBJECTS'
+ order by rows_count desc;
+</code></pre><pre class="pre codeblock"><code>SELECT 'COGSCHEMA:' || owner from dba_tables where table_name = 'CMOBJECTS';</code></pre></td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="vertical-align:top;" headers="d1869e50 ">How to find the audit schema that hosts all the metadata tables?</td>
+
+            <td class="entry row-nocellborder" style="vertical-align:top;" headers="d1869e53 ">Execute the following:<pre class="pre codeblock"><code>select t.owner, t.table_name, nvl(to_number(extractvalue(xmltype(dbms_xmlgen.getxml('select count(*) c from "' || t.owner || '"."' || t.table_name || '"')), '/ROWSET/ROW/C')), 0) rows_count,
+ extractvalue(xmltype(dbms_xmlgen.getxml('select propvalue c from "' || t.owner || '"."COGIPF_SYSPROPS"')), '/ROWSET/ROW/C') audit_version
+ from dba_tables t
+ where t.table_name = 'COGIPF_RUNREPORT'
+ order by rows_count desc;
+</code></pre><pre class="pre codeblock"><code>SELECT 'AUDITSCHEMA:' || owner from dba_tables where table_name = 'COGIPF_RUNREPORT';</code></pre></td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="vertical-align:top;" headers="d1869e50 ">How to find Automic schema that hosts all the metadata tables?</td>
+
+            <td class="entry row-nocellborder" style="vertical-align:top;" headers="d1869e53 ">Execute the following:<pre class="pre codeblock"><code>select t.owner, t.table_name, nvl(to_number(extractvalue(xmltype(dbms_xmlgen.getxml('select count(*) c from "' || t.owner || '"."' || t.table_name || '"')), '/ROWSET/ROW/C')), 0) rows_count,
+ extractvalue(xmltype(dbms_xmlgen.getxml('select so_version_no c from "' || t.owner || '"."SO_VERSION"')), '/ROWSET/ROW/C') so_version_no
+ from dba_tables t
+ where t.table_name = 'SO_JOB_TABLE'
+ order by rows_count desc;
+</code></pre><pre class="pre codeblock"><code>SELECT 'AUT_SCH:' || owner FROM dba_tables WHERE table_name = 'SO_JOB_TABLE' AND owner LIKE '%MGR%';</code></pre></td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="vertical-align:top;" headers="d1869e50 ">How to create a new user to connect to the database?</td>
+
+            <td class="entry row-nocellborder" style="vertical-align:top;" headers="d1869e53 ">
+              <pre class="pre codeblock"><code>CREATE USER EL_DISCOVERER 
+IDENTIFIED BY xxx
+DEFAULT TABLESPACE SYSTEM 
+TEMPORARY TABLESPACE TEMP 
+PROFILE DEFAULT 
+ACCOUNT UNLOCK;
+/
+GRANT CONNECT TO EL_DISCOVERER;
+GRANT SELECT_CATALOG_ROLE TO EL_DISCOVERER;
+ALTER USER EL_DISCOVERER DEFAULT ROLE ALL;
+GRANT ALTER SESSION TO EL_DISCOVERER;
+GRANT RESTRICTED SESSION TO EL_DISCOVERER;
+GRANT SELECT ANY DICTIONARY TO EL_DISCOVERER;
+GRANT SELECT ANY TABLE TO EL_DISCOVERER;
+/
+</code></pre>
+            </td>
+
+          </tr>
+
+        </tbody>
+</table>
+</div>
+
+  </div>
+
+</div></div></section>
+<section id="t-80"><h2>Tool Help</h2><div class="content-locale-en-US content-locale-en"><div id="c_mss_tool_help"><div class="body conbody"><p class="shortdesc">If you encounter any difficulties or issues while running <span class="keyword">Modernization Studio Scanner</span> (<span class="keyword">MSS</span>), <span class="keyword">Ellucian</span> recommends creating a support case through the <a class="xref ft-external-link" href="https://www.ellucian.com/customer-center" target="_blank" rel="noopener"><span class="keyword">Ellucian Customer Center</span></a>.</p>
+
+    <p class="p">This will ensure that our <span class="keyword">Ellucian Action Line</span> support team can promptly assist you with troubleshooting and resolve the problem. Providing detailed information about the issue, such as error messages and specific steps executed, will help expedite the resolution process. Our team is committed to helping you address any challenges to ensure smooth and effective use of the <span class="keyword">MSS</span> scanners.</p>
+
+  </div>
+
+</div></div></section></main></body></html>

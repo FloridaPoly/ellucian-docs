@@ -1,0 +1,1936 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Ethos Identity - Configure — Configure Applications for Ethos Identity</title><style>body{font-family:-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;line-height:1.55;color:#1a1a1a;max-width:920px;margin:0 auto;padding:24px}header{border-bottom:2px solid #5a16d6;margin-bottom:8px}h1{color:#3a0ca3}h2,h3,h4,h5,h6{margin-top:1.6em}.crumb{color:#666;font-size:13px;margin:0}.meta{color:#888;font-size:12px}nav.toc{background:#f6f4fc;border:1px solid #e3dcf5;border-radius:8px;padding:12px 18px;margin:18px 0}nav.toc h2{margin:.2em 0}nav.toc ul{list-style:none;padding-left:0}nav.toc a{text-decoration:none;color:#5a16d6}section{margin:1.2em 0;padding-top:.4em}img{max-width:100%;height:auto}table{border-collapse:collapse}td,th{border:1px solid #ccc;padding:4px 8px}code,pre{background:#f4f4f4;border-radius:4px}pre{padding:10px;overflow:auto}</style></head><body><header><p class="crumb">Ethos Identity › Ethos Identity - Configure</p><h1>Ethos Identity - Configure — Configure Applications for Ethos Identity</h1><p class="meta">Source: <a href="https://resources.elluciancloud.com/r/bundle/ethos_identity_acn_configure">https://resources.elluciancloud.com/r/bundle/ethos_identity_acn_configure</a> &middot; Retrieved 2026-06-17</p></header><nav class="toc"><h2>Contents</h2><ul><li style="margin-left:0px"><a href="#t-20">Configure Applications for Ethos Identity</a></li><li style="margin-left:16px"><a href="#t-30">Configure CAS based applications</a></li><li style="margin-left:32px"><a href="#t-40">Configure attribute mapping</a></li><li style="margin-left:32px"><a href="#t-50">Add CAS based applications</a></li><li style="margin-left:32px"><a href="#t-60">(Optional) Make an applications visible to additional administrators</a></li><li style="margin-left:32px"><a href="#t-70">Add CAS configuration</a></li><li style="margin-left:32px"><a href="#t-80">Configure Banner 8 applications</a></li><li style="margin-left:32px"><a href="#t-90">Configure Banner 9.x applications</a></li><li style="margin-left:16px"><a href="#t-100">Configure SAML 2.0 based application</a></li><li style="margin-left:32px"><a href="#t-110">Import and export certificate using Ellucian Ethos Identity management console</a></li><li style="margin-left:48px"><a href="#t-120">Export the Ellucian Ethos Identity public certificate</a></li><li style="margin-left:48px"><a href="#t-130">Import the Ellucian Ethos Identity public certificate</a></li><li style="margin-left:32px"><a href="#t-140">Configure attribute mapping</a></li><li style="margin-left:32px"><a href="#t-150">Add an application with SAML</a></li><li style="margin-left:32px"><a href="#t-160">(Optional) Make an applications visible to additional administrators</a></li><li style="margin-left:32px"><a href="#t-170">Add SAML configuration</a></li><li style="margin-left:32px"><a href="#t-180">Modify identity provider issuer</a></li><li style="margin-left:32px"><a href="#t-190">Configure Colleague Self-Service</a></li><li style="margin-left:32px"><a href="#t-200">Configure Google Apps</a></li><li style="margin-left:32px"><a href="#t-210">Configure Google Apps to use Ellucian Ethos Identity as IDP</a></li><li style="margin-left:16px"><a href="#t-220">Configure WS-Federation service providers</a></li><li style="margin-left:32px"><a href="#t-230">Import and export certificate using Ellucian Ethos Identity management console</a></li><li style="margin-left:48px"><a href="#t-240">Export the Ellucian Ethos Identity public certificate</a></li><li style="margin-left:48px"><a href="#t-250">Import the Ellucian Ethos Identity public certificate</a></li><li style="margin-left:32px"><a href="#t-260">Configure attribute mapping</a></li><li style="margin-left:32px"><a href="#t-270">Add a service provider</a></li><li style="margin-left:32px"><a href="#t-280">(Optional) Make an applications visible to additional administrators</a></li><li style="margin-left:32px"><a href="#t-290">Add Passive STS realm</a></li><li style="margin-left:32px"><a href="#t-300">(Optional) Modify STS timeout</a></li><li style="margin-left:32px"><a href="#t-310">(Optional) Modify STS issuer</a></li><li style="margin-left:16px"><a href="#t-320">Bind service provider to user store</a></li></ul></nav><main><section id="t-20"><h2>Configure Applications for Ethos Identity</h2><div class="content-locale-en-US content-locale-en"><div id="c_service_providers_config"><div class="body conbody"><p class="shortdesc"><span class="keyword">Ellucian Ethos Identity</span> requires each supported application to be created as an Applications and configured for the appropriate protocol.</p>
+
+    <p class="p">Service providers can require different configurations for application and protocol combinations. These procedures describe configurations for CAS, SAML 2.0, and WS-Federation. For more information, refer to <cite class="cite">Applications</cite> on the WSO2 documentation website for the corresponding WSO2 version.</p>
+
+  </div>
+
+</div></div></section>
+<section id="t-30"><h3>Configure CAS based applications</h3><div class="content-locale-en-US content-locale-en"><div id="c_config_cas_service_providers"><div class="body conbody"><p class="shortdesc">Central Authentication Service (CAS) is a ticket-based single sign-on protocol maintained by JA-SIG. <span class="keyword">Ellucian Ethos Identity</span> supports the CAS protocol specification, which is used by some <span class="keyword">Ellucian</span> products.</p>
+
+    <div class="p">The following diagram shows the login and service ticket validation process for a CAS service provider against <span class="keyword">Ellucian Ethos Identity</span>.<br><div class="imageleft"><img class="image imageleft" width="656" alt="CAS configuration example" data-ft-asset-display-name="i_cas_configuration.png" style="aspect-ratio: 656/468;" data-ft-resize-ratio="0.64950496" src="images/02-configure-applications-for-ethos-identity-1.png" data-ft-resource-id="Gv3iU3HZ39KG8gpb7x0aKQ-jNnVA1p5_LJSdqVKFSFQVA"></div><br></div>
+
+    <div class="section"><h2 class="title sectiontitle">Supported CAS protocols</h2>
+      
+      <p class="p">The following CAS protocols are supported by <span class="keyword">Ellucian Ethos Identity</span>.</p>
+
+      
+<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" class="table" frame="hsides" border="1" rules="rows"><colgroup><col><col></colgroup><thead class="thead" style="text-align:left;vertical-align:bottom;">
+            <tr class="row">
+              <th class="entry row-nocellborder" style="text-align:left;vertical-align:bottom;" id="d10396e73">Protocol</th>
+
+              <th class="entry row-nocellborder" style="text-align:left;vertical-align:bottom;" id="d10396e76">Supports</th>
+
+            </tr>
+
+          </thead>
+<tbody class="tbody">
+            <tr class="row">
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d10396e73 ">Login</td>
+
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d10396e76 ">/login<p class="p">Supports TARGET and SAMLart arguments for legacy SAML clients</p>
+</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d10396e73 ">Logout</td>
+
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d10396e76 ">/logout<ul class="ul"> <li class="li">Supports <span class="keyword parmname">url</span> parameter for redirect link [CAS 1.0, 2.0]</li>
+ <li class="li">Supports <span class="keyword parmname">service</span> parameter for automatic redirect [CAS 3.0]</li>
+ </ul>
+</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d10396e73 ">Proxy Ticket</td>
+
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d10396e76 ">/proxy [CAS 2.0]</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d10396e73 ">Ticket Validation</td>
+
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d10396e76 ">
+                <ul class="ul">
+                  <li class="li">/validate [CAS 1.0]</li>
+
+                  <li class="li">/serviceValidate [CAS 2.0] Supports user attributes [CAS 3.0]</li>
+
+                  <li class="li">/proxyValidate [CAS 2.0] </li>
+
+                  <li class="li">/samlValidate [CAS 3.0]</li>
+
+                </ul>
+
+              </td>
+
+            </tr>
+
+          </tbody>
+</table>
+</div>
+
+    </div>
+
+    <div class="section"><h2 class="title sectiontitle">CAS single logout</h2>
+      
+      <p class="p">CAS single logout capability is not supported by all service provider applications, it is not set by default, and it generates extraneous traffic.</p>
+
+      <p class="p">If you want a service provider to use the CAS single logout capability, you must set the <span class="ph uicontrol">Enable Single Logout</span> option on the CAS configuration panel for that service provider in the Management Console.</p>
+
+    </div>
+
+  </div>
+
+</div></div></section>
+<section id="t-40"><h4>Configure attribute mapping</h4><div class="content-locale-en-US content-locale-en"><div id="t_configure_claim_mapping"><div class="body taskbody"><p class="shortdesc">An application might require specific user store attributes that must be passed to the application. <span class="keyword">Ellucian Ethos Identity</span> provides some default attribute that map to user store attributes. You might need to add attribute, or change the existing mappings to point to a different attribute in your directory server.</p>
+
+    <div class="tasklabel"><h2 class="sectiontitle tasklabel">Procedure</h2></div><ol class="ol steps"><li class="li step stepexpand">
+        <span class="ph cmd">Log in to the Console.</span>
+        <div class="itemgroup info">Log in as a user who has access to all service providers. You can either always use the same login to maintain service providers, or give multiple users access to each service provider using the procedure in <cite class="cite">Make a service provider visible to additional administrators</cite>.</div>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Click <span class="ph uicontrol">User Attributes &amp; Stores</span> tab.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Click <span class="ph uicontrol">Attributes</span></span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Under <span class="ph uicontrol">Manage Attributes</span>, click <span class="ph uicontrol">Attributes</span>.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Review the existing attributes to determine whether you need to add attributes, or modify an existing attributes to point to a different attribute in your user store.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">If you need to add an attributes, follow the instructions in the WSO2 procedure.</span>
+        <div class="itemgroup info">For more information, refer to <cite class="cite">Add custom attributes</cite> on the WSO2 documentation website for the corresponding WSO2 version. For example, you might need to add one of the claims listed in the following table:</div>
+        
+<table border="1" frame="hsides" rules="rows" cellpadding="4" cellspacing="0" summary="" class="simpletable choicetable choicetableborder">
+<colgroup><col style="width:50%"><col style="width:50%"></colgroup><thead><tr class="sthead chhead"><th class="stentry choptionhd" style="vertical-align:bottom;text-align:left;" id="d18535e107-option">Claim</th>
+<th class="stentry chdeschd" style="vertical-align:bottom;text-align:left;" id="d18535e107-desc">Description</th></tr></thead>
+<tbody><tr class="strow chrow">
+            <td style="vertical-align:top;" headers="d18535e107-option" id="d18535e120" class="stentry choption">logonname</td>
+
+            <td style="vertical-align:top;" headers="d18535e107-desc d18535e120" class="stentry chdesc">Logon name claim mapping<p class="p">Example value: <code class="ph codeph">sAMAccountName</code></p>
+</td>
+
+          </tr>
+<tr class="strow chrow">
+            <td style="vertical-align:top;" headers="d18535e107-option" id="d18535e133" class="stentry choption">upn</td>
+
+            <td style="vertical-align:top;" headers="d18535e107-desc d18535e133" class="stentry chdesc">User principal name claim mapping<p class="p">Example value: <code class="ph codeph">userPrincipalName</code></p>
+</td>
+
+          </tr>
+<tr class="strow chrow">
+            <td style="vertical-align:top;" headers="d18535e107-option" id="d18535e146" class="stentry choption">objectguid</td>
+
+            <td style="vertical-align:top;" headers="d18535e107-desc d18535e146" class="stentry chdesc">Object GUID claim mapping<p class="p">Example value: <code class="ph codeph">objectGUID</code></p>
+</td>
+
+          </tr>
+<tr class="strow chrow">
+            <td style="vertical-align:top;" headers="d18535e107-option" id="d18535e159" class="stentry choption">udcid</td>
+
+            <td style="vertical-align:top;" headers="d18535e107-desc d18535e159" class="stentry chdesc">Banner UDC Identifier claim mapping<p class="p">Example value: <code class="ph codeph">udcid</code></p>
+</td>
+
+          </tr>
+<tr class="strow chrow">
+            <td style="vertical-align:top;" headers="d18535e107-option" id="d18535e173" class="stentry choption">personid</td>
+
+            <td style="vertical-align:top;" headers="d18535e107-desc d18535e173" class="stentry chdesc">Colleague Person Identifier claim mapping<p class="p">Example value: <code class="ph codeph">employeeNumber</code></p>
+</td>
+
+          </tr>
+</tbody></table>
+
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Set the following properties to the appropriate values for attributes mappings:</span>
+        <div class="itemgroup info">
+          
+<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" class="table" frame="hsides" border="1" rules="rows"><colgroup><col style="width:56.52173913043479%"><col style="width:43.47826086956522%"></colgroup><thead class="thead" style="text-align:left;">
+                <tr class="row">
+                  <th class="entry row-nocellborder" style="text-align:left;vertical-align:top;" id="d18535e205">Property</th>
+
+                  <th class="entry row-nocellborder" style="text-align:left;vertical-align:top;" id="d18535e208">Description</th>
+
+                </tr>
+
+              </thead>
+<tbody class="tbody">
+                <tr class="row">
+                  <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d18535e205 ">eis.add.claim.logonname</td>
+
+                  <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d18535e208 ">Logon name claim mapping (leave blank to skip this claim)<p class="p">Example value: <code class="ph codeph">sAMAccountName</code></p>
+</td>
+
+                </tr>
+
+                <tr class="row">
+                  <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d18535e205 ">eis.add.claim.upn</td>
+
+                  <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d18535e208 ">User principal name claim mapping (leave blank to skip this claim)<p class="p">Example value: <code class="ph codeph">userPrincipalName</code></p>
+</td>
+
+                </tr>
+
+                <tr class="row">
+                  <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d18535e205 ">eis.add.claim.objectguid</td>
+
+                  <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d18535e208 ">Object GUID claim mapping (leave blank to skip this claim)<p class="p">Example value: <code class="ph codeph">objectGUID</code></p>
+</td>
+
+                </tr>
+
+                <tr class="row">
+                  <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d18535e205 ">eis.add.claim.udcid</td>
+
+                  <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d18535e208 ">Banner UDC Identifier claim mapping (leave blank to skip this claim)<p class="p">Example value: <code class="ph codeph">udcid</code></p>
+</td>
+
+                </tr>
+
+                <tr class="row">
+                  <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d18535e205 ">eis.add.claim.personid</td>
+
+                  <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d18535e208 ">Colleague Person Identifier claim mapping (leave blank to skip this claim)<p class="p">Example value: <code class="ph codeph">employeeNumber</code></p>
+</td>
+
+                </tr>
+
+                <tr class="row">
+                  <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d18535e205 ">eis.add.claim.challenge.question.uris</td>
+
+                  <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d18535e208 ">Store the URI for challenge question</td>
+
+                </tr>
+
+                <tr class="row">
+                  <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d18535e205 ">eis.add.claim.challenge.question.1</td>
+
+                  <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d18535e208 ">Set the claim challenge question one</td>
+
+                </tr>
+
+                <tr class="row">
+                  <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d18535e205 ">eis.add.claim.challenge.question.2</td>
+
+                  <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d18535e208 ">Set the claim challenge question two</td>
+
+                </tr>
+
+              </tbody>
+</table>
+</div>
+
+        </div>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Save the changes to the file.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">If you need to modify an existing claim, follow the instructions in the WSO2 procedure.</span>
+        <div class="itemgroup info">For more information, refer to <cite class="cite">Editing Claim Mapping</cite> on the WSO2 documentation website for the corresponding WSO2 version.</div>
+      </li>
+</ol>
+
+  </div>
+
+</div></div></section>
+<section id="t-50"><h4>Add CAS based applications</h4><div class="content-locale-en-US content-locale-en"><div id="t_add_service_provider_cas"><div class="body taskbody"><p class="shortdesc">Add a CAS based applications definition in the WSO2 Identity Server Console.</p>
+
+    <div class="tasklabel"><h2 class="sectiontitle tasklabel">Procedure</h2></div><ol class="ol steps"><li class="li step stepexpand">
+        <span class="ph cmd">Log in to the Console.</span>
+        <div class="itemgroup info">Log in as a user who has access to all service providers. You can either always use the same login to maintain service providers, or give multiple users access to each service provider using the procedure in <cite class="cite">Make a service provider visible to additional administrators</cite>.</div>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Click <span class="ph uicontrol">Applications</span> tab.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Click <span class="ph uicontrol">New Application</span>.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Select the <span class="ph uicontrol">Custom Application</span>.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">On the <span class="ph uicontrol">Custom Application</span> dialog box, enter the following details as required:</span>
+        <div class="itemgroup info">
+          
+<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" class="table" frame="border" border="1" rules="all"><colgroup><col style="width:35.3356890459364%"><col style="width:64.66431095406361%"></colgroup><thead class="thead" style="text-align:left;">
+                <tr class="row">
+                  <th class="entry cellrowborder" style="vertical-align:top;" id="d15938e96">Field</th>
+
+                  <th class="entry cellrowborder" style="vertical-align:top;" id="d15938e99">Description</th>
+
+                </tr>
+
+              </thead>
+<tbody class="tbody">
+                <tr class="row">
+                  <td class="entry cellrowborder" style="vertical-align:top;" headers="d15938e96 ">Name*</td>
+
+                  <td class="entry cellrowborder" style="vertical-align:top;" headers="d15938e99 ">Enter a name that uniquely identifies the application.<p class="p">Example: <kbd class="ph userinput">MyApplication</kbd></p>
+</td>
+
+                </tr>
+
+              </tbody>
+</table>
+</div>
+
+          <div class="note"><span class="notetitle">Note:</span> * indicates a required field.</div>
+
+        </div>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Select the check box <span class="ph uicontrol">Allow sharing with organizations</span> to share the new application with all or any selected organizations that belong to your organization.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Click <span class="ph uicontrol">Create</span>.</span>
+      </li>
+</ol>
+
+  </div>
+
+</div></div></section>
+<section id="t-60"><h4>(Optional) Make an applications visible to additional administrators</h4><div class="content-locale-en-US content-locale-en"><div id="t_service_provider_admins"><div class="body taskbody"><p class="shortdesc">For an applications to be visible to an administrator, that user must either have created that applications or be assigned the role associated with the applications.</p>
+
+    <div class="section context"><div class="tasklabel"><h2 class="sectiontitle tasklabel">About this task</h2></div>When you add an applications, <span class="keyword">WSO2 Identity Server</span> creates a role associated with that applications and assigns that role to the administrative user who added the applications. By default, other users do not see that applications in the applications list. As a result, other users cannot maintain that applications, and two users could create applications with a similar configuration which would create conflicts. This issue could arise, for example, because a different user logged in to the Console or you switched to using email address rather than username to log in.<div class="p">To avoid these issues, do either of the following:<ul class="ul">
+      <li class="li">Perform the procedure below to assign that role to other users, so that multiple users can view and maintain the applications.</li>
+
+      <li class="li">Always log in as the same user (for example, the administrator created by <span class="keyword">Ellucian Ethos Identity</span>) to add or maintain applications.</li>
+
+      </ul>
+</div>
+</div>
+
+    <div class="tasklabel"><h2 class="sectiontitle tasklabel">Procedure</h2></div><ol class="ol steps"><li class="li step stepexpand">
+        <span class="ph cmd">Log in to the Console.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Click <span class="ph uicontrol">User Management</span> tab.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Click <span class="ph uicontrol">Roles</span></span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">On the <span class="keyword wintitle">Roles</span> page, search for the role associated with the applications.</span>
+        <div class="itemgroup info">The role name is <code class="ph codeph">Application/<var class="keyword varname">&lt;application&gt;</var></code>. <span class="keyword">WSO2 Identity Server</span> created this role when you added the service provider.</div>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Click <span class="ph uicontrol">Assign Users</span> in that row.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">On the <span class="keyword wintitle">User List of Role</span> page, select the check boxes for any users who you want to be able to view and maintain this application.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Click <span class="ph uicontrol">Finish</span>.</span>
+      </li>
+</ol>
+
+  </div>
+
+</div></div></section>
+<section id="t-70"><h4>Add CAS configuration</h4><div class="content-locale-en-US content-locale-en"><div id="t_add_cas_config"><div class="body taskbody"><p class="shortdesc">After mapping the identity claims, add the CAS Service URL for the integrating application.</p>
+
+    <div class="tasklabel"><h2 class="sectiontitle tasklabel">Procedure</h2></div><ol class="ol steps"><li class="li step stepexpand">
+        <span class="ph cmd">Log in to the Console.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Click <span class="ph uicontrol">Applications</span> tab.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Click <span class="ph uicontrol">New Application</span>.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Select the required CAS application to configure or click <span class="ph uicontrol">Edit</span> icon <span class="ph" id="t_add_cas_config__icn_edit"><img class="image ell-icon" src="images/02-configure-applications-for-ethos-identity-2.png" alt="" data-ft-asset-display-name="edit.png" data-ft-resource-id="HxbfGGGOANEZlPK7ONuVhw-jNnVA1p5_LJSdqVKFSFQVA"></span>.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Under the <span class="ph uicontrol">General</span> tab, configure the following details as required:</span>
+        <div class="itemgroup info">
+          
+<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" class="table" frame="border" border="1" rules="all"><colgroup><col style="width:35.3356890459364%"><col style="width:64.66431095406361%"></colgroup><thead class="thead" style="text-align:left;">
+                <tr class="row">
+                  <th class="entry cellrowborder" style="vertical-align:top;" id="d1383e96">Field</th>
+
+                  <th class="entry cellrowborder" style="vertical-align:top;" id="d1383e99">Description</th>
+
+                </tr>
+
+              </thead>
+<tbody class="tbody">
+                <tr class="row">
+                  <td class="entry cellrowborder" style="vertical-align:top;" headers="d1383e96 ">Name*</td>
+
+                  <td class="entry cellrowborder" style="vertical-align:top;" headers="d1383e99 ">Enter a name that uniquely identifies the application.<p class="p">Example: <kbd class="ph userinput">MyApplication</kbd></p>
+</td>
+
+                </tr>
+
+                <tr class="row">
+                  <td class="entry cellrowborder" style="vertical-align:top;" headers="d1383e96 ">Description</td>
+
+                  <td class="entry cellrowborder" style="vertical-align:top;" headers="d1383e99 ">Enter a description for an application.</td>
+
+                </tr>
+
+                <tr class="row">
+                  <td class="entry cellrowborder" style="vertical-align:top;" headers="d1383e96 ">Logo</td>
+
+                  <td class="entry cellrowborder" style="vertical-align:top;" headers="d1383e99 ">Enter an image URL for the application. <p class="p">If the URL is not available, a generated thumbnail will be displayed instead.</p>
+The image recommended size is: 200x200 pixels.</td>
+
+                </tr>
+
+                <tr class="row">
+                  <td class="entry cellrowborder" style="vertical-align:top;" headers="d1383e96 ">Discoverable application</td>
+
+                  <td class="entry cellrowborder" style="vertical-align:top;" headers="d1383e99 ">Select the <span class="ph uicontrol">Discoverable application</span> check box, if the customers want to access the application through the My Account portal.</td>
+
+                </tr>
+
+                <tr class="row">
+                  <td class="entry cellrowborder" style="vertical-align:top;" headers="d1383e96 ">Access URL</td>
+
+                  <td class="entry cellrowborder" style="vertical-align:top;" headers="d1383e99 ">Enter the landing page URL for this application</td>
+
+                </tr>
+
+                <tr class="row">
+                  <td class="entry cellrowborder" style="vertical-align:top;" headers="d1383e96 ">Delete</td>
+
+                  <td class="entry cellrowborder" style="vertical-align:top;" headers="d1383e99 ">Click Delete if want to delete the application. <div class="note"><span class="notetitle">Note:</span> After deleting the application, it cannot be restored, and any clients relying on this application will cease to function.</div>
+</td>
+
+                </tr>
+
+              </tbody>
+</table>
+</div>
+
+          <div class="note"><span class="notetitle">Note:</span> * indicates a required field.</div>
+
+        </div>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Under the <span class="ph uicontrol">Protocol</span> tab, click <span class="ph uicontrol">Configure Protocol</span></span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Under <span class="ph uicontrol">Add Protocol</span>, select <span class="ph uicontrol">CAS Configuration</span>, and then click <span class="ph uicontrol">Next</span>.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">In the <span class="ph uicontrol">Service URL</span> field, enter the URL of the target application deployment with a trailing slash.</span>
+        <div class="itemgroup info">
+          <p class="p">The table below shows the standard URL deployment patterns for CAS-enabled Ellucian products.</p>
+
+          
+<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" class="table" frame="hsides" border="1" rules="rows"><colgroup><col><col></colgroup><thead class="thead" style="text-align:left;vertical-align:bottom;">
+                <tr class="row">
+                  <th class="entry row-nocellborder" style="text-align:left;vertical-align:bottom;" id="d1383e233"><span class="ph">Ellucian</span> Product</th>
+
+                  <th class="entry row-nocellborder" style="text-align:left;vertical-align:bottom;" id="d1383e238">URL Pattern</th>
+
+                </tr>
+
+              </thead>
+<tbody class="tbody">
+                <tr class="row">
+                  <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d1383e233 ">Application Navigator</td>
+
+                  <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d1383e238 ">http(s)://<var class="keyword varname">&lt;host&gt;</var>:<var class="keyword varname">&lt;port&gt;</var>/applicationNavigator/</td>
+
+                </tr>
+
+                <tr class="row">
+                  <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d1383e233 ">Banner Document Manager AX Web Access</td>
+
+                  <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d1383e238 ">http(s)://<var class="keyword varname">&lt;host&gt;</var>:<var class="keyword varname">&lt;port&gt;</var>/appxtender/</td>
+
+                </tr>
+
+                <tr class="row">
+                  <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d1383e233 ">Banner Flexible Registration</td>
+
+                  <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d1383e238 ">http(s)://<var class="keyword varname">&lt;host&gt;</var>:<var class="keyword varname">&lt;port&gt;</var>/flexibleregistration/</td>
+
+                </tr>
+
+                <tr class="row">
+                  <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d1383e233 ">Banner SSO Manager</td>
+
+                  <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d1383e238 ">http(s)://<var class="keyword varname">&lt;host&gt;</var>:<var class="keyword varname">&lt;port&gt;</var>/ssomanager/</td>
+
+                </tr>
+
+                <tr class="row">
+                  <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d1383e233 ">Banner Travel and Expense Report</td>
+
+                  <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d1383e238 ">http(s)://<var class="keyword varname">&lt;host&gt;</var>:<var class="keyword varname">&lt;port&gt;</var>/tvlexp/</td>
+
+                </tr>
+
+                <tr class="row">
+                  <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d1383e233 ">Banner Workflow</td>
+
+                  <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d1383e238 ">http(s)://<var class="keyword varname">&lt;host&gt;</var>:<var class="keyword varname">&lt;port&gt;</var>/workflow/</td>
+
+                </tr>
+
+                <tr class="row">
+                  <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d1383e233 ">Banner XE Applications</td>
+
+                  <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d1383e238 ">http(s)://<var class="keyword varname">&lt;host&gt;</var>:<var class="keyword varname">&lt;port&gt;</var>/<var class="keyword varname">&lt;deploymentContext&gt;</var>/</td>
+
+                </tr>
+
+              </tbody>
+</table>
+</div>
+
+        </div>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">In the <span class="ph uicontrol">Enable Single Logout</span> field, enter <kbd class="ph userinput">true</kbd> if you want to let this application participate in single logout with other CAS application.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Click <span class="ph uicontrol">Update</span> to save the settings. </span>
+      </li>
+</ol>
+
+  </div>
+
+</div></div></section>
+<section id="t-80"><h4>Configure Banner 8 applications</h4><div class="content-locale-en-US content-locale-en"><div id="t_banner_8_service_provider_example"><div class="body taskbody"><p class="shortdesc">Banner 8 applications implement single sign-on using Banner SSO Manager, a component of Banner Enterprise Identity Services (BEIS).</p>
+
+    <div class="section context"><div class="tasklabel"><h2 class="sectiontitle tasklabel">About this task</h2></div>The following steps demonstrate how to configure a Banner SSO Manager applications in <span class="keyword">Ellucian Ethos Identity</span>. For details on configuring CAS for Banner SSO Manager, refer to the <cite class="cite">CAS Single Sign On Handbook</cite>.</div>
+
+    <div class="tasklabel"><h2 class="sectiontitle tasklabel">Procedure</h2></div><ol class="ol steps"><li class="li step stepexpand">
+        <span class="ph cmd">Create an application for Banner SSO Manager in the Console. </span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Create a new custom attribute mapping for the application.</span>
+        <div class="itemgroup info">For the attribute mapping, select the identity attribute configured in the Banner SSO Manager Admin interface. For this example, the unique identifier name is UDC_IDENTIFIER and the LDAP attribute <code class="ph codeph">cn</code> contains the value.</div>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Enter the Service URL for Banner SSO Manager. Include a trailing slash.</span>
+        <div class="itemgroup stepxmp">Example: <code class="ph codeph">https://sso.server.edu:8443/ssomanager/</code></div>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Click <span class="ph uicontrol">Update</span> to save the settings.</span>
+      </li>
+</ol>
+
+  </div>
+
+</div></div></section>
+<section id="t-90"><h4>Configure Banner 9.x applications</h4><div class="content-locale-en-US content-locale-en"><div id="t_banner_9_service_provider_example"><div class="body taskbody"><p class="shortdesc">Banner 9.x applications are configured individually for SSO functionality, but follow similar steps for <span class="keyword">Ellucian Ethos Identity</span> configuration.</p>
+
+    <div class="section context"><div class="tasklabel"><h2 class="sectiontitle tasklabel">About this task</h2></div>The following steps demonstrate how to configure a Banner Student Overall service provider in <span class="keyword">Ellucian Ethos Identity</span>. For more information on configuring CAS for Banner 9.x applications, refer to the <cite class="cite">CAS Single Sign On Handbook</cite>.</div>
+
+    <div class="tasklabel"><h2 class="sectiontitle tasklabel">Procedure</h2></div><ol class="ol steps"><li class="li step stepexpand">
+        <span class="ph cmd">Create an application for Banner 9.x Student Overall in the Console.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Create a new custom attribute mapping for the application.</span>
+        <div class="itemgroup info">For the attribute mapping, select the identity attribute configured in the Banner 9.x Student Overall configuration. For this example, the unique identifier name is UDC_IDENTIFIER and the LDAP attribute <code class="ph codeph">cn</code> contains the value.</div>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Enter the Service URL for Banner 9.x Student Overall. Include a trailing slash.</span>
+        <div class="itemgroup stepxmp">Example: <code class="ph codeph">https://banner.server.edu:8443/StudentOverall/</code></div>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Click <span class="ph uicontrol">Update</span> to save the settings.</span>
+      </li>
+</ol>
+
+  </div>
+
+</div></div></section>
+<section id="t-100"><h3>Configure SAML 2.0 based application</h3><div class="content-locale-en-US content-locale-en"><div id="c_conf_saml_serv_providers"><div class="body conbody"><p class="shortdesc">Security Assertion Markup Language (SAML) is an XML-based standard for exchanging authentication and authorization data between security domains. <span class="keyword">Ellucian Ethos Identity</span> supports the SAML 2.0 Web Browser SSO Profile, which involves an identity provider, a service provider, and a principal with an HTTP user agent.</p>
+
+    <p class="p">The following diagram depicts the login and SAML Response validation process for a SAML 2.0 service provider against <span class="keyword">Ellucian Ethos Identity</span>.</p>
+
+    <br><img class="image" height="449" width="437" alt="Login and SAML Response validation process for a SAML 2.0 Service Provider against Ellucian Ethos Identity" data-ft-asset-display-name="i_saml_configuration.gif" src="images/02-configure-applications-for-ethos-identity-3.gif" data-ft-resource-id="clWdWdLe3p_OUFdxhCPt5w-jNnVA1p5_LJSdqVKFSFQVA"><br>
+  </div>
+
+</div></div></section>
+<section id="t-110"><h4>Import and export certificate using Ellucian Ethos Identity management console</h4><div class="content-locale-en-US content-locale-en"><div id="c_config_import_export_certift_eeid_mangnt_console"><div class="body conbody"><p class="shortdesc">Applications often require information to be digitally signed or encrypted when communicating with <span class="keyword">Ellucian Ethos Identity</span>.</p>
+
+    <p class="p">To facilitate secure communication, both applications exchange digital certificates. Certificate exchange entails exporting the public certificate from the keystore of one application and importing it into the keystore of the other application.</p>
+
+  </div>
+
+</div></div></section>
+<section id="t-120"><h5>Export the Ellucian Ethos Identity public certificate</h5><div class="content-locale-en-US content-locale-en"><div id="t_export_eeid_public_certift"><div class="body taskbody"><p class="shortdesc">Export the public certificate from the <span class="keyword">Ellucian Ethos Identity</span> keystore into the service provider to support secure communication.</p>
+
+    <div class="tasklabel"><h2 class="sectiontitle tasklabel">Procedure</h2></div><ol class="ol steps"><li class="li step stepexpand">
+        <span class="ph cmd">Log in to the Console.</span>
+        <div class="itemgroup info">Log in as a user who has access to all service providers. You can either always use the same login to maintain service providers, or give multiple users access to each service provider using the procedure in <cite class="cite">Make a service provider visible to additional administrators</cite>.</div>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Click <span class="ph uicontrol">Applications</span> tab.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Select the required SAML application to configure or click <span class="ph uicontrol">Edit</span> icon <span class="ph" id="t_export_eeid_public_certift__icn_edit"><img class="image ell-icon" src="images/02-configure-applications-for-ethos-identity-2.png" alt="" data-ft-asset-display-name="edit.png" data-ft-resource-id="HxbfGGGOANEZlPK7ONuVhw-jNnVA1p5_LJSdqVKFSFQVA"></span>.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Under the <span class="ph uicontrol">Info</span> tab, click <span class="ph uicontrol">Download IdP Metadata</span>.</span>
+        <div class="itemgroup info">
+          <div class="note"><span class="notetitle">Note:</span> You can keep the default values for all the fields.</div>
+
+        </div>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Open the above downloaded XML file, copy the content to a text file, and save it as <span class="ph filepath"><var class="keyword varname">&lt;name&gt;</var>.pem</span>.</span>
+        <div class="itemgroup info">Example: idp.pem</div>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Import the saved certificate to service provider (client) keystore.</span>
+      </li>
+</ol>
+
+  </div>
+
+</div></div></section>
+<section id="t-130"><h5>Import the Ellucian Ethos Identity public certificate</h5><div class="content-locale-en-US content-locale-en"><div id="t_import_eeid_public_certift"><div class="body taskbody"><p class="shortdesc">Import the service provider public certificate into the <span class="keyword">Ellucian Ethos Identity</span> to support secure communication.</p>
+
+    <div class="tasklabel"><h2 class="sectiontitle tasklabel">Procedure</h2></div><ol class="ol steps"><li class="li step">
+        <span class="ph cmd">
+          
+        </span>
+      </li>
+<li class="li step">
+        <span class="ph cmd">Log in to the Console.</span>
+      </li>
+<li class="li step">
+        <span class="ph cmd">In the Management Console, click the <span class="ph uicontrol">Main</span> tab.</span>
+      </li>
+<li class="li step">
+        <span class="ph cmd">Go to <span class="ph menucascade"><span class="ph uicontrol">Keystores</span><abbr title="and then"> &gt; </abbr><span class="ph uicontrol">List</span></span>.</span>
+      </li>
+<li class="li step">
+        <span class="ph cmd">On the intended keystore, under <span class="ph uicontrol">Action</span> column, click <span class="ph uicontrol">Import Cert</span>.</span>
+      </li>
+<li class="li step">
+        <span class="ph cmd">On the <span class="keyword wintitle">Import Certificates To</span> page, click <span class="ph uicontrol">Choose File</span>, select the Service Provider certificate file, and then click <span class="ph uicontrol">Open</span>.</span>
+      </li>
+<li class="li step">
+        <span class="ph cmd">Click <span class="ph uicontrol">Import</span>.</span>
+      </li>
+</ol>
+
+  </div>
+
+</div></div></section>
+<section id="t-140"><h4>Configure attribute mapping</h4><div class="content-locale-en-US content-locale-en"><div id="t_configure_claim_mapping"><div class="body taskbody"><p class="shortdesc">An application might require specific user store attributes that must be passed to the application. <span class="keyword">Ellucian Ethos Identity</span> provides some default attribute that map to user store attributes. You might need to add attribute, or change the existing mappings to point to a different attribute in your directory server.</p>
+
+    <div class="tasklabel"><h2 class="sectiontitle tasklabel">Procedure</h2></div><ol class="ol steps"><li class="li step stepexpand">
+        <span class="ph cmd">Log in to the Console.</span>
+        <div class="itemgroup info">Log in as a user who has access to all service providers. You can either always use the same login to maintain service providers, or give multiple users access to each service provider using the procedure in <cite class="cite">Make a service provider visible to additional administrators</cite>.</div>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Click <span class="ph uicontrol">User Attributes &amp; Stores</span> tab.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Click <span class="ph uicontrol">Attributes</span></span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Under <span class="ph uicontrol">Manage Attributes</span>, click <span class="ph uicontrol">Attributes</span>.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Review the existing attributes to determine whether you need to add attributes, or modify an existing attributes to point to a different attribute in your user store.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">If you need to add an attributes, follow the instructions in the WSO2 procedure.</span>
+        <div class="itemgroup info">For more information, refer to <cite class="cite">Add custom attributes</cite> on the WSO2 documentation website for the corresponding WSO2 version. For example, you might need to add one of the claims listed in the following table:</div>
+        
+<table border="1" frame="hsides" rules="rows" cellpadding="4" cellspacing="0" summary="" class="simpletable choicetable choicetableborder">
+<colgroup><col style="width:50%"><col style="width:50%"></colgroup><thead><tr class="sthead chhead"><th class="stentry choptionhd" style="vertical-align:bottom;text-align:left;" id="d18535e107-option">Claim</th>
+<th class="stentry chdeschd" style="vertical-align:bottom;text-align:left;" id="d18535e107-desc">Description</th></tr></thead>
+<tbody><tr class="strow chrow">
+            <td style="vertical-align:top;" headers="d18535e107-option" id="d18535e120" class="stentry choption">logonname</td>
+
+            <td style="vertical-align:top;" headers="d18535e107-desc d18535e120" class="stentry chdesc">Logon name claim mapping<p class="p">Example value: <code class="ph codeph">sAMAccountName</code></p>
+</td>
+
+          </tr>
+<tr class="strow chrow">
+            <td style="vertical-align:top;" headers="d18535e107-option" id="d18535e133" class="stentry choption">upn</td>
+
+            <td style="vertical-align:top;" headers="d18535e107-desc d18535e133" class="stentry chdesc">User principal name claim mapping<p class="p">Example value: <code class="ph codeph">userPrincipalName</code></p>
+</td>
+
+          </tr>
+<tr class="strow chrow">
+            <td style="vertical-align:top;" headers="d18535e107-option" id="d18535e146" class="stentry choption">objectguid</td>
+
+            <td style="vertical-align:top;" headers="d18535e107-desc d18535e146" class="stentry chdesc">Object GUID claim mapping<p class="p">Example value: <code class="ph codeph">objectGUID</code></p>
+</td>
+
+          </tr>
+<tr class="strow chrow">
+            <td style="vertical-align:top;" headers="d18535e107-option" id="d18535e159" class="stentry choption">udcid</td>
+
+            <td style="vertical-align:top;" headers="d18535e107-desc d18535e159" class="stentry chdesc">Banner UDC Identifier claim mapping<p class="p">Example value: <code class="ph codeph">udcid</code></p>
+</td>
+
+          </tr>
+<tr class="strow chrow">
+            <td style="vertical-align:top;" headers="d18535e107-option" id="d18535e173" class="stentry choption">personid</td>
+
+            <td style="vertical-align:top;" headers="d18535e107-desc d18535e173" class="stentry chdesc">Colleague Person Identifier claim mapping<p class="p">Example value: <code class="ph codeph">employeeNumber</code></p>
+</td>
+
+          </tr>
+</tbody></table>
+
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Set the following properties to the appropriate values for attributes mappings:</span>
+        <div class="itemgroup info">
+          
+<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" class="table" frame="hsides" border="1" rules="rows"><colgroup><col style="width:56.52173913043479%"><col style="width:43.47826086956522%"></colgroup><thead class="thead" style="text-align:left;">
+                <tr class="row">
+                  <th class="entry row-nocellborder" style="text-align:left;vertical-align:top;" id="d18535e205">Property</th>
+
+                  <th class="entry row-nocellborder" style="text-align:left;vertical-align:top;" id="d18535e208">Description</th>
+
+                </tr>
+
+              </thead>
+<tbody class="tbody">
+                <tr class="row">
+                  <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d18535e205 ">eis.add.claim.logonname</td>
+
+                  <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d18535e208 ">Logon name claim mapping (leave blank to skip this claim)<p class="p">Example value: <code class="ph codeph">sAMAccountName</code></p>
+</td>
+
+                </tr>
+
+                <tr class="row">
+                  <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d18535e205 ">eis.add.claim.upn</td>
+
+                  <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d18535e208 ">User principal name claim mapping (leave blank to skip this claim)<p class="p">Example value: <code class="ph codeph">userPrincipalName</code></p>
+</td>
+
+                </tr>
+
+                <tr class="row">
+                  <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d18535e205 ">eis.add.claim.objectguid</td>
+
+                  <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d18535e208 ">Object GUID claim mapping (leave blank to skip this claim)<p class="p">Example value: <code class="ph codeph">objectGUID</code></p>
+</td>
+
+                </tr>
+
+                <tr class="row">
+                  <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d18535e205 ">eis.add.claim.udcid</td>
+
+                  <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d18535e208 ">Banner UDC Identifier claim mapping (leave blank to skip this claim)<p class="p">Example value: <code class="ph codeph">udcid</code></p>
+</td>
+
+                </tr>
+
+                <tr class="row">
+                  <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d18535e205 ">eis.add.claim.personid</td>
+
+                  <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d18535e208 ">Colleague Person Identifier claim mapping (leave blank to skip this claim)<p class="p">Example value: <code class="ph codeph">employeeNumber</code></p>
+</td>
+
+                </tr>
+
+                <tr class="row">
+                  <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d18535e205 ">eis.add.claim.challenge.question.uris</td>
+
+                  <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d18535e208 ">Store the URI for challenge question</td>
+
+                </tr>
+
+                <tr class="row">
+                  <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d18535e205 ">eis.add.claim.challenge.question.1</td>
+
+                  <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d18535e208 ">Set the claim challenge question one</td>
+
+                </tr>
+
+                <tr class="row">
+                  <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d18535e205 ">eis.add.claim.challenge.question.2</td>
+
+                  <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d18535e208 ">Set the claim challenge question two</td>
+
+                </tr>
+
+              </tbody>
+</table>
+</div>
+
+        </div>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Save the changes to the file.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">If you need to modify an existing claim, follow the instructions in the WSO2 procedure.</span>
+        <div class="itemgroup info">For more information, refer to <cite class="cite">Editing Claim Mapping</cite> on the WSO2 documentation website for the corresponding WSO2 version.</div>
+      </li>
+</ol>
+
+  </div>
+
+</div></div></section>
+<section id="t-150"><h4>Add an application with SAML</h4><div class="content-locale-en-US content-locale-en"><div id="t_add_service_provider_saml"><div class="body taskbody"><p class="shortdesc">Add an application definition in the WSO2 Identity Server Console.</p>
+
+    <div class="tasklabel"><h2 class="sectiontitle tasklabel">Procedure</h2></div><ol class="ol steps"><li class="li step stepexpand">
+        <span class="ph cmd">Log in to the Console.</span>
+        <div class="itemgroup info">Log in as a user who has access to all service providers. You can either always use the same login to maintain service providers, or give multiple users access to each service provider using the procedure in <cite class="cite">Make a service provider visible to additional administrators</cite>.</div>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Click <span class="ph uicontrol">Applications</span> tab.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Click <span class="ph uicontrol">New Application</span>.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Select the <span class="ph uicontrol">Standard-Based Application</span>.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">On the <span class="ph uicontrol">Standard-Based Application</span> dialog box, enter the following details as required:</span>
+        <div class="itemgroup info">
+          
+<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" class="table" frame="border" border="1" rules="all"><colgroup><col style="width:35.3356890459364%"><col style="width:64.66431095406361%"></colgroup><thead class="thead" style="text-align:left;">
+                <tr class="row">
+                  <th class="entry cellrowborder" style="vertical-align:top;" id="d7557e96">Field</th>
+
+                  <th class="entry cellrowborder" style="vertical-align:top;" id="d7557e99">Description</th>
+
+                </tr>
+
+              </thead>
+<tbody class="tbody">
+                <tr class="row">
+                  <td class="entry cellrowborder" style="vertical-align:top;" headers="d7557e96 ">Name*</td>
+
+                  <td class="entry cellrowborder" style="vertical-align:top;" headers="d7557e99 ">Enter a name that uniquely identifies the application.<p class="p">Example: <kbd class="ph userinput">MyApplication</kbd></p>
+</td>
+
+                </tr>
+
+                <tr class="row">
+                  <td class="entry cellrowborder" style="vertical-align:top;" headers="d7557e96 ">Protocol</td>
+
+                  <td class="entry cellrowborder" style="vertical-align:top;" headers="d7557e99 ">Select a protocol as SAML.</td>
+
+                </tr>
+
+              </tbody>
+</table>
+</div>
+
+          <div class="note"><span class="notetitle">Note:</span> * indicates a required field.</div>
+
+        </div>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">To add the SAML configuration, select the intended options:</span>
+        <ul class="ul choices">
+          <li class="li choice">Manual</li>
+
+          <li class="li choice">File Based</li>
+
+          <li class="li choice">URL Based</li>
+
+        </ul>
+
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">If you select the Manual configuration option, enter the following details as required:</span>
+        <div class="itemgroup info">
+          
+<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" class="table" frame="border" border="1" rules="all"><colgroup><col style="width:35.3356890459364%"><col style="width:64.66431095406361%"></colgroup><thead class="thead" style="text-align:left;">
+                <tr class="row">
+                  <th class="entry cellrowborder" style="vertical-align:top;" id="d7557e174">Field</th>
+
+                  <th class="entry cellrowborder" style="vertical-align:top;" id="d7557e177">Description</th>
+
+                </tr>
+
+              </thead>
+<tbody class="tbody">
+                <tr class="row">
+                  <td class="entry cellrowborder" style="vertical-align:top;" headers="d7557e174 ">Issuer*</td>
+
+                  <td class="entry cellrowborder" style="vertical-align:top;" headers="d7557e177 ">Enter the <span class="ph uicontrol">Issuer</span> value that is configured in the service provider application. This value is validated against the SAML Authentication Request issued by the service provider. </td>
+
+                </tr>
+
+                <tr class="row">
+                  <td class="entry cellrowborder" style="vertical-align:top;" headers="d7557e174 ">Assertion consumer service URLs*</td>
+
+                  <td class="entry cellrowborder" style="vertical-align:top;" headers="d7557e177 ">Enter a valid Assertion Consumer URL where the browser redirects the SAML Response after authentication.<div class="note"><span class="notetitle">Note:</span> The Assertion Consumer URL must use lowercase http or https to conform to SAML protocol standards. For example:<code class="ph codeph">&lt;samlp:AuthnRequest AssertionConsumerServiceURL="https://webadvisor.school.edu/WebAdvisor/WebAdvisor"</code>. Before <span class="keyword">Ellucian Ethos Identity</span> 2.0, you could use uppercase characters for the URL, but this is no longer supported.</div>
+</td>
+
+                </tr>
+
+              </tbody>
+</table>
+</div>
+
+          <div class="note"><span class="notetitle">Note:</span> * indicates a required field.</div>
+
+        </div>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">If you select the File Based configuration option, upload Metadata File.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">If you select the URL Based configuration option, enter the meta file URL in the <span class="ph uicontrol">Meta URL</span> field.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Select the check box <span class="ph uicontrol">Allow sharing with organizations</span> to share the new application with all or any selected organizations that belong to your organization.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Click <span class="ph uicontrol">Create</span>.</span>
+      </li>
+</ol>
+
+  </div>
+
+</div></div></section>
+<section id="t-160"><h4>(Optional) Make an applications visible to additional administrators</h4><div class="content-locale-en-US content-locale-en"><div id="t_service_provider_admins"><div class="body taskbody"><p class="shortdesc">For an applications to be visible to an administrator, that user must either have created that applications or be assigned the role associated with the applications.</p>
+
+    <div class="section context"><div class="tasklabel"><h2 class="sectiontitle tasklabel">About this task</h2></div>When you add an applications, <span class="keyword">WSO2 Identity Server</span> creates a role associated with that applications and assigns that role to the administrative user who added the applications. By default, other users do not see that applications in the applications list. As a result, other users cannot maintain that applications, and two users could create applications with a similar configuration which would create conflicts. This issue could arise, for example, because a different user logged in to the Console or you switched to using email address rather than username to log in.<div class="p">To avoid these issues, do either of the following:<ul class="ul">
+      <li class="li">Perform the procedure below to assign that role to other users, so that multiple users can view and maintain the applications.</li>
+
+      <li class="li">Always log in as the same user (for example, the administrator created by <span class="keyword">Ellucian Ethos Identity</span>) to add or maintain applications.</li>
+
+      </ul>
+</div>
+</div>
+
+    <div class="tasklabel"><h2 class="sectiontitle tasklabel">Procedure</h2></div><ol class="ol steps"><li class="li step stepexpand">
+        <span class="ph cmd">Log in to the Console.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Click <span class="ph uicontrol">User Management</span> tab.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Click <span class="ph uicontrol">Roles</span></span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">On the <span class="keyword wintitle">Roles</span> page, search for the role associated with the applications.</span>
+        <div class="itemgroup info">The role name is <code class="ph codeph">Application/<var class="keyword varname">&lt;application&gt;</var></code>. <span class="keyword">WSO2 Identity Server</span> created this role when you added the service provider.</div>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Click <span class="ph uicontrol">Assign Users</span> in that row.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">On the <span class="keyword wintitle">User List of Role</span> page, select the check boxes for any users who you want to be able to view and maintain this application.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Click <span class="ph uicontrol">Finish</span>.</span>
+      </li>
+</ol>
+
+  </div>
+
+</div></div></section>
+<section id="t-170"><h4>Add SAML configuration</h4><div class="content-locale-en-US content-locale-en"><div id="t_add_saml_config"><div class="body taskbody"><p class="shortdesc">Add the SAML settings for the integrating application. </p>
+
+    <div class="tasklabel"><h2 class="sectiontitle tasklabel">Procedure</h2></div><ol class="ol steps"><li class="li step stepexpand">
+        <span class="ph cmd">Log in to the Console.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Click <span class="ph uicontrol">Applications</span> tab.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Select the required SAML application to configure or click <span class="ph uicontrol">Edit</span> icon <span class="ph" id="t_add_saml_config__icn_edit"><img class="image ell-icon" src="images/02-configure-applications-for-ethos-identity-2.png" alt="" data-ft-asset-display-name="edit.png" data-ft-resource-id="HxbfGGGOANEZlPK7ONuVhw-jNnVA1p5_LJSdqVKFSFQVA"></span>.</span>
+        <div class="itemgroup info">
+          
+<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" class="table" frame="border" border="1" rules="all"><colgroup><col style="width:35.3356890459364%"><col style="width:64.66431095406361%"></colgroup><thead class="thead" style="text-align:left;">
+                <tr class="row">
+                  <th class="entry cellrowborder" style="vertical-align:top;" id="d23539e78">Field</th>
+
+                  <th class="entry cellrowborder" style="vertical-align:top;" id="d23539e81">Description</th>
+
+                </tr>
+
+              </thead>
+<tbody class="tbody">
+                <tr class="row">
+                  <td class="entry cellrowborder" style="vertical-align:top;" headers="d23539e78 ">Name*</td>
+
+                  <td class="entry cellrowborder" style="vertical-align:top;" headers="d23539e81 ">Enter a name that uniquely identifies the application.<p class="p">Example: <kbd class="ph userinput">MyApplication</kbd></p>
+</td>
+
+                </tr>
+
+                <tr class="row">
+                  <td class="entry cellrowborder" style="vertical-align:top;" headers="d23539e78 ">Description</td>
+
+                  <td class="entry cellrowborder" style="vertical-align:top;" headers="d23539e81 ">Enter a description for an application.</td>
+
+                </tr>
+
+                <tr class="row">
+                  <td class="entry cellrowborder" style="vertical-align:top;" headers="d23539e78 ">Logo</td>
+
+                  <td class="entry cellrowborder" style="vertical-align:top;" headers="d23539e81 ">Enter an image URL for the application. <p class="p">If the URL is not available, a generated thumbnail will be displayed instead.</p>
+The image recommended size is: 200x200 pixels.</td>
+
+                </tr>
+
+                <tr class="row">
+                  <td class="entry cellrowborder" style="vertical-align:top;" headers="d23539e78 ">Discoverable application</td>
+
+                  <td class="entry cellrowborder" style="vertical-align:top;" headers="d23539e81 ">Select the <span class="ph uicontrol">Discoverable application</span> check box, if the customers want to access the application through the My Account portal.</td>
+
+                </tr>
+
+                <tr class="row">
+                  <td class="entry cellrowborder" style="vertical-align:top;" headers="d23539e78 ">Access URL</td>
+
+                  <td class="entry cellrowborder" style="vertical-align:top;" headers="d23539e81 ">Enter the landing page URL for this application.</td>
+
+                </tr>
+
+                <tr class="row">
+                  <td class="entry cellrowborder" style="vertical-align:top;" headers="d23539e78 ">Delete</td>
+
+                  <td class="entry cellrowborder" style="vertical-align:top;" headers="d23539e81 ">Click Delete if want to delete the application. <div class="note"><span class="notetitle">Note:</span> After deleting the application, it cannot be restored, and any clients relying on this application will cease to function.</div>
+</td>
+
+                </tr>
+
+              </tbody>
+</table>
+</div>
+
+          <div class="note"><span class="notetitle">Note:</span> * indicates a required field.</div>
+
+        </div>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Under the <span class="ph uicontrol">General</span> tab, configure the following details as required:</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Under the <span class="ph uicontrol">Protocol</span> tab, configure the following details as required:</span>
+        <div class="itemgroup info">
+          
+<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" class="table" frame="border" border="1" rules="all"><colgroup><col style="width:35.3356890459364%"><col style="width:64.66431095406361%"></colgroup><thead class="thead" style="text-align:left;">
+                <tr class="row">
+                  <th class="entry cellrowborder" style="vertical-align:top;" id="d23539e194">Field</th>
+
+                  <th class="entry cellrowborder" style="vertical-align:top;" id="d23539e197">Description</th>
+
+                </tr>
+
+              </thead>
+<tbody class="tbody">
+                <tr class="row">
+                  <td class="entry cellrowborder" style="vertical-align:top;" headers="d23539e194 ">Issuer*</td>
+
+                  <td class="entry cellrowborder" style="vertical-align:top;" headers="d23539e197 ">Enter the <span class="ph uicontrol">Issuer</span> value that is configured in the service provider application. This value is validated against the SAML Authentication Request issued by the service provider. </td>
+
+                </tr>
+
+                <tr class="row">
+                  <td class="entry cellrowborder" style="vertical-align:top;" headers="d23539e194 ">Application qualifier</td>
+
+                  <td class="entry cellrowborder" style="vertical-align:top;" headers="d23539e197 ">Enter the application qualifier if you need to configure multiple SAML Single Sign-On (SSO) inbound authentication configurations for the same issuer value.</td>
+
+                </tr>
+
+                <tr class="row">
+                  <td class="entry cellrowborder" style="vertical-align:top;" headers="d23539e194 ">Assertion consumer service URLs*</td>
+
+                  <td class="entry cellrowborder" style="vertical-align:top;" headers="d23539e197 ">Enter a valid Assertion Consumer URL where the browser redirects the SAML Response after authentication.<div class="note"><span class="notetitle">Note:</span> The Assertion Consumer URL must use lowercase http or https to conform to SAML protocol standards. For example:<code class="ph codeph">&lt;samlp:AuthnRequest AssertionConsumerServiceURL="https://webadvisor.school.edu/WebAdvisor/WebAdvisor"</code>. Before <span class="keyword">Ellucian Ethos Identity</span> 2.0, you could use uppercase characters for the URL, but this is no longer supported.</div>
+</td>
+
+                </tr>
+
+                <tr class="row">
+                  <td class="entry cellrowborder" style="vertical-align:top;" headers="d23539e194 ">Default assertion consumer service URL*</td>
+
+                  <td class="entry cellrowborder" style="vertical-align:top;" headers="d23539e197 ">Enter an assertion consumer service URL.<p class="p">When you configure multiple ACS URLs, it is important to set one of them as the default.</p>
+</td>
+
+                </tr>
+
+                <tr class="row">
+                  <td class="entry cellrowborder" style="vertical-align:top;" headers="d23539e194 ">IdP entity ID alias</td>
+
+                  <td class="entry cellrowborder" style="vertical-align:top;" headers="d23539e197 ">Enter alias<p class="p">The value must override the default Identity Provider (IdP) entity ID (localhost).</p>
+</td>
+
+                </tr>
+
+                <tr class="row">
+                  <td class="entry cellrowborder" style="vertical-align:top;" headers="d23539e194 ">Enable request signature validation</td>
+
+                  <td class="entry cellrowborder" style="vertical-align:top;" headers="d23539e197 ">Under <span class="ph uicontrol">Request Validation</span>, select <span class="ph uicontrol">Enable request signature validation</span> if the identity provider must validate the signature of the SAML 2.0 Authentication and Logout Requests that are sent by the service provider.</td>
+
+                </tr>
+
+                <tr class="row">
+                  <td class="entry cellrowborder" style="vertical-align:top;" headers="d23539e194 ">Sign SAML responses</td>
+
+                  <td class="entry cellrowborder" style="vertical-align:top;" headers="d23539e197 ">Under <span class="ph uicontrol">Response Signing</span>, select <span class="ph uicontrol">Sign SAML responses</span> to sign the SAML 2.0 Responses returned after the authentication process.</td>
+
+                </tr>
+
+                <tr class="row">
+                  <td class="entry cellrowborder" style="vertical-align:top;" headers="d23539e194 ">Bindings</td>
+
+                  <td class="entry cellrowborder" style="vertical-align:top;" headers="d23539e197 ">Under <span class="ph uicontrol">Single Sign-On Profile</span>, select the supported bindings. They specifies the methods for transporting SAML messages within communication protocols.</td>
+
+                </tr>
+
+                <tr class="row">
+                  <td class="entry cellrowborder" style="vertical-align:top;" headers="d23539e194 ">Enable IdP initiated SSO</td>
+
+                  <td class="entry cellrowborder" style="vertical-align:top;" headers="d23539e197 ">Under <span class="ph uicontrol">Single Sign-On Profile</span>, select <span class="ph uicontrol">Enable IdP Initiated SSO</span> so that either the IdP or the service provider can initiate single sign-on.</td>
+
+                </tr>
+
+                <tr class="row">
+                  <td class="entry cellrowborder" style="vertical-align:top;" headers="d23539e194 ">Name ID format</td>
+
+                  <td class="entry cellrowborder" style="vertical-align:top;" headers="d23539e197 ">Under <span class="ph uicontrol">Assertion</span>, enter a valid NameID format supported by Ellucian Ethos Identity. You can use the following values:<ul class="ul">
+                    <li class="li">urn:oasis:names:tc:SAML:2.0:nameid-format:persistent</li>
+
+                    <li class="li">urn:oasis:names:tc:SAML:2.0:nameid-format:transient</li>
+
+                    <li class="li">urn:oasis:names:tc:SAML:1.1:nameid-format:emailAddress</li>
+
+                    <li class="li">urn:oasis:names:tc:SAML:1.1:nameid-format:unspecified</li>
+
+                    <li class="li">urn:oasis:names:tc:SAML:1.1:nameid-format:X509SubjectName</li>
+
+                    <li class="li">urn:oasis:names:tc:SAML:1.1:nameid-format:WindowsDomainQualifiedName</li>
+
+                    <li class="li">urn:oasis:names:tc:SAML:2.0:nameid-format:kerberos</li>
+
+                    <li class="li">urn:oasis:names:tc:SAML:2.0:nameid-format:entity</li>
+
+                    </ul>
+</td>
+
+                </tr>
+
+                <tr class="row">
+                  <td class="entry cellrowborder" style="vertical-align:top;" headers="d23539e194 ">Audiences</td>
+
+                  <td class="entry cellrowborder" style="vertical-align:top;" headers="d23539e197 ">Under <span class="ph uicontrol">Assertion</span>, enter audience of the SAML assertion.</td>
+
+                </tr>
+
+                <tr class="row">
+                  <td class="entry cellrowborder" style="vertical-align:top;" headers="d23539e194 ">Recipients</td>
+
+                  <td class="entry cellrowborder" style="vertical-align:top;" headers="d23539e197 ">Under <span class="ph uicontrol">Assertion</span>, enter recipient of the SAML assertion.</td>
+
+                </tr>
+
+                <tr class="row">
+                  <td class="entry cellrowborder" style="vertical-align:top;" headers="d23539e194 ">Enable encryption</td>
+
+                  <td class="entry cellrowborder" style="vertical-align:top;" headers="d23539e197 ">Under <span class="ph uicontrol">Assertion</span>, select <span class="ph uicontrol">Enable encryption</span> to encrypt the assertions.</td>
+
+                </tr>
+
+                <tr class="row">
+                  <td class="entry cellrowborder" style="vertical-align:top;" headers="d23539e194 ">Enable attribute profile</td>
+
+                  <td class="entry cellrowborder" style="vertical-align:top;" headers="d23539e197 ">Under <span class="ph uicontrol">Attribute Profile</span>, select <span class="ph uicontrol">Enable attribute profile</span> to add a basic attribute profile where the identity provider can include the user’s attributes in the SAML Assertions as part of the attribute statement.</td>
+
+                </tr>
+
+                <tr class="row">
+                  <td class="entry cellrowborder" style="vertical-align:top;" headers="d23539e194 ">Enable SLO</td>
+
+                  <td class="entry cellrowborder" style="vertical-align:top;" headers="d23539e197 ">Under <span class="ph uicontrol">Single Logout Profile</span>, select <span class="ph uicontrol">Enable SLO</span> so that all sessions across all authenticated service providers are terminated after the user signs out from one server. If the service provider supports a different URL than the <span class="ph uicontrol">Assertion Consumer URL</span> for logout, enter a <span class="ph uicontrol">SLO Request URL</span> for logging out.</td>
+
+                </tr>
+
+                <tr class="row">
+                  <td class="entry cellrowborder" style="vertical-align:top;" headers="d23539e194 ">Single logout response URL</td>
+
+                  <td class="entry cellrowborder" style="vertical-align:top;" headers="d23539e197 ">Under <span class="ph uicontrol">Single Logout Profile</span>, enter a single logout response URL. This URL indicates the application's endpoint where the single logout response should be directed.</td>
+
+                </tr>
+
+                <tr class="row">
+                  <td class="entry cellrowborder" style="vertical-align:top;" headers="d23539e194 ">Single logout request URL</td>
+
+                  <td class="entry cellrowborder" style="vertical-align:top;" headers="d23539e197 ">Under <span class="ph uicontrol">Single Logout Profile</span>, enter a single logout request URL. This URL indicates the application's endpoint where the single logout request should be directed.</td>
+
+                </tr>
+
+                <tr class="row">
+                  <td class="entry cellrowborder" style="vertical-align:top;" headers="d23539e194 ">Enable IdP Initiated single logout</td>
+
+                  <td class="entry cellrowborder" style="vertical-align:top;" headers="d23539e197 ">Select <span class="ph uicontrol">Enable IdP Initiated single logout</span> so that either the IdP or the service provider can initiate single sign-on.</td>
+
+                </tr>
+
+                <tr class="row">
+                  <td class="entry cellrowborder" style="vertical-align:top;" headers="d23539e194 ">Return to URLs</td>
+
+                  <td class="entry cellrowborder" style="vertical-align:top;" headers="d23539e197 ">Enter the URL that specifies where users should be redirected after logout.</td>
+
+                </tr>
+
+                <tr class="row">
+                  <td class="entry cellrowborder" style="vertical-align:top;" headers="d23539e194 ">Enable assertion query profile</td>
+
+                  <td class="entry cellrowborder" style="vertical-align:top;" headers="d23539e197 ">Under <span class="ph uicontrol">Assertion Query/Request Profile</span>, select <span class="ph uicontrol">Enable assertion query profile</span>.</td>
+
+                </tr>
+
+                <tr class="row">
+                  <td class="entry cellrowborder" style="vertical-align:top;" headers="d23539e194 ">Certificate</td>
+
+                  <td class="entry cellrowborder" style="vertical-align:top;" headers="d23539e197 ">Under <span class="ph uicontrol">Certificate</span>, select <span class="ph uicontrol">Provide certificate</span> and then click <span class="ph uicontrol">New Certificate</span> to upload the application's public certificate. This certificate is essential for validating the signatures of SAML 2.0 Requests and for generating encryption.</td>
+
+                </tr>
+
+              </tbody>
+</table>
+</div>
+
+          <div class="note"><span class="notetitle">Note:</span> * indicates a required field.</div>
+
+        </div>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Click <span class="ph uicontrol">Update</span> to save all settings.</span>
+      </li>
+</ol>
+
+  </div>
+
+</div></div></section>
+<section id="t-180"><h4>Modify identity provider issuer</h4><div class="content-locale-en-US content-locale-en"><div id="t_mod_identity_provider_issuer"><div class="body taskbody"><p class="shortdesc">Change the Identity Provider Entity Id to the expected URI of the Issuer statement in SAML 2.0 Responses.</p>
+
+    <div class="section context"><div class="tasklabel"><h2 class="sectiontitle tasklabel">About this task</h2></div>The identity provider issuer was established when you ran the <code class="ph codeph">update-resident-idp</code> command during initial configuration. If you need to update the identity provider issuer, perform the following procedure.</div>
+
+    <div class="tasklabel"><h2 class="sectiontitle tasklabel">Procedure</h2></div><ol class="ol steps"><li class="li step">
+        <span class="ph cmd" id="t_mod_identity_provider_issuer__d64e132">Log in to the Management Console.</span>
+      </li>
+<li class="li step">
+        <span class="ph cmd" id="t_mod_identity_provider_issuer__d64e148">Click the <span class="ph uicontrol">Main</span> tab. </span>
+      </li>
+<li class="li step">
+        <span class="ph cmd">Under Identity Providers, click <span class="ph uicontrol">Resident</span>. </span>
+      </li>
+<li class="li step">
+        <span class="ph cmd">Expand <span class="ph menucascade"><span class="ph uicontrol">Inbound Authentication Configuration</span><abbr title="and then"> &gt; </abbr><span class="ph uicontrol">SAML2 Web SSO Configuration</span></span>.</span>
+      </li>
+<li class="li step">
+        <span class="ph cmd">In the <span class="ph uicontrol">Identity Provider Entity ID</span> field, enter a valid identity provider name or URI that will be used by all service providers.</span>
+      </li>
+<li class="li step">
+        <span class="ph cmd">Click <span class="ph uicontrol">Update</span> to save the settings.</span>
+      </li>
+</ol>
+
+  </div>
+
+</div></div></section>
+<section id="t-190"><h4>Configure Colleague Self-Service</h4><div class="content-locale-en-US content-locale-en"><div id="t_config_coll_self_serv_example"><div class="body taskbody"><p class="shortdesc">Colleague Self-Service is built on ASP.NET MVC technology and leverages SAML 2.0 SSO for single sign-on.</p>
+
+    <div class="tasklabel"><h2 class="sectiontitle tasklabel">Procedure</h2></div><ol class="ol steps"><li class="li step stepexpand">
+        <span class="ph cmd">Create a service provider for Colleague Self-Service in the Management Console. </span>
+        <div class="itemgroup info">For more details on configuring Colleague Self-Service, refer to <cite class="cite">Colleague Self-Service</cite> in <cite class="cite">Configure <span class="keyword">Ellucian Ethos Identity</span> for Specific Products</cite>.</div>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Create a new custom claim mapping for the service provider. For the claim mapping, select the identity attribute configured in the Colleague Self-Service Admin interface. For this example, the unique identifier name is <code class="ph codeph">colleague</code> and the local claim <span class="keyword parmname">sAMAccountName</span> contains the value.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Configure the SAML 2.0 SSO settings. Click the <span class="ph uicontrol">Configure</span> link to open a new page.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Enter the <kbd class="ph userinput">Issuer and the Assertion Consumer URL</kbd> and choose the appropriate options.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Click <span class="ph uicontrol">Register</span> to save settings and return to the <span class="keyword wintitle">Service Providers</span> configuration page.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Click <span class="ph uicontrol">Update</span> to save all settings.</span>
+      </li>
+</ol>
+
+  </div>
+
+</div></div></section>
+<section id="t-200"><h4>Configure Google Apps</h4><div class="content-locale-en-US content-locale-en"><div id="t_config_google_apps_example"><div class="body taskbody"><p class="shortdesc">Google Apps for Work (formerly Google Apps for Business) is a suite of cloud computing productivity and collaboration software tools and software offered on a subscription basis by Google. It includes Google's web applications Gmail, Google Drive, Google Hangouts, Google Calendar, and Google Docs.</p>
+
+    <div class="tasklabel"><h2 class="sectiontitle tasklabel">Procedure</h2></div><ol class="ol steps"><li class="li step stepexpand">
+        <span class="ph cmd">In the Management Console, create a service provider for Google Apps. </span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">For the claim mapping, select NameID as the Service Provider Claim as shown in the following table:</span>
+        <div class="itemgroup info">
+          
+<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" class="table" frame="hsides" border="1" rules="all"><colgroup><col><col><col></colgroup><thead class="thead" style="text-align:left;">
+                <tr class="row">
+                  <th class="entry cellrowborder" style="vertical-align:top;" id="d2430e55">Service Provider Claim</th>
+
+                  <th class="entry cellrowborder" style="vertical-align:top;" id="d2430e58">Local Claim</th>
+
+                  <th class="entry row-nocellborder" style="vertical-align:top;" id="d2430e61">Requested Claim</th>
+
+                </tr>
+
+              </thead>
+<tbody class="tbody">
+                <tr class="row">
+                  <td class="entry cellrowborder" style="vertical-align:top;" headers="d2430e55 ">NameID</td>
+
+                  <td class="entry cellrowborder" style="vertical-align:top;" headers="d2430e58 ">http://wso2.org/claims/emailaddress</td>
+
+                  <td class="entry row-nocellborder" style="text-align:center;vertical-align:top;" headers="d2430e61 ">✓</td>
+
+                </tr>
+
+              </tbody>
+</table>
+</div>
+
+        </div>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Configure the SAML 2.0 SSO settings:</span>
+        <ol type="a" class="ol substeps">
+          <li class="li substep">
+            <span class="ph cmd">Click the <span class="ph uicontrol">Inbound Authentication</span> link.</span>
+          </li>
+
+          <li class="li substep">
+            <span class="ph cmd">Click the <span class="ph uicontrol">SAML2 Web SSO Configuration</span> link to expand the SAML configuration.</span>
+          </li>
+
+          <li class="li substep">
+            <span class="ph cmd">Click <span class="ph uicontrol">Configure</span>.</span>
+          </li>
+
+        </ol>
+
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Enter <span class="ph filepath">google.com/a/<var class="keyword varname">domain_name</var></span> for the <span class="ph uicontrol">issuer</span>, replacing <var class="keyword varname">domain_name</var> with your institution's Google Apps domain.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Enter <span class="ph filepath">https://www.google.com/a/<var class="keyword varname">domain_name</var>/acs</span> for the <span class="ph uicontrol">Assertion Consumer URL</span> replacing <var class="keyword varname">domain_name</var> with your institution's Google Apps Domain.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Under <span class="ph uicontrol">Certificate Alias</span>, select your <span class="keyword">Ellucian Ethos Identity</span> Signing Certificate.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Check the <span class="ph uicontrol">Enable Response Signing</span> option.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Check the <span class="ph uicontrol">Enable Single Logout</span> option.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Enter <span class="ph filepath">https://www.google.com/a/<var class="keyword varname">domain_name</var>/acs</span> for the <span class="ph uicontrol">SLO Response URL</span> replacing <var class="keyword varname">domain_name</var> with your institution's domain name.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Enter <span class="ph filepath">https://www.google.com/a/<var class="keyword varname">domain_name</var>/acs</span> for the <span class="ph uicontrol">SLO Request URL</span> replacing <var class="keyword varname">domain_name</var> with your institution's domain name.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Check the <span class="ph uicontrol">Enable Attribute Profile</span> option.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Check the <span class="ph uicontrol">Enable Idp Initiated SSO</span> option.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Click <span class="ph uicontrol">Update</span> to save SAML configuration.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Click <span class="ph uicontrol">Update</span> to save all configurations.</span>
+      </li>
+</ol>
+
+  </div>
+
+</div></div></section>
+<section id="t-210"><h4>Configure Google Apps to use Ellucian Ethos Identity as IDP</h4><div class="content-locale-en-US content-locale-en"><div id="t_config_google_apps_use_ident_idp"><div class="body taskbody"><p class="shortdesc">Allow Google Apps to use <span class="keyword">Ellucian Ethos Identity</span> as its primary identity provider.</p>
+
+    <div class="tasklabel"><h2 class="sectiontitle tasklabel">Procedure</h2></div><ol class="ol steps"><li class="li step stepexpand">
+        <span class="ph cmd">Log in to Google Apps Admin Console as an Administrator by navigating to https://admin.google.com.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Click <span class="ph uicontrol">Security</span>.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Click <span class="ph uicontrol">Set up single sign-on (SSO)</span>. </span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Check the <span class="ph uicontrol">Setup SSO with third party identity provider</span> option. </span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Enter your institution's <span class="keyword">Ellucian Ethos Identity</span> SAMLSSO URL for <span class="ph uicontrol">Sign-in page URL</span>. </span>
+        <div class="itemgroup stepxmp">Example: <span class="ph filepath">https://idp.school.edu/samlsso</span>.</div>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Enter your institution's <span class="keyword">Ellucian Ethos Identity</span> SAMLSSO URL for <span class="ph uicontrol">Sign-out page URL</span>. The URL must end with <span class="ph filepath">?slo=true</span>. </span>
+        <div class="itemgroup stepxmp">Example: <span class="ph filepath">https://idp.school.edu/samlsso?slo=true</span>.</div>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">If you have enabled Change Password within <span class="keyword">Ellucian Ethos Identity</span>, enter your <span class="keyword">Ellucian Ethos Identity</span> Change Password URL under <span class="ph uicontrol">Change Password URL</span>.</span>
+        <div class="itemgroup info">If you have another web application that performs password changes, then enter the URL for that web application here. </div>
+        <div class="itemgroup stepxmp">Example: <span class="ph filepath">https://idp.school.edu/password/change</span>.</div>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Select your <span class="keyword">Ellucian Ethos Identity</span> Token Signing certificate for the <span class="ph uicontrol">Verification Certificate</span>.</span>
+      </li>
+</ol>
+
+  </div>
+
+</div></div></section>
+<section id="t-220"><h3>Configure WS-Federation service providers</h3><div class="content-locale-en-US content-locale-en"><div id="c_config_ws_fed_serv_providers"><div class="body conbody"><p class="shortdesc">WS-Federation is a federation protocol that allows different security realms to provide authorized access to resources managed in other realms. This protocol builds on the WS-Security, WS-Trust, and WS-* specifications. <span class="keyword">Ellucian Ethos Identity</span> supports WS-Federation Passive Requestor Profile, where the web browser is a <dfn class="term">passive requestor</dfn>.</p>
+
+    <p class="p">The following diagram depicts the login and requestor token validation process for a WS-Federation service provider against <span class="keyword">Ellucian Ethos Identity</span>.</p>
+
+    <br><div class="imageleft"><img class="image imageleft" height="447" width="437" alt="Login and requestor token validation process for a WS-Federation Service Provider against Ellucian Ethos Identity" data-ft-asset-display-name="i_ws-fed_configuration.gif" src="images/02-configure-applications-for-ethos-identity-4.gif" data-ft-resource-id="VWCqEnwL6o~GlegoYbWBjg-jNnVA1p5_LJSdqVKFSFQVA"></div><br>
+  </div>
+
+</div></div></section>
+<section id="t-230"><h4>Import and export certificate using Ellucian Ethos Identity management console</h4><div class="content-locale-en-US content-locale-en"><div id="c_config_import_export_certift_eeid_mangnt_console"><div class="body conbody"><p class="shortdesc">Applications often require information to be digitally signed or encrypted when communicating with <span class="keyword">Ellucian Ethos Identity</span>.</p>
+
+    <p class="p">To facilitate secure communication, both applications exchange digital certificates. Certificate exchange entails exporting the public certificate from the keystore of one application and importing it into the keystore of the other application.</p>
+
+  </div>
+
+</div></div></section>
+<section id="t-240"><h5>Export the Ellucian Ethos Identity public certificate</h5><div class="content-locale-en-US content-locale-en"><div id="t_export_eeid_public_certift"><div class="body taskbody"><p class="shortdesc">Export the public certificate from the <span class="keyword">Ellucian Ethos Identity</span> keystore into the service provider to support secure communication.</p>
+
+    <div class="tasklabel"><h2 class="sectiontitle tasklabel">Procedure</h2></div><ol class="ol steps"><li class="li step stepexpand">
+        <span class="ph cmd">Log in to the Console.</span>
+        <div class="itemgroup info">Log in as a user who has access to all service providers. You can either always use the same login to maintain service providers, or give multiple users access to each service provider using the procedure in <cite class="cite">Make a service provider visible to additional administrators</cite>.</div>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Click <span class="ph uicontrol">Applications</span> tab.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Select the required SAML application to configure or click <span class="ph uicontrol">Edit</span> icon <span class="ph" id="t_export_eeid_public_certift__icn_edit"><img class="image ell-icon" src="images/02-configure-applications-for-ethos-identity-2.png" alt="" data-ft-asset-display-name="edit.png" data-ft-resource-id="HxbfGGGOANEZlPK7ONuVhw-jNnVA1p5_LJSdqVKFSFQVA"></span>.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Under the <span class="ph uicontrol">Info</span> tab, click <span class="ph uicontrol">Download IdP Metadata</span>.</span>
+        <div class="itemgroup info">
+          <div class="note"><span class="notetitle">Note:</span> You can keep the default values for all the fields.</div>
+
+        </div>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Open the above downloaded XML file, copy the content to a text file, and save it as <span class="ph filepath"><var class="keyword varname">&lt;name&gt;</var>.pem</span>.</span>
+        <div class="itemgroup info">Example: idp.pem</div>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Import the saved certificate to service provider (client) keystore.</span>
+      </li>
+</ol>
+
+  </div>
+
+</div></div></section>
+<section id="t-250"><h5>Import the Ellucian Ethos Identity public certificate</h5><div class="content-locale-en-US content-locale-en"><div id="t_import_eeid_public_certift"><div class="body taskbody"><p class="shortdesc">Import the service provider public certificate into the <span class="keyword">Ellucian Ethos Identity</span> to support secure communication.</p>
+
+    <div class="tasklabel"><h2 class="sectiontitle tasklabel">Procedure</h2></div><ol class="ol steps"><li class="li step">
+        <span class="ph cmd">
+          
+        </span>
+      </li>
+<li class="li step">
+        <span class="ph cmd">Log in to the Console.</span>
+      </li>
+<li class="li step">
+        <span class="ph cmd">In the Management Console, click the <span class="ph uicontrol">Main</span> tab.</span>
+      </li>
+<li class="li step">
+        <span class="ph cmd">Go to <span class="ph menucascade"><span class="ph uicontrol">Keystores</span><abbr title="and then"> &gt; </abbr><span class="ph uicontrol">List</span></span>.</span>
+      </li>
+<li class="li step">
+        <span class="ph cmd">On the intended keystore, under <span class="ph uicontrol">Action</span> column, click <span class="ph uicontrol">Import Cert</span>.</span>
+      </li>
+<li class="li step">
+        <span class="ph cmd">On the <span class="keyword wintitle">Import Certificates To</span> page, click <span class="ph uicontrol">Choose File</span>, select the Service Provider certificate file, and then click <span class="ph uicontrol">Open</span>.</span>
+      </li>
+<li class="li step">
+        <span class="ph cmd">Click <span class="ph uicontrol">Import</span>.</span>
+      </li>
+</ol>
+
+  </div>
+
+</div></div></section>
+<section id="t-260"><h4>Configure attribute mapping</h4><div class="content-locale-en-US content-locale-en"><div id="t_configure_claim_mapping"><div class="body taskbody"><p class="shortdesc">An application might require specific user store attributes that must be passed to the application. <span class="keyword">Ellucian Ethos Identity</span> provides some default attribute that map to user store attributes. You might need to add attribute, or change the existing mappings to point to a different attribute in your directory server.</p>
+
+    <div class="tasklabel"><h2 class="sectiontitle tasklabel">Procedure</h2></div><ol class="ol steps"><li class="li step stepexpand">
+        <span class="ph cmd">Log in to the Console.</span>
+        <div class="itemgroup info">Log in as a user who has access to all service providers. You can either always use the same login to maintain service providers, or give multiple users access to each service provider using the procedure in <cite class="cite">Make a service provider visible to additional administrators</cite>.</div>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Click <span class="ph uicontrol">User Attributes &amp; Stores</span> tab.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Click <span class="ph uicontrol">Attributes</span></span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Under <span class="ph uicontrol">Manage Attributes</span>, click <span class="ph uicontrol">Attributes</span>.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Review the existing attributes to determine whether you need to add attributes, or modify an existing attributes to point to a different attribute in your user store.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">If you need to add an attributes, follow the instructions in the WSO2 procedure.</span>
+        <div class="itemgroup info">For more information, refer to <cite class="cite">Add custom attributes</cite> on the WSO2 documentation website for the corresponding WSO2 version. For example, you might need to add one of the claims listed in the following table:</div>
+        
+<table border="1" frame="hsides" rules="rows" cellpadding="4" cellspacing="0" summary="" class="simpletable choicetable choicetableborder">
+<colgroup><col style="width:50%"><col style="width:50%"></colgroup><thead><tr class="sthead chhead"><th class="stentry choptionhd" style="vertical-align:bottom;text-align:left;" id="d18535e107-option">Claim</th>
+<th class="stentry chdeschd" style="vertical-align:bottom;text-align:left;" id="d18535e107-desc">Description</th></tr></thead>
+<tbody><tr class="strow chrow">
+            <td style="vertical-align:top;" headers="d18535e107-option" id="d18535e120" class="stentry choption">logonname</td>
+
+            <td style="vertical-align:top;" headers="d18535e107-desc d18535e120" class="stentry chdesc">Logon name claim mapping<p class="p">Example value: <code class="ph codeph">sAMAccountName</code></p>
+</td>
+
+          </tr>
+<tr class="strow chrow">
+            <td style="vertical-align:top;" headers="d18535e107-option" id="d18535e133" class="stentry choption">upn</td>
+
+            <td style="vertical-align:top;" headers="d18535e107-desc d18535e133" class="stentry chdesc">User principal name claim mapping<p class="p">Example value: <code class="ph codeph">userPrincipalName</code></p>
+</td>
+
+          </tr>
+<tr class="strow chrow">
+            <td style="vertical-align:top;" headers="d18535e107-option" id="d18535e146" class="stentry choption">objectguid</td>
+
+            <td style="vertical-align:top;" headers="d18535e107-desc d18535e146" class="stentry chdesc">Object GUID claim mapping<p class="p">Example value: <code class="ph codeph">objectGUID</code></p>
+</td>
+
+          </tr>
+<tr class="strow chrow">
+            <td style="vertical-align:top;" headers="d18535e107-option" id="d18535e159" class="stentry choption">udcid</td>
+
+            <td style="vertical-align:top;" headers="d18535e107-desc d18535e159" class="stentry chdesc">Banner UDC Identifier claim mapping<p class="p">Example value: <code class="ph codeph">udcid</code></p>
+</td>
+
+          </tr>
+<tr class="strow chrow">
+            <td style="vertical-align:top;" headers="d18535e107-option" id="d18535e173" class="stentry choption">personid</td>
+
+            <td style="vertical-align:top;" headers="d18535e107-desc d18535e173" class="stentry chdesc">Colleague Person Identifier claim mapping<p class="p">Example value: <code class="ph codeph">employeeNumber</code></p>
+</td>
+
+          </tr>
+</tbody></table>
+
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Set the following properties to the appropriate values for attributes mappings:</span>
+        <div class="itemgroup info">
+          
+<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" class="table" frame="hsides" border="1" rules="rows"><colgroup><col style="width:56.52173913043479%"><col style="width:43.47826086956522%"></colgroup><thead class="thead" style="text-align:left;">
+                <tr class="row">
+                  <th class="entry row-nocellborder" style="text-align:left;vertical-align:top;" id="d18535e205">Property</th>
+
+                  <th class="entry row-nocellborder" style="text-align:left;vertical-align:top;" id="d18535e208">Description</th>
+
+                </tr>
+
+              </thead>
+<tbody class="tbody">
+                <tr class="row">
+                  <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d18535e205 ">eis.add.claim.logonname</td>
+
+                  <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d18535e208 ">Logon name claim mapping (leave blank to skip this claim)<p class="p">Example value: <code class="ph codeph">sAMAccountName</code></p>
+</td>
+
+                </tr>
+
+                <tr class="row">
+                  <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d18535e205 ">eis.add.claim.upn</td>
+
+                  <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d18535e208 ">User principal name claim mapping (leave blank to skip this claim)<p class="p">Example value: <code class="ph codeph">userPrincipalName</code></p>
+</td>
+
+                </tr>
+
+                <tr class="row">
+                  <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d18535e205 ">eis.add.claim.objectguid</td>
+
+                  <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d18535e208 ">Object GUID claim mapping (leave blank to skip this claim)<p class="p">Example value: <code class="ph codeph">objectGUID</code></p>
+</td>
+
+                </tr>
+
+                <tr class="row">
+                  <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d18535e205 ">eis.add.claim.udcid</td>
+
+                  <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d18535e208 ">Banner UDC Identifier claim mapping (leave blank to skip this claim)<p class="p">Example value: <code class="ph codeph">udcid</code></p>
+</td>
+
+                </tr>
+
+                <tr class="row">
+                  <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d18535e205 ">eis.add.claim.personid</td>
+
+                  <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d18535e208 ">Colleague Person Identifier claim mapping (leave blank to skip this claim)<p class="p">Example value: <code class="ph codeph">employeeNumber</code></p>
+</td>
+
+                </tr>
+
+                <tr class="row">
+                  <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d18535e205 ">eis.add.claim.challenge.question.uris</td>
+
+                  <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d18535e208 ">Store the URI for challenge question</td>
+
+                </tr>
+
+                <tr class="row">
+                  <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d18535e205 ">eis.add.claim.challenge.question.1</td>
+
+                  <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d18535e208 ">Set the claim challenge question one</td>
+
+                </tr>
+
+                <tr class="row">
+                  <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d18535e205 ">eis.add.claim.challenge.question.2</td>
+
+                  <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d18535e208 ">Set the claim challenge question two</td>
+
+                </tr>
+
+              </tbody>
+</table>
+</div>
+
+        </div>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Save the changes to the file.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">If you need to modify an existing claim, follow the instructions in the WSO2 procedure.</span>
+        <div class="itemgroup info">For more information, refer to <cite class="cite">Editing Claim Mapping</cite> on the WSO2 documentation website for the corresponding WSO2 version.</div>
+      </li>
+</ol>
+
+  </div>
+
+</div></div></section>
+<section id="t-270"><h4>Add a service provider</h4><div class="content-locale-en-US content-locale-en"><div id="t_add_service_provider_wsfed"><div class="body taskbody"><p class="shortdesc">Add a service provider definition in the WSO2 Identity Server Console.</p>
+
+    <div class="tasklabel"><h2 class="sectiontitle tasklabel">Procedure</h2></div><ol class="ol steps"><li class="li step stepexpand">
+        <span class="ph cmd">Log in to the Console.</span>
+        <div class="itemgroup info">Log in as a user who has access to all service providers. You can either always use the same login to maintain service providers, or give multiple users access to each service provider using the procedure in <cite class="cite">Make a service provider visible to additional administrators</cite>.</div>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Click <span class="ph uicontrol">Applications</span> tab.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Click <span class="ph uicontrol">New Application</span>.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Select the <span class="ph uicontrol">Standard-Based Application</span>.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">On the <span class="ph uicontrol">Standard-Based Application</span> dialog box, enter the following details as required:</span>
+        <div class="itemgroup info">
+          
+<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" class="table" frame="border" border="1" rules="all"><colgroup><col style="width:35.3356890459364%"><col style="width:64.66431095406361%"></colgroup><thead class="thead" style="text-align:left;">
+                <tr class="row">
+                  <th class="entry cellrowborder" style="vertical-align:top;" id="d11255e96">Field</th>
+
+                  <th class="entry cellrowborder" style="vertical-align:top;" id="d11255e99">Description</th>
+
+                </tr>
+
+              </thead>
+<tbody class="tbody">
+                <tr class="row">
+                  <td class="entry cellrowborder" style="vertical-align:top;" headers="d11255e96 ">Name*</td>
+
+                  <td class="entry cellrowborder" style="vertical-align:top;" headers="d11255e99 ">Enter a name that uniquely identifies the application.<p class="p">Example: <kbd class="ph userinput">MyApplication</kbd></p>
+</td>
+
+                </tr>
+
+                <tr class="row">
+                  <td class="entry cellrowborder" style="vertical-align:top;" headers="d11255e96 ">Protocol</td>
+
+                  <td class="entry cellrowborder" style="vertical-align:top;" headers="d11255e99 ">Select a protocol as SAML.</td>
+
+                </tr>
+
+              </tbody>
+</table>
+</div>
+
+          <div class="note"><span class="notetitle">Note:</span> * indicates a required field.</div>
+
+        </div>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">To add the SAML configuration, select the intended options:</span>
+        <ul class="ul choices">
+          <li class="li choice">Manual</li>
+
+          <li class="li choice">File Based</li>
+
+          <li class="li choice">URL Based</li>
+
+        </ul>
+
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">If you opt for Manual configuration, enter the following details as required:</span>
+        <div class="itemgroup info">
+          
+<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" class="table" frame="border" border="1" rules="all"><colgroup><col style="width:35.3356890459364%"><col style="width:64.66431095406361%"></colgroup><thead class="thead" style="text-align:left;">
+                <tr class="row">
+                  <th class="entry cellrowborder" style="vertical-align:top;" id="d11255e174">Field</th>
+
+                  <th class="entry cellrowborder" style="vertical-align:top;" id="d11255e177">Description</th>
+
+                </tr>
+
+              </thead>
+<tbody class="tbody">
+                <tr class="row">
+                  <td class="entry cellrowborder" style="vertical-align:top;" headers="d11255e174 ">Issuer*</td>
+
+                  <td class="entry cellrowborder" style="vertical-align:top;" headers="d11255e177 ">Enter the <span class="ph uicontrol">Issuer</span> value that is configured in the service provider application. This value is validated against the SAML Authentication Request issued by the service provider. </td>
+
+                </tr>
+
+                <tr class="row">
+                  <td class="entry cellrowborder" style="vertical-align:top;" headers="d11255e174 ">Assertion consumer service URLs*</td>
+
+                  <td class="entry cellrowborder" style="vertical-align:top;" headers="d11255e177 ">Enter a valid Assertion Consumer URL where the browser redirects the SAML Response after authentication.<div class="note"><span class="notetitle">Note:</span> The Assertion Consumer URL must use lowercase http or https to conform to SAML protocol standards. For example:<code class="ph codeph">&lt;samlp:AuthnRequest AssertionConsumerServiceURL="https://webadvisor.school.edu/WebAdvisor/WebAdvisor"</code>. Before <span class="keyword">Ellucian Ethos Identity</span> 2.0, you could use uppercase characters for the URL, but this is no longer supported.</div>
+</td>
+
+                </tr>
+
+              </tbody>
+</table>
+</div>
+
+        </div>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Select the check box <span class="ph uicontrol">Allow sharing with organizations</span> to share the new application with all or any selected organizations that belong to your organization.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Click <span class="ph uicontrol">Create</span>.</span>
+      </li>
+</ol>
+
+  </div>
+
+</div></div></section>
+<section id="t-280"><h4>(Optional) Make an applications visible to additional administrators</h4><div class="content-locale-en-US content-locale-en"><div id="t_service_provider_admins"><div class="body taskbody"><p class="shortdesc">For an applications to be visible to an administrator, that user must either have created that applications or be assigned the role associated with the applications.</p>
+
+    <div class="section context"><div class="tasklabel"><h2 class="sectiontitle tasklabel">About this task</h2></div>When you add an applications, <span class="keyword">WSO2 Identity Server</span> creates a role associated with that applications and assigns that role to the administrative user who added the applications. By default, other users do not see that applications in the applications list. As a result, other users cannot maintain that applications, and two users could create applications with a similar configuration which would create conflicts. This issue could arise, for example, because a different user logged in to the Console or you switched to using email address rather than username to log in.<div class="p">To avoid these issues, do either of the following:<ul class="ul">
+      <li class="li">Perform the procedure below to assign that role to other users, so that multiple users can view and maintain the applications.</li>
+
+      <li class="li">Always log in as the same user (for example, the administrator created by <span class="keyword">Ellucian Ethos Identity</span>) to add or maintain applications.</li>
+
+      </ul>
+</div>
+</div>
+
+    <div class="tasklabel"><h2 class="sectiontitle tasklabel">Procedure</h2></div><ol class="ol steps"><li class="li step stepexpand">
+        <span class="ph cmd">Log in to the Console.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Click <span class="ph uicontrol">User Management</span> tab.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Click <span class="ph uicontrol">Roles</span></span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">On the <span class="keyword wintitle">Roles</span> page, search for the role associated with the applications.</span>
+        <div class="itemgroup info">The role name is <code class="ph codeph">Application/<var class="keyword varname">&lt;application&gt;</var></code>. <span class="keyword">WSO2 Identity Server</span> created this role when you added the service provider.</div>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Click <span class="ph uicontrol">Assign Users</span> in that row.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">On the <span class="keyword wintitle">User List of Role</span> page, select the check boxes for any users who you want to be able to view and maintain this application.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Click <span class="ph uicontrol">Finish</span>.</span>
+      </li>
+</ol>
+
+  </div>
+
+</div></div></section>
+<section id="t-290"><h4>Add Passive STS realm</h4><div class="content-locale-en-US content-locale-en"><div id="t_add_passive_sts_realm"><div class="body taskbody"><p class="shortdesc">Add the Passive STS realm for the integrating application.</p>
+
+    <div class="tasklabel"><h2 class="sectiontitle tasklabel">Procedure</h2></div><ol class="ol steps"><li class="li step">
+        <span class="ph cmd" id="t_add_passive_sts_realm__d64e132">Log in to the Management Console.</span>
+      </li>
+<li class="li step">
+        <span class="ph cmd" id="t_add_passive_sts_realm__d64e148">Click the <span class="ph uicontrol">Main</span> tab. </span>
+      </li>
+<li class="li step">
+        <span class="ph cmd">Go to <span class="ph menucascade"><span class="ph uicontrol">Service Providers</span><abbr title="and then"> &gt; </abbr><span class="ph uicontrol">List</span></span>. </span>
+      </li>
+<li class="li step">
+        <span class="ph cmd">In the row for the service provider, click <span class="ph uicontrol">Edit</span>.</span>
+      </li>
+<li class="li step">
+        <span class="ph cmd">Expand <span class="ph menucascade"><span class="ph uicontrol">Inbound Authentication Configuration</span><abbr title="and then"> &gt; </abbr><span class="ph uicontrol">WS-Federation (Passive) Configuration</span></span>.</span>
+      </li>
+<li class="li step">
+        <span class="ph cmd">In the <span class="ph uicontrol">Passive STS Realm</span> field, enter the URI or URL of the target application deployment.</span>
+      </li>
+<li class="li step">
+        <span class="ph cmd">In the <span class="ph uicontrol">Passive STS WReply URL</span> field, enter the URI or URL of the federation recipient.</span>
+      </li>
+<li class="li step">
+        <span class="ph cmd">Click <span class="ph uicontrol">Update</span>.</span>
+      </li>
+</ol>
+
+  </div>
+
+</div></div></section>
+<section id="t-300"><h4>(Optional) Modify STS timeout</h4><div class="content-locale-en-US content-locale-en"><div id="t_sts_timeout"><div class="body taskbody"><p class="shortdesc">The Security Token Service (STS) timeout determines how long the session token is valid. If this value is too low, SharePoint service providers can request tokens more frequently and experience degraded performance.</p>
+
+    <div class="tasklabel"><h2 class="sectiontitle tasklabel">Procedure</h2></div><ol class="ol steps"><li class="li step stepexpand">
+        
+        <span class="ph cmd">In an editor, open the <span class="ph filepath">deployment.toml</span> file located in the <span class="ph filepath"><var class="keyword varname">EIS_HOME</var>/repository/conf</span> directory.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Set the STS timeout property to the appropriate value under the [sts] root key:</span>
+        <div class="itemgroup info">
+          
+<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" class="table" frame="hsides" border="1" rules="rows"><colgroup><col><col></colgroup><thead class="thead" style="text-align:left;">
+                <tr class="row">
+                  <th class="entry row-nocellborder" style="vertical-align:top;" id="d17953e68">Property</th>
+
+                  <th class="entry row-nocellborder" style="vertical-align:top;" id="d17953e71">Description</th>
+
+                </tr>
+
+              </thead>
+<tbody class="tbody">
+                <tr class="row">
+                  <td class="entry row-nocellborder" style="vertical-align:top;" headers="d17953e68 ">time_to_live</td>
+
+                  <td class="entry row-nocellborder" style="vertical-align:top;" headers="d17953e71 ">WS-Federation token timeout in milliseconds. <p class="p">Value: <kbd class="ph userinput">time_to_live = "1800000"</kbd></p>
+The default is 1800000 milliseconds (30 minutes).</td>
+
+                </tr>
+
+              </tbody>
+</table>
+</div>
+
+        </div>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Save the changes to the file.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Stop and restart <span class="keyword">Ellucian Ethos Identity</span>, using the appropriate commands for your operating system:</span>
+        <div class="itemgroup info">
+          <p class="p">Linux/UNIX:</p>
+
+          <pre class="pre codeblock"><code>sh wso2server.sh stop
+sh wso2server.sh start</code></pre>
+          <p class="p">Windows: </p>
+
+          <pre class="pre codeblock"><code>wso2server.bat stop
+wso2server.bat start</code></pre>
+        </div>
+      </li>
+</ol>
+
+  </div>
+
+</div></div></section>
+<section id="t-310"><h4>(Optional) Modify STS issuer</h4><div class="content-locale-en-US content-locale-en"><div id="t_sts_issuer"><div class="body taskbody"><p class="shortdesc">If the service provider requires a URI for the issuer of the WS-Federation response, set the issuer to the base URL of the <span class="keyword">Ellucian Ethos Identity</span> instance.</p>
+
+    <div class="tasklabel"><h2 class="sectiontitle tasklabel">Procedure</h2></div><ol class="ol steps"><li class="li step stepexpand">
+        <span class="ph cmd">In the Management Console, click the <span class="ph uicontrol">Main</span> tab.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Under <span class="ph uicontrol">Identity Providers</span>, click <span class="ph uicontrol">Resident</span>.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Expand <span class="ph menucascade"><span class="ph uicontrol">Inbound Authentication Configuration</span><abbr title="and then"> &gt; </abbr><span class="ph uicontrol">WS-Federation (Passive) Configuration</span></span>.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">In the <span class="ph uicontrol">Identity Provider Entity Id</span> field, enter the base URL of your <span class="keyword">Ellucian Ethos Identity</span> instance.</span>
+        <div class="itemgroup stepxmp">Example: <kbd class="ph userinput">https://eis.school.edu:8443</kbd></div>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Click <span class="ph uicontrol">Update</span>.</span>
+      </li>
+</ol>
+
+  </div>
+
+</div></div></section>
+<section id="t-320"><h3>Bind service provider to user store</h3><div class="content-locale-en-US content-locale-en"><div id="t_bind_service_provider_to_user_store"><div class="body taskbody"><p class="shortdesc"><span class="ph">Ethos Identity</span> allows for setup multiple user stores. There should be one primary user store (mandatory) and any number of secondary user stores(optional).</p>
+
+    <div class="section context"><div class="tasklabel"><h2 class="sectiontitle tasklabel">About this task</h2></div>Perform the following steps to bind a service provide to designated user stores and to set the preference for user store authentication.</div>
+
+    <div class="tasklabel"><h2 class="sectiontitle tasklabel">Procedure</h2></div><ol class="ol steps"><li class="li step stepexpand">
+        <span class="ph cmd" id="t_bind_service_provider_to_user_store__d64e132">Log in to the Management Console.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd" id="t_bind_service_provider_to_user_store__d64e148">Click the <span class="ph uicontrol">Main</span> tab. </span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Navigate to <span class="ph menucascade"><span class="ph uicontrol">Registry</span><abbr title="and then"> &gt; </abbr><span class="ph uicontrol">Browse</span></span> and click <span class="ph uicontrol">Browse</span>.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Navigate to <span class="ph menucascade"><span class="ph uicontrol">_system</span><abbr title="and then"> &gt; </abbr><span class="ph uicontrol">config</span></span>. Locate the file name <span class="ph filepath">userstore-metadata.xml</span>.</span>
+        <div class="itemgroup info">
+          <div class="note"><span class="notetitle">Note:</span> If the <span class="ph filepath">userstore-metadata.xml</span> is not present, perform a following steps to create and upload the file to <span class="ph filepath">_system &gt; config</span> path.</div>
+
+          <ol class="ol" type="a">
+            <li class="li">Create a <span class="ph filepath">userstore-metadata.xml</span> empty file in your local system.</li>
+
+            <li class="li">In the <span class="ph uicontrol">Entries</span>, click <span class="ph uicontrol">Add Resource</span>.</li>
+
+            <li class="li">On the <span class="keyword wintitle">Upload Content From File</span> page, click <span class="ph uicontrol">Choose File</span>, select the <span class="ph filepath">userstore-metadata.xml</span> file created in step 4a, and then click <span class="ph uicontrol">Open</span>.</li>
+
+            <li class="li">Click <span class="ph uicontrol">Add</span>.</li>
+
+          </ol>
+
+        </div>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">In <span class="ph uicontrol">Properties</span> tab, click <img class="image" src="images/02-configure-applications-for-ethos-identity-5.png" width="19" alt="Properties add" data-ft-asset-display-name="i_properties_plus.png" style="aspect-ratio: 19/18;" data-ft-resize-ratio="0.57575756" data-ft-resource-id="OShSG_D5z30HTIUYMMSu~Q-jNnVA1p5_LJSdqVKFSFQVA"> button.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">In the <span class="ph uicontrol">Add new Property</span>section, in the <span class="ph uicontrol">Name</span> field, enter the name of the service provider as defined in the service provider configuration.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">In the <span class="ph uicontrol">Value</span> field, add the user stores that will be used for service provider authentication. User stores include the primary user store, secondary user stores, and attribute stores linked to the primary or secondary user stores.</span>
+        <div class="itemgroup info">
+          <div class="note"><span class="notetitle">Note:</span> The attribute store should be provided after the primary and secondary user stores in the value field. Attribute stores will not be used for authentication.</div>
+
+        </div>
+        <div class="itemgroup stepxmp">Example: PRIMARY, SECONDARY, SECONDARY-ATTRIBUTE-STORE, PRIMARY-ATTRIBUTE-STORE</div>
+      </li>
+</ol>
+
+  </div>
+
+</div></div></section></main></body></html>

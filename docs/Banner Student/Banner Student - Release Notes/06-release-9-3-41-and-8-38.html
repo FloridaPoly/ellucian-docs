@@ -1,0 +1,1151 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Banner Student - Release Notes — Release 9.3.41 and 8.38</title><style>body{font-family:-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;line-height:1.55;color:#1a1a1a;max-width:920px;margin:0 auto;padding:24px}header{border-bottom:2px solid #5a16d6;margin-bottom:8px}h1{color:#3a0ca3}h2,h3,h4,h5,h6{margin-top:1.6em}.crumb{color:#666;font-size:13px;margin:0}.meta{color:#888;font-size:12px}nav.toc{background:#f6f4fc;border:1px solid #e3dcf5;border-radius:8px;padding:12px 18px;margin:18px 0}nav.toc h2{margin:.2em 0}nav.toc ul{list-style:none;padding-left:0}nav.toc a{text-decoration:none;color:#5a16d6}section{margin:1.2em 0;padding-top:.4em}img{max-width:100%;height:auto}table{border-collapse:collapse}td,th{border:1px solid #ccc;padding:4px 8px}code,pre{background:#f4f4f4;border-radius:4px}pre{padding:10px;overflow:auto}</style></head><body><header><p class="crumb">Banner Student › Banner Student - Release Notes</p><h1>Banner Student - Release Notes — Release 9.3.41 and 8.38</h1><p class="meta">Source: <a href="https://resources.elluciancloud.com/r/bundle/banner_student_rel_release_notes">https://resources.elluciancloud.com/r/bundle/banner_student_rel_release_notes</a> &middot; Retrieved 2026-06-17</p></header><nav class="toc"><h2>Contents</h2><ul><li style="margin-left:0px"><a href="#t-60">Release 9.3.41 and 8.38</a></li></ul></nav><main><section id="t-60"><h2>Release 9.3.41 and 8.38</h2><div class="content-locale-en-US content-locale-en"><div id="c_release_9.3.41_8.38"><div class="body conbody"><p class="shortdesc">The <span class="keyword">Banner Student</span> <span class="keyword">9.3.41 and 8.38</span> release includes quality improvements and technical currency updates.</p>
+
+    <div class="section supportnote"><h2 class="title sectiontitle">Support for Banner 8 Self-Service has ended</h2>
+      
+      <p class="p">As of January 1, 2026, <span class="keyword">Banner</span> 8 <span class="keyword">Self-Service</span> has moved out of Sustaining Support and has entered End of Support.</p>
+
+      <p class="p">For detailed information on support statuses, please review our <a class="xref ft-external-link" href="https://elluciansupport.service-now.com/customer_center?id=kb_article_view&amp;sysparm_article=000038478" target="_blank" rel="noopener">Support Assurance Policy</a>.</p>
+
+    </div>
+
+    <div class="section"><h2 class="title sectiontitle">New Hold Information page (SGASTHD)</h2>
+      
+      <p class="p">The <span class="keyword wintitle">Hold Information (SGASTHD)</span> page includes a new <span class="ph uicontrol">Hold by Term</span> section that provides comprehensive management of term-specific registration holds. This enhancement enables administrators to:</p>
+
+      <ul class="ul">
+        <li class="li">Create and manage term-based registration holds with individual active indicators.</li>
+
+        <li class="li">Associate specific hold types with academic term codes for targeted enforcement.</li>
+
+        <li class="li">Control hold activation status independently for each term-hold combination.</li>
+
+        <li class="li">View complete hold history including both active and inactive term-based holds.</li>
+
+        <li class="li">Maintain separation between traditional date-range holds and term-specific holds.</li>
+
+      </ul>
+
+      <p class="p">The Hold by Term section restricts hold validation to registration hold types only, ensuring proper enforcement during registration processes. Each hold entry specifies a single term code (no term ranges) and includes an active indicator that determines whether the hold enforces registration restrictions.</p>
+
+      <div class="note"><span class="notetitle">Note:</span> Only holds with Active Indicator = <span class="ph uicontrol">Y</span> prevent registration. Holds with Active Indicator = <span class="ph uicontrol">N</span> remain for historical tracking without affecting student registration capabilities.</div>
+
+      <p class="p">The SPRTHLD database table provides the data foundation for term-based registration holds. This table stores term-specific hold assignments and includes:</p>
+
+      <ul class="ul">
+        <li class="li">Student identification: Links holds to student PIDM for individual student tracking.</li>
+
+        <li class="li">Term code: Specifies the academic term for which the hold applies.</li>
+
+        <li class="li">Hold type code: References registration hold types defined in STVHLDD.</li>
+
+        <li class="li">Active indicator: Controls whether the hold enforces registration restrictions (<span class="ph uicontrol">Y</span> = active enforcement, <span class="ph uicontrol">N</span> = historical record).</li>
+
+        <li class="li">Release indicator: Controls whether only the system user who entered the term hold may release it (when set to <span class="ph uicontrol">Y</span>).</li>
+
+        <li class="li">Audit fields: Captures creation and modification timestamps with user attribution.</li>
+
+      </ul>
+
+      <p class="p">Registration APIs: <span class="keyword apiname">person-holds</span> - Enhancement of this API will be addressed with PE0007779 in a future release.</p>
+
+      <p class="p">This enhancement addresses PE0006095 in the <span class="keyword">Ellucian Customer Center</span>.</p>
+
+    </div>
+
+    <div class="section"><h2 class="title sectiontitle">Structured Progression enhancements</h2>
+      
+      <p class="p">As part of the enhancement, updates are implemented to ensure a single, accurate, and non‑duplicative view of student academic data across all committee boards and progression stages. </p>
+
+      <p class="p">The Structured Progression (SHPPGAW)Process properly handles the committee code updates across stages.</p>
+
+      <p class="p">Several APIs are revised to apply committee code filtering, which prevents duplicate trailing credits, student stage records, and course information. These include changes to the committee student population, progression award results, student stage courses and grades, student search, and student trailed courses endpoints.</p>
+
+      <p class="p">Enhanced Experience/UI pages:</p>
+
+      <ul class="ul">
+        <li class="li"><span class="ph uicontrol">Assigned Committee</span> and <span class="ph uicontrol">Student Progression History</span> cards now display accurate committee‑specific data.</li>
+
+        <li class="li"><span class="keyword wintitle">Student List View</span> and <span class="keyword wintitle">Student Profile</span> pages consume revised APIs for consistent academic information.</li>
+
+      </ul>
+
+      <p class="p">This enhancement addresses PE0006589 in the <span class="keyword">Ellucian Customer Center</span>.</p>
+
+    </div>
+
+    <div class="section"><h2 class="title sectiontitle">Technical Updates for PostgreSQL </h2>
+      
+      <p class="p"><span class="keyword">Ellucian</span> refactored the <code class="ph codeph">aws_oracle_ext component</code> for the SHRGPAC, SHRROLL, SHRROUT, and SHRRPTS processes, and SFAALST, SFASLST, SHATCKN and SHAGAAP admin pages, and completed extensive regression testing to ensure system stability and reliability for PostgreSQL database environments.</p>
+
+      <p class="p">This technical update provides:</p>
+
+      <ul class="ul">
+        <li class="li">Improved code maintainability for future enhancements and updates.</li>
+
+        <li class="li">Enhanced performance and reliability for the processes.</li>
+
+        <li class="li">Verified compatibility with PostgreSQL database environments.</li>
+
+        <li class="li">Continued stability of graduate academic history processing.</li>
+
+      </ul>
+
+      <div class="note"><span class="notetitle">Note:</span> This update applies to PostgreSQL database environments. No action is required by administrators or end users.</div>
+
+      <p class="p">This enhancement addresses PE0006967 in the <span class="keyword">Ellucian Customer Center</span>.</p>
+
+    </div>
+
+    <div class="section"><h2 class="title sectiontitle">FVT/GE Reporting process (SFPGESC) enhancement </h2>
+      
+      <p class="p">FVT/GE reporting process (SFPGESC) is enhanced so that Banner can automatically derive a student’s program withdrawal status using National Student Clearinghouse (NSC) style required-term gap logic, instead of relying only on manually entered W statuses.</p>
+
+      <p class="p">Using the required-term structure from SFACPLT/SFRCPTT, the process:</p>
+
+      <ul class="ul">
+        <li class="li">Identifies required terms in which the student is expected to be enrolled.</li>
+
+        <li class="li">Detects gaps when a required term has:<ul class="ul">
+          <li class="li">no SFBETRM record, or</li>
+
+          <li class="li">SFBETRM but no qualifying enrolled registration (no count-in-enrollment course).</li>
+
+          </ul>
+</li>
+
+        <li class="li">
+          <p class="p">When such a gap follows a term with an enrolled status (F/Q/H/L/A), the process:</p>
+
+          <ul class="ul">
+            <li class="li">Derives a program withdrawal</li>
+
+            <li class="li">Sets the withdrawal date to:<ul class="ul">
+              <li class="li">the prior required term end date for F/Q/H/L statuses, or</li>
+
+              <li class="li">the LOA effective date for A (Leave of Absence),</li>
+
+              </ul>
+</li>
+
+            <li class="li">Creates TA records when withdrawal date falls in the award year and the student received Title IV aid.</li>
+
+          </ul>
+
+        </li>
+
+      </ul>
+
+      <p class="p">Additional rules:</p>
+
+      <ul class="ul">
+        <li class="li">Non-required terms (such as summer) never trigger a derived withdrawal.</li>
+
+        <li class="li">Manual withdrawals always override the derived logic, and withdrawals for other programs are not changed.</li>
+
+        <li class="li">CEU logic is explicitly excluded, while GE/FVT reporting is aligned with NSC calculated-withdrawal methodology.</li>
+
+      </ul>
+
+      <p class="p">This enhancement aligns Banner GE/FVT reporting with NSC logic, reduces manual maintenance of withdrawal statuses, and improves accuracy and compliance for unofficial withdrawals. </p>
+
+      <p class="p">This enhancement addresses PE0007298 in the <span class="keyword">Ellucian Customer Center</span>.</p>
+
+    </div>
+
+    <div class="section"><h2 class="title sectiontitle">Enhanced Program Description field to 120 characters</h2>
+      
+      <p class="p"><span class="keyword">Ellucian</span> has expanded the <span class="ph uicontrol">Program Description</span> field <code class="ph codeph">SMRPRLE_PROGRAM_DESC</code> and <code class="ph codeph">SFBSTRH_PROGRAM_DESC</code> from 30 characters to 250 characters and provided an ability to have the program description in the following reports and processes to 120 characters. </p>
+
+      <ul class="ul">
+        <li class="li">Student Report (SGRSTDN)</li>
+
+        <li class="li">Veteran Report (SGRVETN)</li>
+
+        <li class="li">Transfer Equivalency Catalog (SHRTECA)</li>
+
+        <li class="li">Compliance hardcopy output (SMRCRLT)</li>
+
+        <li class="li">Academic Transcript Process (SHRTRTC)</li>
+
+        <li class="li">Admissions Application Report (SARADMS)</li>
+
+        <li class="li">Batch Compliance Process (SMRBCMP)</li>
+
+      </ul>
+
+      <p class="p">Additionally, several Banner Admin pages has been modified for the Display and List of Value (LOV) fields to accommodate the 120 characters program descriptions.</p>
+
+      <p class="p">This enhancement supports more comprehensive program titles and descriptions across <span class="keyword">Banner Student</span> applications. The expanded 120-character field enables:</p>
+
+      <ul class="ul">
+        <li class="li">Full, descriptive program titles that accurately reflect academic offerings without truncation.</li>
+
+        <li class="li">Improved clarity in program catalogs, advising systems, and student-facing interfaces.</li>
+
+        <li class="li">Better alignment with institutional branding and marketing standards for program descriptions.</li>
+
+        <li class="li">Enhanced data quality and consistency across <span class="keyword">Banner</span> integrations and reporting.</li>
+
+      </ul>
+
+      <p class="p">The following DDL scripts were modified to implement the database schema changes:</p>
+
+      <ul class="ul">
+        <li class="li"><span class="ph filepath">sfbstrh_080700_01.sql</span></li>
+
+        <li class="li"><span class="ph filepath">sfbstrh_080700_06.sql</span></li>
+
+      </ul>
+
+      <div class="note"><span class="notetitle">Note:</span> Existing program descriptions remain unchanged and continue to display correctly. Programs can be updated to use the expanded character limit as needed.</div>
+
+      <p class="p">This enhancement addresses PE0007462 in the <span class="keyword">Ellucian Customer Center</span>.</p>
+
+    </div>
+
+    <div class="section"><h2 class="title sectiontitle">Enhanced Race Code Fields for IPEDS Reporting</h2>
+      
+      <p class="p">The race code fields are enhanced to accommodate 2-character race codes, enhancing IPEDS (Integrated Postsecondary Education Data System) reporting capabilities across <span class="keyword">Banner</span> systems.</p>
+
+      <p class="p">The following database fields are expanded from 1 character to 2 characters:</p>
+
+      <ul class="ul">
+        <li class="li"><code class="ph codeph">GORRACE_RRAC_CODE</code> - Race code in the General Person Race table</li>
+
+        <li class="li"><code class="ph codeph">GTVRRAC_CODE</code> - Race code in the Race Code Validation table</li>
+
+      </ul>
+
+      <p class="p">The race code field expansion was implemented across multiple PROC program files to ensure consistent validation and processing of race codes in both text and CSV input files:</p>
+
+      <ul class="ul">
+        <li class="li"><span class="ph filepath">shricip.pc</span> - CIP code process</li>
+
+        <li class="li"><span class="ph filepath">shrigrs.pc</span> - Graduate process</li>
+
+        <li class="li"><span class="ph filepath">shriact.pc</span> - Activity process</li>
+
+        <li class="li"><span class="ph filepath">shripds.pc</span> - PDS process</li>
+
+        <li class="li"><span class="ph filepath">sfrnslc.pc</span> - National Student Loan Clearinghouse process</li>
+
+        <li class="li"><span class="ph filepath">srrrpro.pc</span> - Report processing</li>
+
+      </ul>
+
+      <div class="note"><span class="notetitle">Note:</span> Existing race codes with 1 character continue to function correctly. Institutions can begin using 2-character race codes as needed for IPEDS reporting.</div>
+
+      <p class="p">This enhancement addresses PE0007586 in the <span class="keyword">Ellucian Customer Center</span>.</p>
+
+    </div>
+
+    
+    <div class="section" id="c_release_9.3.41_8.38__section_sl1_bzw_l3c"><h2 class="title sectiontitle">New API endpoint for deleting student activities</h2>
+      
+      <p class="p">A new DELETE Business Process API <span class="keyword apiname">general-student-activities</span> is created for the <span class="keyword wintitle">General Student Activities (SGASTDN)</span> page to enable programmatic deletion of student activity memberships. This API supports integration scenarios and delegated management of student organization data.</p>
+
+      <p class="p">The new DELETE API complements the existing PUT method for the <span class="keyword apiname">general-student-activities</span> BPAPI, providing complete CRUD capabilities for student activity management.</p>
+
+      <p class="p">The DELETE endpoint allows authorized users and systems to remove activity information for students, including:</p>
+
+      
+      <ul class="ul" id="c_release_9.3.41_8.38__ul_tl1_bzw_l3c">
+        <li class="li">Term Code - The academic term associated with the activity</li>
+
+        <li class="li">Activity Code - The specific activity or student organization identifier</li>
+
+        <li class="li">Description - Activity description details displayed under the Activities tab</li>
+
+      </ul>
+
+      <p class="p">This enhancement addresses PE0006467 in the <span class="keyword">Ellucian Customer Center</span>.</p>
+
+      
+    </div>
+
+    
+    <div class="section" id="c_release_9.3.41_8.38__section_ul1_bzw_l3c"><h2 class="title sectiontitle">New API endpoint for Disability Services on SGADISA</h2>
+      
+      
+      <p class="p">A new GET, PUT and POST Business Process API <span class="keyword apiname">student-disability-service-support</span> is created for the <strong class="ph b">Athletic Academic Progress (SGADISA)</strong> page to fetch, update and deletion of student disability services information.</p>
+
+      <p class="p">The existing <span class="keyword apiname">student-disability-service</span> APIs GET, PUT and POST has been updated to now support the Student Disabilities section on the <span class="keyword wintitle">Athletic Academic Progress (SGADISA)</span> page.</p>
+
+      <p class="p">This defect addresses PD0029953 in the <span class="keyword">Ellucian Customer Center</span>.</p>
+
+    </div>
+
+    <div class="section"><h2 class="title sectiontitle">Course Program of Study (SFPCPOS) process enhancement</h2>
+      
+      <p class="p">The <span class="keyword wintitle">Course Program of Study (SFPCPOS)</span> process introduces a new parameter <span class="ph uicontrol">Include Graded and Rolled Courses (IGR)</span> to explicitly control whether graded and rolled courses are included in CPOS processing. This enhancement enables institutions to manage on-demand Degree Works reconciliation without reprocessing completed coursework, while maintaining the ability to perform full historical re-evaluations when needed.</p>
+
+      <ul class="ul">
+        <li class="li">IGR = Y: Graded and rolled courses are eligible for CPOS selection and evaluation.</li>
+
+        <li class="li">IGR = N (default): Graded and rolled courses are excluded from CPOS processing and remain frozen, protecting completed coursework from post-grade changes.</li>
+
+      </ul>
+
+      <p class="p">The new parameter is available through:</p>
+
+      <ul class="ul">
+        <li class="li">Job Submission pages for automated and scheduled SFPCPOS runs</li>
+
+        <li class="li">Relevant UI control pages for manual CPOS execution</li>
+
+        <li class="li">Batch processing workflows and integration scripts</li>
+
+      </ul>
+
+      <div class="note tip"><span class="tiptitle">Tip:</span> 
+        <ul class="ul">
+          <li class="li">For routine incremental processing triggered by registration changes, use the default configuration (On-Demand = N, IGR = N) to maintain stability.</li>
+
+          <li class="li">For Degree Works exception reconciliation without reprocessing completed work, use (On-Demand = Y with IGR = N). Reserve the combination (On-Demand = Y with IGR = Y) for scenarios requiring complete historical re-evaluation. </li>
+
+        </ul>
+
+      </div>
+
+      <p class="p">This enhancement addresses PE0007780 in the <span class="keyword">Ellucian Customer Center</span>.</p>
+
+    </div>
+
+    <div class="section"><h2 class="title sectiontitle">ASCGEN enhancements</h2>
+      
+      <div class="p">Following are the updates available for <span class="keyword">Banner</span> ASCGEN as part of <span class="keyword">Banner Student</span> <span class="keyword">9.3.41 and 8.38</span> releases.<ul class="ul">
+        <li class="li">Changed Packages: <ul class="ul">
+          <li class="li">Added seed data scripts to enable VTAC_SEAS report fields on the GOAPSID page. This update ensures that VTAC_SEAS Equity Schemes (formerly SEAS) and Scholarships data is stored and available in Banner for further processing. The configuration data is populated in the GTVSEIR, GTVSEID, GOASETP, GOASEID, and GOAPSID pages.<p class="p">The following DML scripts are modified.</p>
+<ul class="ul">
+            <li class="li">sgtvseiri_082800.sql</li>
+
+            <li class="li">sgtvseidi_082800.sql</li>
+
+            <li class="li">sgorsetpi_082800.sql</li>
+
+            <li class="li">sgorseidi_082800.sql</li>
+
+            </ul>
+<p class="p">This enhancement addresses PE0007741 in the <span class="keyword">Ellucian Customer Center</span>.</p>
+</li>
+
+          <li class="li">Added seed data scripts to enable VTAC report fields on the GOAPSID page. This update ensures that VTAC applications and offer data is stored and available in Banner for further processing. The configuration data is populated in the GTVSEIR, GTVSEID, GOASETP, GOASEID, and GOAPSID pages.<p class="p">The following DML scripts are modified.</p>
+<ul class="ul">
+            <li class="li">sgtvseiri_082800.sql</li>
+
+            <li class="li">sgtvseidi_082800.sql</li>
+
+            <li class="li">sgorsetpi_082800.sql</li>
+
+            <li class="li">sgorseidi_082800.sql</li>
+
+            </ul>
+<p class="p">This enhancement addresses PE0007812 in the <span class="keyword">Ellucian Customer Center</span>.</p>
+</li>
+
+          <li class="li">Enhanced the SKKJSON package to support the import of incoming VTAC application and VTAC SEAS data into Banner ERP. The update processes incoming data and loads it into the appropriate Banner structures, supporting both new and existing applications for downstream processing.<p class="p">The following package scripts are modified.</p>
+<ul class="ul">
+            <li class="li">skkjson.sql</li>
+
+            <li class="li">skkjso1.sql</li>
+
+            </ul>
+<p class="p">This enhancement addresses PE0007795 in the <span class="keyword">Ellucian Customer Center</span>.</p>
+</li>
+
+          </ul>
+</li>
+
+        <li class="li">New Table:<ul class="ul">
+          <li class="li">The new SFRUFEE table supports Australian regulatory reporting by storing student Unit of Study–level fees and loan details for ERM integration.<p class="p">The SFRUFEE table has a primary key consisting of SFRUFEE_PIDM, SFRUFEE_TERM_CODE, and SFRUFEE_CRN.</p>
+
+<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" class="table" frame="border" border="1" rules="all"><colgroup><col style="width:33.33333333333333%"><col style="width:20%"><col style="width:13.333333333333334%"><col style="width:33.33333333333333%"></colgroup><thead class="thead" style="text-align:left;">
+                <tr class="row">
+                  <th class="entry cellrowborder" style="vertical-align:top;" id="d7580e748">Column Name</th>
+
+                  <th class="entry cellrowborder" style="vertical-align:top;" id="d7580e751">Data Type</th>
+
+                  <th class="entry cellrowborder" style="vertical-align:top;" id="d7580e754">Nullable</th>
+
+                  <th class="entry cellrowborder" style="vertical-align:top;" id="d7580e757">Description</th>
+
+                </tr>
+
+              </thead>
+<tbody class="tbody">
+                <tr class="row">
+                  <td class="entry cellrowborder" style="vertical-align:top;" headers="d7580e748 ">SFRUFEE_PIDM</td>
+
+                  <td class="entry cellrowborder" style="vertical-align:top;" headers="d7580e751 ">NUMBER(8,0)</td>
+
+                  <td class="entry cellrowborder" style="vertical-align:top;" headers="d7580e754 ">No</td>
+
+                  <td class="entry cellrowborder" style="vertical-align:top;" headers="d7580e757 ">PIDM of the student registered in the CRN and Term.</td>
+
+                </tr>
+
+                <tr class="row">
+                  <td class="entry cellrowborder" style="vertical-align:top;" headers="d7580e748 ">SFRUFEE_TERM_CODE</td>
+
+                  <td class="entry cellrowborder" style="vertical-align:top;" headers="d7580e751 ">VARCHAR2(6)</td>
+
+                  <td class="entry cellrowborder" style="vertical-align:top;" headers="d7580e754 ">No</td>
+
+                  <td class="entry cellrowborder" style="vertical-align:top;" headers="d7580e757 ">Term code of the student's registration.</td>
+
+                </tr>
+
+                <tr class="row">
+                  <td class="entry cellrowborder" style="vertical-align:top;" headers="d7580e748 ">SFRUFEE_CRN</td>
+
+                  <td class="entry cellrowborder" style="vertical-align:top;" headers="d7580e751 ">VARCHAR2(5)</td>
+
+                  <td class="entry cellrowborder" style="vertical-align:top;" headers="d7580e754 ">No</td>
+
+                  <td class="entry cellrowborder" style="vertical-align:top;" headers="d7580e757 ">CRN in which the student is registered.</td>
+
+                </tr>
+
+                <tr class="row">
+                  <td class="entry cellrowborder" style="vertical-align:top;" headers="d7580e748 ">SFRUFEE_UNIT_CDE</td>
+
+                  <td class="entry cellrowborder" style="vertical-align:top;" headers="d7580e751 ">VARCHAR2(12)</td>
+
+                  <td class="entry cellrowborder" style="vertical-align:top;" headers="d7580e754 ">No</td>
+
+                  <td class="entry cellrowborder" style="vertical-align:top;" headers="d7580e757 ">Unit of Study code for the registered student.</td>
+
+                </tr>
+
+                <tr class="row">
+                  <td class="entry cellrowborder" style="vertical-align:top;" headers="d7580e748 ">SFRUFEE_DETAIL_CODE</td>
+
+                  <td class="entry cellrowborder" style="vertical-align:top;" headers="d7580e751 ">VARCHAR2(4)</td>
+
+                  <td class="entry cellrowborder" style="vertical-align:top;" headers="d7580e754 ">Yes</td>
+
+                  <td class="entry cellrowborder" style="vertical-align:top;" headers="d7580e757 ">Detail code associated with the student fee.</td>
+
+                </tr>
+
+                <tr class="row">
+                  <td class="entry cellrowborder" style="vertical-align:top;" headers="d7580e748 ">SFRUFEE_DESC</td>
+
+                  <td class="entry cellrowborder" style="vertical-align:top;" headers="d7580e751 ">VARCHAR2(255)</td>
+
+                  <td class="entry cellrowborder" style="vertical-align:top;" headers="d7580e754 ">Yes</td>
+
+                  <td class="entry cellrowborder" style="vertical-align:top;" headers="d7580e757 ">Description for the fee detail code.</td>
+
+                </tr>
+
+                <tr class="row">
+                  <td class="entry cellrowborder" style="vertical-align:top;" headers="d7580e748 ">SFRUFEE_AOU_IND</td>
+
+                  <td class="entry cellrowborder" style="vertical-align:top;" headers="d7580e751 ">VARCHAR2(1)</td>
+
+                  <td class="entry cellrowborder" style="vertical-align:top;" headers="d7580e754 ">No</td>
+
+                  <td class="entry cellrowborder" style="vertical-align:top;" headers="d7580e757 ">Indicator for record selection (default 'N').</td>
+
+                </tr>
+
+                <tr class="row">
+                  <td class="entry cellrowborder" style="vertical-align:top;" headers="d7580e748 ">SFRUFEE_UPFRONT_PER_UNIT</td>
+
+                  <td class="entry cellrowborder" style="vertical-align:top;" headers="d7580e751 ">NUMBER(12,2)</td>
+
+                  <td class="entry cellrowborder" style="vertical-align:top;" headers="d7580e754 ">Yes</td>
+
+                  <td class="entry cellrowborder" style="vertical-align:top;" headers="d7580e757 ">Up-front fee amount per unit (student paid portion).</td>
+
+                </tr>
+
+                <tr class="row">
+                  <td class="entry cellrowborder" style="vertical-align:top;" headers="d7580e748 ">SFRUFEE_TOTAL_PER_UNIT</td>
+
+                  <td class="entry cellrowborder" style="vertical-align:top;" headers="d7580e751 ">NUMBER(12,2)</td>
+
+                  <td class="entry cellrowborder" style="vertical-align:top;" headers="d7580e754 ">Yes</td>
+
+                  <td class="entry cellrowborder" style="vertical-align:top;" headers="d7580e757 ">Total amount charged for the unit.</td>
+
+                </tr>
+
+                <tr class="row">
+                  <td class="entry cellrowborder" style="vertical-align:top;" headers="d7580e748 ">SFRUFEE_LOAN_FEE</td>
+
+                  <td class="entry cellrowborder" style="vertical-align:top;" headers="d7580e751 ">NUMBER(12,2)</td>
+
+                  <td class="entry cellrowborder" style="vertical-align:top;" headers="d7580e754 ">Yes</td>
+
+                  <td class="entry cellrowborder" style="vertical-align:top;" headers="d7580e757 ">Loan fee for the unit of study.</td>
+
+                </tr>
+
+                <tr class="row">
+                  <td class="entry cellrowborder" style="vertical-align:top;" headers="d7580e748 ">SFRUFEE_LOAN_AMOUNT</td>
+
+                  <td class="entry cellrowborder" style="vertical-align:top;" headers="d7580e751 ">NUMBER(16,2)</td>
+
+                  <td class="entry cellrowborder" style="vertical-align:top;" headers="d7580e754 ">Yes</td>
+
+                  <td class="entry cellrowborder" style="vertical-align:top;" headers="d7580e757 ">HELP or SA-HELP loan amount per unit.</td>
+
+                </tr>
+
+                <tr class="row">
+                  <td class="entry cellrowborder" style="vertical-align:top;" headers="d7580e748 ">SFRUFEE_RATE_CODE</td>
+
+                  <td class="entry cellrowborder" style="vertical-align:top;" headers="d7580e751 ">VARCHAR2(5)</td>
+
+                  <td class="entry cellrowborder" style="vertical-align:top;" headers="d7580e754 ">Yes</td>
+
+                  <td class="entry cellrowborder" style="vertical-align:top;" headers="d7580e757 ">Rate code associated with the registration.</td>
+
+                </tr>
+
+                <tr class="row">
+                  <td class="entry cellrowborder" style="vertical-align:top;" headers="d7580e748 ">SFRUFEE_DISCOUNT_AMOUNT</td>
+
+                  <td class="entry cellrowborder" style="vertical-align:top;" headers="d7580e751 ">NUMBER(16,2)</td>
+
+                  <td class="entry cellrowborder" style="vertical-align:top;" headers="d7580e754 ">Yes</td>
+
+                  <td class="entry cellrowborder" style="vertical-align:top;" headers="d7580e757 ">Discount amount applied for the CRN.</td>
+
+                </tr>
+
+                <tr class="row">
+                  <td class="entry cellrowborder" style="vertical-align:top;" headers="d7580e748 ">SFRUFEE_STSP_KEY_SEQUENCE</td>
+
+                  <td class="entry cellrowborder" style="vertical-align:top;" headers="d7580e751 ">NUMBER(2,0)</td>
+
+                  <td class="entry cellrowborder" style="vertical-align:top;" headers="d7580e754 ">Yes</td>
+
+                  <td class="entry cellrowborder" style="vertical-align:top;" headers="d7580e757 ">Study Path key sequence for the student.</td>
+
+                </tr>
+
+                <tr class="row">
+                  <td class="entry cellrowborder" style="vertical-align:top;" headers="d7580e748 ">SFRUFEE_FEE_TYPE</td>
+
+                  <td class="entry cellrowborder" style="vertical-align:top;" headers="d7580e751 ">VARCHAR2(5)</td>
+
+                  <td class="entry cellrowborder" style="vertical-align:top;" headers="d7580e754 ">Yes</td>
+
+                  <td class="entry cellrowborder" style="vertical-align:top;" headers="d7580e757 ">Fee type indicator: FEE (SKVUFEE) or RPL (SKVURPL).</td>
+
+                </tr>
+
+                <tr class="row">
+                  <td class="entry cellrowborder" style="vertical-align:top;" headers="d7580e748 ">SFRUFEE_ACTIVITY_DATE</td>
+
+                  <td class="entry cellrowborder" style="vertical-align:top;" headers="d7580e751 ">DATE</td>
+
+                  <td class="entry cellrowborder" style="vertical-align:top;" headers="d7580e754 ">No</td>
+
+                  <td class="entry cellrowborder" style="vertical-align:top;" headers="d7580e757 ">Date record was created or last updated.</td>
+
+                </tr>
+
+                <tr class="row">
+                  <td class="entry cellrowborder" style="vertical-align:top;" headers="d7580e748 ">SFRUFEE_USER_ID</td>
+
+                  <td class="entry cellrowborder" style="vertical-align:top;" headers="d7580e751 ">VARCHAR2(30)</td>
+
+                  <td class="entry cellrowborder" style="vertical-align:top;" headers="d7580e754 ">No</td>
+
+                  <td class="entry cellrowborder" style="vertical-align:top;" headers="d7580e757 ">User ID of the person who inserted or updated the record.</td>
+
+                </tr>
+
+                <tr class="row">
+                  <td class="entry cellrowborder" style="vertical-align:top;" headers="d7580e748 ">SFRUFEE_DATA_ORIGIN</td>
+
+                  <td class="entry cellrowborder" style="vertical-align:top;" headers="d7580e751 ">VARCHAR2(30)</td>
+
+                  <td class="entry cellrowborder" style="vertical-align:top;" headers="d7580e754 ">Yes</td>
+
+                  <td class="entry cellrowborder" style="vertical-align:top;" headers="d7580e757 ">Source system that created or updated the data.</td>
+
+                </tr>
+
+                <tr class="row">
+                  <td class="entry cellrowborder" style="vertical-align:top;" headers="d7580e748 ">SFRUFEE_VPDI_CODE</td>
+
+                  <td class="entry cellrowborder" style="vertical-align:top;" headers="d7580e751 ">VARCHAR2(6)</td>
+
+                  <td class="entry cellrowborder" style="vertical-align:top;" headers="d7580e754 ">Yes</td>
+
+                  <td class="entry cellrowborder" style="vertical-align:top;" headers="d7580e757 ">Multi-entity processing code.</td>
+
+                </tr>
+
+                <tr class="row">
+                  <td class="entry cellrowborder" style="vertical-align:top;" headers="d7580e748 ">SFRUFEE_SURROGATE_ID</td>
+
+                  <td class="entry cellrowborder" style="vertical-align:top;" headers="d7580e751 ">NUMBER(19,0)</td>
+
+                  <td class="entry cellrowborder" style="vertical-align:top;" headers="d7580e754 ">Yes</td>
+
+                  <td class="entry cellrowborder" style="vertical-align:top;" headers="d7580e757 ">Immutable unique key identifier.</td>
+
+                </tr>
+
+                <tr class="row">
+                  <td class="entry cellrowborder" style="vertical-align:top;" headers="d7580e748 ">SFRUFEE_VERSION</td>
+
+                  <td class="entry cellrowborder" style="vertical-align:top;" headers="d7580e751 ">NUMBER(19,0)</td>
+
+                  <td class="entry cellrowborder" style="vertical-align:top;" headers="d7580e754 ">Yes</td>
+
+                  <td class="entry cellrowborder" style="vertical-align:top;" headers="d7580e757 ">Optimistic lock token for concurrency control (default 1).</td>
+
+                </tr>
+
+              </tbody>
+</table>
+</div>
+<p class="p">These enhancements address PE0007666 in the <span class="keyword">Ellucian Customer Center</span>.</p>
+</li>
+
+          <li class="li">New Java Process:<p class="p">A new Java process is created to populate the SFRUFEE table with the following functionality:</p>
+<ul class="ul">
+            <li class="li">Reads data from the <span class="ph uicontrol">SKVUFEE</span> and <span class="ph uicontrol">SKVURPL</span> views.</li>
+
+            <li class="li">Populates SFRUFEE with transformed and normalized values.</li>
+
+            <li class="li">Sets the <code class="ph codeph">SFRUFEE_FEE_TYPE</code> column to identify the originating view (FEE for SKVUFEE or RPL for SKVURPL).</li>
+
+            <li class="li">Ensures data is refreshed based on institution load cycles.</li>
+
+            </ul>
+<p class="p">These enhancements address PE0007580 in the <span class="keyword">Ellucian Customer Center</span>.</p>
+</li>
+
+          </ul>
+</li>
+
+        <li class="li">Enhanced security:<ul class="ul">
+          <li class="li"><span class="keyword">Ellucian</span> enhanced the security of student concession data by implementing encryption for the Customer Reference Number field (SKRCONC_CONC_ID) on the <span class="keyword wintitle">Student Concessions (SKRCONC)</span> table. This field stores the student's Concession Customer Reference Number used when verifying concessions with Centrelink. The new process SOPUFEE picks up data from SKVUFEE and SKVURPL and inserts into the new table SFRUFEE.<p class="p">This enhancement addresses PE0007667 in the <span class="keyword">Ellucian Customer Center</span>.</p>
+</li>
+
+          <li class="li"><span class="keyword">Ellucian</span> enhanced the <span class="keyword wintitle">Concession Code Rules (SKACONC)</span> page to protect sensitive concession identification data. The Concession ID field (SKACONC_CONC_ID) is now encrypted in the database and masked in the user interface to safeguard student concession card numbers and related identification information.<p class="p">This enhancement addresses PE0007668 in the <span class="keyword">Ellucian Customer Center</span>.</p>
+</li>
+
+          </ul>
+</li>
+
+        <li class="li">Enhanced delivery:<p class="p"><span class="keyword">Ellucian</span> enhanced the <span class="keyword wintitle">Delivery Organization (SKATORG)</span> page to support multiple campus delivery locations with automatic address population. When users select a Delivery Location from the Site Code validation table (STVSITE), all associated address details automatically populate, streamlining data entry and ensuring accuracy.</p>
+<div class="p">Key features include auto-population of address fields based on site selection, including: <ul class="ul">
+          <li class="li">Street Name</li>
+
+          <li class="li">Building / Property</li>
+
+          <li class="li">Flat / Unit Details</li>
+
+          <li class="li">City</li>
+
+          <li class="li">State or Territory</li>
+
+          <li class="li">Post Code</li>
+
+          <li class="li">Nation</li>
+
+          </ul>
+</div>
+<p class="p">This enhancement addresses PE0007668 in the <span class="keyword">Ellucian Customer Center</span>.</p>
+</li>
+
+        </ul>
+</div>
+
+    </div>
+
+    <div class="section"><h2 class="title sectiontitle">CAO enhancements</h2>
+      
+      <ul class="ul">
+        <li class="li">Changed Pages<p class="p">The SOAQQIA page previously showed only the most recent record; it now displays all years records for an applicant.</p>
+<p class="p">This enhancement addresses PE0006879 in the <span class="keyword">Ellucian Customer Center</span>.</p>
+<div class="p">To enhance accessibility and ensure compliance with WCAG guidelines, missing labels are added to the following pages. These updates improve screen‑reader compatibility and overall usability for assistive technologies. There is no change in functionality. <ul class="ul">
+          <li class="li">SZAIREC</li>
+
+          <li class="li">SOAQQIA</li>
+
+          <li class="li">SZAIIOT</li>
+
+          <li class="li">SZARMAS</li>
+
+          <li class="li">SZARXPR</li>
+
+          </ul>
+</div>
+<p class="p">This defect satisfies PD0030045 in the <span class="keyword">Ellucian Customer Center</span>.</p>
+</li>
+
+        <li class="li">Changed SORNAIM Java Process<p class="p">The column indices in NETACC FileService are modified to accommodate the new column added at position AZ in the CSV file.</p>
+<p class="p">This enhancement addresses PE0007257 in the <span class="keyword">Ellucian Customer Center</span>.</p>
+</li>
+
+      </ul>
+
+    </div>
+
+    <div class="section"><h2 class="title sectiontitle">PROGCAT enhancements</h2>
+      
+      <ul class="ul">
+        <li class="li">WCAG Label changes<p class="p">To enhance accessibility and ensure compliance with WCAG guidelines, <span class="keyword">Ellucian</span> has added missing labels to the SKAAREO and SKACRSO pages. These updates improve screen‑reader compatibility and overall usability for assistive technologies. There is no change in functionality.</p>
+<p class="p">This defect satisfies PD0030042 in the <span class="keyword">Ellucian Customer Center</span>.</p>
+</li>
+
+        <li class="li">Language Translation<p class="p"><code class="ph codeph">progcat_gubobjs.properties</code> resources DML was modified to correct the <code class="ph codeph">GUBOBJS_DESC</code> for *PROGCAT key text.</p>
+<p class="p">This defect satisfies PD0030161 in the <span class="keyword">Ellucian Customer Center</span>.</p>
+</li>
+
+      </ul>
+
+    </div>
+
+    <div class="section"><h2 class="title sectiontitle">GRDS enhancements </h2>
+      
+      <p class="p">To enhance accessibility and ensure compliance with WCAG guidelines, <span class="keyword">Ellucian</span> has added missing labels to the pages. These updates improve screen‑reader compatibility and overall usability for assistive technologies. There is no change in functionality.</p>
+
+      <p class="p">This defect satisfies PD0030043 in the <span class="keyword">Ellucian Customer Center</span>.</p>
+
+    </div>
+
+    <div class="section"><h2 class="title sectiontitle">Europe INTTRACK enhancements</h2>
+      
+      <ul class="ul">
+        <li class="li">The following new tables are added to support Europe INTTRACK Agent functionality.
+<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" class="table" frame="border" border="1" rules="all"><colgroup><col style="width:50%"><col style="width:50%"></colgroup><thead class="thead" style="text-align:left;">
+              <tr class="row">
+                <th class="entry cellrowborder" style="vertical-align:top;" id="d7580e1328">Table Name</th>
+
+                <th class="entry cellrowborder" style="vertical-align:top;" id="d7580e1331">Description</th>
+
+              </tr>
+
+            </thead>
+<tbody class="tbody">
+              <tr class="row">
+                <td class="entry cellrowborder" style="vertical-align:top;" headers="d7580e1328 ">STVAGNY</td>
+
+                <td class="entry cellrowborder" style="vertical-align:top;" headers="d7580e1331 ">Agency Code Validation Table</td>
+
+              </tr>
+
+              <tr class="row">
+                <td class="entry cellrowborder" style="vertical-align:top;" headers="d7580e1328 ">SORAGNY</td>
+
+                <td class="entry cellrowborder" style="vertical-align:top;" headers="d7580e1331 ">Agency Details Table</td>
+
+              </tr>
+
+              <tr class="row">
+                <td class="entry cellrowborder" style="vertical-align:top;" headers="d7580e1328 ">SARAGNS</td>
+
+                <td class="entry cellrowborder" style="vertical-align:top;" headers="d7580e1331 ">Applicant Agent Summary Table</td>
+
+              </tr>
+
+              <tr class="row">
+                <td class="entry cellrowborder" style="vertical-align:top;" headers="d7580e1328 ">SORAGNT</td>
+
+                <td class="entry cellrowborder" style="vertical-align:top;" headers="d7580e1331 ">Agent Details Table</td>
+
+              </tr>
+
+              <tr class="row">
+                <td class="entry cellrowborder" style="vertical-align:top;" headers="d7580e1328 ">SORAPRC</td>
+
+                <td class="entry cellrowborder" style="vertical-align:top;" headers="d7580e1331 ">Agency Primary Contact Details Table</td>
+
+              </tr>
+
+            </tbody>
+</table>
+</div>
+<p class="p">This enhancement addresses PE0007553 in the <span class="keyword">Ellucian Customer Center</span>.</p>
+</li>
+
+        <li class="li">A new column is added to the SKRICAS table to store the student arrived date in the United Kingdom.<p class="p">This enhancement addresses PE0002675 in the <span class="keyword">Ellucian Customer Center</span>.</p>
+</li>
+
+        <li class="li">New pages and tables<p class="p">New pages and tables are added in Banner Student to support Agent functionality on the SKAICAS page.</p>
+
+<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" class="table" frame="border" border="1" rules="all"><colgroup><col style="width:33.33333333333333%"><col style="width:33.33333333333333%"><col style="width:33.33333333333333%"></colgroup><thead class="thead" style="text-align:left;">
+              <tr class="row">
+                <th class="entry cellrowborder" style="vertical-align:top;" id="d7580e1417">Page Name</th>
+
+                <th class="entry cellrowborder" style="vertical-align:top;" id="d7580e1420">Description</th>
+
+                <th class="entry cellrowborder" style="vertical-align:top;" id="d7580e1423">Table Used</th>
+
+              </tr>
+
+            </thead>
+<tbody class="tbody">
+              <tr class="row">
+                <td class="entry cellrowborder" style="vertical-align:top;" headers="d7580e1417 ">STVAGNY</td>
+
+                <td class="entry cellrowborder" style="vertical-align:top;" headers="d7580e1420 ">Agency Code Validation</td>
+
+                <td class="entry cellrowborder" style="vertical-align:top;" headers="d7580e1423 ">STVAGNY</td>
+
+              </tr>
+
+              <tr class="row">
+                <td class="entry cellrowborder" style="vertical-align:top;" headers="d7580e1417 ">SOAAAGD</td>
+
+                <td class="entry cellrowborder" style="vertical-align:top;" headers="d7580e1420 ">Agency and Agent Details</td>
+
+                <td class="entry cellrowborder" style="vertical-align:top;" headers="d7580e1423 ">SORAGNY, SORAGNT, SORAPRC</td>
+
+              </tr>
+
+              <tr class="row">
+                <td class="entry cellrowborder" style="vertical-align:top;" headers="d7580e1417 ">SAAAGNS</td>
+
+                <td class="entry cellrowborder" style="vertical-align:top;" headers="d7580e1420 ">Applicant Agent Summary</td>
+
+                <td class="entry cellrowborder" style="vertical-align:top;" headers="d7580e1423 ">SARAGNS</td>
+
+              </tr>
+
+            </tbody>
+</table>
+</div>
+</li>
+
+        <li class="li">Changed Pages<ul class="ul">
+          <li class="li">The SKAICAS page has also been updated to remove the <span class="ph uicontrol">ID</span> field from the <span class="ph uicontrol">Agent</span> tab, as agent data is now sourced from the new pages STVAGNY, SOAAAGD, SAAAGNS. There are no changes to the manual updates on the <span class="ph uicontrol">Agent</span> tab.<p class="p">This enhancement addresses PE0007566 in the <span class="keyword">Ellucian Customer Center</span>.</p>
+</li>
+
+          <li class="li">Added new field on the SKAICAS page to store the date the student arrived in the United Kingdom.<p class="p">This enhancement addresses PE0002675 in the <span class="keyword">Ellucian Customer Center</span></p>
+</li>
+
+          <li class="li">The original course start date can be entered whether or not the <span class="ph uicontrol">Course Continuation</span> check box is selected on the SKAICAS page.<p class="p">This enhancement addresses PE0007842 in the <span class="keyword">Ellucian Customer Center</span>.</p>
+</li>
+
+          </ul>
+</li>
+
+        <li class="li">Changed Package<p class="p">The upload XML always includes the original course start date, regardless of whether the course continuation field is populated.</p>
+<p class="p">This enhancement addresses PE0007842 in the <span class="keyword">Ellucian Customer Center</span>.</p>
+</li>
+
+        <li class="li">Modified MDUU activity<p class="p">The MDUU activity ESC_GEN_CAS has been modified to retrieve agent details from new agent tables such as STVAGNY, SORAGNY, SARAGNS, and SORAPRC.</p>
+<p class="p">This enhancement addresses PE0007566 in the <span class="keyword">Ellucian Customer Center</span>.</p>
+</li>
+
+      </ul>
+
+    </div>
+
+    <div class="section"><h2 class="title sectiontitle">SUSI Enhancements</h2>
+      
+      <p class="p">Changed Package: soksusi</p>
+
+      <ul class="ul">
+        <li class="li">Added seed data to update the query for SUSI Registered and Progressing.</li>
+
+        <li class="li">Course Description logic to be fetched only for valid records and skip for NULL program code scenario.</li>
+
+        <li class="li">Corrected the logic of graduation type to resolve single row subquery error,if there are multiple GTVSDAX mappings.</li>
+
+        <li class="li">Added Study Path filter for Registration and Progressing status defect.</li>
+
+      </ul>
+
+      <p class="p">This defect satisfies PD0028348 in the <span class="keyword">Ellucian Customer Center</span>.</p>
+
+    </div>
+
+    <div class="section"><h2 class="title sectiontitle">HEA Graduate Outcome enhancement</h2>
+      
+      <p class="p">Seed data changes for new survey HEAGO_2026 is provided.</p>
+
+      <p class="p">Page Changes:</p>
+
+      <p class="p">The following enhancements are provided in this release.</p>
+
+      <ul class="ul">
+        <li class="li">Ordering and Section renaming</li>
+
+        <li class="li">Updated question and lov's as per the required order</li>
+
+        <li class="li">Added mandatory and non mandatory validation checks on required fields </li>
+
+        <li class="li">Updated answers survey query to adapt all the updated questions</li>
+
+      </ul>
+
+      <p class="p">SORHEGO Process Changes:</p>
+
+      <ul class="ul">
+        <li class="li">Award Level Logic<ul class="ul">
+          <li class="li">Programme Type is no longer used for HEA GO logic.</li>
+
+          <li class="li">Logic now references NQAI Award Level on SOAPRCD:<ul class="ul">
+            <li class="li">Institutes of Technology / Technological Universities: levels 6, 7, 8, 9, 10</li>
+
+            <li class="li">Universities: levels 8, 9, 10</li>
+
+            </ul>
+</li>
+
+          </ul>
+</li>
+
+        <li class="li">Occupation Fields<ul class="ul">
+          <li class="li">New tag <code class="ph codeph">GO_Occupation_Narrow</code> added after <code class="ph codeph">GO_Occupation_Broad</code> for the new question: “What is your narrow occupation?”</li>
+
+          <li class="li"><code class="ph codeph">GO_Occupation_Broad</code> encoding updates:<ul class="ul">
+            <li class="li">Value 10 → encoded as 0</li>
+
+            <li class="li">Value 11 → encoded as X</li>
+
+            </ul>
+</li>
+
+          </ul>
+</li>
+
+        <li class="li">Placement Logic<p class="p">If <code class="ph codeph">GO_Placement</code> = 3, then <code class="ph codeph">GO_Placement_Time</code> is now set to NULL.</p>
+</li>
+
+        <li class="li">Removal of 31 March 2025 Question<ul class="ul">
+          <li class="li">All logic for the question<p class="p">“How would you describe your situation on 31st March 2025? (All Activities)” has been removed.</p>
+</li>
+
+          <li class="li">Tag <code class="ph codeph">GO_Principal_Economic_Status_ALL</code> is removed.</li>
+
+          </ul>
+</li>
+
+        <li class="li">Award Level Tag Changes<ul class="ul">
+          <li class="li">Tag <code class="ph codeph">GO_Award_Sought</code> is renamed to <code class="ph codeph">GO_Award_level</code>.</li>
+
+          <li class="li"><code class="ph codeph">GO_Award_level</code> now outputs codes only (no award descriptions).</li>
+
+          </ul>
+</li>
+
+        <li class="li">Employment, Contract and Earnings<ul class="ul">
+          <li class="li">If <code class="ph codeph">Employment_Type</code> = 2, <code class="ph codeph">GO_Contract</code> is set to NULL.</li>
+
+          <li class="li">If <code class="ph codeph">GO_Contract</code> = 2, then <code class="ph codeph">GO_Earnings</code> is set to 11.</li>
+
+          <li class="li">Tag <code class="ph codeph">GO_Salary</code> is renamed to <code class="ph codeph">GO_Earnings</code></li>
+
+          </ul>
+</li>
+
+        <li class="li">New Outcome Perception Tags<ul class="ul">
+          <li class="li">New tags added:<ul class="ul">
+            <li class="li"><code class="ph codeph">GO_Use_Of_Knowledge</code></li>
+
+            <li class="li"><code class="ph codeph">GO_Meaningful</code></li>
+
+            <li class="li"><code class="ph codeph">GO_Future_Plans</code></li>
+
+            </ul>
+</li>
+
+          <li class="li">For each of these tags, if the value is 5, it is encoded as X.</li>
+
+          </ul>
+</li>
+
+        <li class="li">Other Tag Renames and Removals<ul class="ul">
+          <li class="li"><code class="ph codeph">GO_Same_Course</code> is renamed to <code class="ph codeph">GO_Recommend_Course</code>.</li>
+
+          <li class="li"><code class="ph codeph">courseCd</code> is renamed to <code class="ph codeph">GO_courseCd</code>.</li>
+
+          <li class="li">Tag <code class="ph codeph">GO_Follow_Up</code> is removed.</li>
+
+          </ul>
+</li>
+
+        <li class="li">GO_Response Encoding<p class="p"><code class="ph codeph">GO_Response</code> values are now restricted to 1, 2, 3, 4:</p>
+<ul class="ul">
+          <li class="li">1 – Awarded graduate who has completed their degree and survey</li>
+
+          <li class="li">2 – Student with incomplete or pending survey status</li>
+
+          <li class="li">3 – Continuing student at IoT/TU with completed or pending survey</li>
+
+          <li class="li">4 – Continuing student at universities with completed or pending survey</li>
+
+          </ul>
+</li>
+
+      </ul>
+
+      <p class="p">This enhancement addresses PE0007583 in the <span class="keyword">Ellucian Customer Center</span>.</p>
+
+    </div>
+
+    <div class="section"><h2 class="title sectiontitle">HESA Data Future enhancement</h2>
+      
+      <ul class="ul">
+        <li class="li">A new parameter <span class="keyword parmname">SCS OVERRIDE RECID</span> is added in the SOURRDF process. This parameter is applied to Student Course Session to force record in return. <p class="p">This enhancement addresses PE0007424 in the <span class="keyword">Ellucian Customer Center</span>.</p>
+</li>
+
+        <li class="li">Fixed current number of open form errors, and added accessibilty to close the page through keys.<p class="p">This defect addresses PD0018388 in the <span class="keyword">Ellucian Customer Center</span>.</p>
+</li>
+
+      </ul>
+
+    </div>
+
+    <div class="section"><h2 class="title sectiontitle">SFRNSLC report regulatory updates</h2>
+      
+      <p class="p"><span class="keyword">Ellucian</span> enhanced the <span class="keyword wintitle">National Student Clearinghouse/NSLDS Interface Program (SFRNSLC)</span> logic to properly distinguish between required and non-required terms when reporting enrollment status and program status effective dates (PSED) to the National Student Clearinghouse. This enhancement aligns Banner with NSC continuous enrollment reporting guidance for non-required terms such as summer sessions and other non-compulsory terms.</p>
+
+      <p class="p">Required vs. Non-Required Term Determination</p>
+
+      <p class="p">The enhancement uses the <span class="keyword wintitle">Required Terms Rule (SFACPLT)</span> to determine whether a term is considered required for a student’s academic program.</p>
+
+      <ul class="ul">
+        <li class="li">Required terms are those explicitly defined in the SFACPLT rule for the applicable curriculum.</li>
+
+        <li class="li">Non-required terms are any academic terms that are not listed in the applicable SFACPLT rule.</li>
+
+      </ul>
+
+      <p class="p">SFRNSLC evaluates the student’s primary, current, and active curriculum record and applies the weightiest matching SFACPLT rule to determine term classification.</p>
+
+      <p class="p"><span class="ph uicontrol">Processing Logic for Required Terms</span></p>
+
+      <p class="p">For terms identified as required, SFRNSLC continues to use existing logic, including:</p>
+
+      <ul class="ul">
+        <li class="li">Required-term gap detection</li>
+
+        <li class="li">Program status determination</li>
+
+        <li class="li">PSED calculation rules</li>
+
+      </ul>
+
+      <p class="p">There are no changes to existing required-term behavior.</p>
+
+      <p class="p"><span class="ph uicontrol">Processing Logic for Non Required Terms</span></p>
+
+      <p class="p">For terms not defined as required in SFACPLT, SFRNSLC applies updated logic aligned with NSC guidance:</p>
+
+      <ul class="ul">
+        <li class="li">The student’s actual enrollment status (FT, HT, LTHT, 00) is reported for the non-required term.</li>
+
+        <li class="li">Skipped or LTHT/00 non-required terms do not create required-term gaps.</li>
+
+        <li class="li">PSED for the next required term is preserved unless a sustained increase in status occurs.</li>
+
+        <li class="li">Non-required term decreases do not reset required-term PSED</li>
+
+      </ul>
+
+      <p class="p"><span class="ph uicontrol">Centric Periods support</span></p>
+
+      <p class="p">The enhancement supports institutions using Centric Periods = <kbd class="ph userinput">Y</kbd>. Time status derivation continues to use Centric Period logic when enabled, and required vs non-required term classification is still determined through SFACPLT. Required-term logic remains unchanged</p>
+
+      <p class="p">Example scenario:</p>
+
+      <ul class="ul">
+        <li class="li">Spring (Required term per SFACPLT): Student enrolled full-time with PSED of January 10, 2025.</li>
+
+        <li class="li">Summer (Non-Required term – not listed in SFACPLT): Student enrolled Less Than Half-Time (LTHT).</li>
+
+        <li class="li">Fall (Required term per SFACPLT): Student enrolled full-time.</li>
+
+      </ul>
+
+      <p class="p">When SFRNSLC is run for the summer term:</p>
+
+      <ul class="ul">
+        <li class="li">Summer status is reported as LTHT based on actual enrollment..</li>
+
+        <li class="li">Summer PSED reflects the summer effective date.</li>
+
+        <li class="li">No required-term gap is created.</li>
+
+        <li class="li">Required-term PSED continuity is preserved.</li>
+
+      </ul>
+
+      <p class="p">When SFRNSLC is run for the fall term:</p>
+
+      <ul class="ul">
+        <li class="li">Required-term logic applies.</li>
+
+        <li class="li">If no sustained status increase occurred, PSED reverts to the most recent required term where status changed.</li>
+
+        <li class="li">Continuous enrollment is maintained per NSC guidance.</li>
+
+      </ul>
+
+      <p class="p"><span class="ph uicontrol">Configuration requirements</span></p>
+
+      <p class="p">To use this enhancement, institutions must configure the <span class="keyword wintitle">Required Terms Rule (SFACPLT)</span> for each applicable academic program.</p>
+
+      <ul class="ul">
+        <li class="li">Define required academic terms (for example, Fall and Spring).</li>
+
+        <li class="li">Do not list non-required terms (for example, Summer) in the rule.</li>
+
+        <li class="li">Ensure rules are properly aligned with institutional academic policies and NSC reporting requirements.</li>
+
+      </ul>
+
+      <p class="p">If no matching SFACPLT rule exists for a student’s curriculum, SFRNSLC defaults to existing required-term processing behavior.</p>
+
+      <p class="p"><span class="ph uicontrol">Additional Notes</span></p>
+
+      <ul class="ul">
+        <li class="li">No Banner code changes were made related to NSC warning codes (292, 1861–1866, 1901–1906); these are generated and managed by NSC.</li>
+
+        <li class="li">Existing withdrawal and graduation logic remains unchanged.</li>
+
+      </ul>
+
+      <p class="p">This enhancement addresses PE0004344 in the <span class="keyword">Ellucian Customer Center</span>.</p>
+
+    </div>
+
+    <div class="section"><h2 class="title sectiontitle">Supporting Documentation</h2>
+      
+      <div class="p"><span class="ph">To download supporting documentation for this release, click the <span class="ph uicontrol">Attachments</span> <span class="ph"><img class="image ell-icon" src="images/06-release-9-3-41-and-8-38-1.png" alt="" data-ft-asset-display-name="paperclip.png" data-ft-resource-id="U1hxGZ~0RYMIz4qOJhMPjg-z2kSoEHYYdzJPAZFk1gBDw"></span> icon in the navigation on this page and then select the associated compressed file (.zip) from the displayed list. The zip file contains the following files:</span><ul class="ul">
+        <li class="li"><span class="keyword">Banner Student</span> readme 8.38</li>
+
+        <li class="li"><span class="keyword">Banner Student</span> Object List 8.38</li>
+
+        <li class="li"><span class="keyword">Banner Student</span> Page List 9.3.41</li>
+
+        <li class="li"><span class="keyword">Banner Student</span> Use <span class="keyword">9.3.41 and 8.38</span></li>
+
+        <li class="li"><span class="keyword">Banner Student</span> Resolutions Report 8.38</li>
+
+        <li class="li"><span class="keyword">Banner Student</span> Resolutions Report 9.3.41</li>
+
+        <li class="li"><span class="keyword">Banner Student</span> Upgrade Guide Template</li>
+
+        <li class="li"><span class="keyword">Banner Student</span> Release Notes <span class="keyword">9.3.41 and 8.38</span></li>
+
+        <li class="li"><span class="keyword">Banner Student</span> 903410010 Installation Reference</li>
+
+        <li class="li"><span class="keyword">Banner Student</span> Reports and Processes <span class="keyword">9.3.41 and 8.38</span></li>
+
+        </ul>
+</div>
+
+      <p class="p">The content published on the Documentation site for this release and the documentation included in the associated zip file (listed above) also support any associated hot fix releases.</p>
+
+    </div>
+
+  </div>
+
+</div></div></section></main></body></html>

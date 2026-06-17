@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Degree Works - Install — RabbitMQ</title><style>body{font-family:-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;line-height:1.55;color:#1a1a1a;max-width:920px;margin:0 auto;padding:24px}header{border-bottom:2px solid #5a16d6;margin-bottom:8px}h1{color:#3a0ca3}h2,h3,h4,h5,h6{margin-top:1.6em}.crumb{color:#666;font-size:13px;margin:0}.meta{color:#888;font-size:12px}nav.toc{background:#f6f4fc;border:1px solid #e3dcf5;border-radius:8px;padding:12px 18px;margin:18px 0}nav.toc h2{margin:.2em 0}nav.toc ul{list-style:none;padding-left:0}nav.toc a{text-decoration:none;color:#5a16d6}section{margin:1.2em 0;padding-top:.4em}img{max-width:100%;height:auto}table{border-collapse:collapse}td,th{border:1px solid #ccc;padding:4px 8px}code,pre{background:#f4f4f4;border-radius:4px}pre{padding:10px;overflow:auto}</style></head><body><header><p class="crumb">Ellucian Degree Works › Degree Works - Install</p><h1>Degree Works - Install — RabbitMQ</h1><p class="meta">Source: <a href="https://resources.elluciancloud.com/r/bundle/dgrwrks_acn_install">https://resources.elluciancloud.com/r/bundle/dgrwrks_acn_install</a> &middot; Retrieved 2026-06-17</p></header><nav class="toc"><h2>Contents</h2><ul><li style="margin-left:0px"><a href="#t-360">RabbitMQ</a></li><li style="margin-left:16px"><a href="#t-370">Add a user to allow access to RabbitMQ</a></li><li style="margin-left:16px"><a href="#t-380">Enable SSL/TLS for Degree Works and RabbitMQ</a></li><li style="margin-left:16px"><a href="#t-390">Install the RabbitMQ Client for Degree Works</a></li><li style="margin-left:32px"><a href="#t-400">Install CMake on the classic server</a></li><li style="margin-left:32px"><a href="#t-410">Install the RabbitMQ Client on the classic server</a></li></ul></nav><main><section id="t-360"><h2>RabbitMQ</h2><div class="content-locale-en-US content-locale-en"><div id="c_rabbitmq"><div class="body conbody"><p class="shortdesc">Degree Works uses RabbitMQ, a third-party open source message brokering software that implements the Advanced Message Queuing Protocol (AMQP), to communicate between processes running on the same or on different servers.</p>
+
+    <p class="p">Two RabbitMQ software components must be installed for this communication to function:</p>
+
+    <p class="p">RabbitMQ Server: installed on any server. For example, you can install it on the classic server or on one of your application servers or on a new server. It must be running at all times. For information on installing and using a RabbitMQ Server, please visit <a class="xref ft-external-link" href="https://www.rabbitmq.com" target="_blank" rel="noopener">https://www.rabbitmq.com</a>.</p>
+
+    <p class="p">RabbitMQ Client: installed on the classic server; the Degree Works software makes calls into the RabbitMQ C library to communicate with the server.</p>
+
+    <p class="p">The RabbitMQ software allows applications to communicate as shown in this diagram. The Java applications communicate with each other through the RabbitMQ server. They communicate with the classic daemons using both the RabbitMQ server and the RabbitMQ client to read from and write to the server. </p>
+
+    <br><img class="image" alt="Application communication with RabbitMQ" data-ft-asset-display-name="dgm_application_communication_rabbitmq.png" src="images/03-rabbitmq-1.png" data-ft-resource-id="u~eub5sOUZz5wehwSL4emQ-V0kihUUc_IbrnyJS8zGcKQ"><br>
+    <p class="p">By default, traffic between the RabbitMQ broker and our applications are not encrypted. If the traffic will travel on an unsecured network, you should consider encrypting it. See the <span class="xref ft-internal-link" title="The default installation of RabbitMQ has SSL disabled and only TCP connections are used. However, you can configure Degree Works to communicate with RabbitMQ over SSL." data-ft-warning="excluded-from-rendering" data-mapid="V0kihUUc_IbrnyJS8zGcKQ" data-tocid="cqCrC~sb2otTqnAY8bUSgQ">Enable SSL/TLS for Degree Works and RabbitMQ</span> section.</p>
+
+    <div class="p">The following settings are required for configuring RabbitMQ in an environment.<ul class="ul"> <li class="li">classicConnector.amqp.channelCacheSize</li>
+ <li class="li">classicConnector.amqp.timeout</li>
+ <li class="li">core.amqp.broadcast.heartbeatSeconds</li>
+ <li class="li">core.amqp.broker.host</li>
+ <li class="li">core.amqp.broker.port</li>
+ <li class="li">core.amqp.password</li>
+
+      <li class="li">core.amqp.request.heartbeatSeconds </li>
+ <li class="li">core.amqp.request.timeoutSeconds</li>
+ <li class="li">core.amqp.useSsl</li>
+ <li class="li">core.amqp.username</li>
+ <li class="li">core.amqp.virtualHost</li>
+ </ul>
+</div>
+
+    <div class="p">The following settings are required for configuring RabbitMQ in an environment and must be unique for each environment.<ul class="ul"> <li class="li">classicConnector.amqp.exchange</li>
+ <li class="li">core.amqp.exchange.shpSettings</li>
+ <li class="li">core.amqp.exchange.transit</li>
+ <li class="li">core.amqp.exchange.ucx</li>
+ </ul>
+</div>
+
+  </div>
+
+</div></div></section>
+<section id="t-370"><h3>Add a user to allow access to RabbitMQ</h3><div class="content-locale-en-US content-locale-en"><div id="t_add_a_user_to_allow_access_to_rabbitmq"><div class="body taskbody"><p class="shortdesc">You must add the Degree Works RabbitMQ user with the rabbitmqctl script. This is the user and password defined in the core.amqp.username and core.amqp.password Shepherd settings, respectively.</p>
+
+    <div class="section context"><div class="tasklabel"><h2 class="sectiontitle tasklabel">About this task</h2></div>From a command prompt on the server on which your RabbitMQ server is installed, you can run the commands listed in this task on all platforms, including Windows.<p class="p">For other useful commands, see the Manual Pages (man pages) at <a class="xref ft-external-link" href="https://www.rabbitmq.com" target="_blank" rel="noopener">https://www.rabbitmq.com</a>. </p>
+</div>
+
+    <div class="tasklabel"><h2 class="sectiontitle tasklabel">Procedure</h2></div><ol class="ol steps"><li class="li step stepexpand">
+        <span class="ph cmd">Enter the command for the user and password. This user is only to allow access to RabbitMQ and is independent of all other Oracle or Unix users you need for Degree Works.</span>
+        <div class="itemgroup info">
+          <code class="ph codeph"># rabbitmqctl add_user &lt;someuser&gt; &lt;somepwd&gt;</code>
+        </div>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Set permissions for your user.</span>
+        <div class="itemgroup info">
+          <code class="ph codeph"># rabbitmqctl set_permissions -p / &lt;someuser&gt; ".*" ".*" ".*"</code>
+        </div>
+      </li>
+<li class="li step stepexpand"><strong>Optional: </strong>
+        <span class="ph cmd">Verify that your user and password are set up and working.</span>
+        <div class="itemgroup info">
+          <code class="ph codeph"># rabbitmqctl authenticate_user &lt;someuser&gt; &lt;somepwd&gt;</code>
+        </div>
+      </li>
+</ol>
+
+  </div>
+
+</div></div></section>
+<section id="t-380"><h3>Enable SSL/TLS for Degree Works and RabbitMQ</h3><div class="content-locale-en-US content-locale-en"><div id="t_rabbitmq_enable_ssl_tls_for_degree_works_and_rabbitmq"><div class="body taskbody"><p class="shortdesc">The default installation of RabbitMQ has SSL disabled and only TCP connections are used. However, you can configure Degree Works to communicate with RabbitMQ over SSL.</p>
+
+    <div class="section context"><div class="tasklabel"><h2 class="sectiontitle tasklabel">About this task</h2></div>The RabbitMQ server must be configured to support SSL/TLS. Information about setting up RabbitMQ with SSL/TLS can be found on the RabbitMQ website. <p class="p">After the RabbitMQ server has been configured for SSL, enable SSL in RabbitMQ for Degree Works.</p>
+</div>
+
+    <div class="tasklabel"><h2 class="sectiontitle tasklabel">Procedure</h2></div><ol class="ol steps"><li class="li step stepexpand">
+        <span class="ph cmd">Change the core.amqp.broker.port Shepherd setting to the SSL port specified in rabbitmq.config – the default SSL port is 5671.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Change the core.amqp.useSsl Shepherd setting to <span class="ph uicontrol">true</span>.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Make sure any firewalls between the applications and the broker are configured for the SSL port.</span>
+      </li>
+<li class="li step stepexpand"><strong>Optional: </strong>
+        <span class="ph cmd">Enable peer verification for the RabbitMQ server. This is typically not needed, but if it is enabled, you must copy the CA certificate that is on your RabbitMQ server to your classic server (if on a different server), and make the following changes in dwenv.config:</span>
+        <div class="itemgroup info">
+          <ol class="ol" type="a">
+            <li class="li">Set AMQP_VALIDATE_PEER_CERTIFICATE to 1.</li>
+
+            <li class="li">Set AMQP_SERVER_CA_CERTIFICATE_PATH with the path to the CA certificate. Make sure the two lines for this variable are not commented out.</li>
+
+            <li class="li">Log out of and in to your classic session to set the variables.</li>
+
+          </ol>
+
+        </div>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Restart all daemons on the classic server and all applications on the Java application server.</span>
+      </li>
+</ol>
+
+  </div>
+
+</div></div></section>
+<section id="t-390"><h3>Install the RabbitMQ Client for Degree Works</h3><div class="content-locale-en-US content-locale-en"><div id="t_rabbitmq_install_the_rabbitmq_client_for_degree_works"><div class="body taskbody"><p class="shortdesc">The RabbitMQ Client is a required component on the Degree Works classic server.</p>
+
+    <div class="section prereq p"><div class="tasklabel"><h2 class="sectiontitle tasklabel">Before you begin</h2></div>
+      <p class="p">Before installing the RabbitMQ Client, you must first install CMake, if it is not already on your server. To check for CMake on your server, use the <code class="ph codeph"># which cmake</code> command:</p>
+
+      <p class="p">If you do not find it, then install it following the instructions in <span class="xref ft-internal-link" title="If CMake is not already on your server, you must install it." data-ft-warning="excluded-from-rendering" data-mapid="V0kihUUc_IbrnyJS8zGcKQ" data-tocid="pEsNIUQuua90aJdZRTlmEg">Install CMake on the classic server</span>. If CMake is already installed, then proceed to <span class="xref ft-internal-link" title="After you install or verify installation of CMake on your server, you can install the RabbitMQ Client." data-ft-warning="excluded-from-rendering" data-mapid="V0kihUUc_IbrnyJS8zGcKQ" data-tocid="CmNQH8WCRKY0Dv9~G7vi_A">Install the RabbitMQ Client on the classic server</span>.</p>
+
+    </div>
+
+  </div>
+
+</div></div></section>
+<section id="t-400"><h4>Install CMake on the classic server</h4><div class="content-locale-en-US content-locale-en"><div id="t_rabbitmq_install_cmake_on_the_classic_server"><div class="body taskbody"><p class="shortdesc">If CMake is not already on your server, you must install it.</p>
+
+    <div class="section prereq p"><div class="tasklabel"><h2 class="sectiontitle tasklabel">Before you begin</h2></div>For information about where to download CMake, see <a class="xref ft-external-link" href="https://github.com/alanxz/rabbitmq-c" target="_blank" rel="noopener">https://github.com/alanxz/rabbitmq-c</a>.</div>
+
+    <div class="tasklabel"><h2 class="sectiontitle tasklabel">Procedure</h2></div><ol class="ol steps"><li class="li step stepexpand">
+        <span class="ph cmd">Download the appropriate tarball file for your server.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">As the root user, create a cmake directory under /etc and cd into it.</span>
+        <div class="itemgroup info">
+          <pre class="pre codeblock"><code># cd /etc</code></pre>
+          <pre class="pre codeblock"><code># mkdir cmake &amp;&amp; cd cmake</code></pre>
+        </div>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Transfer the cmake tarball file you downloaded above to the /etc/cmake directory and run gunzip and then untar it. For example,</span>
+        <div class="itemgroup info">
+          <pre class="pre codeblock"><code># gunzip cmake-3.30.5-Linux-x86_64.tar.gz
+# tar -xvf cmake-3.30.5-Linux-x86_64.tar
+# rm cmake-3.30.5-Linux-x86_64.tar</code></pre>
+        </div>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Create a link to the cmake binary in /usr/bin to where CMake was installed. For example, <code class="ph codeph"># ln -s /etc/cmake/cmake-3.30.5/bin/cmake /usr/bin/cmake</code></span>
+      </li>
+</ol>
+
+  </div>
+
+</div></div></section>
+<section id="t-410"><h4>Install the RabbitMQ Client on the classic server</h4><div class="content-locale-en-US content-locale-en"><div id="t_rabbitmq_install_the_rabbitmq_client_on_the_classic_server"><div class="body taskbody"><p class="shortdesc">After you install or verify installation of CMake on your server, you can install the RabbitMQ Client.</p>
+
+    <div class="section prereq p"><div class="tasklabel"><h2 class="sectiontitle tasklabel">Before you begin</h2></div>If you are installing client version v0.14.0, ensure that CMake v3.22 or higher is installed, as this is required for building RabbitMQ Client version 0.14.0.<p class="p">For information about downloading the RabbitMQ Client, see <a class="xref ft-external-link" href="https://github.com/alanxz/rabbitmq-c" target="_blank" rel="noopener">https://github.com/alanxz/rabbitmq-c</a>. Do not download the master branch version. Be sure to select the version of RabbitMQ Client that your release of Degree Works supports. See <span class="xref ft-internal-link" title="This release supports a new installation or upgrade for existing customers currently on release 5.1.5 or 5.1.6. System requirements, prerequisites, configuration instructions, and the steps to process Release 5.1.7 are explained in the installation documentation." data-ft-warning="excluded-from-rendering" data-mapid="V0kihUUc_IbrnyJS8zGcKQ" data-tocid="qk2kIA9EvXPPxmRHdF_yXA">Degree Works Installation</span>.</p>
+</div>
+
+    <div class="tasklabel"><h2 class="sectiontitle tasklabel">Procedure</h2></div><ol class="ol steps"><li class="li step stepexpand">
+        <span class="ph cmd">As the root user on your classic server, transfer the <span class="ph filepath">rabbitmq-c</span>
+          zip file into the <span class="ph filepath">/opt</span> directory.</span>
+        <div class="itemgroup info">When the file is unzipped, you will have a <span class="ph filepath">/opt/rabbitmq-c-x.x.x</span>
+          directory, where x.x.x is the version of the RabbitMQ Client. This is where the Degree
+          Works $LIBS and $INCLUDES environment variables will point.</div>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Unzip the zip file in the <span class="ph filepath">/opt</span> directory. For example,</span>
+        <div class="itemgroup info">
+          <pre class="pre codeblock"><code>cd /opt
+unzip rabbitmq-c-0.14.0.zip
+rm rabbitmq-c-0.14.0.zip
+</code></pre>
+        </div>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">In the <span class="ph filepath">rabbitmq-c-x.x.x</span> directory, create a build directory and
+          navigate to it.</span>
+        <div class="itemgroup info">
+          <pre class="pre codeblock"><code>cd rabbitmq-c-0.14.0
+mkdir build &amp;&amp; cd build</code></pre>
+        </div>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Run <code class="ph codeph">cmake ..</code> pointing to the parent directory. This will take several
+          minutes.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Run <code class="ph codeph">cmake --build .</code>, and do not forget the space and dot at the end.
+          This will take several minutes to complete.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">For versions of the client higher than 0.11.0 only, run the command <code class="ph codeph">ls</code>
+          and look for a folder called <span class="ph filepath">include</span>. If it is present, move the
+          contents of its subdirectory to the same location in the <span class="ph filepath">include</span>
+          folder of the current folder's parent directory with the following command:</span>
+        <div class="itemgroup info">
+          <pre class="pre codeblock"><code>cp ./include/rabbitmq-c/* ../include/rabbitmq-c/</code></pre>
+        </div>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Create or modify a link from <span class="ph filepath">/usr/include</span> to the <span class="ph filepath">rabbitmq include</span> directory.</span>
+        <div class="itemgroup info">For versions of the client up to and including 0.11.0, the include directory is called <span class="ph filepath">librabbitmq</span>.</div>
+        <div class="itemgroup info">
+          <pre class="pre codeblock"><code>ln -s /opt/rabbitmq-c-0.11.0/librabbitmq /usr/local/include/rabbitmq</code></pre>
+        </div>
+        <div class="itemgroup info">For versions of the client higher than 0.11.0, the include directory is called <span class="ph filepath">include</span>.<pre class="pre codeblock" id="t_rabbitmq_install_the_rabbitmq_client_on_the_classic_server__codeblock_hnq_chn_5yb"><code>ln -s /opt/rabbitmq-c-0.14.0/include /usr/local/include/rabbitmq</code></pre></div>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Create a symbolic link to the <span class="ph filepath">librabbitmq.so*</span> library file from
+            <span class="ph filepath">/usr/local/lib</span>. For example,</span>
+        <div class="itemgroup info">
+          <pre class="pre codeblock"><code>ln -s $PWD/librabbitmq/librabbitmq.so.4 /usr/local/lib/librabbitmq.so.4</code></pre>
+        </div>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd"> Create a symbolic link for the <span class="ph filepath">librabbitmq.a</span> file. For
+          example,</span>
+        <div class="itemgroup info">
+          <pre class="pre codeblock"><code>ln -s $PWD/librabbitmq/librabbitmq.a /usr/local/lib/librabbitmq.a</code></pre>
+        </div>
+      </li>
+</ol>
+
+  </div>
+
+</div></div></section></main></body></html>

@@ -1,0 +1,1358 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>AVETMISS Banner Student - Use — AVETMISS functions</title><style>body{font-family:-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;line-height:1.55;color:#1a1a1a;max-width:920px;margin:0 auto;padding:24px}header{border-bottom:2px solid #5a16d6;margin-bottom:8px}h1{color:#3a0ca3}h2,h3,h4,h5,h6{margin-top:1.6em}.crumb{color:#666;font-size:13px;margin:0}.meta{color:#888;font-size:12px}nav.toc{background:#f6f4fc;border:1px solid #e3dcf5;border-radius:8px;padding:12px 18px;margin:18px 0}nav.toc h2{margin:.2em 0}nav.toc ul{list-style:none;padding-left:0}nav.toc a{text-decoration:none;color:#5a16d6}section{margin:1.2em 0;padding-top:.4em}img{max-width:100%;height:auto}table{border-collapse:collapse}td,th{border:1px solid #ccc;padding:4px 8px}code,pre{background:#f4f4f4;border-radius:4px}pre{padding:10px;overflow:auto}</style></head><body><header><p class="crumb">Banner Student › AVETMISS Banner Student - Use</p><h1>AVETMISS Banner Student - Use — AVETMISS functions</h1><p class="meta">Source: <a href="https://resources.elluciancloud.com/r/bundle/banner_student_acn_use_avetmiss">https://resources.elluciancloud.com/r/bundle/banner_student_acn_use_avetmiss</a> &middot; Retrieved 2026-06-17</p></header><nav class="toc"><h2>Contents</h2><ul><li style="margin-left:0px"><a href="#t-1670">AVETMISS functions</a></li><li style="margin-left:16px"><a href="#t-1680">AVETMISS reporting functions</a></li><li style="margin-left:16px"><a href="#t-1690">Victorian VET Student Statistical reporting functions</a></li><li style="margin-left:16px"><a href="#t-1700">USI Processing functions</a></li></ul></nav><main><section id="t-1670"><h2>AVETMISS functions</h2><div class="content-locale-en-US content-locale-en"><div id="c_asc_functions"><p class="shortdesc">This section discusses the functions delivered for this release.</p>
+
+</div></div></section>
+<section id="t-1680"><h3>AVETMISS reporting functions</h3><div class="content-locale-en-US content-locale-en"><div id="r_avetmiss_reporting"><div class="body refbody"><p class="shortdesc">The functions described in the following table are used by <span class="ph">AVETMISS</span> reporting activities.</p>
+
+    <div class="section">
+      
+<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" id="r_avetmiss_reporting__r_avetmiss_reporting-utbl1" class="table landscape" frame="hsides" border="1" rules="rows"><colgroup><col style="width:30.959752321981426%"><col style="width:69.04024767801857%"></colgroup><thead class="thead" style="text-align:left;vertical-align:bottom;">
+            <tr class="row">
+              <th class="entry row-nocellborder" style="text-align:left;vertical-align:bottom;" id="d9598e47">Function Name</th>
+
+              <th class="entry row-nocellborder" style="text-align:left;vertical-align:bottom;" id="d9598e50">Function details</th>
+
+            </tr>
+
+          </thead>
+<tbody class="tbody">
+            <tr class="row">
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d9598e47 ">FN_SYS_PARAM </td>
+
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d9598e50 ">FN_SYS_PARAM(SKBRSYS_PARAM_NAME, ​SKBRSYS_ACYR_CODE) <p class="p">This function returns the Parameter Value (skbrsys_value) for the corresponding System Parameter (skbrsys_param_name) and the passed Academic Year (skbrsys_acyr_code).</p>
+</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d9598e47 ">FN_CHECK_SYS_PARAM</td>
+
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d9598e50 ">FN_CHECK_SYS_PARAM(SKBRSYS_PARAM_NAME,​SKBRSYS_VALUE,SKBRSYS_VALUE,​SKBRSYS_ACYR_CODE) <p class="p">This function gets the Parameter Value(s) (skbrsys_value) from SKBRSYS corresponding to the System Parameter (skbrsys_param_name) and passed Academic Year (skbrsys_acyr_code). If that value (or any one of many values) matches the <span class="ph">Banner</span> data value (e.g. SORLCUR_RATE_CODE) that is passed as a value then the function returns Y, otherwise, it returns N.</p>
+</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d9598e47 ">FN_SD_ADDRESS</td>
+
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d9598e50 ">FN_SD_ADDRESS(SPRIDEN_PIDM,P_STRING,​SKBRSYS_ACYR_CODE). Address type code p_string is passed. This function checks whether the last six characters of p_string are POSTAL; if so, it gets the Parameter Value (skbrsys_value) corresponding to the System Parameter (skbrsys_param_name) 'POSTAL_ADDR_TYPE' that is valid for the passed Academic Year (skbrsys_acyr_code).The function also checks whether the last three characters of p_string are RES; if so, it gets the Parameter Value (skbrsys_value) corresponding to the System Parameter skbrsys_param_name- 'RESIDENTIAL_ADDR_TYPE' that is valid for the passed Academic Year (skbrsys_acyr_code). The function also checks whether the last four characters of p_string are WORK; if so, it gets the Parameter Value (skbrsys_value) corresponding to the System Parameter (skbrsys_param_name)- WORK_ADDR_TYPE - that is valid for the passed Academic Year (skbrsys_acyr_code). <p class="p">If the p_string value is <code class="ph codeph"> SPRADDR_HOUSE_NUMBER_POSTAL </code> or <code class="ph codeph"> SPRADDR_HOUSE_NUMBER_RES </code> or <code class="ph codeph"> SPRADDR_HOUSE_NUMBER_WORK </code>, the corresponding <code class="ph codeph"> spraddr_house_number </code> is returned. </p>
+<p class="p">If the <code class="ph codeph"> p_string </code> value is <code class="ph codeph"> SPRADDR_STREET_LINE1_POSTAL </code> or <code class="ph codeph"> SPRADDR_STREET_LINE1_RES </code>, or <code class="ph codeph"> SPRADDR_STREET_LINE1_WORK </code> the corresponding <code class="ph codeph"> spraddr_street_line1 </code> is returned. </p>
+<p class="p">If the <code class="ph codeph"> p_string </code> value is <code class="ph codeph"> SPRADDR_STREET_LINE2_POSTAL </code> or <code class="ph codeph"> SPRADDR_STREET_LINE2_RES </code>, or <code class="ph codeph"> SPRADDR_STREET_LINE2_WORK </code> the corresponding <code class="ph codeph"> spraddr_street_line2 </code> is returned.</p>
+<p class="p">If the p_string value is <code class="ph codeph"> SPRADDR_STREET_LINE3_POSTAL </code> or <code class="ph codeph"> SPRADDR_STREET_LINE3_RES </code>, or <code class="ph codeph"> SPRADDR_STREET_LINE3_WORK </code> the corresponding <code class="ph codeph"> spraddr_street_line3 </code> is returned. </p>
+<p class="p">If the p_string value is <code class="ph codeph"> SPRADDR_STREET_LINE4_POSTAL </code> or <code class="ph codeph"> SPRADDR_STREET_LINE4_RES </code>, or <code class="ph codeph"> SPRADDR_STREET_LINE4_WORK </code> the corresponding <code class="ph codeph"> spraddr_street_line4 </code> is returned. </p>
+<p class="p">If the <code class="ph codeph"> p_string </code> value is <code class="ph codeph"> SPRADDR_CITY_POSTAL </code> or <code class="ph codeph"> SPRADDR_CITY_RES </code>, or <code class="ph codeph"> SPRADDR_CITY_WORK </code> the corresponding <code class="ph codeph"> spraddr_city </code> is returned.</p>
+<p class="p"> If the <code class="ph codeph"> p_string </code> value is <code class="ph codeph"> SPRADDR_STAT_CODE_POSTAL </code> or <code class="ph codeph"> SPRADDR_STAT_CODE_RES </code>, or <code class="ph codeph"> SPRADDR_STAT_CODE_WORK </code> the corresponding <code class="ph codeph"> spraddr_stat_code </code> is returned. </p>
+</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d9598e47 ">FN_SD_ADDRESS (contd)</td>
+
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d9598e50 ">If the <code class="ph codeph"> p_string value </code>is <code class="ph codeph"> SPRADDR_ZIP_POSTAL </code> or <code class="ph codeph"> SPRADDR_ZIP_RES </code>, or <code class="ph codeph"> SPRADDR_ZIP_WORK </code> the corresponding <code class="ph codeph"> spraddr_zip </code> is returned. <p class="p">If the p_string value is <code class="ph codeph"> SPRADDR_CARRIER_ROUTE_POSTAL </code> or <code class="ph codeph"> SPRADDR_CARRIER_ROUTE_RES </code> or <code class="ph codeph"> SPRADDR_CARRIER_ROUTE_WORK </code> then the corresponding <code class="ph codeph"> spraddr_carrier_route </code> is returned. </p>
+<p class="p">If the p_string value is <code class="ph codeph"> STVNATN_NATION_POSTAL </code> or <code class="ph codeph"> STVNATN_NATION_RES </code>, or <code class="ph codeph"> STVNATN_NATION_WORK </code> and if the corresponding <code class="ph codeph"> spraddr_natn_code </code> is not null, <code class="ph codeph"> stvnatn_nation </code> is returned from STVNATN where <code class="ph codeph"> stvnatn_code=spraddr_natn_code </code>. </p>
+<p class="p">If the p_string value is <code class="ph codeph"> SPRADDR_NATN_CODE_POSTAL </code> or <code class="ph codeph"> SPRADDR_NATN_CODE_RES </code> or <code class="ph codeph"> SPRADDR_NATN_CODE_WORK </code> then the corresponding <code class="ph codeph"> spraddr_natn_code </code> is returned.</p>
+</td>
+
+            </tr>
+
+          </tbody>
+</table>
+</div>
+
+      <p class="p">The following functions are all contained in the SKKTAFE package that is used by <span class="ph">AVETMISS</span> reporting processes, including activities for NSW and QLD AVETMISS-Compliant reporting.</p>
+
+      
+<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" id="r_avetmiss_reporting__r_avetmiss_reporting-utbl2" class="table" frame="hsides" border="1" rules="rows"><colgroup><col style="width:33.003300330033%"><col style="width:66.996699669967%"></colgroup><thead class="thead" style="text-align:left;vertical-align:bottom;">
+            <tr class="row">
+              <th class="entry row-nocellborder" style="text-align:left;vertical-align:bottom;" id="d9598e296">Function Name</th>
+
+              <th class="entry row-nocellborder" style="text-align:left;vertical-align:bottom;" id="d9598e299">Purpose/Description</th>
+
+            </tr>
+
+          </thead>
+<tbody class="tbody">
+            <tr class="row">
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d9598e296 ">F_DELIVERY_LOC_ID</td>
+
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d9598e299 ">f_delivery_loc_id (p_pidm, p_acyr_code, p_report_period, p_camp_code, p_key_seqno, p_insm_code, p_site_code) <p class="p">Used in several activities to calculate the delivery location identifier using location mapping rules.</p>
+<p class="p">In the NAT00120_CU snapshot activity, the function finds records on the Location Mapping Rules (SKARLOC) page where the campus code matches the campus of each CRN. The mapping rules must be for the report collection that is used as a runtime parameter when the MDUU process is executed and for an academic year that is valid for the term of the CRN.</p>
+<p class="p">If there is only one rule for the matching campus code, and if on that rule on SKARLOC both Instructional Method and Student Location are blank - then the matching Delivery Location code has been found.</p>
+<p class="p">If there are multiple rules for the matching campus code, then this means that there are rules where Instructional Method and Student Location are not blank.</p>
+</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d9598e296 ">F_DELIVERY_LOC_ID (Contd)</td>
+
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d9598e299 ">The Instructional Method on SKARLOC is compared first to the Instructional Method of the CRN (on SSASECT) and if that is blank, then the Instructional Method on SKARLOC is compared to the Session of the CRN (also on SSASECT). If the Session of the CRN is also blank, then the Instructional Method on SKARLOC is compared to the Session on the student's study path (SGRSTSP), and if that is also null, to the Session on the student's general learner record (SGBSTDN).If there are multiple rules for the matching campus and instructional method, then the Student Location is used to select the correct Delivery Location for this student and CRN.<p class="p">If the student has a student attribute and if that student attribute is in the string of values for the VET-INTERSTATE system parameter and if the student's record on SGASADD is for a term code that is effective for this CRN, then the function will retrieve the Location code where the Student Location matches the student's attribute.</p>
+<p class="p">If the student's attribute does not match a rule on SKARLOC, or isn't listed in the VET-INTERSTATE system parameter, or if the effective term of the student attribute is for a later term than the CRN, or if the student doesn't have any student attributes - then the function compares the student's Site Code with the Student Location value from SKARLOC.</p>
+</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d9598e296 ">F_DELIVERY_LOC_ID (Contd)</td>
+
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d9598e299 ">First, the function compares the Site Code from the LEARNER curriculum with the Student Location value. If a match is found, then that Delivery Location Code is used.<p class="p">If the Site Code on the LEARNER curriculum is null or doesn't match any Student Location, then the function compares the Site Code on SGBSTDN (viewed on the first tab of SGASTDN) to the Student Location value. If a match is found, then that Delivery Location Code is used.</p>
+<p class="p">If there isn't a row for the matching campus and instructional method where student location is blank - then the function is not able to find a matching delivery location on SKARLOC and will now look at SKRTDLV (the table behind the Delivery Locations tab on the SKATORG page.</p>
+<p class="p">When the function looks on SKRTDLV, if there is a record that is effective for the term of the CRN where the campus code matches the campus of the CRN, then the Delivery Location code of that record will be returned.</p>
+<p class="p">If the function cannot find a record for the matching campus on SKRTDLV either, then Delivery Location will be null for the CRN in the ASC_VET_SNA_NAT00120_CU snapshot.</p>
+</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d9598e296 ">F_NAT00120_IN_​DELIVERY_LOC_ID</td>
+
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d9598e299 ">f_nat00120_in_delivery_loc_id(:academic_year, :report_period, sorlcur_pidm, sorlcur_program, skrrept_term_code, shrtckn_camp_code, sgbstdn_camp_code, shrtckn_sess_code, sgbstdn_site_code) <p class="p">Supplements the generic delivery location function to return the delivery location identifier for records in the NAT00120_IN snapshot activity.</p>
+</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d9598e296 ">F_NAT00120_IN_​DEL_MODE_ID</td>
+
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d9598e299 ">f_nat00120_in_del_mode_id(:academic_year, :report_period, ssbsect_sess_code, shrtckn_pidm, skrrept_term_code, sorlcur_program, ssbsect_insm_code, sgbstdn_sess_code) <p class="p">Return the delivery mode identifier for records in the NAT00120_IN snapshot activity.</p>
+<p class="p">The function uses the Instructional Method of the CRN (on SSASECT) and if that is blank or if the CRN in Academic History does not have a matching record in SSASECT, then the Session of the CRN (SHRTCKN) is used. If the Session of the CRN is also blank, then the Session on the student's study path (SGRSTSP) is used, and if that is also null, the Session on the student's general learner record (SGBSTDN) is used.</p>
+</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d9598e296 ">F_NAT00120_​IN_NAT_OUTCOME</td>
+
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d9598e299 ">f_nat00120_in_nat_outcome(:academic_year, shrtckn_ptrm_date, shrtckn_pidm, shrtckn_seq_no, shrtckn_term_code, shrtckn_crn, shrtckg_grde_code_final, shrtckg_term_code, shrtckl_levl_code) <p class="p">This function is used in the ASC_VET_SNA_NAT00120_IN snapshot activity to translate a local grade code to the appropriate Outcome Identifier - National value.</p>
+<p class="p">First, the function looks up the grade code on the SHAGRDE page to find the record where the grade code matches the latest grade for the student for the CRN, the level code matches the primary level code for the student for the CRN, and the term code is the latest term code that is earlier than or equal to the term code for the student for the CRN.</p>
+<div class="p">For the record on SHAGRDE: <ul class="ul">
+                <li class="li">If the grade is an incomplete grade and the registration status of the CRN is one of the values listed for the NSW-DISCONTINUED-RSTS or NSW-DEFERRED-RSTS system parameters, then the value for Outcome Identifier - National is null.</li>
+ <li class="li">If the grade code matches one of the values listed for the SUPERSEDED-GRADE-CODE system parameter, then the value for Outcome Identifier - National is '61'.</li>
+
+                <li class="li">When the Attempted Indicator, Completed Indicator and Passed Indicator are all 'Y', then the function re-turns a value of '20'</li>
+ <li class="li">When the Attempted Indicator is 'Y' and the Completed Indicator and Passed Indicator are both 'N', and the grade is not an incomplete grade, then the function returns a value of '30'</li>
+ <li class="li">When the grade is an incomplete grade, then the function returns a value of '70'</li>
+
+                </ul>
+If the function cannot calculate a value, then it will return '70' as a default.</div>
+</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d9598e296 ">F_NAT00120_​IN_COMM_ID</td>
+
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d9598e299 ">f_nat00120_in_comm_id(:academic_year, :report_period, sgbstdn_voed_code, shrtckn_stsp_key_sequence, shrtckn_pidm, shrtckn_term_code, sorlcur_program, skrrept_term_code, sgbstdn_styp_code)<p class="p">Returns the commencing course identifier for records in the NAT00120_IN snapshot activity. The activity will first attempt to use the value in the Override Commencement Date and Course Commencement Date fields on the SKRSTSP table to determine the correct commencing course identifier for each student. However, if those fields are not populated for a particular student, then this function will be used.</p>
+<p class="p">The function looks for a study path (SGRSTSP) record for the student, where the study path key sequence number matches the key sequence number of the CRN (SHRTCKN) and the study path term is effective for the report period and academic year and the <span class="ph">AVETMISS</span> report collection based on rules on SKAREPT.</p>
+<p class="p">If a matching study path record is found, then the function returns the value of the Vocational Education code (SGRSTSP_VOED_CODE) on that study path.</p>
+<p class="p">If the study path Vocational Education code is null, or if the student does not have any study path, then the function re-turns the value of the Vocational Education code on the General Learner record (SGBSTDN_VOED_CODE).</p>
+<p class="p">If the Vocational Education code on the General Learner re-cord is also null, the function returns the value of the Student Type code on the curriculum record (SORLCUR_STYP_CODE).</p>
+<p class="p">If the Student Type on the curriculum is also null, the function returns the value of the Student Type code on the General Learner record (SGBSTDN_STYP_CODE).</p>
+</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d9598e296 ">F_NAT00120_​IN_STUDY_REASON</td>
+
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d9598e299 ">f_nat00120_in_study_reason(:academic_year, :report_period, sgbstdn_capl_code, shrtckn_pidm, sorlcur_program, skrrept_term_code) <p class="p">Returns the study reason identifier for records in the NAT00120_IN snapshot activity.</p>
+<p class="p">The function looks for a study path (SGRSTSP) record for the student, where the study path key sequence number matches the key sequence number of the curriculum and the study path term is effective for the report period and academic year and the <span class="ph">AVETMISS</span> report collection based on rules on SKAREPT.</p>
+<p class="p">If a matching study path record is found, then the function returns the value of the Career Plan code (SGRSTSP_CAPL_CODE) on that study path</p>
+<p class="p">If the study path Career Plan code is null, or if the student does not have any study path, then the function returns the value of the Career Plan code on the General Learner record (SGBSTDN_CAPL_CODE).</p>
+</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d9598e296 ">F_NAT00120_​CU_DEL_MODE_ID</td>
+
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d9598e299 ">f_nat00120_cu_del_mode_id(sfrstcr_pidm, skrrept_acyr_code, skrrept_report_period, sfrstcr_stsp_key_sequence, sorlcur_term_code, ssbsect_insm_code, ssbsect_sess_code, sgbstdn_sess_code) <p class="p">Returns the delivery mode identifier for records in the NAT00120_CU snapshot activity.</p>
+<p class="p">The function uses the Instructional Method of the CRN (on SSASECT) and if that is blank, then the Session of the CRN (also on SSASECT) is used. If the Session of the CRN is also blank, then the Session on the student's study path (SGRSTSP) is used, and if that is also null, then the Session on the student's general learner record (SGBSTDN) is used.</p>
+</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d9598e296 ">F_NAT00120_​CU_COMM_ID</td>
+
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d9598e299 ">f_nat00120_cu_comm_id(sfrstcr_pidm, skrrept_acyr_code, skrrept_report_period, sfrstcr_stsp_key_sequence, sorlcur_term_code, sgbstdn_voed_code, sgbstdn_styp_code, sorlcur_styp_code) <p class="p">Returns the commencing course identifier for records in the NAT00120_CU snapshot activity. The activity will first attempt to use the value in the Override Commencement Date and Course Commencement Date fields on the SKRSTSP table to determine the correct commencing course identifier for each student. However, if those fields are not populated for a particular student, then this function will be used.</p>
+<p class="p">The function looks for a study path (SGRSTSP) record for the student, where the study path key sequence number matches the key sequence number of the CRN (SFRSTCR) and the study path term is effective for the report period and academic year and the <span class="ph">AVETMISS</span> report collection based on rules on SKAREPT.</p>
+<p class="p">If a matching study path record is found, then the function returns the value of the Vocational Education code (SGRSTSP_VOED_CODE) on that study path.</p>
+<p class="p">If the study path Vocational Education code is null, or if the student does not have any study path, then the function re-turns the value of the Vocational Education code on the General Learner record (SGBSTDN_VOED_CODE).</p>
+<p class="p">If the Vocational Education code on the General Learner re-cord is also null, the function returns the value of the Student Type code on the curriculum record (SORLCUR_STYP_CODE).</p>
+<p class="p">If the Student Type on the curriculum is also null, the function returns the value of the Student Type code on the General Learner record (SGBSTDN_STYP_CODE).</p>
+</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d9598e296 ">F_NAT00120_​CU_STUDY_REASON</td>
+
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d9598e299 ">f_nat00120_cu_study_reason(sfrstcr_pidm, skrrept_acyr_code, skrrept_report_period, sfrstcr_stsp_key_sequence, sorlcur_term_code, sgbstdn_capl_code) <p class="p">Returns the study reason identifier for records in the NAT00120_CU snapshot activity.</p>
+<p class="p">The function looks for a study path (SGRSTSP) record for the student, where the study path key sequence number matches the key sequence number of the curriculum and the study path term is effective for the report period and academic year and the <span class="ph">AVETMISS</span> report collection - based on rules on SKAREPT.</p>
+<p class="p">If a matching study path record is found, then the function returns the value of the Career Plan code (SGRSTSP_CAPL_CODE) on that study path.</p>
+<p class="p">If the study path Career Plan code is null, or if the student does not have any study path, then the function returns the value of the Career Plan code on the General Learner record (SGBSTDN_CAPL_CODE).</p>
+</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d9598e296 ">F_NAT00130_ORG_DETAILS</td>
+
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d9598e299 ">f_nat00130_org_details (spriden_pidm, :academic_year, :report_period, shrdgmr_camp_code, shrdgmr_seq_no, 'P') <p class="p">Returns the correct training organisation PIDM and training organisation ID for records in the NAT00130 snapshot activity.</p>
+<p class="p">The NAT00130 snapshot uses OUTCOME curriculum records but any values from SORLCUR needed by the function, such as Site Code, are only on LEARNER curriculum records or on the General Student table (SGBSTDN). So this function retrieves the LEARNER curriculum that corresponds to the OUTCOME curriculum and then calls the f_delivery_loc_id function (described above) to determine the correct delivery location code for the curriculum record.Delivery location codes are all associated with an organisation (non-person) PIDM, either on SKARLOC or on the Delivery Location tab of SKATORG. The PIDM of the organisation is used to retrieve the Training Organisation ID.</p>
+</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d9598e296 ">F_NAT00120_TR_​DELIVERY_LOC_ID</td>
+
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d9598e299 ">f_nat00120_tr_delivery_loc_id (spriden_pidm, shrtrce_trit_seq_no, shrtrce_tram_seq_no, shrtrce_seq_no, sorlcur_camp_code, sgbstdn_camp_code, sgbstdn_sess_code, sgbstdn_site_code, :academic_year, :report_period, sorlcur_program) <p class="p">Supplements the generic delivery location function to return delivery location identifier for records in the NAT00120_TR snapshot activity.</p>
+<p class="p">The NAT00120_TR snapshot uses OUTCOME curriculum records but any values from SORLCUR needed by the function - such as Site Code - are only on LEARNER curriculum records or on the General Student table (SGBSTDN). So this function retrieves the LEARNER curriculum that corresponds to the OUTCOME curriculum, and then calls the f_delivery_loc_id function (described above) to determine the correct delivery location code for the CRN.</p>
+</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d9598e296 ">F_NAT00120_TR_​MOD_ENR_ST_END</td>
+
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d9598e299 ">f_nat00120_tr_mod_enr_st_end(spriden_pidm, shrtrce_trit_seq_no, shrtrce_tram_seq_no) <p class="p">Return enrolment start date and enrolment end date for records in the NAT00120_TR snapshot activity.</p>
+<p class="p">This function is used in the ASC_VET_SNA_NAT00120_TR snapshot activity to populate the module enrolment start date and the module enrolment end date for module/unit records that are retrieved from transfer credit tables. Note: because this is transfer credit, the same date value is used for both the module enrolment start date and the module enrolment end date.</p>
+<p class="p">The function looks for a value in the Transfer Attendance Period Acceptance Date (SHRTRAM_ACCEPTANCE_DATE) for the student, where the transfer institution sequence number and the transfer attendance period sequence number match the corresponding sequence numbers of the transfer equivalence (SHRTRCE) record and the transfer equivalence term is effective for the report period and academic year and the <span class="ph">AVETMISS</span> report collection - based on rules on SKAREPT.</p>
+<p class="p">If the Transfer Attendance Period Acceptance Date (SHRTRAM_ACCEPTANCE_DATE) is not populated, the function will return the start date of the term code that matches the effective term of the transfer attendance period (SHRTRAM_TERM_CODE_ENTERED) for the student, where the transfer institution sequence number and the transfer attendance period sequence number match the corresponding sequence numbers of the transfer equivalence (SHRTRCE) record and the transfer equivalence term is effective for the report period and academic year and the <span class="ph">AVETMISS</span> report collection - based on rules on SKAREPT.</p>
+</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d9598e296 ">F_NAT00120_​TR_SCHED_HOURS</td>
+
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d9598e299 ">f_nat00120_tr_sched_hours(spriden_pidm, shrtrce_subj_code, shrtrce_crse_numb, shrtrce_term_code_eff, shrtrce_trcr_seq_no, shrtrce_trit_seq_no, shrtrce_tram_seq_no) <p class="p">This function is used in the ASC_VET_SNA_NAT00120_TR snapshot activity to populate the scheduled hours for module/unit records that are retrieved from transfer credit tables.</p>
+<p class="p">The function first looks for the value of the low contact hours (SCBCRSE_CONT_HR_LOW) where the concatenation of subject code and course number of the transfer equivalence (SHRTRCE) record matches the concatenation of the subject code and course number of the course definition on SCACRSE where the term code of the record on SCACRSE is the latest term code for that subject code and course number combination that is earlier than or equal to the transfer equivalence term and the transfer equivalence term is effective for the report period and academic year and the <span class="ph">AVETMISS</span> report collection based on rules on SKAREPT.</p>
+<p class="p">If the transfer credit hours is null, the function will return the value of the transfer credit hours (SHRTRCR_TRANS_CREDIT_HOURS) for the student, where the transfer institution sequence number, the transfer attendance period sequence number and the transfer course sequence number all match the corresponding sequence numbers of the transfer equivalence (SHRTRCE) record and the transfer equivalence term is effective for the report period and academic year and the <span class="ph">AVETMISS</span> report collection - based on rules on SKAREPT.</p>
+<p class="p">If the function cannot get a value from any of the above fields it will return a value of zero '0'.</p>
+</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d9598e296 ">F_NAT00120_​TR_NAT_FUND</td>
+
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d9598e299 ">f_nat00120_tr_nat_fund(spriden_pidm, :report_period, ​:academic_year, sorlcur_program, sgbstdn_rate_code) <p class="p">This function is used in the ASC_VET_SNA_NAT00120_TR snapshot activity to translate a retrieved rate code from the LEARNER curriculum to a National Funding code. That snapshot activity uses OUTCOME curriculum records.</p>
+<p class="p">However, there are some fields on SORLCUR that are only ever populated for LEARNER curriculum records (for example, Rate code)</p>
+<p class="p">The function retrieves the active, current LEARNER curriculum record that corresponds to the OUTCOME curriculum record so that these extra fields can be used.</p>
+<p class="p">This function particularly retrieves sorlcur_rate_code from that LEARNER curriculum record.</p>
+<p class="p">The LEARNER curriculum is the active, current LEARNER curriculum where the curriculum term is the latest (maximum) curriculum term that is effective for the re-port period and academic year and the <span class="ph">AVETMISS</span> report collection - based on rules on SKAREPT, and where the curriculum end term (sorlcur_term_code_end) is null</p>
+<p class="p">The function uses rules on the Report Element Mapping (SKARMAP) page to translate the rate code to a National Fund code, using the element code VET-NAT-FUND.</p>
+</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d9598e296 ">F_NAT00120_TR​_COMM_ID</td>
+
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d9598e299 ">f_nat00120_tr_comm_id(spriden_pidm, :report_period, ​:academic_year, sgbstdn_voed_code, sorlcur_program, sgbstdn_styp_code) <p class="p">Returns commencement course identifier for records in the NAT00120_TR snapshot activity. The activity will first attempt to use the value in the Override Commencement Date and Course Commencement Date fields on the SKRSTSP table to determine the correct commencing course identifier for each student. However, if those fields are not populated for a particular student, then this function will be used.</p>
+<p class="p">The NAT00120_TR snapshot uses OUTCOME curriculum records but any values from SGRSTSP needed by the function - such as Vocational Education Code - need to be linked to LEARNER curriculum records and any values from SORLCUR needed by the function - such as Student Type Code - are only on LEARNER curriculum records or on the General Student table (SGBSTDN). So this function retrieves the LEARNER curriculum that corresponds to the OUTCOME curriculum. </p>
+<p class="p">The function looks for a study path (SGRSTSP) record for the student, where the study path key sequence number matches the key sequence number of the curriculum and the study path term is effective for the report period and academic year and the <span class="ph">AVETMISS</span> report collection - based on rules on SKAREPT.</p>
+<p class="p">If a matching study path record is found, then the function returns the value of the Vocational Education code (SGRSTSP_VOED_CODE) on that study path</p>
+<p class="p">If the study path Vocational Education code is null, or if the student does not have any study path, then the function re-turns the value of the Vocational Education code on the Gen-eral Learner record (SGBSTDN_VOED_CODE)</p>
+<p class="p">If the Vocational Education code on the General Learner re-cord is also null, the function returns the value of the Student Type code on the curriculum record (SORLCUR_STYP_CODE)</p>
+<p class="p">If the Student Type on the curriculum is also null, the function returns the value of the Student Type code on the General Learner record (SGBSTDN_STYP_CODE).</p>
+</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d9598e296 ">F_NAT00120_TR_​TRAIN_CONT_APP</td>
+
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d9598e299 ">f_nat00120_tr_train_cont_app(spriden_pidm,​:report_period, :academic_year,sorlcur_program) <p class="p">This function is used in the ASC_VET_SNA_NAT00120_TR snapshot activity to retrieve a training contract ID.</p>
+<p class="p">The function returns the Contract ID from SKATCND for the student where the term code on SKATCND is the latest (maximum) term code that is earlier than or equal to the lat-est (maximum) term code on SKAREPT for the academic year, report period and report collection, where the value of the report collection matches the value of the <span class="ph">AVETMISS</span>-REP-CAL system parameter.</p>
+<p class="p">If there is more than one contract record for the student and term, the record with the highest sequence number will be used.</p>
+</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d9598e296 ">F_NAT00120_​TR_STUDY_REASON</td>
+
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d9598e299 ">f_nat00120_tr_study_reason(spriden_pidm,​ :report_period, :academic_year, sgbstdn_capl_code, sorlcur_program) <p class="p">Returns study reason identifier for records in the NAT00120_TR snapshot activity.</p>
+<p class="p">The NAT00120_TR snapshot uses OUTCOME curriculum records but any values from SGRSTSP needed by the function - such as Career Plan Code - need to be linked to LEARNER curriculum records or retrieved from the General Student table (SGBSTDN). So this function retrieves the LEARNER curriculum that corresponds to the OUTCOME curriculum.</p>
+<p class="p">The function looks for a study path (SGRSTSP) record for the student, where the study path key sequence number matches the key sequence number of the curriculum and the study path term is effective for the report period and academic year and the <span class="ph">AVETMISS</span> report collection - based on rules on SKAREPT.</p>
+<p class="p">If a matching study path record is found, then the function returns the value of the Career Plan code (SGRSTSP_CAPL_CODE) on that study path</p>
+<p class="p">If the study path Career Plan code is null, or if the student does not have any study path, then the function returns the value of the Career Plan code on the General Learner record (SGBSTDN_CAPL_CODE).</p>
+</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d9598e296 ">F_NAT00120_TR_​RATE_CODE</td>
+
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d9598e299 ">f_nat00120_tr_rate_code(spriden_pidm,​ :report_period, :academic_year, sorlcur_program, sgbstdn_rate_code) <p class="p">This function is used in the ASC_VET_SNA_NAT00120_TR snapshot activity to retrieve the rate code on the LEARNER curriculum. That snapshot activity uses OUTCOME curriculum records. However, there are some fields on SORLCUR that are only ever populated for LEARNER curriculum records (for example, Rate code).</p>
+<p class="p">The function retrieves the active, current LEARNER curriculum record that corresponds to the OUTCOME curriculum record so that these extra fields can be used.</p>
+<p class="p">This function particularly retrieves sorlcur_rate_code from that LEARNER curriculum record.</p>
+<p class="p">The LEARNER curriculum is the active, current LEARNER curriculum where the curriculum term is the latest (maximum) curriculum term that is effective for the report period and academic year and the <span class="ph">AVETMISS</span> report collection - based on rules on SKAREPT, and where the curriculum end term (sorlcur_term_code_end) is null.</p>
+</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d9598e296 ">F_GET_TRAIN_ORG_ID</td>
+
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d9598e299 ">f_get_train_org_id (:academic_year, :report_period, p_camp_code, :report_collection) <p class="p">Returns the correct training organisation ID to concatenate with a course commencement date to make a Purchasing Contract ID, and is therefore particularly used in QLD AVETMISS-Compliant reporting.</p>
+<p class="p">In the NAT00120_IN and NAT00120_UN snapshot activities this function uses data from the LEARNER curriculum where the key sequence number corresponds to the study path sequence number of the CRN in Academic History. In the NAT00120_TR snapshot activity, this function uses data from the LEARNER curriculum record where the key sequence value of the LEARNER curriculum matches the study path key sequence of the degree record (SHRDGMR) that was created when the LEARNER curriculum was rolled to OUTCOME. The function then calls f_delivery_loc_id function (described above) to determine the correct delivery location code for the enrolment record. Delivery location codes are all associated with an organisation (non-person) PIDM, either on SKARLOC or on the Delivery Location tab of SKATORG.</p>
+<p class="p">The PIDM of the organisation is used to retrieve the Training Organisation ID.</p>
+</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d9598e296 ">F_NAT00120_ID_APP</td>
+
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d9598e299 ">f_nat00120_id_app (spriden_pidm, :report_period, :academic_year, solcur_program, :report_collection) <p class="p">This function is used in all of the NAT00120 snapshot activities to retrieve a client ID - Australian Apprenticeships.</p>
+<p class="p">The function returns the External ID from SKATCND for the student where the term code on SKATCND is the latest (maximum) term code that is earlier than or equal to the latest (maximum) term code on SKAREPT for the academic year, report period and report collection, where the value of the report collection matches the value of the SKILLS-VIC system parameter, and where the study path attached to the contract matches the study path of the NAT00120 record.</p>
+<p class="p">The function includes logic to retrieve the LEARNER curriculum because the NAT00120_TR snapshot is based on degree (SHRDGMR) records.</p>
+<p class="p">If there is more than one contract record for the student, study path and term, the record with the highest sequence number will be used.</p>
+<p class="p">If the External ID field is null, then the function will return the value of the additional ID (GORADID_ADDITIONAL_ID) where the Additional ID type code matches the value of the APPRENTICE_ID_TYPE system parameter.</p>
+<p class="p">Even if the function is able to retrieve a value for Client ID - Australian Apprenticeships, the field will only be populated if the Training Contract ID - Australian Apprenticeships is also populated.</p>
+</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d9598e296 ">F_NAT00120_CU_​ASSOC_COURSE_ID</td>
+
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d9598e299 ">skkavsv.f_nat00120_cu_assoc_course(:academic_year,​ :report_period, sorlcur_program, :report_collection) <p class="p">Returns the associated course ID for records in the NAT00120_CU snapshot activity.</p>
+<p class="p">The function first checks whether the student's program is attached to a course record on SKATRCO that has a Recognition Code that matches the value of the SKILL-SET-RECOGNITION-CODE system parameter, using system parameter rules for the current academic year and a course record on SKATRCO for the maximum effective term that is valid for the academic year and report period.</p>
+<p class="p">If the Recognition code matches a value for SKILL-SET-RECOGNITION-CODE, then the Associated Course Identifier will be the value in the Associated Course ID field on SKATRCO for the course record matching the program code for the maximum effective term that is valid for the academic year and report period. If that Associated Course ID field on SKATRCO is null, then null will be returned.</p>
+<p class="p">If the Recognition code does not match a value for SKILL-SET-RECOGNITION-CODE, then the Associated Course Identifier will be the value in the National ID field on SKATRCO for the course record matching the program code for the maximum effective term that is valid for the academic year and report period. If that National ID field on SKATRCO is null, then program code of the student's active, current, learner curriculum will be returned.</p>
+</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d9598e296 ">F_NAT00120_CU_​CONCESSION_ID</td>
+
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d9598e299 ">f_nat00120_cu_concession_id (sfrstcr_pidm , sfrstcr_term_code, sfrstcr_crn, sfrstcr_term_code) <p class="p">Returns the fee exemption/concession status code for records in the NAT00120_CU - snapshot activities. It uses data on the Concession Details page (SKACONC)</p>
+<div class="p">The function will return the concession type value for the student's most recent concession record on SKACONC where the record:<ul class="ul"> <li class="li">Is active</li>
+ <li class="li">Has been verified</li>
+
+                <li class="li">Has a start date that is either:</li>
+ <li class="li">Earlier than or equal to the start date of the CRN part of term or</li>
+ <li class="li">Earlier than or equal to the open learning registration start date of the CRN or</li>
+ <li class="li">Null</li>
+ </ul>
+</div>
+<div class="p">Has an expiry date that is either:<ul class="ul"> <li class="li">Later than or equal to the end date of the CRN part of term or</li>
+ <li class="li">Later than or equal to the completion date of the CRN or</li>
+ <li class="li">Null</li>
+
+                </ul>
+</div>
+<p class="p">Where there is more than one active, verified record that either has start and expiry dates null or where the CRN part of term or open learning registration dates are within the range of the concession start and expiry dates, then the record with the most recent consent date will be used.</p>
+<p class="p">If using consent date still doesn't isolate a unique record, then the record with the highest (maximum) sequence number will be used. (Note, the sequence number does not display on the SKACONC page but records are sorted by sequence number).</p>
+</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d9598e296 ">F_NAT00120_CU_​COURSE_COMM_DATE</td>
+
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d9598e299 ">f_nat00120_cu_course_comm_date (spriden_pidm, sfrstcr_crn, NVL(skrstsp_ovr_commence_date,skrstsp_commence_date) , sfrstcr_term_code, sfrstcr_ptrm_code,sorlcur_levl_code,​sfrstcr_grde_code, :ACADEMIC_YEAR) <p class="p">This function is used in the NAT00120_CU snapshot activities to populate the course commencement date for module/unit records that are retrieved from registration tables.</p>
+<p class="p">If the student is in a Module Only enrolment, the Enrolment Activity Start Date mapping is used for Course Commencement Date, otherwise the value from SORLCUR_START_DATE is used. A Module Only enrolment is one where the level of the curriculum matches a value listed for the MODULE-ENROL-LEVEL system parameter.</p>
+</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d9598e296 ">F_NAT00120_CU_​MOD_ENR_END_DATE</td>
+
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d9598e299 ">Used by the NAT00120 current unrolled registration snapshot activity for NSW AVETMISS-compliant reporting when determining the correct value for the <span class="ph uicontrol">Activity End Date</span> field.</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d9598e296 ">F_NAT00120_CU_​MOD_ENR_ST_DATE</td>
+
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d9598e299 ">Used by the NAT00120 current unrolled registration snapshot activity for NSW AVETMISS-compliant reporting when determining the correct value for the <span class="ph uicontrol">Activity Start Date</span> field.</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d9598e296 ">F_NAT00120_​CU_TUITION_FEE</td>
+
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d9598e299 ">f_nat00120_cu_tuition_fee (:academic_year, NVL(sorlcur_rate_code,sgbstdn_rate_code), sfrstcr_pidm, sfrstcr_crn, sfrstcr_term_code, scbcrse_cont_hr_low) <p class="p">Returns the tuition fee per hour for each CRN in which the student is enrolled, as a VARCHAR2 value of 4 characters. CRNs are attached to LEARNER curriculum records through study path.</p>
+<p class="p">If the rate code for a LEARNER curriculum is listed as a value for the FEE-FOR-SERVICE-FUND-CODE system parameter, then the Client tuition fee will be null.</p>
+<p class="p">If the rate code for a LEARNER curriculum is not listed as a value for the FEE-FOR-SERVICE-FUND-CODE system parameter, then the Client tuition fee will be calculated by summing the amounts of any tuition charges for the CRN, student (PIDM) and term code. Tuition charges are those records on the student's account that are for detail codes that have a category of 'TUI', are charge detail codes and are active.</p>
+<p class="p">This summed amount is then divided by the scheduled hours for the CRN. The scheduled hours are first picked up from the contact hours for the CRN on the Section Detail table (SSBSECT). If that field is null, then the scheduled hours are picked up from the Low Contact Hours for the unit of study on the Course Detail table (SCBCRSE).</p>
+<p class="p">If the selected scheduled hours value is zero, then the summed tuition amount is divided by 1.</p>
+<p class="p">If the result from this calculation is greater than or equal to 99.99, then the Client tuition fee will be 99.99.</p>
+<p class="p">If the result from this calculation is less than 99.99, then the Client tuition fee will be reported as that result.</p>
+<p class="p">Finally, the number is converted to VARCHAR2 format, using LPAD and TO_CHAR.</p>
+</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d9598e296 ">F_NAT00120_​IN_CONCESSION_ID</td>
+
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d9598e299 ">f_nat00120_in_concession_id(shrtckn_ptrm_end_date, shrtckn_ptrm_start_date, shrtckn_pidm, shrtckn_crn, shrtckn_term_code) <p class="p">Returns the fee exemption/concession status code for records in the NAT00120_IN and NAT00120_UN snapshot activities. This function uses data on the Concession Details page (SKACONC)</p>
+<div class="p">The function will return the concession type value for the student's most recent concession record on SKACONC where the record:<ul class="ul"> <li class="li">Is active</li>
+
+                <li class="li">Has been verified</li>
+ </ul>
+</div>
+<div class="p">Has a start date that is either: <ul class="ul"> <li class="li">Earlier than or equal to the start date of the CRN part of term or</li>
+ <li class="li">Earlier than or equal to the open learning registration start date of the CRN or</li>
+ <li class="li">Null</li>
+ </ul>
+</div>
+<div class="p">Has an expiry date that is either<ul class="ul"> <li class="li">Later than or equal to the end date of the CRN part of term or</li>
+ <li class="li">Later than or equal to the completion date of the CRN or</li>
+ <li class="li">Null</li>
+
+                </ul>
+</div>
+<p class="p">Where there is more than one active, verified record with either start and expiry dates null or where the CRN part of term or open learning registration dates are within the range of the concession start and expiry dates, then the record with the highest (maximum) sequence number will be used. (Note, the sequence number does not display on the SKACONC page but records are sorted by sequence number).</p>
+</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d9598e296 ">F_NAT00120_IN_​COURSE_COMM_DATE</td>
+
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d9598e299 ">f_nat00120_in_course_comm_date(shrtckn_pidm, sorlcur_program, shrtckn_crn, skrrept_term_code, sorlcur_start_date, sorl-cur_key_seqno) <p class="p">This function is used in the NAT00120_IN and NAT00120_UN snapshot activities to determine the course commencement date for module/unit records that are retrieved from institutional academic history tables.</p>
+<p class="p">This function uses the key sequence number of the LEARNER curriculum and compares it to the study path sequence number of the CRN in academic history to then determine the course commencement date that relates to the CRN.</p>
+<p class="p">If the student is in a Module Only enrolment, the Enrolment Activity Start Date mapping is used for Course Commencement Date, oth-erwise the value from SORLCUR_START_DATE is used. A Module Only enrolment is one where the level of the curriculum matches a value listed for the MODULE-ENROL-LEVEL system parameter.</p>
+</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d9598e296 ">F_NAT00120_IN_ID_APP</td>
+
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d9598e299 ">Used by the NAT00120 institutional academic history snapshot activities for NSW AVETMISS-compliant reporting when determining the correct value for the <span class="ph uicontrol">Client ID - Apprenticeships</span> field.</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d9598e296 ">F_NAT00120_​IN_MOD_START</td>
+
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d9598e299 ">Used by the NAT00120 institutional academic history snapshot activities for NSW AVETMISS-compliant reporting when determining the correct value for the Activity Start Date field. It is also used when determining the correct value for the <span class="ph uicontrol">Outcome Identifier - National</span> field.</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d9598e296 ">F_NAT00120_​IN_NAT_FUND</td>
+
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d9598e299 ">f_nat00120_in_nat_fund (shrtckn_pidm,skrrept_term_code,:ACADEMIC_YEAR,​sorlcur_program,NVL(sorlcur_rate_code, sgbstdn_rate_code)) <p class="p">This function uses the key sequence number of the LEARNER curriculum and compares it to the study path sequence number of the CRN in academic history to then determine the correct rate code for the CRN.</p>
+<p class="p">The function uses rules on the Report Element Mapping (SKARMAP) page to translate the rate code to a National Fund code, using the element code VET-NAT-FUND.</p>
+</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d9598e296 ">F_NAT00120_IN_​PREV_HRS_ATTEND</td>
+
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d9598e299 ">This function is used to determine the Attended Hours of a Superseded Program which is then used to reduce the Scheduled Hours of unit of study in a Replacement Program. <p class="p">The function, first determines if the current record being processed is associated with a Replacement Program. Using the current PIDM, Term Code and Study Path Sequence, it will make a call to the SKKTAFE.F_NAT00120_IN_ASSOC_COURSE_ID function and if an Associated Course ID is returned, this implies that the current program is a Replacement one.</p>
+<p class="p">If the current program is NOT a Replacement program, it will simply return zero which means the unit of study's Scheduled Hours need not be adjusted.</p>
+<p class="p">However, if the current record being processed is a Replacement Program the following logic is then applied.</p>
+<p class="p">A search is done to determine the associated CRN for the unit of study in the Superseded Program. This is done by checking the SFRSTCR table for records that have a different study path and CRN for the current PIDM with a Term Code that's less than or equal to the Term Code for the Replacement Program. The list of CRNs and Term Code is then further filtered to pick up only the CRN that has the same concatenated Subject Code || Course Number from SSBSECT, as the Subject Code || Course Number for the unit of study in the Replacement Program.</p>
+<p class="p">With the determined CRN and Term Code for the Superseded Program, the Attended Hours for that CRN and Term Code is then calculated. The Attended Hours is determined through a hierarchy of sources.</p>
+<p class="p">The function first pulls the value from the Hours Attended field on the Attendance Roster (SFAALST) Page, (SFRSTCR_ATTEND_HR). If this is not available, get the value from the Attendance Tracking file SORSATR. If still unavailable, the function gets the value from the Attendance Tracking file SKRATTR. If all three are unavailable, NULL is returned.</p>
+</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d9598e296 ">F_NAT00120_IN_​TRAIN_CONT_APP</td>
+
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d9598e299 ">Used by the NAT00120 institutional academic history snapshot activities for NSW AVETMISS-compliant reporting when determining the correct value for the <span class="ph uicontrol">Training Contract ID</span> field.</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d9598e296 ">F_NAT00120_​PREV_HRS_ATTEND</td>
+
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d9598e299 ">This function is used to determine the Attended Hours of a Superseded Program which is then used to reduce the Scheduled Hours of unit of study in a Replacement Program. <p class="p">The function, first determines if the current record being processed is associated with a Replacement Program. Using the current PIDM, Term Code and Study Path Sequence, it will make a call to the SKKTAFE.F_NAT00120_CU_ASSOC_COURSE_ID function and if an Associated Course ID is returned, this implies that the current program is a Replacement one.</p>
+<p class="p">If the current program is NOT a Replacement program, it will simply return zero which means the unit of study's Scheduled Hours need not be adjusted.</p>
+<p class="p">However, if the current record being processed is a Replacement Program the following logic is then applied.</p>
+<p class="p">A search is done to determine the associated CRN for the unit of study in the Superseded Program. This is done by checking the SFRSTCR table for records that have a different study path and CRN for the current PIDM with a Term Code that's less than or equal to the Term Code for the Replacement Program. The list of CRNs and Term Code is then further filtered to pick up only the CRN that has the same concatenated Subject Code || Course Number from SSBSECT, as the Subject Code || Course Number for the unit of study in the Replacement Program.</p>
+<p class="p">With the determined CRN and Term Code for the Superseded Program, the Attended Hours for that CRN and Term Code is then calculated. The Attended Hours is determined through a hierarchy of sources.</p>
+<p class="p">The function first pulls the value from the Hours Attended field on the Attendance Roster (SFAALST) Page, (SFRSTCR_ATTEND_HR). If this is not available, get the value from the Attendance Tracking file SORSATR. If still unavailable, the function gets the value from the Attendance Tracking file SKRATTR. If all three are unavailable, NULL is returned.</p>
+</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d9598e296 ">F_NAT00120_TR_​ASSOC_COURSE_ID</td>
+
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d9598e299 ">This function is used to determine if a current program is a Replacement Program for a Superseded Program and returns the Associated Course ID if it is a Replacement Program. Otherwise, it will return NULL. <p class="p">Superseded and Replacement Programs are linked through the SKRSTSP table. The record for a Replacement Program in SKASTSP page will have a value in the Associated Course ID which is what the Program Code of the Superseded Program is.</p>
+<p class="p">Given the student's PIDM, Study Path Key, and Term Code, the function searches for that record in the SKRSTSP page. The function, then returns the value of the Associated Course ID. If no record is found, then the function returns a NULL.</p>
+</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d9598e296 ">F_NAT00120_TR_​COURSE_COMM_DATE</td>
+
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d9598e299 ">f_nat00120_tr_course_comm_date(spriden_pidm, shrtrce_trit_seq_no, shrtrce_seq_no, shrtrce_tram_seq_no, :report_period, :academic_year, shrdgmr_stsp_key_sequence) <p class="p">This function is used in the NAT00120_TR snapshot activities to populate the course commencement date for module/unit records that are retrieved from transfer credit tables.</p>
+<p class="p">The function uses the LEARNER curriculum record where the key sequence value of the LEARNER curriculum matches the study path key sequence of the degree record (SHRDGMR) that was created when the LEARNER curriculum was rolled to OUTCOME.</p>
+<p class="p">If the student is in a Module Only enrolment, the Enrolment Activity State Date mapping is used for Course Commencement Date, otherwise the value from SORLCUR_START_DATE is used. A Module Only enrolment is one where the level of the curriculum matches a value listed for the MODULE-ENROL-LEVEL system parameter.</p>
+</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d9598e296 ">F_NAT00120_TR_​PURCH_CONT_ID</td>
+
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d9598e299 ">This function is used by the NAT00120_TR snapshot activities to return a purchasing contract ID for those students who have a funding source identifier that allows funding to be claimed. It is most particularly used by the ASC_QLD_SNA_NAT00120_TR activity. <p class="p">f_nat00120_tr_purch_cont_id(spriden_pidm, shrtrce_trit_seq_no, shrtrce_tram_seq_no, shrtrce_seq_no, shrtrce_term_code_eff, :report_period, :academic_year, sorlcur_program, sorlcur_rate_code, sorlcur_camp_code, shrdgmr_stsp_key_sequence)</p>
+<p class="p">This function concatenates the training organisation ID with the four character year of the student's course commencement date and the resulting value has to fit within 12 characters. A training organisation ID can be up to 10 characters in length, which usually means there are leading zeros or leading spaces. To ensure that purchasing contract ID values are no longer than 12 characters, this function was updated to ensure that only the last 8 characters of any 10 character training organisation ID are concatenated to the year of the student's course commencement date.</p>
+<p class="p">The function uses the LEARNER curriculum record where the key sequence value of the LEARNER curriculum matches the study path key sequence of the degree record (SHRDGMR) that was created when the LEARNER curriculum was rolled to OUTCOME.</p>
+<p class="p">This function particularly retrieves sorlcur_rate_code from that LEARNER curriculum record.</p>
+<p class="p">The LEARNER curriculum is the active, current LEARNER curriculum where the curriculum term is the latest (maximum) curriculum term that is effective for the report period and academic year and the SKILLS-VIC report collection - based on rules on SKAREPT, and where the curriculum end term (sorlcur_term_code_end) is null.</p>
+</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d9598e296 ">F_NAT00120_TR_​PURCH_CONT_ID (Contd)</td>
+
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d9598e299 ">Next, the function compares the student's rate code with mapping rules on SKARMAP to determine the corresponding National Funding Source Identifier.<p class="p">Then this National Funding Source Identifier value is compared with the list of values for the CLAIMABLE-NATIONAL-FUNDCODE system parameter.</p>
+<p class="p">If the National Funding Source Identifier does not match any of the values listed for the CLAIMABLE-NATIONAL-FUND-CODE system parameter, then the Purchasing Contract ID will remain null.</p>
+<p class="p">If the National Funding Source Identifier matches one of the values listed for the CLAIMABLE-NATIONAL-FUND-CODE system parameter, then the function checks the level of education of the program on the student's curriculum, and the student's course commencement date for that program.</p>
+<p class="p">If the level of education of the program is less than or equal to 421 AND the course commencement date is later than 1 July 2009, then the Purchasing Contract ID is the student's course commencement date for this course/curriculum concatenated with the training organisation ID of the organisation.</p>
+<p class="p">If the course commencement date is later than 1 January 2011, then (regardless of the level of education of the program) the Purchasing Contract ID is the student's course commencement date for this course/curriculum concatenated with the training organisation ID of the organisation.</p>
+<p class="p">The student's course commencement date for the program is retrieved using the F_NAT00120_TR_COURSE_COMM_DATE function.</p>
+<p class="p">The training organisation ID is retrieved by the F_GET_TRAIN_ORG_ID function.</p>
+<p class="p">If the student's record doesn't meet these level of education and commencement date requirements, then the Purchasing Contract ID remains null.</p>
+<p class="p">The F_NAT00120_TR_COURSE_COMM_DATE and F_GET_TRAIN_ORG_ID functions are described elsewhere in this list.</p>
+</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d9598e296 ">F_NAT00120_​CU_PURCH_CONT_ID</td>
+
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d9598e299 ">This function it particularly used by the ASC_QLD_SNA_NAT00120_CU activity.<p class="p">f_nat00120_cu_purch_cont_id​(:ACADEMIC_YEAR, :REPORT_PERIOD, spriden_pidm, sfrstcr_crn, sorlcur_program, sorl-cur_key_seqno, sorlcur_rate_code, sgbstdn_rate_code, sorlcur_start_date, sorlcur_camp_code, sgbstdn_camp_code)</p>
+<p class="p">Returns the purchasing contract ID for records in the NAT00120_CU snapshot activity. This function is used by the ASC_QLD_SNA_NAT00120_CU snapshot activity to return a purchasing contract ID for those students who have a funding source identifier that allows funding to be claimed.</p>
+<p class="p">Concatenates the training organisation ID with the four character year of the student's course commencement date and the resulting value has to fit within 12 characters. A training organisation ID can be up to 10 characters in length, which usually means there are leading zeros or leading spaces. To ensure that purchasing contract ID values are no longer than 12 characters, this function was updated to ensure that only the last 8 characters of any 10 character training organisation ID are concatenated to the year of the student's course commencement date.</p>
+</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d9598e296 ">F_NAT00120_​CU_PURCH_CONT_ID (Contd)</td>
+
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d9598e299 ">First, the function compares the student's rate code with mapping rules on SKARMAP to determine the corresponding National Funding Source Identifier. Then this National Funding Source Identifier value is compared with the list of values for the CLAIMA-BLE-NATIONAL-FUND-CODE system parameter.<p class="p">If the National Funding Source Identifier does not match any of the values listed for the CLAIMABLE-NATIONAL-FUND-CODE system parameter, then the Purchasing Contract ID will remain null.</p>
+<p class="p">If the National Funding Source Identifier matches one of the values listed for the CLAIMABLE-NATIONAL-FUND-CODE system parameter, then the function checks the level of education of the program on the student's curriculum, and the student's course commencement date for that program.</p>
+<p class="p">If the level of education of the program is less than or equal to 421 AND the course commencement date is later than 1 July 2009, then the Purchasing Contract ID is the student's course commencement date for this course/curriculum concatenated with the training organisation ID of the organisation.</p>
+<p class="p">If the course commencement date is later than 1 January 2011, then (regardless of the level of education of the program) the Purchasing Contract ID is the student's course commencement date for this course/curriculum concatenated with the training organisation ID of the organisation.</p>
+<p class="p">The student's course commencement date for the program is retrieved using the F_NAT00120_CU_COURSE_COMM_DATE function.</p>
+<p class="p">The training organisation ID is retrieved by the F_GET_TRAIN_ORG_ID function.</p>
+<p class="p">If the student's record doesn't meet these level of education and commencement date requirements, then the Purchasing Contract ID remains null.</p>
+<p class="p">The F_NAT00120_CU_COURSE_COMM_DATE and F_GET_TRAIN_ORG_ID functions are described elsewhere in this list.</p>
+</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d9598e296 ">F_NAT00120_IN_​ASSOC_COURSE_ID</td>
+
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d9598e299 ">This function is used to determine if a current program is a Replacement Program for a Superseded Program and returns the Associated Course ID if it is a Replacement Program. Otherwise, it will return NULL. <p class="p">Superseded and Replacement Programs are linked through the SKRSTSP table. The record for a Replacement Program in SKASTSP page will have a value in the Associated Course ID which is what the Program Code of the Superseded Program is.</p>
+<p class="p">Given the student's PIDM, Study Path Key, and Term Code, the function searches for that record in the SKRSTSP page. The function, then returns the value of the Associated Course ID. If no record is found, then the function returns a NULL.</p>
+</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d9598e296 ">F_NAT00120_IN_​OVERRIDE_DATE</td>
+
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d9598e299 ">Used by the NAT00120 institutional academic history snapshot activities for QLD AVETMISS-compliant reporting when determining the correct value for the <span class="ph uicontrol">Purchasing Contract ID</span> field.</td>
+
+            </tr>
+
+          </tbody>
+</table>
+</div>
+
+    </div>
+
+  </div>
+
+</div></div></section>
+<section id="t-1690"><h3>Victorian VET Student Statistical reporting functions</h3><div class="content-locale-en-US content-locale-en"><div id="r_victorian_vet_student_statistical_rporting"><div class="body refbody"><p class="shortdesc">The following functions are contained in the SKKAVSV package that is used in the Victorian VET Student Statistical Reporting processes.</p>
+
+    
+<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" id="r_victorian_vet_student_statistical_rporting__r_victorian_vet_student_statistical_rporting-utbl1" class="table" frame="hsides" border="1" rules="rows"><colgroup><col style="width:39.525691699604735%"><col style="width:60.47430830039525%"></colgroup><thead class="thead" style="text-align:left;vertical-align:bottom;">
+          <tr class="row">
+            <th class="entry row-nocellborder" style="text-align:left;vertical-align:bottom;" id="d32969e42">Function Name</th>
+
+            <th class="entry row-nocellborder" style="text-align:left;vertical-align:bottom;" id="d32969e45">Purpose/Description</th>
+
+          </tr>
+
+        </thead>
+<tbody class="tbody">
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d32969e42 ">SKKAVSV.F_CALC_​COURSE_COMM_DATE</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d32969e45 ">The logic for the program (course) commencement date calculation is as follows. <p class="p">If the unit does not have an RPL grade (including cases where the grade is null) then:</p>
+<p class="p">If there is a corresponding record in attendance tracking (SKRATTR), then use the earliest start date-min (skrattr_start_date). The delivered version of the function has this attendance tracking (SKRATTR) logic available but commented out so that it can be enabled when clients are ready</p>
+<p class="p">If there is no record in SKRATTR, but there is a corresponding record in the meeting table (SSRMEET) then use the earliest start date-min (ssrmeet_start_date)</p>
+<p class="p">If there is no record in SSRMEET, but there is a record in SFRSTCR with a part of term then get the start date for that part of term on the Base Part of Term table sobptrm_start_date</p>
+<p class="p">If there is a record in SFRSTCR, but does not have a part of term, then use the start date from the Open Learning Additional Registration Information table sfrareg_start_date</p>
+<p class="p">If there is no record in SFRSTCR, then look at SHRTCKN and if the record in SHRTCKN has part of term start date populated. then use shrtckn_ptrm_start_date</p>
+<p class="p">It is anticipated that the remaining logic will be used rarely, if at all. However, it should be retained for completeness. If part of term code (shrtckn_ptrm_code) is populated, but shrtckn_ptrm_start_date is not populated, get the start date for that part of term on the Base Part of Term table - sobptrm_start_date</p>
+</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d32969e42 ">SKKAVSV.F_CALC_​COURSE_COMM_DATE (Contd)</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d32969e45 ">If the record is not in SFRSTCR but is only in SHRTCKN, and does not have a part of term, then it is unlikely that there is any record in SFRAREG, but if there is, then use the start date from the Open Learning Additional Registration Information table sfrareg_start_date. <p class="p">If none of the above works, then the record must be in SHRTCKN with no part of term start date or with a part of term that has no data in the Base Part of Term table. At this point, the only option is to use the start date of the term code from STVTERM stvterm_start_date.</p>
+<p class="p">The units are ordered by enrolment start date and the earliest date in the list is used for program (course) commencement date. The logic for the program (course) commencement date calculation is as follows.</p>
+<ul class="ul">
+              <li class="li">If the unit does not have an RPL grade (including cases where the grade is null) then:</li>
+ <li class="li">If there is a corresponding record in the Student Attendance Tracking Recording (SORSATR) table, then use the earliest meeting date-min(sorsatr_meet_date).</li>
+ <li class="li">If there is no record in SORSATR but there is a corresponding record in attendance tracking (SKRATTR), then use the earliest start date-min (skrattr_start_date)</li>
+
+              <li class="li">The delivered version of the function has this attendance tracking (SKRATTR) logic available but commented out so that it can be enabled when clients are ready</li>
+ <li class="li">If there is no record in SKRATTR, but there is a corresponding record in the meeting table (SSRMEET) then use the earliest start date-min (ssrmeet_start_date)</li>
+
+              <li class="li">If there is no record in SSRMEET, but there is a record in SFRSTCR with a part of term then get the start date for that part of term on the Base Part of Term table sobptrm_start_date.</li>
+ <li class="li">If there is a record in SFRSTCR, but does not have a part of term, then use the start date from the Open Learning Additional Registration Information table sfrareg_start_date</li>
+
+              <li class="li">If there is no record in SFRSTCR, then look at SHRTCKN and if the record in SHRTCKN has part of term start date populated. then use shrtckn_ptrm_start_date</li>
+ </ul>
+</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d32969e42 ">SKKAVSV.F_CALC_​COURSE_COMM_DATE (Contd)</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d32969e45 ">
+              <ul class="ul">
+                <li class="li">It is anticipated that the remaining logic will be used rarely, if at all. However, it should be retained for completeness</li>
+
+                <li class="li">If part of term code (shrtckn_ptrm_code) is populated, but shrtckn_ptrm_start_date is not populated, get the start date for that part of term on the Base Part of Term table - sobptrm_start_date</li>
+
+                <li class="li">If the record is not in SFRSTCR but is only in SHRTCKN, and does not have a part of term, then it is unlikely that there is any record in SFRAREG, but if there is, then use the start date from the Open Learning Additional Registration Information table sfrareg_start_date.</li>
+
+                <li class="li">If none of the above works, then the record must be in SHRTCKN with no part of term start date or with a part of term that has no data in the Base Part of Term table. At this point, the only option is to use the start date of the term code from STVTERM stvterm_start_date</li>
+
+                <li class="li">The units are ordered by enrolment start date and the earliest date in the list is used for program (course) commencement date</li>
+
+                <li class="li">RPL and Transfer Credit units are not used in the calculation of program (course) commencement date.</li>
+
+              </ul>
+
+            </td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d32969e42 ">SKKAVSV.F_CRSE_​COMM_DATE_CRN_TERM</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d32969e45 ">This function provides the CRN and term code of the unit that has been found to have the earliest enrolment start date, from the units attached to the curriculum (based on study path sequence).<p class="p">The processing logic is the same as the logic for skkavsv.f_calc_course_comm_date.</p>
+</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d32969e42 ">SKKAVSV.F_CALC_​EARLIEST_RPL_DATE</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d32969e45 ">The logic for the earliest RPL date calculation is as follows: <p class="p">If the unit has an RPL grade then:</p>
+<p class="p">Use the activity date on the Registration Audit table SFRSTCA, where the registration message indicates that this audit trail record was inserted when the RPL grade was entered, the value of sfrstca_rmsg_cde will be 'FING'</p>
+<p class="p">If the unit does not have this record in SFRSTCA, then look at the grade table in academic history SHRTCKG</p>
+<p class="p">If there is a record in SHRTCKG then take the earliest grade date shrtckg_final_grde_chg_date because this will be when the RPL was granted</p>
+<p class="p">RPL units are ordered by start date and then the earliest date is reported</p>
+</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d32969e42 ">SKKAVSV.F_CALC_PUSH</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d32969e45 ">This function is used by the ASC_STSP_SUMMARY_REG and ASC_STSP_SUMMARY_HIST activities to calculate the hours per CRN that will be summed to determine a Program Unique Supervised Hours for the student and study path. <p class="p">The function will use the attendance hours for each CRN, but if that attendance hours field is null, then the scheduled hours will be used.</p>
+<p class="p">If the CRN has a registration status that is not included in fee assessment, the hours used in the Program Unique Supervised Hours calculation will be zero.</p>
+<p class="p">If the CRN has an RPL grade, then even if it has attendance hours and scheduled hours, the hours used in the Program Unique Supervised Hours calculation will be zero</p>
+<p class="p">The function will also determine the source of the hours used in the Program Unique Supervised Hours calculation for each CRN, to assist with any data checking.</p>
+</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d32969e42 ">SKKAVSV.F_CALC_​TRANSFER_CREDIT_DATE</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d32969e45 ">If the record is a unit from Transfer Credit then: <p class="p">The acceptance date on the SHRTRAM table is the enrolment start date</p>
+<p class="p">If that field is not populated, then the start date of the effective term of the transfer credit (from STVTERM) is the enrolment start date for the unit</p>
+<p class="p">Transfer credit units are ordered by start date and then the earliest date is reported</p>
+</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d32969e42 ">SKKAVSV.F_GET_​SSRMEET_HOURS</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d32969e45 ">This function is used by the ASC_STSP_SUMMARY_REG and ASC_STSP_SUMMARY_HIST activities to calculate attendance hours using data on the Section Meeting Times Repeating Table (SSRMEET), for records where there is no data on either of the attendance tracking tables - SKRATTR and SORSATR. <p class="p">If the CRN has a start date and an end date but no meeting days, the function will count the number of weeks between the start date and end date and multiply this value by the hours per week to get an attendance hours value.</p>
+<p class="p">If the CRN has a start date and an end date and meeting days, the function will count the number of meeting days between the start date and end date, excluding any days that fall on exclusion dates documented on the Schedule Exclusion Date Repeating Table (SSREXCL) and multiple this value by the hours per week divided by the number of different days of the week that have meetings for the CRN.</p>
+<p class="p">So, if a CRN has 25 Wednesday meetings and 25 Thursday meetings for a total of 2 hours per week, the calculation will be (25+25)*2 hours per week / 2 different days of the week, - which is 50.</p>
+</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d32969e42 ">SKKAVSV.F_NAT00120_​ASSOC_COURSE_ID</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d32969e45 ">This function is used to determine if a current program is a Replacement Program for a Superseded Program and returns the Associated Course ID if it is a Replacement Program. Otherwise, it will return NULL. <p class="p">Superseded and Replacement Programs are linked through the SKRSTSP table. The record for a Replacement Program in SKASTSP form will have a value in the Associated Course ID which is what the Program Code of the Superseded Program is.</p>
+<p class="p">Given the student's PIDM, Study Path Key, and Term Code, the function searches for that record in the SKRSTSP form. The function, then returns the value of the Associated Course ID. If no record is found, then the function returns a NULL.</p>
+</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d32969e42 ">SKKAVSV.F_NAT00120_​PREV_HRS_ATTEND</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d32969e45 ">This function is used to determine the Attended Hours of a Superseded Program which is then used to reduce the Scheduled Hours of unit of study in a Replacement Program. <p class="p">The function, first determines if the current record being processed is associated with a Replacement Program. Using the current PIDM, Term Code and Study Path Sequence, it will make a call to the SKKAVSV.F_NAT00120_ASSOC_COURSE_ID function and if an Associated Course ID is returned, this implies that the current program is a Replacement one.</p>
+<p class="p">If the current program is NOT a Replacement program, it will simply return zero which means the unit of study's Scheduled Hours need not be adjusted.</p>
+<p class="p">However, if the current record being processed is a Replacement Program the following logic is then applied.</p>
+<p class="p">A search is done to determine the associated CRN for the unit of study in the Superseded Program. This is done by checking the SFRSTCR table for records that have a different study path and CRN for the current PIDM with a Term Code that's less than or equal to the Term Code for the Replacement Program. The list of CRNs and Term Code is then further filtered to pick up only the CRN that has the same concatenated Subject Code || Course Number from SSBSECT, as the Subject Code || Course Number for the unit of study in the Replacement Program.</p>
+<p class="p">With the determined CRN and Term Code for the Superseded Program, the Attended Hours for that CRN and Term Code is then calculated. The Attended Hours is determined through a hierarchy of sources.</p>
+<p class="p">The function first pulls the value from the Hours Attended field on the Attendance Roster (SFAALST) Page, (SFRSTCR_ATTEND_HR). If this is not available, get the value from the Attendance Tracking file SORSATR. If still unavailable, the function gets the value from the Attendance Tracking file SKRATTR. If all three are unavailable, NULL is returned.</p>
+</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d32969e42 ">SKKAVSV.F_SORLCUR_​CCD_INS</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d32969e45 ">For records where the curriculum start date (SORLCUR_START_DATE) is currently null, this function will update the curriculum so that the calculated program (course) commencement date is populated into the curriculum start date. <p class="p">The function mimics the non-destructive update processing that occurs when users click the Update button on a curriculum window.</p>
+<p class="p">The existing record is copied to a new record.</p>
+<p class="p">That existing record is made inactive and the end term field is populated.</p>
+<p class="p">The new record is active and current and has the start date populated.</p>
+<p class="p">If the insert is successful the function returns a value of 'Y'.</p>
+<p class="p">If SORLCUR start date is not NULL or if there is any exception the function returns a value of 'E', and a record is written to the error log table SKRELOG.</p>
+</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d32969e42 ">SKKAVSV.F_UPDATE_​SKRSTSP</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d32969e45 ">This function is used by the ASC_UPDATE_SKRSTSP activity to update/insert data into SKRSTSP using data from the SKRPSUM table. <p class="p">The function uses records in SKRPSUM where the record type is 'TL' and the effective term is the same as the runtime effective term value.</p>
+<p class="p">If there is no record in SKRSTSP for the PIDM, KEY SEQUENCE NUMBER and TERM CODE EFF, then a new record is inserted into SKRSTSP including values for Program Unique Supervised Hours and Program Supervised Teaching Activity Completion Date.</p>
+<p class="p">If there is an existing record in SKRSTSP for the PIDM, KEY SEQUENCE NUMBER and TERM CODE EFF, then the Program Unique Supervised Hours and Program Supervised Teaching Activity Completion Date values are updated for that existing record.</p>
+<p class="p">If there is an existing record in SKRSTSP for the PIDM and KEY SEQUENCE NUMBER but for an earlier TERM CODE EFF, then a new row is inserted into SKRSTSP for the runtime effective term, the existing data from the earlier effective term is copied to the new record and then the Program Unique Supervised Hours and Program Supervised Teaching Activity Completion Date values are updated using the data in the SKRPSUM table.</p>
+<p class="p">The function also populates the Study Path Utility Table (SKRSPUT) with details about whether the activity has run successfully or not.</p>
+</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d32969e42 ">F_SKRSTSP_CCD_UPD</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d32969e45 ">Inserts/updates SKRSTSP commence date using data from SKRVCCD.<p class="p">This function is used in the ASC_SV_CCD_INSERT activity.</p>
+<p class="p">Updates commencement date for all rows for the student and study path if commencement date is NULL.</p>
+<p class="p">If no data exists for the student and study path in the Additional Study Path Data Table (SKRSTSP), then insert new record into SKRSTSP table for the student, study path, and term code with the commencement date.</p>
+</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d32969e42 ">F_EXPORT_TO_​FLAT_FILE</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d32969e45 ">skkavsv.f_export_to_flat_file ('NAT00010', :directory, :NAT00010_file_name,:​academic_year, :report_period, :collection) <p class="p">skkavsv.f_export_to_flat_file ('NAT00020', :directory, :NAT00020_file_name,:​academic_year, :report_period, :collection)</p>
+<p class="p">skkavsv.f_export_to_flat_file ('NAT00030', :directory, :NAT00030_file_name,:​academic_year, :report_period, :collection)</p>
+<p class="p">skkavsv.f_export_to_flat_file ('NAT00060', :directory, :NAT00060_file_name,:​academic_year, :report_period, :collection)</p>
+<p class="p">skkavsv.f_export_to_flat_file ('NAT00080', :directory, :NAT00080_file_name,:​academic_year, :report_period, :collection)</p>
+<p class="p">skkavsv.f_export_to_flat_file ('NAT00085', :directory, :NAT00085_file_name,:​academic_year, :report_period, :collection)</p>
+<p class="p">skkavsv.f_export_to_flat_file ('NAT00090', :directory, :NAT00090_file_name,:​academic_year, :report_period, :collection)</p>
+<p class="p">skkavsv.f_export_to_flat_file ('NAT00100', :directory, :NAT00100_file_name,:​academic_year, :report_period, :collection)</p>
+<p class="p">skkavsv.f_export_to_flat_file ('NAT00120', :directory, :NAT00120_file_name,:​academic_year, :report_period, :collection)</p>
+<p class="p">skkavsv.f_export_to_flat_file ('NAT00130', :directory, :NAT00130_file_name,:​academic_year, :report_period, :collection) </p>
+</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d32969e42 ">F_EXPORT_TO_​FLAT_FILE (Contd)</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d32969e45 ">Used to export the CLOB field and save it as a flat file in a directory. This function is used to export the CLOB field data for the following tables:<div class="p">Skills Victoria Organisation File Data Export Table (SKRV010): <ul class="ul"> <li class="li">Victoria Organisation Delivery Location File Data Export Table (SKRV020)</li>
+ <li class="li">Skills Victoria Course File Data Export Table (SKRV030)</li>
+ <li class="li">Skills Victoria Module/Unit File Data Export Table (SKRV060)</li>
+
+              <li class="li">AVETMISS Client File Data Export Table (SKRV080)</li>
+ <li class="li">AVETMISS Client Postal File Data Export Table (SKRV085)</li>
+ <li class="li">AVETMISS Disability File Data Export Table (SKRV090)</li>
+ <li class="li">AVETMISS Prior Education File Data Collector Table (SKRV100)</li>
+ <li class="li">Skills Victoria Enrolment File Data Export Table (SKRV120)</li>
+ <li class="li">AVETMISS Qualification Completed Data Export Table (SKRV130)</li>
+
+              </ul>
+Parameters such as activity name, directory name, flat file name, academic year, report period, and collection code are added to the function call. Users can nominate the file name and the name of the directory at run-time, and the function creates a flat file for a nominated academic year, report period, and collection code. This function is used in all the new SPOOL activities.</div>
+</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d32969e42 ">F_NAT00080_POSTCODE</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d32969e45 ">This function is used by the ASC_SV_SNA_NAT0080 activity, because the reduction in source tables for that activity made the mapping for the Postcode field quite complex. <p class="p">It checks the nation of the student's residential address against the values listed for the HOME-NATN system parameter.</p>
+<p class="p">If the nation of the student's residential address is not null AND does not match any value listed for the HOME-NATN system parameter, then the Postcode is reported as 'OSPC'.</p>
+<p class="p">If the nation of the student's residential address is null, or if it is not null AND does match a value listed for the HOME-NATN system parameter, but the student's student type or residence code or rate code identifies them as an international student, then the Postcode is reported as 'OSPC'.</p>
+<p class="p">If the student's student type matches a value listed for the INTERNATIONAL-STYP-CODE system parameter, this identifies them as an international student.</p>
+<p class="p">If the student's residence code matches a value listed for the INTERNATIONAL-RESD-CODE system parameter, this identifies them as an international student.</p>
+<p class="p">If the student's rate matches a value listed for the INTERNATIONAL-RATE-CODE system parameter, this identifies them as an international student.</p>
+<p class="p">Otherwise the Postcode is reported as the postcode (SPRADDR_ZIP) of the student's residential address.</p>
+</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d32969e42 ">F_NAT00120_​CU_ASSOC_COURSE</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d32969e45 ">skkavsv.f_nat00120_cu_assoc_course(:academic_year, :​report_period, sorlcur_program) <p class="p">Returns the associated course ID for records in the NAT00120_CU snapshot activity.</p>
+<p class="p">The function first checks whether the student's program is attached to a course record on SKATRCO that has a Recognition Code that matches the value of the SKILL-SET-RECOGNITION-CODE system parameter, using system parameter rules for the current academic year and a course record on SKATRCO for the maximum effective term that is valid for the academic year and report period.</p>
+<p class="p">If the Recognition code matches a value for SKILL-SET-RECOGNITION-CODE, then the Associated Course Identifier will be the value in the Associated Course ID field on SKATRCO for the course record matching the program code for the maximum effective term that is valid for the academic year and report period. If that Associated Course ID field on SKATRCO is null, then null will be returned.</p>
+<p class="p">If the Recognition code does not match a value for SKILL-SET-RECOGNITION-CODE, then the Associated Course Identifier will be the value in the National ID field on SKATRCO for the course record matching the program code for the maximum effective term that is valid for the academic year and report period. If that National ID field on SKATRCO is null, then program code of the student's active, current, learner curriculum will be returned.</p>
+</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d32969e42 ">F_NAT00120_​CU_CONCESSION_ID</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d32969e45 ">SKKAVSV.f_nat00120_cu_concession_id(sfrstcr_pidm, sfrstcr_ptrm_code, sfrstcr_crn, sfrstcr_term_code) <p class="p">Returns the fee exemption/concession status code for records in the NAT00120_CU - snapshot activity. This function is used in the ASC_SV_SNA_NAT00120_CU snapshot activity, and uses data on the Concession Details Form (SKACONC)</p>
+<div class="p">The function will return the concession type value for the student's most recent concession record on SKACONC where the record: <ul class="ul">
+              <li class="li">Is active</li>
+ <li class="li">Has been verified</li>
+ </ul>
+</div>
+<div class="p">Has a start date that is either: <ul class="ul"> <li class="li">Earlier than or equal to the start date of the CRN part of term or</li>
+ <li class="li">Earlier than or equal to the open learning registration start date of the CRN or</li>
+ <li class="li">Null</li>
+ </ul>
+</div>
+<div class="p">Has an expiry date that is either<ul class="ul"> <li class="li">Later than or equal to the end date of the CRN part of term or</li>
+ <li class="li">Later than or equal to the completion date of the CRN or</li>
+ <li class="li">Null</li>
+
+              </ul>
+</div>
+<p class="p">Where there is more than one active, verified record that either has start and expiry dates null or where the CRN part of term or open learning registration dates are within the range of the concession start and expiry dates, then the record with the most recent consent date will be used.</p>
+<p class="p">If using consent date still doesn't isolate a unique record, then the record with the highest (maximum) sequence number will be used. (Note, the sequence number does not display on the SKACONC form but records are sorted by sequence number).</p>
+</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d32969e42 ">F_NAT00120_CU_​DEL_MODE_ID</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d32969e45 ">SKKAVSV.f_nat00120_cu_del_mode_id (:ACADEMIC_YEAR, :REPORT_PERIOD, ssbsect_sess_code, sfrstcr_stsp_key_sequence, sfrstcr_pidm, sorlcur_term_code, sgbstdn_sess_code, ssbsect_insm_code) <p class="p">Returns the delivery mode ID for the NAT00120 current unrolled snapshot activity.</p>
+<p class="p">The function uses the Instructional Method of the CRN (on SSASECT) and if that is blank, then the Session of the CRN (also on SSASECT) is used. If the Session of the CRN is also blank, then the Session on the student's study path (SGRSTSP) is used, and if that is also null, then the Session on the student's general learner record (SGBSTDN) is used.</p>
+</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d32969e42 ">F_NAT00120_CU_​TUITION_FEE</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d32969e45 ">SKKAVSV.f_nat00120_cu_tuition_fee (:academic_year, NVL(sorlcur_rate_code,sgbstdn_rate_code), sfrstcr_pidm, sfrstcr_crn, sfrstcr_term_code, scbcrse_cont_hr_low) <p class="p">Returns the tuition fee per hour for each CRN in which the student is enrolled, as a VARCHAR2 value of 4 characters.</p>
+<p class="p">CRNs are attached to LEARNER curriculum records through study path.</p>
+<p class="p">If the rate code for a LEARNER curriculum is listed as a value for the FEE-FOR-SERVICE-FUND-CODE system parameter, then the Client tuition fee will be null.</p>
+<p class="p">If the rate code for a LEARNER curriculum is not listed as a value for the FEE-FOR-SERVICE-FUND-CODE system parameter, then the Client tuition fee will be calculated by summing the amounts of any tuition charges for the CRN, student (PIDM) and term code. Tuition charges are those records on the student's account that are for detail codes that have a category of 'TUI', are charge detail codes and are active.</p>
+<p class="p">This summed amount is then divided by the scheduled hours for the CRN. The scheduled hours are first picked up from the contact hours for the CRN on the Section Detail table (SSBSECT). If that field is null, then the scheduled hours are picked up from the Low Contact Hours for the unit of study on the Course Detail table (SCBCRSE).</p>
+<p class="p">If the selected scheduled hours value is zero, then the summed tuition amount is divided by 1.</p>
+<p class="p">If the result from this calculation is greater than or equal to 99.99, then the Client tuition fee will be 99.99.</p>
+<p class="p">If the result from this calculation is less than 99.99, then the Client tuition fee will be reported as that result.</p>
+<p class="p">Finally, the number is converted to VARCHAR2 format, using LPAD and TO_CHAR.</p>
+</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d32969e42 ">F_NAT00120_​DELIVERY_LOC_ID</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d32969e45 ">skkavsv.f_nat00120_delivery_loc_id (sfrstcr_pidm, skrrept_acyr_code, skrrept_report_period, sfrstcr_camp_code, sfrstcr_stsp_key_sequence, <p class="p">NVL(ssbsect_insm_code,ssbsect_sess_code), NVL(sorlcur_site_code,sgbstdn_site_code))</p>
+<p class="p">Used in several activities to calculate the delivery location identifier using location mapping rules.</p>
+<p class="p">In the NAT00120_CU snapshot activity, the function finds records on the Location Mapping Rules Form (SKARLOC) where the campus code matches the campus of each CRN. The mapping rules must be for the AVETMISS-REP-LOC report collection and for an academic year that is valid for the term of the CRN.</p>
+<p class="p">If there is only one rule for the matching campus code, and if on that rule on SKARLOC both Instructional Method and Student Location are blank - then the matching Delivery Location code has been found</p>
+<p class="p">If there are multiple rules for the matching campus code, then this means that there are rules where Instructional Method and Student Location are not blank</p>
+<p class="p">The Instructional Method on SKARLOC is compared first to the Instructional Method of the CRN (on SSASECT) and if that is blank, then the Instructional Method on SKARLOC is compared to the Session of the CRN (also on SSASECT). If the Session of the CRN is also blank, then the Instructional Method on SKARLOC is compared to the Session on the student's study path (SGRSTSP), and if that is also null, to the Session on the student's general learner record (SGBSTDN)</p>
+<p class="p">If there are multiple rules for the matching campus and instructional method, then the Student Location is used to select the correct Delivery Location for this student and CRN.</p>
+<p class="p">If the student has a student attribute and if that student attribute is in the string of values for the VET-INTERSTATE system parameter and if the student's record on SGASADD is for a term code that is effective for this CRN. Then the function will retrieve the Location code where the Student Location matches the student's attribute.</p>
+</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d32969e42 ">F_NAT00120_​DELIVERY_LOC_ID (Contd)</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d32969e45 ">If the student's attribute doesn't match a rule on SKARLOC, or isn't listed in the VET-INTERSTATE system parameter, or if the effective term of the student attribute is for a later term than the CRN, or if the student doesn't have any student attributes, then the function compares the student's Site Code with the Student Location value from SKARLOC. <p class="p">First, the function compares the Site Code from the LEARNER curriculum with the Student Location value. If a match is found, then that Delivery Location Code is used.</p>
+<p class="p">If the Site Code on the LEARNER curriculum is null or doesn't match any Student Location, then the function compares the Site Code on SGBSTDN (viewed on the first tab of SGASTDN) to the Student Location value. If a match is found, then that Delivery Location Code is used.</p>
+<p class="p">If there isn't a row for the matching campus and instructional method where student location is blank - then the function is not able to find a matching delivery location on SKARLOC and will now look at SKRTDLV (the table behind the Delivery Locations tab on the SKATORG form.</p>
+<p class="p">When the function looks on SKRTDLV, if there is a record that is effective for the term of the CRN where the campus code matches the campus of the CRN, then the Delivery Location code of that record will be returned.</p>
+<p class="p">If the function cannot find a record for the matching campus on SKRTDLV either, then Delivery Location will be null for the CRN in the ASC_VET_SNA_NAT00120_CU snapshot.</p>
+</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d32969e42 ">F_NAT00120_CU_​ELIG_EXEMPT_IND</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d32969e45 ">skkavsv.f_nat00120_cu_elig_exempt_ind(:academic_year, :​report_period, sgbstdn_prac_code, sfrstcr_stsp_key_sequence, sfrstcr_pidm, sorlcur_term_code) <p class="p">Returns the eligibility exemption indicator for records in the NAT00120_CU snapshot activity.</p>
+<p class="p">The function looks for a study path (SGRSTSP) record for the student, where the study path key sequence number matches the key sequence number of the curriculum and the study path term is effective for the report period and academic year and the SKILLS-VIC report collection - based on rules on SKAREPT.</p>
+<p class="p">If a matching study path record is found, then the function returns the value of the Practical Training code (SGRSTSP_PRAC_CODE) on that study path</p>
+<p class="p">If the study path Practical Training code is null, or if the stu-dent does not have any study path, then the function returns the value of the Practical Training code on the General Learner record (SGBSTDN_PRAC_CODE)</p>
+</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d32969e42 ">F_NAT00120_​CU_PURCH_CONT_ID</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d32969e45 ">skkavsv.f_nat00120_cu_purch_cont_id(:ACADEMIC_YEAR, :​REPORT_PERIOD, spriden_pidm, sfrstcr_crn, sorlcur_program, sorlcur_key_seqno, ​sorlcur_rate_code, sgbstdn_rate_code, sorlcur_start_date, sorlcur_camp_code, sgbstdn_camp_code) <p class="p">Returns the purchasing contract ID for records in the NAT00120_CU snapshot activity. This function is used by the ASC_SV_SNA_NAT00120_CU snapshot activity to return a purchasing contract ID for those students who have a funding source identifier that allows funding to be claimed.</p>
+<p class="p">Concatenates the training organisation ID with the four character year of the student's course commencement date and the resulting value has to fit within 12 characters. A training organisation ID can be up to 10 characters in length, which usually means there are leading zeros or leading spaces. To ensure that purchasing contract ID values are no longer than 12 characters, this function was updated to ensure that only the last 8 characters of any 10 character training organisation ID are concatenated to the year of the student's course commencement date.</p>
+<p class="p">First, the function compares the student's rate code with mapping rules on SKARMAP to determine the corresponding National Funding Source Identifier. Then this National Funding Source Identifier value is compared with the list of values for the CLAIMABLE-NATIONAL-FUND-CODE system parameter.</p>
+<p class="p">If the National Funding Source Identifier does not match any of the values listed for the CLAIMABLE-NATIONAL-FUND-CODE system parameter, then the Purchasing Contract ID will remain null.</p>
+<p class="p">If the National Funding Source Identifier matches one of the values listed for the CLAIMABLE-NATIONAL-FUND-CODE system parameter, then the function checks the level of education of the program on the student's curriculum, and the student's course commencement date for that program.</p>
+</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d32969e42 ">F_NAT00120_​CU_PURCH_CONT_ID (Contd)</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d32969e45 ">If the level of education of the program is less than or equal to 421 AND the course commencement date is later than 1 July 2009, then the Purchasing Contract ID is the student's course commencement date for this course/curriculum concatenated with the training organisation ID of the organisation.<p class="p">If the course commencement date is later than 1 January 2011, then (regardless of the level of education of the program) the Purchasing Contract ID is the student's course commencement date for this course/curriculum concatenated with the training organisation ID of the organisation.</p>
+<p class="p">The student's course commencement date for the program is retrieved using the F_NAT00120_CU_COURSE_COMM_DATE function.</p>
+<p class="p">The training organisation ID is retrieved by the F_GET_TRAIN_ORG_ID function.</p>
+<p class="p">If the student's record doesn't meet these level of education and commencement date requirements, then the Purchasing Contract ID remains null.</p>
+<p class="p">The F_NAT00120_CU_COURSE_COMM_DATE and F_GET_TRAIN_ORG_ID functions are described elsewhere in this list.</p>
+</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d32969e42 ">F_NAT00120_​CU_STUDY_REASON</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d32969e45 ">skkavsv.f_nat00120_cu_study_reason(:academic_year, :​report_period, sgbstdn_capl_code, sfrstcr_stsp_key_sequence, ​sfrstcr_pidm, sorlcur_term_code) <p class="p">Returns the study reason ID for records in the NAT00120_CU - snapshot activity.</p>
+<p class="p">The function looks for a study path (SGRSTSP) record for the student, where the study path key sequence number matches the key sequence number of the curriculum and the study path term is effective for the report period and academic year and the SKILLS-VIC report collection - based on rules on SKAREPT.</p>
+<p class="p">If a matching study path record is found, then the function returns the value of the Career Plan code (SGRSTSP_CAPL_CODE) on that study path</p>
+<p class="p">If the study path Career Plan code is null, or if the student does not have any study path, then the function returns the value of the Career Plan code on the General Learner record (SGBSTDN_CAPL_CODE)</p>
+<p class="p">If the Career Plan field is also null on the General Learner record, the Study Reason is defaulted to '@@'</p>
+</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d32969e42 ">F_NAT00120_​IN_CONCESSION_ID</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d32969e45 ">skkavsv.f_nat00120_in_concession_id(shrtckn_ptrm_end_date, ​shrtckn_ptrm_start_date, shrtckn_pidm, shrtckn_crn, shrtckn_term_code) <p class="p">Returns the fee exemption/concession status code for records in the NAT00120_IN and NAT00120_UN snapshot activities</p>
+<p class="p">This function is used in the ASC_SV_SNA_NAT00120_IN snapshot activity, and uses data on the Concession Details form (SKACONC)</p>
+<div class="p">The function will return the concession type value for the student's most recent concession record on SKACONC where the record: <ul class="ul">
+              <li class="li">Is active</li>
+ <li class="li">Has been verified</li>
+ </ul>
+</div>
+<div class="p">Has a start date that is either: <ul class="ul"> <li class="li">Earlier than or equal to the start date of the CRN part of term or</li>
+ <li class="li">Earlier than or equal to the open learning regis-tration start date of the CRN or</li>
+ <li class="li">Null</li>
+ </ul>
+</div>
+<div class="p">Has an expiry date that is either<ul class="ul"> <li class="li">Later than or equal to the end date of the CRN part of term or</li>
+ <li class="li">Later than or equal to the completion date of the CRN or</li>
+ <li class="li">Null</li>
+
+              </ul>
+</div>
+<p class="p">Where there is more than one active, verified record with either start and expiry dates null or where the CRN part of term or open learning registration dates are within the range of the concession start and expiry dates, then the record with the highest (maximum) sequence number will be used. (Note, the sequence number does not display on the SKACONC form but records are sorted by sequence number).</p>
+</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d32969e42 ">F_NAT00120_​IN_DEL_MODE_ID</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d32969e45 ">skkavsv.f_nat00120_in_del_mode_id(:academic_year, :​report_period, shrtckn_sess_code, shrtckn_pidm, skrrept_term_code, ​sorlcur_program, ssbsect_insm_code, sgbstdn_sess_code, sorlcur_key_seqno, sorlcur_term_code) <p class="p">Returns the delivery mode ID for records in the NAT00120_IN and NAT00120_UN snapshot activities.</p>
+<p class="p">The function uses the key sequence number of the LEARNER curriculum and compares it to the study path sequence number of the CRN in academic history if the session of the study path is needed to determine the delivery mode of the CRN.</p>
+<p class="p">The function uses the Instructional Method of the CRN (on SSASECT) and if that is blank or if the CRN in Academic History does not have a matching record in SSASECT, then the Session of the CRN (SHRTCKN) is used. If the Session of the CRN is also blank, then the Session on the student's study path (SGRSTSP) is used, and if that is also null, the Session on the student's general learner record (SGBSTDN) is used.</p>
+</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d32969e42 ">F_NAT00120_​IN_DELIVERY_LOC_ID</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d32969e45 ">skkavsv.f_nat00120_in_delivery_loc_id(:academic_year, :​report_period, sorlcur_pidm, sorlcur_program,skrrept_term_code, shrtckn_camp_code,sgbstdn_camp_code, shrtckn_sess_code,sgbstdn_site_code, sorlcur_site_code, sorlcur_key_seqno, sorlcur_camp_code) <p class="p">Supplements the generic delivery location function to return the delivery location identifier for records in the NAT00120_IN and NAT00120_UN snapshot activities. The function uses the key sequence number of the LEARNER curriculum and compares it to the study path sequence number of the CRN in academic history to then determine the delivery location of the CRN.</p>
+</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d32969e42 ">F_NAT00120_​IN_ELIG_EXEMPT_IND</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d32969e45 ">skkavsv.f_nat00120_in_elig_exempt_ind(:​academic_year, :report_period, sgbstdn_prac_code, spriden_pidm, sorlcur_term_code, sorlcur_program, sorlcur_key_seqno) <p class="p">Returns the eligibility exemption indicator for the NAT00120_IN and NAT00120_UN snapshot activities.</p>
+<p class="p">The function uses the key sequence number of the LEARNER curriculum and compares it to the study path sequence number of the CRN in academic history to then determine the eligibility exemption identifier of the CRN.</p>
+<p class="p">The function looks for a study path (SGRSTSP) record for the student, where the study path key sequence number matches the key sequence number of the curriculum and the study path term is effective for the report period and academic year and the SKILLS-VIC report collection - based on rules on SKAREPT.</p>
+<p class="p">If a matching study path record is found, then the function returns the value of the Practical Training code (SGRSTSP_PRAC_CODE) on that study path</p>
+<p class="p">If the study path Practical Training code is null, or if the stu-dent does not have any study path, then the function returns the value of the Practical Training code on the General Learner record (SGBSTDN_PRAC_CODE)</p>
+</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d32969e42 ">F_NAT00120_​IN_NAT_OUTCOME</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d32969e45 ">skkavsv.f_nat00120_in_nat_outcome(:academic_year, shrtckn_ptrm_end_date, shrtckn_pidm, shrtckn_seq_no, shrtckn_term_code, shrtckn_crn, shrtckg_grde_code_final, shrtckg_term_code, shrtckl_levl_code, shrtckg_incomplete_ext_date, shrtckg_final_grde_chg_date) <p class="p">This function is used in the ASC_SV_SNA_NAT00120_IN and ASC_SV_SNA_NAT00120_UN snapshot activities to translate a local grade code to the appropriate Outcome Identifier - National value.</p>
+<p class="p">First the function compares the student's grade with the list of grade codes for the SUPERSEDED-GRADE-CODE system parameter.</p>
+<p class="p">If the grade code matches one of the SUPERSEDED-GRADE-CODE values, then the Outcome Identifier - National will be '61' Superseded subject.</p>
+<p class="p">The function will then check the registration status of the student's registration in the unit (CRN) and if that registration status is a withdrawn status, then regardless of any grade that the student may have received, the Outcome Identifier - National will be '40' - Withdrawn.</p>
+</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d32969e42 ">F_NAT00120_​IN_NAT_OUTCOME (Contd)</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d32969e45 ">Next, the function compares the student's grade with the list of grade codes for the RPL-GRADE-CODE system parameter.<p class="p">If the grade code matches one of the RPL-GRADE-CODE values, then the function will use mapping rules from SKARMAP to find the NAT-OUTCOME value that corresponds to the RPL grade.</p>
+<p class="p">If the grade code does not match any of the RPL-GRADE-CODE values, the function looks up the grade code on the SHAGRDE form to find the record where the grade code matches the latest grade for the student for the CRN, the level code matches the primary level code for the student for the CRN, and the term code is the latest term code that is earlier than or equal to the term code for the student for the CRN.</p>
+<div class="p">For the record on SHAGRDE:<ul class="ul">
+              <li class="li">When the Attempted Indicator, Completed Indicator and Passed Indicator are all 'Y', then the function re-turns a value of '20'</li>
+ <li class="li">When the Attempted Indicator is 'Y' and the Completed Indicator, Passed Indicator and Incomplete Indicator are all 'N', then the function returns a value of '30'</li>
+
+              <li class="li">When the Attempted Indicator is 'Y', the Completed Indicator, the Passed Indicator are both 'N' and the Incomplete Indicator is 'Y', then the function returns a value of '70'.</li>
+ </ul>
+If the function cannot calculate a value, then it will return '70' as a default.</div>
+</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d32969e42 ">F_NAT00120_​IN_OTHER_FEE</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d32969e45 ">This function is used by the ASC_SV_SNA_NAT00120_CU, ASC_SV_SNA_NAT00120_IN and ASC_SV_SNA_NAT00120_UN activities. <p class="p">It was added to calculate the value for the Client Fees - Other field by summing the amounts for charges attached to the study path in the current reporting year, with a detail code that is in the FEE category.</p>
+</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d32969e42 ">F_NAT00120_​IN_STUDY_REASON</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d32969e45 ">skkavsv.f_nat00120_in_study_reason(:academic_year, :​report_period, sgbstdn_capl_code, shrtckn_pidm, sorlcur_program, skrrept_term_code, sorlcur_key_seqno, sorlcur_term_code) <p class="p">Returns the study reason ID for the NAT00120_IN and NAT00120_UN snapshot activities.</p>
+<p class="p">The function uses the key sequence number of the LEARNER curriculum and compares it to the study path sequence number of the CRN in academic history to then determine the correct study reason for the CRN.</p>
+<p class="p">The function looks for a study path (SGRSTSP) record for the student, where the study path key sequence number matches the key sequence number of the curriculum and the study path term is effective for the report period and academic year and the SKILLS-VIC report collection - based on rules on SKAREPT.</p>
+<p class="p">If a matching study path record is found, then the function returns the value of the Career Plan code (SGRSTSP_CAPL_CODE) on that study path</p>
+<p class="p">If the study path Career Plan code is null, or if the student does not have any study path, then the function returns the value of the Career Plan code on the General Learner record (SGBSTDN_CAPL_CODE).</p>
+</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d32969e42 ">F_NAT00120_​TR_COURSE_COMM_DATE</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d32969e45 ">skkavsv.f_nat00120_tr_course_comm_date(spriden_pidm, shrtrce_trit_seq_no, shrtrce_seq_no, shrtrce_tram_seq_no, :report_period, :academic_year, shrdgmr_stsp_key_sequence) <p class="p">This function is used in the ASC_SV_SNA_NAT00120_TR snapshot activity to populate the course commencement date for module/unit records that are retrieved from transfer credit tables.</p>
+<p class="p">The function uses the LEARNER curriculum record where the key sequence value of the LEARNER curriculum matches the study path key sequence of the degree record (SHRDGMR) that was created when the LEARNER curriculum was rolled to OUTCOME.</p>
+<p class="p">If the student is in a Module Only enrolment, the Enrolment Activity State Date mapping is used for Course Commencement Date, otherwise the value from SORLCUR_START_DATE is used. A Module Only enrolment is one where the level of the curriculum matches a value listed for the MODULE-ENROL-LEVEL system parameter.</p>
+</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d32969e42 ">F_NAT00120_​TR_DELIVERY_LOC_ID</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d32969e45 ">skkavsv.f_nat00120_tr_delivery_loc_id(spriden_pidm, shrtrce_trit_seq_no, shrtrce_tram_seq_no, shrtrce_seq_no, sorlcur_camp_code, shrdgmr_camp_code, (SELECT sgbstdn_sess_code FROM sgbstdn WHERE sgbstdn_pidm = shrtrce_pidm AND sgbstdn_term_code_eff = <pre class="pre codeblock"><code>(SELECT MAX (sgbstdn_term_code_eff) FROM sgbstdn
+WHERE sgbstdn_pidm = shrtrce_pidm
+AND sgbstdn_term_code_eff &lt;= (select max(skrrept_term_code)
+from skrrept where skrrept_report_period = :report_period
+and skrrept_acyr_code = :academic_year
+and NVL (skkrept.fn_check_sys_param ('SKILLS-VIC',NULL,
+skrrept_report_collection,:academic_year),'N') = 'Y'))
+), sorlcur_site_code, :academic_year, :report_period, sorlcur_program)</code></pre><p class="p">Supplements the generic delivery location function to return delivery location identifier for records in the NAT00120_TR snapshot activity.</p>
+<p class="p">The function uses the LEARNER curriculum record where the key sequence value of the LEARNER curriculum matches the study path key sequence of the degree record (SHRDGMR) that was created when the LEARNER curriculum was rolled to OUTCOME.</p>
+</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d32969e42 ">F_NAT00120_​TR_ELIG_EXEMPT_IND</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d32969e45 ">skkavsv.f_nat00120_tr_elig_exempt_ind​(spriden_pidm,:report_period,:academic_year, (select sgbstdn_prac_code from sgbstdn ​where sgbstdn_pidm = shrtrce_pidm AND sgbstdn_term_code_eff = <pre class="pre codeblock"><code>(SELECT MAX (sgbstdn_term_code_eff)
+FROM sgbstdn
+WHERE sgbstdn_pidm = shrtrce_pidm
+AND sgbstdn_term_code_eff &lt;= (select max(skrrept_term_code)
+from skrrept
+where skrrept_report_period = :report_period
+and skrrept_acyr_code = :academic_year
+and NVL (skkrept.fn_check_sys_param ('SKILLS-VIC',
+NULL,
+skrrept_report_collection,
+:academic_year),
+'N') = 'Y'))),sorlcur_program, shrdgmr_stsp_key_sequence)</code></pre><p class="p">Returns the eligibility exemption indicator for records in the NAT00120_TR snapshot activity.</p>
+<p class="p">The function uses the LEARNER curriculum record where the key sequence value of the LEARNER curriculum matches the study path key sequence of the degree record (SHRDGMR) that was created when the LEARNER curriculum was rolled to OUTCOME.</p>
+<p class="p">The function looks for a study path (SGRSTSP) record for the student, where the study path key sequence number matches the key sequence number of the curriculum and the study path term is effective for the report period and academic year and the SKILLS-VIC report collection - based on rules on SKAREPT.</p>
+<p class="p">If a matching study path record is found, then the function returns the value of the Practical Training code (SGRSTSP_PRAC_CODE) on that study path.</p>
+<p class="p">If the study path Practical Training code is null, or if the student does not have any study path, then the function returns the value of the Practical Training code on the General Learner record (SGBSTDN_PRAC_CODE).</p>
+</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d32969e42 ">F_NAT00120_​TR_MOD_ENR_ST_END </td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d32969e45 ">skkavsv.f_nat00120_tr_mod_enr_st_end(spriden_pidm, shrtrce_trit_seq_no, shrtrce_tram_seq_no) <p class="p">This function is used in the ASC_SV_SNA_NAT00120_TR snapshot activity to populate the module enrolment start date and the module enrolment end date for module/unit records that are retrieved from transfer credit tables. Note: because this is transfer credit, the same date value is used for both the module enrolment start date and the module enrolment end date.</p>
+<p class="p">The function looks for a value in the Transfer Attendance Period Acceptance Date (SHRTRAM_ACCEPTANCE_DATE) for the student, where the transfer institution sequence number and the transfer attendance period sequence number match the corresponding sequence numbers of the transfer equivalence (SHRTRCE) record and the transfer equivalence term is effective for the report period and academic year and the SKILLS-VIC report collection - based on rules on SKAREPT.</p>
+<p class="p">If the Transfer Attendance Period Acceptance Date (SHRTRAM_ACCEPTANCE_DATE) is not populated, the function will return the start date of the term code that matches the effective term of the transfer attendance period (SHRTRAM_TERM_CODE_ENTERED) for the student, where the transfer institution sequence number and the transfer attendance period sequence number match the corresponding sequence numbers of the transfer equivalence (SHRTRCE) record and the transfer equivalence term is effective for the report period and academic year and the SKILLS-VIC report collection - based on rules on SKAREPT.</p>
+</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d32969e42 ">F_NAT00120_​TR_NAT_FUND</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d32969e45 ">skkavsv.f_nat00120_tr_nat_fund(spriden_pidm, :report_period, :​academic_year, sorlcur_program, NVL(sorlcur_rate_code, ​(select sgbstdn_rate_code from sgbstdn where sgbstdn_pidm = shrtrce_pidm AND sgbstdn_term_code_eff = <pre class="pre codeblock"><code>(SELECT MAX (sgbstdn_term_code_eff)
+FROM sgbstdn
+WHERE sgbstdn_pidm = shrtrce_pidm
+AND sgbstdn_term_code_eff &lt;= (select max(skrrept_term_code)
+from skrrept
+where skrrept_report_period = :report_period
+and skrrept_acyr_code = :academic_year
+and NVL (skkrept.fn_check_sys_param ('SKILLS-VIC',
+NULL,
+skrrept_report_collection,
+:academic_year),
+'N') = 'Y')))), shrdgmr_stsp_key_sequence)</code></pre><p class="p">The function uses the LEARNER curriculum record where the key sequence value of the LEARNER curriculum matches the study path key sequence of the degree record (SHRDGMR) that was created when the LEARNER curriculum was rolled to OUTCOME.</p>
+<p class="p">This function particularly retrieves sorlcur_rate_code from that LEARNER curriculum record.</p>
+<p class="p">The LEARNER curriculum is the active, current LEARNER curriculum where the curriculum term is the latest (maximum) curriculum term that is effective for the re-port period and academic year and the SKILLS-VIC report collection - based on rules on SKAREPT, and where the curriculum end term (sorlcur_term_code_end) is null.</p>
+<p class="p">The function uses rules on the Report Element Mapping form (SKARMAP) to translate the rate code to a National Fund code, using the element code SKILLS_VIC_FUND.</p>
+</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d32969e42 ">F_NAT00120_TR_​OTHER_FEE</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d32969e45 ">skkavsv.f_nat00120_tr_other_fee​(sorlcur_pidm,shrdgmr_stsp_key_sequence,:​ACADEMIC_YEAR,:REPORT_PERIOD) <p class="p">This function is used by the ASC_SV_SNA_NAT00120_TR activity.</p>
+<p class="p">It was added to calculate the value for the Client Fees - Other field by summing the amounts for charges attached to the study path in the current reporting year, with a detail code that is in the FEE category.</p>
+</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d32969e42 ">F_NAT00120_​TR_PURCH_​CONT_ID</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d32969e45 ">This function is used by the ASC_SV_SNA_NAT00120_TR snapshot activity to return a purchasing contract ID for those students who have a funding source identifier that allows funding to be claimed. <p class="p">skkavsv.f_nat00120_tr_purch_cont_id(spriden_pidm, shrtrce_trit_seq_no, shrtrce_tram_seq_no, shrtrce_seq_no, shrtrce_term_code_eff, :report_period, :academic_year, sorlcur_program, sorlcur_rate_code, sorlcur_camp_code, shrdgmr_stsp_key_sequence)</p>
+<p class="p">This function concatenates the training organisation ID with the four character year of the student's course commencement date and the resulting value has to fit within 12 characters. A training organisation ID can be up to 10 characters in length, which usually means there are leading zeros or leading spaces. To ensure that purchasing contract ID values are no longer than 12 characters, this function was updated to ensure that only the last 8 characters of any 10 character training organisation ID are concatenated to the year of the student's course commencement date.</p>
+<p class="p">The function uses the LEARNER curriculum record where the key sequence value of the LEARNER curriculum matches the study path key sequence of the degree record (SHRDGMR) that was created when the LEARNER curriculum was rolled to OUTCOME.</p>
+<p class="p">This function particularly retrieves sorlcur_rate_code from that LEARNER curriculum record.</p>
+<p class="p">The LEARNER curriculum is the active, current LEARNER curriculum where the curriculum term is the latest (maximum) curriculum term that is effective for the report period and academic year and the SKILLS-VIC report collection - based on rules on SKAREPT, and where the curriculum end term (sorlcur_term_code_end) is null.</p>
+</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d32969e42 ">F_NAT00120_​TR_PURCH_​CONT_ID (Contd)</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d32969e45 ">Next, the function compares the student's rate code with mapping rules on SKARMAP to determine the corresponding National Funding Source Identifier.<p class="p">Then this National Funding Source Identifier value is compared with the list of values for the CLAIMABLE-NATIONAL-FUND-CODE system parameter.</p>
+<p class="p">If the National Funding Source Identifier does not match any of the values listed for the CLAIMABLE-NATIONAL-FUND-CODE system parameter, then the Purchasing Contract ID will remain null.</p>
+<p class="p">If the National Funding Source Identifier matches one of the values listed for the CLAIMABLE-NATIONAL-FUND-CODE system parameter, then the function checks the level of education of the program on the student's curriculum, and the student's course commencement date for that program.</p>
+<p class="p">If the level of education of the program is less than or equal to 421 AND the course commencement date is later than 1 July 2009, then the Purchasing Contract ID is the student's course commencement date for this course/curriculum concatenated with the training organisation ID of the organisation.</p>
+<p class="p">If the course commencement date is later than 1 January 2011, then (regardless of the level of education of the program) the Purchasing Contract ID is the student's course commencement date for this course/curriculum concatenated with the training organisation ID of the organisation.</p>
+<p class="p">The student's course commencement date for the program is retrieved using the F_NAT00120_TR_COURSE_COMM_DATE function.</p>
+<p class="p">The training organisation ID is retrieved by the F_GET_TRAIN_ORG_ID function.</p>
+<p class="p">If the student's record doesn't meet these level of education and commencement date requirements, then the Purchasing Contract ID remains null. </p>
+<p class="p">The F_NAT00120_TR_COURSE_COMM_DATE and F_GET_TRAIN_ORG_ID functions are described elsewhere in this list.</p>
+</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d32969e42 ">F_NAT00120_​TR_RATE_CODE</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d32969e45 ">skkavsv.f_nat00120_tr_rate_code(spriden_pidm, :report_period, :​academic_year, sorlcur_program, sorlcur_rate_code, shrdgmr_stsp_key_sequence) <p class="p">The function uses the LEARNER curriculum record where the key sequence value of the LEARNER curriculum matches the study path key sequence of the degree record (SHRDGMR) that was created when the LEARNER curriculum was rolled to OUTCOME.</p>
+<p class="p">This function particularly retrieves sorlcur_rate_code from that LEARNER curriculum record.</p>
+<p class="p">The LEARNER curriculum is the active, current LEARNER curriculum where the curriculum term is the latest (maximum) curriculum term that is effective for the report period and academic year and the SKILLS-VIC report collection - based on rules on SKAREPT, and where the curriculum end term (sorlcur_term_code_end) is null</p>
+<p class="p">If the rate code is null on the curriculum, the function will return the rate code on the General Learner record (SGBSTDN_RATE_CODE)</p>
+</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d32969e42 ">F_NAT00120_​TR_SCHED_HOURS</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d32969e45 ">skkavsv.f_nat00120_tr_sched_hours(spriden_pidm, shrtrce_subj_code, shrtrce_crse_numb, shrtrce_term_code_eff, shrtrce_trcr_seq_no, shrtrce_trit_seq_no, shrtrce_tram_seq_no) <p class="p">This function is used in the ASC_SV_SNA_NAT00120_TR snapshot activity to populate the scheduled hours for mod-ule/unit records that are retrieved from transfer credit tables.</p>
+<p class="p">The function first looks for low contact hours (SCBCRSE_CONT_HR_LOW) where the concatenation of sub-ject code and course number of the transfer equivalence (SHRTRCE) record matches the concatenation of the subject code and course number of the course definition on SCACRSE where the term code of the record on SCACRSE is the latest term code for that subject code and course number combination that is earlier than or equal to the transfer equivalence term and the transfer equivalence term is effective for the report period and academic year and the SKILLS-VIC report collection - based on rules on SKAREPT.</p>
+<p class="p">If the low contact hours field is not populated, the function will return the value of the transfer credit hours (SHRTRCR_TRANS_CREDIT_HOURS) for the student, where the transfer institution sequence number, the transfer attendance period sequence number and the transfer course sequence number all match the corresponding sequence numbers of the transfer equivalence (SHRTRCE) record and the transfer equivalence term is effective for the report period and academic year and the SKILLS-VIC report collection - based on rules on SKAREPT.</p>
+<p class="p">If the transfer credit hours field is also not populated, the function will return a value of zero '0'.</p>
+</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d32969e42 ">F_NAT00120_​TR_STUDY_REASON</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d32969e45 ">skkavsv.f_nat00120_tr_study_reason(spriden_pidm, :report_period, :​academic_year, (select sgbstdn_capl_code from sgbstdn where ​sgbstdn_pidm = shrtrce_pidm AND sgbstdn_term_code_eff = <pre class="pre codeblock"><code>(SELECT MAX (sgbstdn_term_code_eff)
+FROM sgbstdn
+WHERE sgbstdn_pidm = shrtrce_pidm
+AND sgbstdn_term_code_eff &lt;= (select max(skrrept_term_code)
+from skrrept
+where skrrept_report_period = :report_period
+and skrrept_acyr_code = :academic_year
+and NVL (skkrept.fn_check_sys_param ('SKILLS-VIC',
+NULL,
+skrrept_report_collection,
+:academic_year),
+'N') = 'Y'))), sorlcur_program, shrdgmr_stsp_key_sequence)</code></pre><p class="p">Returns the study reason ID for records in the NAT00120_TR snapshot activity.</p>
+<p class="p">The function uses the LEARNER curriculum record where the key sequence value of the LEARNER curriculum matches the study path key sequence of the degree record (SHRDGMR) that was created when the LEARNER curriculum was rolled to OUTCOME.</p>
+<p class="p">The function looks for a study path (SGRSTSP) record for the student, where the study path key sequence number matches the key sequence number of the curriculum and the study path term is effective for the report period and academic year and the SKILLS-VIC report collection - based on rules on SKAREPT.</p>
+<p class="p">If a matching study path record is found, then the function returns the value of the Career Plan code (SGRSTSP_CAPL_CODE) on that study path</p>
+<p class="p">If the study path Career Plan code is null, or if the student does not have any study path, then the function returns the value of the Career Plan code on the General Learner record (SGBSTDN_CAPL_CODE)</p>
+<p class="p">If the Career Plan field is also null on the General Learner record, the Study Reason is defaulted to '@@'.</p>
+</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d32969e42 ">F_NAT00120_​IN_NAT_FUND</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d32969e45 ">skkavsv.f_nat00120_in_nat_fund(shrtckn_pidm,skrrept_term_code,:​ACADEMIC_YEAR,sorlcur_program,NVL​(sorlcur_rate_code,sgbstdn_rate_code)) <p class="p">This function uses the key sequence number of the LEARNER curriculum and compares it to the study path sequence number of the CRN in academic history to then determine the correct rate code for the CRN.</p>
+<p class="p">The function uses rules on the Report Element Mapping form (SKARMAP) to translate the rate code to a National Fund code, using the element code SKILLS_VIC_FUND.</p>
+</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d32969e42 ">F_NAT00120_​IN_COURSE_COMM_DATE</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d32969e45 ">skkavsv.f_nat00120_in_course_comm_date(shrtckn_pidm, sorlcur_program, shrtckn_crn, skrrept_term_code, sorlcur_start_date, sorlcur_key_seqno) <p class="p">This function is used in the ASC_SV_SNA_NAT00120_IN and ASC_SV_SNA_NAT00120_UN snapshot activities to determine the course commencement date for module/unit records that are retrieved from institutional academic history tables.</p>
+<p class="p">This function uses the key sequence number of the LEARNER curriculum and compares it to the study path sequence number of the CRN in academic history to then determine the course commencement date that relates to the CRN.</p>
+<p class="p">If the student is in a Module Only enrolment, the Enrolment Activity Start Date mapping is used for Course Commencement Date, otherwise the value from SORLCUR_START_DATE is used. A Module Only enrolment is one where the level of the curriculum matches a value listed for the MODULE-ENROL-LEVEL system parameter.</p>
+</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d32969e42 ">F_NAT00120_​IN_RATE_CODE</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d32969e45 ">This function is no longer used because both the ASC_SV_SNA_NAT00120_IN and ASC_SV_SNA_NAT00120_UN snapshot activities are now based on LEARNER curriculum records, and use data from the LEARNER curriculum where the curriculum key sequence matches the study path key sequence of the CRN in Academic History. Therefore the rate code value can now be retrieved directly from the correct LEARNER curriculum record. <p class="p">If the rate code is null on the curriculum, the function will return the rate code on the General Learner record (SGBSTDN_RATE_CODE)</p>
+</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d32969e42 ">F_NAT00120_​CU_COURSE_COMM_DATE</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d32969e45 ">skkavsv.f_nat00120_cu_course_comm_date(spriden_pidm, sorlcur_key_seqno, sfrstcr_crn, sorlcur_start_date) <p class="p">This function is used in the ASC_SV_SNA_NAT00120_CU snapshot activity to populate the course commencement date for module/unit records that are retrieved from registration tables.</p>
+<p class="p">If the student is in a Module Only enrolment, the Enrolment Activity Start Date mapping is used for Course Commencement Date, otherwise the value from SORLCUR_START_DATE is used. A Module Only enrolment is one where the level of the curriculum matches a value listed for the MODULE-ENROL-LEVEL system parameter.</p>
+</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d32969e42 ">F_NAT00120_​TRAIN_CONT_APP</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d32969e45 ">skkavsv.f_nat00120_train_cont_app(spriden_pidm, :report_period, :​academic_year, sorlcur_program) <p class="p">This function is used in all of the ASC_SV_SNA_NAT00120 snapshot activities to retrieve a training contract ID.</p>
+<p class="p">The function returns the Contract ID from SKATCND for the student where the term code on SKATCND is the latest (maximum) term code that is earlier than or equal to the lat-est (maximum) term code on SKAREPT for the academic year, report period and report collection, where the value of the report collection matches the value of the SKILLS-VIC system parameter, and where the study path attached to the contract matches the study path of the NAT00120 record.</p>
+<p class="p">The function includes logic to retrieve the LEARNER curriculum because the NAT00120_TR snapshot is based on degree (SHRDGMR) records.</p>
+<p class="p">If there is more than one contract record for the student, study path and term, the record with the highest sequence number will be used.</p>
+<p class="p">Even if the function is able to retrieve a value for Training Contract ID - Australian Apprenticeships, the field will only be populated if the Client ID - Australian Apprenticeships is also populated.</p>
+</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d32969e42 ">F_NAT00120_​ID_APP</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d32969e45 ">skkavsv.f_nat00120_id_app(spriden_pidm, :report_period, :​academic_year, sorlcur_program) <p class="p">This function is used in all of the ASC_SV_SNA_NAT00120 snapshot activities to retrieve a client ID - Australian Apprenticeships.</p>
+<p class="p">The function returns the External ID from SKATCND for the student where the term code on SKATCND is the latest (maximum) term code that is earlier than or equal to the lat-est (maximum) term code on SKAREPT for the academic year, report period and report collection, where the value of the report collection matches the value of the SKILLS-VIC system parameter, and where the study path attached to the contract matches the study path of the NAT00120 record.</p>
+<p class="p">The function includes logic to retrieve the LEARNER curriculum because the NAT00120_TR snapshot is based on degree (SHRDGMR) records.</p>
+<p class="p">If there is more than one contract record for the student, study path and term, the record with the highest sequence number will be used.</p>
+<p class="p">If the External ID field is null, then the function will return the value of the additional ID (GORADID_ADDITIONAL_ID) where the Additional ID type code matches the value of the APPRENTICE_ID_TYPE system parameter.</p>
+<p class="p">Even if the function is able to retrieve a value for Client ID - Australian Apprenticeships, the field will only be populated if the Training Contract ID - Australian Apprenticeships is also populated.</p>
+</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d32969e42 ">F_GET_​TRAIN_ORG_ID</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d32969e45 ">skkavsv.f_get_train_org_id(:academic_year,:report_period, (NVL((SELECT SORLCUR_CAMP_CODE, SGBSTDN_CAMP_CODE))) <p class="p">Returns the correct training organisation ID to concatenate with a course commencement date to make a Purchasing Contract ID.</p>
+<p class="p">In the ASC_SV_SNA_NAT00120_IN and ASC_SV_SNA_NAT00120_UN snapshot activities this function uses data from the LEARNER curriculum where the key sequence number corresponds to the study path sequence number of the CRN in Academic History. In the ASC_SV_SNA_NAT00120_TR snapshot activity, this function uses data from the LEARNER curriculum record where the key sequence value of the LEARNER curriculum matches the study path key sequence of the degree record (SHRDGMR) that was created when the LEARNER curriculum was rolled to OUTCOME. The function then calls f_delivery_loc_id function (described above) to determine the correct delivery location code for the enrolment record.</p>
+<p class="p">Delivery location codes are all associated with an organisation (non-person) PIDM, either on SKARLOC or on the Delivery Location tab of SKATORG. </p>
+<p class="p">The PIDM of the organisation is used to retrieve the Training Organisation ID.</p>
+</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d32969e42 ">F_NAT00120_​APP_TYPE</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d32969e45 ">SKKAVSV.f_nat00120_app_type(spriden_pidm, :report_period, :​academic_year, sorlcur_program) <p class="p">This function is used in all of the ASC_SV_SNA_NAT00120 snapshot activities to retrieve a client ID - Australian Apprenticeships.</p>
+<p class="p">The function returns the Contract Type Code from SKATCND for the student where the term code on SKATCND is the latest (maximum) term code that is earlier than or equal to the latest (maximum) term code on SKAREPT for the academic year, report period and report collection, where the value of the report collection matches the value of the SKILLS-VIC system parameter, and where the study path attached to the contract matches the study path of the NAT00120 record.</p>
+<p class="p">The function includes logic to retrieve the LEARNER curriculum because the NAT00120_TR snapshot is based on degree (SHRDGMR) records.</p>
+<p class="p">If there is more than one contract record for the student, study path and term, the record with the highest sequence number will be used.</p>
+</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d32969e42 ">F_NAT120_​CU_NAT_OUTCOME</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d32969e45 ">skkavsv.f_nat120_cu_nat_outcome(:academic_year, sfrstcr_grde_code, sfrstcr_levl_code, sfrstcr_term_code, sfrstcr_ptrm_code, sfrstcr_crn, sfrstcr_pidm, sfrstcr_rsts_code ) <p class="p">This function is used in the ASC_SV_SNA_NAT00120_CU snapshot activity to translate a local grade code to the appropriate Outcome Identifier - National value.</p>
+<p class="p">First the function compares the student’s grade with the list of grade codes for the SUPERSEDED-GRADE-CODE system parameter. If the grade code matches one of the SUPERSEDED-GRADE-CODE values, then the Outcome Identifier – National will be '61' Superseded subject.</p>
+<p class="p">The function will then check the registration status of the student's registration in the unit (CRN) and if that registration status is a withdrawn status, then regardless of any grade that the student may have received, the Outcome Identifier - National will be '40'-Withdrawn.</p>
+<p class="p">Next, the function compares the student's grade with the list of grade codes for the RPL-GRADE-CODE system parameter.</p>
+<p class="p">If the grade code matches one of the RPL-GRADE-CODE values, then the function will use mapping rules from SKARMAP to find the NAT-OUTCOME value that corresponds to the RPL grade.</p>
+<p class="p">If the grade code does not match any of the RPL-GRADE-CODE values, the function looks up the grade code on the SHAGRDE form to find the record where the grade code matches the unrolled grade for the student for the CRN, the level code matches the registered level code for the student for the CRN, and the term code is the latest term code that is earlier than or equal to the term code for the student for the CRN. For the record on SHAGRDE:</p>
+</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d32969e42 ">F_NAT120_​CU_NAT_OUTCOME (Contd)</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d32969e45 ">When the Attempted Indicator, Completed Indicator and Passed Indicator are all 'Y', then the function re-turns a value of '20'<p class="p">When the Attempted Indicator is 'Y' and the Completed Indicator, Passed Indicator and Incomplete Indicator are all 'N', then the function returns a value of '30'</p>
+<p class="p">When the Attempted Indicator is 'Y', the Completed Indicator, the Passed Indicator are both 'N' and the Incomplete Indicator is 'Y', then the function returns a value of '70'</p>
+<p class="p">If there is no grade recorded for the student and CRN yet, then there is no grade code to look up on SHAGRDE. In this case, the function returns a value of '70'.</p>
+<p class="p">If the function cannot calculate a value, then it will return '70' as a default.</p>
+</td>
+
+          </tr>
+
+        </tbody>
+</table>
+</div>
+
+  </div>
+
+</div></div></section>
+<section id="t-1700"><h3>USI Processing functions</h3><div class="content-locale-en-US content-locale-en"><div id="r_usi_processing"><div class="body refbody"><p class="shortdesc">The function described in the following table is used by USI processing activities.</p>
+
+    
+<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" id="r_usi_processing__r_usi_processing-utbl1" class="table landscape" frame="hsides" border="1" rules="rows"><colgroup><col><col></colgroup><thead class="thead" style="text-align:left;vertical-align:bottom;">
+          <tr class="row">
+            <th class="entry row-nocellborder" style="text-align:left;vertical-align:bottom;" id="d22046e42">Function Name</th>
+
+            <th class="entry row-nocellborder" style="text-align:left;vertical-align:bottom;" id="d22046e45">Description</th>
+
+          </tr>
+
+        </thead>
+<tbody class="tbody">
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d22046e42 ">F_DELETE_VERIFIED_USI</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d22046e45 ">This function deletes the verified USI of a student from the GKRADIV and GORADID table, and to populate the SKRUSIL log table, used by the DELETE_VERIFIED_USI activity.</td>
+
+          </tr>
+
+        </tbody>
+</table>
+</div>
+
+  </div>
+
+</div></div></section></main></body></html>

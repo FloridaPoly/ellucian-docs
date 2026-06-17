@@ -1,0 +1,1028 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>HESA Banner Student - Use — HESA ILR</title><style>body{font-family:-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;line-height:1.55;color:#1a1a1a;max-width:920px;margin:0 auto;padding:24px}header{border-bottom:2px solid #5a16d6;margin-bottom:8px}h1{color:#3a0ca3}h2,h3,h4,h5,h6{margin-top:1.6em}.crumb{color:#666;font-size:13px;margin:0}.meta{color:#888;font-size:12px}nav.toc{background:#f6f4fc;border:1px solid #e3dcf5;border-radius:8px;padding:12px 18px;margin:18px 0}nav.toc h2{margin:.2em 0}nav.toc ul{list-style:none;padding-left:0}nav.toc a{text-decoration:none;color:#5a16d6}section{margin:1.2em 0;padding-top:.4em}img{max-width:100%;height:auto}table{border-collapse:collapse}td,th{border:1px solid #ccc;padding:4px 8px}code,pre{background:#f4f4f4;border-radius:4px}pre{padding:10px;overflow:auto}</style></head><body><header><p class="crumb">Banner Student › HESA Banner Student - Use</p><h1>HESA Banner Student - Use — HESA ILR</h1><p class="meta">Source: <a href="https://resources.elluciancloud.com/r/bundle/banner_student_acn_use_hesa">https://resources.elluciancloud.com/r/bundle/banner_student_acn_use_hesa</a> &middot; Retrieved 2026-06-17</p></header><nav class="toc"><h2>Contents</h2><ul><li style="margin-left:0px"><a href="#t-2760">HESA ILR</a></li><li style="margin-left:16px"><a href="#t-2770">ILR for HESA</a></li><li style="margin-left:32px"><a href="#t-2780">Cohort activities</a></li><li style="margin-left:32px"><a href="#t-2790">Snapshot activities</a></li><li style="margin-left:32px"><a href="#t-2800">Extract activities</a></li><li style="margin-left:32px"><a href="#t-2810">Export activities</a></li><li style="margin-left:16px"><a href="#t-2820">Record dummy Banner Program/HESA course</a></li><li style="margin-left:16px"><a href="#t-2830">Programme Wrapper Instance creation</a></li></ul></nav><main><section id="t-2760"><h2>HESA ILR</h2><div class="content-locale-en-US content-locale-en"><div id="c_lnd_hesa_ilr"><div class="body conbody"><p class="shortdesc">This document discusses the Individualised Learner Record (<span class="keyword">ILR</span>) feature that is available for <span class="keyword">Banner</span> <span class="keyword">HESA</span>.</p>
+
+    <div class="note"><span class="notetitle">Note:</span> This 9x version corresponds to the <span class="keyword">Banner</span> <span class="keyword">HESA</span> 8.22 release version.</div>
+
+    <p class="p">As of 2019, <span class="keyword">HESA</span> has decided to stop the service it was offering to Higher Education Institutions (HEI) which involved generating the <span class="keyword">ILR</span> files from information supplied to them in the Student returns. </p>
+
+    <p class="p">The ESC_ILR process tree is used for reporting of Apprenticeship Standards students to the Education and Skills Funding Agency (ESFA). Institutions are expected to create a cohort on the <span class="keyword">HESA</span> Cohort page (SKAHCOH) and then assign the students that need to be reported to the regulatory body.</p>
+
+    <p class="p">Institutions can execute the ESC_ILR process tree using the Execution Tree Execution (GKAPEXE) page.</p>
+
+    <p class="p">The snapshot, extract, and export activities are delivered under ESC_ILR process tree. Like in the past, institutions can customize these activities to meet their own business needs.</p>
+
+    <div class="note"><span class="notetitle">Note:</span> It is important that institutions with any customized MDUU activities listed already under the ESC_ILR process, must take a backup of the activities before running the <code class="ph codeph">ESC_ILR.sql</code> script. When the script is run successfully, the activities can be copied back under the same process.</div>
+
+  </div>
+
+</div></div></section>
+<section id="t-2770"><h3>ILR for HESA</h3><div class="content-locale-en-US content-locale-en"><div id="c_ilr_feature"><div class="body conbody"><p class="shortdesc">This section discusses the <span class="keyword">ILR</span> feature delivered for <span class="keyword">HESA</span>.</p>
+
+    <div class="note"><span class="notetitle">Note:</span> The current implementation of the <span class="keyword">ILR</span> returns in <span class="keyword">Banner</span> allows institutions to return only one disability under the <span class="ph uicontrol">LLDD and health problem category</span> field.</div>
+
+  </div>
+
+</div></div></section>
+<section id="t-2780"><h4>Cohort activities</h4><div class="content-locale-en-US content-locale-en"><div id="r_cohort_activities"><div class="body refbody"><p class="shortdesc">The cohort activities listed in this section are delivered under the ESC_ILR process tree.</p>
+
+    
+<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" class="table" frame="hsides" border="1" rules="rows"><colgroup><col style="width:26.605504587155966%"><col style="width:26.605504587155966%"><col style="width:22.935779816513765%"><col style="width:23.853211009174316%"></colgroup><thead class="thead" style="text-align:left;vertical-align:bottom;">
+          <tr class="row">
+            <th class="entry row-nocellborder" style="text-align:left;vertical-align:bottom;" id="d50723e46">Cohort Activities</th>
+
+            <th class="entry row-nocellborder" style="text-align:left;vertical-align:bottom;" id="d50723e49">Activity Description</th>
+
+            <th class="entry row-nocellborder" style="text-align:left;vertical-align:bottom;" id="d50723e52">Source Tables</th>
+
+            <th class="entry row-nocellborder" style="text-align:left;vertical-align:bottom;" id="d50723e55">Target Tables</th>
+
+          </tr>
+
+        </thead>
+<tbody class="tbody">
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:middle;" headers="d50723e46 ">ESC_ILR_COHORT_​PURGE</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:middle;" headers="d50723e49 "><span class="keyword">HESA</span> <span class="keyword">ILR</span> PRGN activity - cohort purge </td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d50723e52 ">DUAL<p class="p">SFRENSP</p>
+<p class="p">SKBHINS</p>
+<p class="p">SKBHMPD</p>
+<p class="p">SKVHPRM</p>
+<p class="p">SKVHSTU</p>
+<p class="p">STVESTS</p>
+ </td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:middle;" headers="d50723e55 ">SKRHCOH</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:middle;" headers="d50723e46 ">ESC_ILR_COHORT1</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:middle;" headers="d50723e49 ">Student Cohort - Academic History </td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d50723e52 ">SHRDGMR<p class="p">SHRTCKD</p>
+<p class="p">SHRTCKN</p>
+<p class="p">SKBHINS</p>
+<p class="p">SKBHMPD</p>
+<p class="p">SKRSPRI</p>
+<p class="p">SKVHPRM</p>
+<p class="p">SORLCUR</p>
+<p class="p">SORLFOS</p>
+</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:middle;" headers="d50723e55 ">SKRHCOH</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:middle;" headers="d50723e46 ">ESC_ILR_COHORT2</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:middle;" headers="d50723e49 ">Student Cohort - Registration</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d50723e52 ">SFRSTCR<p class="p">SKBHINS</p>
+<p class="p">SKBHMPD</p>
+<p class="p">SKRHPOC</p>
+<p class="p">SKVHPRM</p>
+<p class="p">SKVHSTU</p>
+<p class="p">SSBSECT</p>
+</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:middle;" headers="d50723e55 ">SKRHCOH</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:middle;" headers="d50723e46 ">ESC_ILR_COHORT3</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:middle;" headers="d50723e49 ">Student Cohort - Graduation</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d50723e52 ">SKBHINS<p class="p">SKBHMPD</p>
+<p class="p">SKVHPRM</p>
+<p class="p">SKVHSTU</p>
+</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:middle;" headers="d50723e55 ">SKRHCOH</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:middle;" headers="d50723e46 ">ESC_ILR_COHORT4</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:middle;" headers="d50723e49 ">Student Cohort - Enrolment</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d50723e52 ">SKBHINS<p class="p">SKBHMPD</p>
+<p class="p">SKVHPRM</p>
+<p class="p">SKVHSTU</p>
+</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:middle;" headers="d50723e55 ">SKRHCOH</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:middle;" headers="d50723e46 ">ESC_ILR_COHORT5</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:middle;" headers="d50723e49 ">Student Cohort - Population Target</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d50723e52 ">ESC_ILR_​COHORT5<p class="p">SKRHINT_​EXT</p>
+<p class="p">SPRIDEN</p>
+</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:middle;" headers="d50723e55 ">SKRHCOH</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:middle;" headers="d50723e46 ">ESC_ILR_CHRT_​INSTANCE</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:middle;" headers="d50723e49 "><span class="keyword">HESA</span> <span class="keyword">ILR</span> PRGN activity - Student Instance cohort</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d50723e52 ">SKBHINS<p class="p">SKBHMPD</p>
+<p class="p">SKVHPRM</p>
+<p class="p">SKVHSTU</p>
+</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:middle;" headers="d50723e55 ">SKRHCOH</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:middle;" headers="d50723e46 ">ESC_ILR_CHRT_​INS_PURGE</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:middle;" headers="d50723e49 "><span class="keyword">HESA</span> <span class="keyword">ILR</span> PRGN activity - Instance purge</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d50723e52 ">SKBHINS<p class="p">SKBHMPD</p>
+<p class="p">SKRHCOH</p>
+<p class="p">SKRSPRI</p>
+<p class="p">SKVHSTU</p>
+</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:middle;" headers="d50723e55 ">SKRHCOH</td>
+
+          </tr>
+
+        </tbody>
+</table>
+</div>
+
+  </div>
+
+</div></div></section>
+<section id="t-2790"><h4>Snapshot activities</h4><div class="content-locale-en-US content-locale-en"><div id="r_mduu_activities"><div class="body refbody"><p class="shortdesc">The snapshot activities listed in this section are delivered under the ESC_ILR process tree. Institutions can customise these activities as per their own business needs. </p>
+
+    
+<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" class="table" frame="hsides" border="1" rules="rows"><colgroup><col style="width:25.170068027210885%"><col style="width:27.210884353741495%"><col style="width:22.675736961451246%"><col style="width:24.943310657596374%"></colgroup><thead class="thead" style="text-align:left;vertical-align:bottom;">
+          <tr class="row">
+            <th class="entry row-nocellborder" style="text-align:left;vertical-align:bottom;" id="d5863e46">Snapshot activities</th>
+
+            <th class="entry row-nocellborder" style="text-align:left;vertical-align:bottom;" id="d5863e49">Activity Description</th>
+
+            <th class="entry row-nocellborder" style="text-align:left;vertical-align:bottom;" id="d5863e52">Source tables</th>
+
+            <th class="entry row-nocellborder" style="text-align:left;vertical-align:bottom;" id="d5863e55">Target tables</th>
+
+          </tr>
+
+        </thead>
+<tbody class="tbody">
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:middle;" headers="d5863e46 ">ESC_ILR_SNA_​ADDRESS</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:middle;" headers="d5863e49 "><span class="keyword">HESA</span> <span class="keyword">ILR</span> Student Snapshot Address</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d5863e52 ">SKRHCOH<p class="p">SPRADDR</p>
+<p class="p">SPRIDEN</p>
+<p class="p">SKBHMPD</p>
+</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:middle;" headers="d5863e55 ">SKRHSAD</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:middle;" headers="d5863e46 ">ESC_ILR_SNA_​STU_EMAIL</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:middle;" headers="d5863e49 "><span class="keyword">HESA</span> <span class="keyword">ILR</span> Student Snapshot Email</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d5863e52 ">SKRHCOH<p class="p">SKBHMPD</p>
+<p class="p">SPRIDEN</p>
+</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:middle;" headers="d5863e55 ">SKRHSEM</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:middle;" headers="d5863e46 ">ESC_ILR_SNA_​COURSE</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:middle;" headers="d5863e49 ">Student Aggregate Overseas - Snapshot Courses</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d5863e52 ">SKRSPRI<p class="p">SKVHPRM</p>
+<p class="p">SKBHMPD</p>
+<p class="p">SMRPRLE</p>
+</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:middle;" headers="d5863e55 ">SKRHSCO</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:middle;" headers="d5863e46 ">ESC_ILR_SNA_​COURSE_MOD</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:middle;" headers="d5863e49 "><span class="keyword">HESA</span> <span class="keyword">ILR</span> Student Snapshot Course Modes</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d5863e52 ">SKBHMPD<p class="p">SKRSPRI</p>
+<p class="p">SKRPMOD</p>
+<p class="p">SKVHPRM</p>
+<p class="p">SKVHPMO</p>
+</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:middle;" headers="d5863e55 ">SKRHSCM</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:middle;" headers="d5863e46 ">ESC_ILR_SNA_​COURSE_YR</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:middle;" headers="d5863e49 "><span class="keyword">HESA</span> <span class="keyword">ILR</span> Student Snapshot Course Years</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d5863e52 ">SKBHMPD<p class="p">SKRSPRI</p>
+<p class="p">SKRPMOD</p>
+<p class="p">SKRPMYR</p>
+<p class="p">SKVHPRM</p>
+<p class="p">SKVHPMO</p>
+<p class="p">SKVHPMY</p>
+</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:middle;" headers="d5863e55 ">SKRHSCY</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:middle;" headers="d5863e46 ">ESC_ILR_SNA_​ENTRY_PROF</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:middle;" headers="d5863e49 ">ESC <span class="keyword">ILR</span> Snapshot Entry Profile</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d5863e52 ">SKBHINS<p class="p">SKRHCOH</p>
+<p class="p">SPRIDEN</p>
+<p class="p">SKRSAIN</p>
+<p class="p">SKBSPIN</p>
+</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:middle;" headers="d5863e55 ">SKRHSEP</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:middle;" headers="d5863e46 ">ESC_ILR_SNA_​INSTANCE</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:middle;" headers="d5863e49 ">ESC <span class="keyword">ILR</span> Snapshot Instance</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d5863e52 ">SKBHINS<p class="p">SKRHCOH</p>
+<p class="p">SGBSTDN</p>
+<p class="p">SORLCUR</p>
+<p class="p">SPRIDEN</p>
+<p class="p">SKVHSTU</p>
+</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:middle;" headers="d5863e55 ">SKRHSIS</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:middle;" headers="d5863e46 ">ESC_ILR_SNA_​INST_SP</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:middle;" headers="d5863e49 ">ESC <span class="keyword">ILR</span> Snapshot instance SP</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d5863e52 ">SKBHINS<p class="p">SKRHCOH</p>
+<p class="p">SGBSTDN</p>
+<p class="p">SORLCUR</p>
+<p class="p">SPRIDEN</p>
+<p class="p">SKVHSTU</p>
+</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:middle;" headers="d5863e55 ">SKRHSIS</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:middle;" headers="d5863e46 ">ESC_ILR_SNA_​INST_YR</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:middle;" headers="d5863e49 "><span class="keyword">HESA</span> <span class="keyword">ILR</span> Student Snapshot Instance Year</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d5863e52 ">SKRHINS<p class="p">SPRIDEN</p>
+<p class="p">SKRHCOH</p>
+<p class="p">SKBHINS</p>
+</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:middle;" headers="d5863e55 ">SKRHSIY</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:middle;" headers="d5863e46 ">ESC_ILR_SNA_​INST_FS</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:middle;" headers="d5863e49 "><span class="keyword">HESA</span> <span class="keyword">ILR</span> Snapshot Financial Support</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d5863e52 ">SKRHFIS<p class="p">SPRIDEN</p>
+<p class="p">SKRHCOH</p>
+</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:middle;" headers="d5863e55 ">SKRHSFS</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:middle;" headers="d5863e46 ">ESC_ILR_SNA_​ENGAGE</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:middle;" headers="d5863e49 ">ESC <span class="keyword">ILR</span> Engage Snapshot</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d5863e52 ">SKRHCOH<p class="p">SKBHMPD</p>
+<p class="p">SKRHIEN</p>
+<p class="p">SKBHINS</p>
+</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:middle;" headers="d5863e55 ">SKRHSEN</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:middle;" headers="d5863e46 ">ESC_ILR_​SNA_APFIN</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:middle;" headers="d5863e49 ">ESC <span class="keyword">ILR</span> Snapshot APFIN</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d5863e52 ">SKRHCOH<p class="p">SKBHMPD</p>
+<p class="p">SKRHIAF</p>
+<p class="p">SKBHINS</p>
+</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:middle;" headers="d5863e55 ">SKRHSAF</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:middle;" headers="d5863e46 ">ESC_ILR_​SNA_LEMP</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:middle;" headers="d5863e49 "><span class="keyword">HESA</span> <span class="keyword">ILR</span> Student Snapshot Learner Employment Status</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d5863e52 ">SKRHCOH<p class="p">SKBHMPD</p>
+<p class="p">SKRHILE</p>
+<p class="p">SKBHINS</p>
+</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:middle;" headers="d5863e55 ">SKRHSES</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:middle;" headers="d5863e46 ">ESC_ILR_​SNA_LFM</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:middle;" headers="d5863e49 "><span class="keyword">HESA</span> <span class="keyword">ILR</span> Student Snapshot Learner Funding and Monitoring</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d5863e52 ">SKRHCOH<p class="p">SKBHMPD</p>
+<p class="p">SKBHINS</p>
+<p class="p">SKRHIFM</p>
+</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:middle;" headers="d5863e55 ">SKRHSMF</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:middle;" headers="d5863e46 ">ESC_ILR_​SNA_LDFM</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:middle;" headers="d5863e49 "><span class="keyword">ILR</span> Student Snapshot Learning Delivery Funding and Monitoring</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d5863e52 ">SKRHCOH<p class="p">SKBHINS</p>
+<p class="p">SKRHDFM</p>
+</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:middle;" headers="d5863e55 ">SKRHSFM</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:middle;" headers="d5863e46 ">ESC_ILR_​SNA_LDWP</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:middle;" headers="d5863e49 "><span class="keyword">ILR</span> Student Snapshot Learning Delivery Funding and Monitoring</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d5863e52 ">SKBHINS<p class="p">SKRHDWP</p>
+<p class="p">SKRHCOH</p>
+</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:middle;" headers="d5863e55 ">SKRHSWP</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:middle;" headers="d5863e46 ">ESC_ILR_SNA_​MODULE</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:middle;" headers="d5863e49 "><span class="keyword">HESA</span> <span class="keyword">ILR</span> Student Snapshot Modules</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d5863e52 ">SCBCRSE<p class="p">SKBSCIN</p>
+<p class="p">SCBCRKY</p>
+<p class="p">STVTERM</p>
+</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:middle;" headers="d5863e55 ">SKRHSMO</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:middle;" headers="d5863e46 ">ESC_ILR_SNA_​REPORT</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:middle;" headers="d5863e49 ">ESC <span class="keyword">ILR</span> returns Snapshot activity</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d5863e52 ">SKBHMPD<p class="p">GKBKSYS</p>
+</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:middle;" headers="d5863e55 ">SKRHSRE</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:middle;" headers="d5863e46 ">ESC_ILR_​SNA_STUDENT</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:middle;" headers="d5863e49 ">ESC <span class="keyword">ILR</span> Snapshot Student</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d5863e52 ">SKBSPIN<p class="p">SPBPERS</p>
+<p class="p">SKRHCOH</p>
+<p class="p">SPRIDEN</p>
+</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:middle;" headers="d5863e55 ">SKRHSST</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:middle;" headers="d5863e46 ">ESC_ILR_SNA_​STU_COPR</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:middle;" headers="d5863e49 "><span class="keyword">HESA</span> <span class="keyword">ILR</span> Student Snapshot Student Contact Preference</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d5863e52 ">SPRIDEN<p class="p">SKBHMPD</p>
+<p class="p">SKRHCOH</p>
+<p class="p">SKRHSCP</p>
+</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:middle;" headers="d5863e55 ">SKRHSPC</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:middle;" headers="d5863e46 ">ESC_ILR_SNA_LPA</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:middle;" headers="d5863e49 "><span class="keyword">HESA</span> <span class="keyword">ILR</span> Student Snapshot Student Prior Attainment Entity</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d5863e52 ">SORPRAT<p class="p">SKBHMPD</p>
+<p class="p">SKRHCOH</p>
+</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:middle;" headers="d5863e55 ">SKRHCOH</td>
+
+          </tr>
+
+        </tbody>
+</table>
+</div>
+
+  </div>
+
+</div></div></section>
+<section id="t-2800"><h4>Extract activities</h4><div class="content-locale-en-US content-locale-en"><div id="r_extract_activities"><div class="body refbody"><p class="shortdesc">The extract activities listed in this section are delivered under the ESC_ILR process tree. Institutions can customise these activities as per their own business needs. </p>
+
+    
+<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" class="table" frame="hsides" border="1" rules="rows"><colgroup><col style="width:25.170068027210885%"><col style="width:27.210884353741495%"><col style="width:22.675736961451246%"><col style="width:24.943310657596374%"></colgroup><thead class="thead" style="text-align:left;vertical-align:bottom;">
+          <tr class="row">
+            <th class="entry row-nocellborder" style="text-align:left;vertical-align:bottom;" id="d52871e46">Extract Activities</th>
+
+            <th class="entry row-nocellborder" style="text-align:left;vertical-align:bottom;" id="d52871e49">Activity Description</th>
+
+            <th class="entry row-nocellborder" style="text-align:left;vertical-align:bottom;" id="d52871e52">Source Tables</th>
+
+            <th class="entry row-nocellborder" style="text-align:left;vertical-align:bottom;" id="d52871e55">Target Tables</th>
+
+          </tr>
+
+        </thead>
+<tbody class="tbody">
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d52871e46 ">ESC_ILR_EXT_INSTIT</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:middle;" headers="d52871e49 ">ESC <span class="keyword">ILR</span> Extract Institution</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:middle;" headers="d52871e52 ">SKRHSRE</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:middle;" headers="d52871e55 ">SKRHEIT</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:middle;" headers="d52871e46 ">ESC_ILR_EXT_​STU_MOD</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:middle;" headers="d52871e49 "><span class="keyword">HESA</span> <span class="keyword">ILR</span> Extract Student on Module</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:middle;" headers="d52871e52 ">SKRHSSM<p class="p">SKRHSIY</p>
+<p class="p">SKRHSST</p>
+<p class="p">GKBKSYS</p>
+</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:middle;" headers="d52871e55 ">SKRHESM</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:middle;" headers="d52871e46 ">ESC_ILR_EXT_​STU_MOT</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:middle;" headers="d52871e49 "><span class="keyword">HESA</span> <span class="keyword">ILR</span> Extract Student Module Outcome</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:middle;" headers="d52871e52 ">SKRHSSO<p class="p">SKRHSST</p>
+<p class="p">GKBKSYS</p>
+</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:middle;" headers="d52871e55 ">SKRHESM</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:middle;" headers="d52871e46 ">ESC_ILR_EXT_​MODULE</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:middle;" headers="d52871e49 "><span class="keyword">HESA</span> <span class="keyword">ILR</span> Extract Module</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:middle;" headers="d52871e52 ">SKRHSMO<p class="p">GKBKSYS</p>
+</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:middle;" headers="d52871e55 ">SKRHEMO</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:middle;" headers="d52871e46 ">ESC_ILR_EXT_​INSTANCE</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:middle;" headers="d52871e49 "><span class="keyword">HESA</span> <span class="keyword">ILR</span> Extract Instance</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:middle;" headers="d52871e52 ">SKRHSIS<p class="p">SKRHSIY</p>
+<p class="p">SKRHSST</p>
+<p class="p">SKRHSCO</p>
+<p class="p">SKRHSCM</p>
+<p class="p">SKRHSCY</p>
+<p class="p">SKBHMPD</p>
+</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:middle;" headers="d52871e55 ">SKRHEIS</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:middle;" headers="d52871e46 ">ESC_ILR_EXT_​STUDENT</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:middle;" headers="d52871e49 ">ESC <span class="keyword">ILR</span> Extract Student</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:middle;" headers="d52871e52 ">SKRHSST<p class="p">SKRHSRE</p>
+<p class="p">SKRHSIY</p>
+<p class="p">GKBKSYS</p>
+</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:middle;" headers="d52871e55 ">SKRHEST</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:middle;" headers="d52871e46 ">ESC_ILR_EXT_​STU_COPR</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:middle;" headers="d52871e49 "><span class="keyword">HESA</span> <span class="keyword">ILR</span> Student Extract Contact Preference</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:middle;" headers="d52871e52 ">SKRHSPC<p class="p">SKRHSRE</p>
+<p class="p">GKBKSYS</p>
+<p class="p">SKRHSST</p>
+</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:middle;" headers="d52871e55 ">SKRHEPC</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:middle;" headers="d52871e46 ">ESC_ILR_EXT_​INST_FS</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:middle;" headers="d52871e49 "><span class="keyword">HESA</span> <span class="keyword">ILR</span> Extract Financial Support</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:middle;" headers="d52871e52 ">SKRHSIS<p class="p">SKRHSFS</p>
+<p class="p">SKRHSST</p>
+</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:middle;" headers="d52871e55 ">SKRHEFS</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:middle;" headers="d52871e46 ">ESC_ILR_EXT_​ENGAGE</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:middle;" headers="d52871e49 "><span class="keyword">HESA</span> Student Extract Engagement</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:middle;" headers="d52871e52 ">SKRHSEN<p class="p">GKBKSYS</p>
+<p class="p">SKRHSIS</p>
+<p class="p">SKRHSRE</p>
+</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:middle;" headers="d52871e55 ">SKRHEEN</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:middle;" headers="d52871e46 ">ESC_ILR_EXT_​APFIN</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:middle;" headers="d52871e49 "><span class="keyword">HESA</span> Student Extract Apprentice Standard Finance</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:middle;" headers="d52871e52 ">GKBKSYS<p class="p">SKRHSAF</p>
+<p class="p">SKRHSIS</p>
+</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:middle;" headers="d52871e55 ">SKRHEAF</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:middle;" headers="d52871e46 ">ESC_ILR_EXT_​LEMP </td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:middle;" headers="d52871e49 "><span class="keyword">HESA</span> <span class="keyword">ILR</span> Student Extract Learner Employment Status</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:middle;" headers="d52871e52 ">SKRHSIS<p class="p">SKRHSRE</p>
+<p class="p">GKBKSYS</p>
+<p class="p">SKRHSES</p>
+</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:middle;" headers="d52871e55 ">SKRHEES</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:middle;" headers="d52871e46 ">ESC_ILR_EXT_​LFM</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:middle;" headers="d52871e49 "><span class="keyword">HESA</span> <span class="keyword">ILR</span> Student Extract Learner Funding and Monitoring</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:middle;" headers="d52871e52 ">SKRHSMF<p class="p">SKRHSIS</p>
+<p class="p">GKBKSYS</p>
+</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:middle;" headers="d52871e55 ">SKRHEMF</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:middle;" headers="d52871e46 ">ESC_ILR_EXT_​LDFM</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:middle;" headers="d52871e49 "><span class="keyword">HESA</span> <span class="keyword">ILR</span> Student Extract Learner Funding and Monitoring</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:middle;" headers="d52871e52 ">SKRHSFM<p class="p">SKRHSIS</p>
+<p class="p">GKBKSYS</p>
+</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:middle;" headers="d52871e55 ">SKRHEFM</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:middle;" headers="d52871e46 ">ESC_ILR_​EXT_LDWP</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:middle;" headers="d52871e49 "><span class="keyword">HESA</span> Student Extract Learning Delivery Work Placement</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:middle;" headers="d52871e52 ">SKRHSWP<p class="p">GKBKSYS</p>
+<p class="p">SKRHSIS</p>
+</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:middle;" headers="d52871e55 ">SKRHEWP</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" rowspan="2" style="text-align:left;vertical-align:middle;" headers="d52871e46 ">ESC_ILR_EXT_​ENTRY_PROF</td>
+
+            <td class="entry row-nocellborder" rowspan="2" style="text-align:left;vertical-align:middle;" headers="d52871e49 "><span class="keyword">HESA</span> <span class="keyword">ILR</span> Extract Entry Profile</td>
+
+            <td class="entry row-nocellborder" rowspan="2" style="text-align:left;vertical-align:middle;" headers="d52871e52 ">SKRHSEP<p class="p">SKRHSIS</p>
+<p class="p">SKRHSST</p>
+<p class="p">SKBHMPD</p>
+<p class="p">SKRHSCO</p>
+</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:middle;" headers="d52871e55 ">SKRHEEP</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:middle;" headers="d52871e55 ">&nbsp;</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:middle;" headers="d52871e46 ">ESC_ILR_​EXT_LCO</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:middle;" headers="d52871e49 "><span class="keyword">HESA</span> <span class="keyword">ILR</span> Student Extract Learner Contact</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:middle;" headers="d52871e52 ">SKRHSAD<p class="p">SKRHSRE</p>
+<p class="p">GKBKSYS</p>
+</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:middle;" headers="d52871e55 ">SKRHELC</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:middle;" headers="d52871e46 ">ESC_ILR_EXT_LPA</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:middle;" headers="d52871e49 "><span class="keyword">HESA</span> <span class="keyword">ILR</span> Student Extract Prior Attainment Entity</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:middle;" headers="d52871e52 ">SORISPA<p class="p">SKRHSST</p>
+</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:middle;" headers="d52871e55 ">SORIEPA</td>
+
+          </tr>
+
+        </tbody>
+</table>
+</div>
+
+  </div>
+
+</div></div></section>
+<section id="t-2810"><h4>Export activities</h4><div class="content-locale-en-US content-locale-en"><div id="r_export_activities"><div class="body refbody"><p class="shortdesc">The export activities listed in this section are delivered under the ESC_ILR process tree. Institutions can customise these activities as per their own business needs. </p>
+
+    
+<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" class="table" frame="hsides" border="1" rules="rows"><colgroup><col style="width:28.850325379609544%"><col style="width:27.54880694143167%"><col style="width:21.908893709327547%"><col style="width:21.691973969631235%"></colgroup><thead class="thead" style="text-align:left;vertical-align:bottom;">
+          <tr class="row">
+            <th class="entry row-nocellborder" style="text-align:left;vertical-align:bottom;" id="d18787e53">Export Activities</th>
+
+            <th class="entry row-nocellborder" style="text-align:left;vertical-align:bottom;" id="d18787e56">Activity Description</th>
+
+            <th class="entry row-nocellborder" style="text-align:left;vertical-align:bottom;" id="d18787e59">Source Table</th>
+
+            <th class="entry row-nocellborder" style="text-align:left;vertical-align:bottom;" id="d18787e62">Target Tables</th>
+
+          </tr>
+
+        </thead>
+<tbody class="tbody">
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d18787e53 ">ESC_ILR_EXP_PURGE</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d18787e56 ">Purge SKRHEXM records created by the export process</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:middle;" headers="d18787e59 ">DUAL</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:middle;" headers="d18787e62 ">SKRHEXM</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d18787e53 ">ESC_ILR_EXP_START</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d18787e56 ">Start of the export (courses+modules)</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:middle;" headers="d18787e59 ">SKRHEIT<p class="p">GKBKSYS</p>
+</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:middle;" headers="d18787e62 ">SKRHEXM</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d18787e53 ">ESC_ILR_EXP_STRT202021</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d18787e56 ">Start of the export (courses +modules) for 2020/21 return</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:middle;" headers="d18787e59 ">SKRHEIT<p class="p">GKBKSYS</p>
+</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:middle;" headers="d18787e62 ">SKRHEXM</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d18787e53 ">ESC_ILR_EXP_STRT202122</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d18787e56 ">Start of the export (courses +modules) for 2021/22 return</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:middle;" headers="d18787e59 ">SKRHEIT<p class="p">GKBKSYS</p>
+</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:middle;" headers="d18787e62 ">SKRHEXM</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d18787e53 ">ESC_ILR_EXP_STRT202223</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d18787e56 ">Start of the export (courses +modules) for 2022/23 return</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:middle;" headers="d18787e59 ">SKRHEIT<p class="p">GKBKSYS</p>
+</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:middle;" headers="d18787e62 ">SKRHEXM</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d18787e53 ">ESC_ILR_EXP_STRT202324</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d18787e56 ">Start of the export (courses +modules) for 2023/24 return</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:middle;" headers="d18787e59 ">SKRHEIT<p class="p">GKBKSYS</p>
+</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:middle;" headers="d18787e62 ">SKRHEXM</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d18787e53 ">ESC_ILR_EXP_STRT202425</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d18787e56 ">Start of the export (courses +modules) for 2024/25 return</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:middle;" headers="d18787e59 ">SKRHEIT<p class="p">GKBKSYS</p>
+</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:middle;" headers="d18787e62 ">SKRHEXM</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d18787e53 ">ESC_ILR_EXP_STRT202526</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d18787e56 ">Start of the export (courses +modules) for 2025/26 return</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:middle;" headers="d18787e59 ">SKRHEIT<p class="p">GKBKSYS</p>
+</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:middle;" headers="d18787e62 ">SKRHEXM</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d18787e53 ">ESC_ILR_​EXP_STUDENTSET</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d18787e56 ">Export a set of students</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:middle;" headers="d18787e59 ">DUAL<p class="p">GKBKSYS</p>
+</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:middle;" headers="d18787e62 ">SKRHEXM</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d18787e53 ">ESC_ILR_EXP_STU202021</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d18787e56 ">Export a set of students. Applicable from 2020/21 return</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:middle;" headers="d18787e59 ">DUAL<p class="p">GKBKSYS</p>
+</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:middle;" headers="d18787e62 ">SKRHEXM</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d18787e53 ">ESC_ILR_EXP_STU202122</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d18787e56 ">Export a set of students. Applicable from 2021/22 return</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:middle;" headers="d18787e59 ">DUAL<p class="p">GKBKSYS</p>
+</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:middle;" headers="d18787e62 ">SKRHEXM</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d18787e53 ">ESC_ILR_EXP_STU202223</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d18787e56 ">Export a set of students. Applicable from 2022/23 return</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:middle;" headers="d18787e59 ">SKRHEIT<p class="p">GKBKSYS</p>
+</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:middle;" headers="d18787e62 ">SKRHEXM</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d18787e53 ">ESC_ILR_EXP_STU202425</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d18787e56 ">Export a set of students. Applicable from 2024/25 return</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:middle;" headers="d18787e59 ">SKRHEIT<p class="p">GKBKSYS</p>
+</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:middle;" headers="d18787e62 ">SKRHEXM</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d18787e53 ">ESC_ILR_EXP_STU202526</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d18787e56 ">Export a set of students. Applicable from 2025/26 return</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:middle;" headers="d18787e59 ">SKRHEIT<p class="p">GKBKSYS</p>
+</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:middle;" headers="d18787e62 ">SKRHEXM</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d18787e53 ">ESC_ILR_EXP_END</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d18787e56 ">End of export = close the Institution and Student record tags</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:middle;" headers="d18787e59 ">DUAL</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:middle;" headers="d18787e62 ">SKRHEXM</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d18787e53 ">ESC_ILR_​EXP_SAVE_FILE</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d18787e56 ">Gather the different bits of XML from SKRHEXM into one file</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:middle;" headers="d18787e59 ">DUAL</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:middle;" headers="d18787e62 ">SKRHEXM</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d18787e53 ">ESC_ILR_EXP_PURGE</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d18787e56 ">Purge SKRHEXM records created by the export process</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:middle;" headers="d18787e59 ">DUAL</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:middle;" headers="d18787e62 ">SKRHEXM</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d18787e53 ">ESC_ILR_​EXP_SAVETOCLOB</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d18787e56 ">Load the physical xml file back into SKRHEXM</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:middle;" headers="d18787e59 ">DUAL</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:middle;" headers="d18787e62 ">SKRHEXM</td>
+
+          </tr>
+
+        </tbody>
+</table>
+</div>
+
+  </div>
+
+</div></div></section>
+<section id="t-2820"><h3>Record dummy Banner Program/HESA course</h3><div class="content-locale-en-US content-locale-en"><div id="c_record_dummy_banner_hesa_course"><div class="body conbody"><p class="shortdesc"><span class="keyword">HESA</span> have advised that a programme ‘wrapper’ course is included in the <span class="keyword">HESA</span> Student return, with COURSEAIM as Z99. They have also advised that the following details to be included.</p>
+
+    <ul class="ul">
+      <li class="li">Course title (CTITLE)</li>
+
+      <li class="li">Course identifier (COURSEID)</li>
+
+      <li class="li">Reduced course return indicator (REDUCEDC)</li>
+
+      <li class="li">Course Subject</li>
+
+    </ul>
+
+    <p class="p">This will require the creation of <span class="keyword">Banner</span> Program records in SMAPRLE, SKASPRI and SKAPMYR pages, so that a dummy <span class="keyword">HESA</span> course can be included in the <span class="keyword">HESA</span> return. <span class="keyword">HESA</span> have confirmed that they expect to see this course in the <span class="keyword">ILR</span> Generation Student return.</p>
+
+    <p class="p">The dummy <span class="keyword">HESA</span> course must also have a Mode of Study 98 – Mode not applicable and available in the Program Modes tab of the SKASPRI page.</p>
+
+  </div>
+
+</div></div></section>
+<section id="t-2830"><h3>Programme Wrapper Instance creation</h3><div class="content-locale-en-US content-locale-en"><div id="c_program_wrapper_creation"><div class="body conbody"><p class="shortdesc">This section discusses the creation of the programme wrapper instances.</p>
+
+    <div class="section"><h2 class="title sectiontitle">Component/Learning Aim Instance</h2><p class="p"><span class="keyword">Banner</span> <span class="keyword">HESA</span> currently creates an instance automatically when a general learner record is created in baseline <span class="keyword">Banner</span>. This instance can be used as the Component Learning Aim instance in the Student return.</p>
+The Aim Type for this instance should be set to three. If the student is gaining additional qualifications as part of the Apprenticeship Standard, then the information must be recorded as additional instances in <span class="keyword">Banner</span> <span class="keyword">HESA</span>, each with the relevant LARS code provided in Engagement.ENGAIM. These codes will normally be created when the second curriculum is created on the General Learner Record for the additional qualification.<p class="p">LearningDeliveryFAM and Engagement entities are required for the Component Learning Aim Instance.</p>
+</div>
+
+    <div class="section"><h2 class="title sectiontitle">Programme Wrapper Instance</h2>
+      
+      <p class="p"><span class="keyword">HESA</span> have advised that a programme ‘wrapper’ Instance is also required in the Student return for Apprenticeship Standards students requiring an <span class="keyword">ILR</span> generation. This will need to be created manually in the SKAHINS page using the <span class="ph uicontrol">New Instance</span> button. The programme ‘wrapper’ Instance can be linked to the same curriculum record as the existing Component Learning Aim instance.</p>
+
+      <div class="p">The programme‘wrapper’ Instance will also need to have the following fields:<ul class="ul"> <li class="li">Aim Type (Instance.AIMTYPE)= 1</li>
+ <li class="li">FEStudent Marker (Instance.FESTUMK) = 5</li>
+ <li class="li">Mode ofStudy (Instance.MODE) = 98</li>
+
+        </ul>
+LearningDeliveryFAM,Engagament and ApprenticeStandardFinances entities are required for the programme‘wrapper’ instance. These can be recorded in the SKAHIEN page. The Engagement must have the <span class="ph uicontrol">Engagement Aim</span> field set to <kbd class="ph userinput">ZPROG001</kbd>.</div>
+
+      <p class="p">Ensure that you add the relevant learner information in the SKASPIN page.</p>
+
+    </div>
+
+  </div>
+
+</div></div></section></main></body></html>

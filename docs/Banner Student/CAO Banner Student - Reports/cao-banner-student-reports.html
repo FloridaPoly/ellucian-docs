@@ -1,0 +1,656 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>CAO Banner Student - Reports</title><style>body{font-family:-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;line-height:1.55;color:#1a1a1a;max-width:920px;margin:0 auto;padding:24px}header{border-bottom:2px solid #5a16d6;margin-bottom:8px}h1{color:#3a0ca3}h2,h3,h4,h5,h6{margin-top:1.6em}.crumb{color:#666;font-size:13px;margin:0}.meta{color:#888;font-size:12px}nav.toc{background:#f6f4fc;border:1px solid #e3dcf5;border-radius:8px;padding:12px 18px;margin:18px 0}nav.toc h2{margin:.2em 0}nav.toc ul{list-style:none;padding-left:0}nav.toc a{text-decoration:none;color:#5a16d6}section{margin:1.2em 0;padding-top:.4em}img{max-width:100%;height:auto}table{border-collapse:collapse}td,th{border:1px solid #ccc;padding:4px 8px}code,pre{background:#f4f4f4;border-radius:4px}pre{padding:10px;overflow:auto}</style></head><body><header><p class="crumb">Banner Student › CAO Banner Student - Reports</p><h1>CAO Banner Student - Reports</h1><p class="meta">Source: <a href="https://resources.elluciancloud.com/r/bundle/banner_student_ref_reports_cao">https://resources.elluciancloud.com/r/bundle/banner_student_ref_reports_cao</a> &middot; Retrieved 2026-06-17</p></header><nav class="toc"><h2>Contents</h2><ul><li style="margin-left:0px"><a href="#t-10">CAO Banner Student - Reports</a></li><li style="margin-left:16px"><a href="#t-20">Net Acceptance File Import (SORNAIM) process</a></li><li style="margin-left:16px"><a href="#t-30">CAO Interface: Join+Sort Files (SZPICAT) process</a></li><li style="margin-left:16px"><a href="#t-40">CAO Interface: Data Load (SZPIIFT) process</a></li><li style="margin-left:32px"><a href="#t-50">AS files</a></li><li style="margin-left:32px"><a href="#t-60">EF files</a></li><li style="margin-left:32px"><a href="#t-70">ID files</a></li><li style="margin-left:32px"><a href="#t-80">MF files</a></li><li style="margin-left:32px"><a href="#t-90">VA files</a></li><li style="margin-left:32px"><a href="#t-100">TX files</a></li><li style="margin-left:16px"><a href="#t-110">CAO Interface: Merge+Load File (SZPIIMG) process</a></li><li style="margin-left:16px"><a href="#t-120">CAO Interface: OF Data Load (SZPIIOF) process</a></li><li style="margin-left:16px"><a href="#t-130">CAO Interface: RF Download (SZPIIRS) process</a></li><li style="margin-left:16px"><a href="#t-140">CAO Interface: Load Schools (SZPIISF) process</a></li><li style="margin-left:16px"><a href="#t-150">CAO Auto Withdrawal (SZPIIWA) process</a></li></ul></nav><main><section id="t-10"><h2>CAO Banner Student - Reports</h2><div class="content-locale-en-US content-locale-en"><div id="c_cao_processing"><p class="shortdesc">Lists the processes and reports available in <span class="keyword">Banner</span> <span class="keyword">CAO</span>.</p>
+
+  
+</div></div></section>
+<section id="t-20"><h3>Net Acceptance File Import (SORNAIM) process</h3><div class="content-locale-en-US content-locale-en"><div id="r_cao_sornaim_net_acceptance_file_import_process"><div class="body refbody"><p class="shortdesc">The SORNAIM process allows you to import the Net Acceptance files that the <span class="keyword">CAO</span> sends. The file includes the Leaving Certificate Examination (LCE) points for each applicant for the student's specific courses. The information is available in .xlsx format.</p>
+
+    <div class="section">Ellucian recommends that institutions to do the following before running the SORNAIM process.<ul class="ul"> <li class="li">Import the file into the job directory as a .xlsx extension file.</li>
+ <li class="li">Ensure that applicant records are already available in the SZAIIOT page for respective programs.</li>
+ </ul>
+To run the SORNAIM process, you must:<ul class="ul"> <li class="li">Import the Net Acceptance file to your job submission directory. Copy the file name and file path.</li>
+
+      <li class="li">Enter the file path and file name and execute the SORNAIM process. You can run it either in the Update (U) or Audit (A) mode.</li>
+ <li class="li">If you want to validate your records before inserting them, run the process in the Audit mode. You can see a snapshot of the process output, but will not insert the records to the LCE Points field for the SZAIIOT page.</li>
+
+      <li class="li">The process loads the data into the LCE Points field for the SZAIIOT page, if you run the process in the Update mode, that matches the LCE Points to the ID, Program.<div class="note"><span class="notetitle">Note:</span>  If the Program and ID in the Net Acceptance file does not match the data in the SZAIIOT page, the system will not import the LCE points and displays errors that is shown in the .log file.</div>
+</li>
+
+      <li class="li">You can view the LCE Points by each Program on the SZAIIOT page to verify the LCE Points for a particular applicant.</li>
+ <li class="li">The .log file displays the successful records that the system creates.</li>
+ </ul>
+
+<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" id="r_cao_sornaim_net_acceptance_file_import_process__r_cao_join_sort_files_proc_szpicat-utbl1" class="table" frame="hsides" border="1" rules="rows"><colgroup><col style="width:24.952380952380953%"><col style="width:21.714285714285715%"><col style="width:34.285714285714285%"><col style="width:19.047619047619047%"></colgroup><thead class="thead" style="text-align:left;vertical-align:bottom;"> <tr class="row"> <th class="entry row-nocellborder" style="text-align:left;vertical-align:bottom;" id="d2426e94">Name</th>
+ <th class="entry row-nocellborder" style="text-align:left;vertical-align:bottom;" id="d2426e97">Required?</th>
+ <th class="entry row-nocellborder" style="text-align:left;vertical-align:bottom;" id="d2426e100">Description</th>
+ <th class="entry row-nocellborder" style="text-align:left;vertical-align:bottom;" id="d2426e103">Values</th>
+ </tr>
+ </thead>
+<tbody class="tbody"> <tr class="row"> <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d2426e94 ">Path of the file</td>
+ <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d2426e97 ">Yes</td>
+ <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d2426e100 ">Enter the path of the file.<p class="p">This is the path where the file is stored in the job directory</p>
+</td>
+ <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d2426e103 ">&nbsp;</td>
+ </tr>
+ <tr class="row"> <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d2426e94 ">Name of the file</td>
+ <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d2426e97 ">Yes</td>
+ <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d2426e100 ">Name of the .xlsx file</td>
+ <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d2426e103 ">&nbsp;</td>
+ </tr>
+
+      <tr class="row"> <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d2426e94 ">Run Mode</td>
+ <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d2426e97 ">Yes</td>
+ <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d2426e100 ">Enter A for Audit mode or U for Update mode</td>
+ <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d2426e103 ">&nbsp;</td>
+ </tr>
+ </tbody>
+</table>
+</div>
+</div>
+
+  </div>
+
+</div></div></section>
+<section id="t-30"><h3>CAO Interface: Join+Sort Files (SZPICAT) process</h3><div class="content-locale-en-US content-locale-en"><div id="r_cao_join_sort_files_proc_szpicat"><div class="body refbody"><p class="shortdesc">This process is used to join and sort the Identity (ID) and Application Selection (AS) files before running the SZPIIMG process. This process is seldom used because the SZPIIMG process merges and loads the ID and AS files in a single process.</p>
+
+    <div class="section">
+      <p class="p">The SZPIIMG process requires a single ID and single AS file. If there are multiple mini-ID files, they must be combined into a single ID file. If there are multiple AS files, they must be combined into a single AS file. Up to five individual AS files exist: Degree, Diploma/Cert, General Nursing, Psychiatric Nursing, and Mentally Handicapped Nursing.</p>
+
+      <div class="p">It is important to note the following information about the SZPICAT process.<ul class="ul"> <li class="li">Use the GJAJFLU page to transfer ID, and AS files to the Jobsub server.</li>
+ <li class="li">Files with extensions can only be transferred using the GJAJFLU page. For example: ID.txt, AS.txt.</li>
+ <li class="li">While running the SZPICAT process, provide the Jobsub server path for 'Path Of ID or AS File1','Path Of ID or AS File2' and 'Path Of ID or AS File3' parameters. For example: /u02/banner.</li>
+
+        <li class="li">While running the SZPICAT process, provide file names with extensions for 'Name Of ID or AS File1','Name Of ID or AS File2' and 'Name Of ID or AS File3' parameters. For example: ID.txt.</li>
+ </ul>
+</div>
+
+      
+<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" id="r_cao_join_sort_files_proc_szpicat__r_cao_join_sort_files_proc_szpicat-utbl1" class="table" frame="hsides" border="1" rules="rows"><colgroup><col style="width:25.08833922261484%"><col style="width:17.667844522968203%"><col style="width:29.858657243816257%"><col style="width:27.385159010600713%"></colgroup><thead class="thead" style="text-align:left;vertical-align:bottom;">
+            <tr class="row">
+              <th class="entry row-nocellborder" style="text-align:left;vertical-align:bottom;" id="d1498e79">Name</th>
+
+              <th class="entry row-nocellborder" style="text-align:left;vertical-align:bottom;" id="d1498e82">Required?</th>
+
+              <th class="entry row-nocellborder" style="text-align:left;vertical-align:bottom;" id="d1498e85">Description</th>
+
+              <th class="entry row-nocellborder" style="text-align:left;vertical-align:bottom;" id="d1498e88">Values</th>
+
+            </tr>
+
+          </thead>
+<tbody class="tbody">
+            <tr class="row">
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d1498e79 ">Path of ID or AS File1</td>
+
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d1498e82 ">Yes</td>
+
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d1498e85 ">Path of the JOBSUB directory on your institution's computer where the ID or AS File 1 to be merged is stored</td>
+
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d1498e88 ">Path associated with JOBSUB directory, for example,<span class="ph filepath"> /u02/jobsub</span></td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d1498e79 ">Name of ID or AS File1</td>
+
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d1498e82 ">Yes</td>
+
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d1498e85 ">Name of the first file to be concatenated.</td>
+
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d1498e88 ">The default is <span class="ph filepath">AS1.FIL</span>.</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d1498e79 ">Path of ID or AS File2</td>
+
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d1498e82 ">Yes</td>
+
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d1498e85 ">Path of the JOBSUB directory on your institution's computer where the ID or AS File 2 to be merged is stored</td>
+
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d1498e88 ">Path associated with JOBSUB directory, for example,<span class="ph filepath"> /u02/jobsub</span></td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d1498e79 ">Name of ID or AS File2</td>
+
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d1498e82 ">Yes</td>
+
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d1498e85 ">Name of the second file to be concatenated.</td>
+
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d1498e88 ">The default is <span class="ph filepath">AS2.FIL</span>.</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d1498e79 ">Path of ID or AS File3</td>
+
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d1498e82 ">Yes</td>
+
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d1498e85 ">Path of the JOBSUB directory on your institution's computer where the ID or AS File 3 to be merged is stored</td>
+
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d1498e88 ">Path associated with JOBSUB directory, for example,<span class="ph filepath"> /u02/jobsub</span></td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d1498e79 ">Name of ID or AS File3</td>
+
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d1498e82 ">Yes</td>
+
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d1498e85 ">Name of the third file to be concatenated.</td>
+
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d1498e88 ">The default is <span class="ph filepath">AS3.FIL</span>.</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d1498e79 ">Debug Mode</td>
+
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d1498e82 ">No</td>
+
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d1498e85 ">Indicates if debugging text should be written to the debug output file.</td>
+
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d1498e88 "> <code class="ph codeph">Y</code>: Yes, write debugging text to the debug output file. <p class="p"> <code class="ph codeph">N</code>(default): No, do not write debugging text to the debug output file.</p>
+</td>
+
+            </tr>
+
+          </tbody>
+</table>
+</div>
+
+    </div>
+
+  </div>
+
+</div></div></section>
+<section id="t-40"><h3>CAO Interface: Data Load (SZPIIFT) process</h3><div class="content-locale-en-US content-locale-en"><div id="c_cao_data_process_szpiift"><div class="body conbody"><p class="shortdesc">This process is used to load ID, AS, EF, MF, VA, and TX files into the system. The user selects the type of file to be loaded in the File Type process parameter.</p>
+
+    <div class="p">It is important to note the following information about the SZPIIFT process.<ul class="ul"> <li class="li">Use the GJAJFLU page to transfer the file to the Jobsub server.</li>
+ <li class="li">File with extension can only be transferred using the GJAJFLU page. For example: VA.txt.</li>
+ <li class="li">While running the SZPIIFT process, provide the Jobsub server path for 'File Path' parameter. For example: /u02/banner.</li>
+
+      <li class="li">While running the SZPIIFT process, provide file name with extension for 'File Name' parameter. For example: VA.txt.</li>
+ </ul>
+</div>
+
+  </div>
+
+</div></div></section>
+<section id="t-50"><h4>AS files</h4><div class="content-locale-en-US content-locale-en"><div id="c_as_fileso"><p class="shortdesc">Running the process with file type AS loads the Application Selection (AS) file. This process is seldom used because the SZPIIMG process merges and loads the ID and AS files in a single process.</p>
+
+</div></div></section>
+<section id="t-60"><h4>EF files</h4><div class="content-locale-en-US content-locale-en"><div id="c_ef_fileso"><div class="body conbody"><p class="shortdesc">Running the process with File Type EF loads the Exam (EF) file and populate the SORTEST table with the exam data.</p>
+
+    <p class="p">The process can also be used to create an expected results record in the Person Comment page (SPACMNT) when loading an Exam file entry, for the current year, that does not contain any results.</p>
+
+    <p class="p">Not all institutions will need to use this function, so the CAOLOADERTYP system variable is used to define the exam types for which the SZPIIFT process should create a record on the SPACMNT page when processing an exam file record with no results. (See <cite class="cite">Define the Load Expected Results Indicator</cite>)</p>
+
+    <p class="p">The CAOEREXMYR system variable defines the current exam year for a specified exam type. When the SZPIIFT process loads an exam record that does not have any exam results, it will check the CAOEREXMYR system variable to see if the entry is for the current exam year. (see Define the Expected Results Year) If the exam type is also listed for the CAOLOADERTYP system variable, the process will generate a record in the SPACMNT page for the type defined by the CAOERCMTT system mapping (see <cite class="cite">Define the Comment Type Code</cite>.)</p>
+
+    <p class="p">When the Exam file is eventually populated with the results, the SZPIIFT process will write the results to the SOATEST page as normal and will remove the comment from the SPACMNT page.</p>
+
+  </div>
+
+</div></div></section>
+<section id="t-70"><h4>ID files</h4><div class="content-locale-en-US content-locale-en"><div id="c_id_fileso"><p class="shortdesc">Running the process with file type ID loads an ID file into the system. This file type is seldom used because the SZPIIMG process merges and loads the ID and AS files in a single process.</p>
+
+</div></div></section>
+<section id="t-80"><h4>MF files</h4><div class="content-locale-en-US content-locale-en"><div id="c_mf_fileso"><div class="body conbody"><p class="shortdesc">Running the process with file type MF loads the merged ID and AS file into the system. These files were merged using the SZPICAT process.</p>
+
+    <p class="p">This file type is seldom used because the SZPIIMG process merges and loads the ID and AS files in a single process.</p>
+
+  </div>
+
+</div></div></section>
+<section id="t-90"><h4>VA files</h4><div class="content-locale-en-US content-locale-en"><div id="c_va_files"><p class="shortdesc">Running the process with file type VA loads FETAC file and populates the vocational award data into the SORQQIA and SORQQIR tables.</p>
+
+</div></div></section>
+<section id="t-100"><h4>TX files</h4><div class="content-locale-en-US content-locale-en"><div id="r_tx_fileso"><div class="body refbody"><p class="shortdesc">Running the process with File Type TX loads the Text (TX) file. Details of the TX transaction loaded by this process are generally stored in the SPRCMNT table for the specified applicant.</p>
+
+    <div class="section">However, TX transaction of type 66, which include the e-mail address and mobile phone number, are handled in a slightly different manner.<p class="p">The load process reads the Code values on the GZVCAOI page for the CAOEMALCODE (e-mail) and CAOMOBLCODE (mobile phone) groups, and creates an appropriate record in the GOREMAL and SPRTELE tables, respectively. The e-mail value is located in position 12 to 61 and the mobile phone number is located in position 62 to 79. If the GZVCAOI CAOEMALCODE group is blank or not valid, an e-mail record will not be created. If the GZVCAOI CAOMOBLCODE group is blank or not valid, a mobile telephone record will not be created.</p>
+<p class="p">The processing of TX transactions of type 64 will generate an applicant's high school entry (SORHSCH) from the data contained in the transaction. Where more than one type 64 transaction is processed for the same applicant, the system will record the high school code associated with the earliest year that the student sat the Leaving Certificate exam.</p>
+<div class="note"><span class="notetitle">Note:</span> Ensure that only the latest file is used. Do not concatenate text files. </div>
+
+<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" id="r_tx_fileso__r_tx_fileso-utbl1" class="table" frame="hsides" border="1" rules="rows"><colgroup><col style="width:19.29824561403509%"><col style="width:17.543859649122805%"><col style="width:31.929824561403507%"><col style="width:31.228070175438592%"></colgroup><thead class="thead" style="text-align:left;vertical-align:bottom;"> <tr class="row"> <th class="entry row-nocellborder" style="text-align:left;vertical-align:bottom;" id="d2085e58">Name</th>
+ <th class="entry row-nocellborder" style="text-align:left;vertical-align:bottom;" id="d2085e61">Required?</th>
+
+      <th class="entry row-nocellborder" style="text-align:left;vertical-align:bottom;" id="d2085e64">Description</th>
+ <th class="entry row-nocellborder" style="text-align:left;vertical-align:bottom;" id="d2085e67">Values</th>
+ </tr>
+ </thead>
+<tbody class="tbody"> <tr class="row"> <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d2085e58 ">File Path</td>
+ <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d2085e61 ">Yes</td>
+ <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d2085e64 ">Path of the JOBSUB directory on your institution's computer where the file is stored</td>
+ <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d2085e67 ">Path associated with JOBSUB directory, for example,<span class="ph filepath"> /u02/jobsub</span></td>
+ </tr>
+ <tr class="row"> <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d2085e58 ">File Name</td>
+ <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d2085e61 ">Yes</td>
+ <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d2085e64 ">Name of the file to be processed.</td>
+ <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d2085e67 ">The default is <span class="ph filepath">MASTER.FIL</span>.</td>
+
+      </tr>
+ <tr class="row"> <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d2085e58 ">File Type</td>
+ <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d2085e61 ">Yes</td>
+ <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d2085e64 ">Type of the file to be processed.</td>
+ <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d2085e67 "><code class="ph codeph">ID</code>, <code class="ph codeph">AS</code>, <code class="ph codeph">EF</code>, <code class="ph codeph">MF</code>, <code class="ph codeph">VA</code> or <code class="ph codeph">TX</code></td>
+ </tr>
+ <tr class="row"> <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d2085e58 ">Debug Mode</td>
+ <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d2085e61 ">No</td>
+ <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d2085e64 ">Indicates if debugging text should be written to the debug output file.</td>
+
+      <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d2085e67 "><code class="ph codeph">Y</code>: Yes, write debugging text to the debug output file. <p class="p"><code class="ph codeph">N</code> (Default): No, do not write debugging text to the debug output file.</p>
+</td>
+ </tr>
+ <tr class="row"> <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d2085e58 ">File Path</td>
+ <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d2085e61 ">Yes</td>
+ <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d2085e64 ">Path of the JOBSUB directory on your institution's computer where the file is stored</td>
+ <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d2085e67 ">Path associated with JOBSUB directory, for example,<span class="ph filepath"> /u02/jobsub</span></td>
+ </tr>
+ </tbody>
+</table>
+</div>
+</div>
+
+  </div>
+
+</div></div></section>
+<section id="t-110"><h3>CAO Interface: Merge+Load File (SZPIIMG) process</h3><div class="content-locale-en-US content-locale-en"><div id="r_cao_merg_load_file_proc_szpiimg"><div class="body refbody"><p class="shortdesc">This process is used to merge the ID and AS files into one file, and then load the file into the system.</p>
+
+    <div class="section">This process also clears out and re-populates the Automatic Application Withdrawal Table (SZRWDAP) with all applications that were included in the ID/AS files (that is, applications to be excluded from automatic withdrawal processing).<div class="note"><span class="notetitle">Note:</span> Institutions are expected to use the Merge + Load File Process (SZPIIMG) to load the ID and AS transactions, rather than run the appropriate processes for the separate ID and AS transactions. This is because the ID file does not contain any data that indicates the applicant has made a choice from your institution's courses.</div>
+<div class="p">It is important to note the following information about the SZPIIMG process.<ul class="ul">
+      <li class="li">Use the GJAJFLU page to transfer the ID and AS files to the Jobsub server. </li>
+ <li class="li">Files with extensions can only be transferred using the GJAJFLU page. For example: ID.txt, AS.txt.</li>
+ <li class="li">While running the SZPIIMG process, provide the Jobsub server path for 'Path Of ID File', 'Path Of AS File' and 'Path of master File' parameters. For example: /u02/banner.</li>
+
+      <li class="li">While running the SZPIIMG process, provide file names with extensions for 'Name of ID File', 'Name of AS File' and 'Name of master File' parameters. For example: ID.txt.</li>
+ </ul>
+</div>
+
+<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" id="r_cao_merg_load_file_proc_szpiimg__r_cao_merg_load_file_proc_szpiimg-utbl1" class="table" frame="hsides" border="1" rules="rows"><colgroup><col style="width:25.045372050816695%"><col style="width:18.148820326678766%"><col style="width:26.497277676950997%"><col style="width:30.308529945553538%"></colgroup><thead class="thead" style="text-align:left;vertical-align:bottom;"> <tr class="row"> <th class="entry row-nocellborder" style="text-align:left;vertical-align:bottom;" id="d211e77">Name</th>
+ <th class="entry row-nocellborder" style="text-align:left;vertical-align:bottom;" id="d211e80">Required?</th>
+ <th class="entry row-nocellborder" style="text-align:left;vertical-align:bottom;" id="d211e83">Description</th>
+ <th class="entry row-nocellborder" style="text-align:left;vertical-align:bottom;" id="d211e86">Values</th>
+ </tr>
+ </thead>
+<tbody class="tbody"> <tr class="row"> <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d211e77 ">Path of ID File</td>
+ <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d211e80 ">Yes</td>
+ <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d211e83 ">Path of the JOBSUB directory on your institution's computer where the first ID file to be merged is stored</td>
+ <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d211e86 ">Path associated with JOBSUB directory, for example,<span class="ph filepath"> /u02/jobsub</span></td>
+ </tr>
+ <tr class="row"> <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d211e77 ">Name of ID File</td>
+
+      <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d211e80 ">Yes</td>
+ <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d211e83 ">Name of the first ID file to be merged.</td>
+ <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d211e86 ">The default is <span class="ph filepath">ID.FIL</span>.</td>
+ </tr>
+ <tr class="row"> <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d211e77 ">Path of AS File</td>
+ <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d211e80 ">Yes</td>
+ <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d211e83 ">Path of the JOBSUB directory on your institution's computer where the first ID file to be merged is stored</td>
+ <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d211e86 ">Path associated with JOBSUB directory, for example,<span class="ph filepath"> /u02/jobsub</span></td>
+ </tr>
+ <tr class="row"> <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d211e77 ">Name of AS File</td>
+ <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d211e80 ">Yes</td>
+
+      <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d211e83 ">Name of the AS file to be merged.</td>
+ <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d211e86 ">The default is <span class="ph filepath">AS.FIL</span>.</td>
+ </tr>
+ <tr class="row"> <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d211e77 ">Path of Master File3</td>
+ <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d211e80 ">Yes</td>
+ <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d211e83 ">Path of the JOBSUB directory on your institution's computer where the first ID file to be merged is stored</td>
+ <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d211e86 ">Path associated with JOBSUB directory, for example,<span class="ph filepath"> /u02/jobsub</span></td>
+ </tr>
+ <tr class="row"> <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d211e77 ">Name of Master File3</td>
+ <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d211e80 ">Yes</td>
+
+      <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d211e83 ">Name of the Master file to be created as a result of the merge.</td>
+ <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d211e86 ">The default is <span class="ph filepath">SZPIIMF.FIL</span>.</td>
+ </tr>
+ <tr class="row"> <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d211e77 ">Debug Mode</td>
+ <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d211e80 ">No</td>
+ <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d211e83 ">Indicates if debugging text should be written to the debug output file.</td>
+ <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d211e86 "><code class="ph codeph">Y</code>: Yes, write debugging text to the debug output file. <p class="p"><code class="ph codeph">N</code> (Default): No, do not write debugging text to the debug output file.</p>
+</td>
+ </tr>
+ <tr class="row">
+      <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d211e77 ">Year of Entry</td>
+ <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d211e80 ">No</td>
+ <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d211e83 ">Year of Entry for Advanced Entry Applicants.</td>
+ <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d211e86 ">The default is NULL. <p class="p">If left as NULL, the value of <span class="keyword">CAO</span> <span class="keyword">Student</span> Attribute CAOAPPATTRIB defined in the <span class="keyword">CAO</span> Interface Configuration page GZVCAOI will be used as the student attribute code saved in SARAATT.</p>
+ If a value is entered and it is a valid <span class="keyword">Student</span> Attribute from STVATTS, this will be used as the student attribute saved in SARAATT.</td>
+ </tr>
+ <tr class="row"> <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d211e77 ">Purge Course Exception</td>
+ <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d211e80 ">No</td>
+ <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d211e83 ">Purge SZAIREC records of exception type C. </td>
+ <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d211e86 ">Y - Purge records of type C. N(Default) - Do not purge records.</td>
+ </tr>
+ </tbody>
+</table>
+</div>
+</div>
+
+  </div>
+
+</div></div></section>
+<section id="t-120"><h3>CAO Interface: OF Data Load (SZPIIOF) process</h3><div class="content-locale-en-US content-locale-en"><div id="r_cao_data_load_proc_szpiiof"><div class="body refbody"><p class="shortdesc">The SZPIIOF process loads the Offer/Acceptance (OF) file. Only the latest file should be used, and do not concatenate text files.</p>
+
+    <div class="section">
+      <p class="p">The <span class="keyword">CAO</span> processes applications and tries to match student preferences to available positions at the different institutions. Institutions are notified of offers and acceptances at each round by means of the Offer/Acceptance files. </p>
+
+      <p class="p">If a new <span class="keyword">CAO</span> application needs to be created as a result of loading an OF transaction, the residency code and cohort code will be populated with a value from existing <span class="keyword">CAO</span> applications for the same term, or will default to a value of unknown. Offers and acceptances for the specific Year of Entry parameter are matched against application records having the same Year of Entry student attribute.</p>
+
+      <p class="p">This process produces a report listing details of any superseding acceptance transactions that were loaded during processing. This occurs where a previous load has processed an applicant's acceptance for a course provided by the local institution, and the current load process identifies a later acceptance for a different course, regardless of whether the new acceptance is for another course provided internally (Local supersede) or for a course provided by another institution (Foreign supersede).</p>
+
+      <p class="p">The report lists the original and new acceptance details along with any action that has been taken or is required on behalf of the user. The output of the report will be included in the <code class="ph codeph"> .lis </code> output file.</p>
+
+      <div class="note"><span class="notetitle">Note:</span> <span class="keyword">Student</span> records are created in <span class="keyword">Banner</span>™ when offers and acceptances are received.</div>
+
+      <div class="p">It is important to note the following information about the SZPIIOF process.<ul class="ul"> <li class="li">Use the GJAJFLU page to transfer the OF file to the Jobsub server.</li>
+ <li class="li">Files with extensions can only be transferred using the GJAJFLU page. For example: OF.txt.</li>
+ <li class="li">While running the SZPIIOF process, provide the Jobsub server path for 'File Path' parameter. For example: /u02/banner.</li>
+
+        <li class="li">While running the SZPIIOF process, provide file name with extension for 'File Name' parameter. For example: OF.txt.</li>
+ </ul>
+</div>
+
+      
+<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" id="r_cao_data_load_proc_szpiiof__r_cao_data_load_proc_szpiiof-utbl1" class="table" frame="hsides" border="1" rules="rows"><colgroup><col style="width:18.79699248120301%"><col style="width:19.73684210526316%"><col style="width:26.879699248120303%"><col style="width:34.58646616541354%"></colgroup><thead class="thead" style="text-align:left;vertical-align:bottom;">
+            <tr class="row">
+              <th class="entry row-nocellborder" style="text-align:left;vertical-align:bottom;" id="d827e110">Name</th>
+
+              <th class="entry row-nocellborder" style="text-align:left;vertical-align:bottom;" id="d827e113">Required?</th>
+
+              <th class="entry row-nocellborder" style="text-align:left;vertical-align:bottom;" id="d827e116">Description</th>
+
+              <th class="entry row-nocellborder" style="text-align:left;vertical-align:bottom;" id="d827e119">Values</th>
+
+            </tr>
+
+          </thead>
+<tbody class="tbody">
+            <tr class="row">
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d827e110 ">File Path</td>
+
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d827e113 ">Yes</td>
+
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d827e116 ">Path of the JOBSUB directory on your institution's computer where the file is stored</td>
+
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d827e119 ">Path associated with JOBSUB directory, for example,<span class="ph filepath"> /u02/jobsub</span></td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d827e110 ">File Name</td>
+
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d827e113 ">Yes</td>
+
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d827e116 ">Name of the file to be processed.</td>
+
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d827e119 ">The default is <span class="ph filepath">OF.FIL</span>.</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d827e110 ">Debug Mode</td>
+
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d827e113 ">No</td>
+
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d827e116 ">Indicates if debugging text should be written to the debug output file.</td>
+
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d827e119 "><code class="ph codeph">Y</code>: Yes, write debugging text to the debug output file. <p class="p"><code class="ph codeph">N</code> (Default): No, do not write debugging text to the debug output file.</p>
+</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d827e110 ">Year of Entry</td>
+
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d827e113 ">No</td>
+
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d827e116 ">Year of Entry for Advanced Entry Applicants.</td>
+
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d827e119 ">The default is NULL. <p class="p">If left as NULL, the value of <span class="keyword">CAO</span> <span class="keyword">Student</span> Attribute CAOAPPATTRIB defined in the <span class="keyword">CAO</span> Interface Configuration page GZVCAOI will be used as the student attribute code saved in SARAATT.</p>
+If a value is entered and it's a valid <span class="keyword">Student</span> Attribute from STVATTS, this will be used as the student attribute saved in SARAATT.</td>
+
+            </tr>
+
+          </tbody>
+</table>
+</div>
+
+    </div>
+
+  </div>
+
+</div></div></section>
+<section id="t-130"><h3>CAO Interface: RF Download (SZPIIRS) process</h3><div class="content-locale-en-US content-locale-en"><div id="r_cao_rf_downld_proc_szpiirs"><div class="body refbody"><p class="shortdesc">The SZPIIRS process writes flagged ratings and supplementary scores for applicants to their respective files, which are then sent to the <span class="keyword">CAO</span>.</p>
+
+    <div class="section">The <span class="keyword">CAO</span> must be notified within the time allowed if an institution has created ratings or supplemental scores for an applicant. Only first year applicants scores are included in the file.<p class="p">When the SZPIIRS process writes the last rating or score, the appropriate test scores are updated, so that the <span class="ph uicontrol">Released</span> check box is selected and the release date is set to the current system date on the SZAIIOT page. This process formats the test score and rank values according to the maximum length specified in the <span class="ph uicontrol">Internal Code</span> field on the GZVCAOI page for the CAOSCORELENGTH and CAORANKLENGTH groups, respectively.</p>
+<div class="p">It is important to note the following information about the SZPIIRS process.<ul class="ul">
+      <li class="li">Use the GJAJFLU page to transfer the file to the Jobsub server.</li>
+ <li class="li"> File with extension can only be transferred using the GJAJFLU page. For example: RS.txt.</li>
+ <li class="li">While running the SZPIIRS process, provide the Jobsub server path for 'File Path' parameter. For example: /u02/banner.</li>
+ <li class="li">While running the SZPIIRS process, provide file name with extension for 'File Name' parameter. For example: RS.txt.</li>
+ </ul>
+</div>
+
+<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" id="r_cao_rf_downld_proc_szpiirs__r_cao_rf_downld_proc_szpiirs-utbl1" class="table" frame="hsides" border="1" rules="rows"><colgroup><col style="width:21.48148148148148%"><col style="width:18.51851851851852%"><col style="width:35%"><col style="width:25%"></colgroup><thead class="thead" style="text-align:left;vertical-align:bottom;"> <tr class="row"> <th class="entry row-nocellborder" style="text-align:left;vertical-align:bottom;" id="d1126e89">Name</th>
+ <th class="entry row-nocellborder" style="text-align:left;vertical-align:bottom;" id="d1126e92">Required?</th>
+ <th class="entry row-nocellborder" style="text-align:left;vertical-align:bottom;" id="d1126e95">Description</th>
+ <th class="entry row-nocellborder" style="text-align:left;vertical-align:bottom;" id="d1126e98">Values</th>
+ </tr>
+ </thead>
+<tbody class="tbody"> <tr class="row"> <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d1126e89 ">File Path</td>
+ <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d1126e92 ">Yes</td>
+
+      <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d1126e95 ">Path of the JOBSUB directory on your institution's computer where the file is stored</td>
+ <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d1126e98 ">Path associated with JOBSUB directory, for example,<span class="ph filepath"> /u02/jobsub</span></td>
+ </tr>
+ <tr class="row"> <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d1126e89 ">File Name</td>
+ <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d1126e92 ">Yes</td>
+ <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d1126e95 ">Name of the file to be processed.</td>
+ <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d1126e98 ">The default is RS.FIL.</td>
+ </tr>
+ <tr class="row"> <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d1126e89 ">Ratings or Supplements</td>
+ <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d1126e92 ">Yes</td>
+ <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d1126e95 ">Indicates if the transactions are ratings or supplements.</td>
+
+      <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d1126e98 "><kbd class="ph userinput">R</kbd> (default) Transactions are ratings, and will replace existing academic ratings. <p class="p"><kbd class="ph userinput">S</kbd> Transactions supplementary scores, which are in addition to existing academic ratings.</p>
+</td>
+ </tr>
+ <tr class="row"> <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d1126e89 "><span class="keyword">CAO</span> List</td>
+ <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d1126e92 ">Yes</td>
+ <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d1126e95 ">Type of program for which the associated rating entries should be included in the file.</td>
+
+      <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d1126e98 "><kbd class="ph userinput">1</kbd> Degree Programs <p class="p"><kbd class="ph userinput">2</kbd> Certificate/Diploma Programs</p>
+</td>
+ </tr>
+ <tr class="row"> <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d1126e89 ">Test Code</td>
+ <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d1126e92 ">No</td>
+ <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d1126e95 ">Allows files to be created for a specific test code only. Leave blank to select all test codes, or select a code from STVTESC.</td>
+ <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d1126e98 ">Test Code Validation page (STVTESC)</td>
+ </tr>
+ <tr class="row"> <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d1126e89 ">Term Code</td>
+ <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d1126e92 ">Yes</td>
+
+      <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d1126e95 ">Term for which to select ratings and supplementary scores for download to the appropriate output file.</td>
+ <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d1126e98 ">Term Code Validation (STVTERM)</td>
+ </tr>
+ <tr class="row"> <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d1126e89 ">Debug Mode</td>
+ <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d1126e92 ">No</td>
+ <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d1126e95 ">Indicates if debugging text should be written to the debug output file.</td>
+
+      <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d1126e98 "><kbd class="ph userinput">Y:</kbd> Yes, write debugging text to the debug output file. <p class="p"><kbd class="ph userinput">N:</kbd> (Default) No, do not write debugging text to the debug output file.</p>
+</td>
+ </tr>
+ <tr class="row"> <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d1126e89 ">Run Mode</td>
+ <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d1126e92 ">Yes</td>
+
+      <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d1126e95 ">Indicates in what mode to run the process. <p class="p">Audit mode does not update the <code class="ph codeph"> SORTEST_RELEASED_IND </code> field and does not produce the actual Ratings file. The ratings data is written to the <code class="ph codeph"> SZPIIRS_nnnn.lis </code> file where it can be reviewed by the user using the GJIREVO page.</p>
+ Update mode updates the <code class="ph codeph"> SORTEST_RELEASED_IND </code> field to Y and creates a Ratings file.</td>
+
+      <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d1126e98 "><kbd class="ph userinput">Audit</kbd> (default) <p class="p"><kbd class="ph userinput">Update</kbd></p>
+</td>
+ </tr>
+ </tbody>
+</table>
+</div>
+</div>
+
+  </div>
+
+</div></div></section>
+<section id="t-140"><h3>CAO Interface: Load Schools (SZPIISF) process</h3><div class="content-locale-en-US content-locale-en"><div id="r_cao_load_sch_proc_szpiisf"><div class="body refbody"><p class="shortdesc">The SZPIISF process loads the School (SF) file. The process compares each record in the <span class="keyword">CAO</span> Schools File with the existing School records held in <span class="keyword">Banner</span> in the STVSBGI and SOBSBGI tables, to identify new records that exist in the <span class="keyword">CAO</span> Schools file but not in <span class="keyword">Banner</span>.</p>
+
+    <div class="section">
+      <p class="p">The new records will be loaded into <span class="keyword">Banner</span>, and the details will be written to the <code class="ph codeph"> .lis </code>file output.</p>
+
+      <p class="p">The system can be configured to prevent automatic load of existing records with a matching School code when the School name or address or both in the <span class="keyword">CAO</span> file are not identical to the name and address on the corresponding STVSBGI/SOBSBGI record. The details will be reported in the <code class="ph codeph"> .lis </code> file output to allow users to review the discrepancies, and manually apply any adjustments required to the records on <span class="keyword">Banner</span>.</p>
+
+      <p class="p">The CAOSFAUTOUPD system variable on the GZVCAOI page handles additional Schools file processing. This system variable indicates whether the <span class="keyword">CAO</span> Interface: Load Schools Process (SZPIISF) should automatically update existing school entries with data from the schools file, or create a report that indicates that an entry exists but the schools file data is different. </p>
+
+      <div class="note"><span class="notetitle">Note:</span> This process should only be run one time in a year.</div>
+
+      <div class="p">It is important to note the following information about the SZPIISF process.<ul class="ul"> <li class="li">Use the GJAJFLU page to transfer the file to the Jobsub server.</li>
+ <li class="li">File with extension can only be transferred using the GJAJFLU page. For example: SF.txt.</li>
+ <li class="li">While running the SZPIISF process, provide the Jobsub server path for 'File Path' parameter. For example: /u02/banner.</li>
+
+        <li class="li">While running the SZPIISF process, provide file name with extension for 'File Name' parameter. For example: SF.txt.</li>
+ </ul>
+</div>
+
+      
+<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" id="r_cao_load_sch_proc_szpiisf__r_cao_load_sch_proc_szpiisf-utbl1" class="table" frame="hsides" border="1" rules="rows"><colgroup><col style="width:18.76172607879925%"><col style="width:19.136960600375236%"><col style="width:28.330206378986865%"><col style="width:33.77110694183865%"></colgroup><thead class="thead" style="text-align:left;vertical-align:bottom;">
+            <tr class="row">
+              <th class="entry row-nocellborder" style="text-align:left;vertical-align:bottom;" id="d1846e119">Name</th>
+
+              <th class="entry row-nocellborder" style="text-align:left;vertical-align:bottom;" id="d1846e122">Required?</th>
+
+              <th class="entry row-nocellborder" style="text-align:left;vertical-align:bottom;" id="d1846e125">Description</th>
+
+              <th class="entry row-nocellborder" style="text-align:left;vertical-align:bottom;" id="d1846e128">Values</th>
+
+            </tr>
+
+          </thead>
+<tbody class="tbody">
+            <tr class="row">
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d1846e119 ">File Path</td>
+
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d1846e122 ">Yes</td>
+
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d1846e125 ">Path of the JOBSUB directory on your institution's computer where the file is stored</td>
+
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d1846e128 ">Path associated with JOBSUB directory, for example,<span class="ph filepath"> /u02/jobsub</span></td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d1846e119 ">File Name</td>
+
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d1846e122 ">Yes</td>
+
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d1846e125 ">Name of the file to be processed.</td>
+
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d1846e128 ">The default is school.FIL.</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d1846e119 ">Debug Mode</td>
+
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d1846e122 ">No</td>
+
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d1846e125 ">Indicates if debugging text should be written to the debug output file.</td>
+
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d1846e128 "><kbd class="ph userinput">Y:</kbd> Yes, write debugging text to the debug output file. <p class="p"><kbd class="ph userinput">N:</kbd> (Default) No, do not write debugging text to the debug output file.</p>
+</td>
+
+            </tr>
+
+          </tbody>
+</table>
+</div>
+
+    </div>
+
+  </div>
+
+</div></div></section>
+<section id="t-150"><h3>CAO Auto Withdrawal (SZPIIWA) process</h3><div class="content-locale-en-US content-locale-en"><div id="r_cao_auto_withdrawal_proc_szpiiwa"><div class="body refbody"><p class="shortdesc">The SZPIIWA process automatically sets the status to Withdrawn for <span class="keyword">CAO</span> applications that are no longer included in files received from the <span class="keyword">CAO</span>.</p>
+
+    <div class="section">
+      <p class="p">The SZPIIMG process must be run before running the SZPIIWA process to load the latest <span class="keyword">CAO</span> files and identify active applications to be excluded from withdrawal processing.</p>
+
+      <p class="p">When you enter the Year of Entry value and run the SZPIIWA process, the records are withdrawn only for the respective year of entry.</p>
+
+      <div class="note"><span class="notetitle">Note:</span> The SZPIIWA process should only be run after loading the full <span class="keyword">CAO</span> ID/AS files, and should not be run after loading the mini files.</div>
+
+      <p class="p">Running the SZPIIMG process will clear out any existing data from the Automatic Application Withdrawal Table (SZRWDAP) and will re-populate it with excluded application entries.</p>
+
+      <p class="p">The SZRWDAP process must first be run in Audit mode to produce a list of applications that will be included in the withdrawal processing. Finally, the process can be run in Processing mode to update the applications, setting the status to withdrawn.</p>
+
+      
+<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" id="r_cao_auto_withdrawal_proc_szpiiwa__r_cao_auto_withdrawal_proc_szpiiwa-utbl1" class="table" frame="hsides" border="1" rules="rows"><colgroup><col style="width:15.455950540958268%"><col style="width:19.629057187017%"><col style="width:40.030911901081915%"><col style="width:24.884080370942815%"></colgroup><thead class="thead" style="text-align:left;vertical-align:bottom;">
+            <tr class="row">
+              <th class="entry row-nocellborder" style="text-align:left;vertical-align:bottom;" id="d570e87">Name</th>
+
+              <th class="entry row-nocellborder" style="text-align:left;vertical-align:bottom;" id="d570e90">Required?</th>
+
+              <th class="entry row-nocellborder" style="text-align:left;vertical-align:bottom;" id="d570e93">Description</th>
+
+              <th class="entry row-nocellborder" style="text-align:left;vertical-align:bottom;" id="d570e96">Values</th>
+
+            </tr>
+
+          </thead>
+<tbody class="tbody">
+            <tr class="row">
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d570e87 ">Run Mode</td>
+
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d570e90 ">Yes</td>
+
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d570e93 ">Indicates in what mode to run the process. The process must be run in the A (Audit) mode before running in the P (Processing) mode. <p class="p">Audit mode selects all of the <span class="keyword">CAO</span> applications for the current <span class="keyword">CAO</span> term that are not marked as excluded from withdrawal. The list of applications is saved to the SZRWDAP table with an action of <kbd class="ph userinput">I</kbd> (Include in the withdrawal). A report of included applications is produced.</p>
+
+                <p class="p">Processing mode creates a Withdrawn decision entry in the SARAPPD table, and sets the status to Withdrawn on all included applications. The report then lists details of included applications indicating whether withdrawal was completed successfully or an error was encountered.</p>
+</td>
+
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d570e96 "><kbd class="ph userinput">A</kbd> (default) Audit <p class="p"><kbd class="ph userinput">P</kbd> Processing</p>
+</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d570e87 ">Year of entry</td>
+
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d570e90 ">Yes</td>
+
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d570e93 ">Year of Entry for Advanced Entry Applicants</td>
+
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d570e96 ">&nbsp;</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d570e87 ">Debug Mode</td>
+
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d570e90 ">No</td>
+
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d570e93 ">Indicate if debugging text should be written to the debug output file.</td>
+
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d570e96 "><kbd class="ph userinput">Y:</kbd> Yes, write debugging text to the debug output file. <p class="p"><kbd class="ph userinput">N:</kbd> (Default) No, do not write debugging text to the debug output file.</p>
+</td>
+
+            </tr>
+
+          </tbody>
+</table>
+</div>
+
+    </div>
+
+  </div>
+
+</div></div></section></main></body></html>

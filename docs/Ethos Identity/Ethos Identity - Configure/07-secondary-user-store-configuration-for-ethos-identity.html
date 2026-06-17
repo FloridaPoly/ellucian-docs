@@ -1,0 +1,512 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Ethos Identity - Configure — Secondary user store configuration for Ethos Identity</title><style>body{font-family:-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;line-height:1.55;color:#1a1a1a;max-width:920px;margin:0 auto;padding:24px}header{border-bottom:2px solid #5a16d6;margin-bottom:8px}h1{color:#3a0ca3}h2,h3,h4,h5,h6{margin-top:1.6em}.crumb{color:#666;font-size:13px;margin:0}.meta{color:#888;font-size:12px}nav.toc{background:#f6f4fc;border:1px solid #e3dcf5;border-radius:8px;padding:12px 18px;margin:18px 0}nav.toc h2{margin:.2em 0}nav.toc ul{list-style:none;padding-left:0}nav.toc a{text-decoration:none;color:#5a16d6}section{margin:1.2em 0;padding-top:.4em}img{max-width:100%;height:auto}table{border-collapse:collapse}td,th{border:1px solid #ccc;padding:4px 8px}code,pre{background:#f4f4f4;border-radius:4px}pre{padding:10px;overflow:auto}</style></head><body><header><p class="crumb">Ethos Identity › Ethos Identity - Configure</p><h1>Ethos Identity - Configure — Secondary user store configuration for Ethos Identity</h1><p class="meta">Source: <a href="https://resources.elluciancloud.com/r/bundle/ethos_identity_acn_configure">https://resources.elluciancloud.com/r/bundle/ethos_identity_acn_configure</a> &middot; Retrieved 2026-06-17</p></header><nav class="toc"><h2>Contents</h2><ul><li style="margin-left:0px"><a href="#t-830">Secondary user store configuration for Ethos Identity</a></li><li style="margin-left:16px"><a href="#t-840">Add an Active Directory secondary user store</a></li><li style="margin-left:32px"><a href="#t-850">Configure claim mappings</a></li><li style="margin-left:16px"><a href="#t-860">Add an LDAP secondary user store</a></li><li style="margin-left:32px"><a href="#t-870">Configure claim mappings</a></li><li style="margin-left:32px"><a href="#t-880">Remove Referral attribute when not using LDAP referrals</a></li><li style="margin-left:16px"><a href="#t-890">Add a JDBC secondary user store</a></li><li style="margin-left:16px"><a href="#t-900">Remove the domain from group memberships</a></li></ul></nav><main><section id="t-830"><h2>Secondary user store configuration for Ethos Identity</h2><div class="content-locale-en-US content-locale-en"><div id="c_config_secondary_user_stores"><div class="body conbody"><p class="shortdesc"><span class="keyword">Ellucian Ethos Identity</span> uses an LDAP directory, Active directory server, or database server as a secondary user store. The secondary user store will configure from the management console.</p>
+
+    <p class="p"><span class="ph uicontrol">Directory Servers</span>: <span class="keyword">Ellucian Ethos Identity</span> supports directory servers as an authentication user store and attribute store.</p>
+
+    <p class="p"><span class="ph uicontrol">Database server (JDBC)</span>: <span class="keyword">Ellucian Ethos Identity</span> supports JDBC server for attribute assertion as attribute store.</p>
+
+    <div class="note"><span class="notetitle">Note:</span> Database server (JDBC) does not support as authentication user store.</div>
+
+    <p class="p">Use case for attribute assertion: UDC_Identifier is an attribute in the database and it can retrieves using JDBC attribute store.</p>
+
+    <p class="p">For more information about how <span class="keyword">Ellucian Ethos Identity</span> uses secondary user store, see <cite class="cite">About <span class="keyword">Ethos Identity</span> secondary user stores</cite>.</p>
+
+  </div>
+
+</div></div></section>
+<section id="t-840"><h3>Add an Active Directory secondary user store</h3><div class="content-locale-en-US content-locale-en"><div id="t_add_active_dir_secondary_user_store"><div class="body taskbody"><p class="shortdesc">Add an Active Directory secondary user store.</p>
+
+    <div class="tasklabel"><h2 class="sectiontitle tasklabel">Procedure</h2></div><ol class="ol steps"><li class="li step stepexpand">
+        <span class="ph cmd">Log in to the Console.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Click <span class="ph menucascade"><span class="ph uicontrol">User Attributes &amp; Stores</span><abbr title="and then"> &gt; </abbr><span class="ph uicontrol"> User Stores</span></span>.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">To Add a new user store, click <span class="ph uicontrol">New User Store</span>.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">On the <span class="keyword wintitle">Select User Store Type</span> page, select <span class="ph uicontrol">Active Directory</span>.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">On the <span class="keyword wintitle">Add Active Directory User Store</span> page, under <span class="ph uicontrol">General</span> section, enter the following information.</span>
+        <div class="itemgroup info">
+          
+<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" class="table" frame="border" border="1" rules="all"><colgroup><col style="width:35.3356890459364%"><col style="width:64.66431095406361%"></colgroup><thead class="thead" style="text-align:left;">
+                <tr class="row">
+                  <th class="entry cellrowborder" style="vertical-align:top;" id="d15293e95">Field</th>
+
+                  <th class="entry cellrowborder" style="vertical-align:top;" id="d15293e98">Description</th>
+
+                </tr>
+
+              </thead>
+<tbody class="tbody">
+                <tr class="row">
+                  <td class="entry cellrowborder" style="vertical-align:top;" headers="d15293e95 ">Name*</td>
+
+                  <td class="entry cellrowborder" style="vertical-align:top;" headers="d15293e98 ">Enter a unique identifier for the user store, such as the Active Directory domain. This value is the primary key among all secondary user stores defined.</td>
+
+                </tr>
+
+                <tr class="row">
+                  <td class="entry cellrowborder" style="vertical-align:top;" headers="d15293e95 ">Description</td>
+
+                  <td class="entry cellrowborder" style="vertical-align:top;" headers="d15293e98 ">Enter a brief description of the user store.</td>
+
+                </tr>
+
+                <tr class="row">
+                  <td class="entry cellrowborder" style="vertical-align:top;" headers="d15293e95 ">Connection URL*</td>
+
+                  <td class="entry cellrowborder" style="vertical-align:top;" headers="d15293e98 ">Enter the LDAP URL for Active Directory. <div class="note"><span class="notetitle">Note:</span> This URL must begin with <span class="ph filepath">ldap://</span> (unsecured) or <span class="ph filepath">ldaps://</span> (secured).</div>
+</td>
+
+                </tr>
+
+                <tr class="row">
+                  <td class="entry cellrowborder" style="vertical-align:top;" headers="d15293e95 ">Connection Name*</td>
+
+                  <td class="entry cellrowborder" style="vertical-align:top;" headers="d15293e98 ">Enter the DN of an administrative user that can perform LDAP search operations.</td>
+
+                </tr>
+
+                <tr class="row">
+                  <td class="entry cellrowborder" style="vertical-align:top;" headers="d15293e95 ">Connection Password*</td>
+
+                  <td class="entry cellrowborder" style="vertical-align:top;" headers="d15293e98 ">Enter the password of the administrative user from the <span class="ph uicontrol">Connection Name</span> field.<div class="note"><span class="notetitle">Note:</span> This password is encrypted using the key specified in the global keystore configuration. If the private key is updated in the global keystore, the password must be entered again on each secondary user store.</div>
+</td>
+
+                </tr>
+
+              </tbody>
+</table>
+</div>
+
+          <div class="note"><span class="notetitle">Note:</span> * indicates a required field.</div>
+
+        </div>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Click <span class="ph uicontrol">Next</span>.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">On the <span class="keyword wintitle">Add Active Directory User Store</span> page, under <span class="ph uicontrol">General</span> section, enter the following information.</span>
+        <div class="itemgroup info">
+          
+<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" class="table" frame="border" border="1" rules="all"><colgroup><col style="width:35.3356890459364%"><col style="width:64.66431095406361%"></colgroup><thead class="thead" style="text-align:left;">
+                <tr class="row">
+                  <th class="entry cellrowborder" style="vertical-align:top;" id="d15293e206">Field</th>
+
+                  <th class="entry cellrowborder" style="vertical-align:top;" id="d15293e209">Description</th>
+
+                </tr>
+
+              </thead>
+<tbody class="tbody">
+                <tr class="row">
+                  <td class="entry cellrowborder" style="vertical-align:top;" headers="d15293e206 ">User Search Base*</td>
+
+                  <td class="entry cellrowborder" style="vertical-align:top;" headers="d15293e209 ">Enter the DN for user search. For example, an administrator at school.edu may specify CN=users,DC=school,DC=edu to search for users under the users context.</td>
+
+                </tr>
+
+                <tr class="row">
+                  <td class="entry cellrowborder" style="vertical-align:top;" headers="d15293e206 ">User Entry Object Class*</td>
+
+                  <td class="entry cellrowborder" style="vertical-align:top;" headers="d15293e209 ">Enter the object class used to construct user entries. If you are unsure, leave the default value.Example: user</td>
+
+                </tr>
+
+                <tr class="row">
+                  <td class="entry cellrowborder" style="vertical-align:top;" headers="d15293e206 ">Username Attribute*</td>
+
+                  <td class="entry cellrowborder" style="vertical-align:top;" headers="d15293e209 ">Enter the attribute that uniquely identifies each user, such as <kbd class="ph userinput">cn/sAMAccountName</kbd>. If you are unsure, leave the default value.</td>
+
+                </tr>
+
+                <tr class="row">
+                  <td class="entry cellrowborder" style="vertical-align:top;" headers="d15293e206 ">User Search Filter*</td>
+
+                  <td class="entry cellrowborder" style="vertical-align:top;" headers="d15293e209 ">Modify the filtering criteria to use any changes to the Username Attribute field or User Entry Object Class field. If these fields were not modified, leave the default value.Example: (&amp;(objectClass=user)(|(cn=?)(sAMAccountName=?)))</td>
+
+                </tr>
+
+                <tr class="row">
+                  <td class="entry cellrowborder" style="vertical-align:top;" headers="d15293e206 ">User List Filter*</td>
+
+                  <td class="entry cellrowborder" style="vertical-align:top;" headers="d15293e209 ">Enter filtering criteria for listing all the user entries in LDAP.Example: (objectClass=user)</td>
+
+                </tr>
+
+                <tr class="row">
+                  <td class="entry cellrowborder" style="vertical-align:top;" headers="d15293e206 ">User ID Attribute*</td>
+
+                  <td class="entry cellrowborder" style="vertical-align:top;" headers="d15293e209 ">Attribute used for uniquely identifying a user entry.<p class="p">Example: uid</p>
+</td>
+
+                </tr>
+
+                <tr class="row">
+                  <td class="entry cellrowborder" style="vertical-align:top;" headers="d15293e206 ">UserID Search Filter*</td>
+
+                  <td class="entry cellrowborder" style="vertical-align:top;" headers="d15293e209 ">Filtering criteria for searching a particular user entry.<p class="p">Example: (&amp;(objectClass=user)(uid=?))</p>
+</td>
+
+                </tr>
+
+                <tr class="row">
+                  <td class="entry cellrowborder" style="vertical-align:top;" headers="d15293e206 ">Username RegEx (Java)*</td>
+
+                  <td class="entry cellrowborder" style="vertical-align:top;" headers="d15293e209 ">This is the regular expression used by the back-end components for validating usernames.</td>
+
+                </tr>
+
+                <tr class="row">
+                  <td class="entry cellrowborder" style="vertical-align:top;" headers="d15293e206 ">Username RegEx (Javascript)*</td>
+
+                  <td class="entry cellrowborder" style="vertical-align:top;" headers="d15293e209 ">This is the regular expression used by the front-end components for validating usernames.</td>
+
+                </tr>
+
+                <tr class="row">
+                  <td class="entry cellrowborder" style="vertical-align:top;" headers="d15293e206 ">Password RegEx (Java)*</td>
+
+                  <td class="entry cellrowborder" style="vertical-align:top;" headers="d15293e209 ">This is the regular expression used by the back-end components for validating passwords.</td>
+
+                </tr>
+
+                <tr class="row">
+                  <td class="entry cellrowborder" style="vertical-align:top;" headers="d15293e206 ">Password RegEx (Javascript)*</td>
+
+                  <td class="entry cellrowborder" style="vertical-align:top;" headers="d15293e209 ">This is the regular expression used by the front-end components for validating passwords.</td>
+
+                </tr>
+
+              </tbody>
+</table>
+</div>
+
+          <div class="note"><span class="notetitle">Note:</span> * indicates a required field.</div>
+
+        </div>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">In the <span class="ph uicontrol">Group Search Base</span> field, enter the DN for user search.</span>
+        <div class="itemgroup info">
+          <p class="p">For example, an administrator at school.edu may specify <kbd class="ph userinput">CN=users,DC=school,DC=edu</kbd> to search for groups under the users context.</p>
+
+        </div>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Click <span class="ph uicontrol">Next</span>.</span>
+        <div class="itemgroup info">You can preview the Invitation message with the user username and password.</div>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Click <span class="ph uicontrol">Finish</span> to create the secondary user store.</span>
+      </li>
+</ol>
+
+  </div>
+
+</div></div></section>
+<section id="t-850"><h4>Configure claim mappings</h4><div class="content-locale-en-US content-locale-en"><div id="t_config_claim_mappings_ad_sec_user_store"><div class="body taskbody"><p class="shortdesc"><span class="ph">Ellucian Ethos Identity</span> 5.10.0 enables System for Cross-domain Identity Management (SCIM2). To support SCIM2 additional claim mappings are required.</p>
+
+    <div class="section context"><div class="tasklabel"><h2 class="sectiontitle tasklabel">About this task</h2></div>Perform the following steps to add required SCIM2 claim mappings for the Active Directory.</div>
+
+    <div class="tasklabel"><h2 class="sectiontitle tasklabel">Procedure</h2></div><ol class="ol steps"><li class="li step stepexpand">
+        <span class="ph cmd" id="t_config_claim_mappings_ad_sec_user_store__d64e132">Log in to the Management Console.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd" id="t_config_claim_mappings_ad_sec_user_store__d64e148">Click the <span class="ph uicontrol">Main</span> tab. </span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Navigate to <span class="ph menucascade"><span class="ph uicontrol">Claims</span><abbr title="and then"> &gt; </abbr><span class="ph uicontrol">List</span></span>, under Available Claim Dialects, click <span class="ph uicontrol">http://wso2.org/claims</span>.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Under Available Claims for http://wso2.org/claims, click <span class="ph uicontrol">Edit</span> for <span class="ph uicontrol">User ID</span> claim and update it to the appropriate <span class="ph uicontrol">Mapped Attribute (s)*</span> in your Active Directory.</span>
+        <div class="itemgroup stepxmp">Example: uid</div>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Under Available Claims for http://wso2.org/claims, click <span class="ph uicontrol">Edit</span> for <span class="ph uicontrol">Last Modified Time</span> claim and update it to the appropriate <span class="ph uicontrol">Mapped Attribute (s)*</span> in your Active Directory.</span>
+        <div class="itemgroup stepxmp">Example: LastModifiedDate</div>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Under Available Claims for http://wso2.org/claims, click <span class="ph uicontrol">Edit</span> for <span class="ph uicontrol">Created Time</span> claim and update it to the appropriate <span class="ph uicontrol">Mapped Attribute (s)*</span> in your Active Directory.</span>
+        <div class="itemgroup stepxmp">Example: homePhone</div>
+        <div class="itemgroup info">
+          <div class="note"><span class="notetitle">Note:</span> The above attribute mappings are references. Actual attribute mappings may differ in your environment.</div>
+
+        </div>
+      </li>
+</ol>
+
+  </div>
+
+</div></div></section>
+<section id="t-860"><h3>Add an LDAP secondary user store</h3><div class="content-locale-en-US content-locale-en"><div id="t_add_ldap_secondary_user_store"><div class="body taskbody"><p class="shortdesc">Add an LDAP secondary user store.</p>
+
+    <div class="tasklabel"><h2 class="sectiontitle tasklabel">Procedure</h2></div><ol class="ol steps"><li class="li step stepexpand">
+        <span class="ph cmd" id="t_add_ldap_secondary_user_store__d64e132">Log in to the Management Console.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd" id="t_add_ldap_secondary_user_store__d64e148">Click the <span class="ph uicontrol">Main</span> tab. </span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Under <span class="ph uicontrol">User Stores</span>, click <span class="ph uicontrol">Add</span>.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">On the <span class="keyword wintitle">Add New User Store</span> page, enter the following information.</span>
+        
+<table border="1" frame="hsides" rules="rows" cellpadding="4" cellspacing="0" summary="" class="simpletable choicetable choicetableborder">
+<colgroup><col style="width:50%"><col style="width:50%"></colgroup><thead><tr class="sthead chhead"><th class="stentry choptionhd" style="vertical-align:bottom;text-align:left;" id="d13476e63-option">Field</th>
+<th class="stentry chdeschd" style="vertical-align:bottom;text-align:left;" id="d13476e63-desc">Value</th></tr></thead>
+<tbody><tr class="strow chrow">
+            <td style="vertical-align:top;" headers="d13476e63-option" id="d13476e76" class="stentry choption">User Store Manager Class</td>
+
+            <td style="vertical-align:top;" headers="d13476e63-desc d13476e76" class="stentry chdesc">Select: <span class="ph uicontrol">org.wso2.carbon.user.core.ldap.​UniqueIDReadWriteLDAPUserStoreManager</span></td>
+
+          </tr>
+<tr class="strow chrow">
+            <td style="vertical-align:top;" headers="d13476e63-option" id="d13476e87" class="stentry choption">Domain Name</td>
+
+            <td style="vertical-align:top;" headers="d13476e63-desc d13476e87" class="stentry chdesc">Enter a unique identifier for the user store, such as the LDAP domain. This value is the primary key among all secondary user stores defined.</td>
+
+          </tr>
+<tr class="strow chrow">
+            <td style="vertical-align:top;" headers="d13476e63-option" id="d13476e96" class="stentry choption">Description</td>
+
+            <td style="vertical-align:top;" headers="d13476e63-desc d13476e96" class="stentry chdesc">Enter a brief description of the user store.</td>
+
+          </tr>
+<tr class="strow chrow">
+            <td style="vertical-align:top;" headers="d13476e63-option" id="d13476e105" class="stentry choption">Connection URL</td>
+
+            <td style="vertical-align:top;" headers="d13476e63-desc d13476e105" class="stentry chdesc">Enter the LDAP URL. <div class="note"><span class="notetitle">Note:</span> This URL must begin with <span class="ph filepath">ldap://</span> (unsecured) or <span class="ph filepath">ldaps://</span> (secured).</div>
+</td>
+
+          </tr>
+<tr class="strow chrow">
+            <td style="vertical-align:top;" headers="d13476e63-option" id="d13476e123" class="stentry choption">Connection Name</td>
+
+            <td style="vertical-align:top;" headers="d13476e63-desc d13476e123" class="stentry chdesc">Enter the DN of an administrative user that can perform LDAP search operations.</td>
+
+          </tr>
+<tr class="strow chrow">
+            <td style="vertical-align:top;" headers="d13476e63-option" id="d13476e132" class="stentry choption">Connection Password</td>
+
+            <td style="vertical-align:top;" headers="d13476e63-desc d13476e132" class="stentry chdesc">Enter the password of the administrative user from the <span class="ph uicontrol">Connection Name</span> field.<div class="note"><span class="notetitle">Note:</span> This password is encrypted using the key specified in the global keystore configuration. If the private key is updated in the global keystore, the password must be entered again on each secondary user store.</div>
+</td>
+
+          </tr>
+<tr class="strow chrow">
+            <td style="vertical-align:top;" headers="d13476e63-option" id="d13476e146" class="stentry choption">User Search Base</td>
+
+            <td style="vertical-align:top;" headers="d13476e63-desc d13476e146" class="stentry chdesc">Enter the DN for user search. For example, an administrator at school.edu may specify <kbd class="ph userinput">CN=users,DC=school,DC=edu</kbd> to search for users under the users context.</td>
+
+          </tr>
+<tr class="strow chrow">
+            <td style="vertical-align:top;" headers="d13476e63-option" id="d13476e158" class="stentry choption">User Entry Object Class</td>
+
+            <td style="vertical-align:top;" headers="d13476e63-desc d13476e158" class="stentry chdesc">Enter the object class used to construct user entries. If unsure, leave the default value.<p class="p">Example: inetOrgPerson</p>
+</td>
+
+          </tr>
+<tr class="strow chrow">
+            <td style="vertical-align:top;" headers="d13476e63-option" id="d13476e169" class="stentry choption">Username Attribute</td>
+
+            <td style="vertical-align:top;" headers="d13476e63-desc d13476e169" class="stentry chdesc">Enter the attribute that uniquely identifies each user, such as <span class="ph uicontrol">cn/uid</span>. If you are unsure, leave the default value.</td>
+
+          </tr>
+<tr class="strow chrow">
+            <td style="vertical-align:top;" headers="d13476e63-option" id="d13476e181" class="stentry choption">User Search Filter</td>
+
+            <td style="vertical-align:top;" headers="d13476e63-desc d13476e181" class="stentry chdesc">Modify the filtering criteria to use any changes to the <span class="ph uicontrol">Username Attribute</span> field or <span class="ph uicontrol">User Entry Object Class</span> field. If these fields were not modified, leave the default value.<p class="p">Example: (&amp;(objectClass=person)(cn/uid?))</p>
+</td>
+
+          </tr>
+<tr class="strow chrow">
+            <td style="vertical-align:top;" headers="d13476e63-option" id="d13476e199" class="stentry choption">User List Filter</td>
+
+            <td style="vertical-align:top;" headers="d13476e63-desc d13476e199" class="stentry chdesc">Enter filtering criteria for listing all the user entries in LDAP.<p class="p">Example: (objectClass=person)</p>
+</td>
+
+          </tr>
+<tr class="strow chrow">
+            <td style="vertical-align:top;" headers="d13476e63-option" id="d13476e210" class="stentry choption">User ID Attribute</td>
+
+            <td style="vertical-align:top;" headers="d13476e63-desc d13476e210" class="stentry chdesc">Attribute used for uniquely identifying a user entry<p class="p">Example: uid</p>
+</td>
+
+          </tr>
+<tr class="strow chrow">
+            <td style="vertical-align:top;" headers="d13476e63-option" id="d13476e221" class="stentry choption">UserID Search Filter</td>
+
+            <td style="vertical-align:top;" headers="d13476e63-desc d13476e221" class="stentry chdesc">Filtering criteria for searching a particular user entry<p class="p">Example: (&amp;(objectClass=user)(uid=?))</p>
+</td>
+
+          </tr>
+</tbody></table>
+
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Expand the <span class="ph uicontrol">Optional</span> panel.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">In the <span class="ph uicontrol">Group Search Base</span> field, enter the DN for user search.</span>
+        <div class="itemgroup info">
+          <p class="p">For example, an administrator at school.edu may specify <kbd class="ph userinput">CN=users,DC=school,DC=edu</kbd> to search for groups under the users context.</p>
+
+        </div>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Click <span class="ph uicontrol">Add</span> to create the secondary user store.</span>
+      </li>
+</ol>
+
+  </div>
+
+</div></div></section>
+<section id="t-870"><h4>Configure claim mappings</h4><div class="content-locale-en-US content-locale-en"><div id="t_config_claim_mappings_ldap_sec_user_store"><div class="body taskbody"><p class="shortdesc"><span class="ph">Ellucian Ethos Identity</span> 5.10.0 enables System for Cross-domain Identity Management (SCIM2). To support SCIM2 additional claim mappings are required.</p>
+
+    <div class="section context"><div class="tasklabel"><h2 class="sectiontitle tasklabel">About this task</h2></div>Perform the following steps to add required SCIM2 claim mappings for the LDAP Directory.</div>
+
+    <div class="tasklabel"><h2 class="sectiontitle tasklabel">Procedure</h2></div><ol class="ol steps"><li class="li step stepexpand">
+        <span class="ph cmd" id="t_config_claim_mappings_ldap_sec_user_store__d64e132">Log in to the Management Console.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd" id="t_config_claim_mappings_ldap_sec_user_store__d64e148">Click the <span class="ph uicontrol">Main</span> tab. </span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Navigate to <span class="ph menucascade"><span class="ph uicontrol">Claims</span><abbr title="and then"> &gt; </abbr><span class="ph uicontrol">List</span></span>, under Available Claim Dialects, click <span class="ph uicontrol">http://wso2.org/claims</span>.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Under Available Claims for http://wso2.org/claims, click <span class="ph uicontrol">Edit</span> for <span class="ph uicontrol">User ID</span> claim and update it to the appropriate <span class="ph uicontrol">Mapped Attribute (s)*</span> in your LDAP Directory.</span>
+        <div class="itemgroup stepxmp">Example: uid</div>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Under Available Claims for http://wso2.org/claims, click <span class="ph uicontrol">Edit</span> for <span class="ph uicontrol">Last Modified Time</span> claim and update it to the appropriate <span class="ph uicontrol">Mapped Attribute (s)*</span> in your LDAP Directory.</span>
+        <div class="itemgroup stepxmp">Example: Initials</div>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Under Available Claims for http://wso2.org/claims, click <span class="ph uicontrol">Edit</span> for <span class="ph uicontrol">Created Time</span> claim and update it to the appropriate <span class="ph uicontrol">Mapped Attribute (s)*</span> in your LDAP Directory.</span>
+        <div class="itemgroup stepxmp">Example: homePhone</div>
+        <div class="itemgroup info">
+          <div class="note"><span class="notetitle">Note:</span> The above attribute mappings are references. Actual attribute mappings may differ in your environment.</div>
+
+        </div>
+      </li>
+</ol>
+
+  </div>
+
+</div></div></section>
+<section id="t-880"><h4>Remove Referral attribute when not using LDAP referrals</h4><div class="content-locale-en-US content-locale-en"><div id="t_remove_referral_attribute"><div class="body taskbody"><p class="shortdesc">If you configure a user store so that it does not follow LDAP referrals by leaving the Referral attribute value blank, you will need to edit the <span class="ph filepath">&lt;secondary_user_store_domain_name&gt;.xml</span> file to remove the Referral property.</p>
+
+    <div class="tasklabel"><h2 class="sectiontitle tasklabel">Procedure</h2></div><ol class="ol steps"><li class="li step stepexpand">
+        <span class="ph cmd">Open the <span class="ph filepath">&lt;secondary_user_store_domain_name&gt;.xml</span> file, located in: <span class="ph filepath"><var class="keyword varname">EIS_HOME</var>/repository/deployment/server/userstores</span>.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Remove the following line: <span class="ph filepath">&lt;Property name="Referral"/&gt;</span>.</span>
+        <div class="itemgroup info">
+          <div class="note"><span class="notetitle">Note:</span> You need to edit the file any time you modify the user store properties through the administrative console.</div>
+
+        </div>
+      </li>
+</ol>
+
+  </div>
+
+</div></div></section>
+<section id="t-890"><h3>Add a JDBC secondary user store</h3><div class="content-locale-en-US content-locale-en"><div id="t_add_jdbc_secondary_user_store"><div class="body taskbody"><p class="shortdesc">Add a JDBC secondary user store.</p>
+
+    <div class="tasklabel"><h2 class="sectiontitle tasklabel">Procedure</h2></div><ol class="ol steps"><li class="li step stepexpand">
+        <span class="ph cmd" id="t_add_jdbc_secondary_user_store__d64e132">Log in to the Management Console.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd" id="t_add_jdbc_secondary_user_store__d64e148">Click the <span class="ph uicontrol">Main</span> tab. </span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Under <span class="ph uicontrol">User Stores</span>, click <span class="ph uicontrol">Add</span>.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">On the <span class="keyword wintitle">Add New User Store</span> page, enter the following information.</span>
+        
+<table border="1" frame="hsides" rules="rows" cellpadding="4" cellspacing="0" summary="" class="simpletable choicetable choicetableborder">
+<colgroup><col style="width:17.006802721088434%"><col style="width:82.99319727891157%"></colgroup><thead><tr class="sthead chhead"><th class="stentry choptionhd" style="vertical-align:bottom;text-align:left;" id="d9254e63-option">Field</th>
+<th class="stentry chdeschd" style="vertical-align:bottom;text-align:left;" id="d9254e63-desc">Value to enter</th></tr></thead>
+<tbody><tr class="strow chrow">
+            <td style="vertical-align:top;" headers="d9254e63-option" id="d9254e76" class="stentry choption">User Store Manager Class</td>
+
+            <td style="vertical-align:top;" headers="d9254e63-desc d9254e76" class="stentry chdesc">Select: <span class="ph uicontrol">org.wso2.carbon.user.core.jdbc.UniqueIDJDBCUserStoreManager</span></td>
+
+          </tr>
+<tr class="strow chrow">
+            <td style="vertical-align:top;" headers="d9254e63-option" id="d9254e87" class="stentry choption">Connection URL</td>
+
+            <td style="vertical-align:top;" headers="d9254e63-desc d9254e87" class="stentry chdesc">Connection URL to the database which includes additional connection parameters <p class="p"><span class="ph uicontrol">Sample values</span>: <span class="keyword cmdname">jdbc:mysql://localhost:3306/eeid</span></p>
+</td>
+
+          </tr>
+<tr class="strow chrow">
+            <td style="vertical-align:top;" headers="d9254e63-option" id="d9254e102" class="stentry choption">Connection Name</td>
+
+            <td style="vertical-align:top;" headers="d9254e63-desc d9254e102" class="stentry chdesc">The username used to connect to database with sufficient privileges to perform required operations.</td>
+
+          </tr>
+<tr class="strow chrow">
+            <td style="vertical-align:top;" headers="d9254e63-option" id="d9254e111" class="stentry choption">Connection Password</td>
+
+            <td style="vertical-align:top;" headers="d9254e63-desc d9254e111" class="stentry chdesc">Password for the Connection Name user.</td>
+
+          </tr>
+<tr class="strow chrow">
+            <td style="vertical-align:top;" headers="d9254e63-option" id="d9254e121" class="stentry choption">Driver Name</td>
+
+            <td style="vertical-align:top;" headers="d9254e63-desc d9254e121" class="stentry chdesc">JDBC driver name which used to connect to the database.<p class="p">This driver should be available in the <span class="ph filepath">&lt;EEID_HOME&gt;/repository/components/lib</span> folder.</p>
+</td>
+
+          </tr>
+</tbody></table>
+
+        <div class="itemgroup info">
+          <p class="p">For more information about JDBC configuration, refer to <cite class="cite">Configuring a JDBC User Store</cite> on the WSO2 documentation website for the corresponding WSO2 version.</p>
+
+        </div>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Click <span class="ph uicontrol">Add</span> to create the secondary user store.</span>
+      </li>
+</ol>
+
+  </div>
+
+</div></div></section>
+<section id="t-900"><h3>Remove the domain from group memberships</h3><div class="content-locale-en-US content-locale-en"><div id="t_remove_domain_roles"><div class="body taskbody"><p class="shortdesc">If required by a service provider, remove the domain from the group membership information that is sent to the service provider from <span class="keyword">Ellucian Ethos Identity</span>.</p>
+
+    <div class="section context"><div class="tasklabel"><h2 class="sectiontitle tasklabel">About this task</h2></div>Some service providers require a user's group membership to be sent back from the identity provider. For users stored in a secondary user store, group memberships are sent with the domain in front of the group name. For example, a user located in a secondary user store called <code class="ph codeph">STUDENTS</code> and belonging to groups <code class="ph codeph">full-time-students</code> and <code class="ph codeph">const-student</code> would have their group membership sent as <code class="ph codeph">STUDENTS/full-time-students</code> and <code class="ph codeph">STUDENTS/const-student</code>. However, some service providers require that the group membership be sent without the domain.<p class="p">Perform this procedure to map roles so that the group membership is sent without the domain.</p>
+</div>
+
+    <div class="tasklabel"><h2 class="sectiontitle tasklabel">Procedure</h2></div><ol class="ol steps"><li class="li step">
+        <span class="ph cmd" id="t_remove_domain_roles__d64e132">Log in to the Management Console.</span>
+      </li>
+<li class="li step">
+        <span class="ph cmd" id="t_remove_domain_roles__d64e148">Click the <span class="ph uicontrol">Main</span> tab. </span>
+      </li>
+<li class="li step">
+        <span class="ph cmd">Go to <span class="ph menucascade"><span class="ph uicontrol">Service Providers</span><abbr title="and then"> &gt; </abbr><span class="ph uicontrol">List</span></span>.</span>
+      </li>
+<li class="li step">
+        <span class="ph cmd">In the row for the service provider, click <span class="ph uicontrol">Edit</span>.</span>
+      </li>
+<li class="li step">
+        <span class="ph cmd">Select the check box <span class="ph uicontrol">Use user store domain in roles</span> in outbound configurations.</span>
+      </li>
+<li class="li step">
+        <span class="ph cmd">Click <span class="ph uicontrol">Update</span>.</span>
+      </li>
+</ol>
+
+  </div>
+
+</div></div></section></main></body></html>

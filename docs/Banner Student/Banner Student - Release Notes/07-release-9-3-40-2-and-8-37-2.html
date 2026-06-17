@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Banner Student - Release Notes — Release 9.3.40.2 and 8.37.2</title><style>body{font-family:-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;line-height:1.55;color:#1a1a1a;max-width:920px;margin:0 auto;padding:24px}header{border-bottom:2px solid #5a16d6;margin-bottom:8px}h1{color:#3a0ca3}h2,h3,h4,h5,h6{margin-top:1.6em}.crumb{color:#666;font-size:13px;margin:0}.meta{color:#888;font-size:12px}nav.toc{background:#f6f4fc;border:1px solid #e3dcf5;border-radius:8px;padding:12px 18px;margin:18px 0}nav.toc h2{margin:.2em 0}nav.toc ul{list-style:none;padding-left:0}nav.toc a{text-decoration:none;color:#5a16d6}section{margin:1.2em 0;padding-top:.4em}img{max-width:100%;height:auto}table{border-collapse:collapse}td,th{border:1px solid #ccc;padding:4px 8px}code,pre{background:#f4f4f4;border-radius:4px}pre{padding:10px;overflow:auto}</style></head><body><header><p class="crumb">Banner Student › Banner Student - Release Notes</p><h1>Banner Student - Release Notes — Release 9.3.40.2 and 8.37.2</h1><p class="meta">Source: <a href="https://resources.elluciancloud.com/r/bundle/banner_student_rel_release_notes">https://resources.elluciancloud.com/r/bundle/banner_student_rel_release_notes</a> &middot; Retrieved 2026-06-17</p></header><nav class="toc"><h2>Contents</h2><ul><li style="margin-left:0px"><a href="#t-70">Release 9.3.40.2 and 8.37.2</a></li></ul></nav><main><section id="t-70"><h2>Release 9.3.40.2 and 8.37.2</h2><div class="content-locale-en-US content-locale-en"><div id="c_release_9.3.40.2_8.37.2"><div class="body conbody"><p class="shortdesc">The <span class="keyword">Banner Student</span> <span class="keyword">9.3.40.2 and 8.37.2</span> release includes quality improvements and technical currency updates.</p>
+
+    <div class="section supportnote"><h2 class="title sectiontitle">Support for Banner 8 Self-Service has ended</h2>
+      
+      <p class="p">As of January 1, 2026, <span class="keyword">Banner</span> 8 <span class="keyword">Self-Service</span> has moved out of Sustaining Support and has entered End of Support.</p>
+
+      <p class="p">For detailed information on support statuses, please review our <a class="xref ft-external-link" href="https://elluciansupport.service-now.com/customer_center?id=kb_article_view&amp;sysparm_article=000038478" target="_blank" rel="noopener">Support Assurance Policy</a>.</p>
+
+    </div>
+
+    <div class="section"><h2 class="title sectiontitle">Multi-Level Transcript Support through SHRTETC</h2>
+      
+      <p class="p">The eTranscript Rule (SHRTETC) page is enhanced to support multi-level mapping. The Transcript Type can now be mapped to multiple academic levels instead of a single level. Institutions can now print courses from multiple levels on a single transcript.</p>
+
+      <p class="p">Multi-level transcript support is now available when transcripts are generated using:</p>
+
+      <ul class="ul">
+        <li class="li">SHRETRN</li>
+
+        <li class="li">SHRPESE</li>
+
+        <li class="li">SHRTRTC</li>
+
+      </ul>
+
+      <p class="p">This enhancement addresses PE0007581 and PE0007568 in the <span class="keyword">Ellucian Customer Center</span>.</p>
+
+    </div>
+
+    <div class="section"><h2 class="title sectiontitle">Updated <span class="keyword">Banner Business Process API</span> (BPAPI)</h2>
+      
+      <p class="p">Updated the <span class="keyword apiname">telephone</span> API to support collecting the Phone Sequence number which was added as a read-only field on the <span class="keyword wintitle">General Person Telephone (SPATELE)</span> administrative page.</p>
+
+      <p class="p">This enhancement addresses PE0007591 in the <span class="keyword">Ellucian Customer Center</span>.</p>
+
+    </div>
+
+    <div class="section"><h2 class="title sectiontitle">Enhance Banner Student Registration to pass section-level attributes to Degree Works </h2>
+      
+      <p class="p">With <span class="keyword">Banner Student</span> 8.37.2, the existing queues (DW_PREQ_REQUEST and DW_PREQ_RESPONSE) are cloned as new versions (DW_PREQ_REQUEST_V2 and DW_PREQ_RESPONSE_V2).</p>
+
+      <p class="p">The new queues, DW_PREQ_REQUEST_V2 and DW_PREQ_RESPONSE_V2, use a RAW payload type. RAW payload types are Oracle’s recommended method for transmitting data strings.</p>
+
+      <p class="p"> All supporting functions and procedures in the <code class="ph codeph">sfkdwaq</code> package, which is responsible for reading from and writing to these queues, are also cloned.</p>
+
+      <div class="note"><span class="notetitle">Note:</span> The DESCription queues are not modified or cloned.</div>
+
+      <p class="p">A new Crosswalk Validation (GTVSDAX) page entry, JSONQUEUE/DEGREEWORKS, is introduced with the following values:</p>
+
+      <ul class="ul">
+        <li class="li"><span class="ph uicontrol">N</span> (not enabled, which is the default)</li>
+
+        <li class="li"><span class="ph uicontrol">Y</span> (enabled)</li>
+
+      </ul>
+
+      <p class="p"><span class="ph uicontrol">JSONQUEUE/DEGREEWORKS</span> is a JSON-based message queue endpoint that is used for Banner integrations with Degree Works. This endpoint acts as a switch to determine which set of queues the system can use.</p>
+
+      <ul class="ul">
+        <li class="li"><span class="ph uicontrol">JSONQUEUE</span> refers to the queue or service endpoint that accepts JSON messages.</li>
+
+        <li class="li"><span class="ph uicontrol">DEGREEWORKS</span> refers to the target system.</li>
+
+      </ul>
+
+      <div class="note"><span class="notetitle">Note:</span> This endpoint requires DegreeWorks version 5.1.6.</div>
+
+      <p class="p">The database procedure <code class="ph codeph">sfkpreq.p_prerequisitecheck</code> is updated to read the JSONQUEUE/DEGREEWORKS endpoint and route the payload to the appropriate queues based on whether the endpoint value is <span class="ph uicontrol">N</span> or <span class="ph uicontrol">Y</span>.</p>
+
+      <div class="note"><span class="notetitle">Note:</span> Ellucian is supplying the string that contains the necessary JSON data.</div>
+
+      <p class="p">The new function <code class="ph codeph">f_get_prereq_request_content_v2</code> assembles the JSON payload in the following format:</p>
+
+      <p class="p"><code class="ph codeph">{"correlationId":"M8JUJBNUAU.1.531896.31233.201410", "registrationTerm":"201410", "studentId":"HOSWEBPL1", "courseList":[ { "crn":20002, "subjectCode":"ART", "courseNumber":"1100", "partOfTerm":"1", "sectionNumber":"01", "creditHours":3, "attributes":["ARTL","PSOC","SOCL"] } ]}</code></p>
+
+      <div class="note tip"><span class="tiptitle">Tip:</span> This version includes additional section-level attributes and the <span class="ph uicontrol">partOfTerms</span> value for each section.</div>
+
+      <p class="p">This enhancement addresses PE0007316 in the <span class="keyword">Ellucian Customer Center</span>. </p>
+
+    </div>
+
+    <div class="section"><h2 class="title sectiontitle">New GTVSDAX rule</h2>
+      
+      <p class="p">A new <span class="ph uicontrol">GTVSDAX</span> page rule, <span class="ph uicontrol">JSONQUEUE</span>, is available with <span class="keyword">Banner Student</span> 8.37.2.</p>
+
+      <p class="p">The <span class="ph uicontrol">JSONQUEUE</span> rule defines whether the JSON queue is used for prerequisite checking in Degree Works. The <span class="ph uicontrol">JSONQUEUE</span> rule is defined as follows:</p>
+
+      <ul class="ul">
+        <li class="li">The group value is <span class="ph uicontrol">DEGREEWORKS</span>.</li>
+
+        <li class="li">The internal code value is <span class="ph uicontrol">JSONQUEUE</span>.</li>
+
+        <li class="li">The sequence value is <span class="ph uicontrol">NULL</span>.</li>
+
+      </ul>
+
+      <p class="p">For example:</p>
+
+      <p class="p"><code class="ph codeph">Group=DEGREEWORKS, Internal Code=JSONQUEUE, Sequence=NULL</code></p>
+
+      <p class="p">Note that the external code might have one of the following values:</p>
+
+      <ul class="ul">
+        <li class="li"><span class="ph uicontrol">Y</span>, which indicates to use JSONQUEUE</li>
+
+        <li class="li"><span class="ph uicontrol">N</span>, which indicates to not use JSONQUEUE (and is the default)</li>
+
+      </ul>
+
+      <div class="note"><span class="notetitle">Note:</span> If the <span class="ph uicontrol">GTVSDAX</span> page entry is missing or not valid (meaning it is not one of the values above), the external code defaults to <span class="ph uicontrol">N</span>.</div>
+
+      <p class="p">The following additional fields are now included in the course section payload and are considered during prerequisite evaluation:</p>
+
+      <ul class="ul">
+        <li class="li">Section level attributes</li>
+
+        <li class="li">Section level part of term</li>
+
+      </ul>
+
+    </div>
+
+    <div class="section"><h2 class="title sectiontitle">Supporting Documentation</h2>
+      
+      <div class="p"><span class="ph">To download supporting documentation for this release, click the <span class="ph uicontrol">Attachments</span> <span class="ph"><img class="image ell-icon" src="images/07-release-9-3-40-2-and-8-37-2-1.png" alt="" data-ft-asset-display-name="paperclip.png" data-ft-resource-id="U1hxGZ~0RYMIz4qOJhMPjg-z2kSoEHYYdzJPAZFk1gBDw"></span> icon in the navigation on this page and then select the associated compressed file (.zip) from the displayed list. The zip file contains the following files:</span><ul class="ul">
+        <li class="li"><span class="keyword">Banner Student</span> readme 8.37.2</li>
+
+        <li class="li"><span class="keyword">Banner Student</span> Object List 8.37.2</li>
+
+        <li class="li"><span class="keyword">Banner Student</span> Upgrade Guide Template</li>
+
+        <li class="li"><span class="keyword">Banner Student</span> Resolutions Report 8.37.2</li>
+
+        <li class="li"><span class="keyword">Banner Student</span> Resolutions Report 9.3.40.2</li>
+
+        <li class="li"><span class="keyword">Banner Student</span> 903400201 Installation Reference</li>
+
+        <li class="li"><span class="keyword">Banner Student</span> Release Notes <span class="keyword">9.3.40.2 and 8.37.2</span></li>
+
+        </ul>
+</div>
+
+      <p class="p">The content published on the Documentation site for this release and the documentation included in the associated zip file (listed above) also support any associated hot fix releases.</p>
+
+    </div>
+
+  </div>
+
+</div></div></section></main></body></html>

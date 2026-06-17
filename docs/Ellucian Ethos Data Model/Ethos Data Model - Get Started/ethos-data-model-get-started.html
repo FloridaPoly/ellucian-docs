@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Ethos Data Model - Get Started</title><style>body{font-family:-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;line-height:1.55;color:#1a1a1a;max-width:920px;margin:0 auto;padding:24px}header{border-bottom:2px solid #5a16d6;margin-bottom:8px}h1{color:#3a0ca3}h2,h3,h4,h5,h6{margin-top:1.6em}.crumb{color:#666;font-size:13px;margin:0}.meta{color:#888;font-size:12px}nav.toc{background:#f6f4fc;border:1px solid #e3dcf5;border-radius:8px;padding:12px 18px;margin:18px 0}nav.toc h2{margin:.2em 0}nav.toc ul{list-style:none;padding-left:0}nav.toc a{text-decoration:none;color:#5a16d6}section{margin:1.2em 0;padding-top:.4em}img{max-width:100%;height:auto}table{border-collapse:collapse}td,th{border:1px solid #ccc;padding:4px 8px}code,pre{background:#f4f4f4;border-radius:4px}pre{padding:10px;overflow:auto}</style></head><body><header><p class="crumb">Ellucian Ethos Data Model › Ethos Data Model - Get Started</p><h1>Ethos Data Model - Get Started</h1><p class="meta">Source: <a href="https://resources.elluciancloud.com/r/bundle/ethos_eedm_lrn_get_started">https://resources.elluciancloud.com/r/bundle/ethos_eedm_lrn_get_started</a> &middot; Retrieved 2026-06-17</p></header><nav class="toc"><h2>Contents</h2><ul><li style="margin-left:0px"><a href="#t-10">About the Ellucian Ethos Data Model</a></li><li style="margin-left:16px"><a href="#t-20">Semantic versioning</a></li><li style="margin-left:16px"><a href="#t-30">Breaking changes</a></li><li style="margin-left:16px"><a href="#t-40">Deprecation</a></li><li style="margin-left:16px"><a href="#t-50">Versioned API calls</a></li></ul></nav><main><section id="t-10"><h2>About the Ellucian Ethos Data Model</h2><div class="content-locale-en-US content-locale-en"><div id="c_about_eedm"><div class="body conbody"><p class="shortdesc">The <span class="keyword">Ellucian Ethos Data Model</span> is a single model of all of the concepts in the entire domain of higher education.</p>
+
+    <p class="p">For <span class="keyword">Ellucian Ethos Data Model</span>-based APIs, each concept is treated as a separate entity in the model, and the same name is used by both business and technical audiences. The model is expressed in the form of JSON Schema documents that are attached to API Documentation that can be access through the <a class="xref ft-external-link" href="https://resources.elluciancloud.com/category/developer_resources" target="_blank" rel="noopener">API Catalog</a>.</p>
+
+    <p class="p">All Ellucian applications and third-party certified partner applications that use the Ethos Data Model-based APIs are required to support the <span class="keyword">Ellucian Ethos Data Model</span> for system integration purposes.</p>
+
+    <p class="p">It is expected that legacy systems must adapt to the <span class="keyword">Ellucian Ethos Data Model</span> definition and provide reasonable defaults to support existing business logic. <span class="keyword">Ellucian Ethos Integration</span> will be used to facilitate system integration using the <span class="keyword">Ellucian Ethos Data Model</span>.</p>
+
+    <p class="p">The <span class="keyword">Ellucian Ethos Data Model</span> identity is established by specifying an ID property following the GUID implementation. A global unique identifier (GUID) is a unique reference to an <span class="keyword">Ellucian Ethos Data Model</span> object that allows us to uniquely identify that object across the entire Higher Education domain. <span class="keyword">Ellucian Ethos Data Model</span> definitions are generic, designed to support global requirements, and not limited by an existing <span class="keyword">Ellucian</span> application. All <span class="keyword">Ellucian</span> application teams along with certified partners and customers collaborate to define and validate the definition that can be supported by each application.</p>
+
+  </div>
+
+</div></div></section>
+<section id="t-20"><h3>Semantic versioning</h3><div class="content-locale-en-US content-locale-en"><div id="c_semantic_versioning"><div class="body conbody"><p class="shortdesc"><span class="keyword">Ellucian</span> applies semantic versioning to <span class="keyword">Ellucian Ethos Data Models</span> and APIs to help clients quickly identify if a newer version of the data model and API contains a breaking change. </p>
+
+    <div class="section"><h2 class="title sectiontitle">What is semantic versioning?</h2><p class="p">The version format is <code class="ph codeph">major.minor.patch</code> where:</p>
+<ul class="ul"> <li class="li">The <code class="ph codeph">major</code> number identifies a breaking change.</li>
+ <li class="li">The <code class="ph codeph">minor</code> version identifies a compatible change that will not break the calling application.</li>
+ <li class="li">The <code class="ph codeph">patch</code> number is a bug or security fix.</li>
+ </ul>
+Refer to the <a class="xref ft-external-link" href="https://semver.org/" target="_blank" rel="noopener">Semantic Versioning Specification (SemVer)</a> Web site that describes the standard. </div>
+
+    <div class="section"><h2 class="title sectiontitle">Version numbering for new and upated models</h2>
+      
+      <div class="p"><span class="keyword">Ellucian</span> introduced semantic versioning with the Q3 2018 release of the <span class="keyword">Ellucian Ethos Data Models</span>. As of that release:<ul class="ul"> <li class="li">All new data models and APIs start as version 1.0.0</li>
+ <li class="li">All updated data models and APIs with a breaking change started as version 16.0.0</li>
+
+        <li class="li">All updated data models and APIs without a breaking change kept their existing <code class="ph codeph">major</code> number but started using the <code class="ph codeph">minor</code> semantic version. <p class="p">For example, if <span class="keyword">Ellucian</span> updates version 6 of a currently supported data model and API with a non-breaking change, we will release that data model and API as version 6.1.0</p>
+</li>
+ </ul>
+</div>
+
+      <p class="p">Previously released data models and APIs will retain their current non-semantic version.</p>
+
+    </div>
+
+  </div>
+
+</div></div></section>
+<section id="t-30"><h3>Breaking changes</h3><div class="content-locale-en-US content-locale-en"><div id="c_breaking_changes"><div class="body conbody"><p class="shortdesc">A breaking change occurs when <span class="keyword">Ellucian</span> must change or modify an existing API or property to accommodate changed business processes or functionality that no longer behaves as it did in the past. As a result, you must also update applications that use an API with breaking changes.</p>
+
+    <div class="section"><h2 class="title sectiontitle">Changes not categorized as breaking changes</h2>
+      
+      <p class="p"><span class="keyword">Ellucian</span> continues to evolve the <span class="keyword">Ellucian Ethos Data Models</span> by creating new data models and adding properties to existing data models to augment the capabilities of the Ethos framework. <span class="keyword">Ellucian</span> adds new functionality to data models in a backwards compatible way. That is, <span class="keyword">Ellucian</span> APIs can add additional properties without breaking integrations that used older versions of that API. This type of change, adding new functionality, does not represent a breaking change. The majority of changes delivered to data models fit into this category, which means most APIs reach a stable state and you will seldom need to update integrations that use those APIs.</p>
+
+      <div class="p">These are examples of data model changes that do not require consuming applications to make changes to their existing code:<ul class="ul"> <li class="li">Adding a new property or object.</li>
+ <li class="li">Changing a property constraint from required to optional.</li>
+ <li class="li">Adding a filter or namedQuery.</li>
+ <li class="li">Delivering a brand new data model.</li>
+ </ul>
+</div>
+
+    </div>
+
+    <div class="section"><h2 class="title sectiontitle">Changes categorized as a breaking change</h2>
+      
+      <p class="p">There are times when it is necessary to introduce a breaking change to accommodate new patterns and functionality that is incompatible with previous capabilities. <span class="keyword">Ellucian</span> is committed to avoiding breaking changes wherever possible in the Ethos ecosystem.</p>
+
+      <div class="p">Examples of breaking changes to a data model that would require consumers to also update their code include:<ul class="ul" id="c_breaking_changes__ul_hwf_ynx_cfb"> <li class="li">changes to a property name or format</li>
+ <li class="li">change a property constraint from optional to required</li>
+ <li class="li">filter or namedQuery format change</li>
+ <li class="li">removal of a property or portion of an object</li>
+ <li class="li">retiring of a data model</li>
+ <li class="li">renaming of a data model</li>
+ </ul>
+</div>
+
+    </div>
+
+    <div class="section">
+      
+<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" class="table" frame="hsides" border="1" rules="rows"><colgroup><col><col></colgroup><thead class="thead" style="text-align:left;">
+            <tr class="row">
+              <th class="entry row-nocellborder" colspan="2" style="text-align:left;vertical-align:top;" id="d300e120">Changes to a property format</th>
+
+            </tr>
+
+          </thead>
+<tbody class="tbody">
+            <tr class="row">
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d300e120 ">
+                <code class="ph codeph"> courses – v8 </code>
+              </td>
+
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d300e120 ">
+                <code class="ph codeph">courses – v16.0.0 </code>
+              </td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d300e120 ">schedulingStartOn – utcDateTime</td>
+
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d300e120 ">schedulingStartOn – date</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d300e120 ">schedulingEndOn – utcDateTime</td>
+
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d300e120 ">schedulingEndOn – date</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d300e120 ">
+                <code class="ph codeph"> sections-maximum – v11</code>
+              </td>
+
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d300e120 ">
+                <code class="ph codeph">sections-maximum – v16.0.0 </code>
+              </td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d300e120 ">course.title (single property)</td>
+
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d300e120 ">course.titles (array)</td>
+
+            </tr>
+
+          </tbody>
+</table>
+</div>
+
+      
+<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" class="table" frame="hsides" border="1" rules="rows"><colgroup><col><col></colgroup><thead class="thead" style="text-align:left;">
+            <tr class="row">
+              <th class="entry row-nocellborder" colspan="2" style="text-align:left;vertical-align:top;" id="d300e199">Changes to a Property Name</th>
+
+            </tr>
+
+          </thead>
+<tbody class="tbody">
+            <tr class="row">
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d300e199 ">
+                <code class="ph codeph">admission-application-reviews – v11 </code>
+              </td>
+
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d300e199 ">
+                <code class="ph codeph">admission-application-reviews – v12 </code>
+              </td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d300e199 ">reviewer.person</td>
+
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d300e199 ">reviewer.representative</td>
+
+            </tr>
+
+          </tbody>
+</table>
+</div>
+
+      
+<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" class="table" frame="hsides" border="1" rules="rows"><colgroup><col><col></colgroup><thead class="thead" style="text-align:left;">
+            <tr class="row">
+              <th class="entry row-nocellborder" colspan="2" style="text-align:left;vertical-align:top;" id="d300e245">Removal of a property or portion of an object</th>
+
+            </tr>
+
+          </thead>
+<tbody class="tbody">
+            <tr class="row">
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d300e245 ">
+                <code class="ph codeph"> section-registrations – v7 </code>
+              </td>
+
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d300e245 ">
+                <code class="ph codeph">section-registrations – v16.0.0</code>
+              </td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d300e245 ">awardGradeScheme</td>
+
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d300e245 ">Moved to new data model – student-unverified-grades</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d300e245 ">attemptedCredit</td>
+
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d300e245 ">Moved to new data model – student-grade-point-averages as:<ul class="ul" id="c_breaking_changes__ul_dtt_jpx_cfb"> <li class="li">periodBased.attemptedCredits</li>
+ <li class="li">cumulative.attemptedCredits</li>
+ <li class="li">earnedDegrees.attemptedCredits</li>
+ </ul>
+</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d300e245 ">
+                <code class="ph codeph">students – v7</code>
+              </td>
+
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d300e245 ">
+                <code class="ph codeph">students – v16.0.0</code>
+              </td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d300e245 ">administrativePeriod</td>
+
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d300e245 ">N/A</td>
+
+            </tr>
+
+          </tbody>
+</table>
+</div>
+
+      
+<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" class="table" frame="hsides" border="1" rules="rows"><colgroup><col><col></colgroup><thead class="thead" style="text-align:left;">
+            <tr class="row">
+              <th class="entry row-nocellborder" colspan="2" style="text-align:left;vertical-align:top;" id="d300e335">Renaming of a Model</th>
+
+            </tr>
+
+          </thead>
+<tbody class="tbody">
+            <tr class="row">
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d300e335 ">student-meal-plans – v9</td>
+
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d300e335 ">meal-plan-assignments – v10</td>
+
+            </tr>
+
+          </tbody>
+</table>
+</div>
+
+    </div>
+
+    <div class="section"><h2 class="title sectiontitle">How do I ensure minimal disruption?</h2>
+      
+      <div class="p">Here are some important steps to follow to ensure minimum disruption due to breaking changes:<ul class="ul"> <li class="li">Update your custom integrations to accommodate version-specific requests.</li>
+ <li class="li">Plan ahead to use the latest version of the data models and APIs before the two-year deprecation time frame expires older data model and API versions.</li>
+
+        <li class="li">Catalog the data models and properties that are critical to your Ethos client applications. Verify updates against your own list of critical properties and data models.</li>
+ </ul>
+</div>
+
+    </div>
+
+  </div>
+
+</div></div></section>
+<section id="t-40"><h3>Deprecation</h3><div class="content-locale-en-US content-locale-en"><div id="c_deprecation"><div class="body conbody"><p class="shortdesc">Deprecation refers to functions or elements that are in the process of being replaced by newer ones. For data models and APIs, deprecation means the previously released version of the API will continue to work and is supported for prioritized defect fixes.</p>
+
+    <p class="p">The new version will not necessarily be backward compatible. Until your integration can use the new version, you should remain on the older version. When <span class="keyword">Ellucian</span> releases an updated data model and an updated API that contains a breaking change, <span class="keyword">Ellucian</span> will support all previous versions of the data models and APIs for a period of two years. At the end of the two-year time period, <span class="keyword">Ellucian</span> will no longer support the old data models and APIs but will support only the new data model and API.</p>
+
+    <div class="section"><h2 class="title sectiontitle">How will I know when a Data Model or API is deprecated?</h2>
+      
+      <p class="p">During the two-year time period, <span class="keyword">Ellucian</span> will identify the older data models and APIs that have a breaking change as deprecated. <span class="keyword">Ellucian</span> is working on a way to add information to older data models and APIs that indicates their two-year deprecation time period is underway and what the cessation date is for the data model and API.</p>
+
+      <p class="p">Following are examples of how the two-year deprecation time period would occur.</p>
+
+      
+<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" class="table" frame="hsides" border="1" rules="rows"><colgroup><col style="width:33.33333333333333%"><col style="width:33.33333333333333%"><col style="width:33.33333333333333%"></colgroup><thead class="thead" style="text-align:left;">
+            <tr class="row">
+              <th class="entry row-nocellborder" style="text-align:left;vertical-align:top;" id="d995e73">Entity/resource</th>
+
+              <th class="entry row-nocellborder" style="text-align:left;vertical-align:top;" id="d995e76">Released</th>
+
+              <th class="entry row-nocellborder" style="text-align:left;vertical-align:top;" id="d995e79">Support Cessation</th>
+
+            </tr>
+
+          </thead>
+<tbody class="tbody">
+            <tr class="row">
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d995e73 ">accounting-string-component-values v11 </td>
+
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d995e76 ">Q4 2017</td>
+
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d995e79 ">Q2 2020</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d995e73 ">accounting-string-component-values v15 </td>
+
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d995e76 ">Q2 2018</td>
+
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d995e79 ">&nbsp;</td>
+
+            </tr>
+
+          </tbody>
+</table>
+</div>
+
+      
+<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" class="table" frame="hsides" border="1" rules="rows"><colgroup><col style="width:33.33333333333333%"><col style="width:33.33333333333333%"><col style="width:33.33333333333333%"></colgroup><thead class="thead" style="text-align:left;">
+            <tr class="row">
+              <th class="entry row-nocellborder" style="text-align:left;vertical-align:top;" id="d995e126">Entity/resource</th>
+
+              <th class="entry row-nocellborder" style="text-align:left;vertical-align:top;" id="d995e129">Released</th>
+
+              <th class="entry row-nocellborder" style="text-align:left;vertical-align:top;" id="d995e132">Support Cessation</th>
+
+            </tr>
+
+          </thead>
+<tbody class="tbody">
+            <tr class="row">
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d995e126 ">courses v6 </td>
+
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d995e129 ">Q2 2016</td>
+
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d995e132 ">Q3 2020</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d995e126 ">courses v8 </td>
+
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d995e129 ">Q4 2016</td>
+
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d995e132 ">Q3 2020</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d995e126 ">courses v16.0.0 </td>
+
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d995e129 ">Q3 2018</td>
+
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d995e132 ">&nbsp;</td>
+
+            </tr>
+
+          </tbody>
+</table>
+</div>
+
+    </div>
+
+  </div>
+
+</div></div></section>
+<section id="t-50"><h3>Versioned API calls</h3><div class="content-locale-en-US content-locale-en"><div id="c_versioned_api_calls"><div class="body conbody"><p class="shortdesc"><span class="keyword">Ellucian</span> strongly recommends using versioned API calls for all CRUD (create, read, update, and delete) operations.</p>
+
+    <p class="p"><span class="keyword">Ellucian</span> will continue to support versionless GET operations. If a consumer makes a call without specifying the data model version, the application will return the latest version of the API. This could result in a break in the integration if the data model had a breaking change in a property that the application uses.</p>
+
+    <p class="p">When a system publishes a change, they publish a payload for the latest version they support. If a consuming or subscribing system does not yet support that version, they must make an API request to the source application specifying the requested version.</p>
+
+    <div class="section"><h2 class="title sectiontitle">Why do I need to use versioned API calls?</h2>
+      
+      <p class="p">If you have developed your own API based on an data model <span class="keyword">Ellucian</span> delivered, <span class="keyword">Ellucian</span> recommends you do a versioned call so you get the proper data model version you have developed against. Because specific versions of a data model will eventually be no longer supported, <span class="keyword">Ellucian</span> recommends keeping as current as possible with the latest data model versions.</p>
+
+      <p class="p">If you have developed your own integrations based on <span class="keyword">Ellucian</span> delivered data models and APIs, <span class="keyword">Ellucian</span> recommends versioned calls so you get the proper version that the integration was developed against. Because specific versions of a data model and API will eventually be no longer supported, <span class="keyword">Ellucian</span> recommends keeping as current as possible with the latest versions.</p>
+
+    </div>
+
+  </div>
+
+</div></div></section></main></body></html>

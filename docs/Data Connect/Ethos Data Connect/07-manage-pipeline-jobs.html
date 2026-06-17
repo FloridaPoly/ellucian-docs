@@ -1,0 +1,1045 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Ethos Data Connect — Manage pipeline jobs</title><style>body{font-family:-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;line-height:1.55;color:#1a1a1a;max-width:920px;margin:0 auto;padding:24px}header{border-bottom:2px solid #5a16d6;margin-bottom:8px}h1{color:#3a0ca3}h2,h3,h4,h5,h6{margin-top:1.6em}.crumb{color:#666;font-size:13px;margin:0}.meta{color:#888;font-size:12px}nav.toc{background:#f6f4fc;border:1px solid #e3dcf5;border-radius:8px;padding:12px 18px;margin:18px 0}nav.toc h2{margin:.2em 0}nav.toc ul{list-style:none;padding-left:0}nav.toc a{text-decoration:none;color:#5a16d6}section{margin:1.2em 0;padding-top:.4em}img{max-width:100%;height:auto}table{border-collapse:collapse}td,th{border:1px solid #ccc;padding:4px 8px}code,pre{background:#f4f4f4;border-radius:4px}pre{padding:10px;overflow:auto}</style></head><body><header><p class="crumb">Data Connect › Ethos Data Connect</p><h1>Ethos Data Connect — Manage pipeline jobs</h1><p class="meta">Source: <a href="https://resources.elluciancloud.com/r/bundle/ethos_data_connect">https://resources.elluciancloud.com/r/bundle/ethos_data_connect</a> &middot; Retrieved 2026-06-17</p></header><nav class="toc"><h2>Contents</h2><ul><li style="margin-left:0px"><a href="#t-2110">Manage pipeline jobs</a></li><li style="margin-left:16px"><a href="#t-2120">Working with pipeline jobs</a></li><li style="margin-left:16px"><a href="#t-2130">Set up pipeline parameters and sub-pipelines</a></li><li style="margin-left:16px"><a href="#t-2140">Create a pipeline job</a></li><li style="margin-left:16px"><a href="#t-2150">Run an existing pipeline job</a></li><li style="margin-left:16px"><a href="#t-2160">Monitor a job run</a></li><li style="margin-left:16px"><a href="#t-2170">Troubleshoot a job run</a></li><li style="margin-left:16px"><a href="#t-2180">View job run output files</a></li><li style="margin-left:16px"><a href="#t-2190">Terminate a job run</a></li><li style="margin-left:16px"><a href="#t-2200">Modify pipeline job parameters</a></li><li style="margin-left:16px"><a href="#t-2210">Disable or enable a pipeline job</a></li><li style="margin-left:16px"><a href="#t-2220">Delete a pipeline job</a></li><li style="margin-left:16px"><a href="#t-2230">Create a crosswalk</a></li></ul></nav><main><section id="t-2110"><h2>Manage pipeline jobs</h2><div class="content-locale-en-US content-locale-en"><div id="c_manage_pipeline_jobs"><div class="body conbody"><p class="shortdesc">Create, run, and manage pipeline jobs for Data Connect integrations.</p>
+</div>
+
+</div></div></section>
+<section id="t-2120"><h3>Working with pipeline jobs</h3><div class="content-locale-en-US content-locale-en"><div id="c_data_connect_packages_access_options"><div class="body conbody"><p class="shortdesc"><span class="keyword">Data Connect</span> pipeline jobs are managed in Integration Packages in <span class="keyword">Ellucian Experience</span>.</p>
+
+    <div class="section"><h2 class="title sectiontitle">Options for accessing Integration Packages in Experience</h2>
+      
+      <p class="p">You can access Integration Packages in <span class="keyword">Experience</span> from either the Application menu or the Integration Packages card (if supported at your institution).</p>
+
+      
+<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" class="table" frame="border" border="1" rules="all"><colgroup><col style="width:33.33333333333333%"><col style="width:66.66666666666666%"></colgroup><thead class="thead" style="text-align:left;">
+            <tr class="row">
+              <th class="entry cellrowborder" style="vertical-align:top;" id="d46020e65">Option</th>
+
+              <th class="entry cellrowborder" style="vertical-align:top;" id="d46020e68">Steps</th>
+
+            </tr>
+
+          </thead>
+<tbody class="tbody">
+            <tr class="row">
+              <td class="entry cellrowborder" style="vertical-align:top;" headers="d46020e65 ">From the Application menu</td>
+
+              <td class="entry cellrowborder" style="vertical-align:top;" headers="d46020e68 "><span class="ph">Click the <span class="ph uicontrol">Applications</span> menu <span class="ph"><img class="image ell-icon" src="images/07-manage-pipeline-jobs-1.png" alt="" data-ft-asset-display-name="grid.png" data-ft-resource-id="rcjHe4WMeJ1jBuw_rGS_uw-iMQvaoYt73FYcvYoiKcTHA"></span> icon in the <span class="keyword">Experience Bar</span> and then click <span class="ph uicontrol">Integration Packages</span>.</span><p class="p">This is the recommended option, and all of the individual procedures in this documentation use this option.</p>
+</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry cellrowborder" style="vertical-align:top;" headers="d46020e65 ">From the Integration Packages card (if supported at your institution)</td>
+
+              <td class="entry cellrowborder" style="vertical-align:top;" headers="d46020e68 "><span class="ph">On the <span class="keyword">Data Connect</span> integration packages card on the <span class="keyword">Experience</span> dashboard, click your integration package.</span><p class="p"><span class="ph">The title of the card on your dashboard is the name specified during card configuration by an administrator at your institution. The default title is Integration Packages.</span></p>
+</td>
+
+            </tr>
+
+          </tbody>
+</table>
+</div>
+
+    </div>
+
+    <div class="section"><h2 class="title sectiontitle">Options for working with pipeline jobs</h2>
+      
+      <p class="p">After accessing Integration Packages in <span class="keyword">Experience</span>, you can access a particular package, pipeline, pipeline job, or job run from either the All Runs tab or the Integration Packages tab:</p>
+
+      
+<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" class="table" frame="border" border="1" rules="all"><colgroup><col style="width:33.33333333333333%"><col style="width:66.66666666666666%"></colgroup><thead class="thead" style="text-align:left;">
+            <tr class="row">
+              <th class="entry cellrowborder" style="vertical-align:top;" id="d46020e148">Tab</th>
+
+              <th class="entry cellrowborder" style="vertical-align:top;" id="d46020e151">Description</th>
+
+            </tr>
+
+          </thead>
+<tbody class="tbody">
+            <tr class="row">
+              <td class="entry cellrowborder" style="vertical-align:top;" headers="d46020e148 ">All Runs</td>
+
+              <td class="entry cellrowborder" style="vertical-align:top;" headers="d46020e151 ">Displays existing job runs in reverse chronological order (most recent job runs at the top of the list). The All Runs tab supports searching by pipeline name, package name, job name, or job run ID, and for filtering by job run date, time, and status.<p class="p">The All Runs table shows the job, package, and pipeline associated with each job run. You can search for jobs, packages, and pipelines on the All Runs tab, but those items are shown only if there is an associated job run. A package, pipeline, or job for which there are not yet any job runs can be accessed from the Integration Packages tab.</p>
+</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry cellrowborder" style="vertical-align:top;" headers="d46020e148 ">Integration Packages</td>
+
+              <td class="entry cellrowborder" style="vertical-align:top;" headers="d46020e151 ">Supports browsing using the <span class="keyword">Data Connect</span> hierarchy of Package &gt; Pipeline &gt; Job &gt; Job run. This was originally the only option before the addition of the All Runs tab. While this option remains available, the All Runs tab is the recommended and more intuitive option for working with pipeline jobs.</td>
+
+            </tr>
+
+          </tbody>
+</table>
+</div>
+
+    </div>
+
+    <div class="section" id="c_data_connect_packages_access_options__f1s_l42_5fc"><h2 class="title sectiontitle">Search and filter on the All Runs tab</h2>
+      
+      <div class="p">On the All Runs tab, you can use the search and filter options at the top of the page to help you locate a particular package, pipeline, job, or job run.<ul class="ul">
+        <li class="li">Search scope - In the dropdown, either accept the default (All) or select another option to limit the search to job name, job run, pipeline, or package.</li>
+
+        <li class="li">Search term - The search results return only items that start with your search term. For example, a search for <kbd class="ph userinput">test</kbd> would return a job named "Test Job" but would not return a job named "Pipeline Test."</li>
+
+        <li class="li">Filter by date and time - Enter date and time ranges to show only job runs within that time span. Note that the date and time of a job run is based on when the job run was last updated, which might not correspond to the date and time in the Start or End columns.<p class="p">Date entries are limited to the most recent three months, and to a date range of two weeks or less.</p>
+</li>
+
+        <li class="li">Filter by status - Use the chips on the right side of the page to show only job runs with the selected statuses.</li>
+
+        </ul>
+</div>
+
+    </div>
+
+  </div>
+
+</div></div></section>
+<section id="t-2130"><h3>Set up pipeline parameters and sub-pipelines</h3><div class="content-locale-en-US content-locale-en"><div id="t_specify_pipeline_settings"><div class="body taskbody"><p class="shortdesc">Configure the parameters and sub-pipeline settings that apply to all jobs for a pipeline.</p>
+
+    <div class="section prereq p"><div class="tasklabel"><h2 class="sectiontitle tasklabel">Before you begin</h2></div>
+      <div class="p"> <span class="ph">The user performing this procedure must have the following access:</span> <ul class="ul">
+        <li class="li"><span class="ph">The Setup permission on the integration package that includes this pipeline.</span></li>
+
+        <li class="li">(Optional) A role that has been assigned to the <span class="keyword">Experience</span> card. (Required only if your institution supports access through the card in addition to the Application menu.)</li>
+
+        </ul>
+ </div>
+
+      <p class="p">That access is granted by an administrator as described in <span class="xref ft-internal-link" title="Users manage Data Connect integrations through Ellucian Experience, from either the Application menu or the Data Connect Packages card." data-ft-warning="excluded-from-rendering" data-mapid="iMQvaoYt73FYcvYoiKcTHA" data-tocid="XzNL4H3D7ZRfwdQy8ssHvg">Set up user access to Data Connect integrations</span>.</p>
+
+    </div>
+
+    <div class="section context"><div class="tasklabel"><h2 class="sectiontitle tasklabel">About this task</h2></div>Some integration packages include the following items that are defined at the pipeline level. <ul class="ul">
+      <li class="li">Pipeline-level parameters - These might be sensitive parameters that should not be exposed to business users who manage pipeline jobs, or they might be parameters whose value is the same for all jobs within a pipeline.</li>
+
+      <li class="li">Sub-pipelines - Some pipelines include fittings that use sub-pipelines, for which you can select the appropriate sub-pipeline and version from within Integration Packages.</li>
+
+      </ul>
+<p class="p">This procedure includes the steps that are common to configuring pipeline parameters and sub-pipeline settings for all <span class="keyword">Data Connect</span> pipelines. Information that is specific to a particular pipeline is with the documentation for setting up the <span class="keyword">Data Connect</span> integration that includes that pipeline.</p>
+<div class="note"><span class="notetitle">Note:</span> <span class="ph"><span class="keyword">Data Connect</span> provides multiple options for working with packages, pipelines, jobs, and job runs. The procedure below uses the recommended options for this task. For other options, see <span class="xref ft-internal-xlink" data-ft-warning="excluded-from-rendering" data-clusterid="id_ethos/wh_packages/c_data_connect_packages_access_options">Working with pipeline jobs</span>.</span></div>
+</div>
+
+    <div class="tasklabel"><h2 class="sectiontitle tasklabel">Procedure</h2></div><ol class="ol steps"><li class="li step stepexpand">
+        
+        <span class="ph cmd">From the <span class="keyword">Experience</span> dashboard, click the <span class="ph uicontrol">Applications</span> icon <span class="ph"><img class="image ell-icon" src="images/07-manage-pipeline-jobs-1.png" alt="" data-ft-asset-display-name="grid.png" data-ft-resource-id="rcjHe4WMeJ1jBuw_rGS_uw-iMQvaoYt73FYcvYoiKcTHA"></span> in the <span class="keyword">Experience Bar</span> and then click <span class="ph uicontrol">Integration Packages</span>.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Click the <span class="ph uicontrol">Integration Packages</span> tab.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">In the <span class="keyword wintitle">PACKAGES</span> list in the left pane, click your integration package.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd"><span class="ph"><span class="ph">On the <span class="keyword wintitle">Package</span> page,</span> in the table of pipelines,</span> click the pipeline for which you want to configure pipeline parameters or sub-pipelines.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">On the <span class="keyword wintitle">Pipeline</span> page, click the <span class="ph uicontrol">Pipeline Parameters</span> tab.</span>
+        <div class="itemgroup info">If you do not see the <span class="ph uicontrol">Jobs</span> and <span class="ph uicontrol">Pipeline Parameters</span> tabs, either this pipeline has no pipeline-level parameters or sub-pipelines, or you have not been granted the Setup permission on this integration package.<p class="p">When you access the <span class="ph uicontrol">Pipeline Parameters</span> tab, any previously-entered parameter values are displayed. Sensitive parameters are masked as a series of asterisks <code class="ph codeph">*****</code>. You can click the <span class="ph uicontrol">Show</span> link to have the first part of the entry unmasked. To avoid displaying the entire value for short entries, the <span class="ph uicontrol">Show</span> link is not displayed for entries of five characters or fewer.</p>
+</div>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Click the <span class="ph uicontrol">Edit Pipeline Parameters</span> <span class="ph"><img class="image ell-icon" src="images/07-manage-pipeline-jobs-2.png" alt="" data-ft-asset-display-name="edit.png" data-ft-resource-id="HxbfGGGOANEZlPK7ONuVhw-iMQvaoYt73FYcvYoiKcTHA"></span> icon.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">If there are pipeline-level parameters displayed on the page, enter values for the parameters.</span>
+        <div class="itemgroup info">Many parameters are specific to a particular <span class="keyword">Data Connect</span> integration and pipeline. For guidance, see the documentation for setting up your integration.<div class="note"><span class="notetitle">Note:</span> Some pipeline-level parameters have a default value. These parameters will always have a value. If you clear the entry, you will be able to save, but any job runs for this pipeline will use the default value.</div>
+</div>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">If the pipeline parameters include an <span class="ph uicontrol">Ethos API Key</span> parameter, this pipeline uses <span class="keyword">Ethos Integration</span> for integrations. Perform the steps below to copy the API Key from <span class="keyword">Ethos Integration</span> and enter it here.</span>
+        <ol type="a" class="ol substeps">
+          <li class="li substep">
+            <span class="ph cmd">On the <span class="keyword">Ethos Integration</span> header bar, click <span class="ph uicontrol">Applications</span>.</span>
+          </li>
+
+          <li class="li substep">
+            <span class="ph cmd">On the <span class="keyword wintitle">Applications</span> page, click the name of the Ethos application that you created for this integration.</span>
+          </li>
+
+          <li class="li substep">
+            <span class="ph cmd">On the <span class="keyword wintitle">Application Overview</span> page, click the <span class="ph uicontrol">API Keys</span> tab.</span>
+          </li>
+
+          <li class="li substep">
+            <span class="ph cmd">On the <span class="keyword wintitle">API Keys</span> page, click <span class="ph uicontrol">Copy</span> <span class="ph"><img class="image ell-icon" src="images/07-manage-pipeline-jobs-3.png" alt="" data-ft-asset-display-name="copy.png" data-ft-resource-id="cFOhOGzKybvca3uFJ6iRHA-iMQvaoYt73FYcvYoiKcTHA"></span> to copy the API key.</span>
+          </li>
+
+          <li class="li substep">
+            <span class="ph cmd">Back on the <span class="keyword">Data Connect</span> <span class="keyword wintitle">Pipeline Parameters</span> page, paste that API key into the <span class="ph uicontrol">Ethos API Key</span> field.</span>
+          </li>
+
+        </ol>
+
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">If the pipeline parameters include a multi-value list of sensitive parameters, there are special considerations for updating that list. To modify an existing value or add a value, you must first delete all existing values by clicking the X on each oval, and then enter all desired values.</span>
+        <div class="itemgroup info">In the example below, there are two existing values.<ul class="ul">
+          <li class="li">If you wanted to modify one of the two values, you would first delete both existing values and then enter both desired values.</li>
+
+          <li class="li">If you wanted to add a third value, you would first delete the two existing values and then enter all three desired values.</li>
+
+          </ul>
+<br><img class="image" alt="Pipeline parameters sensitive list" data-ft-asset-display-name="pipeline_params_sensitive_list.png" src="images/07-manage-pipeline-jobs-4.png" data-ft-resource-id="f4vGKisrlNhpqhL5Vu~FQw-iMQvaoYt73FYcvYoiKcTHA"><br></div>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">If the page includes a <span class="ph uicontrol">Sub-pipelines</span> section, select the appropriate sub-pipeline and version for each listed fitting.</span>
+        <div class="itemgroup info">The appropriate selections are specific to a particular <span class="keyword">Data Connect</span> integration and pipeline. For guidance, see the documentation for setting up your integration.</div>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Click <span class="ph uicontrol">Save</span>.</span>
+      </li>
+</ol>
+
+  </div>
+
+</div></div></section>
+<section id="t-2140"><h3>Create a pipeline job</h3><div class="content-locale-en-US content-locale-en"><div id="t_create_pipeline_job"><div class="body taskbody"><p class="shortdesc">Enter the parameters for a pipeline job, and either run the job immediately or set up a schedule.</p>
+
+    <div class="section prereq p"><div class="tasklabel"><h2 class="sectiontitle tasklabel">Before you begin</h2></div>
+      <p class="p">If this pipeline includes pipeline-level parameters, those parameters must be specified before you can create the pipeline job. See <span class="xref ft-internal-link" title="Configure the parameters and sub-pipeline settings that apply to all jobs for a pipeline." data-ft-warning="excluded-from-rendering" data-mapid="iMQvaoYt73FYcvYoiKcTHA" data-tocid="X_vi47rdZ7SPp6t7VLfEww">Set up pipeline parameters and sub-pipelines</span>.</p>
+
+      <p class="p">If you plan to set up the job to run on a schedule, Ellucian recommends that you set up your institution's time zone as described in <span class="xref ft-internal-link" title="The time zone is used by Data Connect scheduled pipeline jobs and by Insights scheduled jobs." data-ft-warning="excluded-from-rendering" data-mapid="iMQvaoYt73FYcvYoiKcTHA" data-tocid="IaQjky2jcYO20xwwCqrK5A">Specify the time zone</span>.</p>
+
+      <div class="p"><span class="ph">The user performing this procedure must have the following access:</span><ul class="ul">
+        <li class="li"> <span class="ph">The Manage permission on the integration package that includes this pipeline.</span> </li>
+
+        <li class="li">(Optional) A role that has been assigned to the <span class="keyword">Experience</span> card. (Required only if your institution supports access through the card in addition to the Application menu.)</li>
+
+        </ul>
+</div>
+
+      <p class="p">That access is granted by an administrator as described in <span class="xref ft-internal-link" title="Users manage Data Connect integrations through Ellucian Experience, from either the Application menu or the Data Connect Packages card." data-ft-warning="excluded-from-rendering" data-mapid="iMQvaoYt73FYcvYoiKcTHA" data-tocid="XzNL4H3D7ZRfwdQy8ssHvg">Set up user access to Data Connect integrations</span>.</p>
+
+    </div>
+
+    <div class="section context"><div class="tasklabel"><h2 class="sectiontitle tasklabel">About this task</h2></div>This procedure includes the steps that are common to setting up all <span class="keyword">Data Connect</span> pipeline jobs. Information that is specific to a particular pipeline, such as settings entered in the Job Parameters section of the New Job page, is with the documentation for setting up the Data Connect integration that includes that pipeline.<div class="note"><span class="notetitle">Note:</span> <span class="ph"><span class="keyword">Data Connect</span> provides multiple options for working with packages, pipelines, jobs, and job runs. The procedure below uses the recommended options for this task. For other options, see <span class="xref ft-internal-xlink" data-ft-warning="excluded-from-rendering" data-clusterid="id_ethos/wh_packages/c_data_connect_packages_access_options">Working with pipeline jobs</span>.</span></div>
+</div>
+
+    <div class="tasklabel"><h2 class="sectiontitle tasklabel">Procedure</h2></div><ol class="ol steps"><li class="li step stepexpand">
+        
+        <span class="ph cmd">From the <span class="keyword">Experience</span> dashboard, click the <span class="ph uicontrol">Applications</span> icon <span class="ph"><img class="image ell-icon" src="images/07-manage-pipeline-jobs-1.png" alt="" data-ft-asset-display-name="grid.png" data-ft-resource-id="rcjHe4WMeJ1jBuw_rGS_uw-iMQvaoYt73FYcvYoiKcTHA"></span> in the <span class="keyword">Experience Bar</span> and then click <span class="ph uicontrol">Integration Packages</span>.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Click the <span class="ph uicontrol">All Runs</span> tab (the default).</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd"><span class="ph" id="t_create_pipeline_job__d96e624">Click <span class="ph uicontrol">+ NEW JOB</span> to access the <span class="keyword wintitle">New Job</span> page.</span></span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">In the <span class="ph uicontrol">Basic Details</span> section of the page, enter basic settings:</span>
+        <div class="itemgroup info">
+          
+<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" class="table" frame="border" border="1" rules="all"><colgroup><col style="width:33.33333333333333%"><col style="width:66.66666666666666%"></colgroup><thead class="thead" style="text-align:left;">
+                <tr class="row">
+                  <th class="entry cellrowborder" style="vertical-align:top;" id="d16614e181">Field</th>
+
+                  <th class="entry cellrowborder" style="vertical-align:top;" id="d16614e184">Entry</th>
+
+                </tr>
+
+              </thead>
+<tbody class="tbody">
+                <tr class="row">
+                  <td class="entry cellrowborder" style="vertical-align:top;" headers="d16614e181 ">Integration Package</td>
+
+                  <td class="entry cellrowborder" style="vertical-align:top;" headers="d16614e184 ">Select the package that contains the pipeline for which you want to create a new job.</td>
+
+                </tr>
+
+                <tr class="row">
+                  <td class="entry cellrowborder" style="vertical-align:top;" headers="d16614e181 ">Pipeline</td>
+
+                  <td class="entry cellrowborder" style="vertical-align:top;" headers="d16614e184 ">Select the pipeline for which you want to create a new job.</td>
+
+                </tr>
+
+                <tr class="row">
+                  <td class="entry cellrowborder" style="vertical-align:top;" headers="d16614e181 ">Version</td>
+
+                  <td class="entry cellrowborder" style="vertical-align:top;" headers="d16614e184 ">Select the pipeline version.</td>
+
+                </tr>
+
+                <tr class="row">
+                  <td class="entry cellrowborder" style="vertical-align:top;" headers="d16614e181 ">Job name</td>
+
+                  <td class="entry cellrowborder" style="vertical-align:top;" headers="d16614e184 "> <span class="ph">Enter a descriptive name for this job. If you create multiple jobs for this pipeline, you can use this name to find this job in the list of jobs.</span> </td>
+
+                </tr>
+
+              </tbody>
+</table>
+</div>
+
+        </div>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">In the <span class="ph uicontrol">Job Parameters</span> section of the page, enter the parameters for this pipeline job.</span>
+        <div class="itemgroup info">Many job parameters are specific to a particular <span class="keyword">Data Connect</span> integration and pipeline job. For guidance, see the documentation for setting up your integration.<p class="p">If the message <samp class="ph msgph">Missing Pipeline Parameters</samp> is displayed, this pipeline includes pipeline-level parameters that must be configured before you can create the pipeline job. Click <span class="ph uicontrol">Setup parameters</span> and then configure those parameters as described in <span class="xref ft-internal-link" title="Configure the parameters and sub-pipeline settings that apply to all jobs for a pipeline." data-ft-warning="excluded-from-rendering" data-mapid="iMQvaoYt73FYcvYoiKcTHA" data-tocid="X_vi47rdZ7SPp6t7VLfEww">Set up pipeline parameters and sub-pipelines</span>.</p>
+</div>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">If the <span class="ph uicontrol">Job Parameters</span> section includes an <span class="ph uicontrol">Ethos API Key</span> parameter, this pipeline uses <span class="keyword">Ethos Integration</span> for integrations. Perform the steps below to copy the API Key from <span class="keyword">Ethos Integration</span> and enter it here.</span>
+        <ol type="a" class="ol substeps">
+          <li class="li substep">
+            <span class="ph cmd">On the <span class="keyword">Ethos Integration</span> header bar, click <span class="ph uicontrol">Applications</span>.</span>
+          </li>
+
+          <li class="li substep">
+            <span class="ph cmd">On the <span class="keyword wintitle">Applications</span> page, click the name of the Ethos application that you created for this integration.</span>
+          </li>
+
+          <li class="li substep">
+            <span class="ph cmd">On the <span class="keyword wintitle">Application Overview</span> page, click the <span class="ph uicontrol">API Keys</span> tab.</span>
+          </li>
+
+          <li class="li substep">
+            <span class="ph cmd">On the <span class="keyword wintitle">API Keys</span> page, click <span class="ph uicontrol">Copy</span> <span class="ph"><img class="image ell-icon" src="images/07-manage-pipeline-jobs-3.png" alt="" data-ft-asset-display-name="copy.png" data-ft-resource-id="cFOhOGzKybvca3uFJ6iRHA-iMQvaoYt73FYcvYoiKcTHA"></span> to copy the API key.</span>
+          </li>
+
+          <li class="li substep">
+            <span class="ph cmd">Back on the <span class="keyword">Data Connect</span> <span class="keyword wintitle">New Job</span> page, paste that API key into the <span class="ph uicontrol">Ethos API Key</span> field.</span>
+          </li>
+
+        </ol>
+
+      </li>
+<li class="li step stepexpand">
+        
+        
+        <span class="ph cmd" id="t_create_pipeline_job__d96e749">In the <span class="ph uicontrol">Job Run Details</span> section of the page, specify when you want the job to run:</span>
+        <ol type="a" class="ol substeps">
+          <li class="li substep substepexpand">
+            <span class="ph cmd">To run the job immediately, click <span class="ph uicontrol">Run now</span>.</span>
+            <div class="itemgroup info">You can also run this job later from the job runs page for the job.</div>
+          </li>
+
+          <li class="li substep substepexpand">
+            <span class="ph cmd">To run the job on a schedule, click <span class="ph uicontrol">Schedule</span> and then do either of the following:</span>
+            <div class="itemgroup info">
+              <ul class="ul">
+                <li class="li">Click <span class="ph uicontrol">Simple</span> to specify the schedule using the user interface fields.<p class="p">The default schedule for the Simple option runs at noon, local time, and runs one-time for each day.</p>
+</li>
+
+                <li class="li">Click <span class="ph uicontrol">Cron format</span> to specify the schedule using a cron expression, which supports advanced scheduling scenarios not supported by the user interface fields.</li>
+
+              </ul>
+
+              <div class="note"><span class="notetitle">Note:</span> Before setting up a schedule, Ellucian recommends that you set up your institution's time zone on the Data Connect <span class="keyword wintitle">Settings</span> page. The time zone setting allows you to use local time rather than UTC time when setting up the schedule, and the schedule is automatically adjusted if that time zone has a time change in the Spring and Fall. The instructions below assume that the time zone has been set up.</div>
+
+              <p class="p">Enter the time when you want the job to run in the time zone specified on the Data Connect <span class="keyword wintitle">Settings</span> page. The table below provides examples for both scheduling options.</p>
+
+              
+<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" id="t_create_pipeline_job__d96e808" class="table" frame="border" border="1" rules="all"><colgroup><col style="width:33.33333333333333%"><col style="width:33.33333333333333%"><col style="width:33.33333333333333%"></colgroup><thead class="thead" style="text-align:left;">
+                    <tr class="row">
+                      <th class="entry cellrowborder" style="vertical-align:top;" id="d16614e432">Job run schedule</th>
+
+                      <th class="entry cellrowborder" style="vertical-align:top;" id="d16614e435">Entries for the "Simple" option</th>
+
+                      <th class="entry cellrowborder" style="vertical-align:top;" id="d16614e438">Entry for the "Cron format" option</th>
+
+                    </tr>
+
+                  </thead>
+<tbody class="tbody">
+                    <tr class="row">
+                      <td class="entry cellrowborder" style="vertical-align:top;" headers="d16614e432 ">Daily at noon</td>
+
+                      <td class="entry cellrowborder" style="vertical-align:top;" headers="d16614e435 ">
+                        <ol class="ol" type="i">
+                          <li class="li">In the <span class="ph uicontrol">Repeats</span> field, select <span class="ph uicontrol">Daily</span>.</li>
+
+                          <li class="li">In the <span class="ph uicontrol">Hours</span> field, enter <kbd class="ph userinput">12</kbd>.</li>
+
+                          <li class="li">In the <span class="ph uicontrol">Minutes</span> field, enter <kbd class="ph userinput">0</kbd>.</li>
+
+                        </ol>
+
+                      </td>
+
+                      <td class="entry cellrowborder" style="vertical-align:top;" headers="d16614e438 "><code class="ph codeph">0 12 * * *</code></td>
+
+                    </tr>
+
+                    <tr class="row">
+                      <td class="entry cellrowborder" style="vertical-align:top;" headers="d16614e432 ">Every 6 hours</td>
+
+                      <td class="entry cellrowborder" style="vertical-align:top;" headers="d16614e435 ">
+                        <ol class="ol" type="i">
+                          <li class="li">In the <span class="ph uicontrol">Repeats</span> field, select <span class="ph uicontrol">Daily</span>.</li>
+
+                          <li class="li">In the <span class="ph uicontrol">Hours</span> field, enter <kbd class="ph userinput">6</kbd> and select <span class="ph uicontrol">Use as interval</span>.</li>
+
+                          <li class="li">In the <span class="ph uicontrol">Minutes</span> field, enter <kbd class="ph userinput">0</kbd>.</li>
+
+                        </ol>
+
+                      </td>
+
+                      <td class="entry cellrowborder" style="vertical-align:top;" headers="d16614e438 "><code class="ph codeph">0 */6 * * *</code></td>
+
+                    </tr>
+
+                    <tr class="row">
+                      <td class="entry cellrowborder" style="vertical-align:top;" headers="d16614e432 ">Every day at 9 AM, noon, and 3 PM</td>
+
+                      <td class="entry cellrowborder" style="vertical-align:top;" headers="d16614e435 ">not supported</td>
+
+                      <td class="entry cellrowborder" style="vertical-align:top;" headers="d16614e438 "><code class="ph codeph">0 9,12,15 * * *</code></td>
+
+                    </tr>
+
+                    <tr class="row">
+                      <td class="entry cellrowborder" style="vertical-align:top;" headers="d16614e432 ">Every 15 minutes between 6 AM and 6 PM</td>
+
+                      <td class="entry cellrowborder" style="vertical-align:top;" headers="d16614e435 ">not supported</td>
+
+                      <td class="entry cellrowborder" style="vertical-align:top;" headers="d16614e438 "><code class="ph codeph">*/15 6-18 * * *</code></td>
+
+                    </tr>
+
+                    <tr class="row">
+                      <td class="entry cellrowborder" style="vertical-align:top;" headers="d16614e432 ">On the third Thursday of every month at 11 AM</td>
+
+                      <td class="entry cellrowborder" style="vertical-align:top;" headers="d16614e435 ">not supported</td>
+
+                      <td class="entry cellrowborder" style="vertical-align:top;" headers="d16614e438 "><code class="ph codeph">0 11 15-21 * 4</code></td>
+
+                    </tr>
+
+                  </tbody>
+</table>
+</div>
+
+            </div>
+          </li>
+
+          <li class="li substep substepexpand">
+            <span class="ph cmd">To have the job run automatically in response to either an Ethos change notification or a business event from Banner or Colleague, click <span class="ph uicontrol">Triggered by event</span>.</span>
+            <div class="itemgroup info">The <span class="ph uicontrol">Triggered by event</span> option is displayed only if the pipeline includes the Ethos Consume Event fitting.<p class="p">If you choose this option, you must set up email or notification alerts in the <span class="ph uicontrol">Job Completion Alerts</span> section of this page, to ensure administrators are aware that the job was run and are made aware of any job run failures.</p>
+<div class="p">This option requires the following:<ul class="ul">
+              <li class="li">The pipeline for this job must include both an Ethos Consume Event fitting and an Ethos Consume Confirm fitting. See <span class="xref ft-internal-xlink" data-ft-warning="excluded-from-rendering" data-clusterid="id_ethos/wh_packages/c_dc_designer_ethos_consume_event_fitting">Ethos Consume Event fitting</span> and <span class="xref ft-internal-xlink" data-ft-warning="excluded-from-rendering" data-clusterid="id_ethos/wh_packages/c_dc_designer_ethos_consume_confirm_fitting">Ethos Consume Confirm fitting</span> for details about using those fittings within the <span class="keyword">Data Connect Integration Designer</span>.<p class="p">Event-triggered pipelines must include the Ethos Consume Confirm fitting to advance the subscriber's last processed ID. If the Ethos Consume Confirm fitting is not reached, the subscriber position will not advance and the job will execute repeatedly. </p>
+</li>
+
+              <li class="li">Set up Ethos applications in Ethos Integration for both the publisher and subscriber of the Ethos change notification or business event.</li>
+
+              <li class="li">Enter the Ethos API key for the subscribing application in the <span class="ph uicontrol">Ethos API Key</span> setting in the <span class="ph uicontrol">Job Parameters</span> section of this page.</li>
+
+              <li class="li">In the Ethos Consume Event fitting, the <span class="ph uicontrol">API Key</span> field must include a pipeline parameter such as <code class="ph codeph">ethosApiKey</code>. If the pipeline includes multiple Ethos Consume Event fittings, they must contain the same parameter name in the <span class="ph uicontrol">API Key</span> field.<div class="note"><span class="notetitle">Note:</span> Each event-triggered pipeline must use a dedicated Ethos API key (subscriber). Do not use the same API key for multiple event-triggered pipelines. Event-triggered jobs rely on subscriber-level progress tracking. Using the same API key across multiple event-triggered pipelines can result in unintended job behavior.</div>
+</li>
+
+              <li class="li">(For change notifications only) In the Ethos Consume Event fitting, the <span class="ph uicontrol">Resources</span> field must identify the Ethos resource/version for the change notification.</li>
+
+              </ul>
+</div>
+<div class="p">If the initial job run fails, <span class="keyword">Data Connect</span> retries the job. The maximum number of retries depends on the scenario:<ul class="ul">
+              <li class="li">Invalid API key: Up to 2 retries.</li>
+
+              <li class="li">Unconfirmed event in pipeline due to error: Up to 10 retries.</li>
+
+              </ul>
+</div>
+<p class="p"><span class="keyword">Data Connect</span> also includes an automatic disable safeguard for event-triggered jobs to prevent unintended repeated execution. Forward progress is determined by whether new events are successfully processed and confirmed. When events are processed and the Confirm fitting is reached, the subscriber's position advances and the job continues normally. If no forward progress is detected across 10 consecutive runs, the job is automatically disabled to prevent repeated execution. After the retry limit is reached or the job is automatically disabled due to lack of progress, <span class="keyword">Data Connect</span> sends an email or <span class="keyword">Experience</span> notification with details about the failure. After resolving the issue, you must manually re-enable the job.</p>
+</div>
+          </li>
+
+        </ol>
+
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">If you set up a schedule for the job, and you want the schedule to end at a certain date and time, do the following: </span>
+        <ol type="a" class="ol substeps">
+          <li class="li substep">
+            <span class="ph cmd">Enable the toggle switch for <span class="ph uicontrol">Setup Job Stop Date/Time?</span>.</span>
+          </li>
+
+          <li class="li substep">
+            <span class="ph cmd">Select the desired stop date.</span>
+          </li>
+
+          <li class="li substep">
+            <span class="ph cmd">Enter the desired stop time in the <var class="keyword varname">HH</var>:<var class="keyword varname">MM</var> <var class="keyword varname">AM/PM</var> format. If you leave this field blank, the stop time defaults to 11:59 PM.</span>
+          </li>
+
+        </ol>
+
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">In the <span class="ph uicontrol">Advanced Options</span> section of the page, modify the default settings as needed:</span>
+        <ol type="a" class="ol substeps">
+          <li class="li substep substepexpand">
+            <span class="ph cmd">In the <span class="ph uicontrol">Maximum Concurrency</span> setting, specify the number of concurrent threads for this job.</span>
+            <div class="itemgroup info">Some pipeline jobs use multiple concurrent threads for processing. Increasing the number of concurrent threads can improve processing time, but too many simultaneous threads might overwhelm the target system for the job.<p class="p">You can accept the default of 10 threads unless you are seeing performance issues. If the pipeline job is taking a long time to run, try increasing the number of threads. If you are seeing performance issues in the target system, try decreasing the number of threads.</p>
+</div>
+          </li>
+
+          <li class="li substep substepexpand">
+            <span class="ph cmd">In the <span class="ph uicontrol">HTTP Request Timeout</span> setting, specify how long this pipeline job should wait for HTTP requests to complete (in minutes).</span>
+            <div class="itemgroup info">You can accept the default of three minutes unless a job run fails with the following error message: <samp class="ph systemoutput">The request exceeded the maximum timeout of &lt;#&gt; minutes and was aborted.</samp> In that case, increase the timeout and run the job again.</div>
+          </li>
+
+        </ol>
+
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Enable the <span class="ph uicontrol">Enable Diagnostic Log</span> toggle switch if you want diagnostic logs to be created for this job run.</span>
+        <div class="itemgroup info">After the job run completes, you can view the diagnostic logs from the Status column on the All Runs tab.<p class="p">If you enable this setting, diagnostic logging is enabled only for the current job run. If you run the job again and want to generate diagnostic logs, you will need to edit the job parameters and enable the diagnostic log again. Similarly, for a scheduled job, diagnostic logging is enabled only for the first scheduled run. If you want to enable diagnostic logging for subsequent runs, you will need to edit the job parameters.</p>
+</div>
+      </li>
+<li class="li step stepexpand"><strong>Optional: </strong>
+        <span class="ph cmd">In the <span class="ph uicontrol">Job Completion Alerts</span> section of the page, set up emails or notifications to be sent upon completion of a job run.</span>
+        <ol type="a" class="ol substeps">
+          <li class="li substep substepexpand">
+            <span class="ph cmd">Enable the <span class="ph uicontrol">Job Completion Alerts</span> toggle switch.</span>
+          </li>
+
+          <li class="li substep substepexpand">
+            <span class="ph cmd">Select the check boxes for the desired alert types:</span>
+            <div class="itemgroup info">
+              
+<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" class="table" frame="border" border="1" rules="all"><colgroup><col style="width:25%"><col style="width:75%"></colgroup><thead class="thead" style="text-align:left;">
+                    <tr class="row">
+                      <th class="entry nocellnorowborder" style="vertical-align:top;" id="d16614e807">Alert type</th>
+
+                      <th class="entry cell-norowborder" style="vertical-align:top;" id="d16614e810">Description</th>
+
+                    </tr>
+
+                  </thead>
+<tbody class="tbody">
+                    <tr class="row">
+                      <td class="entry nocellnorowborder" style="vertical-align:top;" headers="d16614e807 ">Email</td>
+
+                      <td class="entry cell-norowborder" style="vertical-align:top;" headers="d16614e810 ">Emails are sent to the email addresses you specify. The email includes a "View Job Details" link that opens the Job Detail page in <span class="keyword">Experience</span>. <p class="p">All emails are sent from <code class="ph codeph">data-connect-alerts@ellucian.com</code>. Email recipients should add that email address to their safe sender list to avoid having the email go to a junk email folder.</p>
+</td>
+
+                    </tr>
+
+                    <tr class="row">
+                      <td class="entry row-nocellborder" style="vertical-align:top;" headers="d16614e807 ">Notification</td>
+
+                      <td class="entry cellrowborder" style="vertical-align:top;" headers="d16614e810 ">A notification is displayed in the <span class="keyword">Ellucian Experience</span> notifications pane, accessed from the Notifications icon <span class="ph"><img class="image ell-icon" src="images/07-manage-pipeline-jobs-5.png" alt="" data-ft-asset-display-name="notification.png" data-ft-resource-id="G35c18eMCSHeI0fI1km7vA-iMQvaoYt73FYcvYoiKcTHA"></span> in the <span class="keyword">Experience Bar</span>. The notification includes a "View Job Details" link that opens the Job Detail page in <span class="keyword">Experience</span>.<p class="p">Only the user who initially enabled the notification option, by selecting the <span class="ph uicontrol">Notification</span> check box, receives a notification. To notify other users, use the Email option.</p>
+</td>
+
+                    </tr>
+
+                  </tbody>
+</table>
+</div>
+
+              <p class="p">Both the emails and notifications are displayed in the language of the user who enabled job completion alerts. This is the language selected by that user on the Profile page in <span class="keyword">Experience</span>.</p>
+
+            </div>
+          </li>
+
+          <li class="li substep substepexpand">
+            <span class="ph cmd">If you selected the <span class="ph uicontrol">Email</span> check box, add email addresses for the desired recipients. Enter each email address and then click the <span class="ph uicontrol">Add</span> button <span class="ph"><img class="image ell-icon" src="images/07-manage-pipeline-jobs-6.png" alt="" data-ft-asset-display-name="add.png" data-ft-resource-id="Ts7yiXU6QYd0oI51WmD2Jg-iMQvaoYt73FYcvYoiKcTHA"></span>.</span>
+          </li>
+
+          <li class="li substep substepexpand">
+            <span class="ph cmd">Select the check boxes for the job completion statuses (Succeeded, Failed, or Terminated) for which you want to send email or notification alerts.</span>
+            <div class="itemgroup info">You must select at least one job completion status. Consider selecting only statuses requiring follow-up action (Failed, and possibly Terminated). Selecting Succeeded might result in many emails or notifications for job runs requiring no follow-up.</div>
+          </li>
+
+        </ol>
+
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Click <span class="ph uicontrol">Save</span>.</span>
+        <div class="itemgroup info">The display returns to the All Runs tab. <span class="ph">See <span class="xref ft-internal-xlink" data-ft-warning="excluded-from-rendering" data-clusterid="id_ethos/wh_packages/t_monitor_pipeline_job">Monitor a job run</span> for how to get additional information about a running job.</span></div>
+      </li>
+</ol>
+
+  </div>
+
+</div></div></section>
+<section id="t-2150"><h3>Run an existing pipeline job</h3><div class="content-locale-en-US content-locale-en"><div id="t_run_existing_pipeline_job"><div class="body taskbody"><p class="shortdesc">After defining a pipeline job, you can run it again later.</p>
+
+    <div class="section prereq p"><div class="tasklabel"><h2 class="sectiontitle tasklabel">Before you begin</h2></div>
+      <div class="p"> <span class="ph">The user performing this procedure must have the following access:</span> <ul class="ul">
+        <li class="li"> <span class="ph">The Manage permission on the integration package that includes this pipeline.</span> </li>
+
+        <li class="li">(Optional) A role that has been assigned to the <span class="keyword">Experience</span> card. (Required only if your institution supports access through the card in addition to the Application menu.)</li>
+
+        </ul>
+ </div>
+
+      <p class="p">That access is granted by an administrator as described in <span class="xref ft-internal-link" title="Users manage Data Connect integrations through Ellucian Experience, from either the Application menu or the Data Connect Packages card." data-ft-warning="excluded-from-rendering" data-mapid="iMQvaoYt73FYcvYoiKcTHA" data-tocid="XzNL4H3D7ZRfwdQy8ssHvg">Set up user access to Data Connect integrations</span>.</p>
+
+    </div>
+
+    <div class="section context"><div class="tasklabel"><h2 class="sectiontitle tasklabel">About this task</h2></div><span class="ph"><span class="keyword">Data Connect</span> provides multiple options for working with packages, pipelines, jobs, and job runs. The procedure below uses the recommended options for this task. For other options, see <span class="xref ft-internal-xlink" data-ft-warning="excluded-from-rendering" data-clusterid="id_ethos/wh_packages/c_data_connect_packages_access_options">Working with pipeline jobs</span>.</span></div>
+
+    <div class="tasklabel"><h2 class="sectiontitle tasklabel">Procedure</h2></div><ol class="ol steps"><li class="li step stepexpand">
+        
+        <span class="ph cmd">From the <span class="keyword">Experience</span> dashboard, click the <span class="ph uicontrol">Applications</span> icon <span class="ph"><img class="image ell-icon" src="images/07-manage-pipeline-jobs-1.png" alt="" data-ft-asset-display-name="grid.png" data-ft-resource-id="rcjHe4WMeJ1jBuw_rGS_uw-iMQvaoYt73FYcvYoiKcTHA"></span> in the <span class="keyword">Experience Bar</span> and then click <span class="ph uicontrol">Integration Packages</span>.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Click the <span class="ph uicontrol">All Runs</span> tab (the default).</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">In the table of pipeline jobs, in the <span class="ph uicontrol">Job Name</span> column, locate the job that you want to run.</span>
+        <div class="itemgroup info">
+          <p class="p">You can use the search and filter options at the top of the page to locate the job, as described in <span class="xref ft-internal-xlink" data-ft-warning="excluded-from-rendering" data-clusterid="id_ethos/wh_packages/c_data_connect_packages_access_options">Working with pipeline jobs</span>.</p>
+
+          <div class="note"><span class="notetitle">Note:</span> The <span class="ph uicontrol">All Runs</span> tab displays only jobs that have at least one job run. For jobs that don't yet have a job run, switch to the <span class="ph uicontrol">Integration Packages</span> tab and browse to the job.</div>
+
+        </div>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">In the row for that job, in the <span class="ph uicontrol">Actions</span> column, click the <span class="ph uicontrol">More</span> icon <span class="ph"><img class="image ell-icon" src="images/07-manage-pipeline-jobs-7.png" alt="" data-ft-asset-display-name="more_vertical.png" data-ft-resource-id="JREl982P_3CF9HLcM47toQ-iMQvaoYt73FYcvYoiKcTHA"></span> and then click <span class="ph uicontrol">Re-run job</span>.</span>
+        <div class="itemgroup info">The <span class="ph uicontrol">Re-run job</span> link is disabled if the job is currently running or if the job has been disabled.</div>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">In the <span class="ph uicontrol">Job Parameters</span> dialog box, confirm that these are the settings for the job you want to run, and then click <span class="ph uicontrol">Run Job</span>.</span>
+        <div class="itemgroup info">The display returns to the All Runs tab. <span class="ph">See <span class="xref ft-internal-xlink" data-ft-warning="excluded-from-rendering" data-clusterid="id_ethos/wh_packages/t_monitor_pipeline_job">Monitor a job run</span> for how to get additional information about a running job.</span></div>
+      </li>
+</ol>
+
+  </div>
+
+</div></div></section>
+<section id="t-2160"><h3>Monitor a job run</h3><div class="content-locale-en-US content-locale-en"><div id="t_monitor_pipeline_job"><div class="body taskbody"><p class="shortdesc">After initiating a run of a pipeline job, you can monitor the progress of the run and evaluate any errors encountered.</p>
+
+    <div class="section prereq p"><div class="tasklabel"><h2 class="sectiontitle tasklabel">Before you begin</h2></div>
+      <div class="p"> <span class="ph">The user performing this procedure must have the following access:</span> <ul class="ul">
+        <li class="li">The View or Manage permission on the integration that includes this pipeline.</li>
+
+        <li class="li">(Optional) A role that has been assigned to the <span class="keyword">Experience</span> card. (Required only if your institution supports access through the card in addition to the Application menu.)</li>
+
+        </ul>
+ </div>
+
+      <p class="p">That access is granted by an administrator as described in <span class="xref ft-internal-link" title="Users manage Data Connect integrations through Ellucian Experience, from either the Application menu or the Data Connect Packages card." data-ft-warning="excluded-from-rendering" data-mapid="iMQvaoYt73FYcvYoiKcTHA" data-tocid="XzNL4H3D7ZRfwdQy8ssHvg">Set up user access to Data Connect integrations</span>.</p>
+
+    </div>
+
+    <div class="section context"><div class="tasklabel"><h2 class="sectiontitle tasklabel">About this task</h2></div><span class="ph"><span class="keyword">Data Connect</span> provides multiple options for working with packages, pipelines, jobs, and job runs. The procedure below uses the recommended options for this task. For other options, see <span class="xref ft-internal-xlink" data-ft-warning="excluded-from-rendering" data-clusterid="id_ethos/wh_packages/c_data_connect_packages_access_options">Working with pipeline jobs</span>.</span></div>
+
+    <div class="tasklabel"><h2 class="sectiontitle tasklabel">Procedure</h2></div><ol class="ol steps"><li class="li step stepexpand">
+        
+        <span class="ph cmd">From the <span class="keyword">Experience</span> dashboard, click the <span class="ph uicontrol">Applications</span> icon <span class="ph"><img class="image ell-icon" src="images/07-manage-pipeline-jobs-1.png" alt="" data-ft-asset-display-name="grid.png" data-ft-resource-id="rcjHe4WMeJ1jBuw_rGS_uw-iMQvaoYt73FYcvYoiKcTHA"></span> in the <span class="keyword">Experience Bar</span> and then click <span class="ph uicontrol">Integration Packages</span>.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Click the <span class="ph uicontrol">All Runs</span> tab (the default).</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">In the table of pipeline jobs, in the <span class="ph uicontrol">Job Run ID</span> column, locate the job run that you want to monitor.</span>
+        <div class="itemgroup info">
+          <p class="p">You can use the search and filter options at the top of the page to locate the job run, as described in <span class="xref ft-internal-xlink" data-ft-warning="excluded-from-rendering" data-clusterid="id_ethos/wh_packages/c_data_connect_packages_access_options">Working with pipeline jobs</span>.</p>
+
+        </div>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Click the job run ID to display a progress summary for the job run. </span>
+        <div class="itemgroup info">
+          <p class="p">The job run ID is a link if job progress details are available, and is plain text (not a link) if details are unavailable. This could indicate that there is a problem retrieving job information, or that the job details have been deleted, which occurs automatically two weeks after the job run completes.</p>
+
+          <p class="p">The progress summary automatically refreshes periodically, or you can click the <span class="ph uicontrol">Refresh Content</span> icon <span class="ph"><img class="image ell-icon" src="images/07-manage-pipeline-jobs-8.png" alt="" data-ft-asset-display-name="refresh.png" data-ft-resource-id="w~paTLwolXuiDP1c64JJFg-iMQvaoYt73FYcvYoiKcTHA"></span> to update the information as the run progresses.</p>
+
+        </div>
+      </li>
+</ol>
+
+  </div>
+
+</div></div></section>
+<section id="t-2170"><h3>Troubleshoot a job run</h3><div class="content-locale-en-US content-locale-en"><div id="t_troubleshoot_pipeline_job"><div class="body taskbody"><p class="shortdesc">If a job run fails, or if you are not seeing the expected results, you can access troubleshooting information from the All Runs tab.</p>
+
+    <div class="section prereq p"><div class="tasklabel"><h2 class="sectiontitle tasklabel">Before you begin</h2></div>
+      <div class="p"> <span class="ph">The user performing this procedure must have the following access:</span> <ul class="ul">
+        <li class="li">The View or Manage permission on the integration that includes this pipeline.</li>
+
+        <li class="li">(Optional) A role that has been assigned to the <span class="keyword">Experience</span> card. (Required only if your institution supports access through the card in addition to the Application menu.)</li>
+
+        </ul>
+ </div>
+
+      <p class="p">That access is granted by an administrator as described in <span class="xref ft-internal-link" title="Users manage Data Connect integrations through Ellucian Experience, from either the Application menu or the Data Connect Packages card." data-ft-warning="excluded-from-rendering" data-mapid="iMQvaoYt73FYcvYoiKcTHA" data-tocid="XzNL4H3D7ZRfwdQy8ssHvg">Set up user access to Data Connect integrations</span>.</p>
+
+    </div>
+
+    <div class="section context"><div class="tasklabel"><h2 class="sectiontitle tasklabel">About this task</h2></div><span class="ph"><span class="keyword">Data Connect</span> provides multiple options for working with packages, pipelines, jobs, and job runs. The procedure below uses the recommended options for this task. For other options, see <span class="xref ft-internal-xlink" data-ft-warning="excluded-from-rendering" data-clusterid="id_ethos/wh_packages/c_data_connect_packages_access_options">Working with pipeline jobs</span>.</span></div>
+
+    <div class="tasklabel"><h2 class="sectiontitle tasklabel">Procedure</h2></div><ol class="ol steps"><li class="li step stepexpand">
+        
+        <span class="ph cmd">From the <span class="keyword">Experience</span> dashboard, click the <span class="ph uicontrol">Applications</span> icon <span class="ph"><img class="image ell-icon" src="images/07-manage-pipeline-jobs-1.png" alt="" data-ft-asset-display-name="grid.png" data-ft-resource-id="rcjHe4WMeJ1jBuw_rGS_uw-iMQvaoYt73FYcvYoiKcTHA"></span> in the <span class="keyword">Experience Bar</span> and then click <span class="ph uicontrol">Integration Packages</span>.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Click the <span class="ph uicontrol">All Runs</span> tab (the default).</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">In the table of pipeline jobs, in the <span class="ph uicontrol">Job Run ID</span> column, locate the job run that you want to troubleshoot.</span>
+        <div class="itemgroup info">
+          <p class="p">You can use the search and filter options at the top of the page to locate the job run, as described in <span class="xref ft-internal-xlink" data-ft-warning="excluded-from-rendering" data-clusterid="id_ethos/wh_packages/c_data_connect_packages_access_options">Working with pipeline jobs</span>.</p>
+
+          <div class="note"><span class="notetitle">Note:</span> <span class="keyword">Data Connect</span> retains only the most recent 1,000 runs for a job.</div>
+
+        </div>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">In the <span class="ph uicontrol">Status</span> column, view information about the job.</span>
+        <div class="itemgroup info">
+          
+<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" class="table" frame="border" border="1" rules="all"><colgroup><col style="width:33.33333333333333%"><col style="width:66.66666666666666%"></colgroup><thead class="thead" style="text-align:left;">
+                <tr class="row">
+                  <th class="entry cellrowborder" style="vertical-align:top;" id="d41263e161">Display</th>
+
+                  <th class="entry cellrowborder" style="vertical-align:top;" id="d41263e164">Description</th>
+
+                </tr>
+
+              </thead>
+<tbody class="tbody">
+                <tr class="row">
+                  <td class="entry cellrowborder" style="vertical-align:top;" headers="d41263e161 ">Status (Created, Running, Succeeded, Failed, or Terminated)</td>
+
+                  <td class="entry cellrowborder" style="vertical-align:top;" headers="d41263e164 ">Overall status of the job run.</td>
+
+                </tr>
+
+                <tr class="row">
+                  <td class="entry cellrowborder" style="vertical-align:top;" headers="d41263e161 "><span class="ph"><img class="image ell-icon" src="images/07-manage-pipeline-jobs-9.png" alt="" data-ft-asset-display-name="info.png" data-ft-resource-id="Xkix07GUFnIrLtSYmxjuLg-iMQvaoYt73FYcvYoiKcTHA"></span> View Ethos logs</td>
+
+                  <td class="entry cellrowborder" style="vertical-align:top;" headers="d41263e164 ">Info, warning, and error information from the job run is logged to the Ethos logs. Click the <span class="ph uicontrol">View Ethos logs</span> icon <span class="ph"><img class="image ell-icon" src="images/07-manage-pipeline-jobs-9.png" alt="" data-ft-asset-display-name="info.png" data-ft-resource-id="Xkix07GUFnIrLtSYmxjuLg-iMQvaoYt73FYcvYoiKcTHA"></span> to view the logs.</td>
+
+                </tr>
+
+                <tr class="row">
+                  <td class="entry cellrowborder" style="vertical-align:top;" headers="d41263e161 "><span class="ph"><img class="image ell-icon" src="images/07-manage-pipeline-jobs-10.png" alt="" data-ft-asset-display-name="file_text.png" data-ft-resource-id="X6Nr5cuYgDY3YOmKQhtAnw-iMQvaoYt73FYcvYoiKcTHA"></span> Open output file</td>
+
+                  <td class="entry cellrowborder" style="vertical-align:top;" headers="d41263e164 ">If you enabled diagnostic logs for this job run when you set up the job, a diagnostic log zip file is generated after the job runs to completion. Click the <span class="ph uicontrol">Open output file</span> icon <span class="ph"><img class="image ell-icon" src="images/07-manage-pipeline-jobs-10.png" alt="" data-ft-asset-display-name="file_text.png" data-ft-resource-id="X6Nr5cuYgDY3YOmKQhtAnw-iMQvaoYt73FYcvYoiKcTHA"></span> and then download the diagnostic logs zip file from the <span class="ph uicontrol">Job Run Files</span> dialog box.<p class="p">Ellucian might request access to the diagnostic log files to troubleshoot an issue with a pipeline job. Note that these files could contain sensitive information and should be handled accordingly.</p>
+<div class="p">The zip file contains:<ul class="ul">
+                    <li class="li">A <span class="ph filepath">plan.json</span> file that describes the structure of the job run.</li>
+
+                    <li class="li">One or more execution log files with details about what happened during the job run. The execution logs have filenames like <span class="ph filepath"><var class="keyword varname">&lt;job_run_id&gt;</var>_<var class="keyword varname">n</var>_<var class="keyword varname">n</var>.json</span></li>
+
+                    </ul>
+</div>
+<p class="p">In some cases, for example if the pipeline execution fails validation, the zip file will contain only the <span class="ph filepath">plan.json</span> file, with no execution logs.</p>
+<p class="p">A complex job run might generate a large number of execution log files. The zip file is capped at a maximum of 1,000 files. If the zip file from a job run contains 1,000 files, this indicates that some data from the job run is not included in the log files.</p>
+<p class="p">The diagnostic logs zip file is automatically deleted seven days after the job run.</p>
+</td>
+
+                </tr>
+
+              </tbody>
+</table>
+</div>
+
+        </div>
+      </li>
+</ol>
+
+  </div>
+
+</div></div></section>
+<section id="t-2180"><h3>View job run output files</h3><div class="content-locale-en-US content-locale-en"><div id="t_view_pipeline_job_files"><div class="body taskbody"><p class="shortdesc">You can view the contents of diagnostic log files or other files created during a job run.</p>
+
+    <div class="section prereq p"><div class="tasklabel"><h2 class="sectiontitle tasklabel">Before you begin</h2></div>
+      <div class="p"> <span class="ph">The user performing this procedure must have the following access:</span> <ul class="ul">
+        <li class="li"><span class="ph">The Manage permission on the integration package that includes this pipeline.</span></li>
+
+        <li class="li">(Optional) A role that has been assigned to the <span class="keyword">Experience</span> card. (Required only if your institution supports access through the card in addition to the Application menu.)</li>
+
+        </ul>
+ </div>
+
+      <p class="p">That access is granted by an administrator as described in <span class="xref ft-internal-link" title="Users manage Data Connect integrations through Ellucian Experience, from either the Application menu or the Data Connect Packages card." data-ft-warning="excluded-from-rendering" data-mapid="iMQvaoYt73FYcvYoiKcTHA" data-tocid="XzNL4H3D7ZRfwdQy8ssHvg">Set up user access to Data Connect integrations</span>.</p>
+
+    </div>
+
+    <div class="section context"><div class="tasklabel"><h2 class="sectiontitle tasklabel">About this task</h2></div><span class="ph"><span class="keyword">Data Connect</span> provides multiple options for working with packages, pipelines, jobs, and job runs. The procedure below uses the recommended options for this task. For other options, see <span class="xref ft-internal-xlink" data-ft-warning="excluded-from-rendering" data-clusterid="id_ethos/wh_packages/c_data_connect_packages_access_options">Working with pipeline jobs</span>.</span></div>
+
+    <div class="tasklabel"><h2 class="sectiontitle tasklabel">Procedure</h2></div><ol class="ol steps"><li class="li step stepexpand">
+        
+        <span class="ph cmd">From the <span class="keyword">Experience</span> dashboard, click the <span class="ph uicontrol">Applications</span> icon <span class="ph"><img class="image ell-icon" src="images/07-manage-pipeline-jobs-1.png" alt="" data-ft-asset-display-name="grid.png" data-ft-resource-id="rcjHe4WMeJ1jBuw_rGS_uw-iMQvaoYt73FYcvYoiKcTHA"></span> in the <span class="keyword">Experience Bar</span> and then click <span class="ph uicontrol">Integration Packages</span>.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Click the <span class="ph uicontrol">All Runs</span> tab (the default).</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">In the table of pipeline jobs, in the <span class="ph uicontrol">Job Run ID</span> column, locate the job run that includes the output file.</span>
+        <div class="itemgroup info">
+          <p class="p">You can use the search and filter options at the top of the page to locate the job run, as described in <span class="xref ft-internal-xlink" data-ft-warning="excluded-from-rendering" data-clusterid="id_ethos/wh_packages/c_data_connect_packages_access_options">Working with pipeline jobs</span>.</p>
+
+          <div class="note"><span class="notetitle">Note:</span> <span class="keyword">Data Connect</span> retains only the most recent 1,000 runs for a job.</div>
+
+        </div>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">In the <span class="ph uicontrol">Status</span> column, click the <span class="ph uicontrol">Open output file</span> icon <span class="ph"><img class="image ell-icon" src="images/07-manage-pipeline-jobs-10.png" alt="" data-ft-asset-display-name="file_text.png" data-ft-resource-id="X6Nr5cuYgDY3YOmKQhtAnw-iMQvaoYt73FYcvYoiKcTHA"></span>.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">In the <span class="ph uicontrol">Job Run Files</span> dialog box, do either of the following:</span>
+        <div class="itemgroup info">
+          <ul class="ul">
+            <li class="li">To view the file online, click <span class="ph"><img class="image ell-icon" src="images/07-manage-pipeline-jobs-11.png" alt="" data-ft-asset-display-name="show.png" data-ft-resource-id="8Czsqgl5qY5LODZMw18uAQ-iMQvaoYt73FYcvYoiKcTHA"></span> <span class="ph uicontrol">View File</span>.<p class="p">The online viewing option is available for the following file types: <span class="ph filepath">txt</span>, <span class="ph filepath">csv</span>, <span class="ph filepath">xml</span>, <span class="ph filepath">json</span>, <span class="ph filepath">lis</span>, <span class="ph filepath">log</span>.</p>
+</li>
+
+            <li class="li">To download the file, click <span class="ph"><img class="image ell-icon" src="images/07-manage-pipeline-jobs-12.png" alt="" data-ft-asset-display-name="download.png" data-ft-resource-id="F53xNFMgdvD8BYb6ej1dUw-iMQvaoYt73FYcvYoiKcTHA"></span> <span class="ph uicontrol">Download</span>.</li>
+
+          </ul>
+
+          <div class="note"><span class="notetitle">Note:</span> For guidance in interpreting the information in diagnostic log files, see <span class="xref ft-internal-link" title="If a job run fails, or if you are not seeing the expected results, you can access troubleshooting information from the All Runs tab." data-ft-warning="excluded-from-rendering" data-mapid="iMQvaoYt73FYcvYoiKcTHA" data-tocid="_X0lmNKlBV~QPixq0GsppA">Troubleshoot a job run</span>.</div>
+
+        </div>
+      </li>
+</ol>
+
+  </div>
+
+</div></div></section>
+<section id="t-2190"><h3>Terminate a job run</h3><div class="content-locale-en-US content-locale-en"><div id="t_terminate_pipeline_job_run"><div class="body taskbody"><p class="shortdesc">You can terminate a running pipeline job. For example, you might want to terminate a job that has been running for a long time and appears not to be progressing, or if you realize after starting the job that the job parameters are incorrect.</p>
+
+    <div class="section prereq p"><div class="tasklabel"><h2 class="sectiontitle tasklabel">Before you begin</h2></div>
+      <div class="p">
+        <span class="ph">The user performing this procedure must have the following access:</span>
+        <ul class="ul">
+          <li class="li">
+            <span class="ph">The Manage permission on the integration package that includes this pipeline.</span>
+          </li>
+
+        <li class="li">(Optional) A role that has been assigned to the <span class="keyword">Experience</span> card. (Required only if your institution supports access through the card in addition to the Application menu.)</li>
+
+        </ul>
+
+      </div>
+
+      <p class="p">That access is granted by an administrator as described in <span class="xref ft-internal-link" title="Users manage Data Connect integrations through Ellucian Experience, from either the Application menu or the Data Connect Packages card." data-ft-warning="excluded-from-rendering" data-mapid="iMQvaoYt73FYcvYoiKcTHA" data-tocid="XzNL4H3D7ZRfwdQy8ssHvg">Set up user access to Data Connect integrations</span>.</p>
+
+    </div>
+
+    <div class="section context"><div class="tasklabel"><h2 class="sectiontitle tasklabel">About this task</h2></div><span class="ph"><span class="keyword">Data Connect</span> provides multiple options for working with packages, pipelines, jobs, and job runs. The procedure below uses the recommended options for this task. For other options, see <span class="xref ft-internal-xlink" data-ft-warning="excluded-from-rendering" data-clusterid="id_ethos/wh_packages/c_data_connect_packages_access_options">Working with pipeline jobs</span>.</span></div>
+
+    <div class="tasklabel"><h2 class="sectiontitle tasklabel">Procedure</h2></div><ol class="ol steps"><li class="li step stepexpand">
+        
+        <span class="ph cmd">From the <span class="keyword">Experience</span> dashboard, click the <span class="ph uicontrol">Applications</span> icon <span class="ph"><img class="image ell-icon" src="images/07-manage-pipeline-jobs-1.png" alt="" data-ft-asset-display-name="grid.png" data-ft-resource-id="rcjHe4WMeJ1jBuw_rGS_uw-iMQvaoYt73FYcvYoiKcTHA"></span> in the <span class="keyword">Experience Bar</span> and then click <span class="ph uicontrol">Integration Packages</span>.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Click the <span class="ph uicontrol">All Runs</span> tab (the default).</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">In the table of pipeline jobs, in the <span class="ph uicontrol">Job Run ID</span> column, locate the job run that you want to terminate.</span>
+        <div class="itemgroup info">
+          <p class="p">You can use the search and filter options at the top of the page to locate the job run, as described in <span class="xref ft-internal-xlink" data-ft-warning="excluded-from-rendering" data-clusterid="id_ethos/wh_packages/c_data_connect_packages_access_options">Working with pipeline jobs</span>.</p>
+
+        </div>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">In the row for that job, in the <span class="ph uicontrol">Actions</span> column, click the <span class="ph uicontrol">More</span> icon <span class="ph"><img class="image ell-icon" src="images/07-manage-pipeline-jobs-7.png" alt="" data-ft-asset-display-name="more_vertical.png" data-ft-resource-id="JREl982P_3CF9HLcM47toQ-iMQvaoYt73FYcvYoiKcTHA"></span> and then click <span class="ph uicontrol">Terminate job run</span>.</span>
+        <div class="itemgroup info">
+          <p class="p">You can terminate a job only if it is currently running, as indicated by a status of <code class="ph codeph">Created</code> or <code class="ph codeph">Running</code> in the <span class="ph uicontrol">Status</span> column.</p>
+
+          <p class="p">Refresh the browser to update the status. A status of <code class="ph codeph">Terminated</code> indicates that the job has successfully terminated.</p>
+
+          <div class="note"><span class="notetitle">Note:</span> Depending on the type of job and when it is interrupted, some data may have already been processed.</div>
+
+        </div>
+      </li>
+</ol>
+
+  </div>
+
+</div></div></section>
+<section id="t-2200"><h3>Modify pipeline job parameters</h3><div class="content-locale-en-US content-locale-en"><div id="t_modify_pipeline_job_params"><div class="body taskbody"><p class="shortdesc">After defining a pipeline job, you can modify the job parameters.</p>
+
+    <div class="section prereq p"><div class="tasklabel"><h2 class="sectiontitle tasklabel">Before you begin</h2></div>
+      <div class="p"> <span class="ph">The user performing this procedure must have the following access:</span> <ul class="ul">
+        <li class="li"> <span class="ph">The Manage permission on the integration package that includes this pipeline.</span> </li>
+
+        <li class="li">(Optional) A role that has been assigned to the <span class="keyword">Experience</span> card. (Required only if your institution supports access through the card in addition to the Application menu.)</li>
+
+        </ul>
+ </div>
+
+      <p class="p">That access is granted by an administrator as described in <span class="xref ft-internal-link" title="Users manage Data Connect integrations through Ellucian Experience, from either the Application menu or the Data Connect Packages card." data-ft-warning="excluded-from-rendering" data-mapid="iMQvaoYt73FYcvYoiKcTHA" data-tocid="XzNL4H3D7ZRfwdQy8ssHvg">Set up user access to Data Connect integrations</span>.</p>
+
+    </div>
+
+    <div class="section context"><div class="tasklabel"><h2 class="sectiontitle tasklabel">About this task</h2></div>If you originally set up this job to run on a schedule, you can use this procedure to change the schedule. However, you cannot use this procedure to either create a schedule for the job if you didn't create one originally or to switch from a scheduled job to "Run now." If you want to run the job now, use the procedure in <span class="xref ft-internal-link" title="After defining a pipeline job, you can run it again later." data-ft-warning="excluded-from-rendering" data-mapid="iMQvaoYt73FYcvYoiKcTHA" data-tocid="FIRFnoF268m8GXllDwF4Sw">Run an existing pipeline job</span> instead.<div class="note"><span class="notetitle">Note:</span> <span class="ph"><span class="keyword">Data Connect</span> provides multiple options for working with packages, pipelines, jobs, and job runs. The procedure below uses the recommended options for this task. For other options, see <span class="xref ft-internal-xlink" data-ft-warning="excluded-from-rendering" data-clusterid="id_ethos/wh_packages/c_data_connect_packages_access_options">Working with pipeline jobs</span>.</span></div>
+</div>
+
+    <div class="tasklabel"><h2 class="sectiontitle tasklabel">Procedure</h2></div><ol class="ol steps"><li class="li step stepexpand">
+        
+        <span class="ph cmd">From the <span class="keyword">Experience</span> dashboard, click the <span class="ph uicontrol">Applications</span> icon <span class="ph"><img class="image ell-icon" src="images/07-manage-pipeline-jobs-1.png" alt="" data-ft-asset-display-name="grid.png" data-ft-resource-id="rcjHe4WMeJ1jBuw_rGS_uw-iMQvaoYt73FYcvYoiKcTHA"></span> in the <span class="keyword">Experience Bar</span> and then click <span class="ph uicontrol">Integration Packages</span>.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Click the <span class="ph uicontrol">All Runs</span> tab (the default).</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">In the table of pipeline jobs, in the <span class="ph uicontrol">Job Name</span> column, locate the job whose parameters you want to modify.</span>
+        <div class="itemgroup info">
+          <p class="p">You can use the search and filter options at the top of the page to locate the job, as described in <span class="xref ft-internal-xlink" data-ft-warning="excluded-from-rendering" data-clusterid="id_ethos/wh_packages/c_data_connect_packages_access_options">Working with pipeline jobs</span>.</p>
+
+          <div class="note"><span class="notetitle">Note:</span> The <span class="ph uicontrol">All Runs</span> tab displays only jobs that have at least one job run. For jobs that don't yet have a job run, switch to the <span class="ph uicontrol">Integration Packages</span> tab and browse to the job.</div>
+
+        </div>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">In the row for that job, in the <span class="ph uicontrol">Actions</span> column, click the <span class="ph uicontrol">More</span> icon <span class="ph"><img class="image ell-icon" src="images/07-manage-pipeline-jobs-7.png" alt="" data-ft-asset-display-name="more_vertical.png" data-ft-resource-id="JREl982P_3CF9HLcM47toQ-iMQvaoYt73FYcvYoiKcTHA"></span> and then click <span class="ph uicontrol">Edit job</span>.</span>
+        <div class="itemgroup info">The <span class="ph uicontrol">Edit job</span> link is disabled if the job is currently running or if the job has been disabled.</div>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Modify the parameters as desired and then click <span class="ph uicontrol">Save</span>.</span>
+        <div class="itemgroup info">For a description of each parameter, see the procedure for creating a new job for this pipeline.<div class="note"><span class="notetitle">Note:</span> After you modify the job parameters, you can see the parameters that were used for earlier runs. Click the job name in the <span class="ph uicontrol">Job Name</span> column to access the <span class="keyword wintitle">Job</span> page, then locate the job run that you are interested in and click the <span class="ph uicontrol">View Run Parameters</span> icon <span class="ph"><img class="image ell-icon" src="images/07-manage-pipeline-jobs-13.png" alt="" data-ft-asset-display-name="requirements.png" data-ft-resource-id="yTJqrM63Dw20OzWQQXrxHQ-iMQvaoYt73FYcvYoiKcTHA"></span>.</div>
+</div>
+      </li>
+</ol>
+
+  </div>
+
+</div></div></section>
+<section id="t-2210"><h3>Disable or enable a pipeline job</h3><div class="content-locale-en-US content-locale-en"><div id="t_disable_pipeline_job"><div class="body taskbody"><p class="shortdesc">When you create a pipeline job, the job is initially enabled. After creating the job, you can temporarily disable it.</p>
+
+    <div class="section prereq p"><div class="tasklabel"><h2 class="sectiontitle tasklabel">Before you begin</h2></div>
+      <div class="p"> <span class="ph">The user performing this procedure must have the following access:</span> <ul class="ul">
+        <li class="li"> <span class="ph">The Manage permission on the integration package that includes this pipeline.</span> </li>
+
+        <li class="li">(Optional) A role that has been assigned to the <span class="keyword">Experience</span> card. (Required only if your institution supports access through the card in addition to the Application menu.)</li>
+
+        </ul>
+ </div>
+
+      <p class="p">That access is granted by an administrator as described in <span class="xref ft-internal-link" title="Users manage Data Connect integrations through Ellucian Experience, from either the Application menu or the Data Connect Packages card." data-ft-warning="excluded-from-rendering" data-mapid="iMQvaoYt73FYcvYoiKcTHA" data-tocid="XzNL4H3D7ZRfwdQy8ssHvg">Set up user access to Data Connect integrations</span>.</p>
+
+    </div>
+
+    <div class="section context"><div class="tasklabel"><h2 class="sectiontitle tasklabel">About this task</h2></div>Disabling the job prevents any future scheduled runs if you have set up a recurring schedule for the job. It also prevents you from manually running the job. If you re-enable a disabled job, scheduled runs can resume and you can again run it manually. You can toggle the <span class="ph uicontrol">Enabled</span> switch at any time, even while a job is actively running. <p class="p">If you disable a running job, a confirmation dialog informs you that the current job run will continue and the job will be disabled after the run completes. While waiting for completion, the toggle reflects the pending disabled state. Future scheduled, manual, or event-triggered job runs are blocked until the job is re-enabled.</p>
+<p class="p">To stop a currently running execution immediately, see <span class="xref ft-internal-link" title="You can terminate a running pipeline job. For example, you might want to terminate a job that has been running for a long time and appears not to be progressing, or if you realize after starting the job that the job parameters are incorrect." data-ft-warning="excluded-from-rendering" data-mapid="iMQvaoYt73FYcvYoiKcTHA" data-tocid="tNZ1VxCFa~2LdLsQpBFqJw">Terminate a job run</span>.</p>
+<div class="note"><span class="notetitle">Note:</span> <span class="ph"><span class="keyword">Data Connect</span> provides multiple options for working with packages, pipelines, jobs, and job runs. The procedure below uses the recommended options for this task. For other options, see <span class="xref ft-internal-xlink" data-ft-warning="excluded-from-rendering" data-clusterid="id_ethos/wh_packages/c_data_connect_packages_access_options">Working with pipeline jobs</span>.</span></div>
+</div>
+
+    <div class="tasklabel"><h2 class="sectiontitle tasklabel">Procedure</h2></div><ol class="ol steps"><li class="li step stepexpand">
+        
+        <span class="ph cmd">From the <span class="keyword">Experience</span> dashboard, click the <span class="ph uicontrol">Applications</span> icon <span class="ph"><img class="image ell-icon" src="images/07-manage-pipeline-jobs-1.png" alt="" data-ft-asset-display-name="grid.png" data-ft-resource-id="rcjHe4WMeJ1jBuw_rGS_uw-iMQvaoYt73FYcvYoiKcTHA"></span> in the <span class="keyword">Experience Bar</span> and then click <span class="ph uicontrol">Integration Packages</span>.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Click the <span class="ph uicontrol">All Runs</span> tab (the default).</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">In the table of pipeline jobs, in the <span class="ph uicontrol">Job Name</span> column, locate the job that you want to disable or enable.</span>
+        <div class="itemgroup info">
+          <p class="p">You can use the search and filter options at the top of the page to locate the job, as described in <span class="xref ft-internal-xlink" data-ft-warning="excluded-from-rendering" data-clusterid="id_ethos/wh_packages/c_data_connect_packages_access_options">Working with pipeline jobs</span>.</p>
+
+          <div class="note"><span class="notetitle">Note:</span> The <span class="ph uicontrol">All Runs</span> tab displays only jobs that have at least one job run. For jobs that don't yet have a job run, switch to the <span class="ph uicontrol">Integration Packages</span> tab and browse to the job.</div>
+
+        </div>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Click the job name to access the <span class="keyword wintitle">Job</span> page for that job.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">On the <span class="keyword wintitle">Job</span> page, toggle the <span class="ph uicontrol">Enabled</span> switch to enable or disable the job.</span>
+        <div class="itemgroup info">
+          <div class="note"><span class="notetitle">Note:</span> If the job is currently running when you disable it, a confirmation dialog appears. Confirm the message to proceed. The job will be disabled when the current job finishes. While the job run is in process, the toggle reflects the pending disabled state. Scheduled, manual, and event-triggered job runs are blocked until you re-enable the job. </div>
+
+        </div>
+      </li>
+</ol>
+
+  </div>
+
+</div></div></section>
+<section id="t-2220"><h3>Delete a pipeline job</h3><div class="content-locale-en-US content-locale-en"><div id="t_delete_pipeline_job"><div class="body taskbody"><p class="shortdesc">You can delete a pipeline job that you have defined. Deleting a job also deletes information about any runs of that job.</p>
+
+    <div class="section prereq p"><div class="tasklabel"><h2 class="sectiontitle tasklabel">Before you begin</h2></div>
+      <div class="p">
+        <span class="ph">The user performing this procedure must have the following access:</span>
+        <ul class="ul">
+          <li class="li">
+            <span class="ph">The Manage permission on the integration package that includes this pipeline.</span>
+          </li>
+
+        <li class="li">(Optional) A role that has been assigned to the <span class="keyword">Experience</span> card. (Required only if your institution supports access through the card in addition to the Application menu.)</li>
+
+        </ul>
+
+      </div>
+
+      <p class="p">That access is granted by an administrator as described in <span class="xref ft-internal-link" title="Users manage Data Connect integrations through Ellucian Experience, from either the Application menu or the Data Connect Packages card." data-ft-warning="excluded-from-rendering" data-mapid="iMQvaoYt73FYcvYoiKcTHA" data-tocid="XzNL4H3D7ZRfwdQy8ssHvg">Set up user access to Data Connect integrations</span>.</p>
+
+    </div>
+
+    <div class="section context"><div class="tasklabel"><h2 class="sectiontitle tasklabel">About this task</h2></div><span class="ph"><span class="keyword">Data Connect</span> provides multiple options for working with packages, pipelines, jobs, and job runs. The procedure below uses the recommended options for this task. For other options, see <span class="xref ft-internal-xlink" data-ft-warning="excluded-from-rendering" data-clusterid="id_ethos/wh_packages/c_data_connect_packages_access_options">Working with pipeline jobs</span>.</span></div>
+
+    <div class="tasklabel"><h2 class="sectiontitle tasklabel">Procedure</h2></div><ol class="ol steps"><li class="li step stepexpand">
+        
+        <span class="ph cmd">From the <span class="keyword">Experience</span> dashboard, click the <span class="ph uicontrol">Applications</span> icon <span class="ph"><img class="image ell-icon" src="images/07-manage-pipeline-jobs-1.png" alt="" data-ft-asset-display-name="grid.png" data-ft-resource-id="rcjHe4WMeJ1jBuw_rGS_uw-iMQvaoYt73FYcvYoiKcTHA"></span> in the <span class="keyword">Experience Bar</span> and then click <span class="ph uicontrol">Integration Packages</span>.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Click the <span class="ph uicontrol">All Runs</span> tab (the default).</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">In the table of pipeline jobs, in the <span class="ph uicontrol">Job Name</span> column, locate the job you want to delete.</span>
+        <div class="itemgroup info">
+          <p class="p">You can use the search and filter options at the top of the page to locate the job, as described in <span class="xref ft-internal-xlink" data-ft-warning="excluded-from-rendering" data-clusterid="id_ethos/wh_packages/c_data_connect_packages_access_options">Working with pipeline jobs</span>.</p>
+
+          <div class="note"><span class="notetitle">Note:</span> The <span class="ph uicontrol">All Runs</span> tab displays only jobs that have at least one job run. For jobs that don't yet have a job run, switch to the <span class="ph uicontrol">Integration Packages</span> tab and browse to the job.</div>
+
+        </div>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Click the job name to access the <span class="keyword wintitle">Job</span> page for that job.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">On the <span class="keyword wintitle">Job</span> page, in the left pane, click <span class="ph"><img class="image ell-icon" src="images/07-manage-pipeline-jobs-14.png" alt="" data-ft-asset-display-name="trash.png" data-ft-resource-id="eWhvKA5isBw9~OF7kplwZw-iMQvaoYt73FYcvYoiKcTHA"></span>&nbsp;<span class="ph uicontrol">DELETE JOB</span>.</span>
+      </li>
+</ol>
+
+  </div>
+
+</div></div></section>
+<section id="t-2230"><h3>Create a crosswalk</h3><div class="content-locale-en-US content-locale-en"><div id="t_create_data_connect_crosswalk"><div class="body taskbody"><p class="shortdesc">Create a crosswalk that maps values between the applications that you are integrating with <span class="keyword">Data Connect</span>.</p>
+
+    <div class="section prereq p"><div class="tasklabel"><h2 class="sectiontitle tasklabel">Before you begin</h2></div>
+      <div class="p">
+        <span class="ph">The user performing this procedure must have the following access:</span>
+        <ul class="ul">
+          <li class="li">
+            <span class="ph">The Edit permission on <span class="keyword">Data Connect</span> crosswalks.</span>
+          </li>
+
+          <li class="li">
+            <span class="ph">The View or Manage permission on at least one integration package, to access the Integration Packages page where the Crosswalks tab is located.</span>
+          </li>
+
+        <li class="li">(Optional) A role that has been assigned to the <span class="keyword">Experience</span> card. (Required only if your institution supports access through the card in addition to the Application menu.)</li>
+
+        </ul>
+
+      </div>
+
+      <p class="p">That access is granted by an administrator as described in <span class="xref ft-internal-link" title="Users manage Data Connect integrations through Ellucian Experience, from either the Application menu or the Data Connect Packages card." data-ft-warning="excluded-from-rendering" data-mapid="iMQvaoYt73FYcvYoiKcTHA" data-tocid="XzNL4H3D7ZRfwdQy8ssHvg">Set up user access to Data Connect integrations</span>.</p>
+
+    </div>
+
+    <div class="section context"><div class="tasklabel"><h2 class="sectiontitle tasklabel">About this task</h2></div>This procedure provides the steps for accessing the crosswalk creation page. Information that is specific to a particular crosswalk, such as the required crosswalk name and the mappings, is with the documentation for setting up the <span class="keyword">Data Connect</span> integration that includes that crosswalk.<div class="note"><span class="notetitle">Note:</span> <span class="ph"><span class="keyword">Data Connect</span> provides multiple options for working with packages, pipelines, jobs, and job runs. The procedure below uses the recommended options for this task. For other options, see <span class="xref ft-internal-xlink" data-ft-warning="excluded-from-rendering" data-clusterid="id_ethos/wh_packages/c_data_connect_packages_access_options">Working with pipeline jobs</span>.</span></div>
+</div>
+
+    <div class="tasklabel"><h2 class="sectiontitle tasklabel">Procedure</h2></div><ol class="ol steps"><li class="li step stepexpand">
+        
+        <span class="ph cmd">From the <span class="keyword">Experience</span> dashboard, click the <span class="ph uicontrol">Applications</span> icon <span class="ph"><img class="image ell-icon" src="images/07-manage-pipeline-jobs-1.png" alt="" data-ft-asset-display-name="grid.png" data-ft-resource-id="rcjHe4WMeJ1jBuw_rGS_uw-iMQvaoYt73FYcvYoiKcTHA"></span> in the <span class="keyword">Experience Bar</span> and then click <span class="ph uicontrol">Integration Packages</span>.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Click the <span class="ph uicontrol">Crosswalks</span> tab.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Click the <span class="ph uicontrol">Add a new Crosswalk</span> icon <span class="ph"><img class="image ell-icon" src="images/07-manage-pipeline-jobs-6.png" alt="" data-ft-asset-display-name="add.png" data-ft-resource-id="Ts7yiXU6QYd0oI51WmD2Jg-iMQvaoYt73FYcvYoiKcTHA"></span> to create a new crosswalk.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd" id="t_create_data_connect_crosswalk__q1h_d2c_qnb">In the <span class="keyword wintitle">Add new Crosswalk</span> dialog box, enter a name for the crosswalk and then click <span class="ph uicontrol">Create</span>.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Enter the mappings for your crosswalk.</span>
+        <div class="itemgroup info">Mappings are specific to each <span class="keyword">Data Connect</span> integration. For guidance in setting up the mappings, see the documentation for your integration.</div>
+      </li>
+</ol>
+
+  </div>
+
+</div></div></section></main></body></html>

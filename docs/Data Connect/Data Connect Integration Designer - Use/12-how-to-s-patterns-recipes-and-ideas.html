@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Data Connect Integration Designer - Use — How-to's, Patterns, Recipes, and Ideas</title><style>body{font-family:-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;line-height:1.55;color:#1a1a1a;max-width:920px;margin:0 auto;padding:24px}header{border-bottom:2px solid #5a16d6;margin-bottom:8px}h1{color:#3a0ca3}h2,h3,h4,h5,h6{margin-top:1.6em}.crumb{color:#666;font-size:13px;margin:0}.meta{color:#888;font-size:12px}nav.toc{background:#f6f4fc;border:1px solid #e3dcf5;border-radius:8px;padding:12px 18px;margin:18px 0}nav.toc h2{margin:.2em 0}nav.toc ul{list-style:none;padding-left:0}nav.toc a{text-decoration:none;color:#5a16d6}section{margin:1.2em 0;padding-top:.4em}img{max-width:100%;height:auto}table{border-collapse:collapse}td,th{border:1px solid #ccc;padding:4px 8px}code,pre{background:#f4f4f4;border-radius:4px}pre{padding:10px;overflow:auto}</style></head><body><header><p class="crumb">Data Connect › Data Connect Integration Designer - Use</p><h1>Data Connect Integration Designer - Use — How-to's, Patterns, Recipes, and Ideas</h1><p class="meta">Source: <a href="https://resources.elluciancloud.com/r/bundle/ethos_data_connect_int_design_acn_use">https://resources.elluciancloud.com/r/bundle/ethos_data_connect_int_design_acn_use</a> &middot; Retrieved 2026-06-17</p></header><nav class="toc"><h2>Contents</h2><ul><li style="margin-left:0px"><a href="#t-460">How-to's, Patterns, Recipes, and Ideas</a></li><li style="margin-left:16px"><a href="#t-470">Common patterns</a></li><li style="margin-left:16px"><a href="#t-480">Externalize JavaScript transform functions</a></li><li style="margin-left:32px"><a href="#t-490">Create a JavaScript transform function draft</a></li><li style="margin-left:32px"><a href="#t-500">Edit an existing JavaScript transform function draft</a></li><li style="margin-left:32px"><a href="#t-510">Delete a JavaScript transform function draft</a></li><li style="margin-left:32px"><a href="#t-520">Publish a JavaScript transform function</a></li><li style="margin-left:32px"><a href="#t-530">Considerations when using an externalized JavaScript transform function</a></li></ul></nav><main><section id="t-460"><h2>How-to's, Patterns, Recipes, and Ideas</h2><div class="content-locale-en-US content-locale-en"><div id="c_dc_designer_error_handling"><div class="body conbody"><p class="shortdesc">Provides information about pipeline errors.</p>
+
+    <div class="section"><h2 class="title sectiontitle">Error handling on Pipelines</h2>
+      
+      <div class="p">During the design phase, any errors that arise during pipeline execution are reported immediately as part of the test runner pop up. This contrasts with a published pipeline, where the error status is reported and then you can click on <span class="ph uicontrol">Errors</span> to jump to the Errors tab.<ul class="ul">
+        <li class="li">An error during design phase: If a pipeline throws an error during testing in design phase, an <span class="ph uicontrol">Errors</span> tab will appear next to <span class="ph uicontrol">Payloads</span> tab in the <span class="ph uicontrol">Test Pipeline</span> dialog.</li>
+ <li class="li">An error during a job run phase: <ul class="ul"> <li class="li">The pipeline runs as scheduled, but fails. The error is reported in the job status page and in the details.</li>
+
+        <li class="li">You can click on <span class="ph uicontrol">View Errors</span>, for a specific job to display the Errors Report tab, already setup to filter by Job Run ID (also known as Correlation ID).</li>
+ <li class="li">The <span class="ph uicontrol">more details</span> button on the far right can be used to view more information about the error.</li>
+ </ul>
+</li>
+ </ul>
+</div>
+
+    </div>
+
+    <div class="section"><h2 class="title sectiontitle">Error patterns</h2>
+      
+      <p class="p">Some fittings have specific configuration for errors. For example, they can store the error from a request to be processed later or they can stop the pipeline execution altogether. Refer to each fitting documentation for further detail. Unless specified, an error will stop the pipeline for the given message, not the whole workflow.</p>
+
+      <p class="p">The following are usage ideas.</p>
+
+    </div>
+
+    <div class="section"><h2 class="title sectiontitle">Save error for later processing</h2>This segment posts information to persons and stores data in errors:<pre class="pre codeblock json"><code>"Ethos Proxy Post": {
+  "class": "ethosProxyPost",
+  "config": {
+    "resource": "academic-levels",
+    "contentVersion": "6",
+    "acceptVersion": "6",
+    "errorPath": "errors"
+  }
+}</code></pre>This segment evaluates if the <code class="ph codeph">POST</code> call returned errors and provides appropriate error messages by adding a new property to the original payload:<pre class="pre codeblock json"><code>"JavaScript Transform": {
+  "class": "JavaScriptTransform",
+  "config": {
+    "pushUndefined": true,
+    "stopOnError": false,
+    "code": "function transform (message, context) {\n  if(message.errors.code == \"key_already_exists\"){\n    message.payload.errorMessage =\"Key already exists\"\n  }\n  \n  if(message.errors.code == \"invalid_level\"){\n    message.payload.errorMessage =\"The level is invalid, check dependencies\"\n  }\n  \n  return message;\n}\n"
+  }
+}</code></pre></div>
+
+    <div class="section"><h2 class="title sectiontitle">Stop On Error condition with JavaScript transform</h2>
+      
+      <p class="p">This segment evaluates a message and then stops pipeline execution altogether by throwing an exception. Any new messages are dropped, effectively stopping the pipeline. If the pipeline has been split into phases for parallel processing, this might not stop the pipeline, any such evaluation is done on the fan-in portion of the pipeline. Refer to the performance section for more information on parallel processing.</p>
+
+    </div>
+
+    <div class="section"><h2 class="title sectiontitle">Access an error response HTTP status</h2>
+      
+      <p class="p">Given a segment that performs an HTTP request (<code class="ph codeph">GET</code>, <code class="ph codeph">POST</code>, <code class="ph codeph">PUT</code>, etc), any error that arises is saved to the defined <em class="ph i">Error Path</em> field. for this example, we will use <code class="ph codeph">errors</code>. An error will also report an "Error", which will mark the pipeline as "Failed". On error, the following payload is returned:</p>
+
+      <pre class="pre codeblock json"><code>{
+  "payload": {
+    "errors": {
+      "code": 404,
+      "body": {
+        "statusCode": 404,
+        "description": "Not Found"
+      }
+    }
+  }
+}</code></pre>
+      <p class="p">Additional logic can check for the status using the <code class="ph codeph">payload.errors.code</code> property.</p>
+
+    </div>
+
+  </div>
+
+</div></div></section>
+<section id="t-470"><h3>Common patterns</h3><div class="content-locale-en-US content-locale-en"><div id="c_dc_designer_common_patterns"><div class="body conbody"><p class="shortdesc">The following are common patterns to address common problems.</p>
+
+    <div class="section"><h2 class="title sectiontitle">Concurrency</h2>
+      
+      <div class="p">
+        <ul class="ul">
+          <li class="li">Pipeline doesn't use <code class="ph codeph">forEach</code>- how can I change it?:<ul class="ul"> <li class="li">Apply the reducer fitting, then add <code class="ph codeph">forEach</code>. For example, if the pipeline is reading 1000 person IDs from a file, and then fetching a record from Ethos for each person.</li>
+
+            <li class="li">Sample:<pre class="pre codeblock"><code>File Reader → Line Parser → Ethos Proxy Get
+</code></pre>Can be changed to this to add parallelism:<pre class="pre codeblock"><code>File Reader → Line Parser → Reducer → forEach → Ethos Proxy Get
+</code></pre></li>
+ </ul>
+</li>
+
+          <li class="li">For a phase to run in parallel, it can only use the following fittings:<ul class="ul"> <li class="li">Add to Context</li>
+ <li class="li">Ethos Proxy fittings</li>
+ <li class="li">Ethos GraphQL</li>
+ <li class="li">JavaScript Transform</li>
+ <li class="li">JSON Parser</li>
+ <li class="li">Merge</li>
+ <li class="li">Object Mapper</li>
+ <li class="li">File Attributes</li>
+ <li class="li">SFTP List</li>
+ <li class="li">Stringify</li>
+ </ul>
+</li>
+
+          <li class="li">Context vs. Message Header:<ul class="ul"> <li class="li">The Context use case is to store information used repeatedly and that cannot be overwritten, for example, school codes, general codes, etc. </li>
+ <li class="li">The Message header is intended to store information pertaining to the message, for example, calculated student codes, person information, etc.</li>
+
+            <li class="li">Here is an example workflow of "Add to context":<pre class="pre codeblock"><code>EthosProxyGet.- Retrieve current Term → AddToContext.- Save Term to Context → EthosProxyGetArray.- Retrieve Persons → ObjectMapper.- Uses Term for all Persons → ...
+</code></pre></li>
+
+            <li class="li">An example of a workflow using header:<pre class="pre codeblock"><code>EthosProxyGetArray.- Retrieve Persons → ForEach → EthosProxyGet.- Retrieve Persons address. Target: payload.header.zipCode = address.zipCode → ObjectMapper.- Uses Payload + header → ...
+</code></pre></li>
+ </ul>
+</li>
+
+          <li class="li">Consecutive loops using intermediate files:<ul class="ul">
+            <li class="li">The pipeline might need to loop through the same payload over and over. For example, a pipeline might need to create aggregate data from <code class="ph codeph">persons</code> and <code class="ph codeph">addresses</code>, update some data, write a report, create a CSV, followed by creating an XML, etc. One common problem is that writing to a file outputs data about the result file, and the original message data is lost. Instead of calling the API again (and any intermediate data to create the payload) the pattern is to write the payload to an intermediate file, then reading that file repeatedly, effectively caching the work done.</li>
+
+            <li class="li">The following example shows how the data is created, stored in a file, and then read two times: one time to post data for update and a second time to create a report. More calls can be chained by using the same read-then-apply pattern.<pre class="pre codeblock"><code>EthosProxyGetArray.- Retrieve Persons → ForEach → EthosProxyGet.- Retrieve Persons address. Target - payload.header.zipCode = address.zipCode → ObjectMapper.- Uses Payload + header → Stringify → s3Sink.- Creates an intermediate file that can be read multiple times. Will write a file to {job run id}/filename.json → s3Accessor.- "key": "{pipelineName}/{{context.runId}}/filename.json" → EthosProxyPost.- Update Persons → s3Accessor.- "key": "{pipelineName}/{{context.runId}}/filename.json" → s3Sink.- Updates Persons Report → ...
+</code></pre></li>
+
+            </ul>
+</li>
+
+        </ul>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</div></div></section>
+<section id="t-480"><h3>Externalize JavaScript transform functions</h3><div class="content-locale-en-US content-locale-en"><div id="c_dc_designer_externalizing_js_transform_function"><div class="body conbody"><p class="shortdesc">A JS Transform function can also be externalized so it can be referenced any time in a pipeline for any amount of times without having to rewrite the function every time you want to use it.</p>
+
+    <p class="p">Even better, externalizing a function can make it available to use in any pipeline within a specific pipeline. See <span class="xref ft-internal-link" title="Several concepts apply to both Integration Pipelines and Serverless APIs." data-ft-warning="excluded-from-rendering" data-mapid="zhfyvwrmd60S_3CkIOx9xA" data-tocid="2u~kjSoK4ak~gQvMMSszPw">Develop pipelines</span>.</p>
+
+    <p class="p">Previously, <span class="xref ft-internal-link" title="Several concepts apply to both Integration Pipelines and Serverless APIs." data-ft-warning="excluded-from-rendering" data-mapid="zhfyvwrmd60S_3CkIOx9xA" data-tocid="2u~kjSoK4ak~gQvMMSszPw">Develop pipelines: JavaScript Transform Functions</span> were shown for error handling at an inline level, meaning they are written in the fitting configuration and only available when that fitting is executed.</p>
+
+    <p class="p">Additionally, externalized JS Transform Functions can be versioned, so bug fixes or additional logic can be introduced with ease.</p>
+
+  </div>
+
+</div></div></section>
+<section id="t-490"><h4>Create a JavaScript transform function draft</h4><div class="content-locale-en-US content-locale-en"><div id="t_dc_designer_create_javascript_transform_function_draft"><div class="body taskbody"><p class="shortdesc">In order to externalize a function, you must first create a draft. You can update and test the drafts within the Designer.</p>
+
+    <div class="section context"><div class="tasklabel"><h2 class="sectiontitle tasklabel">About this task</h2></div>A pipeline draft will not be published if it references a function draft rather than a published function.</div>
+
+    <div class="tasklabel"><h2 class="sectiontitle tasklabel">Procedure</h2></div><ol class="ol steps"><li class="li step stepexpand">
+        <span class="ph cmd">To create a transform function draft, click on an existing package inside the <span class="ph uicontrol">Integration Designer</span> screen. Then click on the <span class="ph uicontrol">Transform Functions</span> tab, and then the <span class="ph uicontrol">+ TRANSFORM FUNCTION</span> button on the right side of the screen.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Enter a Transform Function to have a globally unique name and a valid syntax. After you complete these fields, click the <span class="ph uicontrol">SAVE</span> button to create a draft.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">To test the Transform Function draft in the Designer, add a <dfn class="term">JavaScriptTransform</dfn> fitting and select an Artifact Name in the configuration.</span>
+        <div class="itemgroup info">This drop-down shows all available Transform Functions within the Integration Package; including drafts and published functions. In this example, the Draft tag is added. The fitting configuration also displays the function’s content but it will not allow edits.</div>
+      </li>
+</ol>
+
+  </div>
+
+</div></div></section>
+<section id="t-500"><h4>Edit an existing JavaScript transform function draft</h4><div class="content-locale-en-US content-locale-en"><div id="t_dc_designer_edit_existing_javascript_transform_function_draft"><div class="body taskbody"><p class="shortdesc">Transform function drafts can be edited before publishing and this can be done any amount of times.</p>
+
+    <div class="tasklabel"><h2 class="sectiontitle tasklabel">Procedure</h2></div><ol class="ol steps"><li class="li step">
+        <span class="ph cmd">To edit a draft, click on the ellipsis belonging to the draft you want to edit and then select the <span class="ph uicontrol">Edit</span> option from the menu.</span>
+      </li>
+<li class="li step">
+        <span class="ph cmd">This will prompt a dialog where you can update the Transform Function. To change the name, Ellucian recommends deleting the draft and creating a new one. After making the changes, click <span class="ph uicontrol">SAVE</span>.</span>
+      </li>
+</ol>
+
+  </div>
+
+</div></div></section>
+<section id="t-510"><h4>Delete a JavaScript transform function draft</h4><div class="content-locale-en-US content-locale-en"><div id="t_dc_designer_delete__javascript_transform_function_draft"><div class="body taskbody"><p class="shortdesc">A transform function can be deleted as long as it is not currently shared or is in draft state.</p>
+
+    <div class="tasklabel"><h2 class="sectiontitle tasklabel">Procedure</h2></div><ol class="ol steps"><li class="li step">
+        <span class="ph cmd">To delete a function, open the <span class="ph uicontrol">Actions</span> menu button and select the <span class="ph uicontrol">Delete</span> option.</span>
+      </li>
+<li class="li step">
+        <span class="ph cmd">A confirmation dialog displays. Click the <span class="ph uicontrol">DELETE</span> button.</span>
+      </li>
+<li class="li step">
+        <span class="ph cmd">After the function is deleted, update all references to this function in the pipelines that currently use it. Otherwise, a pipeline test or run can result in unexpected behavior or error out.</span>
+      </li>
+</ol>
+
+  </div>
+
+</div></div></section>
+<section id="t-520"><h4>Publish a JavaScript transform function</h4><div class="content-locale-en-US content-locale-en"><div id="t_dc_designer_publish_javascript_transform_function_draft"><div class="body taskbody"><p class="shortdesc">The publishing process of a transform function is similar to the one of a pipeline, with the only difference that publishing a transform function is done directly from the Integration Designer main screen.</p>
+
+    <div class="tasklabel"><h2 class="sectiontitle tasklabel">Procedure</h2></div><ol class="ol steps"><li class="li step stepexpand">
+        <span class="ph cmd">Open the <span class="ph uicontrol">Actions</span> menu button and select the <span class="ph uicontrol">Publish</span> option.</span>
+      </li>
+<li class="li step stepexpand"><strong>Optional: </strong>
+        <span class="ph cmd">In the dialog, versioning is left to the user’s discretion. The next Patch and Minor versions options are displayed in addition to the next Major version. Versioning works the same as in pipelines. Patch and minor versions of a function are consolidated and only the latest is shown in the <span class="ph uicontrol">Integration Designer</span> Transform Function table, while the major version will be treated as a completely different Transform Function, hence showing as another row in the <span class="ph uicontrol">Integration Designer</span> Transform Function table.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">After you select a version, click the <span class="ph uicontrol">PUBLISH</span> button.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">You can now test the transform function in a pipeline and it is available at an integration package level.</span>
+        <div class="itemgroup info">There is a Published tag next to the function’s name and the option to select a fixed Artifact Version is enabled.</div>
+      </li>
+</ol>
+
+  </div>
+
+</div></div></section>
+<section id="t-530"><h4>Considerations when using an externalized JavaScript transform function</h4><div class="content-locale-en-US content-locale-en"><div id="c_dc_designer_considerations_using_externalized_javascript_transform_function"><div class="body conbody"><p class="shortdesc">Describes considerations when using an externalized JavaScript Transform Function.</p>
+
+    <p class="p">Some considerations to take into account when using an externalized Transform Function are that externalized-based scripts are cached for faster repeated execution and the retrieval only happens one time per pipeline execution. Knowing that, when choosing to use the latest version of a Transform Function inside the <dfn class="term">JavaScriptTransform</dfn> fitting configuration, it should be used carefully because updating a Transform Function and publishing a new version of it can result in undesirable behavior ad hoc for ongoing Pipeline Jobs executions that use the configuration.</p>
+
+    <p class="p">In addition, publishing a pipeline that uses an external Transform Function does not automatically publish the function. The Transform Function needs to be published separately.</p>
+
+  </div>
+
+</div></div></section></main></body></html>

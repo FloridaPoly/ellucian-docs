@@ -1,0 +1,1727 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Ethos Identity - Configure — Advanced configuration for Ethos Identity</title><style>body{font-family:-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;line-height:1.55;color:#1a1a1a;max-width:920px;margin:0 auto;padding:24px}header{border-bottom:2px solid #5a16d6;margin-bottom:8px}h1{color:#3a0ca3}h2,h3,h4,h5,h6{margin-top:1.6em}.crumb{color:#666;font-size:13px;margin:0}.meta{color:#888;font-size:12px}nav.toc{background:#f6f4fc;border:1px solid #e3dcf5;border-radius:8px;padding:12px 18px;margin:18px 0}nav.toc h2{margin:.2em 0}nav.toc ul{list-style:none;padding-left:0}nav.toc a{text-decoration:none;color:#5a16d6}section{margin:1.2em 0;padding-top:.4em}img{max-width:100%;height:auto}table{border-collapse:collapse}td,th{border:1px solid #ccc;padding:4px 8px}code,pre{background:#f4f4f4;border-radius:4px}pre{padding:10px;overflow:auto}</style></head><body><header><p class="crumb">Ethos Identity › Ethos Identity - Configure</p><h1>Ethos Identity - Configure — Advanced configuration for Ethos Identity</h1><p class="meta">Source: <a href="https://resources.elluciancloud.com/r/bundle/ethos_identity_acn_configure">https://resources.elluciancloud.com/r/bundle/ethos_identity_acn_configure</a> &middot; Retrieved 2026-06-17</p></header><nav class="toc"><h2>Contents</h2><ul><li style="margin-left:0px"><a href="#t-910">Advanced configuration for Ethos Identity</a></li><li style="margin-left:16px"><a href="#t-920">Apply your custom branding</a></li><li style="margin-left:32px"><a href="#t-930">Branding guidelines</a></li><li style="margin-left:32px"><a href="#t-940">Change the logo</a></li><li style="margin-left:32px"><a href="#t-950">Change the gradient</a></li><li style="margin-left:32px"><a href="#t-960">Change the page title</a></li><li style="margin-left:32px"><a href="#t-970">Reconcile your customizations after an upgrade</a></li><li style="margin-left:32px"><a href="#t-980">Customize the redirection page</a></li><li style="margin-left:16px"><a href="#t-990">Anti-clickjacking</a></li><li style="margin-left:32px"><a href="#t-1000">Configure anti-clickjacking for single domain</a></li><li style="margin-left:32px"><a href="#t-1010">Configure anti-clickjacking for multiple domain</a></li><li style="margin-left:16px"><a href="#t-1020">Multi-factor authentication for Ethos Identity</a></li><li style="margin-left:32px"><a href="#t-1030">Configure Web SDK for Duo Universal Prompt</a></li><li style="margin-left:16px"><a href="#t-1040">Enable Arabic translation</a></li><li style="margin-left:16px"><a href="#t-1050">Enable Spanish translation</a></li><li style="margin-left:16px"><a href="#t-1060">Publish an XACML policy to access Ellucian Ethos Identity by user store</a></li><li style="margin-left:16px"><a href="#t-1070">Copy service provider configuration through export and import</a></li><li style="margin-left:32px"><a href="#t-1080">Export a service provider</a></li><li style="margin-left:32px"><a href="#t-1090">Import a service provider</a></li><li style="margin-left:16px"><a href="#t-1100">Adaptive authentication</a></li><li style="margin-left:32px"><a href="#t-1110">Configure IP-based adaptive authentication</a></li><li style="margin-left:48px"><a href="#t-1120">Test IP-based authentication script</a></li><li style="margin-left:32px"><a href="#t-1130">Configure Role-based adaptive authentication</a></li><li style="margin-left:48px"><a href="#t-1140">Test Role-based authentication script</a></li><li style="margin-left:32px"><a href="#t-1150">Configure User Store-based adaptive authentication</a></li><li style="margin-left:48px"><a href="#t-1160">Test User store -based authentication script</a></li><li style="margin-left:16px"><a href="#t-1170">Enable logging in log4j2</a></li><li style="margin-left:32px"><a href="#t-1180">List of logs</a></li><li style="margin-left:16px"><a href="#t-1190">Encrypt passwords with Cipher Tool</a></li><li style="margin-left:32px"><a href="#t-1200">Change encrypted password</a></li><li style="margin-left:16px"><a href="#t-1210">Enable custom app password</a></li></ul></nav><main><section id="t-910"><h2>Advanced configuration for Ethos Identity</h2><div class="content-locale-en-US content-locale-en"><div id="c_advanced_config"><p class="shortdesc">Advanced configurations can enhance the experience but are not required for <span class="keyword">Ellucian Ethos Identity</span>.</p>
+
+</div></div></section>
+<section id="t-920"><h3>Apply your custom branding</h3><div class="content-locale-en-US content-locale-en"><div id="c_custom_branding"><div class="body conbody"><p class="shortdesc"><span class="keyword">Ellucian Ethos Identity</span> provides several branding options for the delivered assets. You can modify the logo, accent gradient, and page title.</p>
+
+    <div class="note"><span class="notetitle">Note:</span> The customization branding is applicable for <span class="keyword">Ellucian Ethos Identity</span> version 5.3.3 and higher.</div>
+
+  </div>
+
+</div></div></section>
+<section id="t-930"><h4>Branding guidelines</h4><div class="content-locale-en-US content-locale-en"><div id="c_brand_guidelines"><div class="body conbody"><p class="shortdesc">Product branding is stored in the <span class="ph filepath">index.css</span> file located in the following directory on the <span class="keyword">Ellucian Ethos Identity</span> server: <span class="ph filepath"><var class="keyword varname">EIS_HOME</var>/repository/deployment/server/webapps/ authenticationendpoint/ellucian</span>.</p>
+
+    <p class="p">You can customize authentication page styling elements including fonts, colors, and positioning. If you customize elements, you must merge the changes into future <span class="keyword">Ellucian Ethos Identity</span> releases when you upgrade.</p>
+
+    <p class="p">Files under <span class="ph filepath"><var class="keyword varname">EIS_HOME</var>/repository/deployment/server/webapps/authenticationendpoint</span> and <span class="ph filepath"><var class="keyword varname">EIS_HOME</var>/repository/deployment/server/webapps/accountrecoveryendpoint</span> directories will typically change in future releases. If you make customizations that require HTML changes, you must manually merge your customizations with the delivered <span class="keyword">Ellucian</span> changes.</p>
+
+  </div>
+
+</div></div></section>
+<section id="t-940"><h4>Change the logo</h4><div class="content-locale-en-US content-locale-en"><div id="t_changing_logo"><div class="body taskbody"><p class="shortdesc">Change the logo for <span class="keyword">Ellucian Ethos Identity</span>.</p>
+
+    <div class="tasklabel"><h2 class="sectiontitle tasklabel">Procedure</h2></div><ol class="ol steps"><li class="li step stepexpand">
+        <span class="ph cmd">Replace the esg-logo-container div from Java Server Pages (JSP) or HTML files with code block as follows:</span>
+        <div class="itemgroup info">
+          
+<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" class="table" frame="border" border="1" rules="all"><colgroup><col style="width:65.51724137931035%"><col style="width:34.48275862068966%"></colgroup><thead class="thead" style="text-align:left;">
+                <tr class="row">
+                  <th class="entry cellrowborder" style="vertical-align:top;" id="d6458e57">Directory</th>
+
+                  <th class="entry cellrowborder" style="vertical-align:top;" id="d6458e60">JSP or HTML files</th>
+
+                </tr>
+
+              </thead>
+<tbody class="tbody">
+                <tr class="row">
+                  <td class="entry cellrowborder" style="vertical-align:top;" headers="d6458e57 "><var class="keyword varname">EIS_HOME</var>/repository/deployment/server/webapps/accountrecoveryendpoint/</td>
+
+                  <td class="entry cellrowborder" style="vertical-align:top;" headers="d6458e60 ">
+                    <ul class="ul">
+                      <li class="li">challenge-question-view.jsp</li>
+
+                      <li class="li">error.jsp</li>
+
+                      <li class="li">username-recovery.jsp</li>
+
+                      <li class="li">password-recovery.jsp</li>
+
+                      <li class="li">password-reset.jsp</li>
+
+                    </ul>
+
+                  </td>
+
+                </tr>
+
+                <tr class="row">
+                  <td class="entry cellrowborder" style="vertical-align:top;" headers="d6458e57 "><var class="keyword varname">EIS_HOME</var>repository/deployment/server/webapps/authenticationendpoint/</td>
+
+                  <td class="entry cellrowborder" style="vertical-align:top;" headers="d6458e60 ">
+                    <ul class="ul">
+                      <li class="li">retry.jsp</li>
+
+                      <li class="li">login.jsp</li>
+
+                      <li class="li">logout.jsp</li>
+
+                      <li class="li">cas_login_error.html</li>
+
+                      <li class="li">cas_logout.html</li>
+
+                      <li class="li">cas_logout_error.html</li>
+
+                      <li class="li">cas_logout_link.html</li>
+
+                    </ul>
+
+                  </td>
+
+                </tr>
+
+              </tbody>
+</table>
+</div>
+
+          <p class="p">Code block:</p>
+
+          <pre class="pre codeblock"><code>&lt;img src="/authenticationendpoint/ellucian/ellucian-logo.png" alt="Ellucian Ethos Identity"/&gt;</code></pre>
+        </div>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Navigate to the <span class="ph filepath"><var class="keyword varname">EIS_HOME</var>/repository/deployment/server/webapps/authenticationendpoint/ellucian</span> directory on the <span class="keyword">Ellucian Ethos Identity</span> server.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Replace <span class="ph filepath">ellucian-logo.png</span> with a different logo file that is in PNG format.</span>
+      </li>
+</ol>
+
+    <div class="section result"><div class="tasklabel"><h2 class="sectiontitle tasklabel">Results</h2></div>
+      <ul class="ul">
+        <li class="li">If the new logo is not displayed in the browser, clear the browser cache.</li>
+
+        <li class="li">Verify that the new logo is a case-sensitive file name match.</li>
+
+      </ul>
+
+    </div>
+
+  </div>
+
+</div></div></section>
+<section id="t-950"><h4>Change the gradient</h4><div class="content-locale-en-US content-locale-en"><div id="t_changing_gradient"><div class="body taskbody"><p class="shortdesc">Change the gradient on <span class="keyword">Ellucian Ethos Identity</span>.</p>
+
+    <div class="tasklabel"><h2 class="sectiontitle tasklabel">Procedure</h2></div><ol class="ol steps"><li class="li step">
+        <span class="ph cmd">Navigate to the <span class="ph filepath"><var class="keyword varname">EIS_HOME</var>/repository/deployment/server/webapps/authenticationendpoint/ellucian</span> directory on the <span class="keyword">Ellucian Ethos Identity</span> server.</span>
+      </li>
+<li class="li step">
+        <span class="ph cmd">Edit <span class="ph filepath">index.css</span> and locate the <code class="ph codeph">/* BEGIN GRADIENT */</code> and <code class="ph codeph">/* END GRADIENT */</code> comments.</span>
+      </li>
+<li class="li step">
+        <span class="ph cmd">Enter the desired gradient or background image in this code block.</span>
+      </li>
+</ol>
+
+  </div>
+
+</div></div></section>
+<section id="t-960"><h4>Change the page title</h4><div class="content-locale-en-US content-locale-en"><div id="t_change_page_title"><div class="body taskbody"><p class="shortdesc">Change the page title of your <span class="keyword">Ellucian Ethos Identity</span> instance.</p>
+
+    <div class="tasklabel"><h2 class="sectiontitle tasklabel">Procedure</h2></div><div class="li step p">
+        <span class="ph cmd">Modify the value of the title tag as <kbd class="ph userinput">&lt;title&gt;Login with Ellucian Ethos Identity&lt;/title&gt;</kbd> for the following JSP files:</span>
+        <div class="itemgroup info">
+          
+<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" class="table" frame="border" border="1" rules="all"><colgroup><col style="width:65.51724137931035%"><col style="width:34.48275862068966%"></colgroup><thead class="thead" style="text-align:left;">
+                <tr class="row">
+                  <th class="entry cellrowborder" style="vertical-align:top;" id="d7071e53">Directory</th>
+
+                  <th class="entry cellrowborder" style="vertical-align:top;" id="d7071e56">JSP files</th>
+
+                </tr>
+
+              </thead>
+<tbody class="tbody">
+                <tr class="row">
+                  <td class="entry cellrowborder" style="vertical-align:top;" headers="d7071e53 ">
+                    <span class="ph filepath"><var class="keyword varname">EIS_HOME</var>/repository/deployment/server/webapps/accountrecoveryendpoint/</span>
+                  </td>
+
+                  <td class="entry cellrowborder" style="vertical-align:top;" headers="d7071e56 ">
+                    <ul class="ul">
+                      <li class="li">challenge-question-view.jsp</li>
+
+                      <li class="li">error.jsp</li>
+
+                      <li class="li">username-recovery.jsp</li>
+
+                      <li class="li">password-recovery.jsp</li>
+
+                      <li class="li">password-reset.jsp</li>
+
+                    </ul>
+
+                  </td>
+
+                </tr>
+
+                <tr class="row">
+                  <td class="entry cellrowborder" style="vertical-align:top;" headers="d7071e53 ">
+                    <span class="ph filepath"><var class="keyword varname">EIS_HOME</var>repository/deployment/server/webapps/authenticationendpoint/</span>
+                  </td>
+
+                  <td class="entry cellrowborder" style="vertical-align:top;" headers="d7071e56 ">
+                    <ul class="ul">
+                      <li class="li">retry.jsp</li>
+
+                      <li class="li">login.jsp</li>
+
+                      <li class="li">logout.jsp</li>
+
+                    </ul>
+
+                  </td>
+
+                </tr>
+
+              </tbody>
+</table>
+</div>
+
+        </div>
+      </div>
+
+  </div>
+
+</div></div></section>
+<section id="t-970"><h4>Reconcile your customizations after an upgrade</h4><div class="content-locale-en-US content-locale-en"><div id="c_reconcile_customizations"><div class="body conbody"><p class="shortdesc">If you customize the JSP files or other assets in the <span class="ph">WSO2 Identity Server</span>, you must reconcile the differences in your customizations when you upgrade the <span class="keyword">Ellucian Ethos Identity</span> product.</p>
+
+    <p class="p">Upgrading the <span class="keyword">Ellucian Ethos Identity</span> product does not move or merge your product customizations under the <span class="ph filepath">authenticationendpoint</span> or <span class="ph filepath">accountrecoveryendpoint</span> application. With new releases, <span class="ph">WSO2 Identity Server</span> delivers modified JSP files and other assets to correct bugs and introduce enhancements. In addition, <span class="keyword">Ellucian Ethos Identity</span> delivers styling and security customizations with the latest WSO2 changes. </p>
+
+    <p class="p">If you customize the JSP files or other assets, you must reconcile the differences in your customizations. If you do not reconcile the differences, it can cause broken functionality and introduce security risks. You must manually merge any customization made to JSP files or other assets under the following application:</p>
+
+    <p class="p">
+      <span class="ph filepath"><var class="keyword varname">EIS_HOME</var>/repository/deployment/server/webapps/accountrecoveryendpoint/</span>
+    </p>
+
+    <p class="p">
+      <span class="ph filepath"><var class="keyword varname">EIS_HOME</var>repository/deployment/server/webapps/authenticationendpoint/</span>
+    </p>
+
+    <div class="note"><span class="notetitle">Note:</span> The product branding is valid only after enabling the <span class="keyword">Ellucian Ethos Identity</span> customization. This document is applicable to <span class="keyword">Ellucian Ethos Identity</span> provided branding in version 5.3.3.</div>
+
+  </div>
+
+</div></div></section>
+<section id="t-980"><h4>Customize the redirection page</h4><div class="content-locale-en-US content-locale-en"><div id="t_customize_redirection_page"><div class="body taskbody"><p class="shortdesc">When the user is redirected back to the Service Provider from <span class="ph">Ethos Identity</span>, <span class="ph filepath">samlsso_response.html</span>, redirection page is temporarily displayed. This page can be customized to have the look and feel of the institution.</p>
+
+    <div class="section context"><div class="tasklabel"><h2 class="sectiontitle tasklabel">About this task</h2></div><span class="ph filepath">samlsso_response.html</span> page is located at <span class="ph filepath">${EIS_Home}/repository/resources/identity/pages</span> folder.</div>
+
+    <div class="tasklabel"><h2 class="sectiontitle tasklabel">Procedure</h2></div><ol class="ol steps"><li class="li step stepexpand">
+        <span class="ph cmd">Add any additional style sheets to the <span class="ph uicontrol">&lt;head&gt;</span> section.</span>
+        <div class="itemgroup info">
+          <p class="p">Example:</p>
+
+          <pre class="pre codeblock"><code>&lt;head&gt; &lt;link href="…………………/………/*.css" rel="stylesheet"&gt;&lt;/head&gt;</code></pre>
+        </div>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Add any additional scripts to the <span class="ph uicontrol">&lt;body&gt;</span> section.</span>
+        <div class="itemgroup info">
+          <p class="p">Example:</p>
+
+          <pre class="pre codeblock"><code>&lt;script src="………………………/…………………/*.js"&gt;&lt;/script&gt;</code></pre>
+        </div>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Perform the following steps to change the logo:</span>
+        <ol type="a" class="ol substeps">
+          <li class="li substep substepexpand">
+            <span class="ph cmd">Modify the <span class="ph uicontrol">container-fluid body-wrapper</span> div element in the <span class="ph filepath">samlsso_response.html</span> file.</span>
+            <div class="itemgroup info">
+              <p class="p">Example:</p>
+
+              <pre class="pre codeblock"><code>&lt;div class="container-fluid body-wrapper"&gt;……………………..
+&lt;/div&gt;</code></pre>
+            </div>
+          </li>
+
+        </ol>
+
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Perform the following steps to change the content:</span>
+        <ol type="a" class="ol substeps">
+          <li class="li substep substepexpand">
+            <span class="ph cmd">Modify the <span class="ph uicontrol">p</span> tag in the <span class="ph uicontrol">text_right_custom</span> div.</span>
+            <div class="itemgroup info">
+              <p class="p">Example:</p>
+
+              <pre class="pre codeblock"><code>&lt;div class="text_right_custom"&gt;
+&lt;p&gt;…………...&lt;/p&gt;
+&lt;/div&gt;</code></pre>
+              <p class="p">For more information about how to customize the <span class="ph filepath">samlsso_response.html</span> page, you can refer to the <span class="ph">Ellucian</span> customized page at <span class="ph filepath">${EIS_Home}/config/ EEID5.x_customizations/samlsso_response_cust.html</span>.</p>
+
+              <div class="note"><span class="notetitle">Note:</span> After you make all changes to Identity Server, restart the <span class="keyword">Ellucian Ethos Identity</span> server in all the nodes.</div>
+
+            </div>
+          </li>
+
+        </ol>
+
+      </li>
+</ol>
+
+  </div>
+
+</div></div></section>
+<section id="t-990"><h3>Anti-clickjacking</h3><div class="content-locale-en-US content-locale-en"><div id="c_anticlickjacking"><div class="body conbody"><p class="shortdesc">Clickjacking is an attack that tricks a user into clicking a webpage element which is invisible or disguised as another element.</p>
+</div>
+
+</div></div></section>
+<section id="t-1000"><h4>Configure anti-clickjacking for single domain</h4><div class="content-locale-en-US content-locale-en"><div id="t_config_anticlickjacking_support"><div class="body taskbody"><p class="shortdesc">Leverage the X-Frame-Options header to indicate if a browser is allowed to render <span class="ph">Ethos Identity</span> as framed or embedded content.</p>
+
+    <div class="section prereq p"><div class="tasklabel"><h2 class="sectiontitle tasklabel">Before you begin</h2></div>Make sure that you are using <span class="keyword">Ellucian Ethos Identity</span> 5.3.2 or higher version.</div>
+
+    <div class="tasklabel"><h2 class="sectiontitle tasklabel">Procedure</h2></div><ol class="ol steps"><li class="li step stepexpand">
+        <span class="ph cmd">Stop the <span class="keyword">Ellucian Ethos Identity</span> server.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">To configure anti-clickjacking support, edit the following property in the file <span class="ph filepath"><var class="keyword varname">EIS_HOME</var>/config/eis_config.properties</span>:</span>
+        <div class="itemgroup info">
+          
+<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" class="table" frame="border" border="1" rules="all"><colgroup><col style="width:39.525691699604735%"><col style="width:60.47430830039525%"></colgroup><thead class="thead" style="text-align:left;">
+                <tr class="row">
+                  <th class="entry cellrowborder" style="vertical-align:top;" id="d1173e70">Property</th>
+
+                  <th class="entry cellrowborder" style="vertical-align:top;" id="d1173e73">Description</th>
+
+                </tr>
+
+              </thead>
+<tbody class="tbody">
+                <tr class="row">
+                  <td class="entry cellrowborder" style="vertical-align:top;" headers="d1173e70 ">eis.anticlickjacking.url.exception</td>
+
+                  <td class="entry cellrowborder" style="vertical-align:top;" headers="d1173e73 ">To allow anti-clickjacking support, specify the value for this property as the URL which should be a whitelist.<p class="p">Example: eis.anticlickjacking.url.exception=www.ellucian.com</p>
+</td>
+
+                </tr>
+
+              </tbody>
+</table>
+</div>
+
+        </div>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Save the changes to the file.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Navigate to <span class="ph filepath"><var class="keyword varname">EIS_HOME</var></span>.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Run the appropriate commands for your operating system to apply the property change to the XML file:</span>
+        <div class="itemgroup info">Linux/Unix: <pre class="pre codeblock"><code>export ANT_HOME=apache-ant/
+
+apache-ant/bin/ant config-all-xml -buildfile config/build.xml</code></pre></div>
+        <div class="itemgroup info">Windows:<pre class="pre codeblock"><code>apache-ant\bin\ant config-all-xml -buildfile config\build.xml</code></pre></div>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Start the <span class="keyword">Ellucian Ethos Identity</span> server.</span>
+      </li>
+</ol>
+
+  </div>
+
+</div></div></section>
+<section id="t-1010"><h4>Configure anti-clickjacking for multiple domain</h4><div class="content-locale-en-US content-locale-en"><div id="t_config_anticlickjacking_multi_domain"><div class="body taskbody"><p class="shortdesc">Allows you to specify multiple domains which can load <span class="ph">Ethos Identity</span> within framed or embedded content.</p>
+
+    <div class="section context"><div class="tasklabel"><h2 class="sectiontitle tasklabel">About this task</h2></div>
+      <p class="p">Update the Content Security Policy header to control resources the user agent is allowed to load from a given page. It also allows you to specify the domain in a list, or with the use of wild cards.</p>
+
+      <p class="p">Example: Content-Security-Policy: frame-ancestors *.domain1.edu *.domain1.edu:* *.domain2.edu *.domain2.edu:*</p>
+
+      <p class="p">Many older browsers like Internet Explorer up until version 11 don't support to the Content Security Policy.</p>
+
+      <div class="note"><span class="notetitle">Note:</span> 
+        <ul class="ul">
+          <li class="li">The anti-clickjacking support for multiple domains feature available from EllucianEthosIdentiy_Patch_5.10.8 or later version.</li>
+
+          <li class="li"><span class="ph">Ethos Identity</span> 5.10.7 or lower requires an update to 5.10.8 to support anti-clickjacking for multiple domains.</li>
+
+        </ul>
+
+      </div>
+
+    </div>
+
+    <div class="tasklabel"><h2 class="sectiontitle tasklabel">Procedure</h2></div><ol class="ol steps"><li class="li step stepexpand">
+        <span class="ph cmd">Verify that the response header filter jar exists in the <span class="ph filepath">&lt;EEID_HOME&gt;repository/components/lib</span> folder.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Make sure to add the following properties.</span>
+        <div class="itemgroup info">
+          <pre class="pre codeblock"><code>&lt;EEID_HOME&gt;repository/conf/tomcat/carbon/WEB-INF/web.xml
+&lt;filter&gt;
+&lt;filter-name&gt;ResponseHeaderFilter&lt;/filter-name&gt;
+&lt;filter-class&gt;com.sample.tomcat.filter.ResponseHeaderFilter&lt;/filter-class&gt;
+&lt;init-param&gt;
+&lt;param-name&gt;Content-Security-Policy&lt;/param-name&gt;
+&lt;param-value&gt;frame-ancestors *.elluciancloud.com *.elluciancloud.com:* *.ellucian.com *.ellucian.com:* &lt;/param-value&gt;
+&lt;/init-param&gt;
+&lt;/filter&gt;
+&lt;filter-mapping&gt;
+&lt;filter-name&gt;ResponseHeaderFilter&lt;/filter-name&gt;
+&lt;url-pattern&gt;/*&lt;/url-pattern&gt;
+&lt;/filter-mapping&gt;
+</code></pre>
+        </div>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Verify that the following properties were added to the <span class="ph filepath">&lt;<var class="keyword varname">EEID_HOME</var>&gt;repository/conf/tomcat/web.xml</span></span>
+        <div class="itemgroup info">
+          <pre class="pre codeblock"><code>&lt;filter&gt;
+&lt;filter-name&gt;CustomHeaderFilter&lt;/filter-name&gt;
+&lt;filter-class&gt;org.wso2.carbon.identity.custom.header.filter.CustomHeaderFilter&lt;/filter-class&gt;
+&lt;/filter&gt;
+&lt;filter-mapping&gt;
+&lt;filter-name&gt;CustomHeaderFilter&lt;/filter-name&gt;
+&lt;url-pattern&gt;/*&lt;/url-pattern&gt;
+&lt;dispatcher&gt;REQUEST&lt;/dispatcher&gt;
+&lt;dispatcher&gt;FORWARD&lt;/dispatcher&gt;
+&lt;/filter-mapping&gt;
+</code></pre>
+        </div>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Enable the Admin Service WSDL in the carbon.xml <code class="ph codeph">&lt;HideAdminServiceWSDLs&gt;true&lt;/HideAdminServiceWSDLs&gt;</code>.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Enable the configuration management REST API and execute the step 1 from the topic <cite class="cite">Using the Configuration Management REST APIs</cite> on the WSO2 documentation website for the corresponding WSO2 version.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Create custom header configurations through the Configuration Manager API.</span>
+        <div class="itemgroup info">
+          <pre class="pre codeblock"><code># Create a resource type (`custom-headers`)
+curl -k -X POST &lt;protocol&gt;://&lt;host&gt;:&lt;port&gt;/api/identity/config-mgt/v1.0/resource-type \
+ -H "accept: application/json" -H 'Content-Type: application/json' \
+ -H 'Authorization: &lt;authorization code&gt;' \
+ -d '{"name": "custom-headers", "description": "This is the resource type for custom header resources."}'
+</code></pre>
+          <p class="p">Example:</p>
+
+          <pre class="pre codeblock"><code># Create a resource type (`custom-headers`)
+curl -k -X POST https://localhost:9443/api/identity/config-mgt/v1.0/resource-type \
+ -H "accept: application/json" -H 'Content-Type: application/json' \
+ -H 'Authorization: Basic YWRtaW46YWRtaW4=' \
+ -d '{"name": "custom-headers", "description": "This is the resource type for custom header resources."}'
+</code></pre>
+        </div>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Create a new resource with application data.</span>
+        <div class="itemgroup info">
+          <pre class="pre codeblock"><code>curl -k -X POST &lt;protocol&gt;://&lt;host&gt;:&lt;port&gt;/api/identity/config-mgt/v1.0/resource/custom-headers 
+-H "accept: application/json" 
+-H 'Content-Type: application/json' 
+-H 'Authorization: &lt;authorization code&gt;' 
+-d '{"name": "&lt;resource path of the application&gt;","attributes": [{"key": "Content-Security-Policy","value": "frame-ancestors &lt;Your Domain1&gt;, &lt;your Domain2&gt;"}]}'
+</code></pre>
+          <div class="note"><span class="notetitle">Note:</span> The <span class="ph uicontrol">name</span> value must be the resource path of your application immediately following the host and port of the URL.</div>
+
+          <p class="p">RedirectURL: https://localhost:8080/cas/login?service=https%3A%2F%2Flocalhost:8080%2Feis-test-cas-app%2Fj_spring_cas_security_check%3Bjsessionid%3D9B23F4996411A2EEA1233F642B6CA186</p>
+
+          <p class="p">Example:</p>
+
+          <pre class="pre codeblock"><code>curl -k -X POST https://localhost:9443/api/identity/config-mgt/v1.0/resource/custom-headers 
+-H "accept: application/json" 
+-H 'Content-Type: application/json' 
+-H 'Authorization: Basic YWRtaW46YWRtaW4=' 
+-d '{"name": "cas","attributes": [{"key": "Content-Security-Policy","value": "frame-ancestors *.abc.com, *.xyz.com"}]}'
+</code></pre>
+        </div>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">To make sure that the resource added successfully, run the following command:</span>
+        <div class="itemgroup info">
+          <pre class="pre codeblock"><code>curl -k -X GET &lt;protocol&gt;://&lt;host&gt;:&lt;port&gt;/api/identity/config-mgt/v1.0/resource/custom-headers/cas 
+-H "accept: application/json" 
+-H 'Content-Type: application/json' 
+-H 'Authorization: &lt;authorization code&gt;'
+</code></pre>
+          <p class="p">Example:</p>
+
+          <pre class="pre codeblock"><code>curl -k -X GET https://localhost:9443/api/identity/config-mgt/v1.0/resource/custom-headers/cas 
+-H "accept: application/json" 
+-H 'Content-Type: application/json' 
+-H 'Authorization: Basic YWRtaW46YWRtaW4='
+</code></pre>
+          <p class="p">Alternate approach to make sure that the resource added successfully, log in to your database and run the following commands:</p>
+
+          <span class="keyword cmdname">SELECT * FROM IDN_CONFIG_RESOURCE;</span>
+        </div>
+        <div class="itemgroup info">
+          <span class="keyword cmdname">SELECT * FROM IDN_CONFIG_ATTRIBUTE;</span>
+        </div>
+      </li>
+</ol>
+
+  </div>
+
+</div></div></section>
+<section id="t-1020"><h3>Multi-factor authentication for Ethos Identity</h3><div class="content-locale-en-US content-locale-en"><div id="r_multi_factor_auth"><div class="body refbody"><p class="shortdesc"><span class="keyword">Ellucian Ethos Identity</span> supports multi-factor authentication using the following security authenticators.</p>
+
+    <div class="section">
+      <ul class="ul">
+        <li class="li">Double Up On (Duo) Universal Prompt</li>
+
+        <li class="li">Fast IDentity Online (FIDO)</li>
+
+        <li class="li">Time-Based One Time Password (TOTP)</li>
+
+        <li class="li">SMS One Time Password (OTP)</li>
+
+        <li class="li">Email One Time Password (OTP)</li>
+
+      </ul>
+
+    </div>
+
+    <div class="section">
+      
+<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" class="table" frame="border" border="1" rules="rows"><colgroup><col style="width:26.246719160104988%"><col style="width:73.75328083989501%"></colgroup><thead class="thead" style="text-align:left;">
+            <tr class="row">
+              <th class="entry row-nocellborder" style="vertical-align:top;" id="d15082e72">Security Authenticators</th>
+
+              <th class="entry cellrowborder" style="vertical-align:top;" id="d15082e75">WSO2 documentation page</th>
+
+            </tr>
+
+          </thead>
+<tbody class="tbody">
+            <tr class="row">
+              <td class="entry row-nocellborder" style="vertical-align:top;" headers="d15082e72 ">Configure DUO Universal Prompt</td>
+
+              <td class="entry cellrowborder" style="vertical-align:top;" headers="d15082e75 ">For more information, see <cite class="cite">Configure Web SDK for Duo Universal Prompt</cite>.<div class="p">There are two configuration options as follows:<ul class="ul">
+                <li class="li">Option 1: Configure basic authentication as first step, then Duo as second step authentication.</li>
+
+                <li class="li">Option 2: Configure Federated Identity Providers as first step authentication, then Duo as second step authentication.</li>
+
+                </ul>
+</div>
+By default, the user portal associate account gadget icon is available to the Admin-user.<div class="note"><span class="notetitle">Note:</span> <span class="keyword">Ellucian Ethos Identity</span> is not supporting the use case as an association and the user portal associate account gadget is restricted to non-admin users.</div>
+ </td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry row-nocellborder" style="vertical-align:top;" headers="d15082e72 ">Configure FIDO setup</td>
+
+              <td class="entry cellrowborder" style="vertical-align:top;" headers="d15082e75 ">Refer to <cite class="cite">Configuring Multi-factor Authentication using FIDO</cite> on the WSO2 documentation website for the corresponding WSO2 version.</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry row-nocellborder" style="vertical-align:top;" headers="d15082e72 ">Configure TOTP setup</td>
+
+              <td class="entry cellrowborder" style="vertical-align:top;" headers="d15082e75 ">Refer to <cite class="cite">Configuring TOTP Authenticator</cite> on the WSO2 documentation website for the corresponding WSO2 version.</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry row-nocellborder" style="vertical-align:top;" headers="d15082e72 ">Configure SMS OTP setup</td>
+
+              <td class="entry cellrowborder" style="vertical-align:top;" headers="d15082e75 ">Refer to <cite class="cite">Configuring SMS OTP</cite> on the WSO2 documentation website for the corresponding WSO2 version.</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry row-nocellborder" style="vertical-align:top;" headers="d15082e72 ">Configure Email OTP setup</td>
+
+              <td class="entry cellrowborder" style="vertical-align:top;" headers="d15082e75 ">Refer to <cite class="cite">Configuring Email OTP</cite> on the WSO2 documentation website for the corresponding WSO2 version.</td>
+
+            </tr>
+
+          </tbody>
+</table>
+</div>
+
+    </div>
+
+  </div>
+
+</div></div></section>
+<section id="t-1030"><h4>Configure Web SDK for Duo Universal Prompt</h4><div class="content-locale-en-US content-locale-en"><div id="t_configure_websdk_duo_universal_prompt"><div class="body taskbody"><p class="shortdesc">Double Up On (Duo) Universal Prompt is a new authentication experience for web-based applications.</p>
+
+    <div class="tasklabel"><h2 class="sectiontitle tasklabel">Procedure</h2></div><ol class="ol steps"><li class="li step stepexpand">
+        <span class="ph cmd">Navigate to <a class="xref ft-external-link" href="https://duo.com/" target="_blank" rel="noopener">https://duo.com/</a> and log in to the Duo Security.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Click <span class="ph uicontrol">Applications</span> from the left navigation panel and then click <span class="ph uicontrol">Protect an Application</span>.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">In the <span class="keyword wintitle">Protect an Application</span> page, select <span class="ph uicontrol">Web SDK</span> from the list.</span>
+        <div class="itemgroup info">
+          <div class="note"><span class="notetitle">Note:</span> The Web SDK credentials are mandatory.</div>
+
+        </div>
+      </li>
+<li class="li step stepexpand">
+        <div class="note"><span class="notetitle">Note:</span> After the integration is complete, you will receive a Client ID and Client Secret.</div>
+
+        <span class="ph cmd">When accessing Duo Security APIs, use your Duo API hostname, Client ID, and Client Secret.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Configure the Admin API credentials to validate the mobile numbers.</span>
+        <ol type="a" class="ol substeps">
+          <li class="li substep substepexpand">
+            <span class="ph cmd">Navigate to <span class="ph menucascade"><span class="ph uicontrol">Applications</span><abbr title="and then"> &gt; </abbr><span class="ph uicontrol"> Protect an Application</span><abbr title="and then"> &gt; </abbr><span class="ph uicontrol"> Admin API</span></span>.</span>
+            <div class="itemgroup info">
+              <div class="note"><span class="notetitle">Note:</span> After the integration is complete, you will get a Secret key and an Integration key for your integration.</div>
+
+            </div>
+          </li>
+
+          <li class="li substep substepexpand">
+            <span class="ph cmd">Select the <span class="ph uicontrol">Grant read resource permission</span>.</span>
+          </li>
+
+          <li class="li substep substepexpand">
+            <span class="ph cmd">Click <span class="ph uicontrol">Save Changes</span>.</span>
+          </li>
+
+        </ol>
+
+      </li>
+</ol>
+
+  </div>
+
+</div></div></section>
+<section id="t-1040"><h3>Enable Arabic translation</h3><div class="content-locale-en-US content-locale-en"><div id="t_enable_arabic_translation"><div class="body taskbody"><p class="shortdesc"><span class="ph">Ellucian Ethos Identity</span> provides internationalization support for web applications such as the authentication endpoint and account recovery endpoint.</p>
+
+    <div class="section prereq p"><div class="tasklabel"><h2 class="sectiontitle tasklabel">Before you begin</h2></div>
+      <div class="note"><span class="notetitle">Note:</span> 
+        <ul class="ul">
+          <li class="li">Ensure that the Arabic file <span class="ph filepath">Resources_ar.properties</span> is available in the following locations:<ul class="ul"> <li class="li"><span class="ph filepath">&lt;EIS_HOME&gt;/repository/deployment/server/webapps/authenticationendpoint/WEB-INF/classes/org/wso2/carbon/identity/application/authentication/endpoint/i18n/</span></li>
+ <li class="li"><span class="ph filepath">&lt;EIS_HOME&gt;/repository/deployment/server/webapps/ accountrecoveryendpoint\WEB-INF\classes\org\wso2\carbon\identity\mgt\recovery\endpoint\i18n</span></li>
+
+            </ul>
+</li>
+
+          <li class="li">You must have configured the Arabic language in the browser before you enable the Arabic translation.</li>
+
+        </ul>
+
+      </div>
+
+    </div>
+
+    <div class="section context"><div class="tasklabel"><h2 class="sectiontitle tasklabel">About this task</h2></div>
+      <p class="p">To provide i18n support for <span class="ph">Ellucian Ethos Identity</span> 5.7.1 or later, perform the following steps:</p>
+
+    </div>
+
+    <div class="tasklabel"><h2 class="sectiontitle tasklabel">Procedure</h2></div><ol class="ol steps"><li class="li step stepexpand">
+        <span class="ph cmd">Open the browser.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Navigate to the browser settings.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">In <span class="ph uicontrol">Language</span>, select Arabic.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Enter the service provider URL.</span>
+        <div class="itemgroup stepxmp">Example: https://banner.server.edu:8443/StudentOverall/</div>
+      </li>
+</ol>
+
+  </div>
+
+</div></div></section>
+<section id="t-1050"><h3>Enable Spanish translation</h3><div class="content-locale-en-US content-locale-en"><div id="t_enable_spanish_translation"><div class="body taskbody"><p class="shortdesc"><span class="ph">Ellucian Ethos Identity</span> provides internationalization support for the web applications such as authentication endpoint and account recovery endpoint.</p>
+
+    <div class="section prereq p"><div class="tasklabel"><h2 class="sectiontitle tasklabel">Before you begin</h2></div>
+      <div class="note"><span class="notetitle">Note:</span> 
+        <ul class="ul">
+          <li class="li">Make sure that the Spanish file <span class="ph filepath">Resources_es.properties</span> is available at the following locations:<ul class="ul"> <li class="li"><span class="ph filepath">&lt;EIS_HOME&gt;/repository/deployment/server/webapps/authenticationendpoint/WEB-INF/classes/org/wso2/carbon/identity/application/authentication/endpoint/i18n/</span></li>
+ <li class="li"><span class="ph filepath">&lt;EIS_HOME&gt;/repository/deployment/server/webapps/ accountrecoveryendpoint\WEB-INF\classes\org\wso2\carbon\identity\mgt\recovery\endpoint\i18n</span></li>
+
+            </ul>
+</li>
+
+          <li class="li">You must have configured Spanish language in the browser before you enable the Spanish translation.</li>
+
+        </ul>
+
+      </div>
+
+    </div>
+
+    <div class="section context"><div class="tasklabel"><h2 class="sectiontitle tasklabel">About this task</h2></div>
+      <p class="p">To provide i18n support for <span class="ph">Ellucian Ethos Identity</span> 5.7.x, perform the following steps:</p>
+
+    </div>
+
+    <div class="tasklabel"><h2 class="sectiontitle tasklabel">Procedure</h2></div><ol class="ol steps"><li class="li step stepexpand">
+        <span class="ph cmd">Open the browser.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Navigate to the browser settings.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">In <span class="ph uicontrol">Language</span>, select Spanish.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Enter the service provider URL.</span>
+        <div class="itemgroup stepxmp">Example: https://banner.server.edu:8443/StudentOverall/</div>
+      </li>
+</ol>
+
+  </div>
+
+</div></div></section>
+<section id="t-1060"><h3>Publish an XACML policy to access Ellucian Ethos Identity by user store</h3><div class="content-locale-en-US content-locale-en"><div id="t_ethos_identity_access_user_store"><div class="body taskbody"><p class="shortdesc">To access <span class="ph">Ellucian Ethos Identity</span> by user store, you need to publish the XACML policy to Policy Decision Point (PDP).</p>
+
+    <div class="tasklabel"><h2 class="sectiontitle tasklabel">Procedure</h2></div><ol class="ol steps"><li class="li step stepexpand">
+        <span class="ph cmd" id="t_ethos_identity_access_user_store__d64e132">Log in to the Management Console.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd" id="t_ethos_identity_access_user_store__d64e148">Click the <span class="ph uicontrol">Main</span> tab. </span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Expand <span class="ph menucascade"><span class="ph uicontrol">Service Providers</span><abbr title="and then"> &gt; </abbr><span class="ph uicontrol">List</span><abbr title="and then"> &gt; </abbr><span class="ph uicontrol">Edit</span><abbr title="and then"> &gt; </abbr><span class="ph uicontrol">Local &amp; Outbound Authentication Configuration</span></span>.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Select the <span class="ph uicontrol">Enable Authorization</span> check box to enable authorization and click <span class="ph uicontrol">Update</span>.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Locate the <span class="ph menucascade"><span class="ph uicontrol">Home</span><abbr title="and then"> &gt; </abbr><span class="ph uicontrol">Entitlement</span><abbr title="and then"> &gt; </abbr><span class="ph uicontrol">PAP</span><abbr title="and then"> &gt; </abbr><span class="ph uicontrol">Policy Administration</span></span>, select the intended PolicyId from the <span class="ph uicontrol">Available Entitlement Policies</span> list.</span>
+        <div class="itemgroup info">
+          <div class="note"><span class="notetitle">Note:</span>  If you want to add new entitlement policy, click <span class="ph uicontrol">Add New Entitlement Policy</span>, and click <span class="ph uicontrol">Write Policy in XML</span>.</div>
+
+        </div>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Modify <span class="ph uicontrol">PolicyId</span>, <span class="ph uicontrol">SP_NAME</span>, <span class="ph uicontrol">USERSTORE_1</span>, and <span class="ph uicontrol">USERSTORE_2</span> as required from the policy content and click <span class="ph uicontrol">Save Policy</span>.</span>
+        <div class="itemgroup info">
+          <pre class="pre codeblock"><code>&lt;Policy xmlns="urn:oasis:names:tc:xacml:3.0:core:schema:wd-17" 
+<span class="ph uicontrol">PolicyId</span>="authn_user_store_based_policy_template" RuleCombiningAlgId="urn:oasis:names:tc:xacml:1.0:rule-combining-algorithm:first-applicable" Version="1.0"&gt;
+&lt;Description&gt;This template policy provides ability to authorize users to a given service provider(defined by SP_NAME) in the authentication flow based on the user store (USERSTORE_1 or USERSTORE_2). Users who are in the given userstores will be allowed and any other users will be denied.&lt;/Description&gt;
+&lt;Target&gt;
+&lt;AnyOf&gt;
+&lt;AllOf&gt;
+&lt;Match MatchId="urn:oasis:names:tc:xacml:1.0:function:string-equal"&gt;
+&lt;AttributeValue DataType="http://www.w3.org/2001/XMLSchema#string"&gt;authenticate&lt;/AttributeValue&gt;
+&lt;AttributeDesignator AttributeId="http://wso2.org/identity/identity-action/action-name" Category="http://wso2.org/identity/identity-action" DataType="http://www.w3.org/2001/XMLSchema#string" MustBePresent="false"/&gt;
+&lt;/Match&gt;
+&lt;Match MatchId="urn:oasis:names:tc:xacml:1.0:function:string-equal"&gt;
+&lt;AttributeValue DataType="http://www.w3.org/2001/XMLSchema#string"&gt;<span class="ph uicontrol">SP_NAME</span>&lt;/AttributeValue&gt;
+&lt;AttributeDesignator AttributeId="http://wso2.org/identity/sp/sp-name" Category="http://wso2.org/identity/sp" DataType="http://www.w3.org/2001/XMLSchema#string" MustBePresent="false"/&gt;
+&lt;/Match&gt;
+&lt;/AllOf&gt;
+&lt;/AnyOf&gt;
+&lt;/Target&gt;
+&lt;Rule Effect="Permit" RuleId="permit_by_userstores"&gt;
+&lt;Condition&gt;
+&lt;Apply FunctionId="urn:oasis:names:tc:xacml:1.0:function:or"&gt;
+&lt;Apply FunctionId="urn:oasis:names:tc:xacml:1.0:function:string-equal"&gt;
+&lt;Apply FunctionId="urn:oasis:names:tc:xacml:1.0:function:string-one-and-only"&gt;
+&lt;AttributeDesignator AttributeId="http://wso2.org/identity/user/user-store-domain" Category="http://wso2.org/identity/user" DataType="http://www.w3.org/2001/XMLSchema#string" MustBePresent="true"/&gt;
+&lt;/Apply&gt;
+&lt;AttributeValue DataType="http://www.w3.org/2001/XMLSchema#string"&gt;<span class="ph uicontrol">USERSTORE_1</span>&lt;/AttributeValue&gt;
+&lt;/Apply&gt;
+&lt;Apply FunctionId="urn:oasis:names:tc:xacml:1.0:function:string-equal"&gt;
+&lt;Apply FunctionId="urn:oasis:names:tc:xacml:1.0:function:string-one-and-only"&gt;
+&lt;AttributeDesignator AttributeId="http://wso2.org/identity/user/user-store-domain" Category="http://wso2.org/identity/user" DataType="http://www.w3.org/2001/XMLSchema#string" MustBePresent="true"/&gt;
+&lt;/Apply&gt;
+&lt;AttributeValue DataType="http://www.w3.org/2001/XMLSchema#string"&gt;<span class="ph uicontrol">USERSTORE_2</span>&lt;/AttributeValue&gt;
+&lt;/Apply&gt;
+&lt;/Apply&gt;
+&lt;/Condition&gt;
+&lt;/Rule&gt;
+&lt;Rule Effect="Deny" RuleId="deny_others"/&gt;
+&lt;/Policy&gt;</code></pre>
+        </div>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Click <span class="ph uicontrol">Publish To My PDP</span> for the intended policy.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">On the <span class="ph uicontrol">Publish Policy</span> pane, click <span class="ph uicontrol">Publish</span>.</span>
+        <div class="itemgroup info">For more information on this flow, refer to <cite class="cite">Publishing a XACML Policy</cite> on the WSO2 documentation website for the corresponding WSO2 version.</div>
+      </li>
+</ol>
+
+  </div>
+
+</div></div></section>
+<section id="t-1070"><h3>Copy service provider configuration through export and import</h3><div class="content-locale-en-US content-locale-en"><div id="c_export_or_import_service_provider"><div class="body conbody"><p class="shortdesc">You can export or import a service provider configuration as an XML configuration file.</p>
+
+    <div class="p">If you intend to create a service provider with the same configuration in different instances of <span class="ph">Ellucian Ethos Identity</span> perform the following steps:<ol class="ol"> <li class="li">Create and configure the service provider in instance A.</li>
+ <li class="li">Export service provider as an XML file.</li>
+ <li class="li">Import the XML file in instance B to create the service provider with the same configuration as an instance A.</li>
+ <li class="li">Repeat steps 3 for all other instances to copy the same service provider configuration.</li>
+
+      </ol>
+</div>
+
+    <div class="note"><span class="notetitle">Note:</span> You can take a backup of a service provider configuration using export option.</div>
+
+  </div>
+
+</div></div></section>
+<section id="t-1080"><h4>Export a service provider</h4><div class="content-locale-en-US content-locale-en"><div id="t_export_service_provider"><div class="body taskbody"><p class="shortdesc">You can export a service provider configuration as an XML file.</p>
+
+    <div class="tasklabel"><h2 class="sectiontitle tasklabel">Procedure</h2></div><ol class="ol steps"><li class="li step stepexpand" id="t_export_service_provider__s_reusable_task_elements_login_mc">
+        <span class="ph cmd" id="t_export_service_provider__pxy_vry_31b">Log in to the Management Console of Ethos Identity Server instance, from where you want to export the service provider configuration.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd" id="t_export_service_provider__d64e148">Click the <span class="ph uicontrol">Main</span> tab. </span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Go to <span class="ph menucascade"><span class="ph uicontrol">Service Providers</span><abbr title="and then"> &gt; </abbr><span class="ph uicontrol">List</span></span> to see the list of service providers.</span>
+        <div class="itemgroup info">
+          <div class="note"><span class="notetitle">Note:</span> If you do not see the intended service provider to export, see <cite class="cite">Add a service provider</cite> topic to add and configure a new service provider.</div>
+
+        </div>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Go to <span class="ph menucascade"><span class="ph uicontrol">Actions</span><abbr title="and then"> &gt; </abbr><span class="ph uicontrol">Export</span></span> for the intended service provider configuration to be exported.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">In the WSO2 Carbon confirmation dialog box, clear the <span class="ph uicontrol">Include Secrets</span> check box if you do not want to include secrets when exporting.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Click <span class="ph uicontrol">OK</span> to export service provider configuration as an XML file.</span>
+      </li>
+</ol>
+
+    <div class="section result"><div class="tasklabel"><h2 class="sectiontitle tasklabel">Results</h2></div>You have successfully exported the service provider in <span class="ph filepath">Service_provider_Name.xml</span> format.</div>
+
+  </div>
+
+</div></div></section>
+<section id="t-1090"><h4>Import a service provider</h4><div class="content-locale-en-US content-locale-en"><div id="t_import_service_provider"><div class="body taskbody"><p class="shortdesc">If requires, you can make the configuration changes in the exported <span class="ph filepath">Service_provider_Name.xml</span> and import the service provider.</p>
+
+    <div class="tasklabel"><h2 class="sectiontitle tasklabel">Procedure</h2></div><ol class="ol steps"><li class="li step" id="t_import_service_provider__s_reusable_task_elements_login_mc">
+        <span class="ph cmd" id="t_import_service_provider__pxy_vry_31b">Log in to the Management Console.</span>
+      </li>
+<li class="li step">
+        <span class="ph cmd" id="t_import_service_provider__grx_5sy_31b">Click the <span class="ph uicontrol">Main</span> tab. </span>
+      </li>
+<li class="li step">
+        <span class="ph cmd">Under <span class="ph uicontrol">Service Providers</span>, click <span class="ph uicontrol">Add</span>.</span>
+      </li>
+<li class="li step">
+        <span class="ph cmd">Under <span class="ph uicontrol">Select Mode</span>, select <span class="ph uicontrol">File Configuration</span>.</span>
+      </li>
+<li class="li step">
+        <span class="ph cmd">Under <span class="ph uicontrol">Upload Service Provider File</span>, click <span class="ph uicontrol">Choose File</span>, select the <span class="ph filepath">Service_provider_Name.xml</span> file, and then click <span class="ph uicontrol">Import</span>.</span>
+      </li>
+<li class="li step">
+        <span class="ph cmd">Make the changes in the service provider configurations if requires and click <span class="ph uicontrol">Update</span>.</span>
+      </li>
+</ol>
+
+    <div class="section result"><div class="tasklabel"><h2 class="sectiontitle tasklabel">Results</h2></div>You have successfully imported the service provider and it is available under Service Providers list.</div>
+
+  </div>
+
+</div></div></section>
+<section id="t-1100"><h3>Adaptive authentication</h3><div class="content-locale-en-US content-locale-en"><div id="c_adaptive_authentication"><div class="body conbody"><p class="shortdesc">Adaptive authentication is a method for selecting the right authentication factors depending on a user’s risk profile, tendencies, or sensitivity of a resource - by adapting the authentication to the situation.</p>
+
+    <p class="p">It dynamically employs multi-factor authentication to adjust the authentication requirements for access to a given resource.</p>
+
+  </div>
+
+</div></div></section>
+<section id="t-1110"><h4>Configure IP-based adaptive authentication</h4><div class="content-locale-en-US content-locale-en"><div id="t_config_ipbased_adaptive_auth"><div class="body taskbody"><p class="shortdesc">IP-based adaptive authentication allows for the requirement of an additional level of authentication for users logging in from external networks or other geographic locations. Using the IP-based adaptive authentication template, you can specify network ranges using the IP address.</p>
+
+    <div class="tasklabel"><h2 class="sectiontitle tasklabel">Procedure</h2></div><ol class="ol steps"><li class="li step stepexpand" id="t_config_ipbased_adaptive_auth__fvy_pq3_cfb">
+        <span class="ph cmd" id="t_config_ipbased_adaptive_auth__ivy_pq3_cfb">Log in to the <span class="keyword">Ellucian Ethos Identity</span> management console as the admin user.</span>
+      </li>
+<li class="li step stepexpand" id="t_config_ipbased_adaptive_auth__wjf_qq3_cfb">
+        <span class="ph cmd" id="t_config_ipbased_adaptive_auth__xjf_qq3_cfb">On the left navigation pane, click <span class="ph uicontrol" id="t_config_ipbased_adaptive_auth__yjf_qq3_cfb">Main</span>.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">In the <span class="ph uicontrol">Service Providers</span> tab, click <span class="ph uicontrol">List</span>.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Edit the service provider.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Expand the <span class="ph uicontrol">Local &amp; Outbound Authentication Configuration</span>.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">In the list of <span class="ph uicontrol">Authentication Type</span> options, select <span class="ph uicontrol">Advanced Configuration</span>.</span>
+      </li>
+<li class="li step stepexpand" id="t_config_ipbased_adaptive_auth__zlk_brv_vfb">
+        <span class="ph cmd" id="t_config_ipbased_adaptive_auth__emk_brv_vfb">Under <span class="ph uicontrol">Authentication Step Configuration</span>, click <span class="ph uicontrol" id="t_config_ipbased_adaptive_auth__fmk_brv_vfb">Add Authentication Step</span> to add an authentication step.</span>
+        <div class="itemgroup stepresult">It adds <span class="ph uicontrol">Step 1</span> under Authentication Step Configuration.</div>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Under <span class="ph uicontrol">Step 1</span>, select the check boxes <span class="ph uicontrol">Use subject identifier from this step</span> and <span class="ph uicontrol">Use attributes from this step</span>.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Under step 1 added in the step 6, in the list of <span class="ph uicontrol">Local Authenticators</span> options, select <span class="ph uicontrol">basic</span> authentication type, and click <span class="ph uicontrol">Add Authenticator</span>.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Click <span class="ph uicontrol">Add Authentication Step</span> to add a second authentication step.</span>
+        <div class="itemgroup stepresult">It adds <span class="ph uicontrol">Step 2</span> under Authentication Step Configuration.</div>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Under <span class="ph uicontrol">Step 2</span> added in the previous step, in the list of <span class="ph uicontrol">Local Authenticators</span> options, select MFA (that is Duo, fido/u2f, SMS OTP, Email OTP, etc.) authentication type, and click <span class="ph uicontrol">Add Authenticator</span>.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Under <span class="ph uicontrol">Script Based Adaptive Authentication</span> section, add an authentication script.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Use the following script or write a new authentication script which meets your requirements.</span>
+        <div class="itemgroup info">
+          <pre class="pre codeblock"><code>// Configure the network ranges here
+     	var corpNetwork = ['192.168.1.0/24', '10.100.0.0/16'];
+	var onLoginRequest = function(context) {
+	         executeStep(1, {
+			onSuccess: function (context) {
+				var user = context.currentKnownSubject;
+				// Extracting the origin IP of the request
+				var loginIp = context.request.ip;
+				Log.info('User: ' + user.username + ' logged in from IP: ' + loginIp);
+				// Checking if the IP is within the allowed range
+				if (!isCorporateIP(loginIp, corpNetwork)){  
+					executeStep(2);
+				}
+			}
+		});
+	};
+// Function to convert ip address string to long value function
+</code></pre>
+        </div>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Click <span class="ph uicontrol">Update</span>.</span>
+      </li>
+</ol>
+
+  </div>
+
+</div></div></section>
+<section id="t-1120"><h5>Test IP-based authentication script</h5><div class="content-locale-en-US content-locale-en"><div id="t_test_ipbased_authntcn_script"><div class="body taskbody"><p class="shortdesc">You can test the sample authentication script.</p>
+
+    <div class="tasklabel"><h2 class="sectiontitle tasklabel">Procedure</h2></div><ol class="ol steps"><li class="li step stepexpand">
+        <span class="ph cmd">Access the service provider URL with the user who logs in from an IP address that is excluded within the network range configured in the script.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Click <span class="ph uicontrol">Login</span> and note that it prompts for MFA (two-factor authentication).</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Sign in with your credentials and you are successfully logged into the application.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Log out the application.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Log in to service provider URL with user whose IP address is in the network range configured in the script.</span>
+        <div class="itemgroup info">
+          <div class="note"><span class="notetitle">Note:</span> You are successfully logged in to the application after going through the basic authentication step.</div>
+
+        </div>
+      </li>
+</ol>
+
+  </div>
+
+</div></div></section>
+<section id="t-1130"><h4>Configure Role-based adaptive authentication</h4><div class="content-locale-en-US content-locale-en"><div id="t_config_rolebased_adaptive_auth"><div class="body taskbody"><p class="shortdesc">Role-based adaptive authentication allows for the requirement of an additional level of authentication for users from the specified roles.</p>
+
+    <div class="tasklabel"><h2 class="sectiontitle tasklabel">Procedure</h2></div><ol class="ol steps"><li class="li step stepexpand" id="t_config_rolebased_adaptive_auth__fvy_pq3_cfb">
+        <span class="ph cmd" id="t_config_rolebased_adaptive_auth__ivy_pq3_cfb">Log in to the <span class="keyword">Ellucian Ethos Identity</span> management console as the admin user.</span>
+      </li>
+<li class="li step stepexpand" id="t_config_rolebased_adaptive_auth__wjf_qq3_cfb">
+        <span class="ph cmd" id="t_config_rolebased_adaptive_auth__xjf_qq3_cfb">On the left navigation pane, click <span class="ph uicontrol" id="t_config_rolebased_adaptive_auth__yjf_qq3_cfb">Main</span>.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">In the <span class="ph uicontrol">Service Providers</span> tab, click <span class="ph uicontrol">List</span>.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Edit the service provider.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Expand the <span class="ph uicontrol">Local &amp; Outbound Authentication Configuration</span>.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">In the list of <span class="ph uicontrol">Authentication Type</span> options, select <span class="ph uicontrol">Advanced Configuration</span>.</span>
+      </li>
+<li class="li step stepexpand" id="t_config_rolebased_adaptive_auth__zlk_brv_vfb">
+        <span class="ph cmd" id="t_config_rolebased_adaptive_auth__emk_brv_vfb">Under <span class="ph uicontrol">Authentication Step Configuration</span>, click <span class="ph uicontrol" id="t_config_rolebased_adaptive_auth__fmk_brv_vfb">Add Authentication Step</span> to add an authentication step.</span>
+        <div class="itemgroup stepresult">It adds <span class="ph uicontrol">Step 1</span> under Authentication Step Configuration.</div>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Under <span class="ph uicontrol">Step 1</span>, select the check boxes <span class="ph uicontrol">Use subject identifier from this step</span> and <span class="ph uicontrol">Use attributes from this step</span>.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Under step 1 added in the step 6, in the list of <span class="ph uicontrol">Local Authenticators</span> options, select <span class="ph uicontrol">basic</span> authentication type and click <span class="ph uicontrol">Add Authenticator</span>.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Click <span class="ph uicontrol">Add Authentication Step</span> to add a second authentication step.</span>
+        <div class="itemgroup stepresult">It adds <span class="ph uicontrol">Step 2</span> under Authentication Step Configuration.</div>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Under <span class="ph uicontrol">Step 2</span> added in the previous step, in the list of <span class="ph uicontrol">Local Authenticators</span> options, select MFA (that is Duo, fido/u2f, SMS OTP, Email OTP, etc.) authentication type, and click <span class="ph uicontrol">Add Authenticator</span>.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Under <span class="ph uicontrol">Script Based Adaptive Authentication</span> section, add an authentication script.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Use the following script, which enforces two-factor authentication based on role. or write a new authentication script that meets your requirements.</span>
+        <div class="itemgroup info">
+          <pre class="pre codeblock"><code>var rolesToStepUp = ['admin', 'manager'];
+
+function onLoginRequest(context) {
+    executeStep(1, {
+        onSuccess: function (context) {
+            // Extracting authenticated subject from the first step
+            var user = context.currentKnownSubject;
+            // Checking if the user is assigned to one of the given roles
+            var hasRole = hasAnyOfTheRoles(user, rolesToStepUp);
+            if (hasRole) {
+                Log.info(user.username + ' Has one of Roles: ' + rolesToStepUp.toString());
+                executeStep(2);
+            }
+        }
+    });
+}</code></pre>
+        </div>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Click <span class="ph uicontrol">Update</span>.</span>
+      </li>
+</ol>
+
+  </div>
+
+</div></div></section>
+<section id="t-1140"><h5>Test Role-based authentication script</h5><div class="content-locale-en-US content-locale-en"><div id="t_test_rolebased_authntcn_script"><div class="body taskbody"><p class="shortdesc">You can test the sample authentication script.</p>
+
+    <div class="tasklabel"><h2 class="sectiontitle tasklabel">Procedure</h2></div><ol class="ol steps"><li class="li step stepexpand">
+        <span class="ph cmd">Access the service provider URL with the user who has admin or manager roles.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Click <span class="ph uicontrol">Login</span> and note that it prompts for MFA (two-factor authentication).</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Sign in with your credentials and you are successfully logged into the application.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Log out the application.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Log in to service provider URL with user “john”, which does not have the admin or manager roles.</span>
+        <div class="itemgroup info">
+          <div class="note"><span class="notetitle">Note:</span> You are successfully logged in to the application after going through the basic authentication step.</div>
+
+        </div>
+      </li>
+</ol>
+
+  </div>
+
+</div></div></section>
+<section id="t-1150"><h4>Configure User Store-based adaptive authentication</h4><div class="content-locale-en-US content-locale-en"><div id="t_config_userbased_adaptive_auth"><div class="body taskbody"><p class="shortdesc">User Store-based adaptive authentication allows for the requirement of an additional level of authentication for users logging in from other user store domains.</p>
+
+    <div class="tasklabel"><h2 class="sectiontitle tasklabel">Procedure</h2></div><ol class="ol steps"><li class="li step stepexpand" id="t_config_userbased_adaptive_auth__fvy_pq3_cfb">
+        <span class="ph cmd" id="t_config_userbased_adaptive_auth__ivy_pq3_cfb">Log in to the <span class="keyword">Ellucian Ethos Identity</span> management console as the admin user.</span>
+      </li>
+<li class="li step stepexpand" id="t_config_userbased_adaptive_auth__wjf_qq3_cfb">
+        <span class="ph cmd" id="t_config_userbased_adaptive_auth__xjf_qq3_cfb">On the left navigation pane, click <span class="ph uicontrol" id="t_config_userbased_adaptive_auth__yjf_qq3_cfb">Main</span>.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">In the <span class="ph uicontrol">Service Providers</span> tab, click <span class="ph uicontrol">List</span>.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Edit the service provider.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Expand the <span class="ph uicontrol">Local &amp; Outbound Authentication Configuration</span>.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">In the list of <span class="ph uicontrol">Authentication Type</span> options, select <span class="ph uicontrol">Advanced Configuration</span>.</span>
+      </li>
+<li class="li step stepexpand" id="t_config_userbased_adaptive_auth__zlk_brv_vfb">
+        <span class="ph cmd" id="t_config_userbased_adaptive_auth__emk_brv_vfb">Under <span class="ph uicontrol">Authentication Step Configuration</span>, click <span class="ph uicontrol" id="t_config_userbased_adaptive_auth__fmk_brv_vfb">Add Authentication Step</span> to add an authentication step.</span>
+        <div class="itemgroup stepresult">It adds <span class="ph uicontrol">Step 1</span> under Authentication Step Configuration.</div>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Under <span class="ph uicontrol">Step 1</span>, select the check boxes <span class="ph uicontrol">Use subject identifier from this step</span> and <span class="ph uicontrol">Use attributes from this step</span>.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Under step 1 added in the step 6, in the list of <span class="ph uicontrol">Local Authenticators</span> options, select <span class="ph uicontrol">basic</span> authentication type and click <span class="ph uicontrol">Add Authenticator</span>.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Click <span class="ph uicontrol">Add Authentication Step</span> to add a second authentication step.</span>
+        <div class="itemgroup stepresult">It adds <span class="ph uicontrol">Step 2</span> under Authentication Step Configuration.</div>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Under <span class="ph uicontrol">Step 2</span> added in the previous step, in the list of <span class="ph uicontrol">Local Authenticators</span> options, select MFA (that is Duo, fido/u2f, SMS OTP, Email OTP, etc.) authentication type, and click <span class="ph uicontrol">Add Authenticator</span>.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Under <span class="ph uicontrol">Script Based Adaptive Authentication</span> section, add an authentication script.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Use the following script or write a new authentication script which meets your requirements.</span>
+        <div class="itemgroup info">
+          <pre class="pre codeblock"><code>// User Store-Based from Template...
+
+// This script will prompt 2FA to the app only for a selected set of user stores.
+// If the user is in one of the following user stores, user will be prompted 2FA
+var userStoresToStepUp = [STAFF, STUDENT];
+
+var onLoginRequest = function(context) {
+    executeStep(1, {
+        onSuccess: function (context) {
+            // Extracting user store domain of authenticated subject from the first step
+            var userStoreDomain = context.currentKnownSubject.userStoreDomain;
+            // Checking if the user is from whitelisted tenant domain
+            if (userStoresToStepUp.indexOf(userStoreDomain) &gt;= 0) {
+                executeStep(2);
+            }
+        }
+    });
+};
+
+// End of User Store-Based.......
+</code></pre>
+        </div>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Click <span class="ph uicontrol">Update</span>.</span>
+      </li>
+</ol>
+
+  </div>
+
+</div></div></section>
+<section id="t-1160"><h5>Test User store -based authentication script</h5><div class="content-locale-en-US content-locale-en"><div id="t_test_userbased_authntcn_script"><div class="body taskbody"><p class="shortdesc">You can test the sample authentication script.</p>
+
+    <div class="tasklabel"><h2 class="sectiontitle tasklabel">Procedure</h2></div><ol class="ol steps"><li class="li step stepexpand">
+        <span class="ph cmd">Access the service provider URL with the user that belongs to user stores named STAFF or STUDENT.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Click <span class="ph uicontrol">Login</span> and note that it prompts for MFA (two-factor authentication).</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Sign in with your credentials and you are successfully logged into the application.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Log out the application.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Log in to service provider URL with user that does not belong to user stores named STAFF or STUDENT.</span>
+        <div class="itemgroup info">
+          <div class="note"><span class="notetitle">Note:</span> You are successfully logged in to the application after going through the basic authentication step.</div>
+
+        </div>
+      </li>
+</ol>
+
+  </div>
+
+</div></div></section>
+<section id="t-1170"><h3>Enable logging in log4j2</h3><div class="content-locale-en-US content-locale-en"><div id="t_enable_logging_log4j2"><div class="body taskbody"><p class="shortdesc">Log4J 2 is a logging framework designed to address the logging requirements of enterprise applications. Log4j 2 is a new and improved version of the classic Log4j framework.</p>
+
+    <div class="section context"><div class="tasklabel"><h2 class="sectiontitle tasklabel">About this task</h2></div>
+      <p class="p">The <span class="ph filepath">log4j2.properties</span> governs how logging is performed by the server and it can be found in the <span class="ph filepath">/conf</span> directory. You can edit the <span class="ph filepath">log4j2.properties</span> file in the <span class="ph filepath">/conf</span> directory.</p>
+
+    </div>
+
+    <div class="tasklabel"><h2 class="sectiontitle tasklabel">Procedure</h2></div><ol class="ol steps"><li class="li step stepexpand">
+        <span class="ph cmd">Navigate to the path <span class="ph filepath">..\wso2is-5.10.0\repository\conf\log4j2.properties</span>.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Add <span class="ph uicontrol">logger</span> in the <span class="ph filepath">log4j2.properties</span> file and add the <span class="ph uicontrol">logger name</span> to the loggers list.</span>
+        <div class="itemgroup info">
+          <pre class="pre codeblock"><code>logger.&lt;Logger_Name&gt;.name = &lt;Component_name&gt;
+logger. &lt;Logger_Name&gt;.level = DEBUG
+</code></pre>
+          <p class="p">Example:</p>
+
+          <pre class="pre codeblock"><code>logger.org-wso2-carbon-identity-core.name = org.wso2.carbon.identity.core
+logger.org-wso2-carbon-identity-core.level = INFO
+
+logger.org-wso2-carbon-identity-sso-cas.name=org.wso2.carbon.identity.sso.cas
+logger.org-wso2-carbon-identity-sso-cas.level=DEBUG
+</code></pre>
+          <p class="p">For more information about the list of debugging logs for various issues, see <cite class="cite">List of logs</cite>.</p>
+
+        </div>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Add multiple loggers to the loggers list by separating them with commas.</span>
+        <div class="itemgroup info">
+          <pre class="pre codeblock"><code>loggers =…, org-wso2-carbon-identity-core, org-wso2-carbon-identity-sso-cas</code></pre>
+          <div class="note"><span class="notetitle">Note:</span> Do not need to restart the server after enabling the log change.</div>
+
+        </div>
+      </li>
+</ol>
+
+  </div>
+
+</div></div></section>
+<section id="t-1180"><h4>List of logs</h4><div class="content-locale-en-US content-locale-en"><div id="r_list_logs"><div class="body refbody"><p class="shortdesc">List of log4j2 debugging logs examples for various issues.</p>
+
+    
+<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" class="table" frame="hsides" border="1" rules="rows"><colgroup><col style="width:21.88183807439825%"><col style="width:21.88183807439825%"><col style="width:56.236323851203494%"></colgroup><thead class="thead" style="text-align:left;vertical-align:bottom;">
+          <tr class="row">
+            <th class="entry row-nocellborder" colspan="2" style="text-align:left;vertical-align:bottom;" id="d17240e47">Issues</th>
+
+            <th class="entry row-nocellborder" style="text-align:left;vertical-align:bottom;" id="d17240e50">Log examples</th>
+
+          </tr>
+
+        </thead>
+<tbody class="tbody">
+          <tr class="row">
+            <td class="entry row-nocellborder" colspan="2" style="text-align:left;vertical-align:top;" headers="d17240e47 ">To debug any application level and authentication related issues</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d17240e50 ">
+              <pre class="pre codeblock"><code>logger.org-wso2-carbon-identity-application.name=org.wso2.carbon.identity.application
+logger.org-wso2-carbon-identity-application.level=DEBUG
+
+logger.org-wso2-carbon-identity-application-authentication-framework.name=org.wso2.carbon.identity.application.authentication.framework
+logger.org-wso2-carbon-identity-application-authentication-framework.level=DEBUG
+
+loggers=.................., org-wso2-carbon-identity-application, org-wso2-carbon-identity-application-authentication-framework</code></pre>
+            </td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" colspan="2" style="text-align:left;vertical-align:top;" headers="d17240e47 ">To debug the cas service provider related issues</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d17240e50 ">
+              <pre class="pre codeblock"><code>logger.org-wso2-carbon-identity-sso-cas.name=org.wso2.carbon.identity.sso.cas
+logger.org-wso2-carbon-identity-sso-cas.level=DEBUG
+
+loggers=.................., org-wso2-carbon-identity-sso-cas</code></pre>
+            </td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" colspan="2" style="text-align:left;vertical-align:top;" headers="d17240e47 ">To debug the SAML service provider related issues</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d17240e50 ">
+              <pre class="pre codeblock"><code>logger.org-wso2-carbon-identity-sso-saml.name=org.wso2.carbon.identity.sso.saml
+logger.org-wso2-carbon-identity-sso-saml.level=DEBUG
+
+loggers= ..................., org-wso2-carbon-identity-sso-saml</code></pre>
+            </td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" colspan="2" style="text-align:left;vertical-align:top;" headers="d17240e47 ">To debug the scim2 related claims issues</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d17240e50 ">
+              <pre class="pre codeblock"><code>logger.org-wso2-carbon-identity-scim2.name=org.wso2.carbon.identity.scim2
+logger.org-wso2-carbon-identity-scim2.level=DEBUG
+
+logger.org-wso2-charon-core.name=org.wso2.charon.core
+logger.org-wso2-charon-core.level=DEBUG
+
+logger.org-wso2-charon3-core.name=org.wso2.charon3.core
+logger.org-wso2-charon3-core.level=DEBUG
+
+loggers=.................., org-wso2-carbon-identity-scim2, org-wso2-charon-core, org-wso2-charon3-core</code></pre>
+            </td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" colspan="2" style="text-align:left;vertical-align:top;" headers="d17240e47 ">To debug userstore related issues</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d17240e50 ">
+              <pre class="pre codeblock"><code>logger.org-wso2-carbon-identity-user-store.name=org.wso2.carbon.identity.user.store
+logger.org-wso2-carbon-identity-user-store.level= DEBUG
+
+loggers=.................., org-wso2-carbon-identity-user-store</code></pre>
+            </td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" colspan="2" style="text-align:left;vertical-align:top;" headers="d17240e47 ">To debug the user core related issues</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d17240e50 ">
+              <pre class="pre codeblock"><code>logger.org-wso2-carbon-user-core.name=org.wso2.carbon.user.core
+logger.org-wso2-carbon-user-core.level=DEBUG
+
+loggers=.................., org-wso2-carbon-user-core</code></pre>
+            </td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" rowspan="3" style="text-align:left;vertical-align:top;" headers="d17240e47 ">To debug agent related issues<div class="note"><span class="notetitle">Note:</span> Applicable only for SaaS deployments.</div>
+</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d17240e47 ">At EEID level</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d17240e50 ">
+              <pre class="pre codeblock"><code>logger.org-wso2-carbon-identity-sso-agent.name=org.wso2.carbon.identity.sso.agent
+logger.org-wso2-carbon-identity-sso-agent.level= INFO
+logger.org-wso2-carbon-identity-user-store.name=org.wso2.carbon.identity.user.store
+logger.org-wso2-carbon-identity-user-store.level= DEBUG
+user-core jar also,
+
+loggers=.................., org-wso2-carbon-identity-sso-agent, org-wso2-carbon-identity-user-store</code></pre>
+            </td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d17240e47 ">Websocket side</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d17240e50 ">
+              <pre class="pre codeblock"><code>log4j.logger.org.wso2.carbon.identity.agent=DEBUG
+</code></pre>
+            </td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d17240e47 ">Agent side</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d17240e50 ">
+              <pre class="pre codeblock"><code>log4j.logger.org.wso2.carbon.identity.agent=DEBUG</code></pre>
+            </td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" colspan="2" style="text-align:left;vertical-align:top;" headers="d17240e47 ">To debug the very detailed logging for the user profile view related issues</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d17240e50 ">
+              <pre class="pre codeblock"><code>logger.LocalTransportSender.name=org.apache.axis2.transport.local.LocalTransportSender
+logger.LocalTransportSender.level=DEBUG
+logger.LocalTransportReceiver.name=org.apache.axis2.transport.local.LocalTransportReceiver
+logger.LocalTransportReceiver.level=DEBUG
+logger.LocalResponder.name=org.apache.axis2.transport.local.LocalResponder
+logger.LocalResponder.level=DEBUG
+
+loggers=..................., LocalTransportSender, LocalTransportReceiver, LocalRespond</code></pre>
+            </td>
+
+          </tr>
+
+        </tbody>
+</table>
+</div>
+
+    <div class="section">
+      <div class="note"><span class="notetitle">Note:</span> After the issue is resolved, turn off the logs to avoid affecting system performance.</div>
+
+    </div>
+
+  </div>
+
+</div></div></section>
+<section id="t-1190"><h3>Encrypt passwords with Cipher Tool</h3><div class="content-locale-en-US content-locale-en"><div id="t_encrypt_pwds_cipher_tool"><div class="body taskbody"><p class="shortdesc">Using the <span class="keyword">Ellucian Ethos Identity</span> server's secure vault implementation, you can encrypt the plain text passwords in configuration files.</p>
+
+    <div class="tasklabel"><h2 class="sectiontitle tasklabel">Procedure</h2></div><ol class="ol steps"><li class="li step stepexpand">
+        <span class="ph cmd">Update the following passwords to encrypt in the default WSO2 secure vault.</span>
+        <div class="itemgroup info">
+          
+<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" class="table" frame="hsides" border="1" rules="rows"><colgroup><col style="width:50%"><col style="width:50%"></colgroup><thead class="thead" style="text-align:left;">
+                <tr class="row">
+                  <th class="entry row-nocellborder" style="vertical-align:top;" id="d6166e57">Password</th>
+
+                  <th class="entry row-nocellborder" style="vertical-align:top;" id="d6166e60">Details</th>
+
+                </tr>
+
+              </thead>
+<tbody class="tbody">
+                <tr class="row">
+                  <td class="entry row-nocellborder" style="vertical-align:top;" headers="d6166e57 ">Admin Password</td>
+
+                  <td class="entry row-nocellborder" style="vertical-align:top;" headers="d6166e60 ">
+                    <pre class="pre codeblock"><code>&lt;AdminUser&gt;
+&lt;UserName&gt;admin&lt;/UserName&gt;
+&lt;Password&gt;admin&lt;/Password&gt;
+&lt;/AdminUser&gt;
+
+UserManager.AdminUser.Password=repository/conf/user-mgt.xml/
+/UserManager/Realm/Configuration/AdminUser/Password,false in the 
+&lt;IS-HOME&gt;/repository/conf/security/cipher-tool.properties file</code></pre>
+                  </td>
+
+                </tr>
+
+                <tr class="row">
+                  <td class="entry row-nocellborder" style="vertical-align:top;" headers="d6166e57 ">user-mgt.xml</td>
+
+                  <td class="entry row-nocellborder" style="vertical-align:top;" headers="d6166e60 ">
+                    <pre class="pre codeblock"><code>&lt;Property name="ConnectionPassword"&gt;admin&lt;/Property&gt;
+
+UserStoreManager.Property.ConnectionPassword=repository/conf/user-mgt.xml//UserManager/Realm/UserStoreManager/Property[@name='ConnectionPassword'],false
+In the &lt;IS-HOME&gt;/repository/conf/security/cipher-tool.properties file
+  </code></pre>
+                  </td>
+
+                </tr>
+
+                <tr class="row">
+                  <td class="entry row-nocellborder" style="vertical-align:top;" headers="d6166e57 ">keystore password specified in the catalina-server.xml file</td>
+
+                  <td class="entry row-nocellborder" style="vertical-align:top;" headers="d6166e60 ">
+                    <pre class="pre codeblock"><code>&lt;Connector protocol="org.apache.coyote.http11.Http11NioProtocol" 
+ ...
+ keystorePass="wso2carbon"
+... &gt;
+
+Server.Service.Connector.keystorePass=repository/conf/tomcat/catalina-server.xml//Server/Service/Connector[@keystorePass],true in the &lt;IS-HOME&gt;/repository/conf/security/cipher-tool.properties file</code></pre>
+                  </td>
+
+                </tr>
+
+                <tr class="row">
+                  <td class="entry row-nocellborder" style="vertical-align:top;" headers="d6166e57 ">carbon.xml</td>
+
+                  <td class="entry row-nocellborder" style="vertical-align:top;" headers="d6166e60 ">
+                    <pre class="pre codeblock"><code>&lt;KeyStore&gt;
+            &lt;!-- Keystore file location--&gt;
+            &lt;Location&gt;${carbon.home}/repository/resources/security/wso2carbon.jks&lt;/Location&gt;
+            &lt;!-- Keystore type (JKS/PKCS12 etc.)--&gt;
+            &lt;Type&gt;JKS&lt;/Type&gt;
+            &lt;!-- Keystore password--&gt;
+            &lt;Password&gt;wso2carbon&lt;/Password&gt;
+            &lt;!-- Private Key alias--&gt;
+            &lt;KeyAlias&gt;wso2carbon&lt;/KeyAlias&gt;
+            &lt;!-- Private Key password--&gt;
+            &lt;KeyPassword&gt;wso2carbon&lt;/KeyPassword&gt;
+        &lt;/KeyStore&gt;
+
+Carbon.Security.KeyStore.Password=repository/conf/carbon.xml//Server/Security/KeyStore/Password,false
+Carbon.Security.KeyStore.KeyPassword=repository/conf/carbon.xml//Server/Security/KeyStore/KeyPassword,false
+Carbon.Security.KeyStore.KeyAlias =repository/conf/carbon.xml//Server/Security/KeyStore/ KeyAlias,false
+
+In the &lt;IS-HOME&gt;/repository/conf/security/cipher-tool.properties file</code></pre>
+                    <pre class="pre codeblock"><code>&lt;TrustStore&gt;
+            &lt;!-- trust-store file location --&gt;
+            &lt;Location&gt;${carbon.home}/repository/resources/security/client-truststore.jks&lt;/Location&gt;
+            &lt;!-- trust-store type (JKS/PKCS12 etc.) --&gt;
+            &lt;Type&gt;JKS&lt;/Type&gt;
+            &lt;!-- trust-store password --&gt;
+            &lt;Password&gt;wso2carbon&lt;/Password&gt;
+        &lt;/TrustStore&gt;
+
+Carbon.Security.TrustStore.Password=repository/conf/carbon.xml//Server/Security/TrustStore/Password,false
+
+In the &lt;IS-HOME&gt;/repository/conf/security/cipher-tool.properties file</code></pre>
+                  </td>
+
+                </tr>
+
+                <tr class="row">
+                  <td class="entry row-nocellborder" style="vertical-align:top;" headers="d6166e57 ">master-datasources.xml</td>
+
+                  <td class="entry row-nocellborder" style="vertical-align:top;" headers="d6166e60 ">
+                    <pre class="pre codeblock"><code>&lt;datasources&gt;
+	&lt;datasource&gt;
+	&lt;name&gt;REGISTRY_LOCAL&lt;/name&gt;
+	&lt;description&gt;The datasource used for the local registry&lt;/description&gt;
+	&lt;jndiConfig&gt;
+	&lt;name&gt;jdbc/WSO2CarbonDB&lt;/name&gt;
+	&lt;/jndiConfig&gt;
+        ............
+Datasources.REGISTRY_LOCAL.Configuration.Password=repository/conf/datasources/master-datasources.xml//datasources-configuration/datasources/datasource[name='REGISTRY_LOCAL']/definition[@type='RDBMS']/configuration/password,false
+
+Datasources.SHARED_DB.Configuration.Password=repository/conf/datasources/master-datasources.xml//datasources-configuration/datasources/datasource[name='SHARED_DB ']/definition[@type='RDBMS']/configuration/password,false
+
+Datasources.IDENTITY_DB.Configuration.Password=repository/conf/datasources/master-datasources.xml//datasources-configuration/datasources/datasource[name=' IDENTITY_DB']/definition[@type='RDBMS']/configuration/password,false
+
+In the &lt;IS-HOME&gt;/repository/conf/security/cipher-tool.properties file</code></pre>
+                  </td>
+
+                </tr>
+
+                <tr class="row">
+                  <td class="entry row-nocellborder" style="vertical-align:top;" headers="d6166e57 ">identity.xml</td>
+
+                  <td class="entry row-nocellborder" style="vertical-align:top;" headers="d6166e60 ">
+                    <pre class="pre codeblock"><code>&lt;ThirftBasedEntitlementConfig&gt;
+            &lt;EnableThriftService&gt;false&lt;/EnableThriftService&gt;
+            &lt;ReceivePort&gt;${Ports.ThriftEntitlementReceivePort}&lt;/ReceivePort&gt;
+            &lt;ClientTimeout&gt;10000&lt;/ClientTimeout&gt;
+            &lt;KeyStore&gt;
+                &lt;Location&gt;${carbon.home}/repository/resources/security/wso2carbon.jks&lt;/Location&gt;
+                &lt;Password&gt;wso2carbon&lt;/Password&gt;
+            &lt;/KeyStore&gt;
+
+ThirftBasedEntitlementConfig.KeyStore.Password=repository/conf/identity/identity.xml//Server/EntitlementSettings/ThirftBasedEntitlementConfig/KeyStore/Password,true
+
+In the &lt;IS-HOME&gt;/repository/conf/security/cipher-tool.properties file</code></pre>
+                  </td>
+
+                </tr>
+
+                <tr class="row">
+                  <td class="entry row-nocellborder" style="vertical-align:top;" headers="d6166e57 ">
+                    <p class="p">Added plain_text password in cipher-text.properties file</p>
+
+                  </td>
+
+                  <td class="entry row-nocellborder" style="vertical-align:top;" headers="d6166e60 ">
+                    <pre class="pre codeblock"><code>/Example 1: Encrypting the admin user's password in the user-mgt.xml file.
+UserManager.AdminUser.Password=[admin]
+//Example 2: Encrypting the LDAP connection password in the user-mgt.xml file. Use one of the following:
+UserStoreManager.Property.ConnectionPassword=[admin]
+UserManager.Configuration.Property.ConnectionPassword=[admin]
+//Example 3: Encrypting the keystore password in the catalina-server.xml file.
+Server.Service.Connector.keystorePass=[wso2carbon]
+//Exapmle 4: Encrypting the keystore and keypassword in the carbon.xml
+Carbon.Security.KeyStore.Password =[wso2carbon]
+Carbon.Security.KeyStore.KeyPassword =[wso2carbon]
+Carbon.Security.KeyStore.KeyAlias =[wso2carbon]
+//Exapmle 5: Encrypting the truststore in the carbon.xml
+Carbon.Security.TrustStore.Password =[wso2carbon]
+//Exapmle 6: Encrypting the database password in the master-datasources.xml
+Datasources.REGISTRY_LOCAL.Configuration.Password =[wso2carbon]
+Datasources.SHARED_DB.Configuration.Password =[wso2carbon]
+Datasources.IDENTITY_DB.Configuration.Password =[wso2carbon]
+//Exapmle 7: Encrypting the ThirftBasedEntitlementConfig  password in the identity.xml
+ThirftBasedEntitlementConfig.KeyStore.Password =[wso2carbon]</code></pre>
+                  </td>
+
+                </tr>
+
+              </tbody>
+</table>
+</div>
+
+        </div>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Navigate to the <span class="ph filepath">/bin/ directory</span> in a command prompt, and execute the following command.</span>
+        <div class="itemgroup info">
+          <div class="note"><span class="notetitle">Note:</span> You must run the <span class="keyword cmdname">-Dconfigure</span> command with the cipher tool script to enable the tool.</div>
+
+        </div>
+        <ul class="ul choices">
+          <li class="li choice">Linux: <span class="keyword cmdname">./ciphertool.sh -Dconfigure</span></li>
+
+          <li class="li choice">Windows: <span class="keyword cmdname">ciphertool.bat -Dconfigure</span></li>
+
+        </ul>
+
+      </li>
+</ol>
+
+    <div class="section result"><div class="tasklabel"><h2 class="sectiontitle tasklabel">Results</h2></div>Make sure that the alias passwords are encrypted in the <span class="ph filepath">cipher-text.properties</span> file.<img class="image" alt="Encrypt" data-ft-asset-display-name="i_encrypt_pwds.png" src="images/08-advanced-configuration-for-ethos-identity-1.png" data-ft-resource-id="t6963NDqk9Bb08_BX88PJQ-jNnVA1p5_LJSdqVKFSFQVA"></div>
+
+  </div>
+
+</div></div></section>
+<section id="t-1200"><h4>Change encrypted password</h4><div class="content-locale-en-US content-locale-en"><div id="t_change_encrypted_pwd"><div class="body taskbody"><p class="shortdesc">You can modify the encrypted password.</p>
+
+    <div class="section prereq p"><div class="tasklabel"><h2 class="sectiontitle tasklabel">Before you begin</h2></div>Make sure to shut down the server.</div>
+
+    <div class="tasklabel"><h2 class="sectiontitle tasklabel">Procedure</h2></div><ol class="ol steps"><li class="li step stepexpand">
+        <span class="ph cmd">Navigate to the <span class="ph filepath">/bin/ directory</span> in a command prompt, where the cipher tool scripts (for Windows and Linux) are stored.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Run the appropriate command for your operating system:</span>
+        <ul class="ul choices">
+          <li class="li choice">Linux: <span class="keyword cmdname">./ciphertool.sh -Dchange</span></li>
+
+          <li class="li choice">Windows: <span class="keyword cmdname">ciphertool.bat -Dchange</span><p class="lines">It will prompt for the primary keystore password. <br>
+Enter the password for the keystore (<span class="ph uicontrol">wso2carbon</span> is the default keystore password).</p>
+</li>
+
+        </ul>
+
+        <div class="itemgroup info">Your encrypted passwords' aliases will now appear in a numbered list.</div>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Enter the list number of the password alias that you want to change.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Re-enter your new password.</span>
+      </li>
+</ol>
+
+    <div class="section result"><div class="tasklabel"><h2 class="sectiontitle tasklabel">Results</h2></div>Encryption of the password was successful.</div>
+
+  </div>
+
+</div></div></section>
+<section id="t-1210"><h3>Enable custom app password</h3><div class="content-locale-en-US content-locale-en"><div id="t_enable_custom_app_pwd_wso220232617"><div class="body taskbody"><p class="shortdesc">Setting a secure password with a WSO2-2023-2617 complies with WSO's security advisory.</p>
+
+    <div class="section context"><div class="tasklabel"><h2 class="sectiontitle tasklabel">About this task</h2></div>To communicate between back end components, <span class="keyword">Ethos Identity</span> products have a set of internal management REST APIs. An embedded password protects these APIs by default within the product configuration. To prevent unauthorized external clients from accessing these management APIs, you must change this default password to a secure password.<div class="note"><span class="notetitle">Note:</span> <span class="keyword">Ellucian</span> set a default password.<p class="p">Example: FjW8020nKEUdkzf</p>
+</div>
+</div>
+
+    <div class="tasklabel"><h2 class="sectiontitle tasklabel">Procedure</h2></div><ol class="ol steps"><li class="li step stepexpand">
+        <span class="ph cmd">Stop the running <span class="keyword">Ellucian Ethos Identity</span> service.</span>
+      </li>
+<li class="li step stepexpand">
+        
+        <span class="ph cmd">In an editor, open the <span class="ph filepath">deployment.toml</span> file located in the <span class="ph filepath"><var class="keyword varname">EIS_HOME</var>/repository/conf</span> directory.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Generate the custom password using any of the secure password generator tools.</span>
+        <div class="itemgroup stepxmp"> Random Password Generator from <a class="xref ft-external-link" href="https://www.avast.com/" target="_blank" rel="noopener">https://www.avast.com/</a> </div>
+        <div class="itemgroup info">It generates the default password as FjW8020nKEUdkzf.</div>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Set the custom password property to the appropriate value under the [identity.auth_framework.endpoint] root key:</span>
+        <div class="itemgroup info">
+          
+<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" class="table" frame="hsides" border="1" rules="rows"><colgroup><col><col></colgroup><thead class="thead" style="text-align:left;">
+                <tr class="row">
+                  <th class="entry row-nocellborder" style="vertical-align:top;" id="d14539e105">Property</th>
+
+                  <th class="entry row-nocellborder" style="vertical-align:top;" id="d14539e108">Description</th>
+
+                </tr>
+
+              </thead>
+<tbody class="tbody">
+                <tr class="row">
+                  <td class="entry row-nocellborder" style="vertical-align:top;" headers="d14539e105 ">app.password</td>
+
+                  <td class="entry row-nocellborder" style="vertical-align:top;" headers="d14539e108 ">Update the default password.<p class="p">Value: <kbd class="ph userinput">app_password= "B2sL0zNkgKR1vZ9"</kbd></p>
+</td>
+
+                </tr>
+
+              </tbody>
+</table>
+</div>
+
+        </div>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Generate the respective SHA-256 hash value of the new password using respective tools.</span>
+        <div class="itemgroup stepxmp"> SHA256 Generator from <a class="xref ft-external-link" href="https://tools.keycdn.com/" target="_blank" rel="noopener">https://tools.keycdn.com/</a> </div>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Set the SHA-256 hash value property to the appropriate value under the [account_recovery.endpoint.auth] root key:</span>
+        <div class="itemgroup info">
+          
+<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" class="table" frame="hsides" border="1" rules="rows"><colgroup><col><col></colgroup><thead class="thead" style="text-align:left;">
+                <tr class="row">
+                  <th class="entry row-nocellborder" style="vertical-align:top;" id="d14539e164">Property</th>
+
+                  <th class="entry row-nocellborder" style="vertical-align:top;" id="d14539e167">Description</th>
+
+                </tr>
+
+              </thead>
+<tbody class="tbody">
+                <tr class="row">
+                  <td class="entry row-nocellborder" style="vertical-align:top;" headers="d14539e164 ">hash</td>
+
+                  <td class="entry row-nocellborder" style="vertical-align:top;" headers="d14539e167 ">The SHA-256 hash value of the password that you set using the <span class="keyword parmname">eis.app.password</span> property.<p class="p">Value: <kbd class="ph userinput">hash= "9c03075b98a69b60ad95b2e5e3eb23d8041be8​​f0b62d725e9806890497c92dff"</kbd></p>
+</td>
+
+                </tr>
+
+              </tbody>
+</table>
+</div>
+
+        </div>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Save the changes to the file.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Restart <span class="keyword">Ellucian Ethos Identity</span>, using the appropriate commands for your operating system:</span>
+        <div class="itemgroup info">
+          <p class="p">Linux/UNIX:</p>
+
+          <pre class="pre codeblock"><code>sh wso2server.sh start</code></pre>
+          <p class="p">Windows: </p>
+
+          <pre class="pre codeblock"><code>wso2server.bat start</code></pre>
+        </div>
+      </li>
+</ol>
+
+    <div class="section result"><div class="tasklabel"><h2 class="sectiontitle tasklabel">Results</h2></div>The above properties update the following files in the <span class="keyword">Ellucian Ethos Identity</span> system with a custom password and its SHA-256 hash value.
+<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" class="table" frame="hsides" border="1" rules="rows"><colgroup><col style="width:50%"><col style="width:50%"></colgroup><thead class="thead" style="text-align:left;">
+          <tr class="row">
+            <th class="entry row-nocellborder" style="vertical-align:top;" id="d14539e243">File name</th>
+
+            <th class="entry row-nocellborder" style="vertical-align:top;" id="d14539e246">Values</th>
+
+          </tr>
+
+        </thead>
+<tbody class="tbody">
+          <tr class="row">
+            <td class="entry row-nocellborder" style="vertical-align:top;" headers="d14539e243 "><var class="keyword varname">EIS_HOME</var> repository/conf/identity/identity.xml for SHA-256 hash value</td>
+
+            <td class="entry row-nocellborder" style="vertical-align:top;" headers="d14539e246 ">
+              <pre class="pre codeblock"><code>&lt;ClientAppAuthentication&gt;
+     &lt;Application hash="<var class="keyword varname">password</var>" name="dashboard"/&gt;
+&lt;/ClientAppAuthentication&gt;
+</code></pre>
+            </td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="vertical-align:top;" headers="d14539e243 "><var class="keyword varname">EIS_HOME</var> repository/conf/identity/EndpointConfig.properties for app.password</td>
+
+            <td class="entry row-nocellborder" style="vertical-align:top;" headers="d14539e246 ">
+              <pre class="pre codeblock"><code>app.password="<var class="keyword varname">password</var>"</code></pre>
+            </td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="vertical-align:top;" headers="d14539e243 "><var class="keyword varname">EIS_HOME</var> repository/conf/identity/RecoveryEndpointConfig.properties for app.password<div class="note"><span class="notetitle">Note:</span> 
+              <p class="p">If the 'RecoveryEndpointConfig.properties' file does not exist in the <span class="ph filepath"><var class="keyword varname">EIS_HOME</var>/repository/conf/identity</span> directory, get a copy of the <span class="ph filepath">RecoveryEndpointConfig.properties</span> file located in the <span class="ph filepath"><var class="keyword varname">&lt;EIS_HOME&gt;</var>/repository/deployment/server/webapps/accountrecoveryendpoint/ WEB-INF/classes</span> directory.</p>
+
+              </div>
+</td>
+
+            <td class="entry row-nocellborder" style="vertical-align:top;" headers="d14539e246 ">
+              <pre class="pre codeblock"><code>app.password="<var class="keyword varname">password</var>"</code></pre>
+            </td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="vertical-align:top;" headers="d14539e243 "><var class="keyword varname">EIS_HOME</var> repository/deployment/server/webapps/accountrecoveryendpoint/WEB-INF/classes/RecoveryEndpointConfig.properties</td>
+
+            <td class="entry row-nocellborder" style="vertical-align:top;" headers="d14539e246 ">
+              <pre class="pre codeblock"><code>app.password="<var class="keyword varname">password</var>"</code></pre>
+            </td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="vertical-align:top;" headers="d14539e243 "><var class="keyword varname">EIS_HOME</var> repository/deployment/server/webapps/authenticationendpoint/WEB-INF/classes/EndpointConfig.properties</td>
+
+            <td class="entry row-nocellborder" style="vertical-align:top;" headers="d14539e246 ">
+              <pre class="pre codeblock"><code>app.password="<var class="keyword varname">password</var>"</code></pre>
+            </td>
+
+          </tr>
+
+        </tbody>
+</table>
+</div>
+</div>
+
+  </div>
+
+</div></div></section></main></body></html>

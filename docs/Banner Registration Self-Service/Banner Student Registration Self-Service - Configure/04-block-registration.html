@@ -1,0 +1,648 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Banner Student Registration Self-Service - Configure — Block Registration</title><style>body{font-family:-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;line-height:1.55;color:#1a1a1a;max-width:920px;margin:0 auto;padding:24px}header{border-bottom:2px solid #5a16d6;margin-bottom:8px}h1{color:#3a0ca3}h2,h3,h4,h5,h6{margin-top:1.6em}.crumb{color:#666;font-size:13px;margin:0}.meta{color:#888;font-size:12px}nav.toc{background:#f6f4fc;border:1px solid #e3dcf5;border-radius:8px;padding:12px 18px;margin:18px 0}nav.toc h2{margin:.2em 0}nav.toc ul{list-style:none;padding-left:0}nav.toc a{text-decoration:none;color:#5a16d6}section{margin:1.2em 0;padding-top:.4em}img{max-width:100%;height:auto}table{border-collapse:collapse}td,th{border:1px solid #ccc;padding:4px 8px}code,pre{background:#f4f4f4;border-radius:4px}pre{padding:10px;overflow:auto}</style></head><body><header><p class="crumb">Banner Registration Self-Service › Banner Student Registration Self-Service - Configure</p><h1>Banner Student Registration Self-Service - Configure — Block Registration</h1><p class="meta">Source: <a href="https://resources.elluciancloud.com/r/bundle/banner_regss_acn_configure">https://resources.elluciancloud.com/r/bundle/banner_regss_acn_configure</a> &middot; Retrieved 2026-06-17</p></header><nav class="toc"><h2>Contents</h2><ul><li style="margin-left:0px"><a href="#t-1360">Block Registration</a></li><li style="margin-left:16px"><a href="#t-1370">Overview of block registration</a></li><li style="margin-left:16px"><a href="#t-1380">Processing block registration</a></li><li style="margin-left:32px"><a href="#t-1390">Set up and use block registration</a></li><li style="margin-left:32px"><a href="#t-1400">Pre-assignment limit control</a></li><li style="margin-left:32px"><a href="#t-1410">Automated permit-override creation</a></li><li style="margin-left:32px"><a href="#t-1420">Student characteristics</a></li><li style="margin-left:32px"><a href="#t-1430">Pre-assign blocks to student</a></li><li style="margin-left:32px"><a href="#t-1440">Review incomplete registration</a></li><li style="margin-left:16px"><a href="#t-1450">Administrative pages used in block registration</a></li><li style="margin-left:32px"><a href="#t-1460">Block Registration Control Page (SFABLCK)</a></li><li style="margin-left:32px"><a href="#t-1470">Block Rule Definition Page (SFABRDF)</a></li><li style="margin-left:32px"><a href="#t-1480">Student Block Pre-Assignment Page (SFABLPA)</a></li><li style="margin-left:32px"><a href="#t-1490">Pre-Assigned Block Configuration Page (SFAPABC)</a></li><li style="margin-left:32px"><a href="#t-1500">Student Block Selection Inquiry Page (SFIBSEL)</a></li><li style="margin-left:32px"><a href="#t-1510">Crosswalk Validation (GTVSDAX)</a></li><li style="margin-left:16px"><a href="#t-1520">Block registration in Self-Service</a></li><li style="margin-left:32px"><a href="#t-1530">Block selection process</a></li><li style="margin-left:32px"><a href="#t-1540">Permission to remove blocks</a></li><li style="margin-left:32px"><a href="#t-1550">Permission to change blocks</a></li><li style="margin-left:32px"><a href="#t-1560">Enroll student in a new block</a></li><li style="margin-left:32px"><a href="#t-1570">Remove student from an enrolled block</a></li><li style="margin-left:32px"><a href="#t-1580">Enroll student in a different block</a></li><li style="margin-left:32px"><a href="#t-1590">Action field</a></li><li style="margin-left:48px"><a href="#t-1600">Without restriction</a></li><li style="margin-left:48px"><a href="#t-1610">Non-block only</a></li><li style="margin-left:48px"><a href="#t-1620">Not allowed</a></li><li style="margin-left:16px"><a href="#t-1630">Reporting</a></li><li style="margin-left:32px"><a href="#t-1640">Student Pre-Assignment Process (SFPSBPA)</a></li><li style="margin-left:32px"><a href="#t-1650">Incomplete Registration Report (SFRIBLR)</a></li></ul></nav><main><section id="t-1360"><h2>Block Registration</h2><div class="content-locale-en-US content-locale-en"><div id="c_block_registration"><p class="shortdesc">This chapter details the set up and processing for block registration.</p>
+
+</div></div></section>
+<section id="t-1370"><h3>Overview of block registration</h3><div class="content-locale-en-US content-locale-en"><div id="c_overview_block_registration"><div class="body conbody"><p class="shortdesc">Block registration allows you to facilitate registration by creating blocks of courses that you can make available to students during Self-Service Registration.</p>
+
+    <p class="p">There are three primary ways that you can set up blocks for students to access during registration. You can:</p>
+
+    <ul class="ul">
+      <li class="li">pre-assign a block to an individual student manually</li>
+
+      <li class="li">pre-assign students to a block using a batch process</li>
+
+      <li class="li">make blocks available to the student at registration based on your pre-defined rules.</li>
+
+    </ul>
+
+    <div class="p">As part of this setup, there are a number of rules you can use to further define block registration processing:<ul class="ul"> <li class="li">Require students to enroll in a pre-assigned block, or give them the option to select an alternate block.</li>
+ <li class="li">Allow students to select blocks on their own during registration.</li>
+ <li class="li">Define whether students can add or drop courses by block only or by non-block only, or if all courses can be changed.</li>
+
+      <li class="li">Require students to enroll successfully in all classes within a block. If a fatal error prevents them from enrolling successfully in even one class within the block, they will not be allowed to enroll in any of the classes within the block.</li>
+ </ul>
+</div>
+
+    <p class="p">You can also set additional rules during batch pre-assignment for pre-assignment limit checking in a block, and for permit-override codes that the system will automatically generate. </p>
+
+    <p class="p">This information is used within the Class Search and Registration page in <span class="keyword">Banner</span>. Students use the Blocks tab to access the block registration information and proceed with registration.</p>
+
+    <div class="note warning"><span class="warningtitle">Warning:</span> The block schedule functionality used in SFAREGS has not been modified. You cannot mix the SFAREGS block functionality with the <span class="ph">9.31.0</span> Self-Service block registration functionality that is described in this section. You must use one or the other. The two types of functionality will be modified to be compatible in a future release.</div>
+
+  </div>
+
+</div></div></section>
+<section id="t-1380"><h3>Processing block registration</h3><div class="content-locale-en-US content-locale-en"><div id="r_processing_block_registration"><div class="body refbody"><p class="shortdesc">This section discusses setting up and using block registration.</p>
+
+    <div class="section">The following administrative pages are used with block registration.
+<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" class="table" frame="hsides" border="1" rules="rows"><colgroup><col style="width:28.011204481792717%"><col style="width:71.98879551820728%"></colgroup><thead class="thead" style="text-align:left;vertical-align:bottom;"> <tr class="row"> <th class="entry row-nocellborder" style="text-align:left;vertical-align:bottom;" id="d43555e44">Page</th>
+ <th class="entry row-nocellborder" style="text-align:left;vertical-align:bottom;" id="d43555e47">Mnemonic</th>
+ </tr>
+ </thead>
+<tbody class="tbody"> <tr class="row"> <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d43555e44 ">Block Registration Control Page</td>
+ <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d43555e47 ">SFABLCK</td>
+ </tr>
+ <tr class="row">
+      <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d43555e44 ">Block Rule Definition Page</td>
+ <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d43555e47 ">SFABRDF</td>
+ </tr>
+ <tr class="row"> <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d43555e44 ">Pre-Assigned Block Configuration Page</td>
+ <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d43555e47 ">SFAPABC</td>
+ </tr>
+ <tr class="row"> <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d43555e44 ">Student Block Pre-Assignment Page</td>
+ <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d43555e47 ">SFABLPA</td>
+ </tr>
+ <tr class="row"> <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d43555e44 ">Student Block Selection Inquiry Page</td>
+ <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d43555e47 ">SFIBSEL</td>
+ </tr>
+ <tr class="row"> <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d43555e44 ">Crosswalk Validation</td>
+ <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d43555e47 ">GTVSDAX</td>
+ </tr>
+ </tbody>
+</table>
+</div>
+</div>
+
+    <div class="section">The pages are listed on the Block Registration Menu (*BLOCKREG) which can be found on the Registration Menu (*REGISTRATION).</div>
+
+    <div class="section">The following tables are used specifically with block registration.
+<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" class="table" frame="hsides" border="1" rules="rows"><colgroup><col style="width:28.011204481792717%"><col style="width:71.98879551820728%"></colgroup><thead class="thead" style="text-align:left;vertical-align:bottom;"> <tr class="row"> <th class="entry row-nocellborder" style="text-align:left;vertical-align:bottom;" id="d43555e129">Table</th>
+ <th class="entry row-nocellborder" style="text-align:left;vertical-align:bottom;" id="d43555e132">Mnemonic</th>
+ </tr>
+ </thead>
+<tbody class="tbody"> <tr class="row"> <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d43555e129 ">Block Capacity Definition Table</td>
+ <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d43555e132 ">SFBBLCD</td>
+ </tr>
+ <tr class="row">
+      <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d43555e129 ">Block Registration Control Optional Indicator Table</td>
+ <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d43555e132 ">SFRBKOP</td>
+ </tr>
+ <tr class="row"> <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d43555e129 ">Block Student Pre-Assignment Table</td>
+ <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d43555e132 ">SFRBLPA</td>
+ </tr>
+ <tr class="row"> <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d43555e129 ">Block Rules Detail Table</td>
+ <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d43555e132 ">SFRBRDB</td>
+ </tr>
+ <tr class="row"> <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d43555e129 ">Block Rules Table</td>
+ <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d43555e132 ">SFRBRDH</td>
+ </tr>
+ <tr class="row"> <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d43555e129 ">Student Course Block Registration Table</td>
+ <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d43555e132 ">SFRBSEL</td>
+ </tr>
+ <tr class="row"> <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d43555e129 ">Block Term Configuration Table</td>
+ <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d43555e132 ">SFRPABC</td>
+
+      </tr>
+ </tbody>
+</table>
+</div>
+</div>
+
+    <div class="section">The following reports and processes are used with block registration.
+<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" class="table" frame="hsides" border="1" rules="rows"><colgroup><col style="width:28.011204481792717%"><col style="width:71.98879551820728%"></colgroup><thead class="thead" style="text-align:left;vertical-align:bottom;"> <tr class="row"> <th class="entry row-nocellborder" style="text-align:left;vertical-align:bottom;" id="d43555e220">Process</th>
+ <th class="entry row-nocellborder" style="text-align:left;vertical-align:bottom;" id="d43555e223">Mnemonic</th>
+ </tr>
+ </thead>
+<tbody class="tbody"> <tr class="row"> <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d43555e220 ">Student Pre-Assignment Process</td>
+ <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d43555e223 ">SFPSBPA</td>
+ </tr>
+ <tr class="row">
+      <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d43555e220 ">Incomplete Registration Report</td>
+ <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d43555e223 ">SFRIBLR</td>
+ </tr>
+ </tbody>
+</table>
+</div>
+</div>
+
+    <div class="section">A Blocks tab is available on the Class Search and Registration page in <span class="keyword">Banner</span>.</div>
+
+  </div>
+
+</div></div></section>
+<section id="t-1390"><h4>Set up and use block registration</h4><div class="content-locale-en-US content-locale-en"><div id="t_set_up_use_block_registration"><div class="body taskbody"><p class="shortdesc">Set up and use block registration.</p>
+
+    <div class="tasklabel"><h2 class="sectiontitle tasklabel">Procedure</h2></div><ol class="ol steps"><li class="li step stepexpand">
+        <span class="ph cmd">Build block codes on the <span class="keyword wintitle">Block Code Validation (STVBLCK)</span> page.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Define blocks of CRNs for a term on the<span class="keyword wintitle"> Block Registration Control (SFABLCK)</span> page.</span>
+        <div class="itemgroup info">
+          <div class="note"><span class="notetitle">Note:</span> <span class="keyword wintitle">SFABLCK</span> is used in place of the <span class="keyword wintitle">Block Schedule Control (SSABLCK)</span> page, as it allows for a pre-assignment limit control. This control is used by the SFPSBPA process.</div>
+
+        </div>
+        <ol type="a" class="ol substeps">
+          <li class="li substep">
+            <span class="ph cmd">Enter the pre-assignment limit control for the block.</span>
+          </li>
+
+          <li class="li substep">
+            <span class="ph cmd">Indicate whether enrollment in the course is optional.</span>
+          </li>
+
+          <li class="li substep">
+            <span class="ph cmd">Review section detail for each course, including if special approval is needed to register for the course.</span>
+          </li>
+
+        </ol>
+
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Define rules on the <span class="keyword wintitle">Block Rule Definition Page (SFABRDF)</span>.</span>
+        <ol type="a" class="ol substeps">
+          <li class="li substep substepexpand">
+            <span class="ph cmd">Define the term for which the rule applies.</span>
+          </li>
+
+          <li class="li substep substepexpand">
+            <span class="ph cmd">Define the priority for the rule.</span>
+            <div class="itemgroup info">When multiple rules apply to a student, the system uses the rule with the highest priority.</div>
+          </li>
+
+          <li class="li substep substepexpand">
+            <span class="ph cmd">Specify the characteristics which the student must have for the rule to apply.</span>
+          </li>
+
+          <li class="li substep substepexpand">
+            <span class="ph cmd">Indicate whether the block selection is required.</span>
+          </li>
+
+          <li class="li substep substepexpand">
+            <span class="ph cmd">Indicate whether the student should be allowed to change to a different block after a block has been selected.</span>
+          </li>
+
+          <li class="li substep substepexpand">
+            <span class="ph cmd">Indicate whether the rule is active.</span>
+          </li>
+
+          <li class="li substep substepexpand">
+            <span class="ph cmd">For block settings, indicate whether the block can be pre-assigned in batch using the <span class="keyword wintitle">Student Pre-Assignment Process (SFPSBPA)</span>.</span>
+          </li>
+
+          <li class="li substep substepexpand">
+            <span class="ph cmd">For block settings, select the add and drop restriction.</span>
+          </li>
+
+        </ol>
+
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Set up block and course restrictions by term on the <span class="keyword wintitle">Pre-Assigned Block Configuration (SFAPABC)</span> page.</span>
+        <ol type="a" class="ol substeps">
+          <li class="li substep">
+            <span class="ph cmd">Indicate whether block registration is available in Self-Service for a given term.</span>
+          </li>
+
+          <li class="li substep">
+            <span class="ph cmd">Indicate whether the student can select an alternative block rather than the pre-assigned block.</span>
+          </li>
+
+          <li class="li substep">
+            <span class="ph cmd">Indicate whether a permit-override should be created for each class within the student’s pre-assigned block upon registration for that block.</span>
+          </li>
+
+          <li class="li substep">
+            <span class="ph cmd">Enter the permit/override code to be created when the student registers for a pre-assigned block.</span>
+          </li>
+
+          <li class="li substep">
+            <span class="ph cmd">Set the restrictions for adding and dropping courses to allow those actions for all courses, only non-block courses, or no courses at all.</span>
+          </li>
+
+        </ol>
+
+      </li>
+<li class="li step stepexpand"><strong>Optional: </strong>
+        <span class="ph cmd">Set the REQUIREALL setting on the <span class="keyword wintitle">Crosswalk Validation (GTVSDAX)</span> page to Y, if you want to prevent students from enrolling in incomplete blocks. When this setting equals Y, students will not be allowed to enroll in any block classes unless they can successfully enroll in all of them. The default value for this setting is N.</span>
+      </li>
+<li class="li step stepexpand"><strong>Optional: </strong>
+        <span class="ph cmd">Run the <span class="keyword wintitle">Student Block Pre-Assignment Process (SFPSBPA)</span> from job submission to pre-assign blocks to a student or to a population selection.</span>
+      </li>
+<li class="li step stepexpand"><strong>Optional: </strong>
+        <span class="ph cmd">Pre-reassign a block to a student by ID, term, and study path using the <span class="keyword wintitle">Student Block Pre-Assignment (SFABLPA)</span> page.</span>
+        <ol type="a" class="ol substeps">
+          <li class="li substep">
+            <span class="ph cmd">Create a manual pre-assignment.</span>
+          </li>
+
+          <li class="li substep">
+            <span class="ph cmd">Review if the block was assigned manually or in batch by <span class="keyword wintitle">SFPSBPA</span>.</span>
+          </li>
+
+          <li class="li substep">
+            <span class="ph cmd">Enter a permit-override code if needed.</span>
+          </li>
+
+          <li class="li substep">
+            <span class="ph cmd">Review the rule details, including whether the rule is active and whether block selection is required for registration.</span>
+          </li>
+
+        </ol>
+
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Query information for blocks in which the student has chosen to register on the <span class="keyword wintitle">Student Block Selection Inquiry Page (SFIBSEL)</span>.</span>
+        <ol type="a" class="ol substeps">
+          <li class="li substep">
+            <span class="ph cmd">Define the query for an ID, term, and study path.</span>
+          </li>
+
+          <li class="li substep">
+            <span class="ph cmd">Review the block detail, including whether the block was manually assigned, special approval, and permit-override information.</span>
+          </li>
+
+          <li class="li substep">
+            <span class="ph cmd">Review the rule detail, including whether the rule is active and whether block selection is required for registration.</span>
+          </li>
+
+        </ol>
+
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Run the <span class="keyword wintitle">Incomplete Registration Report (SFRIBLR)</span> job submission process to retrieve students who have not successfully registered for all the courses in a block.</span>
+        <div class="itemgroup info">You can use a population selection.</div>
+      </li>
+</ol>
+
+  </div>
+
+</div></div></section>
+<section id="t-1400"><h4>Pre-assignment limit control</h4><div class="content-locale-en-US content-locale-en"><div id="c_pre_assignment_limit_control"><div class="body conbody"><p class="shortdesc">Defining the block on SFABLCK includes setting the block pre-assignment limit.</p>
+
+    <p class="p">This is used by the Student Pre-Assignment Process (SFPSBPA) to restrict how many students can be pre-assigned to a specific block. When the Verify Capacity parameter is set to Y, after the number of assignments has reached the pre-assignment limit, no additional students will be assigned to the block.</p>
+
+  </div>
+
+</div></div></section>
+<section id="t-1410"><h4>Automated permit-override creation</h4><div class="content-locale-en-US content-locale-en"><div id="c_automated_permit_override_creation"><div class="body conbody"><p class="shortdesc">When pre-assignment limit checking, student attributes, special approval, or other restrictions are used to limit registration to sections within blocks during pre-assignment, you can then assign a permit-override code to the block as part of pre-assignment.</p>
+
+    <p class="p"> During registration, when the student selects the pre-assigned block, a permit-override for each CRN associated with the block will be created and will allow for an override.</p>
+
+    <p class="p">Permit-override rules are defined on the Registration Permit-Overrides Control Page (SFAROVR). Permit-override codes can be entered on the Pre-Assigned Block Configuration Page (SFAPABC) when the Create Override indicator is checked. When the Generate Ovr Permission parameter is set to Y in the Student Pre-Assignment Process (SFPSBPA), that code will be attached to the student's pre-assignment record.</p>
+
+  </div>
+
+</div></div></section>
+<section id="t-1420"><h4>Student characteristics</h4><div class="content-locale-en-US content-locale-en"><div id="c_student_characteristics"><div class="body conbody"><p class="shortdesc">Block registration rules apply to students based on the primary curriculum or the study path when it is active.</p>
+
+    <p class="p">You can use characteristics to apply a more specific rule to a group of students. Use the Block Rule Definition Page (SFABRDF) to add student attributes to a rule. You can assign a high priority to the rule to ensure it is used during registration. You can assign a low priority, not assign a block to the rule, and make the rule inactive, so it applies to the student but does not show any associated blocks. This allows the student to register for courses without having to select a block.</p>
+
+  </div>
+
+</div></div></section>
+<section id="t-1430"><h4>Pre-assign blocks to student</h4><div class="content-locale-en-US content-locale-en"><div id="c_pre_assign_blocks_student"><div class="body conbody"><p class="shortdesc">The Student Pre-Assignment Process (SFPSBPA) is used to pre-assign blocks to students based on the rules created on the Block Rules Definition Page (SFABRDF). </p>
+
+    <p class="p">The pre-assignment process is run for a term for a specific ID, a population selection of students, or for all students. The process uses the primary curriculum record and any active study paths.</p>
+
+    <p class="p">Blocks are assigned based on the setting of the Assign Block to Student indicator on SFABRDF. When multiple blocks exist, students are distributed alternately by SFPSBPA among the blocks for the rule until the block pre-assignment limit defined on SFABLCK is reached. Pre-assigned block results can be viewed on the Student Block Pre-Assignment Page (SFABLPA).</p>
+
+  </div>
+
+</div></div></section>
+<section id="t-1440"><h4>Review incomplete registration</h4><div class="content-locale-en-US content-locale-en"><div id="c_review_incomplete_registration"><div class="body conbody"><p class="shortdesc">The Incomplete Registration Report (SFRIBLR) is used to retrieve students that are not registered in all the courses of a selected block for registration. Reporting is performed for the catalog or schedule level.</p>
+
+<ul class="ul">
+<li class="li">For the catalog level, the student is considered to be incomplete when not registered in all the distinct courses (subject code plus course number) for the CRNs in the block.</li>
+
+<li class="li">For the schedule level, the student is considered to be incomplete when not registered in all the CRNs (course sections) in the block.</li>
+</ul>
+
+<p class="p">The report is run for a term for a specific ID, a population selection of students, or for all students. You can choose to generate detailed or summary output. The summary output shows the primary curriculum, number of missing courses, and total credits for registration. The detailed output shows the same information plus the missing courses by subject and course combination or by CRN.</p>
+</div>
+</div></div></section>
+<section id="t-1450"><h3>Administrative pages used in block registration</h3><div class="content-locale-en-US content-locale-en"><div id="c_administrative_pages_used_block_registration"><div class="body conbody"><p class="shortdesc">The following administrative pages are used with this functionality.</p>
+
+    <p class="p">Refer to the <cite class="cite">Banner Student 9.x Online Help</cite> for descriptions of page sections and field definitions.</p>
+
+  </div>
+
+</div></div></section>
+<section id="t-1460"><h4>Block Registration Control Page (SFABLCK)</h4><div class="content-locale-en-US content-locale-en"><div id="c_block_registration_control_page_sfablck"><div class="body conbody"><p class="shortdesc">The Block Registration Control Page (SFABLCK) is used to define blocks of courses by term for block registration in <span class="keyword">Banner</span>. </p>
+
+    <p class="p">Open learning CRNs can be used in blocks. The block pre-assignment limit is required. After the pre-assignment limit has been reached for a block when the Student Pre-Assignment Process (SFPSBPA) is run, no more assignments can be made.</p>
+
+    <p class="p">Enrollment status and time conflict messages are displayed by CRN. CRNs in a block are considered to be mandatory for registration unless the student has add and drop permission or the Enrollment Optional indicator is checked for the course within the block.</p>
+
+    <p class="p">Credit and billing hours can be assigned to the CRN if they are specified as variable hours. For example, if a CRN has three to five credit hours, you can change the value to be specifically four credit hours for use in the block of courses. The grade mode can also be changed.</p>
+
+    <p class="p">The detail information for each CRN is displayed for reference from the SSBSECT table.</p>
+
+  </div>
+
+</div></div></section>
+<section id="t-1470"><h4>Block Rule Definition Page (SFABRDF)</h4><div class="content-locale-en-US content-locale-en"><div id="c_block_rule_definition_page_sfabrdf"><div class="body conbody"><p class="shortdesc">The Block Rule Definition (SFABRDF) page defines block rules, block restrictions, and course restrictions. Rules are defined for each term and assigned a priority.</p>
+
+    <p class="p">When <span class="ph uicontrol">Block Selection Required</span> indicator is checked and the student meets the rule, the student must select a block that is attached to the rule during registration. When the <span class="ph uicontrol">Allow Change Block</span> indicator is checked, changes can be made. When this indicator is not checked, no changes can be made after block selection or registration.</p>
+
+    <p class="p">Block settings are displayed for each rule. The <span class="ph uicontrol">Assign Block to Student</span> indicator is used by the SFPSBPA process to assign a student population to blocks until the pre-assignment limit is met. The Add and Drop Course drop down list determines if changes can be made by the student in Self-Service for none, some, or all courses, whether block or non-block. When the enrollment requirement exists on SFABLCK, no changes can be made.</p>
+
+  </div>
+
+</div></div></section>
+<section id="t-1480"><h4>Student Block Pre-Assignment Page (SFABLPA)</h4><div class="content-locale-en-US content-locale-en"><div id="c_student_block_pre_assignment_page_sfablpa"><div class="body conbody"><p class="shortdesc">The Student Block Pre-Assignment Page (SFABLPA) is used to maintain pre-assigned blocks for a student by term and study path.</p>
+
+    <p class="p">The pre-assigned block and associated block rule are displayed. Blocks can be assigned in batch using the Student Pre-Assignment Process (SFPSBPA). You can use a population selection or can select from the process parameters. When a block is manually assigned on this page, the Assigned Manually indicator is checked, and no rule is displayed. The block also shows if a permit-override exists for the block in which the student is currently registered.</p>
+
+  </div>
+
+</div></div></section>
+<section id="t-1490"><h4>Pre-Assigned Block Configuration Page (SFAPABC)</h4><div class="content-locale-en-US content-locale-en"><div id="c_pre_assigned_block_configuration_page_sfapabc"><div class="body conbody"><p class="shortdesc">The Pre-Assigned Block Configuration Page (SFAPABC) is used to define block and course restrictions by term for pre-assigned blocks during registration.</p>
+
+    <p class="p">Restrictions are set up to determine whether block registration is available in Self-Service and whether block and course restrictions are in use. When the Available On Self-Service indicator is checked for the term, the Blocks tab is displayed in Self-Service.</p>
+
+    <p class="p">For manual pre-assignments, block restrictions can be set for whether a student can change from one block to another and if registration overrides can be created. Course restrictions can be set to not allow any adds or drops, only allow adds or drops for non-block courses, or allow adds and drops for any courses.</p>
+
+  </div>
+
+</div></div></section>
+<section id="t-1500"><h4>Student Block Selection Inquiry Page (SFIBSEL)</h4><div class="content-locale-en-US content-locale-en"><div id="c_student_block_selection_inquiry_page_sfibsel"><div class="body conbody"><p class="shortdesc">The Student Block Selection Inquiry Page (SFIBSEL) is used to query on blocks for which students have registered in Self-Service. Queries are by ID, name, term, study path.</p>
+
+    <p class="p">If a study path is not active, the primary curriculum is displayed. Blocks retrieved can be manually assigned or assigned by the Student Pre-Assignment Process (SFPSBPA). The block rule is displayed when the rules are defined on the Block Rule Definition Page (SFABRDF).</p>
+
+  </div>
+
+</div></div></section>
+<section id="t-1510"><h4>Crosswalk Validation (GTVSDAX)</h4><div class="content-locale-en-US content-locale-en"><div id="c_block_admin_gtvsdax"><div class="body conbody"><p class="shortdesc">Use the Crosswalk Validation (GTVSDAX) page to prevent students from registering for a block if they cannot successfully register for one or more classes within the block.</p>
+
+    <p class="p">Use the REQUIREALL setting on the <span class="keyword wintitle">Crosswalk Validation (GTVSDAX)</span> page to prevent students from registering for a block if they cannot successfully register for all classes within a block. This eliminates the possibility for students to partially register for a block.</p>
+
+    <p class="p">When the REQUIREALL control is active, even if the Add and Drop settings on either SFABRDF or SFAPABC allow adding and dropping courses without restriction, students will have to drop all block classes if they attempt to drop or withdraw from just one.</p>
+
+  </div>
+
+</div></div></section>
+<section id="t-1520"><h3>Block registration in Self-Service</h3><div class="content-locale-en-US content-locale-en"><div id="c_block_registration_self_service"><div class="body conbody"><p class="shortdesc">The Class Search and Registration page in Banner Student Self-Service contains a section for block registration. The Blocks tab is used to access the block registration information.</p>
+
+    <p class="p">See the <cite class="cite">Self-Service Registration</cite> chapter for page and field details.</p>
+
+    <p class="p">When a student is logged into Self-Service, has picked a term on the Select a Term Page, and has clicked on the Continue button, the Class Search and Registration Page is displayed. If a record exists on the Pre-Assigned Block Configuration Page (SFAPABC) for the term the student has selected, and the Available on Self-Service indicator is checked, the Blocks tab is displayed and can be accessed.</p>
+
+  </div>
+
+</div></div></section>
+<section id="t-1530"><h4>Block selection process</h4><div class="content-locale-en-US content-locale-en"><div id="c_block_selection_process"><div class="body conbody"><p class="shortdesc">When the Blocks tab is available but the student is not already registered in the block, the system checks to see if the student is required to select a block for registration.</p>
+
+    <p class="p">If the student is required to select a block, no other functions can be performed on this page until the block is selected.</p>
+
+    <div class="p">Block selection is required when: <ul class="ul"> <li class="li">A manual pre-assignment record exists for a student on the Block Student Pre-Assigned Table (SFRBLPA).</li>
+ <li class="li">The pre-assignment is performed by the Student Pre-Assignment Process (SFPSBPA), and the associated SFRBRDH rule has the <code class="ph codeph">SFRBRDH_MANDATORY_IND</code> column set to Y.</li>
+ </ul>
+</div>
+
+    <p class="p">When a pre-assignment record does not exist for the student, the active rules in the SFRBRDH table are evaluated. The record with the highest priority (the lowest priority number) is used to determine which block(s) the student can choose from.</p>
+
+  </div>
+
+</div></div></section>
+<section id="t-1540"><h4>Permission to remove blocks</h4><div class="content-locale-en-US content-locale-en"><div id="c_permission_remove_blocks"><div class="body conbody"><p class="shortdesc">When a student is currently registered in a block (a record exists in the SFRBSEL table), and the rule associated with the block does not require a block selection, the student can remove the block if needed.</p>
+
+    <ul class="ul">
+      <li class="li">When the block assignment record is associated with a rule (the <code class="ph codeph">SFRBSEL_BRDH_SEQ_NUM</code> column is Not Null), the rule record is retrieved from the SFRBRDH table and checked to see if the student is required to select a block. When the <code class="ph codeph">SFRBRDH_MANDATORY_IND</code> column is set to Y, a block selection is required, and the student cannot remove the current block.</li>
+
+      <li class="li">When the block assignment record is not associated with a rule, (the <code class="ph codeph">SFRBSEL_BRDH_SEQ_NUM</code> column is Null), the student cannot remove the current block due to an existing manual pre-assignment.</li>
+
+    </ul>
+
+  </div>
+
+</div></div></section>
+<section id="t-1550"><h4>Permission to change blocks</h4><div class="content-locale-en-US content-locale-en"><div id="c_permission_change_blocks"><div class="body conbody"><p class="shortdesc">When a student has a pre-assignment record for block registration, checks are made to determine whether the student can change blocks.</p>
+
+    <ul class="ul">
+      <li class="li">When the pre-assignment record is associated with a rule (the <code class="ph codeph">SFRBLPA_BRDH_SEQ_NUM</code> column is Not Null), the associated rule record is retrieved from the SFRBRDH table and checked to see if the student can choose from multiple blocks. When the <code class="ph codeph">SFRBRDH_BLOCK_RESTRICTION_IND</code> column is set to N, the student cannot change blocks.</li>
+
+      <li class="li">When the pre-assignment record is not associated with a rule (the <code class="ph codeph">SFRBLPA_BRDH_SEQ_NUM</code> column is Null), the pre-assigned block configuration for the term is retrieved from the SFRPABC table and checked to see if the student can choose from multiple blocks. When the <code class="ph codeph">SFRPABC_BLOCK_RESTRICTION_IND</code> column is set to N, the student cannot change blocks.</li>
+
+      <li class="li">When a student is currently registered in a block (a record exists in the SFRBSEL table), the system checks to see if a drop code exists for use based on the <kbd class="ph userinput">AUTODROP</kbd> and <kbd class="ph userinput">ADMINDROP</kbd> GTVSDAX rules. If no single, unique, drop code exists, the student cannot change blocks.</li>
+
+    </ul>
+
+    <div class="p">A student cannot change blocks when the following is true:<ul class="ul">
+        <li class="li">The student is currently registered to a manually pre-assigned (suggested) block, and the Student May Change Block indicator on SFAPABC is not checked. No other blocks are displayed to the student.</li>
+
+        <li class="li">The student is currently registered in an alternative block, and the Allow Change Block indicator for the corresponding rule on SFABRDF is not checked.</li>
+
+      </ul>
+</div>
+
+  </div>
+
+</div></div></section>
+<section id="t-1560"><h4>Enroll student in a new block</h4><div class="content-locale-en-US content-locale-en"><div id="t_enroll_student_a_new_block"><div class="body taskbody"><p class="shortdesc">A student can enroll in a new block by performing the following steps.</p>
+
+    <div class="tasklabel"><h2 class="sectiontitle tasklabel">Procedure</h2></div><ol class="ol steps"><li class="li step stepexpand">
+        <span class="ph cmd">Select a block using the <span class="ph uicontrol">Select Your Block Option</span> option group.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Click on the <span class="ph uicontrol">Submit</span> button to process the block.</span>
+        <div class="itemgroup info">Processing continues.</div>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">The generated transactions are sent through the registration process.</span>
+        <ol type="a" class="ol substeps">
+          <li class="li substep">
+            <span class="ph cmd">A student block selection record is created in the SFRBSEL table.</span>
+          </li>
+
+          <li class="li substep">
+            <span class="ph cmd">The block code and block rule sequence number are updated in the SFRSTCR and SFRSTCA tables. </span>
+          </li>
+
+        </ol>
+
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Error checking takes place.</span>
+        <ol type="a" class="ol substeps">
+          <li class="li substep">
+            <span class="ph cmd">Courses with fatal errors are rejected and are not added to the student's schedule. They are processed as if the student entered the classes manually.</span>
+          </li>
+
+          <li class="li substep">
+            <span class="ph cmd">Courses without fatal errors are passed and are added to the student’s schedule.</span>
+          </li>
+
+        </ol>
+
+        <div class="itemgroup info">
+          <div class="note"><span class="notetitle">Note:</span>  If the REQUIREALL setting on GTVSDAX equals ‘Y’, the student will have to enroll successfully in all classes within the block to be able to enroll in any classes in the block</div>
+
+        </div>
+      </li>
+</ol>
+
+  </div>
+
+</div></div></section>
+<section id="t-1570"><h4>Remove student from an enrolled block</h4><div class="content-locale-en-US content-locale-en"><div id="t_remove_student_from_enrolled_block"><div class="body taskbody"><p class="shortdesc">A student can remove a block in which they are enrolled by performing the following steps.</p>
+
+    <div class="tasklabel"><h2 class="sectiontitle tasklabel">Procedure</h2></div><ol class="ol steps"><li class="li step stepexpand">
+        <span class="ph cmd">Remove the block by selecting the <span class="ph uicontrol">Drop all classes that are part of your current block</span> value in the <span class="ph uicontrol">Select Your Block Option</span> option group.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Click on the <span class="ph uicontrol">Submit</span> button to process the block.</span>
+        <div class="itemgroup info">Processing continues.</div>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">The process retrieves the student's SFRBSEL record and determines which drop code to use from the AUTODROP and ADMINDROP GTVSDAX rules.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">The drop code is assigned to the <span class="ph uicontrol">Action</span> field for each CRN in the "work area" of the page where the block code for the CRN (<code class="ph codeph">SFRSTCR_BLCK_CODE</code>) is equal to the block selected by the student (<code class="ph codeph">SFRBSEL_BLCK_CODE</code>).</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">The generated transactions are sent through the registration process.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Error checking takes place.</span>
+        <ol type="a" class="ol substeps">
+          <li class="li substep">
+            <span class="ph cmd">Courses with fatal errors are rejected and are not added to the student's schedule. They are processed as if the student entered the classes manually.</span>
+          </li>
+
+          <li class="li substep">
+            <span class="ph cmd">Courses without fatal errors are passed and are added to the student's schedule.</span>
+          </li>
+
+        </ol>
+
+      </li>
+</ol>
+
+  </div>
+
+</div></div></section>
+<section id="t-1580"><h4>Enroll student in a different block</h4><div class="content-locale-en-US content-locale-en"><div id="t_enroll_student_a_different_block"><div class="body taskbody"><p class="shortdesc">A student can change a block in which they are enrolled by performing the following steps.</p>
+
+    <div class="tasklabel"><h2 class="sectiontitle tasklabel">Procedure</h2></div><ol class="ol steps"><li class="li step stepexpand">
+        <span class="ph cmd">Select a new or different block using the <span class="ph uicontrol">Select Your Block Option</span> option group.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Click on the <span class="ph uicontrol">Submit</span> button to process the block.</span>
+        <div class="itemgroup info">Processing continues.</div>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">When the selected block is pre-assigned, (the student has a record in the SFRBLPA table for the specific block), and the <code class="ph codeph">SFRBLPA_ROVR_CODE</code> column is Not Null, the process creates an SFRSRPO record for each CRN in the block of courses. The permit-override code can then be used to create an override. </span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Each CRN in the block of courses is moved into the "work area" of the page in preparation for registration.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">The <span class="ph uicontrol">Action</span> field is set to the code for the GTVSDAX WEBRSTSREG rule.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">The process retrieves the student's SFRBSEL record and determines which drop code to use from the AUTODROP and ADMINDROP GTVSDAX rules.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">The drop code is assigned to the <span class="ph uicontrol">Action</span> field for each CRN in the "work area" where the block code for the CRN (<code class="ph codeph">SFRSTCR_BLCK_CODE</code>) is equal to the block selected by the student (<code class="ph codeph">SFRBSEL_BLCK_CODE</code>).</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">The generated transactions are sent through the registration process.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Error checking takes place.</span>
+        <ol type="a" class="ol substeps">
+          <li class="li substep">
+            <span class="ph cmd">Courses with fatal errors are rejected and are not added to the student's schedule. They are processed as if the student entered the classes manually.</span>
+          </li>
+
+          <li class="li substep">
+            <span class="ph cmd">Courses without fatal errors are passed and are added to the student's schedule.</span>
+          </li>
+
+        </ol>
+
+        <div class="itemgroup info">
+          <div class="note"><span class="notetitle">Note:</span>  If the REQUIREALL setting on GTVSDAX equals ‘Y’, the student will have to enroll successfully in all classes within the block to be able to enroll in any classes in the block.</div>
+
+        </div>
+      </li>
+</ol>
+
+  </div>
+
+</div></div></section>
+<section id="t-1590"><h4>Action field</h4><div class="content-locale-en-US content-locale-en"><div id="c_action_field"><div class="body conbody"><p class="shortdesc">The Action field in the Summary section of the page only displays the value of None. On the Find Classes and Enter CRNs pages, the value displayed in the Action field depends on course restrictions that are set up on SFABRDF or SFAPABC.</p>
+
+    <div class="p">When the student has a block assignment record in the SFRBSEL table, the following is true: <ul class="ul">
+        <li class="li">When the block assignment record is associated with a rule (the <code class="ph codeph">SFRBSEL_BRDH_SEQ_NUM</code> column is Not Null), the value of the add and drop course restriction from the block assignment rule (the <code class="ph codeph">SFRBRDB_COURSE_RESTRICITON</code> setting) is used to determine the impact on the Action field.</li>
+
+        <li class="li">When the block assignment record is not associated with a rule (the <code class="ph codeph">SFRBSEL_BRDH_SEQ_NUM</code> column is Null), the value of the add and drop course restriction from the block assignment rule (the <code class="ph codeph">SFRPABC_COURSE_RESTRICITON</code> setting) is used to determine the impact on the Action field.</li>
+
+        <li class="li">The course restriction in the SFRBRDB or SFRPABC tables can be set to <kbd class="ph userinput">NR</kbd> (Without Restriction), <kbd class="ph userinput">NB</kbd> (Non-Block Only), or NA (Not Allowed). These values are explained below.</li>
+
+      </ul>
+</div>
+
+  </div>
+
+</div></div></section>
+<section id="t-1600"><h5>Without restriction</h5><div class="content-locale-en-US content-locale-en"><div id="c_without_restriction"><div class="body conbody"><p class="shortdesc">Changes can be made without any restrictions, and there is no impact on the Action field for any of the student’s CRNs. Current processing rules are used.</p>
+
+    <div class="note"><span class="notetitle">Note:</span>  If the REQUIREALL setting on GTVSDAX equals ‘Y’, students will have to drop or withdraw from all block classes if they want to drop or withdraw from even one class in their selected block.</div>
+
+  </div>
+
+</div></div></section>
+<section id="t-1610"><h5>Non-block only</h5><div class="content-locale-en-US content-locale-en"><div id="c_non_block_only"><div class="body conbody"><p class="shortdesc">Changes can be made only to CRNs that are not associated with a block of courses.</p>
+
+    <ul class="ul">
+      <li class="li">For any CRN that is not part of a block (the <code class="ph codeph">SFRSTCR_BLCK_CODE</code> is Null), the Action field is populated according to the current rules.</li>
+
+      <li class="li">For any CRN that belongs to the block where the Optional indicator for the CRN (<code class="ph codeph">SFRBKOP_OPTIONAL_IND</code>) is set to Y, the Action field is populated according to the current rules. Otherwise, None is the only value displayed in the Action field.</li>
+
+    </ul>
+
+  </div>
+
+</div></div></section>
+<section id="t-1620"><h5>Not allowed</h5><div class="content-locale-en-US content-locale-en"><div id="c_not_allowed"><div class="body conbody"><p class="shortdesc">Changes cannot be made under any circumstances.</p>
+
+    <p class="p">For any CRN that belongs to the block where the Optional indicator for the CRN (<code class="ph codeph">SFRBKOP_OPTIONAL_IND</code>) is set to Y, the Action field is populated according to the current rules. Otherwise, None is the only value displayed in the Action field.</p>
+
+  </div>
+
+</div></div></section>
+<section id="t-1630"><h3>Reporting</h3><div class="content-locale-en-US content-locale-en"><div id="c_reporting"><div class="body conbody"><p class="shortdesc">The following process and report are used with block registration.</p>
+
+    <ul class="ul">
+      <li class="li">Student Block Pre-Assignment Process (SFPSBPA)</li>
+
+      <li class="li">Incomplete Block Registration Report (SFRIBLR)<div class="note"><span class="notetitle">Note:</span> Reports and processes must be run from job submission.</div>
+</li>
+
+    </ul>
+
+    <p class="p">See the <cite class="cite">Banner Student Reports and Processes</cite> documentation for information on parameters and output samples.</p>
+
+  </div>
+
+</div></div></section>
+<section id="t-1640"><h4>Student Pre-Assignment Process (SFPSBPA)</h4><div class="content-locale-en-US content-locale-en"><div id="c_student_pre_assignment_process_sfpsbpa"><div class="body conbody"><p class="shortdesc">The Student Block Pre-Assignment Process (SFPSBPA) is used to pre-assign a block to a specific student, to multiple students, or to a selected population.</p>
+
+    <p class="p">Population selection parameters are used to pre-assign a block to more than one student ID at a time. The process uses the primary curriculum and any active study paths. The rules defined in the Block Rules Definition Page (SFABRDF) are used to pre-assign a block to the student. The pre-assigned block is displayed as Suggested in <span class="keyword">Banner</span>
+      <span class="keyword">Registration Self-Service</span>.</p>
+
+    <div class="note"><span class="notetitle">Note:</span> Before the Student Block Pre-Assignment Process (SFPSBPA) is run, the CRNs must be associated with a block on the Block Schedule Control Page (SFABLCK). </div>
+
+    <p class="p">Only one block can be pre-assigned to the student at a time, using the Student Block Pre-Assignment Process (SFPSBPA). If a student is permitted to select multiple blocks in Self-Service, based on the rule defined in SFABRDF, then the system identifies the block with fewer pre-assigned students and pre-assigns it to the student. This ensures equal distribution of students to all the available blocks that are associated with the rule. After the block has been pre-assigned to the student, the Student Block Pre-Assignment Page (SFABLPA) can be used to verify the assignment.</p>
+
+    <p class="p">When two block rules apply to a student but the defined priorities are different, the rule with highest priority (lowest priority number) will be selected for pre-assigning a block to a student. When two rules match exactly and the defined priorities are the same, the first one found is selected for pre-assigning a block to a student.</p>
+
+    <p class="p">The SFPSBPA process does not require that any permit/override options be checked on the Registration Permit-Overrides Control Page (SFAROVR). The process will display a message in the <span class="ph filepath">.log</span> file when the override code defined on the Pre-Assigned Block Configuration Page (SFAPABC) is not defined on SFAROVR or does not have any options checked. The override code on SFAPABC is ignored by the process in this case.</p>
+
+    <p class="p">When a term is selected for registration, SFPSBPA uses the specific term associated with the rule on SFABRDF instead of using an effective term. The process must use a term that is exact to the rule, not a term that falls within a range or comes after a particular term. For example, for term 201610, a rule must exist on SFABRDF for that term. The rule cannot be for a term within a range of 201510 to 201710. The rule cannot be for a term that comes after term 201610.</p>
+
+  </div>
+
+</div></div></section>
+<section id="t-1650"><h4>Incomplete Registration Report (SFRIBLR)</h4><div class="content-locale-en-US content-locale-en"><div id="c_incomplete_registration_report_sfriblr"><div class="body conbody"><p class="shortdesc">The Incomplete Block Registration Report (SFRIBLR) is used to retrieve details of students who have not been successfully registered for all the CRNs in a registration block.</p>
+
+    <p class="p">Reporting is performed for the catalog or schedule level. The report output is grouped by the student’s college, level, major, program, and ID. Student type and student class are also reported.</p>
+
+    <p class="p">A report can be produced for a specific student ID or for a population selection. If a population or single ID is not specified, the report is processed for all the students.</p>
+
+    <div class="note"><span class="notetitle">Note:</span> When the Report Level parameter is set to C (Catalog), processing does not validate the schedule type for the CRNs/sections. For example, if you have CHEM 101 Lecture and CHEM 101 Lab, and only the lecture has been selected for registration, the Catalog report level does not recognize that the lab is missing. The Schedule report level does return the CHEM 101 Lab as missing.</div>
+
+  </div>
+
+</div></div></section></main></body></html>

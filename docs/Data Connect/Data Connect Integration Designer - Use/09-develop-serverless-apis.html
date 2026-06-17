@@ -1,0 +1,1182 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Data Connect Integration Designer - Use — Develop serverless APIs</title><style>body{font-family:-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;line-height:1.55;color:#1a1a1a;max-width:920px;margin:0 auto;padding:24px}header{border-bottom:2px solid #5a16d6;margin-bottom:8px}h1{color:#3a0ca3}h2,h3,h4,h5,h6{margin-top:1.6em}.crumb{color:#666;font-size:13px;margin:0}.meta{color:#888;font-size:12px}nav.toc{background:#f6f4fc;border:1px solid #e3dcf5;border-radius:8px;padding:12px 18px;margin:18px 0}nav.toc h2{margin:.2em 0}nav.toc ul{list-style:none;padding-left:0}nav.toc a{text-decoration:none;color:#5a16d6}section{margin:1.2em 0;padding-top:.4em}img{max-width:100%;height:auto}table{border-collapse:collapse}td,th{border:1px solid #ccc;padding:4px 8px}code,pre{background:#f4f4f4;border-radius:4px}pre{padding:10px;overflow:auto}</style></head><body><header><p class="crumb">Data Connect › Data Connect Integration Designer - Use</p><h1>Data Connect Integration Designer - Use — Develop serverless APIs</h1><p class="meta">Source: <a href="https://resources.elluciancloud.com/r/bundle/ethos_data_connect_int_design_acn_use">https://resources.elluciancloud.com/r/bundle/ethos_data_connect_int_design_acn_use</a> &middot; Retrieved 2026-06-17</p></header><nav class="toc"><h2>Contents</h2><ul><li style="margin-left:0px"><a href="#t-170">Develop serverless APIs</a></li><li style="margin-left:16px"><a href="#t-180">Create a serverless API</a></li><li style="margin-left:16px"><a href="#t-190">Configure serverless API behavior</a></li><li style="margin-left:16px"><a href="#t-200">Import an existing pipeline</a></li><li style="margin-left:16px"><a href="#t-210">Test the pipeline draft before publishing</a></li><li style="margin-left:16px"><a href="#t-220">Publish and execute a serverless API</a></li><li style="margin-left:16px"><a href="#t-230">About pipeline versioning</a></li><li style="margin-left:16px"><a href="#t-240">About the input message</a></li><li style="margin-left:16px"><a href="#t-250">About creating a response</a></li><li style="margin-left:16px"><a href="#t-260">Validations</a></li><li style="margin-left:16px"><a href="#t-270">Obtain the current user ID value</a></li><li style="margin-left:16px"><a href="#t-280">Authorization</a></li><li style="margin-left:32px"><a href="#t-290">Authentication type Ethos token configuration</a></li><li style="margin-left:32px"><a href="#t-300">Authentication type User token configuration</a></li><li style="margin-left:16px"><a href="#t-310">Create schemas</a></li><li style="margin-left:16px"><a href="#t-320">Return custom HTTP status</a></li><li style="margin-left:16px"><a href="#t-330">Execute serverless APIs from Experience extensions</a></li></ul></nav><main><section id="t-170"><h2>Develop serverless APIs</h2><div class="content-locale-en-US content-locale-en"><div id="c_dc_designer_develop_serverless_apis"><div class="body conbody"><p class="shortdesc">After you create a serverless API draft, you can optionally define input or output schemas.</p>
+</div>
+
+</div></div></section>
+<section id="t-180"><h3>Create a serverless API</h3><div class="content-locale-en-US content-locale-en"><div id="t_dc_designer_create_serverless_api"><div class="body taskbody"><p class="shortdesc">The following documentation provides step-by-step instructions on how to create a serverless API.</p>
+
+    <div class="tasklabel"><h2 class="sectiontitle tasklabel">Procedure</h2></div><ol class="ol steps"><li class="li step stepexpand">
+        <span class="ph cmd">Select the package you want to create the pipeline on, and click on the <span class="ph uicontrol">plus(+)</span> button.</span>
+        <div class="itemgroup stepresult">A dialog box displays with several fields to configure the pipeline.</div>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">By default, the <span class="ph uicontrol">Integration</span> Pipeline Type is selected. In order to create a serverless API, select <span class="ph uicontrol">API</span> from the <span class="ph uicontrol">Pipeline Type</span> drop-down.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Enter a unique name for your pipeline.</span>
+        <div class="itemgroup info">
+          <div class="note"><span class="notetitle">Note:</span>  A warning displays if the same name already exists in the system. Because the pipeline will work as an API resource, it should not contain spaces.</div>
+
+        </div>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Choose the appropriate HTTP method (GET, POST, PUT, DELETE) based on the actions you plan to perform in your pipeline.</span>
+        <div class="itemgroup info">
+          <div class="note"><span class="notetitle">Note:</span> GET requests cannot receive a body.</div>
+
+        </div>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Select the desired authentication type (User token or Ethos token) based on your pipeline's authentication requirements.</span>
+        <ol type="a" class="ol substeps">
+          <li class="li substep">
+            <span class="ph cmd">Select <span class="ph uicontrol">User token</span> if the pipeline will be called from an Experience card.</span>
+          </li>
+
+          <li class="li substep">
+            <span class="ph cmd">Select <span class="ph uicontrol">Ethos token</span> if the pipeline will be called through the Ethos Integration proxy by an external application.</span>
+          </li>
+
+          <li class="li substep">
+            <span class="ph cmd">See <span class="xref ft-internal-link" title="Grant the permission that allows users to invoke a serverless API that authorizes with a Ethos token or a user (OAuth) token." data-ft-warning="excluded-from-rendering" data-mapid="zhfyvwrmd60S_3CkIOx9xA" data-tocid="jaM3P~kEssHWjt~q3eGaTQ">Authorization</span> for more details on authorization requirements and setup.</span>
+          </li>
+
+        </ol>
+
+      </li>
+<li class="li step stepexpand"><strong>Optional: </strong>
+        <span class="ph cmd">You can provide a description for the pipeline to clarify the purpose or functionality of the pipeline.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Click <span class="ph uicontrol">Save</span> to create a draft of the pipeline within the package.</span>
+        <div class="itemgroup info">You can now proceed with further configurations, such as defining input and output schema and building the pipeline using the fittings and pipeline parameters.</div>
+      </li>
+</ol>
+
+  </div>
+
+</div></div></section>
+<section id="t-190"><h3>Configure serverless API behavior</h3><div class="content-locale-en-US content-locale-en"><div id="t_dc_designer_configure_serverless_api_behavior"><div class="body taskbody"><p class="shortdesc">After creating the Serverless API draft, optional input or output schemas can be defined.</p>
+
+    <div class="section context"><div class="tasklabel"><h2 class="sectiontitle tasklabel">About this task</h2></div>Defining schema can ensure an appropriate validation is executed against the received input or generated output. See the section <span class="xref ft-internal-link" title="There are two types of schemas in a Serverless API: Input and Output schemas." data-ft-warning="excluded-from-rendering" data-mapid="zhfyvwrmd60S_3CkIOx9xA" data-tocid="~YLG1aar3s~2lbu9CmHwQg">Create schemas</span> for a detailed guide on schemas.</div>
+
+    <div class="tasklabel"><h2 class="sectiontitle tasklabel">Procedure</h2></div><ol class="ol steps"><li class="li step stepexpand">
+        <span class="ph cmd">Define Pipeline parameters.</span>
+        <ol type="a" class="ol substeps">
+          <li class="li substep">
+            <span class="ph cmd">For example, parameters for an API key or an Id parameter can be defined.</span>
+          </li>
+
+          <li class="li substep">
+            <span class="ph cmd">After it is published, the pipeline will be invocable with an HTTP request. The HTTP request parameters are bound to the pipeline parameters.</span>
+          </li>
+
+        </ol>
+
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Add appropriate fittings to fulfill your use case.</span>
+        <ol type="a" class="ol substeps">
+          <li class="li substep">
+            <span class="ph cmd">For example, add an Ethos Proxy Get to retrieve information from an Ethos resource. </span>
+          </li>
+
+          <li class="li substep">
+            <span class="ph cmd">You can use values from the parameters, payload, or context to refine the request.</span>
+          </li>
+
+        </ol>
+
+        <div class="itemgroup info">See <span class="xref ft-internal-link" title="This section details available Designer fittings divided by functionality." data-ft-warning="excluded-from-rendering" data-mapid="zhfyvwrmd60S_3CkIOx9xA" data-tocid="dRPPXc0Sp~fmWg~gdegH9Q">Available fittings documentation</span> for more information.</div>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Configure the output as expected. See <span class="xref ft-internal-link" title="When the pipeline ends, the message payload will be used as the Serverless API result." data-ft-warning="excluded-from-rendering" data-mapid="zhfyvwrmd60S_3CkIOx9xA" data-tocid="11ALC5eMLQBXpXfdQ83qOA">About creating a response</span> for details.</span>
+        <ol type="a" class="ol substeps">
+          <li class="li substep">
+            <span class="ph cmd">The response must be a single message.</span>
+          </li>
+
+          <li class="li substep">
+            <span class="ph cmd">A custom HTTP status can also be defined. See: <span class="xref ft-internal-link" title="The HTTP code and return result can be overridden to enable specific use cases." data-ft-warning="excluded-from-rendering" data-mapid="zhfyvwrmd60S_3CkIOx9xA" data-tocid="rbRHxOFlUIORixwJFa9nNA">Return custom HTTP status</span>.</span>
+          </li>
+
+        </ol>
+
+      </li>
+</ol>
+
+  </div>
+
+</div></div></section>
+<section id="t-200"><h3>Import an existing pipeline</h3><div class="content-locale-en-US content-locale-en"><div id="t_dc_designer_import_existing_pipeline"><p class="shortdesc">It is possible to import an existing pipeline JSON file into the Designer. However, the pipeline must match the API type. If an attempt is made to import an integration pipeline when working on a serverless API the import will fail.</p>
+
+  
+</div></div></section>
+<section id="t-210"><h3>Test the pipeline draft before publishing</h3><div class="content-locale-en-US content-locale-en"><div id="t_dc_designer_test_pipeline_draft"><div class="body taskbody"><p class="shortdesc">The <span class="ph uicontrol">Test</span> button can be used to test the pipeline logic. However, it will not fully simulate a HTTP API call.</p>
+
+    <div class="section context"><div class="tasklabel"><h2 class="sectiontitle tasklabel">About this task</h2></div> These are the differences when testing with the Test dialog:<ul class="ul"> <li class="li">Input and output schema validation is not checked.</li>
+ <li class="li">No value will be injected in context._user (See: <span class="xref ft-internal-link" title="A serverless API with an authentication type of 'User token' will inject a property __user.id in the context, with the value being the Ethos Person GUID for the current Experience user." data-ft-warning="excluded-from-rendering" data-mapid="zhfyvwrmd60S_3CkIOx9xA" data-tocid="WPG0qk0mPO7pWdfXqDYAMg">Obtain the current user ID value</span>)</li>
+ <li class="li">A value should be hard set, as needed for testing.</li>
+ <li class="li">If a custom HTTP code or message were used, the test response will include those overridden values in the result shown in the test window.</li>
+
+      </ul>
+</div>
+
+  </div>
+
+</div></div></section>
+<section id="t-220"><h3>Publish and execute a serverless API</h3><div class="content-locale-en-US content-locale-en"><div id="t_dc_designer_publish_execute_serverless_api"><div class="body taskbody"><p class="shortdesc">After you publish a serverless API, a Platform Component is created in Ethos Integration.</p>
+
+    <div class="tasklabel"><h2 class="sectiontitle tasklabel">Procedure</h2></div><ol class="ol steps"><li class="li step stepexpand">
+        <span class="ph cmd">Click <span class="ph uicontrol">Publish</span> to publish a pipeline version.</span>
+        <div class="itemgroup info">
+          <p class="p">See: <span class="xref ft-internal-link" title="There are versioning guidelines for pipelines." data-ft-warning="excluded-from-rendering" data-mapid="zhfyvwrmd60S_3CkIOx9xA" data-tocid="C9X9WQDwJ05_gWSoAeFJzA">Pipeline versioning guidelines</span>.</p>
+
+          <p class="p">There are scenarios that are considered a breaking change, and therefore require a new major version number. See below for specific scenarios.</p>
+
+        </div>
+        <div class="itemgroup info"><span class="ph uicontrol">Input schema properties</span>
+<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" class="table" frame="border" border="1" rules="all"><colgroup><col style="width:25.04288164665523%"><col style="width:17.152658662092623%"><col style="width:18.181818181818183%"><col style="width:39.62264150943396%"></colgroup><thead class="thead" style="text-align:left;">
+              <tr class="row">
+                <th class="entry nocellnorowborder" style="vertical-align:top;" id="d6007e80">Case</th>
+
+                <th class="entry nocellnorowborder" style="vertical-align:top;" id="d6007e83">Marked as required</th>
+
+                <th class="entry nocellnorowborder" style="vertical-align:top;" id="d6007e86">Force major</th>
+
+                <th class="entry cell-norowborder" style="vertical-align:top;" id="d6007e89">Justification</th>
+
+              </tr>
+
+            </thead>
+<tbody class="tbody">
+              <tr class="row">
+                <td class="entry nocellnorowborder" style="vertical-align:top;" headers="d6007e80 ">A property name is changed.</td>
+
+                <td class="entry nocellnorowborder" style="vertical-align:top;" headers="d6007e83 ">Yes</td>
+
+                <td class="entry nocellnorowborder" style="vertical-align:top;" headers="d6007e86 ">Yes</td>
+
+                <td class="entry cell-norowborder" style="vertical-align:top;" headers="d6007e89 ">Any existing <span class="keyword">Experience</span> page could fail to start the pipeline because the property is not registered with a value. </td>
+
+              </tr>
+
+              <tr class="row">
+                <td class="entry nocellnorowborder" style="vertical-align:top;" headers="d6007e80 ">A property name is changed.</td>
+
+                <td class="entry nocellnorowborder" style="vertical-align:top;" headers="d6007e83 ">No</td>
+
+                <td class="entry nocellnorowborder" style="vertical-align:top;" headers="d6007e86 ">No</td>
+
+                <td class="entry cell-norowborder" style="vertical-align:top;" headers="d6007e89 ">Because the property is optional, it should not be considered necessary to execute the pipeline.</td>
+
+              </tr>
+
+              <tr class="row">
+                <td class="entry nocellnorowborder" style="vertical-align:top;" headers="d6007e80 ">A property type is changed.</td>
+
+                <td class="entry nocellnorowborder" style="vertical-align:top;" headers="d6007e83 ">Yes</td>
+
+                <td class="entry nocellnorowborder" style="vertical-align:top;" headers="d6007e86 ">Yes</td>
+
+                <td class="entry cell-norowborder" style="vertical-align:top;" headers="d6007e89 ">Any existing <span class="keyword">Experience</span> page could fail to start the pipeline because the property is the wrong type.</td>
+
+              </tr>
+
+              <tr class="row">
+                <td class="entry nocellnorowborder" style="vertical-align:top;" headers="d6007e80 ">A property type is changed.</td>
+
+                <td class="entry nocellnorowborder" style="vertical-align:top;" headers="d6007e83 ">No</td>
+
+                <td class="entry nocellnorowborder" style="vertical-align:top;" headers="d6007e86 ">Yes</td>
+
+                <td class="entry cell-norowborder" style="vertical-align:top;" headers="d6007e89 ">If the API starts failing due to validation, then this would be considered a breaking change, so it requires a major version update.</td>
+
+              </tr>
+
+              <tr class="row">
+                <td class="entry nocellnorowborder" style="vertical-align:top;" headers="d6007e80 ">A property is added.</td>
+
+                <td class="entry nocellnorowborder" style="vertical-align:top;" headers="d6007e83 ">Yes</td>
+
+                <td class="entry nocellnorowborder" style="vertical-align:top;" headers="d6007e86 ">Yes</td>
+
+                <td class="entry cell-norowborder" style="vertical-align:top;" headers="d6007e89 ">If it has no default value, the pipeline may fail to start.</td>
+
+              </tr>
+
+              <tr class="row">
+                <td class="entry nocellnorowborder" style="vertical-align:top;" headers="d6007e80 ">A property is added.</td>
+
+                <td class="entry nocellnorowborder" style="vertical-align:top;" headers="d6007e83 ">No</td>
+
+                <td class="entry nocellnorowborder" style="vertical-align:top;" headers="d6007e86 ">No</td>
+
+                <td class="entry cell-norowborder" style="vertical-align:top;" headers="d6007e89 ">Because the property is optional, it should not be considered necessary to execute the pipeline.</td>
+
+              </tr>
+
+              <tr class="row">
+                <td class="entry nocellnorowborder" style="vertical-align:top;" headers="d6007e80 ">A property is deleted.</td>
+
+                <td class="entry nocellnorowborder" style="vertical-align:top;" headers="d6007e83 ">Yes</td>
+
+                <td class="entry nocellnorowborder" style="vertical-align:top;" headers="d6007e86 ">Yes</td>
+
+                <td class="entry cell-norowborder" style="vertical-align:top;" headers="d6007e89 ">When a property is removed, it should be considered  a breaking change.</td>
+
+              </tr>
+
+              <tr class="row">
+                <td class="entry nocellnorowborder" style="vertical-align:top;" headers="d6007e80 ">A property is deleted.</td>
+
+                <td class="entry nocellnorowborder" style="vertical-align:top;" headers="d6007e83 ">No</td>
+
+                <td class="entry nocellnorowborder" style="vertical-align:top;" headers="d6007e86 ">No</td>
+
+                <td class="entry cell-norowborder" style="vertical-align:top;" headers="d6007e89 ">Because the property is optional, it should not be considered necessary to execute the pipeline.</td>
+
+              </tr>
+
+              <tr class="row">
+                <td class="entry nocellnorowborder" style="vertical-align:top;" headers="d6007e80 ">A property was changed from optional to required.</td>
+
+                <td class="entry nocellnorowborder" style="vertical-align:top;" headers="d6007e83 ">Yes</td>
+
+                <td class="entry nocellnorowborder" style="vertical-align:top;" headers="d6007e86 ">Yes</td>
+
+                <td class="entry cell-norowborder" style="vertical-align:top;" headers="d6007e89 ">Changing a property from optional to required means that because it was optional before, it may not have been registered with a value, and therefore the pipeline could fail to start.</td>
+
+              </tr>
+
+              <tr class="row">
+                <td class="entry row-nocellborder" style="vertical-align:top;" headers="d6007e80 ">A property was changed from required to optional.</td>
+
+                <td class="entry row-nocellborder" style="vertical-align:top;" headers="d6007e83 ">No</td>
+
+                <td class="entry row-nocellborder" style="vertical-align:top;" headers="d6007e86 ">No</td>
+
+                <td class="entry cellrowborder" style="vertical-align:top;" headers="d6007e89 ">When a required property changes to optional, it should not be considered a breaking change.</td>
+
+              </tr>
+
+            </tbody>
+</table>
+</div>
+</div>
+        <div class="itemgroup info"><span class="ph uicontrol">Output schema properties</span>
+<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" class="table" frame="border" border="1" rules="all"><colgroup><col style="width:25.04288164665523%"><col style="width:17.152658662092623%"><col style="width:18.181818181818183%"><col style="width:39.62264150943396%"></colgroup><thead class="thead" style="text-align:left;">
+              <tr class="row">
+                <th class="entry nocellnorowborder" style="vertical-align:top;" id="d6007e276">Case</th>
+
+                <th class="entry nocellnorowborder" style="vertical-align:top;" id="d6007e279">Marked as required</th>
+
+                <th class="entry nocellnorowborder" style="vertical-align:top;" id="d6007e282">Force major</th>
+
+                <th class="entry cell-norowborder" style="vertical-align:top;" id="d6007e285">Justification</th>
+
+              </tr>
+
+            </thead>
+<tbody class="tbody">
+              <tr class="row">
+                <td class="entry nocellnorowborder" style="vertical-align:top;" headers="d6007e276 ">A property name is changed.</td>
+
+                <td class="entry nocellnorowborder" style="vertical-align:top;" headers="d6007e279 ">Yes</td>
+
+                <td class="entry nocellnorowborder" style="vertical-align:top;" headers="d6007e282 ">Yes</td>
+
+                <td class="entry cell-norowborder" style="vertical-align:top;" headers="d6007e285 ">Any existing <span class="keyword">Experience</span> page could fail to start the pipeline because the property is not registered with a value. </td>
+
+              </tr>
+
+              <tr class="row">
+                <td class="entry nocellnorowborder" style="vertical-align:top;" headers="d6007e276 ">A property name is changed.</td>
+
+                <td class="entry nocellnorowborder" style="vertical-align:top;" headers="d6007e279 ">No</td>
+
+                <td class="entry nocellnorowborder" style="vertical-align:top;" headers="d6007e282 ">Yes</td>
+
+                <td class="entry cell-norowborder" style="vertical-align:top;" headers="d6007e285 ">This would be a breaking change because it may break the contract for the API.</td>
+
+              </tr>
+
+              <tr class="row">
+                <td class="entry nocellnorowborder" style="vertical-align:top;" headers="d6007e276 ">A property type is changed.</td>
+
+                <td class="entry nocellnorowborder" style="vertical-align:top;" headers="d6007e279 ">Yes</td>
+
+                <td class="entry nocellnorowborder" style="vertical-align:top;" headers="d6007e282 ">Yes</td>
+
+                <td class="entry cell-norowborder" style="vertical-align:top;" headers="d6007e285 ">Any existing <span class="keyword">Experience</span> page could fail to start the pipeline because the property is the wrong type.</td>
+
+              </tr>
+
+              <tr class="row">
+                <td class="entry nocellnorowborder" style="vertical-align:top;" headers="d6007e276 ">A property type is changed.</td>
+
+                <td class="entry nocellnorowborder" style="vertical-align:top;" headers="d6007e279 ">No</td>
+
+                <td class="entry nocellnorowborder" style="vertical-align:top;" headers="d6007e282 ">Yes</td>
+
+                <td class="entry cell-norowborder" style="vertical-align:top;" headers="d6007e285 ">If the API starts failing due to validation, then this would be considered a breaking change, so it requires a major version update.</td>
+
+              </tr>
+
+              <tr class="row">
+                <td class="entry nocellnorowborder" style="vertical-align:top;" headers="d6007e276 ">A property is added.</td>
+
+                <td class="entry nocellnorowborder" style="vertical-align:top;" headers="d6007e279 ">Yes</td>
+
+                <td class="entry nocellnorowborder" style="vertical-align:top;" headers="d6007e282 ">Yes</td>
+
+                <td class="entry cell-norowborder" style="vertical-align:top;" headers="d6007e285 ">If it has no default value, the pipeline may fail to start.</td>
+
+              </tr>
+
+              <tr class="row">
+                <td class="entry nocellnorowborder" style="vertical-align:top;" headers="d6007e276 ">A property is added.</td>
+
+                <td class="entry nocellnorowborder" style="vertical-align:top;" headers="d6007e279 ">No</td>
+
+                <td class="entry nocellnorowborder" style="vertical-align:top;" headers="d6007e282 ">No</td>
+
+                <td class="entry cell-norowborder" style="vertical-align:top;" headers="d6007e285 ">Because the property is optional, it should not be considered necessary to execute the pipeline.</td>
+
+              </tr>
+
+              <tr class="row">
+                <td class="entry nocellnorowborder" style="vertical-align:top;" headers="d6007e276 ">A property is deleted.</td>
+
+                <td class="entry nocellnorowborder" style="vertical-align:top;" headers="d6007e279 ">Yes</td>
+
+                <td class="entry nocellnorowborder" style="vertical-align:top;" headers="d6007e282 ">Yes</td>
+
+                <td class="entry cell-norowborder" style="vertical-align:top;" headers="d6007e285 ">When a property is removed, it should be considered  a breaking change.</td>
+
+              </tr>
+
+              <tr class="row">
+                <td class="entry nocellnorowborder" style="vertical-align:top;" headers="d6007e276 ">A property is deleted.</td>
+
+                <td class="entry nocellnorowborder" style="vertical-align:top;" headers="d6007e279 ">No</td>
+
+                <td class="entry nocellnorowborder" style="vertical-align:top;" headers="d6007e282 ">Yes</td>
+
+                <td class="entry cell-norowborder" style="vertical-align:top;" headers="d6007e285 ">This would be a breaking change because it may break the contract for the API.</td>
+
+              </tr>
+
+              <tr class="row">
+                <td class="entry nocellnorowborder" style="vertical-align:top;" headers="d6007e276 ">A property was changed from optional to required.</td>
+
+                <td class="entry nocellnorowborder" style="vertical-align:top;" headers="d6007e279 ">Yes</td>
+
+                <td class="entry nocellnorowborder" style="vertical-align:top;" headers="d6007e282 ">Yes</td>
+
+                <td class="entry cell-norowborder" style="vertical-align:top;" headers="d6007e285 ">Changing a property from optional to required means that because it was optional before, it may not have been registered with a value, and therefore the pipeline could fail to start.</td>
+
+              </tr>
+
+              <tr class="row">
+                <td class="entry row-nocellborder" style="vertical-align:top;" headers="d6007e276 ">A property was changed from required to optional.</td>
+
+                <td class="entry row-nocellborder" style="vertical-align:top;" headers="d6007e279 ">No</td>
+
+                <td class="entry row-nocellborder" style="vertical-align:top;" headers="d6007e282 ">Yes</td>
+
+                <td class="entry cellrowborder" style="vertical-align:top;" headers="d6007e285 ">This would be considered a breaking change, because it may break the contract for the API.</td>
+
+              </tr>
+
+            </tbody>
+</table>
+</div>
+</div>
+        <div class="itemgroup stepresult">After it is published, a Platform Component is created in Ethos Integration.</div>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">To confirm a Platform Component was created, navigate to <span class="ph uicontrol">Ethos Integration</span> and select the <span class="ph uicontrol">Platform Components</span> tab</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Select the <span class="ph uicontrol">Data Connect</span> card.</span>
+        <div class="itemgroup stepresult">The published serverless API name displays under the <span class="ph uicontrol">Owned Resources</span> tab. </div>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Confirm the application for which the API key will be used is listed under the <span class="ph uicontrol">Platform Components- Data Connect- Application Access</span> list.</span>
+        <div class="itemgroup info">
+          <div class="p">Before executing the serverless API, appropriate authorization needs to be set up:<ul class="ul"> <li class="li">If the pipeline was configured to require a 'User Token':<ul class="ul"> <li class="li">Permissions are automatically pushed to Experience Permissions.</li>
+ <li class="li">The final user's role will need to be assigned the 'Execute' action for the specific pipeline.</li>
+ <li class="li">See: <span class="xref ft-internal-link" title="Grant the permission that allows users to invoke a serverless API that authorizes with a Ethos token or a user (OAuth) token." data-ft-warning="excluded-from-rendering" data-mapid="zhfyvwrmd60S_3CkIOx9xA" data-tocid="jaM3P~kEssHWjt~q3eGaTQ">Authorization</span> for more details.</li>
+ </ul>
+</li>
+
+            <li class="li">If the pipeline was configured to require an 'Ethos token': An appropriate tag must be added. See: <span class="xref ft-internal-link" title="Grant the permission that allows users to invoke a serverless API that authorizes with a Ethos token or a user (OAuth) token." data-ft-warning="excluded-from-rendering" data-mapid="zhfyvwrmd60S_3CkIOx9xA" data-tocid="jaM3P~kEssHWjt~q3eGaTQ">Authorization</span></li>
+ </ul>
+</div>
+
+          <p class="p">Then, the pipeline can be executed.</p>
+
+        </div>
+      </li>
+</ol>
+
+    <div class="example"><div class="tasklabel"><h2 class="sectiontitle tasklabel">Example</h2></div>
+      <p class="p">The following cUrl will execute a POST to the latest serverless API named 'exampleServerlessAPI':</p>
+
+      <pre class="pre codeblock"><code>curl --location 'https://integrate.elluciancloud.com/api/exampleServerlessAPI?year=2023' 
+--header 'Content-Type: application/json' --header 'Accept: application/json' --header 'Authorization: Bearer {{validTokenValue}}' --data '{"id": "12345"}'</code></pre>
+      <p class="p">The following cUrl will execute a GET to the execute version 1.0.3 of a serverless API named 'anotherExample':</p>
+
+      <pre class="pre codeblock"><code>curl --location --request GET 'https://integrate.elluciancloud.com/api/anotherExample' --header 'Content-Type: application/json' --header 'Accept: application/vnd.hedtech.integration.v1.0.3+json' --header 'Authorization: Bearer {{validTokenValue}}'</code></pre>
+      <p class="p">Note that GET requests cannot receive a body.</p>
+
+      <p class="p">The examples above can be used as a basis to execute serverless APIs from third party applications. The URL might change depending on the desired execution region.</p>
+
+      <p class="p">See <span class="xref ft-internal-link" title="You must execute serverless APIs from Experience extensions." data-ft-warning="excluded-from-rendering" data-mapid="zhfyvwrmd60S_3CkIOx9xA" data-tocid="bCChBL2MYcHHxhbamhvOTQ">Execute serverless APIs from Experience extensions</span> for a guide to executing the serverless API from Experience.</p>
+
+    </div>
+
+  </div>
+
+</div></div></section>
+<section id="t-230"><h3>About pipeline versioning</h3><div class="content-locale-en-US content-locale-en"><div id="c_dc_designer_about_pipeline_versioning"><div class="body conbody"><p class="shortdesc">Pipelines are published using semantic versioning.</p>
+
+    <p class="p">See <span class="xref ft-internal-link" title="There are versioning guidelines for pipelines." data-ft-warning="excluded-from-rendering" data-mapid="zhfyvwrmd60S_3CkIOx9xA" data-tocid="C9X9WQDwJ05_gWSoAeFJzA">Pipeline versioning guidelines</span>.</p>
+
+    <p class="p">See <span class="xref ft-internal-xlink" data-ft-warning="excluded-from-rendering" data-clusterid="ID_ETHOS_master_2026-03-04/id_ethos/ethos_data_connect_int_design/c_api_dm_behaviors">API Behaviors</span>.</p>
+
+    <p class="p">When executing pipelines, the 'accept' header will indicate which version of the pipeline to execute, or the value 'application/json' can be used to retrieve the latest version of the pipeline.</p>
+
+    <p class="p">Using the latest version is recommended during development trials, to ensure an up-to-date pipeline definition is used. For production usage, at least a major version should be specified, as pipeline definitions are cached to speed up the execution process.</p>
+
+    <p class="p">At this time, it's not possible to publish 'beta' versions.</p>
+
+  </div>
+
+</div></div></section>
+<section id="t-240"><h3>About the input message</h3><div class="content-locale-en-US content-locale-en"><div id="c_dc_designer_about_input_message"><div class="body conbody"><p class="shortdesc">The payload of the HTTP request, if any, will be passed in the 'payload' property of the initial message.</p>
+
+    <div class="section"><h2 class="title sectiontitle">Examples</h2>
+      
+      <p class="p">A payload in the following form will be wrapped into a Data Connect message:</p>
+
+      <pre class="pre codeblock json"><code>{"id":12345}</code></pre>
+      <p class="p">will be wrapped in a Data Connect message and passed as:</p>
+
+      <pre class="pre codeblock json"><code>{
+   header:{}
+   payload:{"id":12345}
+}</code></pre>
+      <p class="p">Note: in the Test dialog, the first simple form can be used. If the payload is a valid Data Connect message, it will be passed as is:</p>
+
+      <pre class="pre codeblock json"><code>{
+   "header": { "initial": 1 },
+   "payload": { "data": "example data"}
+}</code></pre>
+      <p class="p">If no payload is received, an empty message will be pushed.</p>
+
+      <pre class="pre codeblock json"><code>{
+   header: { }
+   payload: { }
+}</code></pre>
+      <p class="p">If an Array of data is passed, it will be pushed as different messages.</p>
+
+    </div>
+
+  </div>
+
+</div></div></section>
+<section id="t-250"><h3>About creating a response</h3><div class="content-locale-en-US content-locale-en"><div id="c_dc_designer_about_creating_response"><div class="body conbody"><p class="shortdesc">When the pipeline ends, the message payload will be used as the Serverless API result.</p>
+
+    <p class="p">If more than one message is emitted from the pipeline, only the payload from the first message is used. If needed, reduce all messages and save them into an array.</p>
+
+    <div class="section"><h2 class="title sectiontitle">Example: The pipeline produces a single, single-object response</h2>
+      
+      <p class="p">Pipeline result:</p>
+
+      <pre class="pre codeblock json"><code>{ "data": "example data"}</code></pre>
+      <p class="p">Result when invoked:</p>
+
+      <pre class="pre codeblock json"><code>{ "data": "example data"}</code></pre>
+    </div>
+
+    <div class="section"><h2 class="title sectiontitle">Example: The pipeline produces an array response</h2>
+      
+      <p class="p">Pipeline result:</p>
+
+      <pre class="pre codeblock json"><code>[{ "data": "1"}]</code></pre>
+      <p class="p">Result when invoked:</p>
+
+      <pre class="pre codeblock json"><code>{
+    "data": "1"
+}</code></pre>
+    </div>
+
+    <div class="section"><h2 class="title sectiontitle">Incorrect Example: The pipeline produces several messages</h2>
+      
+      <p class="p">In this scenario, only the first result will be returned. A reducer can be used to collect all messages into an array to return. Pipeline result:</p>
+
+      <pre class="pre codeblock json"><code>[{ "data": "1"}, { "data": "2"}]</code></pre>
+      <p class="p">Result when invoked:</p>
+
+      <pre class="pre codeblock json"><code>{
+    "data": "1"
+}</code></pre>
+    </div>
+
+  </div>
+
+</div></div></section>
+<section id="t-260"><h3>Validations</h3><div class="content-locale-en-US content-locale-en"><div id="c_dc_designer_validations"><div class="body conbody"><p class="shortdesc">The execution endpoint throws exceptions if certain validations are not met.</p>
+
+    <p class="p">The following table illustrates known errors and causes.</p>
+
+    
+<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" class="table" frame="border" border="1" rules="all"><colgroup><col><col></colgroup><thead class="thead" style="text-align:left;">
+          <tr class="row">
+            <th class="entry nocellnorowborder" style="vertical-align:top;" id="d1405e50">Error</th>
+
+            <th class="entry cell-norowborder" style="vertical-align:top;" id="d1405e53">Cause</th>
+
+          </tr>
+
+        </thead>
+<tbody class="tbody">
+          <tr class="row">
+            <td class="entry nocellnorowborder" style="vertical-align:top;" headers="d1405e50 ">404</td>
+
+            <td class="entry cell-norowborder" style="vertical-align:top;" headers="d1405e53 ">The pipeline does not exist.</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry nocellnorowborder" style="vertical-align:top;" headers="d1405e50 ">406</td>
+
+            <td class="entry cell-norowborder" style="vertical-align:top;" headers="d1405e53 ">The accept header was not defined or the format is not valid.</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry nocellnorowborder" style="vertical-align:top;" headers="d1405e50 ">406</td>
+
+            <td class="entry cell-norowborder" style="vertical-align:top;" headers="d1405e53 ">The specified pipeline version does not exist.</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry nocellnorowborder" style="vertical-align:top;" headers="d1405e50 ">405</td>
+
+            <td class="entry cell-norowborder" style="vertical-align:top;" headers="d1405e53 ">HTTP Verb does not match the defined verb in the pipeline</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry nocellnorowborder" style="vertical-align:top;" headers="d1405e50 ">403</td>
+
+            <td class="entry cell-norowborder" style="vertical-align:top;" headers="d1405e53 ">The provided token is not linked to the appropriate permissions. See <span class="xref ft-internal-link" title="Grant the permission that allows users to invoke a serverless API that authorizes with a Ethos token or a user (OAuth) token." data-ft-warning="excluded-from-rendering" data-mapid="zhfyvwrmd60S_3CkIOx9xA" data-tocid="jaM3P~kEssHWjt~q3eGaTQ">Authorization</span> for more details.</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry nocellnorowborder" style="vertical-align:top;" headers="d1405e50 ">401</td>
+
+            <td class="entry cell-norowborder" style="vertical-align:top;" headers="d1405e53 ">The token was not sent, the token is not authorized, or the token does not match the specified token type in the pipeline.</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry nocellnorowborder" style="vertical-align:top;" headers="d1405e50 ">415</td>
+
+            <td class="entry cell-norowborder" style="vertical-align:top;" headers="d1405e53 ">The input body does not match the defined input schema.</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry nocellnorowborder" style="vertical-align:top;" headers="d1405e50 ">500</td>
+
+            <td class="entry cell-norowborder" style="vertical-align:top;" headers="d1405e53 ">The output message does not match the defined input schema.</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry nocellnorowborder" style="vertical-align:top;" headers="d1405e50 ">400</td>
+
+            <td class="entry cell-norowborder" style="vertical-align:top;" headers="d1405e53 ">Pipeline configuration error. Parameters might be missing, or be in the wrong format.</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="vertical-align:top;" headers="d1405e50 ">500</td>
+
+            <td class="entry cellrowborder" style="vertical-align:top;" headers="d1405e53 ">Pipeline execution error. Usually, the resulting payload will contain a list of errors.</td>
+
+          </tr>
+
+        </tbody>
+</table>
+</div>
+
+  </div>
+
+</div></div></section>
+<section id="t-270"><h3>Obtain the current user ID value</h3><div class="content-locale-en-US content-locale-en"><div id="t_dc_designer_obtain_current_userid"><div class="body taskbody"><p class="shortdesc">A serverless API with an authentication type of 'User token' will inject a property <code class="ph codeph">__user.id</code> in the context, with the value being the Ethos Person GUID for the current Experience user.</p>
+
+    <div class="section context"><div class="tasklabel"><h2 class="sectiontitle tasklabel">About this task</h2></div>
+      <p class="p">This property can be used for different uses cases, for example:</p>
+
+      <ul class="ul">
+        <li class="li">Used to fetch data for the current Experience user without requiring the ID to be sent separately.</li>
+
+        <li class="li">Used for authorization confirmation, for example, that only the current user data is retrieved, or to validate that the current user can access certain data.</li>
+
+        <li class="li">Call BPAPIs to retrieve a Banner ID as needed.</li>
+
+      </ul>
+
+      <p class="p">For example: The following fitting can be used to retrieve the Ethos person that is currently logged into Experience:</p>
+
+      <pre class="pre codeblock json"><code>"Ethos Proxy Get": {
+     "class": "ethosProxyGet",
+     "config": {
+       "resource": "persons",
+       "acceptVersions": [
+         "12"
+       ],
+       "idFromContext": "__user.id",
+       "cache": false,
+       "ignoreErrors": false,
+       "apiKey": "ethosApiKey"
+     }
+   }</code></pre>
+      <p class="p">The value can be retrieved in a JST fitting by using</p>
+
+      <pre class="pre codeblock"><code>context.get('__user').id</code></pre>
+    </div>
+
+  </div>
+
+</div></div></section>
+<section id="t-280"><h3>Authorization</h3><div class="content-locale-en-US content-locale-en"><div id="c_dc_designer_authorization"><div class="body conbody"><p class="shortdesc">Grant the permission that allows users to invoke a serverless API that authorizes with a Ethos token or a user (OAuth) token.</p>
+</div>
+
+</div></div></section>
+<section id="t-290"><h4>Authentication type Ethos token configuration</h4><div class="content-locale-en-US content-locale-en"><div id="t_dc_designer_ethos_token_configuration"><div class="body taskbody"><p class="shortdesc">The serverless API package should be added as an application tag.</p>
+
+    <div class="tasklabel"><h2 class="sectiontitle tasklabel">Procedure</h2></div><ol class="ol steps"><li class="li step stepexpand">
+        <span class="ph cmd">Navigate to <span class="ph uicontrol">Ethos Integration</span>, then click the <span class="ph uicontrol">Applications</span> tab and select the application that will invoke the serverless API.</span>
+        <div class="itemgroup info">For example, navigate to the <span class="ph uicontrol">Banner Integration</span> application.</div>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Click the <span class="ph uicontrol">Tags</span> sub-tab, then click the <span class="ph uicontrol">Add Tag</span> button. Verify the tag does not already exist.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Enter <kbd class="ph userinput">integration-package</kbd> as a tag name. The name should match exactly.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">As a value, enter the camel-cased version of your displayed package name. This is the Package name and not the serverless API name.</span>
+        <div class="itemgroup info">Examples:<ul class="ul"> <li class="li">A package named 'example' should be added as <kbd class="ph userinput">example</kbd> (No change).</li>
+ <li class="li">A package named 'Example' should be added as <kbd class="ph userinput">example</kbd> (The first letter changed case).</li>
+ <li class="li">A package named 'example one' would be added as <kbd class="ph userinput">exampleOne</kbd>.</li>
+ <li class="li">A package named 'example may 31' would be added as <kbd class="ph userinput">exampleMay31</kbd>.</li>
+ </ul>
+</div>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">If you need more than one integration package to be authorized, add them in the value field separated by a , (comma) with NO spaces between packages.</span>
+        <div class="itemgroup info">Example value: 'example,otherExample,universityPackage'</div>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Click <span class="ph uicontrol">Save</span>. The pipeline is ready to be invoked.</span>
+        <div class="itemgroup info">When executing the serverless API, the presence of a tag with the serverless API's package name is validated. If not present, a 403 HTTP error is returned.</div>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Add the application configured with the integration-package tag to the Application Access list under <span class="ph menucascade"><span class="ph uicontrol">Platform Components</span><abbr title="and then"> &gt; </abbr><span class="ph uicontrol">Data Connect</span><abbr title="and then"> &gt; </abbr><span class="ph uicontrol">Application Access</span></span>.</span>
+      </li>
+</ol>
+
+  </div>
+
+</div></div></section>
+<section id="t-300"><h4>Authentication type User token configuration</h4><div class="content-locale-en-US content-locale-en"><div id="t_dc_designer_user_token_configuration"><div class="body taskbody"><p class="shortdesc">Grant the permission that allows users to invoke a Serverless API that authorizes with a User (OAuth) token.</p>
+
+    <div class="section prereq p"><div class="tasklabel"><h2 class="sectiontitle tasklabel">Before you begin</h2></div>
+      <p class="p">Appropriate user roles should exist in <span class="keyword">Ellucian Experience</span>.</p>
+
+    </div>
+
+    <div class="section context"><div class="tasklabel"><h2 class="sectiontitle tasklabel">About this task</h2></div>
+      <p class="p">Assign permissions to the specific serverless API.</p>
+
+    </div>
+
+    <div class="tasklabel"><h2 class="sectiontitle tasklabel">Procedure</h2></div><ol class="ol steps"><li class="li step stepexpand">
+        <span class="ph cmd">Access Ellucian Experience Setup. In the <span class="keyword">Ellucian Customer Center</span>, click <span class="ph uicontrol">Tools</span> and then select the desired Experience Setup instance under the Experience category:</span>
+        <ol type="a" class="ol substeps">
+          <li class="li substep">
+            <span class="ph cmd">Click <span class="ph uicontrol">Experience Setup (Test)</span> to access the Test instance of Experience Setup.</span>
+          </li>
+
+          <li class="li substep">
+            <span class="ph cmd">Click <span class="ph uicontrol">Experience Setup</span> to access the Production instance of Experience Setup.</span>
+          </li>
+
+        </ol>
+
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">In <span class="keyword wintitle">Experience Setup</span>, in the <span class="ph uicontrol">Environments</span> drop-down, select the desired Ethos environment (for example, Test or Production).</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">In the <span class="keyword wintitle">Experience Setup</span> header, click <span class="ph uicontrol">Permissions</span> and then select <span class="ph uicontrol">DATA-CONNECT</span>.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">In the left pane, click the <span class="ph uicontrol">APIs</span> section. Expanding the section displays a list of packages that contain serverless APIs.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Select the package and the exact serverless API under it. Assign <span class="ph uicontrol">execute</span> permissions to the Role or Individual.</span>
+        <ol type="a" class="ol substeps">
+          <li class="li substep">
+            <span class="ph cmd">For more information about Experience permissions, and the detailed procedure for granting permissions, see <span class="xref ft-internal-xlink" data-ft-warning="excluded-from-rendering" data-clusterid="ID_ETHOS_master_2026-03-04/id_ethos/ethos_data_connect_int_design/c_admin_permissions_application">Experience application permissions</span>.</span>
+          </li>
+
+          <li class="li substep">
+            <span class="ph cmd">Permission needs to be assigned at the individual pipeline level and not at the package level. The UI allows assigning permissions at the package level, but permissions must be assigned per each individual serverless API.</span>
+          </li>
+
+        </ol>
+
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Click <span class="ph uicontrol">Save</span>.</span>
+        <div class="itemgroup stepresult">The pipeline should be callable as an API with the user token that has the appropriate role.</div>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Instruct any user whose permissions have changed to log out of Experience and log back in. Experience permissions are cached. Logging out and back in refreshes the cache and ensures that the user has the granted permissions within Experience.</span>
+      </li>
+</ol>
+
+    <div class="example"><div class="tasklabel"><h2 class="sectiontitle tasklabel">Example</h2></div>
+      <p class="p">Example table</p>
+
+      
+<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" class="table" frame="border" border="1" rules="all"><colgroup><col><col><col></colgroup><thead class="thead" style="text-align:left;">
+            <tr class="row">
+              <th class="entry nocellnorowborder" style="vertical-align:top;" id="d26021e188">Card</th>
+
+              <th class="entry nocellnorowborder" style="vertical-align:top;" id="d26021e191">Feature</th>
+
+              <th class="entry cell-norowborder" style="vertical-align:top;" id="d26021e194">Permission</th>
+
+            </tr>
+
+          </thead>
+<tbody class="tbody">
+            <tr class="row">
+              <td class="entry row-nocellborder" style="vertical-align:top;" headers="d26021e188 ">DATA CONNECT</td>
+
+              <td class="entry row-nocellborder" style="vertical-align:top;" headers="d26021e191 ">APIs - Example Package - FirstServerlessAPI</td>
+
+              <td class="entry cellrowborder" style="vertical-align:top;" headers="d26021e194 ">Execute</td>
+
+            </tr>
+
+          </tbody>
+</table>
+</div>
+
+    </div>
+
+  </div>
+
+</div></div></section>
+<section id="t-310"><h3>Create schemas</h3><div class="content-locale-en-US content-locale-en"><div id="c_dc_designer_create_schemas"><div class="body conbody"><p class="shortdesc">There are two types of schemas in a Serverless API: Input and Output schemas.</p>
+
+    <p class="p">Both follow the same creation process so this guide can be used in either case. Input and output schemas are optional properties within the API Definition object of a pipeline so if not configured, they will not be included in the pipeline JSON object.</p>
+
+    <div class="section"><h2 class="title sectiontitle">Define Input and Output Schemas</h2>
+      
+      <p class="p">When a Serverless API is loaded into the Designer page, it shows the Input Schema and Output Schema tabs. Click on the desired schema to start working with it. The schema definitions can be created, edited, and deleted as long as the Serverless API is in a Draft state. When a schema has not yet been defined the UI will display only the HTTP method and the Authorization type of the pipeline in addition to an empty state message. Any errors detected while working on a schema will be added to the error collection panel located in the top right corner of the UI next to the <span class="ph uicontrol">Test</span> button.</p>
+
+      <p class="p"><strong class="ph b">Important:</strong> Any changes to the schema's properties are not saved until the pipeline draft is saved. You can do this by clicking on the <span class="ph uicontrol">Save</span> button.</p>
+
+    </div>
+
+    <div class="section"><h2 class="title sectiontitle">Add a property</h2>
+      
+      <p class="p">To add a new schema property, click the <span class="ph uicontrol">+</span> button located on the left hand panel next to <span class="ph uicontrol">Properties</span>.</p>
+
+      <p class="p">Doing so will render a form on the main content of the page with the following fields:</p>
+
+      
+<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" class="table" frame="border" border="1" rules="all"><colgroup><col><col><col></colgroup><thead class="thead" style="text-align:left;">
+            <tr class="row">
+              <th class="entry nocellnorowborder" style="vertical-align:top;" id="d30073e89">Property Name</th>
+
+              <th class="entry nocellnorowborder" style="vertical-align:top;" id="d30073e92">Required</th>
+
+              <th class="entry cell-norowborder" style="vertical-align:top;" id="d30073e95">This will be used as the property key in the schema object.</th>
+
+            </tr>
+
+          </thead>
+<tbody class="tbody">
+            <tr class="row">
+              <td class="entry nocellnorowborder" style="vertical-align:top;" headers="d30073e89 ">Label</td>
+
+              <td class="entry nocellnorowborder" style="vertical-align:top;" headers="d30073e92 ">Optional</td>
+
+              <td class="entry cell-norowborder" style="vertical-align:top;" headers="d30073e95 ">This field gets parsed to the <code class="ph codeph">title</code> schema property.</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry nocellnorowborder" style="vertical-align:top;" headers="d30073e89 ">Property Type</td>
+
+              <td class="entry nocellnorowborder" style="vertical-align:top;" headers="d30073e92 ">Required</td>
+
+              <td class="entry cell-norowborder" style="vertical-align:top;" headers="d30073e95 ">The simple schema editor allows for <code class="ph codeph">Boolean</code>, <code class="ph codeph">Date Time</code>,<code class="ph codeph">Integer</code>, <code class="ph codeph">Number</code>, and <code class="ph codeph">String</code>. The <code class="ph codeph">Date Time</code> type it will get parsed to a <code class="ph codeph">String</code>type and append a <code class="ph codeph">Format</code> property with a value of <code class="ph codeph">date-time</code>.</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry nocellnorowborder" style="vertical-align:top;" headers="d30073e89 ">Required</td>
+
+              <td class="entry nocellnorowborder" style="vertical-align:top;" headers="d30073e92 ">Optional</td>
+
+              <td class="entry cell-norowborder" style="vertical-align:top;" headers="d30073e95 ">Indicates whether the schema property will be mandatory or not.</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry row-nocellborder" style="vertical-align:top;" headers="d30073e89 ">Description</td>
+
+              <td class="entry row-nocellborder" style="vertical-align:top;" headers="d30073e92 ">Optional</td>
+
+              <td class="entry cellrowborder" style="vertical-align:top;" headers="d30073e95 ">Used to describe the property.</td>
+
+            </tr>
+
+          </tbody>
+</table>
+</div>
+
+      <p class="p">Fill in the form fields as needed by the property.</p>
+
+    </div>
+
+    <div class="section"><h2 class="title sectiontitle">Edit a property</h2>
+      
+      <p class="p">To edit an existing property, click on the property name, under the property list, located in the left panel. Alternatively, to edit an existing property, click the ellipsis icon and then click the <span class="ph uicontrol">Edit</span> option in the action menu displayed.</p>
+
+    </div>
+
+    <div class="section"><h2 class="title sectiontitle">Delete a property</h2>
+      
+      <p class="p">To delete a property, click on the ellipsis icon located next to the property name on the left panel and then click the <span class="ph uicontrol">Delete</span> option. Alternatively, a property can be deleted from the Summary View. Deleting a property from a schema is an action that cannot be undone, however, it will not be completely lost until the pipeline draft is saved. Reloading the browser without saving would result in the property still being displayed.</p>
+
+    </div>
+
+    <div class="section"><h2 class="title sectiontitle">Summary View</h2>
+      
+      <p class="p">When a schema already has properties, clicking on <span class="ph uicontrol">Summary</span> displays a table listing all the properties and their configuration. Properties can be modified by clicking on the corresponding action button on each row. A property's form can be also displayed by clicking on the property name in this table.</p>
+
+      <p class="p">The schema is generated dynamically from the UI, and can be seen when exporting the pipeline. Here's an example of a pipeline Definition with input and output schemas:</p>
+
+      <pre class="pre codeblock json"><code>{
+
+  "apiDefinition": {
+
+      "authType": "oauth",
+
+      "httpVerb": "POST",
+
+      "inputSchema": {
+
+        "$schema": "http://json-schema.org/draft-04/schema#",
+
+        "type": "object",
+
+        "properties": {
+
+          "id": {
+
+            "type": "string",
+
+            "title": "GUID",
+
+            "description": "Student GUID"
+
+          },
+
+          "firstName": {
+
+            "type": "string",
+
+            "description": "Student's first name"
+
+          },
+
+          "lastName": {
+
+            "type": "string",
+
+            "description": "Student's last name"
+
+          },
+
+          "finAid": {
+
+            "type": "boolean",
+
+            "title": "Financial Aid",
+
+            "description": "Student has financial aid"
+
+          },
+
+          "registeredOn": {
+
+            "type": "string",
+
+            "format": "date-time",
+
+            "description": "Date on which the student was registered"
+
+          }
+
+        },
+
+        "required": [
+
+          "id",
+
+          "firstName",
+
+          "lastName",
+
+          "registeredOn"
+
+        ]
+
+      },
+
+      "outputSchema": {
+
+        "$schema": "http://json-schema.org/draft-04/schema#",
+
+        "type": "object",
+
+        "properties": {
+
+          "success": {
+
+            "type": "boolean"
+
+          }
+
+        }
+
+      }
+
+    }
+
+}
+</code></pre>
+    </div>
+
+  </div>
+
+</div></div></section>
+<section id="t-320"><h3>Return custom HTTP status</h3><div class="content-locale-en-US content-locale-en"><div id="c_dc_designer_return_custom_http_status"><div class="body conbody"><p class="shortdesc">The HTTP code and return result can be overridden to enable specific use cases.</p>
+
+    <p class="p">For example: A serverless API can return an http status of 404 to indicate a record was not found, or 202 to indicate a process has been started.</p>
+
+    <p class="p">By default serverless APIs will return a 200 status and the contents of last message. In case of an error, the returned status code will be 500, with the payload being an array of errors encountered.</p>
+
+    <p class="p">The pipeline logic can set the following values in the context to override the returning HTTP code and the resulting content. The values can be set with a JavaScript transform or with a setContext fitting.</p>
+
+    <ul class="ul">
+      <li class="li"><code class="ph codeph">__httpStatusCode</code> (number) - If set, on invoking an API Pipeline this value will be used as the HTTP Status code response.</li>
+
+      <li class="li"><code class="ph codeph">__httpStatusMessage</code> (string|object|number) - If set on invoking an API Pipeline this value will be used as the HTTP message.</li>
+
+    </ul>
+
+    <div class="note"><span class="notetitle">Note:</span> The values can be set one time. Setting the values several times either causes an error or the values are ignored altogether. </div>
+
+    <div class="section"><h2 class="title sectiontitle">Examples</h2>
+      
+      <p class="p">The following JavaScript function injects values to override both the http status code and the result.</p>
+
+      <pre class="pre codeblock javascript"><code>function transform (message, context) {
+  context.set("__httpStatusCode", 202);
+  context.set("__httpStatusMessage", "Your request has been received");
+  message.payload={  message:'hello'}
+  return message;
+}</code></pre>
+      <p class="p">An error status code can be specified, as well. You can take advantage of JavaScript transform <code class="ph codeph">Stop On Error</code> and throw an error to stop pipeline execution altogether.</p>
+
+      <pre class="pre codeblock javascript"><code>function transform (message, context) {
+  context.set("__httpStatusCode", 202);
+  context.set("__httpStatusMessage", "Your request has been received");
+  throw new Error('Error message'); //The pipeline will use the message specified above in the response, so the error message on this line is not actually returned.
+}</code></pre>
+      <p class="p">You can also use a setContext fitting to set the status:</p>
+
+      <pre class="pre codeblock javascript"><code>   "Add To Context": {
+      "class": "addToContext",
+      "config": {
+        "source": "$.returnCode",
+        "target": "__httpStatusCode"
+      }
+    },</code></pre>
+    </div>
+
+  </div>
+
+</div></div></section>
+<section id="t-330"><h3>Execute serverless APIs from Experience extensions</h3><div class="content-locale-en-US content-locale-en"><div id="c_dc_designer_serverless_ee_integration"><div class="body conbody"><p class="shortdesc">You must execute serverless APIs from Experience extensions.</p>
+
+    <div class="section"><h2 class="title sectiontitle">Prerequisites</h2>
+      
+      <div class="p">
+        <ul class="ul">
+          <li class="li">A serverless API, that specifies User Token as the Authorization Type, should have been published or received by the 'sharing' functionality.</li>
+
+          <li class="li">Permissions to be enabling calling the Pipeline from an Experience Extension have been set up. Permissions for the API display under Data Connect on the Permissions tab within the Experience Setup page. The user's role needs to be assigned the 'Execute' action for the specific pipeline.</li>
+
+          <li class="li">An Extension has been created. The extension card can be modified to be able to set a Server Configuration which can be fetched later during the Serverless API. See <span class="xref ft-internal-xlink" data-ft-warning="excluded-from-rendering" data-clusterid="ID_ETHOS_master_2026-03-04/id_ethos/ethos_data_connect_int_design/t_basic_config_params">Define Basic Configuration Parameters</span> documentation for more details.</li>
+
+          <li class="li">The Extension has been published and enabled to the tenant to execute the Serverless API.</li>
+
+        </ul>
+
+      </div>
+
+    </div>
+
+    <div class="section"><h2 class="title sectiontitle">Call a serverless API from a card</h2>
+      
+      <p class="p">To call a serverless API you should use the authenticatedEthosFetch method that is provided by the useData hook from the Experience SDK. This method already injects a valid User Token to the request and an Accept header with the value of 'application/json'. A specific version cannot be sent at this time. All that is needed to do is pass down the name of the serverless API as the first and only argument for said method i.e.:</p>
+
+      <pre class="pre codeblock"><code>import { useData } from '@ellucian/experience-extension-utils';
+const SampleCard = (props) =&gt; {
+    const { authenticatedEthosFetch } = useData();
+	// Could also be: 
+	// const { data: { authenticatedEthosFetch } } = props;
+    const [mydata, setData] = useState();
+
+    useEffect(() =&gt; {
+        fetchData();
+    }, []);
+
+    const fetchData = () =&gt; {
+        authenticatedEthosFetch("name-of-your-serverless-api")
+            .then((response) =&gt; response.json())
+            .then((data) =&gt; {
+                setData(data);
+            })
+			.catch((error) =&gt; {
+				// do something with the error
+			});
+    }
+
+// ...</code></pre>
+    </div>
+
+    <div class="section"><h2 class="title sectiontitle">Use Server Configuration Card values when calling a Serverless API</h2>
+      
+      <p class="p">You can use Experience's Server Configuration values to store sensitive values, for example, API keys. See <a class="xref ft-external-link" href="https://resources.elluciancloud.com/bundle/ellucian_experience_acn_use/page/t_basic_config_params.html" target="_blank" rel="noopener">Define Basic Configuration Parameters</a> documentation for more details.</p>
+
+      <p class="p">It is important to note that whatever you define as a server configuration parameter, the key must match whatever Pipeline Parameters you have defined when designing the serverless API. That is, if you have set a pipeline parameter name to be <code class="ph codeph">ethosApiKey</code>, you need to make sure that the same name is set as key on the server configuration object in your extension. Failing to do so would result in that value being ignored by the API execution.</p>
+
+      <p class="p">Another important point is that you must include cardId explicitly as a query parameter on the request URI, otherwise, the serverless API will not attempt to get the Server Configuration from your card and continue its execution without it. You can modify the server values when configuring your extension's card in Experience UI but you have to account for two scenarios: calling the API with card configuration, and calling the API with card configuration in preview mode.</p>
+
+    </div>
+
+    <div class="section"><h2 class="title sectiontitle">Call the API with Card Configuration</h2>
+      
+      <p class="p">Cards within Experience Extensions have a cardId prop set by default. Sending this value as a query parameter on the request made by authenticatedEthosFetch will enable the Serverless API to fetch a Card's Server Configuration value as long as these have been already saved during the Card Configuration process. You can access the cardId prop with the useCardInfo hook provided by the Experience SDK. Here's an example:</p>
+
+      <pre class="pre codeblock"><code>import { useData, useCardInfo } from '@ellucian/experience-extension-utils';
+const SampleCard = (props) =&gt; {
+    const { authenticatedEthosFetch } = useData();
+ 	const { cardId } = useCardInfo();
+	const [mydata, setData] = useState();
+
+    useEffect(() =&gt; {
+        fetchData();
+    }, []);
+
+    const fetchData = () =&gt; {
+        authenticatedEthosFetch(`name-of-your-pipeline-api?cardId=${cardId}`)
+            .then((response) =&gt; response.json())
+            .then((data) =&gt; {
+                setData(data);
+            })
+			.catch((error) =&gt; {
+				// do something with the error
+			});
+    }
+
+// ...</code></pre>
+      <p class="p">The above will result in the Serverless API using the saved card configuration values when executing.</p>
+
+    </div>
+
+    <div class="section"><h2 class="title sectiontitle">Call the API with Card Configuration in Preview Mode</h2>
+      
+      <p class="p">Extensions should account for the scenario in which a Card is being used in a Preview mode. This is the result of actively updating the values of the server configuration on the card configuration screen without saving. When using authenticatedEthosFetch on the experience card, the call needs to indicate that its on preview mode, so the server configuration values are retrieved from a temporary storage (these values will not be used on the non-preview mode unless they are explicitly saved on the card configuration process). To enable this behavior, the cardPrefix value of the card needs to be sent as a query parameter, alongside the cardId value on a homonymous query parameter name. All these values are made available by the useCardInfo hook provided by the Experience SDK. Here's an example:</p>
+
+      <pre class="pre codeblock"><code>import { useData, useCardInfo } from '@ellucian/experience-extension-utils';
+const SampleCard = (props) =&gt; {
+    const { authenticatedEthosFetch } = useData();
+ 	const { serverConfigContext: { cardPrefix }, cardId } = useCardInfo();
+	const [mydata, setData] = useState();
+
+    useEffect(() =&gt; {
+        fetchData();
+    }, []);
+
+    const fetchData = () =&gt; {
+        authenticatedEthosFetch(`name-of-your-pipeline-api?cardId=${cardId}&amp;cardPrefix=${cardPrefix}`)
+            .then((response) =&gt; response.json())
+            .then((data) =&gt; {
+                setData(data);
+            })
+			.catch((error) =&gt; {
+				// do something with the error
+			});
+    }
+
+// ...</code></pre>
+      <p class="p">The above will result in the serverless API using whatever temporary values from the card configuration for its execution. Combining Server Configuration Card values and Query Params when calling a Serverless API It is possible to use both server configuration card values along with query parameters when executing a serverless API. The query parameter will take precedence over any values returned by the card's configuration. This functionality can be used for testing or for sending non-sensitive values such as dates or flags. Here's an example:</p>
+
+      <pre class="pre codeblock"><code>import { useData, useCardInfo } from '@ellucian/experience-extension-utils';
+const SampleCard = (props) =&gt; {
+    const { authenticatedEthosFetch } = useData();
+ 	const { cardId } = useCardInfo();
+	const [mydata, setData] = useState();
+
+    useEffect(() =&gt; {
+        fetchData();
+    }, []);
+
+    const fetchData = () =&gt; {
+        authenticatedEthosFetch(`name-of-your-pipeline-api?cardId=${cardId}&amp;dateOfBirth=06-07-2023`)
+            .then((response) =&gt; response.json())
+            .then((data) =&gt; {
+                setData(data);
+            })
+			.catch((error) =&gt; {
+				// do something with the error
+			});
+    }
+
+// ...</code></pre>
+    </div>
+
+  </div>
+
+</div></div></section></main></body></html>

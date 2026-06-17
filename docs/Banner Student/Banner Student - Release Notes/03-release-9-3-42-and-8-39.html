@@ -1,0 +1,637 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Banner Student - Release Notes — Release 9.3.42 and 8.39</title><style>body{font-family:-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;line-height:1.55;color:#1a1a1a;max-width:920px;margin:0 auto;padding:24px}header{border-bottom:2px solid #5a16d6;margin-bottom:8px}h1{color:#3a0ca3}h2,h3,h4,h5,h6{margin-top:1.6em}.crumb{color:#666;font-size:13px;margin:0}.meta{color:#888;font-size:12px}nav.toc{background:#f6f4fc;border:1px solid #e3dcf5;border-radius:8px;padding:12px 18px;margin:18px 0}nav.toc h2{margin:.2em 0}nav.toc ul{list-style:none;padding-left:0}nav.toc a{text-decoration:none;color:#5a16d6}section{margin:1.2em 0;padding-top:.4em}img{max-width:100%;height:auto}table{border-collapse:collapse}td,th{border:1px solid #ccc;padding:4px 8px}code,pre{background:#f4f4f4;border-radius:4px}pre{padding:10px;overflow:auto}</style></head><body><header><p class="crumb">Banner Student › Banner Student - Release Notes</p><h1>Banner Student - Release Notes — Release 9.3.42 and 8.39</h1><p class="meta">Source: <a href="https://resources.elluciancloud.com/r/bundle/banner_student_rel_release_notes">https://resources.elluciancloud.com/r/bundle/banner_student_rel_release_notes</a> &middot; Retrieved 2026-06-17</p></header><nav class="toc"><h2>Contents</h2><ul><li style="margin-left:0px"><a href="#t-30">Release 9.3.42 and 8.39</a></li></ul></nav><main><section id="t-30"><h2>Release 9.3.42 and 8.39</h2><div class="content-locale-en-US content-locale-en"><div id="c_release_9.3.42_8.39"><div class="body conbody"><p class="shortdesc">The <span class="keyword">Banner Student</span> <span class="keyword">9.3.42 and 8.39</span> release includes quality improvements and technical currency updates.</p>
+
+    <div class="section supportnote"><h2 class="title sectiontitle">Support for Banner 8 Self-Service has ended</h2>
+      
+      <p class="p">As of January 1, 2026, <span class="keyword">Banner</span> 8 <span class="keyword">Self-Service</span> has moved out of Sustaining Support and has entered End of Support.</p>
+
+      <p class="p">For detailed information on support statuses, please review our <a class="xref ft-external-link" href="https://elluciansupport.service-now.com/customer_center?id=kb_article_view&amp;sysparm_article=000038478" target="_blank" rel="noopener">Support Assurance Policy</a>.</p>
+
+    </div>
+
+    <div class="section"><h2 class="title sectiontitle">Technical Currency Upgrades</h2>
+      
+      <p class="p">As part of ongoing technical currency initiatives, Banner General Java batch programs have been upgraded to support the latest versions of key Spring frameworks. This enhancement ensures improved compatibility, performance, and alignment with modern development standards.</p>
+
+      <p class="p">Banner General Java batch programs now support Spring Framework 7.x, Spring-boot 4.x and Spring-batch 6x libraries at runtime.</p>
+
+      <p class="p">Modified Java Processes:</p>
+
+      <ul class="ul">
+        <li class="li">SARSTML</li>
+
+        <li class="li">SOPSSDT</li>
+
+      </ul>
+
+      <p class="p">This enhancement addresses PE0008177 in the <span class="keyword">Ellucian Customer Center</span>.</p>
+
+    </div>
+
+    <div class="section"><h2 class="title sectiontitle">Enhanced Batch Job Submission Status Capture</h2>
+      
+      <p class="p">The Banner Batch Job Submission framework has been enhanced to ensure consistent and accurate capture of job execution status across all Banner modules. This enhancement improves visibility into batch job lifecycle events by reliably recording queue, run, and completion timestamps, enabling better monitoring and troubleshooting of batch processes through the <span class="keyword apiname">jobsub-statuses</span> API.</p>
+
+      <p class="p">The Banner Batch framework captures execution status for jobs in the <code class="ph codeph">GJBRSLT</code> table and exposes this information through the <span class="keyword apiname">jobsub-statuses</span> API. </p>
+
+      <p class="p">The enhancement resolves this conflict by implementing proper insert/update logic that handles both new and existing records gracefully, eliminating submission failures and ensuring accurate final status reporting.</p>
+
+      <p class="p">Key features of this enhancement include:</p>
+
+      <ul class="ul">
+        <li class="li">Preservation of queue and run timestamps during record updates, maintaining complete job lifecycle history</li>
+
+        <li class="li">Elimination of batch insert failures caused by framework-inserted status records</li>
+
+        <li class="li">Improved accuracy of job status reporting through the <span class="keyword apiname">jobsub-statuses</span> API</li>
+
+        <li class="li">Enhanced visibility and monitoring capabilities for batch job execution across Banner modules</li>
+
+        <li class="li">Consistent behavior across both Oracle and PostgreSQL database environments</li>
+
+      </ul>
+
+      <p class="p">This enhancement addresses PE0007995 in the <span class="keyword">Ellucian Customer Center</span>.</p>
+
+    </div>
+
+    <div class="section"><h2 class="title sectiontitle">Extended Currency Support for Student Accounts Receivable</h2>
+      
+      <p class="p">Banner Student extends the maximum supported values for fee, charge, refund, and balance amount fields in the Student Accounts Receivable module in Banner SaaS environments.</p>
+
+      <p class="p">Banner Student delivers extended currency support for Student Accounts Receivable amount fields in Banner SaaS. Fee assessment amounts, charge amounts, payment amounts, refund amounts, and balance totals associated with the Student module now support values up to 99,999,999,999.99.</p>
+
+      <p class="p">Institutions that process student fee transactions or have account balances that may exceed 999,999.99 benefit from this enhancement. No configuration change is required to enable extended currency support; the expanded field capacity is available automatically in Banner SaaS environments running Banner Student.</p>
+
+      <div class="note"><span class="notetitle">Note:</span> This enhancement applies to Banner SaaS environments. Institutions using on-premises deployments should review their environment and database configuration before processing amounts in the extended range.</div>
+
+      <p class="p">This enhancement addresses PE0008048 in the <span class="keyword">Ellucian Customer Center</span>.</p>
+
+    </div>
+
+    <div class="section"><h2 class="title sectiontitle">Enhanced Student Profile data visibility with module scores</h2>
+      
+      <p class="p">The Structured Progression Student Profile has been enhanced to display actual module scores alongside the <kbd class="ph userinput">F</kbd> grade for failed modules. This enhancement provides programme leaders and exam board members with the detailed academic data needed to identify students eligible for compensation or condonement under institutional assessment regulations.</p>
+
+      <p class="p">The enhancement improves the reliability and efficiency of progression processing and exam board preparation by ensuring all relevant academic data is available in a single view. The Student Profile page now includes a new <span class="ph uicontrol">Percentage</span> column under the <span class="ph uicontrol">Courses and Grades</span> section, which displays the actual numeric scores for failed modules. This does not alter grading or progression logic; it purely enhances data visibility in the user interface.</p>
+
+      <p class="p">This enhancement addresses PE0007290 in the <span class="keyword">Ellucian Customer Center</span>.</p>
+
+    </div>
+
+    <div class="section"><h2 class="title sectiontitle">Enhance Structured Progression SHASPAR page and SHPPGAW process</h2>
+      
+      <p class="p">Structured Progression has been enhanced to support progression rule logic based on student attributes, enabling differentiated progression and re-sit outcomes for multi-intake programmes. This enhancement addresses the needs of institutions delivering postgraduate programmes with multiple intake points throughout the academic year, such as October and January intakes.</p>
+
+      <p class="p">A new field <span class="ph uicontrol">Attribute</span> and new column shrpgrc_atts_code is added to the SHASPAR page, and a query is modified in the SHPPGAW process and related services to add attribute code logic while checking for stage and progression rules.</p>
+
+      <p class="p">The enhancement introduces the ability to reference the Student Attribute Code (<code class="ph codeph">STVATTS_CODE</code>) within <code class="ph codeph">SHASPAR</code> (Student Assessment Parameters) rule conditions and <code class="ph codeph">SHPPGAW</code> (Progression Award Rules) processing. This allows progression logic to distinguish automatically between different intakes or other cohort-defining attributes within the same programme structure, without requiring duplicate programme configurations or manual intervention.</p>
+
+      <p class="p">This enhancement enables institutions to manage multi-intake postgraduate programmes accurately within a single progression framework, reducing manual workload while ensuring regulatory compliance and operational consistency across different student cohorts.</p>
+
+      <p class="p">Evaluation Parameter Integration Enhancements:</p>
+
+      <ul class="ul">
+        <li class="li">DML script updates: Added a new parameter <span class="ph uicontrol">Evaluate By</span> in <span class="ph filepath">sgjbpdefi_083900.sql</span>, <span class="ph filepath">sgjbpvali_083900.sql</span>, and <span class="ph filepath">sgjbpdfti_083900.sql</span>.</li>
+
+        <li class="li">SHPPGAW process modification: Implemented support for the new parameter <span class="ph uicontrol">Evaluate By</span> within job submission parameters. </li>
+
+        <li class="li">Service logic enhancement: Updated <code class="ph codeph">OverallProgressionEvaluationService</code> and <code class="ph codeph">StageProgressionEvaluationService</code> to evaluate using either Catalog Term or Evaluation Term, based on the value provided for the new parameter.</li>
+
+      </ul>
+
+      <p class="p">This enhancement addresses PE0007279 and PE0007282 in the <span class="keyword">Ellucian Customer Center</span>.</p>
+
+    </div>
+
+    <div class="section"><h2 class="title sectiontitle">Automated Learner Curriculum End Date and Catalogue Term updates</h2>
+      
+      <p class="p">Structured Progression has been enhanced to automatically update the Learner Curriculum End Date (<code class="ph codeph">SORLCUR_END_DATE</code>) and increment the Catalogue Term based on student progression outcomes and academic standing decisions. This automation ensures accurate academic record maintenance and compliance with UK and Ireland reporting standards, particularly for HESA and ERM statutory reporting.</p>
+
+      <p class="p">Two new columns SHRASAT_CAT_TERM_INCR_IND and SHRASAT_CURR_END_DATE_INCR_IND are added to the SHRASAT table. The SHAASAT page is modified to add new fields which are required to increment date and next roll term logic. </p>
+
+      <p class="p">The <span class="keyword apiname">progression‑awards‑results</span> API has been enhanced to improve roll logic handling for award progression. These changes ensure accurate date adjustments and term rollovers based on adjustment rules. Additionally, the nextRollTerm value is advanced to the following year to ensure accurate progression handling.</p>
+
+      <p class="p">When progression outcomes from an exam committee determine that a student must repeat a year, extend their study period, or experience other changes to their academic timeline, the system now automatically adjusts the curriculum end date to reflect the new academic timeline. </p>
+
+      <p class="p">Key capabilities include:</p>
+
+      <ul class="ul">
+        <li class="li">Automatic update of <code class="ph codeph">SORLCUR_END_DATE</code> when a progression outcome (such as Repeat Year, Proceed to Next Stage, or Withdrawn) is locked or approved within Structured Progression</li>
+
+        <li class="li">Extension of end dates based on configurable rules mapped to the progression outcome (for example, "Repeat Year" extends the end date by one academic year)</li>
+
+      </ul>
+
+      <p class="p">This enhancement addresses PE0007399 in the <span class="keyword">Ellucian Customer Center</span>.</p>
+
+    </div>
+
+    <div class="section"><h2 class="title sectiontitle">Enhanced BPAPI for the SGASTDN page</h2>
+      
+      <p class="p">Previously, a warning alert triggered by an existing graduation application was not being bypassed, preventing users from proceeding with BPAPI functionality. The following BPAPIs are modified to support this enhancement. </p>
+
+      <ul class="ul">
+        <li class="li">SGASTDN<ul class="ul">
+          <li class="li">general-student-curricula - POST </li>
+
+          <li class="li">general-student-learner-and-curricula - POST </li>
+
+          <li class="li">general-student-curricula-update - PUT</li>
+
+          <li class="li">general-student-field-of-study - POST</li>
+
+          </ul>
+</li>
+
+        <li class="li">SFAREGS<ul class="ul">
+          <li class="li">student-course-registration-curricula - POST </li>
+
+          <li class="li">student-course-registration-curricula-attached-concentrations - POST </li>
+
+          <li class="li">student-course-registration-curricula-duplicate - POST</li>
+
+          <li class="li">student-course-registration-curricula-replace - POST </li>
+
+          <li class="li">student-course-registration-curricula-update - PUT</li>
+
+          </ul>
+</li>
+
+      </ul>
+
+      <p class="p">This enhancement addresses PE0008308 in the <span class="keyword">Ellucian Customer Center</span>.</p>
+
+    </div>
+
+    <div class="section"><h2 class="title sectiontitle">Enhanced SHATRNS and SHATAEQ pages</h2>
+      
+      <p class="p">The SHATRNS and SHATAEQ pages are enhanced to improve the creation of Transfer Course Degree Applied records.</p>
+
+      <p class="p">Key modifications include:</p>
+
+      <ul class="ul">
+        <li class="li">Conditional record creation: Transfer Course Degree Applied records (<code class="ph codeph">SHRTRCD</code> table) are now created only when a corresponding Degree record exists in SHADEGR for the same academic level.</li>
+
+        <li class="li">Award status validation: Records will not be created if the associated degree has already been awarded, ensuring data integrity and preventing duplication.</li>
+
+      </ul>
+
+      <p class="p">This enhancement addresses PE0008275 in the <span class="keyword">Ellucian Customer Center</span>.</p>
+
+    </div>
+
+    <div class="section"><h2 class="title sectiontitle">UCAS Enhancements</h2>
+      
+      <p class="p">Added new table SORADCL EUROPE UCAS: (Applicant Uploaded Document List Table)</p>
+
+      <p class="p">This enhancement addresses PE0006670 in the <span class="keyword">Ellucian Customer Center</span>.</p>
+
+    </div>
+
+    <div class="section"><h2 class="title sectiontitle">ACT 2026 Test Score Format Support</h2>
+      
+      <p class="p">The SRTLOAD (Test Score Load) process has been enhanced to support the ACT 2026 test score format, effective July 22, 2026. This enhancement ensures continued compatibility with ACT data loads as the testing organization transitions to a new file format specification, enabling institutions to seamlessly receive and process standardized test scores for admissions, placement, and reporting purposes.</p>
+
+      <p class="p">This enhancement updates SRTLOAD to accommodate the new ACT 2026 specifications while maintaining operational continuity for test score processing:</p>
+
+      <p class="p">ACT 2026 File Format Support:</p>
+
+      <p class="p">SRTLOAD now recognizes and processes the new ACT 2026 file format specifications, including changes to field positions, data element definitions, and scoring component structures. The process accurately maps incoming test score data to Banner's test score tables (<code class="ph codeph">SORTEST</code>, <code class="ph codeph">SORSDAT</code>) according to the updated ACT specifications, ensuring that composite scores, subject-area scores, and supplemental test components are correctly stored and available for institutional use.</p>
+
+      <p class="p">Key features of this enhancement include:</p>
+
+      <ul class="ul">
+        <li class="li">Support for ACT 2026 file format effective July 22, 2026, including updated field structures and scoring components</li>
+
+        <li class="li">Automatic format detection and version-specific processing logic</li>
+
+        <li class="li">Backward compatibility with existing ACT file formats during transition periods</li>
+
+        <li class="li">Maintained validation, error handling, and data quality controls</li>
+
+        <li class="li">Seamless integration with admissions, placement, reporting, and downstream processes</li>
+
+        <li class="li">Accurate mapping to <code class="ph codeph">SORTEST</code> and <code class="ph codeph">SORSDAT</code> tables</li>
+
+        <li class="li">Support for composite scores, subject-area scores, and supplemental test components</li>
+
+        <li class="li">Alignment with official ACT specifications and industry standards</li>
+
+      </ul>
+
+      <p class="p">This enhancement ensures that institutions can continue to receive and process ACT test scores without disruption, maintaining critical admissions and placement workflows as external testing organizations update their data delivery formats. By supporting the ACT 2026 format while maintaining backward compatibility, the enhancement provides flexibility during format transition periods and future-proofs Banner's test score processing capabilities.</p>
+
+      <p class="p">This enhancement addresses PE0008239 in the <span class="keyword">Ellucian Customer Center</span>.</p>
+
+    </div>
+
+    <div class="section"><h2 class="title sectiontitle">SHRDEGV Multi-College/Multi-Campus Support</h2>
+      
+      <p class="p">The Degree Verification Process (SHRDEGV) is enhanced to provide improved support for multi-college/multi-campus institutions. This enhancement introduces new optional parameters and improved data file header logic to better accommodate institutions with multiple OPEID codes.</p>
+
+      <p class="p">Key enhancements include:</p>
+
+      <ul class="ul">
+        <li class="li">Added optional parameter for Population Selection (PopSel)</li>
+
+        <li class="li">Added optional parameter for OPEID</li>
+
+        <li class="li">Updated .dat file header logic to support OPEID in place of FICE/Branch code</li>
+
+      </ul>
+
+      <p class="p">The OPEID parameter can be provided as either 6 or 8 digits:</p>
+
+      <ul class="ul">
+        <li class="li">When the OPEID parameter is 8 digits, it replaces the existing FICE + branch code in the header, with the 8-digit OPEID populating starting at position 4 in the .dat file.</li>
+
+        <li class="li">When the OPEID parameter is 6 digits, the 6-digit OPEID is used with "00" appended as the branch code, consistent with current behavior.</li>
+
+        <li class="li">When the OPEID parameter is blank, the existing logic continues to use the 6-digit FICE from the SHACTRL page with "00" as the branch code.</li>
+
+      </ul>
+
+      <p class="p">The existing validation remains in place: if the FICE code is null in SHACTRL, the process will continue to throw an error.</p>
+
+      <p class="p">This enhancement addresses PE0008300 in the <span class="keyword">Ellucian Customer Center</span>.</p>
+
+    </div>
+
+    <div class="section"><h2 class="title sectiontitle">Sleep Wake Listener Enhancements</h2>
+      
+      <p class="p">Banner Student Sleep/Wake jobs now include Sleep Wake Listener enhancements that automatically monitor and restart critical batch processes. This enhancement eliminates manual intervention when processes terminate unexpectedly or during system upgrades, improving operational resilience and reducing downtime.</p>
+
+      <p class="p">The Sleep Wake Listener continuously monitors configured batch jobs, detects abnormal termination, and automatically restarts jobs using the same parameters and user credentials from the last successful run. This automated recovery mechanism ensures seamless operation without requiring manual intervention.</p>
+
+      <p class="p">Enhanced processes include:</p>
+
+      <ul class="ul">
+        <li class="li">SFRSCHD - Schedule Processing</li>
+
+        <li class="li">SHRTRTC - Real-Time Conflict Checking</li>
+
+        <li class="li">SHRPESE - Registration Event Streaming</li>
+
+        <li class="li">SHRTCIM - Course Import Management</li>
+
+        <li class="li">SHRPESI - Registration Event Service Integration</li>
+
+        <li class="li">SCRCATE - Catalog Event Processing</li>
+
+      </ul>
+
+      <p class="p">Key features of the Sleep Wake Listener:</p>
+
+      <ul class="ul">
+        <li class="li">Automatic process monitoring at regular intervals</li>
+
+        <li class="li">Restart capability using preserved parameters from the last run</li>
+
+        <li class="li">Maintains the same user ID from the last run when restarting</li>
+
+        <li class="li">Lock file mechanism to track active processes and their state</li>
+
+        <li class="li">Parameter persistence in the GJRSWPR table to guarantee availability for recovery</li>
+
+        <li class="li">Process tracking information maintained in the GJRSWPT table</li>
+
+        <li class="li">Graceful shutdown capability during database upgrades</li>
+
+        <li class="li">Automatic restart post-upgrade without requiring manual intervention</li>
+
+      </ul>
+
+      <p class="p">This enhancement significantly improves operational resilience, reduces downtime risk for critical registration and scheduling processes, and eliminates the manual work previously required to restart these processes after unexpected terminations or system upgrades.</p>
+
+      <p class="p">This enhancement addresses PE0007888 in the <span class="keyword">Ellucian Customer Center</span>.</p>
+
+    </div>
+
+    <div class="section"><h2 class="title sectiontitle">Student ID filtering for Class Roster and Class Attendance Roster </h2>
+      
+      <p class="p">The Class Roster (SFASLST) and Class Attendance Roster (SFAALST) pages have been enhanced to support Student ID as a filter criterion, enabling staff to quickly locate specific students without manual scanning or exporting. This enhancement improves efficiency when working with large classes or troubleshooting attendance and roster issues.</p>
+
+      <p class="p">In the SFAALST and SFASLST pages the filter by SPRIDEN ID is implemented and the modified BPAPI's are:</p>
+
+      <ul class="ul">
+        <li class="li"><span class="keyword apiname">class-roster</span></li>
+
+        <li class="li"><span class="keyword apiname">class-attendance-roster</span></li>
+
+      </ul>
+
+      <p class="p">Key features of this enhancement include:</p>
+
+      <ul class="ul">
+        <li class="li">Student ID filter parameter added to SFASLST (Class Roster) and SFAALST (Class Attendance Roster) pages</li>
+
+        <li class="li">Extended Business Process APIs to support Student ID filtering with Banner validations</li>
+
+        <li class="li">Improved efficiency for locating specific students in large classes</li>
+
+        <li class="li">Enhanced troubleshooting capabilities for attendance and roster management</li>
+
+        <li class="li">Support for both Oracle and PostgreSQL database environments</li>
+
+      </ul>
+
+      <p class="p">This enhancement addresses PE0007788 in the <span class="keyword">Ellucian Customer Center</span>.</p>
+
+    </div>
+
+    <div class="section"><h2 class="title sectiontitle">SOACMAP Concentration Field Enhancement</h2>
+      
+      <p class="p">A new <span class="ph uicontrol">Concentration</span> field is added to the Curriculum Mapping (SOACMAP) page that auto-populates based on the Banner configuration in STVMAJR.</p>
+
+      <p class="p">When a <span class="ph uicontrol">Major</span> is selected in CMAP, the corresponding <span class="ph uicontrol">Concentration</span> now auto-populates, similar to how the Unit Specialization (Specialization Code) is derived. This enhancement ensures consistency with Banner configuration and streamlines the curriculum mapping process.</p>
+
+      <p class="p">Key features of this enhancement include:</p>
+
+      <ul class="ul">
+        <li class="li">New <span class="ph uicontrol">Concentration</span> field added to SOACMAP</li>
+
+        <li class="li">Auto-population based on STVMAJR configuration</li>
+
+        <li class="li">Consistent behavior with existing Specialization code logic</li>
+
+        <li class="li">Read-only field when auto-populated</li>
+
+      </ul>
+
+      <p class="p">This enhancement addresses PE0008357 and PE0008328 in the <span class="keyword">Ellucian Customer Center</span>.</p>
+
+    </div>
+
+    <div class="section"><h2 class="title sectiontitle">HESA Enhancements</h2>
+      
+      <p class="p">New HGO export Activity ESC_HGO_EXP_CON_2526 created for ESC_HGO process.</p>
+
+      <p class="p"> This new export activity contains the following changes:</p>
+
+      <ul class="ul">
+        <li class="li">Reordering the tags based on c25071 xsd.</li>
+
+        <li class="li">EMAIL tag-&gt;EMAIL1,EMAIL2,EMAIL3</li>
+
+        <li class="li">INTTEL tag-&gt;INTTEL1, INTTEL2, INTTEL3(Only generated when HOMEEUOS ≠ 3)</li>
+
+        <li class="li">UKMOB tag-&gt;UKMOB1, UKMOB2, UKMOB3(Only generated when HOMEEUOS ≠ 3)</li>
+
+        <li class="li">UKTEL tag-&gt;UKTEL1, UKTEL2, UKTEL3(Only generated when HOMEEUOS ≠ 3)</li>
+
+        <li class="li">Display PostalAddress only when GRADSTATUS=02 and AND COUNTRY IN ('XF', ‘XH', 'XI', 'XG', 'XK')</li>
+
+      </ul>
+
+      <p class="p">New HGO Export ESC_HGO_EXP_START2526 Activity created for ESC_HGO process. This Activity includes Starting tag &lt;DataFutures&gt;.</p>
+
+      <p class="p">New HGO Export ESC_HGO_EXP_END2526 Activity created for ESC_HGO process.  This Activity includes Closing tag &lt;/DataFutures&gt;.</p>
+
+      <p class="p">This enhancement addresses PE0007899 in the <span class="keyword">Ellucian Customer Center</span>.</p>
+
+      <p class="p">HESA 8.34 Java Process</p>
+
+      <p class="p">A new Java process SHPNPDM is introduced to load XML data to GOANPID page for Existing and non existing HESA DF.</p>
+
+      <p class="p">This enhancement addresses PE0008205 in the <span class="keyword">Ellucian Customer Center</span>.</p>
+
+    </div>
+
+    <div class="section"><h2 class="title sectiontitle">HEA enhancements</h2>
+      
+      <p class="p">SORHEAR JAVA Process:</p>
+
+      <ul class="ul">
+        <li class="li">CAO in Survey Return to pick the latest CAO number.Distinct Contract pidm logic change in FreeFees field of Survey Return.<p class="p">This enhancement addresses PE0007359 in the <span class="keyword">Ellucian Customer Center</span>.</p>
+</li>
+
+        <li class="li">CAO Rating to between 0 and 625 should return with an entry basis of 1 of Survey Return.CAO rating of 999 to return as 10 for entry basis of Survey Return. Entrybasis logic change to look for latest Admit termcode details in SOASCFD.<p class="p">This enhancement addresses PE0007528 in the <span class="keyword">Ellucian Customer Center</span></p>
+</li>
+
+        <li class="li">Logic change to pick the oldest address of a student for the HEA Survey Return, even when it is marked as inactive.<p class="p">This enhancement addresses PE0007592 in the <span class="keyword">Ellucian Customer Center</span></p>
+</li>
+
+        <li class="li">Mode of Study logic change for the HEA Survey Return: The SORHEAR process now picks the Attribute code value from SGASADD mapped to GORICCR. If that mapping is not found, it falls back to the <span class="ph uicontrol">CONCENTRATION</span> field of the learner record mapped to GORICCR.<p class="p">This enhancement addresses PE0008015 in the <span class="keyword">Ellucian Customer Center</span></p>
+</li>
+
+        <li class="li">Survey Return and Graduation Processing Enhancements<ul class="ul">
+          <li class="li">Address4 to pick city.Address5 set to null.</li>
+
+          <li class="li">In the Program details in SOAPRCD page,If the program is marked on "Exclude from Reporting".Then that record will not be returned in Survey Return.</li>
+
+          <li class="li">Students are returned in Survey Return even if the don't have the data in SOAPRCD.</li>
+
+          <li class="li">Awarded students are picked up by graduation term code instead of catalogue termcode on SHADEGR.</li>
+
+          <li class="li">Graduation Year students for DC Institute code are graduated in RETURN YEAR, RETURN_YEAR-1 and for other institutes its only from RETURN_YEAR -1 for Final Return Type of Survey Return.</li>
+
+          </ul>
+<p class="p">This enhancement addresses PE0007593 in the <span class="keyword">Ellucian Customer Center</span></p>
+</li>
+
+        <li class="li">HEA Survey Return Logic changes:<ul class="ul">
+          <li class="li">Apprentice Students: Logic updated to pick students with A2, A4, A6 codes in the current year or the previous year (based on return type) in the Survey Return.</li>
+
+          <li class="li">Year Left: Logic changed to pick the max year of the <span class="ph uicontrol">Attended To</span> date in the prior college attended by the student; defaults to 1900 if no prior college record exists.</li>
+
+          <li class="li">Last Institution Attended: Logic changed to pick the latest Prior College attended by the student based on the max year of the <span class="ph uicontrol">Attended To</span> date. If there is no record for <span class="ph uicontrol">Attended To</span>, it picks the latest Prior College for the HEA Survey Return.</li>
+
+          </ul>
+<p class="p">This enhancement addresses PE0007594 in the <span class="keyword">Ellucian Customer Center</span></p>
+</li>
+
+        <li class="li">HEA Graduate Outcomes (SORHEGO) process logic changes:<ul class="ul">
+          <li class="li">Graduate Selection Logic: The SORHEGO process will now pick graduates from SHADEGR's Graduation TermCode field instead of the Degree Completion TermCode field. <ul class="ul">
+            <li class="li">If the institution is DC (identified through FICE_CODE in SHACTRL), graduates are picked from the same Return Year</li>
+
+            <li class="li">For all other institutions, graduates are picked from Return Year – 1.</li>
+
+            </ul>
+</li>
+
+          <li class="li">NQAI Level Code: Append a zero to NQAI level codes to make them two digits.</li>
+
+          </ul>
+<p class="p">This enhancement addresses PE0008142 in the <span class="keyword">Ellucian Customer Center</span></p>
+</li>
+
+        <li class="li">Apprentice students logic to pick students with A2, A4, A6 codes in the current year or the previous year (based on return type) in the Survey Return. <p class="p">Yearleft logic change to pick the max year of <span class="ph uicontrol">Attended To</span> date in the prior college attended by the student else 1900.</p>
+<p class="p">Last Institution attended logic change to pick the latest Prior College attended by the student based on the max year of <span class="ph uicontrol">Attended To</span> date. If there is no record for the <span class="ph uicontrol">Attended To</span> then it should pick the latest Prior College for the HEA Survey Return.</p>
+<p class="p">This enhancement addresses PE0007594 in the <span class="keyword">Ellucian Customer Center</span></p>
+</li>
+
+      </ul>
+
+    </div>
+
+    <div class="section"><h2 class="title sectiontitle">SUSI enhancements</h2>
+      
+      <ul class="ul">
+        <li class="li">Student‑matching logic has been updated to consider either the first name or the last name when identifying a student, instead of requiring both. This change improves match accuracy and ensures valid student records are returned even when only one of the name attributes is provided or matches the input.<p class="p">This enhancement addresses PE0007650 in the <span class="keyword">Ellucian Customer Center</span></p>
+</li>
+
+        <li class="li">Course code validation update: Course description is no longer required when the course code validation is set to <kbd class="ph userinput">N</kbd>. <p class="p">This enhancement addresses PE0007649 in the <span class="keyword">Ellucian Customer Center</span></p>
+</li>
+
+        <li class="li">Support for processing of part-time student grants alongside full-time students. Student who is UG, PT, F7,Registration and progressing=’YS', EU student, Add set Free fees is set to <kbd class="ph userinput">N</kbd>.The delete indicator is set to NULL for the above student and active for contract in TSACONT. The changes are applied to Registration,Validation and Verification files.<ul class="ul">
+          <li class="li">Registration File: Display the comment Number of registered credits = followed by the sum of credit hours picked up from SFAREGS, only for UG+PT+F7 students in the Registration File.</li>
+
+          <li class="li">Part-Time Grant Processing: Students who are UG, PT, F7, registered and progressing (='YS'), and EU students.</li>
+
+          <li class="li">Applies across multiple file types: The above changes apply to Registration, Validation, and Verification files.</li>
+
+          </ul>
+<p class="p">This enhancement addresses PE0007565 in the <span class="keyword">Ellucian Customer Center</span></p>
+</li>
+
+      </ul>
+
+    </div>
+
+    <div class="section"><h2 class="title sectiontitle">Structured Registration - Course equivalency validation enhancement</h2>
+      
+      <p class="p">The validation process has been expanded to incorporate course equivalency rules. The system now verifies that defined equivalencies are valid for the relevant term in the SCADETL when validating course completion, ensuring accurate recognition of equivalent courses. This improvement allows requirements to be satisfied more reliably and delivers more precise registration outcomes for students.</p>
+
+      <p class="p">This enhancement addresses PE0006533 in the <span class="keyword">Ellucian Customer Center</span></p>
+
+    </div>
+
+    <div class="section"><h2 class="title sectiontitle">Enhanced Course Program of Study Processing with Graded Course Preservation</h2>
+      
+      <p class="p">The Course Program of Study (SFPCPOS) process has been enhanced to provide institutions with control over how graded and rolled courses are evaluated during financial aid eligibility processing. This enhancement resolves a critical issue where graded courses were being removed from SFASCRE evaluation results during SFPCPOS runs, potentially causing financial aid reductions or loss for students who had already completed courses.</p>
+
+      <p class="p">Previously, when SFPCPOS ran with Parameter 11 set to <kbd class="ph userinput">N</kbd>, graded courses were being completely removed from the SFASCRE (Student Curriculum) evaluation rather than being preserved with their original counts. This caused students to lose financial aid credits for courses they had completed, as the system was re-evaluating all courses instead of freezing graded course results.</p>
+
+      <p class="p">This enhancement introduces a new parameter and audit source to give institutions precise control over course evaluation behavior:</p>
+
+      <p class="p">Parameter 11 - Preserve Graded/Rolled Courses:</p>
+
+      <ul class="ul">
+        <li class="li">Y (Preserve Graded/Rolled Courses): Graded and rolled courses are not re-evaluated. The system carries forward results from the most recent prior SFPCPOS run for eligible courses. These courses are not sent to Degree Works or CAPP in the current run, protecting students from aid reductions after course completion.</li>
+
+        <li class="li">N (Re-evaluate All Courses): All courses, including graded and rolled courses, are evaluated as usual through CAPP or Degree Works, maintaining legacy behavior.</li>
+
+        <li class="li">Default Value: N (preserves existing institutional behavior unless customers opt in to the new functionality)</li>
+
+      </ul>
+
+      <p class="p">Preservation Logic (Parameter 11 = Y):</p>
+
+      <p class="p">When Parameter 11 is set to <kbd class="ph userinput">Y</kbd>, SFPCPOS preserves prior results for a course only when all of the following conditions are met:</p>
+
+      <ul class="ul">
+        <li class="li">The course is graded or rolled</li>
+
+        <li class="li">The registration status voice type is <kbd class="ph userinput">R</kbd> (Registered) or <kbd class="ph userinput">W</kbd> (Web Registered)</li>
+
+        <li class="li">A prior SFPCPOS run exists for that course</li>
+
+      </ul>
+
+      <p class="p">When these conditions are satisfied, SFPCPOS carries forward these fields from the prior run: Count In Program, Count for Aid, Audit Basis In Program, and In Program Repeat. If any condition is not met, the course is processed through normal evaluation through Degree Works or CAPP, regardless of the Parameter 11 setting.</p>
+
+      <p class="p">Examples:</p>
+
+      <ul class="ul">
+        <li class="li">Parameter 11 = Y with a graded course and prior SFPCPOS result (preserved outcome) </li>
+
+        <li class="li">Parameter 11 = Y with no prior SFPCPOS result (normal evaluation path)</li>
+
+      </ul>
+
+      <p class="p">New Audit Source - PAR (Parm 11=Y, Previous Audit Retained):</p>
+
+      <p class="p">A new audit source value <kbd class="ph userinput">PAR</kbd> has been introduced on SFASCRE to provide transparency when preservation logic is applied:</p>
+
+      <ul class="ul">
+        <li class="li">Display Text: Parm 11=Y, Previous Audit Retained</li>
+
+        <li class="li">Database Value: PAR</li>
+
+        <li class="li">When PAR appears: SFPCPOS was run with Parameter 11 = Y, and the preserve logic was applied for an eligible graded or rolled course with a prior SFPCPOS result</li>
+
+        <li class="li">Meaning: The course was not re-evaluated in the current run; SFPCPOS retained the prior CPOS result under the Parameter 11 preservation rules</li>
+
+        <li class="li">Distinct from: DW (Degree Works), CAPP (CAPP), MOV (manual override), and any SFACPSC "Override Rule" source</li>
+
+      </ul>
+
+      <p class="p">Processing Order and Precedence:</p>
+
+      <p class="p">SFPCPOS follows this order of precedence when evaluating course rows:</p>
+
+      <ol class="ol">
+        <li class="li">Preserve Override from SFASCRE (MOV) </li>
+
+        <li class="li">SFACPSC course override (Override tab/rules)</li>
+
+        <li class="li">Preserve Graded/Rolled carried-forward result (Parameter 11 = Y; audit source: PAR)</li>
+
+        <li class="li">Standard evaluation through Degree Works or CAPP (audit source: DW or CAPP)</li>
+
+      </ol>
+
+      <p class="p">Entry Point Behavior:</p>
+
+      <ul class="ul">
+        <li class="li">GJAPCTL (Job Submission): Users explicitly set Parameter 11 to <kbd class="ph userinput">Y</kbd> or <kbd class="ph userinput">N</kbd> on the parameter form</li>
+
+        <li class="li">SFASCRE (Evaluate Courses in Program of Study): Parameter 11 is controlled through a <span class="ph uicontrol">Preserve Graded/Rolled Courses</span> check box on the page. When selected,Parameter 11 = Y; when cleared, Parameter 11 = N.</li>
+
+        <li class="li">ROAIMMP (Financial Aid): Current behavior is maintained with limitations on directly setting Parameter 11 (alignment with Financial Aid is tracked separately in <a class="xref ft-external-link" href="https://elluciansupport.service-now.com/customer_center?id=standard_ticket&amp;table=ellucian_product_defect&amp;sys_id=cf8985ae9766ad10a7bcfbc3f153afa0&amp;view=" target="_blank" rel="noopener">PD0007538</a>).</li>
+
+      </ul>
+
+      <p class="p">SFPCPOS Output Clarification:</p>
+
+      <p class="p">To reduce support questions and improve clarity, the SFPCPOS output (.lis file) footer has been clarified:</p>
+
+      <ul class="ul">
+        <li class="li">Total Records Processed / Records Processed Successfully: Cumulative number of course records processed</li>
+
+        <li class="li">Pages Completed Successfully (Page Size): Page Size is driven by Parameter 10 and represents the number of students per page/chunk, not the number of course records. The page count is informational (batching/check pointing) and does not cap or limit the total course records processed</li>
+
+      </ul>
+
+      <p class="p">For example, if output shows "Total Records Processed: 639" and "Pages Completed Successfully: 5 (Page Size: 25)", this means 639 course records were processed across 5 internal pages of up to 25 students each, not that only 125 records were processed.</p>
+
+      <p class="p">This enhancement ensures accurate financial aid processing, prevents unintended aid reductions for students with completed courses, and provides institutions with flexible control over course evaluation behavior based on their specific business rules and student populations.</p>
+
+      <p class="p">This enhancement addresses PE0007974 in the <span class="keyword">Ellucian Customer Center</span>.</p>
+
+    </div>
+
+    <div class="section"><h2 class="title sectiontitle">Supporting Documentation</h2>
+      
+      <div class="p"><span class="ph">To download supporting documentation for this release, click the <span class="ph uicontrol">Attachments</span> <span class="ph"><img class="image ell-icon" src="images/03-release-9-3-42-and-8-39-1.png" alt="" data-ft-asset-display-name="paperclip.png" data-ft-resource-id="U1hxGZ~0RYMIz4qOJhMPjg-z2kSoEHYYdzJPAZFk1gBDw"></span> icon in the navigation on this page and then select the associated compressed file (.zip) from the displayed list. The zip file contains the following files:</span><ul class="ul">
+        <li class="li"><span class="keyword">Banner Student</span> readme 8.39</li>
+
+        <li class="li"><span class="keyword">Banner Student</span> Object List 8.39</li>
+
+        <li class="li"><span class="keyword">Banner Student</span> Page List 9.3.42</li>
+
+        <li class="li"><span class="keyword">Banner Student</span> Use <span class="keyword">9.3.42 and 8.39</span></li>
+
+        <li class="li"><span class="keyword">Banner Student</span> Resolutions Report 8.39</li>
+
+        <li class="li"><span class="keyword">Banner Student</span> Resolutions Report 9.3.42</li>
+
+        <li class="li"><span class="keyword">Banner Student</span> Upgrade Guide Template</li>
+
+        <li class="li"><span class="keyword">Banner Student</span> Release Notes <span class="keyword">9.3.42 and 8.39</span></li>
+
+        <li class="li"><span class="keyword">Banner Student</span> 903420004 Installation Reference</li>
+
+        <li class="li"><span class="keyword">Banner Student</span> Reports and Processes <span class="keyword">9.3.42 and 8.39</span></li>
+
+        </ul>
+</div>
+
+      <p class="p">The content published on the Documentation site for this release and the documentation included in the associated zip file (listed above) also support any associated hot fix releases.</p>
+
+    </div>
+
+  </div>
+
+</div></div></section></main></body></html>

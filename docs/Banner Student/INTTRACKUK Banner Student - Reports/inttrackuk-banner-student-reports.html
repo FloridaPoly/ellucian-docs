@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>INTTRACKUK Banner Student - Reports</title><style>body{font-family:-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;line-height:1.55;color:#1a1a1a;max-width:920px;margin:0 auto;padding:24px}header{border-bottom:2px solid #5a16d6;margin-bottom:8px}h1{color:#3a0ca3}h2,h3,h4,h5,h6{margin-top:1.6em}.crumb{color:#666;font-size:13px;margin:0}.meta{color:#888;font-size:12px}nav.toc{background:#f6f4fc;border:1px solid #e3dcf5;border-radius:8px;padding:12px 18px;margin:18px 0}nav.toc h2{margin:.2em 0}nav.toc ul{list-style:none;padding-left:0}nav.toc a{text-decoration:none;color:#5a16d6}section{margin:1.2em 0;padding-top:.4em}img{max-width:100%;height:auto}table{border-collapse:collapse}td,th{border:1px solid #ccc;padding:4px 8px}code,pre{background:#f4f4f4;border-radius:4px}pre{padding:10px;overflow:auto}</style></head><body><header><p class="crumb">Banner Student › INTTRACKUK Banner Student - Reports</p><h1>INTTRACKUK Banner Student - Reports</h1><p class="meta">Source: <a href="https://resources.elluciancloud.com/r/bundle/banner_student_ref_rep_inttrackuk">https://resources.elluciancloud.com/r/bundle/banner_student_ref_rep_inttrackuk</a> &middot; Retrieved 2026-06-17</p></header><nav class="toc"><h2>Contents</h2><ul><li style="margin-left:0px"><a href="#t-10">Europe INTTRACKUK - Processes and Reports</a></li><li style="margin-left:16px"><a href="#t-20">Student Graduation Data Update (SORGCAS) process</a></li><li style="margin-left:32px"><a href="#t-30">Run the SORGCAS process</a></li></ul></nav><main><section id="t-10"><h2>Europe INTTRACKUK - Processes and Reports</h2><div class="content-locale-en-US content-locale-en"><div id="c_inttrackuk_process_reports"><p class="shortdesc"><span class="keyword">Banner</span> <span class="keyword">INTTRACKUK</span> delivers processes and reports for institutions.</p>
+
+  
+</div></div></section>
+<section id="t-20"><h3>Student Graduation Data Update (SORGCAS) process</h3><div class="content-locale-en-US content-locale-en"><div id="r_sorgcas_process"><div class="body refbody"><p class="shortdesc">The SORGCAS process generates the Graduates CAS XML bulk upload file that you use to report the CAS Numbers for graduate students (also known as Graduates Notifications) through the existing Bulk Data Transfer function to the Home Office.</p>
+
+    <div class="section">
+      <div class="p">To include the CAS Numbers for students in the SORGCAS report, institutions should meet the following criteria.<ul class="ul">
+        <li class="li">Students should be graduates with the respective Outcome records that exists in the SHADEGR page with an Outcome Status, provided the<span class="ph uicontrol"> Awarded Indicator</span> field is set to Awarded for the Outcome Status. Therefore, it is important that the outcome status used in the SHADEGR page should have the <span class="ph uicontrol">Awarded Indicator</span> field set to Awarded in the STVDEGS page.</li>
+
+        <li class="li">Institutions should define the Level for every Degree Code. For every outcome record in the SHADEGR page, the Degree Code applied should have an attributed Level in the STVDEGC page. Else, the SORGCAS process cannot print the CAS Numbers in XML report as required. System parameter to define the degree levels for reporting is available with the institutions. </li>
+
+        <li class="li">Based on the seed data that Ellucian provides, institutions can view the CAS_GRADUATE_LEVEL_CODE parameter in the Configurations window of the GUACONF page. Institutions can enter the required level codes as a string separated by ‘,’ (commas). </li>
+ <li class="li">Institutions can define any number of level codes which are validated against the Level (STVDEGC_DLEV_COD) for the respective Degree Codes as defined in the STVDEGC page. For example, BA, MA, MS, etc.</li>
+
+        <li class="li">The Graduate Requirements section in the SKAICAS page should not be null. To ensure that the student is eligible to study in the UK, the <span class="ph uicontrol">Type</span> and <span class="ph uicontrol">Date Obtained</span> fields are available in the SKAICAS page, where institutions can enter the type of proof collected from students, and the date the document of proof was collected by the institution. <div class="note"><span class="notetitle">Note:</span> CAS Numbers for students with values in the Type and Date Obtained fields are necessary for SORGCAS reporting. If Type or Date Obtained fields are NULL for the CAS applications, the CAS Numbers will not qualify for SORGCAS reporting.</div>
+</li>
+
+        <li class="li">CAS statuses for the SORGCAS reporting are defined in the CAS_STATUS parameter in the Configurations window of the GUACONF page. (The CAS_STATUS parameter is visible when the you run the seed data.). You can enter any number of values as a string separated by ‘,’ (commas) for the parameter.<div class="note"><span class="notetitle">Note:</span> The SORGCAS process extracts only the CAS Numbers for the respective values that you enter for the CAS_STATUS parameter to print the Graduates CAS XML. Example: CLOSED, ASSIGNED, USED, etc.</div>
+</li>
+
+        <li class="li">Every institution can have their own processes to qualify a CAS number to the Graduates CAS XML file. Institutions have the discretion to override the SORGCAS applied inbuilt validations for every CAS application. To override the SORGCAS applied validations, click the <span class="ph uicontrol">Graduate Return Override</span> check box for CAS applications in the SKAICAS page.</li>
+
+        <li class="li">When institutions select the <span class="ph uicontrol">Graduate Return Override</span> check box (SKRICAS_GRAD_RETURN_OVERRIDE = ‘Y’), the CAS number qualifies for printing in the Graduates CAS XML output file.</li>
+ <li class="li">When institutions select the <span class="ph uicontrol">Graduate Return Override</span> check box, the SORGCAS process prints the CAS Number in the XML output does not validate the following:<ul class="ul"> <li class="li">Outcome record exists</li>
+
+        <li class="li"><span class="ph uicontrol">Awarded</span> indicator is set to Awarded for the Outcome Status</li>
+ <li class="li">Institution-defined degree levels for the CAS_GRADUATE_LEVEL_CODE parameter in the GUACONF page</li>
+ <li class="li">Graduate Requirements entered in the SKAICAS page</li>
+ <li class="li">Institution-defined CAS statuses for the CAS_STATUS parameter in the GUACONF page</li>
+ </ul>
+<div class="note"><span class="notetitle">Note:</span> When the institution attempts to override an application in a CAS Status that is not specified in the CAS_STATUS parameter range, the user sees a warning message in the SKAICAS page to alert the user that the application being overridden is not in the range of defined CAS statues. This alert prevents the institutions from overriding the application.<p class="p">After the CAS Number for an application is printed in the XML output for the SORGCAS process and the Graduate CAS History is populated for CAS application, (that is SKRICAS_GRAD_CAS_BATCH_TYPE, SKRICAS_GRAD_CAS_BATCH_DATE, and SKRICAS_GRAD_CAS_BATCH_NAME), you cannot update the status of the Graduate Return Override option. </p>
+<p class="p">You can update the status of the check box only if the SORGCAS process has not printed the CAS Number in any of the SORGCAS batch outputs.</p>
+</div>
+</li>
+
+        </ul>
+The SORGCAS process uses the following parameters while execution.</div>
+
+    </div>
+
+    
+<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" class="table" frame="hsides" border="1" rules="rows"><colgroup><col style="width:26.268656716417915%"><col style="width:14.92537313432836%"><col style="width:31.492537313432837%"><col style="width:27.3134328358209%"></colgroup><thead class="thead" style="text-align:left;vertical-align:bottom;">
+          <tr class="row">
+            <th class="entry row-nocellborder" style="text-align:left;vertical-align:bottom;" id="d148e144">Parameter Name</th>
+
+            <th class="entry row-nocellborder" style="text-align:left;vertical-align:bottom;" id="d148e147">Required?</th>
+
+            <th class="entry row-nocellborder" style="text-align:left;vertical-align:bottom;" id="d148e150">Description</th>
+
+            <th class="entry row-nocellborder" style="text-align:left;vertical-align:bottom;" id="d148e153">Values</th>
+
+          </tr>
+
+        </thead>
+<tbody class="tbody">
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d148e144 ">Last Run Date </td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d148e147 ">Yes</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d148e150 ">Enter <kbd class="ph userinput">Y</kbd> to generate report from last run date or <kbd class="ph userinput">N</kbd> for user defined dates.<div class="note"><span class="notetitle">Note:</span> The Last Run Date parameter is based on the latest date that the process fetches from the SKRIEIB_BATCH_DATE column for Batch Type Graduates CAS Report. </div>
+</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d148e153 ">Y or N</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d148e144 ">From Date</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d148e147 ">No</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d148e150 ">Enter the date from which CAS reporting for graduates should begin.</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d148e153 ">Date</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d148e144 ">To Date</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d148e147 ">No</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d148e150 ">Enter the date to specify the end date for CAS reporting for graduates.<div class="note"><span class="notetitle">Note:</span> The From Date and To Date parameters are based on the SHRDGMR_ACTIVITY_DATE column. Based on the input date range, the SORGCAS process looks up for records in the SHRDGMR table. The process considers the outcome records that are created within the date range.</div>
+</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d148e153 ">Date</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d148e144 ">Run Mode</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d148e147 ">Yes</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d148e150 ">Enter <kbd class="ph userinput">A</kbd> for Audit Mode or <kbd class="ph userinput">U</kbd> for Update Mode.</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d148e153 ">U or A</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d148e144 ">Batch Name</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d148e147 ">No</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d148e150 ">Batch name (without file extension) of report generated to regenerate a report.</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d148e153 ">Enter the Batch name</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d148e144 ">Oracle Directory Name</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d148e147 ">Yes</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d148e150 ">The Oracle directory name where file is created.</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d148e153 ">Enter the Oracle directory name</td>
+
+          </tr>
+
+        </tbody>
+</table>
+</div>
+
+    <div class="section">Ellucian recommends that you note the following:<ul class="ul">
+      <li class="li">Set the default value of the <span class="ph uicontrol">Last Run Date</span> field to <kbd class="ph userinput">N</kbd>. After the first run for SORGCAS process, you can choose to run the SORGCAS process from the last run date (last activity date for SORGCAS) by setting this value to Y. When you set the<span class="ph uicontrol"> Last Run Date</span> field to <kbd class="ph userinput">Y</kbd>, the SORGCAS process does not consider the <span class="ph uicontrol">From Date</span>, <span class="ph uicontrol">To Date</span>, and <span class="ph uicontrol">Batch Name</span> field values.</li>
+
+      <li class="li">You should populate the <span class="ph uicontrol">From Date</span> and <span class="ph uicontrol">To Date</span> fields with dates when the <span class="ph uicontrol">Last Run Date</span> field value is <kbd class="ph userinput">N</kbd>. This allows the SORGCAS process to extract the CAS Numbers for the specified date range and not batch name.</li>
+
+      <li class="li">Use the <span class="ph uicontrol">Batch Name</span> field to regenerate an XML that is already generated. To regenerate an XML, enter the exact same batch name again. You can re-run the process for a batch name, provided you enter the values for the required fields such as <span class="ph uicontrol">Last Run Date</span> and <span class="ph uicontrol">Run Mode</span>. However, the process will not consider the dates specified.</li>
+
+      <li class="li">To view the sorgcas.xml file that you generated, go to the directory you specified in the Oracle Directory Name parameter for the SORGCAS process and search for the file with the run number.  Alternatively, you can download the file using the GKAODFT page, which is the recommended approach for file downloads for Oracle SaaS clients.</li>
+ <li class="li">The <code class="ph codeph">sorgcas.log</code> file records the error logging, in case of any errors. The <code class="ph codeph">sorgcas.lis</code> file records the parameter values that you enter for the process execution.</li>
+ </ul>
+</div>
+
+  </div>
+
+</div></div></section>
+<section id="t-30"><h4>Run the SORGCAS process</h4><div class="content-locale-en-US content-locale-en"><div id="t_run_sorgcas_process"><div class="body taskbody"><p class="shortdesc">Steps to run the SORGCAS process and generate the <span class="ph filepath">sorgcas.xml</span> output file.</p>
+
+    <div class="tasklabel"><h2 class="sectiontitle tasklabel">Procedure</h2></div><ol class="ol steps"><li class="li step stepexpand">
+        <span class="ph cmd">Access the <span class="keyword wintitle">Process Submission Control (GJAPCTL)</span> page.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Enter <kbd class="ph userinput">SORGCAS</kbd> in the <span class="ph uicontrol">Process</span> field.</span>
+        <div class="itemgroup info">You can also directly enter the SORGCAS process name in the home page to access the GJAPCTL page where the process value is already displayed for you.</div>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Navigate to the data block.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Enter <kbd class="ph userinput">Database</kbd> in the <span class="ph uicontrol">Printer</span> field to generate the output in the job submission directory.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Enter the parameter values as required.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Navigate to the <span class="ph uicontrol">Submission</span> block to submit the details entered.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Click <span class="ph uicontrol">Save</span>.</span>
+        <div class="itemgroup info">The system generates and displays the Sequence Number.</div>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Access the <span class="keyword wintitle">Saved Output Review (GJIREVO)</span> page to view the <code class="ph codeph">sorgcas.lis</code>, <code class="ph codeph">sorgcas.log</code>.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Alternatively, click the <span class="ph uicontrol">Related</span> menu and select the <kbd class="ph userinput">GJIREVO</kbd> page to view the output files.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">You can enter the number in the <span class="ph uicontrol">Number</span> LOV or select the required output file name from the <span class="ph uicontrol">Number</span> LOV.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Access the Oracle directory that you entered to view the sorgcas.xml file.</span>
+        <div class="itemgroup info">Oracle SaaS users can download the XML using the GKAODFT page.<p class="p">The following are the steps to download the SORGCAS XML file using the GKAODFT page.</p>
+</div>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Access the <span class="keyword wintitle">Oracle Directory File Transfer (GKAODFT)</span> page.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Go to the <span class="keyword wintitle">Download File</span> window.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Select an Oracle Directory Name from the LOV for the <span class="ph uicontrol">Oracle Directory</span> field. (same as the oracle directory name you provided in the parameter to run the SORGCAS process).</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Click the <span class="ph uicontrol">File Name </span>field that displays the list of values for your to select your file.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">In the <span class="ph uicontrol">File Name</span> field, click the LOV to view the <span class="keyword wintitle">List of Files (GURODFT) </span>window.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">In the GURODFT window, enter the run number in the <span class="ph uicontrol">Criteria</span> field to view the results depending upon your search criteria.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Select the file from search results.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Click <span class="ph uicontrol">Download File</span>.</span>
+        <div class="itemgroup stepresult">The system displays the file downloaded to your downloads folder on your system</div>
+      </li>
+</ol>
+
+  </div>
+
+</div></div></section></main></body></html>

@@ -1,0 +1,1121 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Data Connect Integration Designer - Use — Exercises and snippets</title><style>body{font-family:-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;line-height:1.55;color:#1a1a1a;max-width:920px;margin:0 auto;padding:24px}header{border-bottom:2px solid #5a16d6;margin-bottom:8px}h1{color:#3a0ca3}h2,h3,h4,h5,h6{margin-top:1.6em}.crumb{color:#666;font-size:13px;margin:0}.meta{color:#888;font-size:12px}nav.toc{background:#f6f4fc;border:1px solid #e3dcf5;border-radius:8px;padding:12px 18px;margin:18px 0}nav.toc h2{margin:.2em 0}nav.toc ul{list-style:none;padding-left:0}nav.toc a{text-decoration:none;color:#5a16d6}section{margin:1.2em 0;padding-top:.4em}img{max-width:100%;height:auto}table{border-collapse:collapse}td,th{border:1px solid #ccc;padding:4px 8px}code,pre{background:#f4f4f4;border-radius:4px}pre{padding:10px;overflow:auto}</style></head><body><header><p class="crumb">Data Connect › Data Connect Integration Designer - Use</p><h1>Data Connect Integration Designer - Use — Exercises and snippets</h1><p class="meta">Source: <a href="https://resources.elluciancloud.com/r/bundle/ethos_data_connect_int_design_acn_use">https://resources.elluciancloud.com/r/bundle/ethos_data_connect_int_design_acn_use</a> &middot; Retrieved 2026-06-17</p></header><nav class="toc"><h2>Contents</h2><ul><li style="margin-left:0px"><a href="#t-410">Exercises and snippets</a></li><li style="margin-left:16px"><a href="#t-420">Exercise I: Export persons data into a CSV file</a></li><li style="margin-left:16px"><a href="#t-430">Exercise II: Import persons data from a CSV file</a></li><li style="margin-left:16px"><a href="#t-440">Exercise III: HTML Formatter fitting example</a></li><li style="margin-left:16px"><a href="#t-450">Snippet: Crosswalk setup</a></li></ul></nav><main><section id="t-410"><h2>Exercises and snippets</h2></section>
+<section id="t-420"><h3>Exercise I: Export persons data into a CSV file</h3><div class="content-locale-en-US content-locale-en"><div id="c_dc_designer_export_persons_data"><div class="body conbody"><p class="shortdesc">To export persons data, it is necessary to configure a pipeline with fittings to collect and format the data, and finally export it into a file.</p>
+
+    <p class="p">For this exercise, the first step is to add the <span class="keyword parmname">ethosAPIKey</span> parameter. This parameter is required for some fittings to work.</p>
+
+    <p class="p">To add a parameter click on the drop-down menu aside the pipeline name, select <span class="ph uicontrol">Edit Pipeline Settings</span>, and then click the <span class="ph uicontrol">+ PARAMETER</span> button.</p>
+
+    <p class="p">Set the parameter as required and string type. The name should be <span class="keyword parmname">ethosAPIKey</span> so the fittings that require it select it by default. If the parameter does not have this specific name, the fittings that require it to have an API key parameter selected from the drop-down, like Ethos Proxy Get, will not work.</p>
+
+    <p class="p">If the value for <span class="keyword parmname">ethosAPIKey</span> is known, it could be added as the default value to avoid setting it every time the pipeline run.</p>
+
+    <p class="p">After adding the parameter, the next step is to create the pipeline. For this exercise the fittings needed are:</p>
+
+    <ul class="ul">
+      <li class="li">Ethos Proxy Get</li>
+
+      <li class="li">For each</li>
+
+      <li class="li">Object Mapper</li>
+
+      <li class="li">Delimited Formatter</li>
+
+      <li class="li">Stringify</li>
+
+      <li class="li">File Writer</li>
+
+    </ul>
+
+    <div class="section"><h2 class="title sectiontitle">Ethos Proxy Get</h2>
+      
+      <p class="p">This fitting is necessary to retrieve all the information of the <code class="ph codeph">persons</code> API, which is going to be used to create the CSV. The configuration is simple:</p>
+
+      <ul class="ul">
+        <li class="li">Resource field is required, so use <code class="ph codeph">persons</code>.</li>
+
+        <li class="li">Accept version is required, so use the latest, which at the time of writing this document is <span class="ph uicontrol">12</span>. Write it down and then click the <span class="ph uicontrol">+</span> button.</li>
+
+      </ul>
+
+      <p class="p">The response will come with a list of all the persons data adhering to the API schema format. For this exercise, review the schema of the <code class="ph codeph">persons</code> API. It is necessary to provide a list of the properties that are wanted or needed in the file, and some of them might not be easily accessible because they are returned inside an array or in children objects.</p>
+
+    </div>
+
+    <div class="section">
+      <p class="p">This fitting is used to apply some modifications to every element in the list. It doesn't require extra configuration for this exercise.</p>
+
+    </div>
+
+    <div class="section"><h2 class="title sectiontitle">Object mapper</h2>
+      
+      <p class="p">The object mapper is a complex fitting, used to specify which data is required so it can be retrieved from the different properties of each person’s object.</p>
+
+      <p class="p">The first property is a particular name from the list of names. The property used to filter the name from the list is <span class="ph uicontrol">preference</span>, so any name in a persons object that has that property, is the one that is added to the file.</p>
+
+      <p class="p">The following snippet is a portion of the <code class="ph codeph">persons</code> payload:</p>
+
+      <pre class="pre codeblock json"><code>"names": [
+  {
+    "firstName": "Pauline",
+    "fullName": "Pauline Smith",
+    "lastName": "Smith",
+    "preference": "preferred",
+    "title": "Ms."
+  },
+  {
+    "firstName": "Pauli",
+    "fullName": "Pauli Smith",
+    "lastName": "Smith",
+    "type": {
+      "category": "favored"
+    }
+  }
+],</code></pre>
+      <p class="p">In the first mapping, add the following configuration:</p>
+
+      <ul class="ul">
+        <li class="li">Sources -&gt; Path: <code class="ph codeph">$.names</code></li>
+
+        <li class="li">Target -&gt; Name: <code class="ph codeph">_name</code></li>
+
+      </ul>
+
+      <p class="p">Add a transformation function to find the name that contains a property <span class="ph uicontrol">preference</span> with the value <span class="ph uicontrol">preferred</span> for each mapped name, for this, click in the <span class="ph uicontrol">+ ADD</span> button at the right of <span class="ph uicontrol">Transformation Functions</span> and then configure it as:</p>
+
+      <ul class="ul">
+        <li class="li">Category: <code class="ph codeph">array</code></li>
+
+        <li class="li">Function: <code class="ph codeph">find</code></li>
+
+        <li class="li">Enter Parameters: <code class="ph codeph">preferred</code> - <code class="ph codeph">$.preference</code> (Click <span class="ph uicontrol">+</span> button after entering each parameter)</li>
+
+      </ul>
+
+      <p class="p">After defining the names mapping, the content is accessed using the property <code class="ph codeph">_name</code> in any of the mappings. You only need to add a reference in the default value, as described in the <span class="xref ft-internal-link" title="Use this fitting to map an object structure into another structure. The mapper uses JSONPath to look for values on a payload object, then transfer them to a target object property." data-ft-warning="excluded-from-rendering" data-mapid="zhfyvwrmd60S_3CkIOx9xA" data-tocid="sclg3FZpdUfkTG1dlDL8HQ">Object Mapper fitting</span> for mappings.</p>
+
+      <p class="p">Create a second mapping to retrieve the value of the <code class="ph codeph">firstName</code> property inside <code class="ph codeph">_name</code>, for this, click in the <span class="ph uicontrol">+ MAPPING</span> button at the end of <span class="ph uicontrol">Mappings</span> section and fill the fields with the next information:</p>
+
+      <ul class="ul">
+        <li class="li">Sources -&gt; Default Value: <code class="ph codeph">{{mapped._name}}</code></li>
+
+        <li class="li">Target -&gt; Name: <code class="ph codeph">First Name</code></li>
+
+      </ul>
+
+      <p class="p">It is necessary to create a transformation function for this seccond mapping to retrieve the value from the object, click in the <span class="ph uicontrol">+ ADD</span> button at the right of <em class="ph i">Transformation Functions</em> and use the following:</p>
+
+      <ul class="ul">
+        <li class="li">Category: <code class="ph codeph">object</code></li>
+
+        <li class="li">Function: <code class="ph codeph">get</code></li>
+
+        <li class="li">Enter Parameters: <code class="ph codeph">$.firstName</code> (Click <span class="ph uicontrol">+</span> button after entering this parameter)</li>
+
+      </ul>
+
+      <p class="p">To retrieve <code class="ph codeph">middleName</code>, <code class="ph codeph">lastName</code> and <code class="ph codeph">fullName</code>, it is necessary to create additional mappings with the same configuration as for <code class="ph codeph">firstName</code>. For this exercise, the target values to be used are "First Name", "Middle Name", "Last Name" and "Full Name".</p>
+
+      <p class="p">There might be cases where additional information is needed from a different part of the object or that require a certain format. For this example, three more properties will be retrieved: <code class="ph codeph">dateOfBirth</code>, <code class="ph codeph">ethnicity</code> and <code class="ph codeph">race</code>.</p>
+
+      <p class="p">Because <code class="ph codeph">dateOfBirth</code> is a property that is accessible in the first level, it can be retrieved directly, however, a different format to the date is going to be used so it looks more user friendly. To do that, it is necessary to use a Transformation Function for date.</p>
+
+      <p class="p">As described in the documentation, the transformation function category for date accepts input and output date format strings based on <a class="xref ft-external-link" href="https://momentjs.com/docs/#/displaying/format/" target="_blank" rel="noopener">Moment.js Format documentation</a>, so it will transform the date from "YYYY-MM-DD" to a "MMMM Do, YYYY" format by adding those parameters (the order is important).</p>
+
+      <p class="p">Create a new map and fill the fields with the following information:</p>
+
+      <ul class="ul">
+        <li class="li">Sources -&gt; Path: <code class="ph codeph">$.dateOfBirth</code></li>
+
+        <li class="li">Target -&gt; Name: <code class="ph codeph">Date Of Birth</code></li>
+
+      </ul>
+
+      <p class="p">And a transform function for the map with the following:</p>
+
+      <ul class="ul">
+        <li class="li">Category: <code class="ph codeph">date</code></li>
+
+        <li class="li">Function: <code class="ph codeph">format</code></li>
+
+        <li class="li">Enter Parameters: <code class="ph codeph">MMMM Do, YYYY</code> - <code class="ph codeph">YYYY-MM-DD</code> (Click <span class="ph uicontrol">+</span> button after entering each parameter)</li>
+
+      </ul>
+
+      <p class="p">The next value from <code class="ph codeph">persons</code> to be mapped is <code class="ph codeph">ethnicity</code>. The code snippet shows the portion of the payload that contains it:</p>
+
+      <pre class="pre codeblock json"><code>"ethnicity": {
+  "ethnicGroup": {
+    "id": "7582a6e5-328b-489b-9b28-6fdf7b555b89"
+  },
+  "reporting": [
+    {
+      "country": {
+        "code": "USA",
+        "ethnicCategory": "nonHispanic"
+      }
+    }
+  ]
+}</code></pre>
+      <p class="p">For this exercise, the <code class="ph codeph">ethnicCategory</code> value is retrieved. To do that, another mapping is added with the next information in the fields (note that we are using full path as source):</p>
+
+      <ul class="ul">
+        <li class="li">Sources -&gt; Path: <em class="ph i"><code class="ph codeph">$.ethnicity.reporting[0].country.ethnicCategory</code></em></li>
+
+        <li class="li">Target -&gt; Name: <code class="ph codeph">Ethnicity</code></li>
+
+        <li class="li"></li>
+
+      </ul>
+
+      <p class="p">The last mapping is for <code class="ph codeph">races</code>, and like the <code class="ph codeph">names</code> property, the <code class="ph codeph">races</code> property is an array.</p>
+
+      <pre class="pre codeblock json"><code>"races": [
+  {
+    "race": {
+      "id": "598b3e89-544a-4a13-80a2-a1b7fca69d02"
+    },
+    "reporting": [
+      {
+        "country": {
+          "code": "USA",
+          "racialCategory": "asian"
+        }
+      }
+    ]
+  }
+]</code></pre>
+      <p class="p">For this example, instead of filtering a particular race, like what was done with names, all the races the person has assigned will be retrieved and then concatenated using a “|” symbol.</p>
+
+      <p class="p">The first step is to define the full path to get the racial category of every race object in the array. Create a new map and use:</p>
+
+      <ul class="ul">
+        <li class="li">Sources -&gt; Path: <em class="ph i"><code class="ph codeph">$.races[*].reporting[0].country.racialCategory</code></em></li>
+
+        <li class="li">Target -&gt; Name: <code class="ph codeph">Race</code></li>
+
+      </ul>
+
+      <p class="p">The <code class="ph codeph">xpath</code> definition used will return an array of <code class="ph codeph">racialCategories</code>, so it is necessary to add a transformation function to concatenate or join the values. Add a transform function with:</p>
+
+      <ul class="ul">
+        <li class="li">Category: <code class="ph codeph">array</code></li>
+
+        <li class="li">Function: <code class="ph codeph">join</code></li>
+
+        <li class="li">Enter Parameters: <code class="ph codeph">|</code> (Click <span class="ph uicontrol">+</span> button after entering the parameter)</li>
+
+      </ul>
+
+    </div>
+
+    <div class="section"><h2 class="title sectiontitle">Delimited formatter</h2>
+      
+      <p class="p">The delimited formatter is the fitting used to create the final format for the CSV, here is where the mapped properties created by the object mapper will be used.</p>
+
+      <p class="p">This fitting has certain levels of customization for header, footer, and details, however for this exercise, only the details are going to be described. To do this, it is required to use the names of the properties and the mapped data that was created.</p>
+
+      <p class="p">Most of the properties were already mapped using the object mapper, the target value of each of those mappings can be assigned to path so it can get the data, however, gender is a property that hasn't been mapped, it is contained in the original object, therefore the label Gender will be used as column header.</p>
+
+      <p class="p">In the <span class="ph uicontrol">Details</span> section, turn on the <span class="ph uicontrol">Column Headers</span> check-box, your columns should look like this:</p>
+
+      <ul class="ul">
+        <li class="li">Path: <code class="ph codeph">First Name</code></li>
+
+        <li class="li">Path: <code class="ph codeph">Middle Name</code></li>
+
+        <li class="li">Path: <code class="ph codeph">Last Name</code></li>
+
+        <li class="li">Path: <code class="ph codeph">Full Name</code></li>
+
+        <li class="li">Path: <code class="ph codeph">gender</code>, Label: <code class="ph codeph">Gender</code></li>
+
+        <li class="li">Path: <code class="ph codeph">Ethnicity</code></li>
+
+        <li class="li">Path: <code class="ph codeph">Race</code></li>
+
+        <li class="li">Path: <code class="ph codeph">Date Of Birth</code></li>
+
+      </ul>
+
+      <p class="p">Running the pipeline using the <span class="ph uicontrol">RUN TEST</span> button will retrieve all the <code class="ph codeph">persons</code> data in a comma separated list of payloads.</p>
+
+      <p class="p">The final step is to generate the CSV file, however each of the payloads that are going to be written to the file need to be transformed into a string, and then use a File Writer.</p>
+
+    </div>
+
+    <div class="section"><h2 class="title sectiontitle">Stringify</h2>
+      
+      <p class="p">This fitting doesn’t need any configuration. It is only necessary to add it after the Delimited Formatter to 'stringify' the JSON payloads.</p>
+
+    </div>
+
+    <div class="section"><h2 class="title sectiontitle">File writer</h2>
+      
+      <p class="p">This fitting will allow the pipeline to create a file into Ellucian cloud storage.</p>
+
+      <p class="p">The only necessary input is the name of the file. Because it contains a list of persons information, the option <span class="ph uicontrol">Add Newline After Each Message</span> will be set to ON or true. The option <span class="ph uicontrol">Generate Presigned Url</span> should be set to ON or true too, so the payload will retrieve the presigned URL to get the file.</p>
+
+      <p class="p">Finally, run the pipeline by clicking the <span class="ph uicontrol">RUN TEST</span> button to verify everything works as intended.</p>
+
+      <p class="p">Copy the URL in the payload and paste it in a browser to verify the CSV file was created with all the expected data.</p>
+
+    </div>
+
+  </div>
+
+</div></div></section>
+<section id="t-430"><h3>Exercise II: Import persons data from a CSV file</h3><div class="content-locale-en-US content-locale-en"><div id="c_dc_designer_import_persons_data"><div class="body conbody"><p class="shortdesc">You can import a CSV file that contains <code class="ph codeph">persons</code> data and convert it to a JSON file.</p>
+
+    <p class="p">The first thing needed is to configure the pipeline parameters. For this exercise, two parameters are required.</p>
+
+    <ul class="ul">
+      <li class="li">The first one is going to be <code class="ph codeph">fileName</code>, of type file.</li>
+
+      <li class="li">the second is going to be <code class="ph codeph">dateSeparator</code>, of type string.</li>
+
+    </ul>
+
+    <p class="p">The purpose of <code class="ph codeph">fileName</code> is to allow you to upload a local file to the S3 bucket, so it can be used as the input data. The file used is the same file that was created with the example file generated in <span class="xref ft-internal-link" title="To export persons data, it is necessary to configure a pipeline with fittings to collect and format the data, and finally export it into a file." data-ft-warning="excluded-from-rendering" data-mapid="zhfyvwrmd60S_3CkIOx9xA" data-tocid="hK3SDUkHHN5zTGCWr63sIQ">Exercise I: Export persons data into a CSV file</span>.</p>
+
+    <p class="p">The second parameter, <code class="ph codeph">dateSeparator</code>, is added to give an example of how to use context parameters in a JavaScript transform fitting. The default value for this parameter is a ",".</p>
+
+    <p class="p">After configuring the parameters for the pipeline, The next step is to add and configure the fittings.</p>
+
+    <p class="p">The fittings used for this exercise are:</p>
+
+    <ul class="ul">
+      <li class="li">JavaScript Transform</li>
+
+      <li class="li">Add to Context</li>
+
+      <li class="li">File Reader</li>
+
+      <li class="li">Line Parser</li>
+
+      <li class="li">Delimited Parser</li>
+
+      <li class="li">Object Mapper</li>
+
+      <li class="li">Stringify</li>
+
+      <li class="li">File Writer</li>
+
+    </ul>
+
+    <div class="section"><h2 class="title sectiontitle">JavaScript Transform (Date)</h2>
+      
+      <p class="p">The first fitting is used to add a datetime record to know when the file was imported. The main purpose of this fitting in the exercise is to show how to add values to the context so they can be used later. The data can come from any resource, either use an Ethos Proxy GET to retrieve some data, read a file, add a new variable, etcetera.</p>
+
+      <p class="p">This fitting is used to inject the date into the payload. Set the parameter name as <code class="ph codeph">dateNow</code>:</p>
+
+      <pre class="pre codeblock js"><code>function transform (message, context) {
+  // Put your code here.
+  message.payload.dateNow = Date.now();
+  return message;
+}</code></pre>
+    </div>
+
+    <div class="section"><h2 class="title sectiontitle">Add to Context</h2>
+      
+      <p class="p">Add to context is a simple fitting. It only provides a way to insert a value to the context from the payload so the configuration is easy. Use <code class="ph codeph">$.dateNow</code> as the <em class="ph i">Source</em> and <code class="ph codeph">_importDate</code> as the <em class="ph i">Target</em>. The fitting takes the <code class="ph codeph">dateNow</code> value and creates a context parameter named <code class="ph codeph">_importDate</code>.</p>
+
+    </div>
+
+    <div class="section"><h2 class="title sectiontitle">File Reader</h2>
+      
+      <p class="p">The file reader is a fitting used to retrieve the data of a file from the store.</p>
+
+      <p class="p">The configuration of the File Reader requires only the name of the file in the <span class="ph uicontrol">Key</span> field.</p>
+
+      <p class="p">There are a couple of methods to add the file name, the first one is by using <code class="ph codeph">{{context.fileName}}</code>.</p>
+
+      <p class="p">If this method is used, you have to select the file (using the file parameter) every time to upload it to the store, then the file reader uses that name to find and retrieve the file.</p>
+
+      <p class="p">The second method is to provide a specific file name in the configuration, like <code class="ph codeph">file.csv</code>.</p>
+
+      <p class="p">By doing it this way, selecting the file every time after the first time is not necessary. The file needs to be uploaded one time so that the file reader can find it, it won't be necessary to do it anymore as long as the file (with that name) exists in the store. If the file does not exist, the response will contain an error like this:</p>
+
+      <pre class="pre codeblock json"><code>{
+  "status": 200,
+  "statusText": "",
+  "data": [],
+  "runId": "a78a47b5-0a1b-4f82-a699-38e9b59fd789",
+  "errors": [
+    {
+      "severity": "Warning",
+      "responseCode": 404,
+      "description": "f72efbe7-723a-4c2e-a8bf-1f01fc4e99c1/Excersice01-fb895201-c65a-415f-8e969fec7425f.csv (NoSuchKey)",
+      "details": "The specified key does not exist.",
+      "correlationId": "a78a47b5-0a1b-4f82-a699-38e9b59fd789"
+    }
+  ]
+}</code></pre>
+    </div>
+
+    <div class="section"><h2 class="title sectiontitle">Line Parser</h2>
+      
+      <p class="p">The line parser is a fitting that will split the payload into multiple messages for each new line character it finds. The line parser fitting does not need any configuration.</p>
+
+    </div>
+
+    <div class="section"><h2 class="title sectiontitle">Delimited Parser</h2>
+      
+      <p class="p">The delimited parser is a fitting that will format the message that comes either in a tab or comma delimited data into a JavaScript object.</p>
+
+      <p class="p">The delimited parser configuration has an optional property named <code class="ph codeph">Target</code> that can be used to place the output array, however this exercise is not going to use it.</p>
+
+      <p class="p">The delimited parser assumes that the first line it receives is the header line, so the CSV file that was used works perfectly with this fitting. It will format the message into an array of JavaScript objects.</p>
+
+    </div>
+
+    <div class="section"><h2 class="title sectiontitle">JavaScript Transform (Data)</h2>
+      
+      <p class="p">This is the second JavaScript transform fitting used for this exercise. This time, the fitting will change some of the data.</p>
+
+      <p class="p">The first part of the function reassigns the data to other object properties that are in a camelCase format.</p>
+
+      <p class="p">The second part formats the Date of Birth. In the CSV file, the date was in a "MMMM Do, YYYY" format. This means the month is in full text and the day is an ordinal number like June 1st, 2010, however this value cannot be used to create a date so it is necessary to format it.</p>
+
+      <p class="p">First, the <code class="ph codeph">dateSeparator</code> parameter, which was defined as a comma for this exercise, is taken from the context and used to split the date string, this will return an array with two values (June 1st) and (2010), and then the values are concatenated to get August 13 1977. Finally, create a new <code class="ph codeph">Date</code> object and convert it to a string following the ISO 8601 Extended Format.</p>
+
+      <pre class="pre codeblock js"><code>function transform (message, context) {
+  const data = message.payload;
+  let newPayload = {};
+  newPayload.firstName = data['First Name'];
+  newPayload.middleName = data['Middle Name'];
+  newPayload.lastName = data['Last Name'];
+  newPayload.fullName = data['Full Name'];
+  newPayload.gender = data['Gender'];
+  newPayload.race = data['Race'];
+  newPayload.ethnicity = data['Ethnicity'];
+  
+  // The date of birth comes in a "month cardinalDay, year" format,
+  // so we are going to transform it into a local String format.
+  let dateStr = data['Date Of Birth'];
+  newPayload.dateOfBirth = '';
+  if(dateStr) {
+    // An example of how to use context values defined as our pipeline parameters.
+    let dateArr = dateStr.split(context.get('dateSeparator'));
+    // Format the date to change from ordinal to cardinal number for the days.
+    let newDate = dateArr[0].substring(0, dateArr[0].length - 2).concat(dateArr[1]);
+    newPayload.dateOfBirthFormated = newDate;
+    newPayload.dateOfBirth = new Date(newDate).toISOString();
+  }
+  
+  newPayload.oldData = data;
+  message.payload = newPayload;
+  return message;
+}</code></pre>
+      <p class="p">In this step of the test, the original data of the payload (<code class="ph codeph">oldData</code>), and the formatted date of birth (<code class="ph codeph">dateOfBirthFormatted</code>) are assigned to the new object, the purpose is to show the changes, however both will be removed after this step. The payload now has the <code class="ph codeph">dateOfBirth</code> formatted and ready.</p>
+
+      <pre class="pre codeblock json"><code>"payload": {
+  "firstName": "test B",
+  "middleName": "A",
+  "lastName": "Barrens",
+  "fullName": "test B A Barrens",
+  "gender": "male",
+  "race": "",
+  "ethnicity": "",
+  "dateOfBirth": "1977-08-13T00:00:00.000Z",
+  "dateOfBirthFormated": "August 13 1977",
+  "oldData": {
+    "First Name": "test B",
+    "Middle Name": "A",
+    "Last Name": "Barrens",
+    "Full Name": "test B A Barrens",
+    "Gender": "male",
+    "Ethnicity": "",
+    "Race": "",
+    "Date Of Birth": "August 13th, 1977"
+  }
+}</code></pre>
+    </div>
+
+    <div class="section"><h2 class="title sectiontitle">Object Mapper</h2>
+      
+      <p class="p">The object mapper is used to map some properties in the payload.</p>
+
+      <p class="p">The first mapping uses the <code class="ph codeph">_importDate</code> parameter that was added to the context before and adds to each object in the array of payloads:</p>
+
+      <ul class="ul">
+        <li class="li">Sources -&gt; Default Value: <code class="ph codeph">{{context._importDate}}</code></li>
+
+        <li class="li">Target -&gt; Name: <code class="ph codeph">importDate</code></li>
+
+      </ul>
+
+      <p class="p">After that, add a transformation function that converts the date to a YYYY-MM-DD HH:mm:ss.SSS string format:</p>
+
+      <ul class="ul">
+        <li class="li">Category: <code class="ph codeph">date</code></li>
+
+        <li class="li">Function: <code class="ph codeph">format</code></li>
+
+        <li class="li">Enter Parameters: <code class="ph codeph">YYYY-MM-DD HH:mm:ss:SSS</code> (Click <span class="ph uicontrol">+</span> button after entering the parameter)<p class="p">Enter Parameters: <code class="ph codeph">YYYY-MM-DD HH:mm:ss:SSS</code> (Click <span class="ph uicontrol">+</span> button after entering the parameter)</p>
+</li>
+
+      </ul>
+
+      <p class="p">Add a second mapping, this adds a new property, named <code class="ph codeph">ethnicityCode</code>, to the object:</p>
+
+      <ul class="ul">
+        <li class="li">Sources -&gt; Path: <code class="ph codeph">$.ethnicity</code></li>
+
+        <li class="li">Target -&gt; Name: <code class="ph codeph">ethnicityCode</code></li>
+
+      </ul>
+
+      <p class="p">This time, the exercise shows how to use crosswalks to customize some translation values, it also enables you to set a default code value in case the ethnicity comes with an empty value. The name of this crosswalk is <code class="ph codeph">ethinicityCrw</code>. Add a transform function with the following values:</p>
+
+      <ul class="ul">
+        <li class="li">Category: <code class="ph codeph">util</code></li>
+
+        <li class="li">Function: <code class="ph codeph">crosswalk</code></li>
+
+        <li class="li">Enter Parameters: <code class="ph codeph">ethinicityCrw</code> (Click <span class="ph uicontrol">+</span> button after entering the parameter)</li>
+
+      </ul>
+
+      <p class="p">In the crosswalk section, click in the <span class="ph uicontrol">+ CROSSWALK</span> button to create the mappings for the crosswalk. In this exercise, two source values will be mapped: hispanic and nonHispanic, for anything else the ethnicityCode is going to have UNK as the value. Configure your crosswalk as follows:</p>
+
+      <ul class="ul">
+        <li class="li">Crosswalk Name: <code class="ph codeph">ethinicityCrw</code></li>
+
+        <li class="li">Default: <code class="ph codeph">UKN</code></li>
+
+        <li class="li">Mapping01:<ul class="ul"> <li class="li">Mapping Name: <code class="ph codeph">non hispanic</code></li>
+ <li class="li">Target Value: <code class="ph codeph">NONHSPNC</code></li>
+ <li class="li">Source Value: <code class="ph codeph">nonHispanic</code></li>
+ </ul>
+</li>
+
+        <li class="li">Mapping02:<ul class="ul"> <li class="li">Mapping Name: <code class="ph codeph">hispanic</code></li>
+ <li class="li">Target Value: <code class="ph codeph">HSPNC</code></li>
+ <li class="li">Source Value: <code class="ph codeph">hispanic</code></li>
+ </ul>
+</li>
+
+      </ul>
+
+      <p class="p">After the test runs, the response contains the two new properties added to each object. In this snippet, there is a case where a code is mapped correctly and a case where the ethnicity is empty and therefore is using the default value.</p>
+
+      <pre class="pre codeblock json"><code>"payload": {
+  "firstName": "Charles",
+  "middleName": "",
+  "lastName": "Block",
+  "fullName": "Charles Block",
+  "gender": "male",
+  "race": "",
+  "ethnicity": "nonHispanic",
+  "dateOfBirth": "",
+  "importDate": "2023-03-15 16:45:55:496",
+  "ethnicityCode": "NONHSPNC"
+}</code></pre>
+      <pre class="pre codeblock json"><code>"payload": {
+  "firstName": "Pamela",
+  "middleName": "Susan",
+  "lastName": "Smithy",
+  "fullName": "Pamela Susan Smithy",
+  "gender": "female",
+  "race": "",
+  "ethnicity": "",
+  "dateOfBirth": "1965-02-27T00:00:00.000Z",
+  "importDate": "2023-03-15 16:45:55:496",
+  "ethnicityCode": "UKN"
+},</code></pre>
+    </div>
+
+    <div class="section"><h2 class="title sectiontitle">Stringify</h2>
+      
+      <p class="p">Stringify is added to transform the payloads to JSON strings so that they can be used later by file writer. It does not need any configuration.</p>
+
+    </div>
+
+    <div class="section"><h2 class="title sectiontitle">File Writer</h2>
+      
+      <p class="p">This fitting creates a file in Ellucian cloud storage.</p>
+
+      <p class="p">To configure the file writer, the name is necessary. In this exercise the file name will be <code class="ph codeph">personsImportFromCsv.json</code>. Switch the <span class="ph uicontrol">Generate Presigned Url</span> feature to ON or true so the response contains the URL to download the file.</p>
+
+      <p class="p">Both <span class="ph uicontrol">Add Newline After Each Message</span> and <span class="ph uicontrol">Include Total Count</span> are optional, for this exercise set both switches ON or true. The first configuration makes the JSON file more readable, the second option includes the total count in the response.</p>
+
+      <p class="p">Finally, test the pipeline to verify that the file is created. Copy the <code class="ph codeph">presignedUrl</code> and paste it in a browser to get the JSON file and verify that the data is correct.</p>
+
+    </div>
+
+  </div>
+
+</div></div></section>
+<section id="t-440"><h3>Exercise III: HTML Formatter fitting example</h3><div class="content-locale-en-US content-locale-en"><div id="t_dc_designer_html_formatter_fitting_example"><div class="body taskbody"><p class="shortdesc">You can use the HTML Formatter fitting to create HTML output that includes data gathered from one or more sources associated to the institution.</p>
+
+    <div class="section prereq p"><div class="tasklabel"><h2 class="sectiontitle tasklabel">Before you begin</h2></div>
+      <p class="p">This example requires you to provide a JSON file as input when the pipeline is run, and that JSON file is to have the data that will be parsed by the HTML template Mustache expressions.</p>
+
+      <p class="p">Under other use case scenarios, it is possible the data will come from GET API calls in the pipeline, made before running the HTML fitting, so the file as input is referenced here for example purposes.</p>
+
+    </div>
+
+    <div class="section context"><div class="tasklabel"><h2 class="sectiontitle tasklabel">About this task</h2></div>
+      <p class="p">When the pipeline is run, it uses the information provided as part of the HTML template, processes any Mustache tags, replaces them with the provided data, and produces HTML output that can be saved as a target file.</p>
+
+      <p class="p">See <span class="xref ft-internal-link" title="Use the HTML Formatter fitting to produce HTML output based on a template where HTML content and Mustache tag placeholders can be combined." data-ft-warning="excluded-from-rendering" data-mapid="zhfyvwrmd60S_3CkIOx9xA" data-tocid="SYdTvIn08hVuS8AlpyYT~g">HTML Formatter fitting</span> for a description of the HTML Formatter fitting.</p>
+
+      <p class="p">For more information on Mustache tag expressions, see <a class="xref ft-external-link" href="https://mustache.github.io/mustache.5.html" target="_blank" rel="noopener">https://mustache.github.io/mustache.5.html</a>.</p>
+
+    </div>
+
+    <div class="tasklabel"><h2 class="sectiontitle tasklabel">Procedure</h2></div><ol class="ol steps"><li class="li step stepexpand">
+        <span class="ph cmd">In <span class="keyword">Ellucian Experience</span>, click the <span class="keyword">Integration Designer</span> card to open the <span class="keyword">Integration Designer</span>.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Select the Integration Package this new pipeline will be in. An <span class="keyword">Integration Designer</span> package should contain pipelines that relate to each other. If necessary, create a new package.</span>
+        <ol type="a" class="ol substeps">
+          <li class="li substep">
+            <span class="ph cmd">To create a new package, click <span class="ph uicontrol">+</span> in the Packages section of the <span class="keyword">Integration Designer</span>.</span>
+          </li>
+
+          <li class="li substep">
+            <span class="ph cmd">Create a unique name for the package.</span>
+          </li>
+
+          <li class="li substep"><strong>Optional: </strong>
+            <span class="ph cmd">Add a description of the package contents.</span>
+          </li>
+
+          <li class="li substep">
+            <span class="ph cmd">Click <span class="ph uicontrol">Save</span>.</span>
+          </li>
+
+          <li class="li substep">
+            <span class="ph cmd">Select the package you just created in the list of packages to continue.</span>
+          </li>
+
+        </ol>
+
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">In the package, create a new pipeline.</span>
+        <ol type="a" class="ol substeps">
+          <li class="li substep">
+            <span class="ph cmd">In the <span class="ph uicontrol">Pipelines</span> section of the <span class="keyword">Integration Designer</span>, click <span class="ph uicontrol">+ PIPELINE</span> to create a new pipeline.</span>
+          </li>
+
+          <li class="li substep">
+            <span class="ph cmd">Enter a unique name for the pipeline.</span>
+          </li>
+
+          <li class="li substep"><strong>Optional: </strong>
+            <span class="ph cmd">Add a description for this pipeline.</span>
+          </li>
+
+          <li class="li substep">
+            <span class="ph cmd">Click <span class="ph uicontrol">Save</span> to save the pipeline.</span>
+          </li>
+
+        </ol>
+
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">In the <span class="keyword">Integration Designer</span> for your new pipeline, click <span data-ft-img-error-class="image" data-ft-img-error-src="b70d798b73cbe27f3cbca0efb3d3c9d5.png" data-ft-img-error-alt="More" data-ft-img-error-data-ft-asset-display-name="btn_experience_chevron_down.png" data-ft-img-error-data-ft-finalizing-attribute="src" data-ft-img-error-data-ft-finalizing-type="ft-image" data-ft-resource-error="No resource found with id &quot;b70d798b73cbe27f3cbca0efb3d3c9d5.png&quot; in the upload."></span> <span class="ph uicontrol">More</span> next to the pipeline name.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Select <span class="ph uicontrol">Edit Pipeline Settings</span>.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Click <span class="ph uicontrol">+ PARAMETER</span> to add the parameter to allow you to upload a JSON data file each time the pipeline is run.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Define the new parameter to upload the file.</span>
+        <ol type="a" class="ol substeps">
+          <li class="li substep substepexpand">
+            <span class="ph cmd">Enter a unique name for this parameter. </span>
+            <div class="itemgroup info">The parameter name must be a single word starting with a letter, dollar sign, or underscore, and cannot have any special characters. </div>
+          </li>
+
+          <li class="li substep substepexpand">
+            <span class="ph cmd">Set <span class="ph uicontrol">Label</span> and <span class="ph uicontrol">Default</span> to <span class="ph uicontrol">None</span> (default).</span>
+          </li>
+
+          <li class="li substep substepexpand">
+            <span class="ph cmd">Enable <span class="ph uicontrol">Required</span>.</span>
+          </li>
+
+          <li class="li substep substepexpand">
+            <span class="ph cmd">Disable <span class="ph uicontrol">Sensitive</span> (default).</span>
+          </li>
+
+          <li class="li substep substepexpand">
+            <span class="ph cmd">Change <span class="ph uicontrol">Type</span> to <span class="ph uicontrol">File</span>.</span>
+          </li>
+
+          <li class="li substep substepexpand">
+            <span class="ph cmd">Click <span class="ph uicontrol">Add Parameter</span>.</span>
+            <div class="itemgroup info">Next, you will add the necessary fittings to the pipeline: File Reader, Reducer, JSON Parser, HTML Formatter, and File Writer.</div>
+          </li>
+
+        </ol>
+
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Add a File Reader fitting.</span>
+        <div class="itemgroup info">This will retrieve the contents of the file that will be provided when the pipeline is run.</div>
+        <ol type="a" class="ol substeps">
+          <li class="li substep substepexpand">
+            <span class="ph cmd">In the side menu, click <span class="ph uicontrol">Sources</span> to open the list of fittings that consume data.</span>
+          </li>
+
+          <li class="li substep substepexpand">
+            <span class="ph cmd">Click <span class="ph uicontrol">File Reader</span> to add a File Reader fitting to the pipeline.</span>
+            <div class="itemgroup info">For additional information about this fitting, refer to <span class="xref ft-internal-link" data-ft-warning="excluded-from-rendering" data-mapid="zhfyvwrmd60S_3CkIOx9xA" data-tocid="Pyf6ebqxSU8_p5IQAMoerg">File Reader fitting</span>.</div>
+          </li>
+
+          <li class="li substep substepexpand">
+            <span class="ph cmd">Click the new <span class="ph uicontrol">File Reader</span> fitting to open the details pane.</span>
+          </li>
+
+          <li class="li substep substepexpand"><strong>Optional: </strong>
+            <span class="ph cmd">Replace the default fitting name (File Reader) with a descriptive name.</span>
+          </li>
+
+          <li class="li substep substepexpand"><strong>Optional: </strong>
+            <span class="ph cmd">Add a description for this fitting.</span>
+          </li>
+
+          <li class="li substep substepexpand">
+            <span class="ph cmd">Enter the file name in the <span class="ph uicontrol">Key</span> field.</span>
+            <div class="itemgroup info">The file name must be all lowercase letters and should match the name of the file that will be provided when the pipeline runs.</div>
+          </li>
+
+          <li class="li substep substepexpand">
+            <span class="ph cmd">If uploading a local file, do not select any values for <span class="ph uicontrol">Bucket</span>, <span class="ph uicontrol">Access Key ID</span>, or <span class="ph uicontrol">Secret Access Key</span>.</span>
+          </li>
+
+          <li class="li substep substepexpand">
+            <span class="ph cmd">Click <span class="ph uicontrol">Save</span> to save the segment.</span>
+          </li>
+
+        </ol>
+
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Add a Reducer fitting.</span>
+        <div class="itemgroup info">This will ensure the full contents of the file are accumulated and passed along as a single message to the rest of the pipeline fittings.</div>
+        <ol type="a" class="ol substeps">
+          <li class="li substep substepexpand">
+            <span class="ph cmd">In the side menu, click <span class="ph uicontrol">Destinations</span> to open the list of fittings that send data to an end state.</span>
+          </li>
+
+          <li class="li substep substepexpand">
+            <span class="ph cmd">Click <span class="ph uicontrol">Reducer</span> to add a Reducer fitting to the pipeline.</span>
+            <div class="itemgroup info">As part of the reducer, you can specify which property will include the captured data and pass it along to the next fitting. You can specify the default payload property as the accumulator See <span class="xref ft-internal-link" data-ft-warning="excluded-from-rendering" data-mapid="zhfyvwrmd60S_3CkIOx9xA" data-tocid="abY5XayhmfAOq1sRDv2Mbg">Reducer fitting</span>.</div>
+          </li>
+
+          <li class="li substep substepexpand">
+            <span class="ph cmd">Click the new <span class="ph uicontrol">Reducer</span> fitting to open the details pane.</span>
+          </li>
+
+          <li class="li substep substepexpand"><strong>Optional: </strong>
+            <span class="ph cmd">Replace the default fitting name (Reducer) with a descriptive name.</span>
+          </li>
+
+          <li class="li substep substepexpand"><strong>Optional: </strong>
+            <span class="ph cmd">Add a description for this fitting.</span>
+          </li>
+
+          <li class="li substep substepexpand"><strong>Required: </strong>
+            <span class="ph cmd">Enter a value in the <span class="ph uicontrol">accumulator</span> field.</span>
+            <div class="itemgroup info">
+              <p class="p">This is the property in the new payload upon which to set the accumulated array of payloads.</p>
+
+              <p class="p">For this example, save this back to the <kbd class="ph userinput">payload</kbd> property. See the reference in the <span class="xref ft-internal-link" title="Use the HTML Formatter fitting to produce HTML output based on a template where HTML content and Mustache tag placeholders can be combined." data-ft-warning="excluded-from-rendering" data-mapid="zhfyvwrmd60S_3CkIOx9xA" data-tocid="SYdTvIn08hVuS8AlpyYT~g">HTML Formatter fitting</span> to the message.payload in Mustache.</p>
+
+            </div>
+          </li>
+
+          <li class="li substep substepexpand">
+            <span class="ph cmd">Click <span class="ph uicontrol">Save</span> to save the segment.</span>
+          </li>
+
+        </ol>
+
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Add a JSON Parser fitting.</span>
+        <div class="itemgroup info">At this moment, the JSON file contents are in string format, so the JSON object needs to be restored. To achieve this, include a JSON Parser fitting.</div>
+        <ol type="a" class="ol substeps">
+          <li class="li substep substepexpand">
+            <span class="ph cmd">In the side menu, click <span class="ph uicontrol">Transformations</span> to open the list of fittings that transform data.</span>
+          </li>
+
+          <li class="li substep substepexpand">
+            <span class="ph cmd">Click <span class="ph uicontrol">JSON Parser</span> to add a JSON Parser fitting to the pipeline.</span>
+            <div class="itemgroup info">For additional information about this fitting, refer to <span class="xref ft-internal-link" data-ft-warning="excluded-from-rendering" data-mapid="zhfyvwrmd60S_3CkIOx9xA" data-tocid="emhDUkGUp8AwJ_ESI4EWCA">JSON Parser fitting</span>.</div>
+          </li>
+
+          <li class="li substep substepexpand">
+            <span class="ph cmd">Click the new <span class="ph uicontrol">JSON Parser</span> fitting to open the details pane.</span>
+          </li>
+
+          <li class="li substep substepexpand"><strong>Optional: </strong>
+            <span class="ph cmd">Replace the default fitting name with a descriptive name.</span>
+          </li>
+
+          <li class="li substep substepexpand"><strong>Optional: </strong>
+            <span class="ph cmd">Add a description for this fitting.</span>
+          </li>
+
+          <li class="li substep substepexpand">
+            <span class="ph cmd">The fitting accepts any type of incoming message, but will only parse one that has a JSON string payload.</span>
+          </li>
+
+          <li class="li substep substepexpand">
+            <span class="ph cmd">Click <span class="ph uicontrol">Save</span> to save the segment.</span>
+          </li>
+
+        </ol>
+
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Add a HTML Formatter fitting.</span>
+        <div class="itemgroup info">As part of the template property, include any HTML content you want the fitting to process, including Mustache tag references to the data that is being passed along.</div>
+        <ol type="a" class="ol substeps">
+          <li class="li substep substepexpand">
+            <span class="ph cmd">In the side menu, click <span class="ph uicontrol">Transformations</span> to open the list of fittings that transform data.</span>
+          </li>
+
+          <li class="li substep substepexpand">
+            <span class="ph cmd">Click <span class="ph uicontrol">HTML Formatter</span> to add a HTML Formatter fitting to the pipeline.</span>
+            <div class="itemgroup info">For additional information about this fitting, refer to <span class="xref ft-internal-link" data-ft-warning="excluded-from-rendering" data-mapid="zhfyvwrmd60S_3CkIOx9xA" data-tocid="SYdTvIn08hVuS8AlpyYT~g">HTML Formatter fitting</span>.</div>
+          </li>
+
+          <li class="li substep substepexpand">
+            <span class="ph cmd">Click the new <span class="ph uicontrol">HTML Formatter</span> fitting to open the details pane.</span>
+          </li>
+
+          <li class="li substep substepexpand"><strong>Optional: </strong>
+            <span class="ph cmd">Replace the default fitting name with a descriptive name.</span>
+          </li>
+
+          <li class="li substep substepexpand"><strong>Optional: </strong>
+            <span class="ph cmd">Add a description for this fitting.</span>
+          </li>
+
+          <li class="li substep substepexpand"><strong>Required: </strong>
+            <span class="ph cmd">Enter a value in the <span class="ph uicontrol">Template</span> field.</span>
+            <div class="itemgroup info">This is HTML content with or without Mustache expressions. If payload data is referenced from the Mustache tags, ensure the tags reference the full structure, such as {{message.payload.field}} or the corresponding property where the JSON data objects are stored.</div>
+          </li>
+
+          <li class="li substep substepexpand">
+            <span class="ph cmd">Click <span class="ph uicontrol">Save</span> to save the segment.</span>
+          </li>
+
+        </ol>
+
+        <div class="itemgroup info">After the pipeline processes the HTML content and replaces any Mustache tag placeholders, a File Writer fitting can capture this output and generate a file for it.</div>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Add a File Writer fitting.</span>
+        <ol type="a" class="ol substeps">
+          <li class="li substep substepexpand">
+            <span class="ph cmd">In the side menu, click <span class="ph uicontrol">Destinations</span> to open the list of fittings that send data to an end state.</span>
+          </li>
+
+          <li class="li substep substepexpand">
+            <span class="ph cmd">Click <span class="ph uicontrol">File Writer</span> to add a File Writer fitting to the pipeline.</span>
+            <div class="itemgroup info">For additional information about this fitting, refer to <span class="xref ft-internal-link" title="Use this fitting to write a file to Ellucian cloud storage, by default an Ellucian maintained AWS S3 bucket." data-ft-warning="excluded-from-rendering" data-mapid="zhfyvwrmd60S_3CkIOx9xA" data-tocid="0SJl0pSDQzxHpkekWwlYpA">File Writer fitting</span>.</div>
+          </li>
+
+          <li class="li substep substepexpand">
+            <span class="ph cmd">Click the new <span class="ph uicontrol">File Writer</span> fitting to open the details pane.</span>
+          </li>
+
+          <li class="li substep substepexpand"><strong>Optional: </strong>
+            <span class="ph cmd">Replace the default fitting name with a descriptive name.</span>
+          </li>
+
+          <li class="li substep substepexpand"><strong>Optional: </strong>
+            <span class="ph cmd">Add a description for this fitting.</span>
+          </li>
+
+          <li class="li substep substepexpand">
+            <span class="ph cmd">Enter a <span class="ph uicontrol">File Name</span> for the output HTML file name.</span>
+          </li>
+
+          <li class="li substep substepexpand"><strong>Optional: </strong>
+            <span class="ph cmd">For testing purposes, you might want to select <span class="ph uicontrol">Generate Presigned Url</span> to configure the File Writer to generate a presigned URL with the output for the file.</span>
+          </li>
+
+          <li class="li substep substepexpand">
+            <span class="ph cmd">Configure <span class="ph uicontrol">Bucket</span>, <span class="ph uicontrol">Access Key ID</span>, or <span class="ph uicontrol">Secret Access Key</span> information as needed for a target location, or leave this information blank so the file can be downloaded from the job run page as needed.</span>
+          </li>
+
+          <li class="li substep substepexpand">
+            <span class="ph cmd">Click <span class="ph uicontrol">Save</span> to save the segment.</span>
+          </li>
+
+        </ol>
+
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Click <span class="ph uicontrol">Save</span> to save the pipeline.</span>
+        <div class="itemgroup stepresult">Your pipeline should look similar to this example.<br><img class="image" alt="Example HTML Formatter pipeline" data-ft-asset-display-name="HTMLformatterfitting.png" src="images/11-exercises-and-snippets-1.png" data-ft-resource-id="rlbC8ApJJrOLd5_4ol2KsA-zhfyvwrmd60S_3CkIOx9xA"><br></div>
+      </li>
+<li class="li step stepexpand"><strong>Optional: </strong>
+        <span class="ph cmd">Test the pipeline, providing a JSON file as input that matches the data structure the HTML template is expecting.</span>
+        <ol type="a" class="ol substeps">
+          <li class="li substep substepexpand">
+            <span class="ph cmd">While viewing your new pipeline in the <span class="keyword">Integration Designer</span>, click <span class="ph uicontrol">Test</span>.</span>
+          </li>
+
+          <li class="li substep substepexpand">
+            <span class="ph cmd">Click <span class="ph uicontrol">Upload File</span> and select the input JSON file.</span>
+          </li>
+
+          <li class="li substep substepexpand"><strong>Optional: </strong>
+            <span class="ph cmd">Enable <span class="ph uicontrol">Enable Diagnostic log</span> to generate a diagnostic log for this pipeline execution.</span>
+            <div class="itemgroup info">The log file will be available after the test completes. Refer to <cite class="cite">Enable diagnostics logs</cite> in <span class="xref ft-internal-link" title="Troubleshooting tips are provided." data-ft-warning="excluded-from-rendering" data-mapid="zhfyvwrmd60S_3CkIOx9xA" data-tocid="K6vj6HW0jpKqf_44TTEadg">Troubleshooting</span> for more details.</div>
+          </li>
+
+          <li class="li substep substepexpand" id="t_dc_designer_html_formatter_fitting_example__substep_hqb_twv_xyb">
+            <span class="ph cmd">Click <span class="ph uicontrol">RUN TEST</span>.</span>
+          </li>
+
+          <li class="li substep substepexpand" id="t_dc_designer_html_formatter_fitting_example__substep_vn3_twv_xyb">
+            <span class="ph cmd">When the test completes, review the results.</span>
+            <div class="itemgroup info">The <span class="keyword wintitle">Raw</span> tab result displays by default.<p class="p">Results display for the last segment executed. See the log file for test results for other segments in the pipeline.</p>
+<p class="p">If the test is unsuccessful, review your fittings setup and refer to <span class="xref ft-internal-link" title="Troubleshooting tips are provided." data-ft-warning="excluded-from-rendering" data-mapid="zhfyvwrmd60S_3CkIOx9xA" data-tocid="K6vj6HW0jpKqf_44TTEadg">Troubleshooting</span> for more assistance.</p>
+</div>
+          </li>
+
+          <li class="li substep substepexpand">
+            <span class="ph cmd"> If you turned on the <span class="ph uicontrol">Generate Presigned Url</span> property on the File Writer, the Raw output of the test will include the URL with the location of the HTML file that was generated. Copy and paste this address (without the quotes) in another window in your browser to see the contents of the file, and verify it is the output that you expected.</span>
+          </li>
+
+        </ol>
+
+        <div class="itemgroup info">For more details about the Test process and overall publishing process, see <span class="xref ft-internal-link" title="A pipeline that has already been developed in the Designer can be published so it becomes available to Integration Packages." data-ft-warning="excluded-from-rendering" data-mapid="zhfyvwrmd60S_3CkIOx9xA" data-tocid="Pk1bw1ewEdfISe3zRIJVOw">Publish integration pipelines</span>.</div>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Publish the pipeline.</span>
+        <ol type="a" class="ol substeps">
+          <li class="li substep">
+            <span class="ph cmd">Click <span class="ph uicontrol">Publish</span>.</span>
+          </li>
+
+          <li class="li substep">
+            <span class="ph cmd">Select a release version to publish.</span>
+          </li>
+
+          <li class="li substep">
+            <span class="ph cmd">Click <span class="ph uicontrol">Publish</span>.</span>
+          </li>
+
+        </ol>
+
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Access the <span class="ph uicontrol">Integration Packages</span> card from <span class="keyword">Data Connect</span>. Ensure permissions have been granted for your user in <span class="keyword">Experience</span> Setup so that the new pipeline is available. See <span class="xref ft-internal-link" title="Users develop Data Connect integrations through the Integration Designer card in Ellucian Experience." data-ft-warning="excluded-from-rendering" data-mapid="zhfyvwrmd60S_3CkIOx9xA" data-tocid="gRZTx57_RJFlna7g_FSw4A">Quick Start</span>.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Select the new pipeline you just published and click <span class="ph uicontrol">+ New Job</span> to create a new job.</span>
+        <ol type="a" class="ol substeps">
+          <li class="li substep">
+            <span class="ph cmd">Enter a job name.</span>
+          </li>
+
+          <li class="li substep">
+            <span class="ph cmd">Click <span class="ph uicontrol">Upload File</span> and provide a JSON file as input that matches the data structure the HTML template is expecting.</span>
+          </li>
+
+          <li class="li substep">
+            <span class="ph cmd">Leave <span class="ph uicontrol">Run Now</span> selected (default).</span>
+          </li>
+
+          <li class="li substep">
+            <span class="ph cmd">Click <span class="ph uicontrol">Save</span> to run the job.</span>
+          </li>
+
+        </ol>
+
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">If there is an error while the <span class="keyword">Data Connect</span> job is running, review the <span class="keyword">Data Connect</span> logs.</span>
+        <div class="itemgroup info">See <span class="xref ft-internal-link" title="Some common questions are answered." data-ft-warning="excluded-from-rendering" data-mapid="zhfyvwrmd60S_3CkIOx9xA" data-tocid="3i5JSnEafBjrz53B4lBjLQ">Common questions</span>.</div>
+      </li>
+</ol>
+
+  </div>
+
+</div></div></section>
+<section id="t-450"><h3>Snippet: Crosswalk setup</h3><div class="content-locale-en-US content-locale-en"><div id="c_dc_designer_crosswalk_example"><div class="body conbody"><p class="shortdesc">You can set up a global crosswalk.</p>
+
+    <p class="p">This is a simple example of setting up a global crosswalk. See <span class="xref ft-internal-link" title="Several concepts apply to both Integration Pipelines and Serverless APIs." data-ft-warning="excluded-from-rendering" data-mapid="zhfyvwrmd60S_3CkIOx9xA" data-tocid="2u~kjSoK4ak~gQvMMSszPw">Develop pipelines: Crosswalks</span>.</p>
+
+    <p class="p">Refer to Object Mapper fitting documentation for more Crosswalk configuration details.</p>
+
+    <p class="p">For this example, you can work with the following input:</p>
+
+    <pre class="pre codeblock json"><code>[
+  {"name":"Jim", "lastName":"Hawkins", "job": "Cabin boy" },
+  {"name":"Long John","lastName":"Silver", "job": "Pirate" },
+  {"name":"David","lastName":"Livesey", "job": "Doctor" }
+]</code></pre>
+    <div class="p">You will create a crosswalk that will translate <code class="ph codeph">job</code> into a generic codes: SEA_BASED, EARTH_BASED.<ol class="ol"> <li class="li">First create the crosswalk in the Crosswalks page. Click <span class="ph uicontrol">Crosswalks</span> in the navigation menu within the <span class="ph uicontrol">Integration Packages</span> extension.</li>
+ <li class="li">Click on <span class="ph uicontrol">+</span> after <span class="ph uicontrol">List of Crosswalks</span> to add a new crosswalk, for this exercise, we will name it <samp class="ph msgph">jobCrosswalk</samp></li>
+
+      <li class="li">Use the presented screen to create mappings.</li>
+ <li class="li">Use <code class="ph codeph">{{input}}</code> as the <em class="ph i">Default Target Value</em>. This value will cause the original input to be used if no match is found.<div class="note"><span class="notetitle">Note:</span> The <em class="ph i">Mapping Name</em> is free form, <em class="ph i">Target Value</em> defines the output code and <em class="ph i">Source Values</em> can be a list with values that the engine will match on the input.</div>
+</li>
+ </ol>
+</div>
+
+    <p class="p">For this example, use the next mappings:</p>
+
+    <ul class="ul">
+      <li class="li">Mapping01:<ul class="ul"> <li class="li">Mapping Name: <em class="ph i">earth job code</em></li>
+ <li class="li">Target Value: <em class="ph i">EARTH_BASED</em></li>
+ <li class="li">Source Value: <em class="ph i">Doctor</em></li>
+ </ul>
+</li>
+
+      <li class="li">Mapping02:<ul class="ul"> <li class="li">Mapping Name: <em class="ph i">sea job code</em></li>
+ <li class="li">Target Value: <em class="ph i">SEA_BASED</em></li>
+ <li class="li">Source Value: <em class="ph i">Pirate</em></li>
+ </ul>
+</li>
+
+    </ul>
+
+    <p class="p">This concludes the crosswalk setup. In the next step you will configure a small pipeline to use the crosswalk.</p>
+
+    <div class="section"><h2 class="title sectiontitle">Create a new pipeline and add a Object Mapper fitting</h2>
+      
+      <p class="p">Crosswalks can be defined in the Object Mapper itself, or as a global crosswalk as previously shown, and are called through the transformation functions.</p>
+
+      <p class="p">Under the Mappings sections, configure the first mapping as follows:</p>
+
+      <ul class="ul">
+        <li class="li">Sources -&gt; Path: <em class="ph i">$.job</em></li>
+
+        <li class="li">Target -&gt; Name: <em class="ph i">jobCode</em></li>
+
+      </ul>
+
+      <p class="p">And add a transform function with the next configuration (the entered parameter must be the crosswalk name):</p>
+
+      <ul class="ul">
+        <li class="li">Category: <em class="ph i">util</em></li>
+
+        <li class="li">Function: <em class="ph i">crosswalk</em></li>
+
+        <li class="li">Enter Parameters: <em class="ph i">jobCrosswalk</em> (Click <span class="ph uicontrol">+</span> button after entering the parameter)</li>
+
+      </ul>
+
+      <p class="p">Test the pipeline, add the JSON input data provided at the beginning of this page and click <span class="ph uicontrol">RUN TEST</span>. The output should look like this:</p>
+
+      <pre class="pre codeblock json"><code>{
+  "status": 200,
+  "statusText": "",
+  "data": [
+    {
+      "header": {},
+      "payload": {
+        "name": "Jim",
+        "lastName": "Hawkins",
+        "job": "Cabin boy",
+        "jobCode": "Cabin boy"
+      },
+      "__type": "ETHOS_MESSAGE"
+    },
+    {
+      "header": {},
+      "payload": {
+        "name": "Long John",
+        "lastName": "Silver",
+        "job": "Pirate",
+        "jobCode": "SEA_BASED"
+      },
+      "__type": "ETHOS_MESSAGE"
+    },
+    {
+      "header": {},
+      "payload": {
+        "name": "David",
+        "lastName": "Livesey",
+        "job": "Doctor",
+        "jobCode": "EARTH_BASED"
+      },
+      "__type": "ETHOS_MESSAGE"
+    }
+  ],
+  "runId": "29f90586-e663-4dbe-b28f-2585bd5f3913"
+}</code></pre>
+    </div>
+
+    <div class="section"><h2 class="title sectiontitle">Snippet: How to retrieve nested data from payload</h2>
+      
+      <p class="p">There might be cases when you need to collect data from different arrays or properties in a JSON response. For these cases, Ellucian recommends to first find the information that you want to retrieve. Try retrieving the <em class="ph i">names</em> from the <code class="ph codeph">persons</code> resource.</p>
+
+      <p class="p">After calling the resource, the response is returned with something similar to:</p>
+
+      <pre class="pre codeblock json"><code>"names": [
+  {
+    "firstName": "Katherine",
+    "fullName": "Katherine Jenkins",
+    "lastName": "Jenkins",
+    "preference": "preferred",
+    "title": "Ms."
+  },
+  {
+    "firstName": "Kate",
+    "fullName": "Kate Jenkins",
+    "lastName": "Jenkins",
+    "type": {
+      "category": "favored"
+    }
+  }
+],</code></pre>
+      <p class="p">The objective is to retrieve the preferred name, so it is necessary to create an Object Mapper (If there are multiple objects, you must create a For Each fitting before the Object Mapper), define a mapping and a function.</p>
+
+      <p class="p">Path is a <code class="ph codeph">JSONPath</code> so, the mapping requires to define the path and a target name:</p>
+
+      <ul class="ul">
+        <li class="li">Sources -&gt; Path: <em class="ph i">$.names</em></li>
+
+        <li class="li">Target -&gt; Name: <em class="ph i">Name</em></li>
+
+      </ul>
+
+      <p class="p">If the test is run like this, the response will contain the whole array defined in <em class="ph i">names</em>, so a transformation function is required. The function <em class="ph i">find</em> requires you first define the value and then the property in the parameters list:</p>
+
+      <ul class="ul">
+        <li class="li">Category: <em class="ph i">array</em></li>
+
+        <li class="li">Function: <em class="ph i">find</em></li>
+
+        <li class="li">Enter Parameters: <em class="ph i">preferred</em> - <em class="ph i">$.preference</em> (Click <span class="ph uicontrol">+</span> button after entering each parameter)</li>
+
+      </ul>
+
+      <p class="p">The response payload contains the object that preference value was <em class="ph i">preferred</em>.</p>
+
+      <p class="p">This can also be refined by adding an extra transform function to collect only the <em class="ph i">firstName</em>:</p>
+
+      <ul class="ul">
+        <li class="li">Category: <em class="ph i">object</em></li>
+
+        <li class="li">Function: <em class="ph i">get</em></li>
+
+        <li class="li">Enter Parameters: <em class="ph i">firstName</em> (Click <span class="ph uicontrol">+</span> button after entering the parameter)</li>
+
+      </ul>
+
+      <p class="p">The response payload retrieves the expected value: <code class="ph codeph">"Name": "Katherine"</code>.</p>
+
+    </div>
+
+  </div>
+
+</div></div></section></main></body></html>

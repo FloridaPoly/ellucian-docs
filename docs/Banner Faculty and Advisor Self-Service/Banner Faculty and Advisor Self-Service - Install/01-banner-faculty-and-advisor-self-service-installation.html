@@ -1,0 +1,2020 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Banner Faculty and Advisor Self-Service - Install — Banner Faculty and Advisor Self-Service installation</title><style>body{font-family:-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;line-height:1.55;color:#1a1a1a;max-width:920px;margin:0 auto;padding:24px}header{border-bottom:2px solid #5a16d6;margin-bottom:8px}h1{color:#3a0ca3}h2,h3,h4,h5,h6{margin-top:1.6em}.crumb{color:#666;font-size:13px;margin:0}.meta{color:#888;font-size:12px}nav.toc{background:#f6f4fc;border:1px solid #e3dcf5;border-radius:8px;padding:12px 18px;margin:18px 0}nav.toc h2{margin:.2em 0}nav.toc ul{list-style:none;padding-left:0}nav.toc a{text-decoration:none;color:#5a16d6}section{margin:1.2em 0;padding-top:.4em}img{max-width:100%;height:auto}table{border-collapse:collapse}td,th{border:1px solid #ccc;padding:4px 8px}code,pre{background:#f4f4f4;border-radius:4px}pre{padding:10px;overflow:auto}</style></head><body><header><p class="crumb">Banner Faculty and Advisor Self-Service › Banner Faculty and Advisor Self-Service - Install</p><h1>Banner Faculty and Advisor Self-Service - Install — Banner Faculty and Advisor Self-Service installation</h1><p class="meta">Source: <a href="https://resources.elluciancloud.com/r/bundle/banner_facss_acn_install">https://resources.elluciancloud.com/r/bundle/banner_facss_acn_install</a> &middot; Retrieved 2026-06-17</p></header><nav class="toc"><h2>Contents</h2><ul><li style="margin-left:0px"><a href="#t-10">Banner Faculty and Advisor Self-Service installation</a></li><li style="margin-left:16px"><a href="#t-20">Before you get started</a></li><li style="margin-left:32px"><a href="#t-30">Hardware requirements</a></li><li style="margin-left:32px"><a href="#t-40">Software requirements</a></li><li style="margin-left:48px"><a href="#t-50">Oracle database</a></li><li style="margin-left:48px"><a href="#t-60">Web application servers</a></li><li style="margin-left:48px"><a href="#t-70">Middle tier (application server) platforms</a></li><li style="margin-left:48px"><a href="#t-80">Developer requirements</a></li><li style="margin-left:48px"><a href="#t-90">Single sign-on (SSO) support</a></li><li style="margin-left:48px"><a href="#t-100">Java dependencies</a></li><li style="margin-left:48px"><a href="#t-110">Browsers</a></li><li style="margin-left:48px"><a href="#t-120">F5 load balancer configuration</a></li><li style="margin-left:48px"><a href="#t-130">Language settings</a></li><li style="margin-left:32px"><a href="#t-140">Configure Application Navigator</a></li><li style="margin-left:32px"><a href="#t-150">Update Theme Editor template</a></li><li style="margin-left:16px"><a href="#t-160">Customize the WAR file</a></li><li style="margin-left:32px"><a href="#t-170">Configure shared settings</a></li><li style="margin-left:48px"><a href="#t-180">Shared configurations in the groovy file</a></li><li style="margin-left:64px"><a href="#t-190">JNDI datasource</a></li><li style="margin-left:64px"><a href="#t-200">Session timeouts</a></li><li style="margin-left:80px"><a href="#t-210">banner.transactionTimeout</a></li><li style="margin-left:80px"><a href="#t-220">AJAX timeout</a></li><li style="margin-left:48px"><a href="#t-230">Shared configurations in the database</a></li><li style="margin-left:64px"><a href="#t-240">About dialog</a></li><li style="margin-left:64px"><a href="#t-250">Page Audit</a></li><li style="margin-left:64px"><a href="#t-260">Login Audit</a></li><li style="margin-left:64px"><a href="#t-270">Link to Self-Service Banner 8.x</a></li><li style="margin-left:64px"><a href="#t-280">Navigational MEP support from Faculty and Advisor Self-Service to Banner Self-Service 8.x</a></li><li style="margin-left:32px"><a href="#t-290">Configure application-specific settings</a></li><li style="margin-left:48px"><a href="#t-300">Application configurations in the groovy file</a></li><li style="margin-left:64px"><a href="#t-310">Config job and application page role job</a></li><li style="margin-left:64px"><a href="#t-320">System properties configured in the groovy file</a></li><li style="margin-left:80px"><a href="#t-330">Institutional home page redirection support</a></li><li style="margin-left:80px"><a href="#t-340">Proxied Oracle users</a></li><li style="margin-left:80px"><a href="#t-350">Configure Banner Faculty and Advisor Self-Service for Single Sign-On</a></li><li style="margin-left:80px"><a href="#t-360">Target server</a></li><li style="margin-left:64px"><a href="#t-370">Redirect pages in a MEP environment</a></li><li style="margin-left:64px"><a href="#t-380">Faculty and Advisor Self-Service web app extensibility</a></li><li style="margin-left:80px"><a href="#t-390">Web app extensibility for Unix</a></li><li style="margin-left:80px"><a href="#t-400">Web app extensibility for Windows</a></li><li style="margin-left:64px"><a href="#t-410">Cross-frame scripting vulnerability</a></li><li style="margin-left:64px"><a href="#t-420">Customize a theme for the application</a></li><li style="margin-left:64px"><a href="#t-430">Self-service end point</a></li><li style="margin-left:64px"><a href="#t-440">Link to Banner Student Profile</a></li><li style="margin-left:64px"><a href="#t-450">Link to Banner Student Self-Service</a></li><li style="margin-left:64px"><a href="#t-460">Configure menu links through Web Tailor</a></li><li style="margin-left:48px"><a href="#t-470">Application configurations in the database</a></li><li style="margin-left:64px"><a href="#t-480">defaultWebSessionTimeout</a></li><li style="margin-left:64px"><a href="#t-490">Password reset</a></li><li style="margin-left:32px"><a href="#t-500">Logback logging</a></li><li style="margin-left:48px"><a href="#t-510">Logging level</a></li><li style="margin-left:48px"><a href="#t-520">Externalize logback configuration</a></li><li style="margin-left:48px"><a href="#t-530">Print logs in JSON format</a></li><li style="margin-left:32px"><a href="#t-540">Externalize the threshold for Health Check</a></li><li style="margin-left:32px"><a href="#t-550">Migrate messages.properties file to the database</a></li><li style="margin-left:32px"><a href="#t-560">Configure application-specific settings by modifying messages.properties file</a></li><li style="margin-left:48px"><a href="#t-570">Customize the messages.properties file</a></li><li style="margin-left:48px"><a href="#t-580">Change the name format</a></li><li style="margin-left:48px"><a href="#t-590">Format employee addresses</a></li><li style="margin-left:48px"><a href="#t-600">Change the phone format</a></li><li style="margin-left:48px"><a href="#t-610">Change the date format</a></li><li style="margin-left:64px"><a href="#t-620">Date format keys</a></li><li style="margin-left:48px"><a href="#t-630">Display multiple calendars</a></li><li style="margin-left:48px"><a href="#t-640">Set first day of the week</a></li><li style="margin-left:48px"><a href="#t-650">Customize CSS</a></li><li style="margin-left:48px"><a href="#t-660">Change the institution logo</a></li><li style="margin-left:48px"><a href="#t-670">Customize JavaScript</a></li><li style="margin-left:16px"><a href="#t-680">Configure the web application server</a></li><li style="margin-left:32px"><a href="#t-690">Configure the Tomcat server</a></li><li style="margin-left:32px"><a href="#t-700">Configure Java management extension</a></li><li style="margin-left:16px"><a href="#t-710">Configure language preferences</a></li><li style="margin-left:32px"><a href="#t-720">Set an institution level locale</a></li><li style="margin-left:32px"><a href="#t-730">Configure the Language Setting option</a></li><li style="margin-left:16px"><a href="#t-740">Configure email</a></li><li style="margin-left:32px"><a href="#t-750">Cancel/Uncancel class email setup</a></li></ul></nav><main><section id="t-10"><h2>Banner Faculty and Advisor Self-Service installation</h2><div class="content-locale-en-US content-locale-en"><div id="c_landing_pg_banner_facss_install"><div class="body conbody"><p class="shortdesc">You can streamline the <span class="keyword">Faculty and Advisor Self-Service</span> installation by using <span class="keyword">Ellucian Solution Manager</span> (ESM) to complete most of the installation tasks. You do need to manually customize the WAR file, set up the application-specific configurations, and configure the application server.</p>
+
+    <div class="section"><h2 class="title sectiontitle">Supporting documentation</h2>
+      
+      <div class="p">Refer to the following content for more information about the <span class="keyword">Ellucian Solution Manager</span> and <span class="keyword">Banner Self-Service</span> common components.<ul class="ul">
+        <li class="li"><span class="xref ft-internal-xlink" data-ft-warning="excluded-from-rendering" data-clusterid="id_b_selfsrvc/facss_install/c_product_overview">Ellucian Solution Manager overview</span></li>
+
+        <li class="li"><span class="xref ft-internal-xlink" data-ft-warning="excluded-from-rendering" data-clusterid="id_b_selfsrvc/facss_install/c_landing_pg_banner_ss_common_features">Banner Self-Service Common Features</span></li>
+
+        </ul>
+</div>
+
+    </div>
+
+  </div>
+
+</div></div></section>
+<section id="t-20"><h3>Before you get started</h3><div class="content-locale-en-US content-locale-en"><div id="c_before_you_start"><div class="body conbody"><p class="shortdesc">Review these prerequisites for hardware, software, and the supporting documentation you can reference. <span class="keyword">Ellucian</span> recommends that you use <span class="keyword">Ellucian Solution Manager</span> to perform Banner product upgrades, rather than using a manual installation process. </p>
+
+    <p class="p">Review <span class="keyword">Banner</span> product release dependency information in <span class="keyword">Ellucian Solution Manager</span> or the <span class="keyword">Banner</span> Interdependency Matrix attached to <cite class="cite">Article KB000500135 - <span class="keyword">Banner</span> Interdependency and Compatibility Matrix</cite> in the <span class="keyword">Ellucian Customer Center</span>.</p>
+
+  </div>
+
+</div></div></section>
+<section id="t-30"><h4>Hardware requirements</h4><div class="content-locale-en-US content-locale-en"><div id="c_hardware_reqs"><div class="body conbody"><p class="shortdesc">These are the hardware requirements <span class="keyword">Ellucian</span> recommends.</p>
+
+    <div class="section"><h2 class="title sectiontitle">CPU and memory</h2>
+      
+      <p class="p">The number of CPU cores, memory, and configuration for application servers running Banner 9applications is dependent on the number of expected concurrent users working on the system. Optimal performance sizing and configuration vary per institution, but the following information provides a good starting point:</p>
+
+      <p class="p">Recommended: Quad core CPU with 8 GB of memory for the application server.</p>
+
+      <p class="p">Please refer to the <cite class="cite">Banner Sizing and Configuration Guide</cite> in the <cite class="cite">Supporting documentation</cite> section of the <cite class="cite"><span class="keyword">Banner</span> Admin Common Install</cite> content on the <span class="keyword">Ellucian Documentation site</span> for more information.</p>
+
+    </div>
+
+    <div class="section"><h2 class="title sectiontitle">Screen resolution</h2>
+      
+      <p class="p">Minimum: 1024 x768</p>
+
+    </div>
+
+    <div class="section"><h2 class="title sectiontitle">Tablets</h2>
+      
+      <p class="p"><span class="keyword">Ellucian</span> supports the following minimum tablet versions. You can implement on one of these versions or higher.</p>
+
+      <ul class="ul">
+        <li class="li">iPad, iPad Mini, iOS 6x, and iOS 7.x</li>
+
+        <li class="li">Android OS 4.x</li>
+
+        <li class="li">Microsoft Surface 1.0, RT, and PRO</li>
+
+      </ul>
+
+    </div>
+
+  </div>
+
+</div></div></section>
+<section id="t-40"><h4>Software requirements</h4><div class="content-locale-en-US content-locale-en"><div id="c_software_reqs"><p class="shortdesc">These are the software requirements <span class="keyword">Ellucian</span> recommends.</p>
+
+</div></div></section>
+<section id="t-50"><h5>Oracle database</h5><div class="content-locale-en-US content-locale-en"><div id="c_software_oracle_database"><p class="shortdesc">Supported versions of the Oracle Database depend on multiple factors, including third-party support time lines. For a complete list of supported Oracle technologies, refer to the Ellucian Oracle Support Calendar. The calendar is available in the Interactive Banner Compatibility Guide, which can be accessed from the Ellucian Downloads.</p>
+
+</div></div></section>
+<section id="t-60"><h5>Web application servers</h5><div class="content-locale-en-US content-locale-en"><div id="c_software_webapps"><p class="shortdesc">The <span class="keyword">Banner</span> <span class="keyword">Faculty and Advisor Self-Service</span> application is supported by Apache Tomcat 9.x web server.</p>
+
+  
+</div></div></section>
+<section id="t-70"><h5>Middle tier (application server) platforms</h5><div class="content-locale-en-US content-locale-en"><div id="r_mid_tier_apps"><div class="body refbody"><p class="shortdesc">The <span class="keyword">Faculty and Advisor Self-Service</span> application supports multiple operating systems on Tomcat application servers.</p>
+
+    <div class="section">
+      <ul class="ul">
+        <li class="li">RedHat Enterprise Linux 8 or Oracle Enterprise Linux 8</li>
+
+        <li class="li">Windows Server 2019</li>
+
+        <li class="li">Solaris 11</li>
+
+        <li class="li">AIX 7.2 TL.x</li>
+
+        <li class="li">HP UX: 11iV3 (11.31)</li>
+
+      </ul>
+
+    </div>
+
+  </div>
+
+</div></div></section>
+<section id="t-80"><h5>Developer requirements</h5><div class="content-locale-en-US content-locale-en"><div id="c_developer_reqs"><div class="body conbody"><p class="shortdesc">Users who pull the source code from GIT need to use specific versions of software when making extensions.</p>
+
+    <ul class="ul">
+      <li class="li">Grails 7.1.0</li>
+
+      <li class="li">Gradle 8.14.4</li>
+
+      <li class="li">Tomcat 10.1.x</li>
+
+      <li class="li">JDK 17 (source code compiles) </li>
+
+
+      <li class="li">JDK 17 or 21 (server runtime)</li>
+
+
+      <li class="li">Oracle Database 19c</li>
+
+      <li class="li">Release GIT Tag, <code class="ph codeph">rel-facultyselfservice-<span class="keyword">9.33.0</span></code></li>
+
+    </ul>
+
+  </div>
+
+</div></div></section>
+<section id="t-90"><h5>Single sign-on (SSO) support</h5><div class="content-locale-en-US content-locale-en"><div id="c_single_sign_on"><div class="body conbody"><p class="shortdesc"><span class="keyword">Ellucian</span> recommends that you first establish the single sign-on environment before implementing <span class="keyword">Faculty and Advisor Self-Service</span>.</p>
+
+    <p class="p"><span class="keyword">Faculty and Advisor Self-Service</span> supports Central Authentication Service (CAS) and Security Assertion Markup Language (SAML) 2.0 Single Sign-On (SSO) protocols. Both are certified to run with <span class="keyword">Ellucian</span> Ethos Identity. You can download <span class="ph">Ellucian Ethos Identity</span> from the <span class="keyword">Ellucian Customer Center</span>.</p>
+
+    <p class="p">For more information about how to establish a single sign-on environment, refer to <cite class="cite">Banner Single Sign-On</cite> documentation. This is available for download from the Documentation Libraries in the <span class="keyword">Ellucian Customer Center</span>.</p>
+
+    <div class="note warning"><span class="warningtitle">Warning:</span> If you do not enable SSO, a user must authenticate before accessing each <span class="keyword">Ellucian</span> 9.x application. If a user logs out of an application, the user is logged out of that current application, but is still logged in to all other applications that are currently open.</div>
+
+  </div>
+
+</div></div></section>
+<section id="t-100"><h5>Java dependencies</h5><div class="content-locale-en-US content-locale-en"><div id="c_software_java_dep"><div class="body conbody"><p class="shortdesc"><span class="keyword">Ellucian</span> supports <span class="keyword">Banner</span> 9 <span class="keyword">Self-Service</span> applications on Java 17 and Java 21. You must install Java 17.0.x (64-bit version) or Java 21.0.x (64-bit version) on the web application server before you deploy the application.</p>
+
+    <p class="p">You must use the same version of Java to customize and deploy the WAR file and you must define the JDK bin directory in the PATH system property.</p>
+
+    <div class="p">If you want to implement an alternative to Oracle JDK, <span class="keyword">Ellucian</span> recommends the following runtime Java virtual machines for running <span class="keyword">Banner</span> 9 <span class="keyword">Self-Service</span> applications.<ul class="ul"> <li class="li">Ellucian Cloud – Amazon Corretto OpenJDK for running <span class="keyword">Banner</span> applications in the cloud (hosted or SaaS)</li>
+ <li class="li">RedHat Enterprise Linux and Oracle Enterprise Linux – OpenJDK</li>
+ <li class="li">Windows – Amazon Corretto OpenJDK</li>
+
+      <li class="li">Solaris – Azul OpenJDK as an alternative</li>
+ <li class="li">AIX – IBM distributes Java as part of AIX</li>
+ <li class="li">HP-UX – HP distributes Java as part of HP-UX</li>
+ </ul>
+</div>
+
+    <p class="p">Refer to the following article on the <span class="keyword">Ellucian Customer Center</span> for information about acquiring OpenJDK for <span class="keyword">Banner</span> solutions.</p>
+
+    <p class="p">
+      <cite class="cite">Article 000043508: Acquiring OpenJDK for Banner Solutions</cite>
+    </p>
+
+  </div>
+
+</div></div></section>
+<section id="t-110"><h5>Browsers</h5><div class="content-locale-en-US content-locale-en"><div id="c_software_browsers"><div class="body conbody"><p class="shortdesc">For more information about supported browsers, refer to the <cite class="cite">Interactive Banner Compatibility Guide </cite>on the <span class="keyword">Ellucian Download Center</span>.</p>
+
+    <div class="section">
+      <ul class="ul">
+        <li class="li">Google Chrome</li>
+
+        <li class="li">Mozilla Firefox</li>
+
+        <li class="li">Safari</li>
+
+        <li class="li">Microsoft Edge</li>
+
+      </ul>
+
+    </div>
+
+  </div>
+
+</div></div></section>
+<section id="t-120"><h5>F5 load balancer configuration</h5><div class="content-locale-en-US content-locale-en"><div id="c_f5_load_balancer"><div class="body conbody"><p class="shortdesc">The application was tested using an F5 load balancer. </p>
+
+    <p class="p">It was configured with the following settings:</p>
+
+    <pre class="pre codeblock"><code>Load Balancing type = Round Robin
+Persistence = Cookie</code></pre>
+    <div class="note"><span class="notetitle">Note:</span> Other configurations may be supported depending on Network Load Balancing (NLB).</div>
+
+  </div>
+
+</div></div></section>
+<section id="t-130"><h5>Language settings</h5><div class="content-locale-en-US content-locale-en"><div id="c_language_settings"><div class="body conbody"><p class="shortdesc"><span class="keyword">Faculty and Advisor Self-Service</span> uses data from the GURINFO table.</p>
+
+    <p class="p">This seed data is delivered with the DB Upgrade 9.14. As this seed data is multi-lingual, it is important that the Oracle NLS language setting must match the <span class="keyword">Banner</span> database when the data is loaded. Specifically, the NLS_LANG key must be set to AMERICAN_AMERICA.AL32UTF8.</p>
+
+  </div>
+
+</div></div></section>
+<section id="t-140"><h4>Configure Application Navigator</h4><div class="content-locale-en-US content-locale-en"><div id="c_configure_application_navigator"><div class="body conbody"><p class="shortdesc">Application Navigator is a software component that facilitates seamless navigation between <span class="keyword">Banner</span> 8.x and <span class="keyword">Banner</span> 9.x Administrative applications, in addition to <span class="keyword">Banner</span> 9.x Self-Service applications.</p>
+
+    <p class="p">You can configure Application Navigator so that a menu item will display in the Application Navigator menu for each Self-Service Application. See the Application Navigator documentation on the <span class="keyword">Ellucian Documentation site</span> and the <span class="keyword">Ellucian Customer Center</span> for configuration instructions.</p>
+
+  </div>
+
+</div></div></section>
+<section id="t-150"><h4>Update Theme Editor template</h4><div class="content-locale-en-US content-locale-en"><div id="c_update_theme_editor_template"><div class="body conbody"><p class="shortdesc"><span class="keyword">Banner</span> products are undergoing a visual refresh to create a consistent look and feel. <span class="keyword">Banner</span> <span class="keyword">Faculty and Advisor Self-Service</span> includes an updated <span class="keyword">Ellucian</span> logo, color palette, and favicon to implement this consistent interface.</p>
+
+    <p class="p">The application user interface includes new color mappings. If you use <span class="keyword">Banner</span> Theme Editor to apply themes in <span class="keyword">Faculty and Advisor Self-Service</span>, you must remove old templates before installing the <span class="keyword">Banner</span> <span class="keyword">Faculty and Advisor Self-Service</span> release. This provides support for the new color mappings when you apply a theme.</p>
+
+    <p class="p">If you use <span class="keyword">Ellucian Theme Editor</span> to apply themes, you must upload the latest template from the <span class="keyword">Banner</span> Theme Editor into the <span class="keyword">Ellucian Theme Editor</span> and configure the corresponding template reference in the <span class="keyword wintitle">Banner Applications Configurations (GUACONF)</span> page.</p>
+
+    <p class="p">See <span class="xref ft-internal-xlink" data-ft-warning="excluded-from-rendering" data-clusterid="id_b_selfsrvc/facss_install/t_apply_theme_using_new_settings">Apply UI changes and theme elements</span> and <span class="xref ft-internal-xlink" data-ft-warning="excluded-from-rendering" data-clusterid="id_b_selfsrvc/facss_install/t_app_config_file">Banner 9 Self-Service application configuration for theming</span> for instructions about how to do this.</p>
+
+  </div>
+
+</div></div></section>
+<section id="t-160"><h3>Customize the WAR file</h3><div class="content-locale-en-US content-locale-en"><div id="c_customize_war_file"><p class="shortdesc">You must manually customize the WAR file as part of the installation task.</p>
+
+  
+<div class="related-links">
+<div class="linklist relinfo relconcepts" xml:lang="en-US" lang="en-US"><strong>Related concepts</strong><br>
+<ul class="linklist">
+<li class="linklist"><span class="link ft-internal-link" title="Ellucian supports Banner 9 Self-Service applications on Java 17 and Java 21. You must install Java 17.0.x (64-bit version) or Java 21.0.x (64-bit version) on the web application server before you deploy the application." data-ft-warning="excluded-from-rendering" data-mapid="crKmbZlu8DMOOuGFGreWMQ" data-tocid="uv67SDskJ9hyonF6dAgG7w">Java dependencies</span></li></ul></div>
+</div></div></div></section>
+<section id="t-170"><h4>Configure shared settings</h4><div class="content-locale-en-US content-locale-en"><div id="c_configure_shared_settings"><div class="body conbody"><p class="shortdesc">The <span class="ph filepath">shared_configuration</span> home directory contains a cross-application configuration file called <span class="ph filepath">banner_configuration.groovy</span>. You can change settings in this file. As part of improving the <span class="keyword">Banner</span> security model, it is mandatory to externalize the cross-application configuration file <span class="ph filepath">banner_configuration.groovy</span> by setting the system property -DBANNER_APP_CONFIG.</p>
+
+    <p class="p">Shared configurations can also exist in database table (GUROCFG) under application ID <code class="ph codeph">GLOBAL</code>. The configurations in database will always take precedence over the configurations in the file. The <span class="keyword">Banner Common DB Upgrade</span> uploads some shared configurations by default to the database (GUROCFG table). You can edit these configurations using the GUACONF page.</p>
+
+  </div>
+
+</div></div></section>
+<section id="t-180"><h5>Shared configurations in the groovy file</h5><div class="content-locale-en-US content-locale-en"><div id="c_shared_configurations_groovy"><p class="shortdesc">These configurations are in the <span class="ph filepath">banner_configuration.groovy</span> file.</p>
+
+</div></div></section>
+<section id="t-190"><h6>JNDI datasource</h6><div class="content-locale-en-US content-locale-en"><div id="c_jndi_data_source"><div class="body conbody"><p class="shortdesc">You can optionally change the datasource name in the configuration file to point to the JNDI datasource that is configured in your application server.</p>
+
+    <p class="p">For example, <code class="ph codeph">jndiName = "jdbc/bannerSsbDataSource"</code> is the default configuration. You can change this to match the JNDI datasource name in your environment. If you change the jndiName, you must regenerate the WAR file, even if you are using an external configuration.</p>
+
+  </div>
+
+</div></div></section>
+<section id="t-200"><h6>Session timeouts</h6><div class="content-locale-en-US content-locale-en"><div id="c_session_timeouts"><div class="body conbody"><p class="shortdesc">When you determine the timeout settings for CAS and Banner 9.x applications, consider the time limits imposed for each.</p>
+
+    <p class="p">For example, if the Banner 9.x timeout setting is less than the CAS timeout setting, SSO authentication might still be valid even though the user is exited from the Banner 9.x application. As long as the CAS authentication remains valid, the user can re-enter the Banner 9.x application without re-authenticating.</p>
+
+    <p class="p">The following timeouts are used in the self-service application.</p>
+
+  </div>
+
+</div></div></section>
+<section id="t-210"><h6>banner.transactionTimeout</h6><div class="content-locale-en-US content-locale-en"><div id="c_banner_trans_timeout"><div class="body conbody"><p class="shortdesc">The<code class="ph codeph"> banner.transactionTimeout</code> setting is used to prevent excessive delays due to long database transactions. The setting is configured in the <code class="ph codeph">banner_configuration.groovy</code> file. To use this timeout, set <code class="ph codeph">the banner.transactionTimeout</code> setting to <code class="ph codeph">300</code> seconds.</p>
+
+    <p class="p">Ensure that either the configuration file is deployed with the application, or the application is using the configuration file where it is currently located.</p>
+
+    <p class="p">If a database transaction takes longer than <code class="ph codeph">banner.transactionTimeout</code> seconds, the transaction is aborted and any change is rolled back.</p>
+
+    <div class="note"><span class="notetitle">Note:</span> In some cases, the web user interface might ignore the database timeout/error notification and not remove the loading spinner. If this occurs, refresh the page to continue using the application.</div>
+
+  </div>
+
+</div></div></section>
+<section id="t-220"><h6>AJAX timeout</h6><div class="content-locale-en-US content-locale-en"><div id="c_ajax_timeout"><div class="body conbody"><p class="shortdesc">The AJAX timeout terminates HTTP requests that exceed the specified time limit. The self-service application sets the timeout value based on the<code class="ph codeph"> banner.transactionTimeout setting</code> plus an increment to allow for communication and processing of the request.</p>
+
+    <p class="p">You do not need to override the AJAX timeout, but the timeout value can be overridden in JavaScript by calling <code class="ph codeph">$.ajaxSetup( { timeout: timeoutValue } );</code></p>
+
+    <div class="note"><span class="notetitle">Note:</span> The <code class="ph codeph">timeoutValue</code> must be in milliseconds.</div>
+
+    <div class="note"><span class="notetitle">Note:</span> Although the web user interface continues after an AJAX timeout, the server might continue processing the request until it completes or reaches a database <code class="ph codeph">transactionTimeout</code>.</div>
+
+  </div>
+
+</div></div></section>
+<section id="t-230"><h5>Shared configurations in the database</h5><div class="content-locale-en-US content-locale-en"><div id="c_shared_configurations_db"><div class="body conbody"><p class="shortdesc">Shared configurations in the database table (GUROCFG) are under application ID '<code class="ph codeph">GLOBAL</code>'. You can edit these configurations using the GUACONF page.</p>
+
+    <p class="p">In the GUROCFG page for shared configurations, filter by application ID '<code class="ph codeph">GLOBAL</code>'. These configurations can be moved to the Application level if required, under a specific application ID (example: <code class="ph codeph">FACSS</code>).</p>
+
+    <p class="p">For more information, see <cite class="cite">Configure application-specific settings using the GUACONF page</cite>.</p>
+
+  </div>
+
+</div></div></section>
+<section id="t-240"><h6>About dialog</h6><div class="content-locale-en-US content-locale-en"><div id="c_about_dialog"><div class="body conbody"><p class="shortdesc">Configure a key <code class="ph codeph">aboutInfoAccessRoles</code> with type <span class="ph uicontrol">list</span> in GUACONF (GUROCFG table) with <span class="keyword">Banner</span>/WebTailor roles that can view the Platform version in About dialog.</p>
+
+    <div class="example">Example 1: <pre class="pre codeblock"><code>aboutInfoAccessRoles = [ROLE_SELFSERVICE-WTAILORADMIN_BAN_DEFAULT_M]</code></pre>Example 2: <pre class="pre codeblock"><code>aboutInfoAccessRoles = [ROLE_SELFSERVICE-WTAILORADMIN_BAN_DEFAULT_M,ROLE_SELFSERVICE-STUDENT_BAN_DEFAULT_M]</code></pre></div>
+
+    <div class="section">
+      <div class="p">Note the following:<ol class="ol"> <li class="li">Platform version is not available for other roles that are not configured under <code class="ph codeph">aboutInfoAccessRoles</code> configuration.</li>
+ <li class="li">Platform version is not available in unsecured <span class="keyword">Banner Self-Service</span> pages.</li>
+ <li class="li">If there is no configuration for <code class="ph codeph">aboutInfoAccessRoles</code>, then Platform version will not be seen in the About dialog.</li>
+ </ol>
+</div>
+
+    </div>
+
+  </div>
+
+</div></div></section>
+<section id="t-250"><h6>Page Audit</h6><div class="content-locale-en-US content-locale-en"><div id="r_page_audit"><div class="body refbody"><p class="shortdesc">Page Audit is a Banner Platform feature that enables page audit across <span class="keyword">Banner</span> <span class="keyword">Banner Self-Service</span> applications.</p>
+
+    <div class="section"><h2 class="title sectiontitle">Table Name: GURASSA</h2>
+      
+    </div>
+
+    
+<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" class="table" frame="hsides" border="1" rules="rows"><colgroup><col style="width:28.011204481792717%"><col style="width:71.98879551820728%"></colgroup><thead class="thead" style="text-align:left;vertical-align:bottom;">
+          <tr class="row">
+            <th class="entry row-nocellborder" style="text-align:left;vertical-align:bottom;" id="d7694e54">Information</th>
+
+            <th class="entry row-nocellborder" style="text-align:left;vertical-align:bottom;" id="d7694e57">Description</th>
+
+          </tr>
+
+        </thead>
+<tbody class="tbody">
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d7694e54 ">Audit Time</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d7694e57 ">Application server time.</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d7694e54 ">SSB Login ID</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d7694e57 ">The user id used to login to SSB. SPRIDEN ID is stored for Self-service users/SSO users. Email address is stored for Guest users.</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d7694e54 ">Application ID</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d7694e57 ">Application ID for the page the user is accessing.</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d7694e54 ">Page URL</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d7694e57 ">Page the user is accessing.<p class="p">Example: <span class="ph filepath">/StudentRegistrationSsb/ssb/registration</span></p>
+</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d7694e54 ">IP Address</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d7694e57 ">IP address of user</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d7694e54 ">Activity Date</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d7694e57 ">The date that information in this record was entered or last updated.</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d7694e54 ">User ID</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d7694e57 ">The user ID of the person who inserted or last updated this record.</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d7694e54 ">PIDM</td>
+
+            <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d7694e57 ">Self-service users get the respective PIDM. Guest users are not handled for this information yet.</td>
+
+          </tr>
+
+        </tbody>
+</table>
+</div>
+
+    <div class="section"><h2 class="title sectiontitle">Enable Page Audit</h2>
+      
+      <p class="p">The following table shows a few example values and results:</p>
+
+      
+<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" class="table" frame="hsides" border="1" rules="rows"><colgroup><col style="width:18.057921635434415%"><col style="width:20.442930153321978%"><col style="width:17.035775127768314%"><col style="width:44.4633730834753%"></colgroup><thead class="thead" style="text-align:left;vertical-align:bottom;">
+            <tr class="row">
+              <th class="entry row-nocellborder" style="text-align:left;vertical-align:bottom;" id="d7694e168">App ID</th>
+
+              <th class="entry row-nocellborder" style="text-align:left;vertical-align:bottom;" id="d7694e171">GUACONF</th>
+
+              <th class="entry row-nocellborder" style="text-align:left;vertical-align:bottom;" id="d7694e174">&nbsp;</th>
+
+              <th class="entry row-nocellborder" style="text-align:left;vertical-align:bottom;" id="d7694e176">&nbsp;</th>
+
+            </tr>
+
+          </thead>
+<tbody class="tbody">
+            <tr class="row">
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d7694e168 ">&nbsp;</td>
+
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d7694e171 ">Key</td>
+
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d7694e174 ">Value</td>
+
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d7694e176 ">Result</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d7694e168 ">Global</td>
+
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d7694e171 ">EnablePageAudit</td>
+
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d7694e174 ">N or null</td>
+
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d7694e176 ">No pages audited.</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d7694e168 ">&nbsp;</td>
+
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d7694e171 ">&nbsp;</td>
+
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d7694e174 ">%</td>
+
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d7694e176 ">All pages across all the self-service applications are audited.</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d7694e168 ">&nbsp;</td>
+
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d7694e171 ">&nbsp;</td>
+
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d7694e174 ">Registration</td>
+
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d7694e176 ">Those URLs of applications that contains the word registration is audited. This is not case sensitive search.</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d7694e168 ">&nbsp;</td>
+
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d7694e171 ">&nbsp;</td>
+
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d7694e174 ">Hr</td>
+
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d7694e176 ">Those URLs of applications that contains the word hr is audited.</td>
+
+            </tr>
+
+          </tbody>
+</table>
+</div>
+
+      <div class="note"><span class="notetitle">Note:</span> If you have configured the same configuration in the above table at the application level, then audit is enabled only for the configured application and not across all <span class="keyword">Banner Self-Service</span> applications.</div>
+
+    </div>
+
+  </div>
+
+</div></div></section>
+<section id="t-260"><h6>Login Audit</h6><div class="content-locale-en-US content-locale-en"><div id="r_login_audit"><div class="body refbody"><p class="shortdesc">Login Audit is a Banner Platform feature that enables Login and Logout audit across <span class="keyword">Banner Self-Service</span> applications.</p>
+
+    <div class="section"><h2 class="title sectiontitle">Table Name: GURASSL</h2>
+      
+      
+<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" class="table" frame="hsides" border="1" rules="rows"><colgroup><col style="width:28.011204481792717%"><col style="width:71.98879551820728%"></colgroup><thead class="thead" style="text-align:left;vertical-align:bottom;">
+            <tr class="row">
+              <th class="entry row-nocellborder" style="text-align:left;vertical-align:bottom;" id="d3256e50">Information</th>
+
+              <th class="entry row-nocellborder" style="text-align:left;vertical-align:bottom;" id="d3256e53">Comment</th>
+
+            </tr>
+
+          </thead>
+<tbody class="tbody">
+            <tr class="row">
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d3256e50 ">Audit Time</td>
+
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d3256e53 ">Application server time.</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d3256e50 ">SSB Login ID</td>
+
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d3256e53 ">The user id used to log in to SSB. SPRIDEN ID is stored for self-service users/SSO users. Email address is stored for Guest users.</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d3256e50 ">Application ID</td>
+
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d3256e53 ">Application ID for the page the user is accessing.</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d3256e50 ">IP Address</td>
+
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d3256e53 ">IP address of the user.</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d3256e50 ">User Agent</td>
+
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d3256e53 ">User agent from the client browser.</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d3256e50 ">Activity Date</td>
+
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d3256e53 ">The date that information in this record was entered or last updated.</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d3256e50 ">User ID</td>
+
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d3256e53 ">The user ID of the person who inserted or last updated this record.</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d3256e50 ">PIDM</td>
+
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d3256e53 ">Self-service users get the respective PIDM. Guest users are not handled for this information yet.</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d3256e50 ">Logon Comment</td>
+
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d3256e53 ">
+                <p class="p">A comment recorded at logon/logout time</p>
+
+                <p class="p"><samp class="ph msgph">Login Successful</samp> for successful login</p>
+
+                <p class="p"><samp class="ph msgph">Logout Successful</samp> for successful logout</p>
+
+              </td>
+
+            </tr>
+
+          </tbody>
+</table>
+</div>
+
+      <div class="note"><span class="notetitle">Note:</span> For a better understanding of the Login Audit, see the following notes:<ol class="ol"> <li class="li">Only successful login/logouts are audited in the new table GURASSL; the error cases will continue to be audited in GURALOG table.</li>
+ <li class="li">Single Sign On login/logout is also audited, tested with CAS and SAML.</li>
+ <li class="li">Login ID is Spriden ID for Single Sign On.</li>
+ <li class="li">User agent is the complete string from the browser that is used.</li>
+
+        <li class="li">Guest users are audited for Login/Logouts with the email address.</li>
+ </ol>
+</div>
+
+    </div>
+
+    <div class="section"><h2 class="title sectiontitle">Enable Login Audit</h2>
+      
+      <p class="p">The following table shows how the Login Audit is configured:</p>
+
+      
+<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" class="table" frame="hsides" border="1" rules="rows"><colgroup><col style="width:18.057921635434415%"><col style="width:20.442930153321978%"><col style="width:17.035775127768314%"><col style="width:44.4633730834753%"></colgroup><thead class="thead" style="text-align:left;vertical-align:bottom;">
+            <tr class="row">
+              <th class="entry row-nocellborder" style="text-align:left;vertical-align:bottom;" id="d3256e203">App ID</th>
+
+              <th class="entry row-nocellborder" style="text-align:left;vertical-align:bottom;" id="d3256e206">GUACONF</th>
+
+              <th class="entry row-nocellborder" style="text-align:left;vertical-align:bottom;" id="d3256e209">&nbsp;</th>
+
+              <th class="entry row-nocellborder" style="text-align:left;vertical-align:bottom;" id="d3256e211">&nbsp;</th>
+
+            </tr>
+
+          </thead>
+<tbody class="tbody">
+            <tr class="row">
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d3256e203 ">&nbsp;</td>
+
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d3256e206 ">Key</td>
+
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d3256e209 ">Value</td>
+
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d3256e211 ">Result</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d3256e203 ">Global</td>
+
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d3256e206 ">EnableLoginAudit</td>
+
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d3256e209 ">N or null</td>
+
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d3256e211 ">No login/logout is audited</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d3256e203 ">&nbsp;</td>
+
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d3256e206 ">&nbsp;</td>
+
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d3256e209 ">Y</td>
+
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d3256e211 ">All login/logout across all the Self-service applications are audited</td>
+
+            </tr>
+
+          </tbody>
+</table>
+</div>
+
+      <div class="note"><span class="notetitle">Note:</span> If you have configured the same configuration in the above table at the application level, then audit is enabled only for the configured application and not across all <span class="keyword">Banner Self-Service</span> applications.</div>
+
+    </div>
+
+  </div>
+
+</div></div></section>
+<section id="t-270"><h6>Link to Self-Service Banner 8.x</h6><div class="content-locale-en-US content-locale-en"><div id="c_link_ss_banner8"><p class="shortdesc">Please refer to the <cite class="cite">Banner 9.x menu link to Self-Service Banner 8.x</cite> topic in the <cite class="cite">Banner Self-Service Common Features</cite> documentation.</p>
+
+</div></div></section>
+<section id="t-280"><h6>Navigational MEP support from Faculty and Advisor Self-Service to Banner Self-Service 8.x</h6><div class="content-locale-en-US content-locale-en"><div id="c_navigational_mep_support_9x_8x"><p class="shortdesc">Please refer to the <cite class="cite">MEP and multi-language support for Banner Self-Service 8.x menu</cite> topic in the <cite class="cite">Banner Self-Service Common Features</cite> documentation.</p>
+
+</div></div></section>
+<section id="t-290"><h4>Configure application-specific settings</h4><div class="content-locale-en-US content-locale-en"><div id="c_configure_application_specific_settings"><div class="body conbody"><p class="shortdesc"><span class="keyword">Banner</span> XE applications read configuration at startup from a shared configuration file (<span class="ph filepath">banner_configuration.groovy</span>), from an application configuration file (<span class="ph filepath"><span class="keyword">FacultySelfService</span>_configuration.groovy</span>) and from the database table (GUROCFG).</p>
+
+    <p class="p">The application configuration file setting can override the shared configuration file settings and the configurations in database can override any configurations set in the files.</p>
+
+  </div>
+
+</div></div></section>
+<section id="t-300"><h5>Application configurations in the groovy file</h5><div class="content-locale-en-US content-locale-en"><div id="t_application_configurations_groovy"><p class="shortdesc">The application configuration for <span class="keyword">Banner</span> <span class="keyword">Faculty and Advisor Self-Service</span> is set in <span class="ph filepath"><span class="keyword">FacultySelfService</span>_configuration.groovy</span> file.</p>
+
+</div></div></section>
+<section id="t-310"><h6>Config job and application page role job</h6><div class="content-locale-en-US content-locale-en"><div id="c_config_job_app_page_role_job"><div class="body conbody"><p class="shortdesc">The job configurations <span class="keyword parmname">configJob</span> and <span class="keyword parmname">applicationPageRoleJob</span> have been added to the <span class="ph filepath"><span class="keyword">FacultySelfService</span>_configuration.groovy</span> file. <span class="keyword parmname">configJob</span> is an improved job and <span class="keyword parmname">applicationPageRoleJob</span> is a new job.</p>
+
+    <p class="p">The purpose of these job parameters is to set the configurations for a job to run periodically to pick up the new values set on the database configurations or application page role and become active in the <span class="keyword">Self-Service</span> applications.</p>
+
+    <p class="p">The following old <span class="keyword parmname">configJob</span> configuration is deprecated, so <span class="keyword">Ellucian</span> recommends to remove it from your configuration file.</p>
+
+    <pre class="pre codeblock"><code>configJob {
+    interval = 86400000
+    actualCount = -1
+}</code></pre>
+    <div class="p">If the old configurations exist, the system ignores them and uses the new jobs instead. The application that is still on the older configuration or not configured for newer jobs falls back to the default:<ul class="ul"> <li class="li">30 minutes run for <span class="keyword parmname">configJob</span></li>
+ <li class="li">daily mid-night at 00:00 run for <span class="keyword parmname">applicationPageRoleJob</span></li>
+ </ul>
+</div>
+
+    <p class="p">You can configure the <span class="keyword parmname">configJob</span> and <span class="keyword parmname">applicationPageRoleJob</span> jobs using Spring Scheduler cron expressions. See <cite class="cite">Config job and application page role job configurations</cite> in the <cite class="cite">Banner Self-Service Common Features Use</cite> content for information on customizing the cron expression for the jobs <span class="keyword parmname">configJob</span> and <span class="keyword parmname">applicationPageRoleJob</span>.</p>
+
+    <div class="note"><span class="notetitle">Note:</span> The application configurations loaded in the database take precedence over the configurations in the configuration file. If you have removed the configurations from the database table, or have not configured the <span class="keyword parmname">configJob</span>, the application continues to use the configurations in the configuration file, not the ones in the database.</div>
+
+  </div>
+
+</div></div></section>
+<section id="t-320"><h6>System properties configured in the groovy file</h6><div class="content-locale-en-US content-locale-en"><div id="c_system_properties_groovy"><div class="body conbody"><p class="shortdesc">The following properties in the <span class="ph filepath"><span class="keyword">FacultySelfService</span>_configuration.groovy</span> file are internal to the application and are required for carrying out its own lifecycle activities. Leave these properties undisturbed.</p>
+
+    <pre class="pre codeblock"><code>
+grails.plugin.xframeoptions.urlPattern = '/login/auth' 
+grails.plugin.xframeoptions.deny = true 
+bnrFacSelfServShort="<span class="keyword">Faculty and Advisor Self-Service</span>"
+banner.applicationName="<span class="keyword">FacultySelfService</span>"</code></pre>
+  </div>
+
+</div></div></section>
+<section id="t-330"><h6>Institutional home page redirection support</h6><div class="content-locale-en-US content-locale-en"><div id="c_institutional_home_page_redirection"><div class="body conbody"><p class="shortdesc">The institutional home page redirection support configuration allows <span class="keyword">Faculty and Advisor Self-Service</span> to provide an institutional home page to which users can navigate back to if they have access issues.</p>
+
+    <p class="p">Access issues are specific to insufficient privileges when accessing the <span class="keyword">Faculty and Advisor Self-Service</span> application.</p>
+
+    <pre class="pre codeblock"><code>/********************************************************************* 
+* Home Page link when error happens during authentication. * 
+*********************************************************************/ 
+grails.plugin.springsecurity.homePageUrl='http://URL:PORT/ <span class="keyword">FacultySelfService</span>/'</code></pre>
+  </div>
+
+</div></div></section>
+<section id="t-340"><h6>Proxied Oracle users</h6><div class="content-locale-en-US content-locale-en"><div id="r_proxied_users"><div class="body refbody"><p class="shortdesc">When connecting to self-service applications, the <code class="ph codeph">ssbOracleUsersProxied</code> setting specifies whether the Oracle account is used for the database connections. The <code class="ph codeph">ssbOracleUsersProxied</code> setting also controls whether Value Based Security (VBS) is enabled in the self-service application.</p>
+
+    <div class="section">The following values can be used for the <code class="ph codeph">ssbOracleUsersProxied</code> setting:<ul class="ul"> <li class="li"><code class="ph codeph">False</code> - The Oracle account is not used for the connection and VBS is not enabled in the self-service application. If the Oracle account is locked, the user can still log in to the self-service application.</li>
+
+      <li class="li"><code class="ph codeph">True</code> - The Oracle account is used for the connection and VBS is enabled in the self-service application. If the Oracle account is locked, the user cannot log in to the self-service application.</li>
+ </ul>
+</div>
+
+  </div>
+
+</div></div></section>
+<section id="t-350"><h6>Configure Banner Faculty and Advisor Self-Service for Single Sign-On</h6><div class="content-locale-en-US content-locale-en"><div id="c_config_ban_self_serv_sso"><div class="body conbody"><p class="shortdesc">You can configure <span class="keyword">Banner</span> <span class="keyword">Faculty and Advisor Self-Service</span> to run in a single sign-on (SSO) environment using either Central Authentication Service (CAS) or Security Assertion Markup Language (SAML) SSO protocols. <span class="keyword">Ellucian</span> certifies against and supports <span class="keyword">Ellucian</span> Ethos Identity.</p>
+
+    <div class="p">The <cite class="cite">Banner General Configure</cite> content provides all the information you need to configure <span class="keyword">Banner</span> administrative or <span class="keyword">Self-Service</span> applications.<ul class="ul"> <li class="li">See the <cite class="cite">Banner 9 Self-Service application CAS SSO configuration</cite> section in the <cite class="cite">Banner General Configure</cite> content to enable <span class="keyword">Banner</span> <span class="keyword">Faculty and Advisor Self-Service</span> for CAS SSO.</li>
+
+      <li class="li">See the <cite class="cite">Banner 9 Self-Service application SAML2 SSO configuration</cite> section in the <cite class="cite">Banner General Configure</cite> content to enable <span class="keyword">Banner</span> <span class="keyword">Faculty and Advisor Self-Service</span> for SAML2 SSO.</li>
+ </ul>
+</div>
+
+  </div>
+
+</div></div></section>
+<section id="t-360"><h6>Target server</h6><div class="content-locale-en-US content-locale-en"><div id="c_target_server"><div class="body conbody"><p class="shortdesc">This configuration picks the appropriate JNDI names for war deployment.</p>
+
+    <p class="p">You must configure the following property in the <span class="ph filepath"><span class="keyword">FacultySelfService</span>_configuration.groovy</span> file before building and deploying the <span class="ph filepath">.war</span> file.</p>
+
+    <pre class="pre codeblock"><code>/** ************************************************************************
+*****
+* Target Server configuration                                                  *
+* when we deploy in Tomcat it should be  targetServer="tomcat"</code></pre>
+  </div>
+
+</div></div></section>
+<section id="t-370"><h6>Redirect pages in a MEP environment</h6><div class="content-locale-en-US content-locale-en"><div id="r_redirect_pages_mep_environment"><div class="body refbody"><p class="shortdesc">If your environment is enabled for Multi-Entity Processing (MEP), two settings (<code class="ph codeph">grails.plugin.springsecurity.logout</code>) must be configured in the <span class="ph filepath"><span class="keyword">FacultySelfService</span>_configuration.groovy</span> configuration file for your environment. You do not need to configure these settings if your environment is not enabled for MEP.</p>
+
+    <div class="section">
+      <p class="p">If a user tries to access a <span class="keyword">Self-Service</span> URL that does not include a valid MEP code, an error prompt is displayed on the <span class="keyword wintitle">Error</span> page of the application and the user can use the <span class="ph uicontrol">Logout</span> or <span class="ph uicontrol">Return Home</span> button.</p>
+
+      <p class="p">The following configuration settings determine where each button redirects the user:</p>
+
+      <ul class="ul">
+        <li class="li"><code class="ph codeph">grails.plugin.springsecurity.logout.afterLogoutUrl</code> – This setting contains the URL of the institution-specific page where the user is redirected if the <span class="ph uicontrol">Logout</span> button is clicked.<div class="p">For example, a portal page has the following settings:<ul class="ul"> <li class="li"><span class="ph filepath">https://cas-server/logout?url=http://myportal/ main_page.html</span> (CAS environment)</li>
+ <li class="li"><span class="ph filepath">http://myportal/main_page.html</span> (non-CAS environment)</li>
+ </ul>
+</div>
+</li>
+
+        <li class="li"><span class="ph filepath">grails.plugin.springsecurity.logout.mepErrorLogoutUrl</span> – This setting contains the URL of the institution-specific page where the user is redirected if the <span class="ph uicontrol">Return Home</span> button is clicked.</li>
+
+      </ul>
+
+      <p class="p">Each URL can be any page that does not require a MEP-enabled database connection or any page outside the <span class="keyword">Self-Service</span> application.</p>
+
+    </div>
+
+  </div>
+
+</div></div></section>
+<section id="t-380"><h6>Faculty and Advisor Self-Service web app extensibility</h6><div class="content-locale-en-US content-locale-en"><div id="c_web_app_extensibility"><div class="body conbody"><p class="shortdesc">This feature allows the SPRIDEN user whose oracle user has WTAILORADMIN role the ability to show and hide fields on the user interface.</p>
+
+    <div class="note"><span class="notetitle">Note:</span> You must assign the WTAILORADMIN role to any Oracle user who will work with Extensibility.</div>
+
+  </div>
+
+</div></div></section>
+<section id="t-390"><h6>Web app extensibility for Unix</h6><div class="content-locale-en-US content-locale-en"><div id="t_web_app_extensibility_unix"><div class="body taskbody"><p class="shortdesc">To grant web app extensibility for Unix, complete these steps.</p>
+
+    <div class="tasklabel"><h2 class="sectiontitle tasklabel">Procedure</h2></div><ol class="ol steps"><li class="li step stepexpand">
+        <span class="ph cmd">Verify that the following directory structure is available. This directory structure is required for extensibility.</span>
+        <div class="itemgroup info">
+          <div class="note"><span class="notetitle">Note:</span> <span class="ph filepath">/u02/</span> is a sample path which can be decided by the installer.</div>
+
+          <p class="p">
+            <span class="ph filepath">/u02/BanXE/Extensions/ss_ext/extensions</span>
+          </p>
+
+          <p class="p">
+            <span class="ph filepath">/u02/BanXE/Extensions/ss_ext/i18n</span>
+          </p>
+
+          <p class="p">If that structure does not exist, use the following command to create the directory:</p>
+
+          <p class="p">
+            <span class="keyword cmdname">mkdir /u02/BanXE/Extensions/ss_ext/extensions</span>
+          </p>
+
+          <p class="p">
+            <span class="keyword cmdname">mkdir /u02/BanXE/Extensions/ss_ext/i18n</span>
+          </p>
+
+        </div>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Go to the two new directories: <code class="ph codeph">extensions</code> and <code class="ph codeph">i18n</code> and provide read and write access configuration to the application server user.</span>
+        <div class="itemgroup info">
+          <pre class="pre codeblock"><code>webAppExtensibility.locations.extensions = "/u02/BanXE/Extensions/ss_ext/extensions/"
+webAppExtensibility.locations.resources = "/u02/BanXE/Extensions/ss_ext/i18n/"
+webAppExtensibility.adminRoles = "ROLE_SELFSERVICE-WTAILORADMIN_BAN_DEFAULT_M"</code></pre>
+        </div>
+      </li>
+</ol>
+
+  </div>
+
+</div></div></section>
+<section id="t-400"><h6>Web app extensibility for Windows</h6><div class="content-locale-en-US content-locale-en"><div id="t_web_app_extensibility_windows"><div class="body taskbody"><p class="shortdesc">To grant web app extensibility for Windows, complete these steps.</p>
+
+    <div class="tasklabel"><h2 class="sectiontitle tasklabel">Procedure</h2></div><ol class="ol steps"><li class="li step stepexpand">
+        <span class="ph cmd">Verify that the following directory structure is available. This directory structure is required for extensibility.</span>
+        <div class="itemgroup info">
+          <div class="note"><span class="notetitle">Note:</span> <span class="ph filepath">c:/</span> is a sample path which can be decided by the installer.</div>
+
+          <p class="p">
+            <span class="ph filepath">C:/BanXE/Extensions/ss_ext/extensions</span>
+          </p>
+
+          <p class="p">
+            <span class="ph filepath">C:/BanXE/Extensions/ss_ext/i18n</span>
+          </p>
+
+          <p class="p">If that structure does not exist, use the following command to create the directory:</p>
+
+          <p class="p">
+            <span class="keyword cmdname">mkdir C:/BanXE/Extensions/ss_ext/extensions</span>
+          </p>
+
+          <p class="p">
+            <span class="keyword cmdname">mkdir C:/BanXE/Extensions/ss_ext/i18n</span>
+          </p>
+
+        </div>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Go to directories extensions and i18n, provide read and write access configuration:</span>
+        <div class="itemgroup info">
+          <pre class="pre codeblock"><code>webAppExtensibility.locations.extensions = “C:/BanXE/Extensions/ss_ext/extensions/"
+webAppExtensibility.locations.resources = "C:/BanXE/Extensions/ss_ext/i18n/"
+webAppExtensibility.adminRoles = "ROLE_SELFSERVICE-WTAILORADMIN_BAN_DEFAULT_M"</code></pre>
+          <div class="note"><span class="notetitle">Note:</span> You must add a new role WTAILORADMIN for an oracle user.</div>
+
+        </div>
+      </li>
+</ol>
+
+  </div>
+
+</div></div></section>
+<section id="t-410"><h6>Cross-frame scripting vulnerability</h6><div class="content-locale-en-US content-locale-en"><div id="c_cross_frame_scripting"><div class="body conbody"><p class="shortdesc">For the <span class="keyword">Faculty and Advisor Self-Service</span> application to appear inside the Application Navigator, institutions need to override the default settings in the <span class="keyword">FacultySelfService</span>_configuration.groovy file.</p>
+
+    <p class="p">Set the following configuration in the FacultySelfService_configuration.groovy file: <span class="ph filepath">grails.plugin.xframeoptions.urlPattern = '/login/auth' grails.plugin.xframeoptions.deny = true </span></p>
+
+    <div class="note"><span class="notetitle">Note:</span> This value must not change.</div>
+
+  </div>
+
+</div></div></section>
+<section id="t-420"><h6>Customize a theme for the application</h6><div class="content-locale-en-US content-locale-en"><div id="c_customize_theme_application"><div class="body conbody"><p class="shortdesc">Update the variables <code class="ph codeph">banner.theme.url</code>, <code class="ph codeph">banner.theme.name</code>, and <code class="ph codeph">banner.theme.template</code> to configure the application to use themes. </p>
+
+    <p class="p"><span class="keyword">Ellucian</span> delivers a template file located in the WAR file at <span class="ph filepath">css/theme/<span class="keyword">FacultySelfService-9_33_0</span>.scss</span>. You need to upload the file to the theme server to use of themes.</p>
+
+    <p class="p">You can find information about theme configuration in the <cite class="cite">Configure a Banner XE Self Service Application to use Themes</cite> topic in the <cite class="cite">Banner Extensibility</cite> documentation.</p>
+
+  </div>
+
+</div></div></section>
+<section id="t-430"><h6>Self-service end point</h6><div class="content-locale-en-US content-locale-en"><div id="c_self_service_end_point"><p class="shortdesc">The <span class="ph uicontrol">ssbEnabled</span> setting is set to <var class="keyword varname">true</var> for instances that expose self-service end points. <span class="keyword">Faculty and Advisor Self-Service</span> is a Self-Service application, so the default value is always <var class="keyword varname">true</var>.</p>
+
+</div></div></section>
+<section id="t-440"><h6>Link to Banner Student Profile</h6><div class="content-locale-en-US content-locale-en"><div id="t_link_stu_adv_profile"><div class="body taskbody"><p class="shortdesc">When a faculty member clicks on the student name in the Attendance Tracking roster, the Student Profile page in Banner Student Profile can be opened when the application is installed and configured. </p>
+
+    <div class="section context"><div class="tasklabel"><h2 class="sectiontitle tasklabel">About this task</h2></div>The <code class="ph codeph">bannerXE.url.mapper.studentProfile</code> parameter must be updated to point to the appropriate path for the link.</div>
+
+    <div class="tasklabel"><h2 class="sectiontitle tasklabel">Procedure</h2></div><div class="li step p">
+        <span class="ph cmd">Update the <code class="ph codeph">bannerXE.url.mapper.studentProfile</code> parameter value to an appropriate path for the link using the GUACONF Admin page.</span>
+        <div class="itemgroup stepxmp">For example: Replace <code class="ph codeph">&lt;server&gt;:&lt;port&gt;/&lt;StudentSelfService_root&gt; </code>in the line below: <pre class="pre codeblock"><code>bannerXE.url.mapper.studentProfile = 'http:// 
+&lt;server&gt;:&lt;port&gt;/&lt;StudentSelfService_root&gt;/ssb/studentProfile' </code></pre>with <pre class="pre codeblock"><code>bannerXE.url.mapper.studentProfile = 'http:// 
+ellucianuniv.com:8443/StudentSelfService/ssb/studentProfile'</code></pre></div>
+      </div>
+
+  </div>
+
+</div></div></section>
+<section id="t-450"><h6>Link to Banner Student Self-Service</h6><div class="content-locale-en-US content-locale-en"><div id="c_link_to_banner_student_self_service"><div class="body conbody"><p class="shortdesc">When a faculty member clicks on the class list roster in the Faculty Details Schedule roster, the Student Self Service Class List page can be opened when the application is installed and configured.</p>
+
+    <div class="section"><h2 class="title sectiontitle">About this task</h2>
+      
+      <p class="p">The <code class="ph codeph">banner.url.mapper.studentSelfService</code> parameter must be updated to point to the appropriate path for the link.</p>
+
+    </div>
+
+    <div class="section"><h2 class="title sectiontitle">Procedure</h2><p class="p">Update the <code class="ph codeph">banner.url.mapper.studentSelfService</code> parameter value to an appropriate path for the link using the GUACONF Admin page.</p>
+<p class="p">For Example: Replace <code class="ph codeph">&lt;server&gt;:&lt;port&gt;/StudentSelfService_root</code> in the line below:</p>
+<pre class="pre codeblock"><code>banner.url.mapper.studentSelfService = 'http://&lt;server&gt;:&lt;port&gt;/StudentSelfService'</code></pre>with <pre class="pre codeblock"><code>banner.url.mapper.studentSelfService = 'http://ellucianuniv.com:8443/StudentSelfService'</code></pre></div>
+
+  </div>
+
+</div></div></section>
+<section id="t-460"><h6>Configure menu links through Web Tailor</h6><div class="content-locale-en-US content-locale-en"><div id="t_config_aca_review_page"><div class="body taskbody"><p class="shortdesc">Set up menu links to the Attendance Tracking menu, the Faculty Grade Entry menu, and the Student Academic Review (SAR) menu. You must configure the URL through Web Tailor or in the Web Tailor Repeating Menu Item (TWGRMENU) table.</p>
+
+    <div class="tasklabel"><h2 class="sectiontitle tasklabel">Procedure</h2></div><div class="li step p">
+        <span class="ph cmd">Use the following URLs and script to set up links to the menus on the landing page.</span>
+        <div class="itemgroup info">
+          
+<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" class="table" frame="hsides" border="1" rules="rows"><colgroup><col style="width:28.011204481792717%"><col style="width:71.98879551820728%"></colgroup><thead class="thead" style="text-align:left;vertical-align:bottom;">
+                <tr class="row">
+                  <th class="entry row-nocellborder" style="text-align:left;vertical-align:bottom;" id="d4737e51">Module</th>
+
+                  <th class="entry row-nocellborder" style="text-align:left;vertical-align:bottom;" id="d4737e54">URL</th>
+
+                </tr>
+
+              </thead>
+<tbody class="tbody">
+                <tr class="row">
+                  <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d4737e51 ">Landing page</td>
+
+                  <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d4737e54 ">&lt;myschool&gt;:&lt;port&gt;/FacultySelfService/ssb/facultyCommonDashboard</td>
+
+                </tr>
+
+                <tr class="row">
+                  <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d4737e51 ">Attendance Tracking</td>
+
+                  <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d4737e54 ">&lt;myschool&gt;:&lt;port&gt;/FacultySelfService/ssb/facultyAttendanceTracking#/</td>
+
+                </tr>
+
+                <tr class="row">
+                  <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d4737e51 ">Faculty Grade Entry</td>
+
+                  <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d4737e54 ">&lt;myschool&gt;:&lt;port&gt;/FacultySelfService/ssb/gradeEntry#/final</td>
+
+                </tr>
+
+                <tr class="row">
+                  <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d4737e51 ">Student Academic Review</td>
+
+                  <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d4737e54 ">&lt;myschool&gt;:&lt;port&gt;/FacultySelfService/ssb/StudentAcademicReview#/</td>
+
+                </tr>
+
+              </tbody>
+</table>
+</div>
+
+        </div>
+        <div class="itemgroup stepxmp">
+          <p class="p">For example, use this script to set up the SAR menu:</p>
+
+          <pre class="pre codeblock"><code>UPDATE "WTAILOR"."TWGRMENU" SET TWGRMENU_URL ='http://
+&lt;hostname&gt;:&lt;portnumber&gt;/<span class="keyword">FacultySelfService</span>/ssb/
+studentAcademicReview' WHERE twgrmenu_name =
+'bmenu.P_FacMainMnu' and twgrmenu_url_text ='Student
+Academic Review';
+Where application_path_of_<span class="keyword">FacultySelfService</span> =
+<span class="keyword">FacultySelfService</span> application path. (example: http://
+&lt;hostname&gt;:&lt;portnumber&gt;/<span class="keyword">FacultySelfService</span>/ssb/StudentAcademicReview)</code></pre>
+        </div>
+      </div>
+
+  </div>
+
+</div></div></section>
+<section id="t-470"><h5>Application configurations in the database</h5><div class="content-locale-en-US content-locale-en"><div id="c_application_configurations_database"><div class="body conbody"><p class="shortdesc"><span class="keyword">Faculty and Advisor Self-Service</span> configurations in the GUROCFG database table are under application ID <code class="ph codeph"><span class="keyword">FACSS</span></code>. The configurations in the database will always take precedence over the configurations in the file.</p>
+
+    <p class="p">The <span class="keyword">Banner Common DB Upgrade</span> uploads some <code class="ph codeph"><span class="keyword">FACSS</span></code> configurations by default to the GUROCFG database table. You can edit these configurations using the <span class="keyword wintitle">Banner Applications Configurations (GUACONF)</span> page.</p>
+
+  </div>
+
+</div></div></section>
+<section id="t-480"><h6>defaultWebSessionTimeout</h6><div class="content-locale-en-US content-locale-en"><div id="c_default_web_session_timeout"><div class="body conbody"><p class="shortdesc">The <code class="ph codeph">defaultWebSessionTimeout</code> property is used to terminate user sessions that are left idle or abandoned without logging out. This setting is used to set the overall session inactivity time.</p>
+
+    <div class="note"><span class="notetitle">Note:</span> If <code class="ph codeph">defaultWebSessionTimeout</code> is not specified, a default value of <var class="keyword varname">1500</var> seconds is used.</div>
+
+  </div>
+
+</div></div></section>
+<section id="t-490"><h6>Password reset</h6><div class="content-locale-en-US content-locale-en"><div id="r_password_reset"><div class="body refbody"><p class="shortdesc">You can specify whether users have the ability to reset their passwords by updating the <code class="ph codeph">ssbPassword.reset.enabled</code> setting.</p>
+
+    <div class="section">If the value of the setting is <code class="ph codeph">true</code>, users can reset their passwords. If the value of the setting is <code class="ph codeph">false</code>, a <code class="ph codeph">disabled</code> error message is displayed.</div>
+
+  </div>
+
+</div></div></section>
+<section id="t-500"><h4>Logback logging</h4><div class="content-locale-en-US content-locale-en"><div id="c_logback_logging"><div class="body conbody"><p class="shortdesc">Logging configurations are available in logback.xml file. In a PRODUCTION environment, this file resides in the <span class="keyword">Banner</span> application's classpath. You can externalize the logback configuration as specified in the <cite class="cite">Externalize logback configuration</cite> topic.</p>
+
+    <div class="p">These are the default settings for <span class="keyword">Banner</span> logging:<ul class="ul"> <li class="li">The default Root logger level is configured to <var class="keyword varname">ERROR</var>.</li>
+ <li class="li">Logging is turned to <var class="keyword varname">DEBUG</var> for specific packages and is commented.</li>
+ <li class="li">Use JMX to change logger levels for Root or specific packages/artifacts.</li>
+
+      <li class="li">JMX MBean must be unique for each application that is deployed into the JVM. This configuration should be updated for each instance of each application to ensure uniqueness.<pre class="pre codeblock"><code>jmxConfigurator("${loggingAppName}-logback")</code></pre></li>
+
+      <li class="li">Users can specify a different logging directory using the following system property:<pre class="pre codeblock"><code>-Dbanner.logging.dir=&lt;full directory path&gt; (THIS MUST BE AN ABSOLUTE PATH WITH WRITE PERMISSION)</code></pre><p class="p">For example:</p>
+<pre class="pre codeblock"><code>-Dbanner.logging.dir=/home/tomcat/target/logs</code></pre></li>
+
+      <li class="li">Users can enable hibernate loggers by configuring the following system property:<pre class="pre codeblock"><code>-Dorg.jboss.logging.provider=slf4j</code></pre><p class="p">For example:</p>
+<pre class="pre codeblock"><code>setEnv.sh(linux)/setEnv.bat(Windows)</code></pre></li>
+ <li class="li">If a different logging directory is not configured, then the log files will be generated in the build folder as provided default by Grails.</li>
+ </ul>
+</div>
+
+  </div>
+
+<div class="related-links">
+<div class="linklist relinfo reltasks" xml:lang="en-US" lang="en-US"><strong>Related tasks</strong><br>
+<ul class="linklist">
+<li class="linklist"><span class="link ft-internal-link" title="You can configure the Tomcat server." data-ft-warning="excluded-from-rendering" data-mapid="crKmbZlu8DMOOuGFGreWMQ" data-tocid="lPXoj9buIu9Y9i1Y~EfcDw">Configure the Tomcat server</span></li></ul></div>
+</div></div></div></section>
+<section id="t-510"><h5>Logging level</h5><div class="content-locale-en-US content-locale-en"><div id="r_logging_level"><div class="body refbody"><p class="shortdesc">The root logging level is pre-configured to the <var class="keyword varname">ERROR</var> level. Multiple class or package level configurations, by default, are set to a status of <var class="keyword varname">DEBUG</var> and is commented.</p>
+
+    <div class="section">
+      <p class="p">You can set a different logging level for any package or class. However, configuration changes for logging take effect when the application is restarted.</p>
+
+      <p class="p">For example:</p>
+
+      <pre class="pre codeblock"><code>&lt;root level="DEBUG"&gt;
+        &lt;appender-ref ref="APP_LOG"/&gt;
+    &lt;/root&gt;</code></pre>
+      <p class="p">Uncomment the packages or classes in the logback as required.</p>
+
+      <p class="p">For example:</p>
+
+      <pre class="pre codeblock"><code>//logger("net.hedtech.banner.security.SelfServiceBannerAuthenticationProvider", DEBUG)</code></pre>
+      <p class="p">If the package is not defined, then define in the above format.</p>
+
+      <div class="note"><span class="notetitle">Note:</span> Changing the logging level to <var class="keyword varname">DEBUG</var> produces very large log files.</div>
+
+      <p class="p">Alternatively, you can use JMX to modify logging levels for any specified package or class, or even at the root level. When using JMX, the logging level changes only affect the running application. When you restart the application, changes that you made using JMX are lost.</p>
+
+    </div>
+
+  </div>
+
+</div></div></section>
+<section id="t-520"><h5>Externalize logback configuration</h5><div class="content-locale-en-US content-locale-en"><div id="t_external_logback_config"><div class="body taskbody"><p class="shortdesc">The default logback setting can be overridden by an external logback configuration.</p>
+
+    <div class="tasklabel"><h2 class="sectiontitle tasklabel">Procedure</h2></div><ol class="ol steps"><li class="li step stepexpand">
+        <span class="ph cmd">Take a copy of the example file from the <span class="ph filepath">release-<span class="keyword">FacultySelfService</span>-<span class="keyword">9.33.0</span>.zip/config</span> location and rename it to <span class="ph filepath"><span class="keyword">FacultySelfService</span>_logback.xml</span>.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Modify the file to enable the required logger level and if you need to change the logging directory, change it through <span class="ph filepath">-Dbanner.logging.dir</span>.</span>
+        <div class="itemgroup info">For example, if you need to change the new log directory to C:/Tomcat/logs, set the following as parameter:</div>
+        <div class="itemgroup info">
+          <span class="ph filepath">-Dbanner.logging.dir=C:/Tomcat/logs</span>
+        </div>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Configure different logging directories and application names for <span class="ph filepath">logback.xml</span> by configuring the following parameters in the file.</span>
+        <div class="itemgroup info">
+          <span class="ph filepath">-Dbanner.logging.dir.&lt;Application_Name&gt;=&lt;full directory path&gt; (THIS MUST BE AN ABSOLUTE PATH WITH WRITE PERMISSION)</span>
+          <p class="p">For example, <span class="ph filepath">-Dbanner.logging.dir.<span class="keyword">FacultySelfService</span>=/home/tomcat/logs</span></p>
+
+        </div>
+        <div class="itemgroup info"> <span class="ph filepath">-Dbanner.logging.&lt;Application_Name&gt;=&lt;Custom Application Name&gt;</span> <p class="p">For example, <span class="ph filepath">-Dbanner.logging.<span class="keyword">FacultySelfService</span>=FacSS</span> </p>
+</div>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Place the updated logback configuration file in any location.</span>
+        <div class="itemgroup info">For example, <span class="ph filepath">C:\yourlocation\custom_logback.xml</span>.</div>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">You can refer to the external logback config using the <span class="keyword parmname">-D&lt;APPNAME&gt;_log.config</span> parameter.</span>
+        <div class="itemgroup info">To externalize the logback for <span class="keyword">Banner</span> <span class="keyword">Faculty and Advisor Self-Service</span>, the syntax will be <span class="ph filepath">-D<span class="keyword">FacultySelfService</span>_log.config=C:\\yourlocation\\<span class="keyword">FacultySelfService</span>_logback.xml</span>.</div>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Set this as <span class="keyword parmname">JAVA_OPTS</span> parameter so that you can pass multiple logback configuration for multiple applications as follows:</span>
+        <div class="itemgroup info">
+          <ul class="ul">
+            <li class="li">
+              <pre class="pre codeblock"><code>-<span class="keyword">FacultySelfService</span>_log.config=C:\\yourlocation\\<span class="keyword">FacultySelfService</span>_logback.xml</code></pre>
+            </li>
+
+            <li class="li">
+              <pre class="pre codeblock"><code>-DStudentSelfService_log.config=C:\\yourlocation\\StudentSelfService_logback.xml</code></pre>
+            </li>
+
+          </ul>
+
+          <div class="note"><span class="notetitle">Note:</span> &lt;APPNAME&gt; is the name defined in the <span class="ph filepath">application.groovy</span> in the application level. For example, <span class="ph filepath">app.name=<span class="keyword">FacultySelfService</span></span>.</div>
+
+        </div>
+      </li>
+</ol>
+
+  </div>
+
+</div></div></section>
+<section id="t-530"><h5>Print logs in JSON format</h5><div class="content-locale-en-US content-locale-en"><div id="t_print_json_log"><div class="body taskbody"><p class="shortdesc"><span class="keyword">Banner</span> <span class="keyword">Self-Service</span> applications provide a logback template example file, which has JSON logging enabled by default. You can change from JSON logging to the traditional logging by changing the value of the variable <var class="keyword varname">fileLoggingFormat</var> to <kbd class="ph userinput">log</kbd> in your logback file.</p>
+
+    <div class="tasklabel"><h2 class="sectiontitle tasklabel">Procedure</h2></div><ol class="ol steps"><li class="li step stepexpand">
+        <span class="ph cmd">In the template file, set <var class="keyword varname">banner.logging.dir</var> as a system variable.</span>
+        <div class="itemgroup info">You can set it in JAVA_OPTS or CATALINA_OPTS for Tomcat.</div>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Set the directory path where the log file is generated as the variable value.</span>
+        <div class="itemgroup info">This folder should have read and write permissions.</div>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Change the value in the <span class="ph uicontrol">maxFileSize</span> field as required.</span>
+        <div class="itemgroup info">The default value is 10MB. This is the size of the log file and after 10MB, it creates new files for the latest logs.</div>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Change the value in the <span class="ph uicontrol">maxIndex</span> field as required.</span>
+        <div class="itemgroup info">The default value is 30. This is the number of maximum log files the disk saves. These are JSON files and each line of this log file is a single log object generated from logback.</div>
+      </li>
+</ol>
+
+    <div class="section result"><div class="tasklabel"><h2 class="sectiontitle tasklabel">Results</h2></div>The log file gets generated in the directory path defined in the <span class="ph filepath">banner.logging.dir</span> in the system variable.</div>
+
+  </div>
+
+</div></div></section>
+<section id="t-540"><h4>Externalize the threshold for Health Check</h4><div class="content-locale-en-US content-locale-en"><div id="t_external_threshold_parm"><div class="body taskbody"><p class="shortdesc">Health check endpoint checks the status of the application, database, and the disk space. You can call the health check endpoints remotely by the monitoring tools.</p>
+
+    <div class="section context"><div class="tasklabel"><h2 class="sectiontitle tasklabel">About this task</h2></div>You can externalize the threshold parameter based on your needs; however, it is not mandatory. If not externalized, the default value for <code class="ph codeph">management.health.diskspace.threshold</code> is considered as 1073741824 //1GB.</div>
+
+    <div class="tasklabel"><h2 class="sectiontitle tasklabel">Procedure</h2></div><ol class="ol steps"><li class="li step stepexpand">
+        <span class="ph cmd">Create a file named <kbd class="ph userinput">application.properties</kbd> in a location accessible by your server.</span>
+        <div class="itemgroup info">The following is the sample content of the <span class="ph filepath">application.properties</span>. You can change the value as required.</div>
+        <div class="itemgroup info">
+          <code class="ph codeph">management.health.diskspace.threshold=9999999999</code>
+        </div>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Configure the property.</span>
+        <ol type="a" class="ol substeps">
+          <li class="li substep">
+            <span class="ph cmd">Add a system variable named <var class="keyword varname">SPRING_CONFIG_LOCATION</var> and set the path to the newly created property (<span class="ph filepath">application.properties</span>) file as the variable value.</span>
+          </li>
+
+          <li class="li substep">
+            <span class="ph cmd">Set the following line to JAVA_OPTS: <code class="ph codeph">-Dspring.config.location=C:\Tomcat\application.properties</code></span>
+          </li>
+
+        </ol>
+
+        <div class="itemgroup info">When it is set as part of an environment variable, it is <span class="ph filepath">spring_config_location</span> and in the command line it is <span class="ph filepath">spring.config.location</span>.</div>
+      </li>
+</ol>
+
+  </div>
+
+</div></div></section>
+<section id="t-550"><h4>Migrate messages.properties file to the database</h4><div class="content-locale-en-US content-locale-en"><div id="c_migrate_messages_props_to_db"><div class="body conbody"><p class="shortdesc">Migrate the <code class="ph codeph">messages.properties</code> file to the database which allows users to use the Text Manager function for modifications.</p>
+
+    <p class="p">See the Text Manager content for instructions about using it.</p>
+
+    <p class="p">If your institution does not migrate the information to the database, you should review and follow the instructions in <cite class="cite">Configure application-specific settings by modifying the messages.properties file</cite>.</p>
+
+  </div>
+
+</div></div></section>
+<section id="t-560"><h4>Configure application-specific settings by modifying messages.properties file</h4><div class="content-locale-en-US content-locale-en"><div id="c_configure_application"><div class="body conbody"><p class="shortdesc">To configure application-specific settings, you have the option to modify the groovy file or directly modify the <code class="ph codeph">messages.properties</code> file, CSS, or JavaScript files within the WAR file. If you do not plan to upload properties from a <span class="keyword">Banner Self-Service</span> application, then follow the steps in this section.</p>
+
+    <p class="p">Some of the application-specific settings that you can configure are the name format, date format, time format, multiple calendars, institution name, and java script.</p>
+
+  </div>
+
+</div></div></section>
+<section id="t-570"><h5>Customize the messages.properties file</h5><div class="content-locale-en-US content-locale-en"><div id="t_customize_messages_properties_file"><div class="body taskbody"><p class="shortdesc">To configure application settings using the <span class="ph filepath">messages.properties</span> file, perform the following steps.</p>
+
+    <div class="tasklabel"><h2 class="sectiontitle tasklabel">Procedure</h2></div><ol class="ol steps"><li class="li step stepexpand">
+        <span class="ph cmd">Copy the WAR file of the consolidated application <code class="ph codeph"><span class="keyword">FacultySelfService</span>-<span class="keyword">9.33.0</span>.war</code> to a working folder.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">At a command prompt, run the following JAR command to inflate the contents of the WAR to the current folder.</span>
+        <div class="itemgroup info">
+          <code class="ph codeph">jar -xvf <span class="keyword">FacultySelfService</span>-<span class="keyword">9.33.0</span>.war</code>
+        </div>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Delete the existing WAR file.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Locate the file under <span class="ph filepath">WEB-INF/classes</span> to modify messages.properties file in the application level.</span>
+        <div class="itemgroup info"><p class="p">To modify messages.properties file within the UI plugin, locate .jar file that is created in the lib folder, <span class="ph filepath">WEB-INF/lib/xx_ui_plugin.jar</span>.</p>
+For example: <span class="ph filepath">banner-student-faculty-grade-entry-ui-0.1.jar</span> or <span class="ph filepath">banner-faculty-attendance-tracking-ui-0.1.jar</span>.</div>
+        <ol type="a" class="ol substeps">
+          <li class="li substep substepexpand">
+            <span class="ph cmd">Run the following command to inflate the contents of the JAR file:</span>
+            <div class="itemgroup info">
+              <code class="ph codeph">jar -xvf banner-student-faculty-grade-entry-ui-0.1.jar</code>
+            </div>
+            <div class="itemgroup stepresult">A new folder banner-student-faculty-grade-entry-ui-0.1 will be created. All the messages.properties of this plugin will be available in this folder.</div>
+          </li>
+
+          <li class="li substep substepexpand">
+            <span class="ph cmd">After modifying the messages.properties, bundle the contents to create jar file using the command <code class="ph codeph"> jar cf banner-student-faculty-grade-entry-ui-0.1.jar *</code></span>
+          </li>
+
+        </ol>
+
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">At a command prompt, run the following JAR command. This command will bundle all the files and folders in the current folder.</span>
+        <div class="itemgroup info"><code class="ph codeph">jar –cvf <span class="keyword">FacultySelfService</span>-<span class="keyword">9.33.0</span>.war</code>*</div>
+      </li>
+</ol>
+
+    <div class="section result"><div class="tasklabel"><h2 class="sectiontitle tasklabel">Results</h2></div>The new WAR file is generated and is ready for deployment.</div>
+
+  </div>
+
+</div></div></section>
+<section id="t-580"><h5>Change the name format</h5><div class="content-locale-en-US content-locale-en"><div id="t_change_name_format"><div class="body taskbody"><p class="shortdesc">The default name format is First Middle Last. You can change the name format to any order for any locale.</p>
+
+    <div class="section prereq p"><div class="tasklabel"><h2 class="sectiontitle tasklabel">Before you begin</h2></div>If you migrated the <span class="ph filepath">messages.properties</span> file to the Text Manager, you need to edit this format on the Text Manager Interactive Translator (GMATRAN) page or refer to the <cite class="cite">Customize the messages.properties file</cite> topic.</div>
+
+    <div class="section context"><div class="tasklabel"><h2 class="sectiontitle tasklabel">About this task</h2></div>The login user name shows the person’s name in the format First Middle Last.</div>
+
+    <div class="tasklabel"><h2 class="sectiontitle tasklabel">Procedure</h2></div><ol class="ol steps"><li class="li step stepexpand">
+        <span class="ph cmd">If you need to format the name for a different locale, add the appropriate locale file in the directory.</span>
+        <div class="itemgroup info">
+          <p class="p">American English is the default language for the <span class="ph filepath">messages.properties</span> file.</p>
+
+        </div>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Open the file using a text editor.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Add an entry for the <code class="ph codeph">default.name.format</code> setting using the following elements.</span>
+        <div class="itemgroup info">
+          <ul class="ul">
+            <li class="li">First name: <code class="ph codeph">$firstName</code></li>
+
+            <li class="li">Middle name: <code class="ph codeph">$mi</code></li>
+
+            <li class="li">Last name <code class="ph codeph">$lastName</code></li>
+
+            <li class="li">Surname prefix: <code class="ph codeph">$surnamePrefix</code></li>
+
+          </ul>
+
+        </div>
+        <div class="itemgroup stepxmp">For example: <p class="p">You can change the default name format as follows: <code class="ph codeph">default.name.format</code>=<code class="ph codeph">$surnamePrefix</code> <code class="ph codeph">$firstName</code> <code class="ph codeph">$mi</code> <code class="ph codeph">$lastName</code></p>
+</div>
+      </li>
+</ol>
+
+  </div>
+
+</div></div></section>
+<section id="t-590"><h5>Format employee addresses</h5><div class="content-locale-en-US content-locale-en"><div id="t_address_format"><div class="body taskbody"><p class="shortdesc">You can configure up to eight lines of the addresses, but you must include at least the first four lines that are delivered as the default.</p>
+
+    <div class="section prereq p"><div class="tasklabel"><h2 class="sectiontitle tasklabel">Before you begin</h2></div>If you migrated the <span class="ph filepath">messages.properties</span> file to the Text Manager, you need to edit this format on the Text Manager Interactive Translator (GMATRAN) page or refer to the <cite class="cite">Customize the messages.properties file</cite> topic.</div>
+
+    <div class="section context"><div class="tasklabel"><h2 class="sectiontitle tasklabel">About this task</h2></div>You cannot use separator values such as comma (,) and period (.) if the preceding address attribute can be null.</div>
+
+    <div class="tasklabel"><h2 class="sectiontitle tasklabel">Procedure</h2></div><ol class="ol steps"><li class="li step stepexpand">
+        <span class="ph cmd"> If you need to format the address for a different locale, add the appropriate locale file in the directory.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Open the file in a text editor and edit the <code class="ph codeph">default.personAddress.line<var class="keyword varname">x</var>.format</code> properties using the elements in the following table to define how employee addresses are displayed.</span>
+        <div class="itemgroup info">If data is not required on the fourth line of the address, then you must use the following format:<pre class="pre codeblock"><code>default.personAddress.line4.format=</code></pre>
+<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" class="table" frame="hsides" border="1" rules="all"><colgroup><col style="width:50%"><col style="width:50%"></colgroup><thead class="thead" style="text-align:left;"> <tr class="row"> <th class="entry row-nocellborder" style="vertical-align:top;" id="d2025e77">Component</th>
+ <th class="entry row-nocellborder" style="vertical-align:top;" id="d2025e80">Element</th>
+ </tr>
+ </thead>
+<tbody class="tbody"> <tr class="row"> <td class="entry row-nocellborder" style="vertical-align:top;" headers="d2025e77 ">House number</td>
+ <td class="entry row-nocellborder" style="vertical-align:top;" headers="d2025e80 ">$houseNumber</td>
+ </tr>
+ <tr class="row">
+          <td class="entry row-nocellborder" style="vertical-align:top;" headers="d2025e77 ">Street line 1</td>
+ <td class="entry row-nocellborder" style="vertical-align:top;" headers="d2025e80 ">$streetLine1</td>
+ </tr>
+ <tr class="row"> <td class="entry row-nocellborder" style="vertical-align:top;" headers="d2025e77 ">Street line 2</td>
+ <td class="entry row-nocellborder" style="vertical-align:top;" headers="d2025e80 ">$streetLine2</td>
+ </tr>
+ <tr class="row"> <td class="entry row-nocellborder" style="vertical-align:top;" headers="d2025e77 ">Street line 3</td>
+ <td class="entry row-nocellborder" style="vertical-align:top;" headers="d2025e80 ">$streetLine3</td>
+ </tr>
+ <tr class="row"> <td class="entry row-nocellborder" style="vertical-align:top;" headers="d2025e77 ">Street line 4</td>
+ <td class="entry row-nocellborder" style="vertical-align:top;" headers="d2025e80 ">$streetLine4</td>
+ </tr>
+ <tr class="row"> <td class="entry row-nocellborder" style="vertical-align:top;" headers="d2025e77 ">City</td>
+ <td class="entry row-nocellborder" style="vertical-align:top;" headers="d2025e80 ">$city</td>
+ </tr>
+ <tr class="row"> <td class="entry row-nocellborder" style="vertical-align:top;" headers="d2025e77 ">State or province</td>
+ <td class="entry row-nocellborder" style="vertical-align:top;" headers="d2025e80 ">$state</td>
+ </tr>
+ <tr class="row"> <td class="entry row-nocellborder" style="vertical-align:top;" headers="d2025e77 ">ZIP or postal code</td>
+ <td class="entry row-nocellborder" style="vertical-align:top;" headers="d2025e80 ">$zip</td>
+ </tr>
+ <tr class="row"> <td class="entry row-nocellborder" style="vertical-align:top;" headers="d2025e77 ">County</td>
+
+          <td class="entry row-nocellborder" style="vertical-align:top;" headers="d2025e80 ">$county</td>
+ </tr>
+ <tr class="row"> <td class="entry row-nocellborder" style="vertical-align:top;" headers="d2025e77 ">Nation</td>
+ <td class="entry row-nocellborder" style="vertical-align:top;" headers="d2025e80 ">$country</td>
+ </tr>
+ </tbody>
+</table>
+</div>
+</div>
+        <div class="itemgroup stepxmp">For example, you can format the employee addresses as follows:<pre class="pre codeblock"><code>default.personAddress.line1.format=$streetLine1
+default.personAddress.line2.format=$streetLine2
+default.personAddress.line3.format=$city
+default.personAddress.line4.format=$state $zip</code></pre></div>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Rebuild the application WAR file to include your customizations.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Redeploy the WAR file to your application server.</span>
+      </li>
+</ol>
+
+  </div>
+
+</div></div></section>
+<section id="t-600"><h5>Change the phone format</h5><div class="content-locale-en-US content-locale-en"><div id="t_change_phone_format"><div class="body taskbody"><p class="shortdesc">The default phone number format is locale specific. The default phone format for U.S. English is <code class="ph codeph">default.personTelephone.format=$phoneCountry $phoneArea $phoneNumber $phoneExtension</code>.</p>
+
+    <div class="section prereq p"><div class="tasklabel"><h2 class="sectiontitle tasklabel">Before you begin</h2></div>If you migrated the <code class="ph codeph">messages.properties</code> file to the Text Manager, you need to edit this format on the Text Manager Interactive Translator (GMATRAN) page or refer to the <cite class="cite">Customize the messages.properties</cite> topic.</div>
+
+    <div class="section context"><div class="tasklabel"><h2 class="sectiontitle tasklabel">About this task</h2></div> The phone area and phone number are two different pieces of data in the database. The items are concatenated as specified in the format either with or without a hyphen. You cannot format the phone number, therefore how the number is entered is how it will display.</div>
+
+    <div class="tasklabel"><h2 class="sectiontitle tasklabel">Procedure</h2></div><ol class="ol steps"><li class="li step stepexpand">
+        <span class="ph cmd">To add a new phone locale, add the appropriate locale file in the directory.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Add an entry for the <code class="ph codeph">default.personTelephone.format</code> setting, using the following elements: Area code: <code class="ph codeph">$phoneArea</code>, Phone number: <code class="ph codeph">$phoneNumber</code>, Extension: <code class="ph codeph">$phoneExtension</code>, Telephone country code: <code class="ph codeph">$phoneCountry</code>, and International access code: <code class="ph codeph">$phoneInternational</code>.</span>
+        <div class="itemgroup stepxmp">For example, <code class="ph codeph">default.personTelephone.format=$phoneCountry $phoneArea $phoneNumber $phoneExtension</code>.</div>
+      </li>
+</ol>
+
+  </div>
+
+</div></div></section>
+<section id="t-610"><h5>Change the date format</h5><div class="content-locale-en-US content-locale-en"><div id="t_change_date_format"><div class="body taskbody"><p class="shortdesc">The default date format is locale specific. The default format for U.S. English is <code class="ph codeph">MM/dd/yyyy</code> and the <code class="ph codeph">js.datepicker.dateFormat</code> is <code class="ph codeph">mm/dd/yyyy</code>. Date formats are case sensitive.</p>
+
+    <div class="section prereq p"><div class="tasklabel"><h2 class="sectiontitle tasklabel">Before you begin</h2></div>If you migrated the <span class="ph filepath">messages.properties</span> file to the Text Manager, you need to edit this format on the Text Manager Interactive Translator (GMATRAN) page or refer to the <cite class="cite">Customize the messages.properties file</cite> topic.</div>
+
+    <div class="tasklabel"><h2 class="sectiontitle tasklabel">Procedure</h2></div><ol class="ol steps"><li class="li step stepexpand">
+        <span class="ph cmd">If you need to format the date for a different locale, add the appropriate locale file in the directory.</span>
+        <div class="itemgroup info">
+          <p class="p">American English is the default language for <span class="ph filepath">messages.properties</span> file.</p>
+
+        </div>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Open the file using a text editor.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Add the <span class="ph filepath">default.date.format</span> and <span class="ph filepath">js.datepicker.dateFormat</span> keys in to the <span class="ph filepath">messages_&lt;ISO_language_code&gt;_&lt;ISO_country_code&gt;.properties</span> file that is located in the <span class="ph filepath">BannerGeneralSsb\current\i18n</span> directory.</span>
+        <div class="itemgroup info">For example, you can add one of the following date formats: <ul class="ul"> <li class="li"><span class="ph filepath">default.date.format=MM/dd/yyyy js.datepicker.dateFormat=mm/dd/yyyy</span></li>
+ <li class="li"><span class="ph filepath">default.date.format=dd-MMM-yyyy js.datepicker.dateFormat=dd-M-yyyy</span></li>
+ </ul>
+</div>
+      </li>
+</ol>
+
+  </div>
+
+</div></div></section>
+<section id="t-620"><h6>Date format keys</h6><div class="content-locale-en-US content-locale-en"><div id="r_date_format_keys"><div class="body refbody"><p class="shortdesc">The <code class="ph codeph">default.date.format</code> and <code class="ph codeph">js.datepicker.dateFormat</code> are date format keys that use different specifications to represent the date. The <code class="ph codeph">default.date.format</code> is associated with the ICU format, which is <code class="ph codeph">dd/MM/yyyy</code>. The <code class="ph codeph">js.datepicker.dateFormat</code> is associated with the Java Script or Keith Wood format, which is <code class="ph codeph">dd/mm/yyyy</code>.</p>
+
+    <div class="section">For dates to be displayed properly, the two formats must match. For example, for 1 June, 2012, the calendar parses 01/06/2012 using <code class="ph codeph">js.datepicker.dateFormat</code>, and when the dates are saved, the date value on the server side is parsed by groovy using <code class="ph codeph">default.date.format</code> to display 01/06/2012 in the application.</div>
+
+    <div class="section"><h2 class="title sectiontitle">default.date.format</h2>
+      
+      <p class="p">This key determines the date format for display and data entry in the user interface. It must match the ICU specification and can be changed based on locale. For more information about the ICU specification, see <a class="xref ft-external-link" href="https://unicode-org.github.io/icu/userguide/" target="_blank" rel="noopener">https://unicode-org.github.io/icu/userguide/</a>.</p>
+
+      <p class="p">For the <code class="ph codeph">default.date.format</code> for June 1, 2014, use one of the following variables for the year:</p>
+
+      
+<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" class="table" frame="hsides" border="1" rules="rows"><colgroup><col style="width:21.88183807439825%"><col style="width:56.236323851203494%"><col style="width:21.88183807439825%"></colgroup><thead class="thead" style="text-align:left;vertical-align:bottom;">
+            <tr class="row">
+              <th class="entry row-nocellborder" style="text-align:left;vertical-align:bottom;" id="d5033e93">Year format</th>
+
+              <th class="entry row-nocellborder" style="text-align:left;vertical-align:bottom;" id="d5033e96">Interpretation</th>
+
+              <th class="entry row-nocellborder" style="text-align:left;vertical-align:bottom;" id="d5033e99">Comment</th>
+
+            </tr>
+
+          </thead>
+<tbody class="tbody">
+            <tr class="row">
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d5033e93 ">yy</td>
+
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d5033e96 ">14</td>
+
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d5033e99 ">Two digit year</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d5033e93 ">yyyy</td>
+
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d5033e96 ">2014</td>
+
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d5033e99 ">Four digit year</td>
+
+            </tr>
+
+          </tbody>
+</table>
+</div>
+
+      <p class="p">For the <code class="ph codeph">default.date.format</code> for June 1, 2014, use one of the following variables for the month:</p>
+
+      
+<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" class="table" frame="hsides" border="1" rules="rows"><colgroup><col style="width:21.88183807439825%"><col style="width:56.236323851203494%"><col style="width:21.88183807439825%"></colgroup><thead class="thead" style="text-align:left;vertical-align:bottom;">
+            <tr class="row">
+              <th class="entry row-nocellborder" style="text-align:left;vertical-align:bottom;" id="d5033e154">Month format</th>
+
+              <th class="entry row-nocellborder" style="text-align:left;vertical-align:bottom;" id="d5033e157">Interpretation</th>
+
+              <th class="entry row-nocellborder" style="text-align:left;vertical-align:bottom;" id="d5033e160">Comment</th>
+
+            </tr>
+
+          </thead>
+<tbody class="tbody">
+            <tr class="row">
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d5033e154 ">M</td>
+
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d5033e157 ">6</td>
+
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d5033e160 ">Single digit month (no leading zero)</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d5033e154 ">MM</td>
+
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d5033e157 ">06</td>
+
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d5033e160 ">Double digit month</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d5033e154 ">MMM</td>
+
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d5033e157 ">Jun</td>
+
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d5033e160 ">Short month name</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d5033e154 ">MMMM</td>
+
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d5033e157 ">June</td>
+
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d5033e160 ">Long month name</td>
+
+            </tr>
+
+          </tbody>
+</table>
+</div>
+
+      <p class="p">For the <code class="ph codeph">default.date.format</code> for June 1, 2014, use one of the following variables for the day:</p>
+
+      
+<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" class="table" frame="hsides" border="1" rules="rows"><colgroup><col style="width:21.88183807439825%"><col style="width:56.236323851203494%"><col style="width:21.88183807439825%"></colgroup><thead class="thead" style="text-align:left;vertical-align:bottom;">
+            <tr class="row">
+              <th class="entry row-nocellborder" style="text-align:left;vertical-align:bottom;" id="d5033e238">Day format</th>
+
+              <th class="entry row-nocellborder" style="text-align:left;vertical-align:bottom;" id="d5033e241">Interpretation</th>
+
+              <th class="entry row-nocellborder" style="text-align:left;vertical-align:bottom;" id="d5033e244">Comment</th>
+
+            </tr>
+
+          </thead>
+<tbody class="tbody">
+            <tr class="row">
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d5033e238 ">d</td>
+
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d5033e241 ">1</td>
+
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d5033e244 ">Single digit day in a month (no leading zero)</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d5033e238 ">dd</td>
+
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d5033e241 ">01</td>
+
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d5033e244 ">Double digit day in a month</td>
+
+            </tr>
+
+          </tbody>
+</table>
+</div>
+
+    </div>
+
+    <div class="section"><h2 class="title sectiontitle">js.datepicker.dateFormat</h2>
+      
+      <p class="p">This key determines the date format for the interactive date selection control. It must match the jQuery Keith Wood datepicker format specification. For more information on the Keith Wood datepicker format, see <a class="xref ft-external-link" href="http://keith-wood.name/datepick.html" target="_blank" rel="noopener">http://keith-wood.name/datepick.html</a>.</p>
+
+      <p class="p">For the <code class="ph codeph">js.datepicker.dateFormat</code> for June 1, 2014, use one of the following variables for the year:</p>
+
+      
+<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" class="table" frame="hsides" border="1" rules="rows"><colgroup><col style="width:21.88183807439825%"><col style="width:56.236323851203494%"><col style="width:21.88183807439825%"></colgroup><thead class="thead" style="text-align:left;vertical-align:bottom;">
+            <tr class="row">
+              <th class="entry row-nocellborder" style="text-align:left;vertical-align:bottom;" id="d5033e309">Year format</th>
+
+              <th class="entry row-nocellborder" style="text-align:left;vertical-align:bottom;" id="d5033e312">Interpretation</th>
+
+              <th class="entry row-nocellborder" style="text-align:left;vertical-align:bottom;" id="d5033e315">Comment</th>
+
+            </tr>
+
+          </thead>
+<tbody class="tbody">
+            <tr class="row">
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d5033e309 ">yy</td>
+
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d5033e312 ">14</td>
+
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d5033e315 ">Two digit year</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d5033e309 ">yyyy</td>
+
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d5033e312 ">2014</td>
+
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d5033e315 ">Four digit year</td>
+
+            </tr>
+
+          </tbody>
+</table>
+</div>
+
+      <p class="p">For the <code class="ph codeph">js.datepicker.dateFormat</code> for June 1, 2014, use one of the following variables for the month:</p>
+
+      
+<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" class="table" frame="hsides" border="1" rules="rows"><colgroup><col style="width:21.88183807439825%"><col style="width:56.236323851203494%"><col style="width:21.88183807439825%"></colgroup><thead class="thead" style="text-align:left;vertical-align:bottom;">
+            <tr class="row">
+              <th class="entry row-nocellborder" style="text-align:left;vertical-align:bottom;" id="d5033e370">Month format</th>
+
+              <th class="entry row-nocellborder" style="text-align:left;vertical-align:bottom;" id="d5033e373">Interpretation</th>
+
+              <th class="entry row-nocellborder" style="text-align:left;vertical-align:bottom;" id="d5033e376">Comment</th>
+
+            </tr>
+
+          </thead>
+<tbody class="tbody">
+            <tr class="row">
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d5033e370 ">m</td>
+
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d5033e373 ">6</td>
+
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d5033e376 ">Single digit month (no leading zero)</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d5033e370 ">mm</td>
+
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d5033e373 ">06</td>
+
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d5033e376 ">Double digit month</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d5033e370 ">M</td>
+
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d5033e373 ">Jun</td>
+
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d5033e376 ">Short month name</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d5033e370 ">MM</td>
+
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d5033e373 ">June</td>
+
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d5033e376 ">Long month name</td>
+
+            </tr>
+
+          </tbody>
+</table>
+</div>
+
+      <p class="p">For the <code class="ph codeph">js.datepicker.dateFormat</code> for June 1, 2014, use one of the following variables for the day:</p>
+
+      
+<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" class="table" frame="hsides" border="1" rules="rows"><colgroup><col style="width:21.88183807439825%"><col style="width:56.236323851203494%"><col style="width:21.88183807439825%"></colgroup><thead class="thead" style="text-align:left;vertical-align:bottom;">
+            <tr class="row">
+              <th class="entry row-nocellborder" style="text-align:left;vertical-align:bottom;" id="d5033e454">Day format</th>
+
+              <th class="entry row-nocellborder" style="text-align:left;vertical-align:bottom;" id="d5033e457">Interpretation</th>
+
+              <th class="entry row-nocellborder" style="text-align:left;vertical-align:bottom;" id="d5033e460">Comment</th>
+
+            </tr>
+
+          </thead>
+<tbody class="tbody">
+            <tr class="row">
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d5033e454 ">d</td>
+
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d5033e457 ">1</td>
+
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d5033e460 ">Single digit day in a month (no leading zero)</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d5033e454 ">dd</td>
+
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d5033e457 ">01</td>
+
+              <td class="entry row-nocellborder" style="text-align:left;vertical-align:top;" headers="d5033e460 ">Double digit day in a month</td>
+
+            </tr>
+
+          </tbody>
+</table>
+</div>
+
+    </div>
+
+  </div>
+
+</div></div></section>
+<section id="t-630"><h5>Display multiple calendars</h5><div class="content-locale-en-US content-locale-en"><div id="t_display_multiple_calendars"><div class="body taskbody"><p class="shortdesc">Customization of multiple calendars is implemented for the Arabic language (AR). You can customize and display multiple calendars by using a set of <code class="ph codeph">calendar</code> keys.</p>
+
+    <div class="tasklabel"><h2 class="sectiontitle tasklabel">Procedure</h2></div><ol class="ol steps"><li class="li step stepexpand">
+        <span class="ph cmd">Copy the war file of the consolidated application <span class="ph filepath"><span class="keyword">FacultySelfService</span></span><span class="ph filepath">-<span class="keyword">9.33.0</span>.war</span> to a working folder.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd"> At a command prompt, run the following JAR command to inflate the contents of the WAR to the current folder.</span>
+        <div class="itemgroup info">
+          <p class="p">
+            <span class="ph filepath">jar -xvf <span class="keyword">FacultySelfService</span>-<span class="keyword">9.33.0</span>.war</span>
+          </p>
+
+        </div>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Delete the existing war file. </span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">The i18n-core.jar is available here: <span class="ph filepath">WEB-INF/lib/i18n-core-11.3.jar</span>. Run the following command to inflate the contents of the JAR file <span class="ph filepath">jar -xvf i18n-core-11.3.jar</span>.</span>
+        <div class="itemgroup info">The messages.properties file is available in the inflated folder. The default for American English is in the <span class="ph filepath">messages.properties</span> file.</div>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Open the file using a text editor.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">To display multiple calendars in the application, use the following keys in the <span class="ph filepath">messages_ar.properties</span> file: <code class="ph codeph">default.calendar</code>, <code class="ph codeph">default.calendar1</code>, and <code class="ph codeph">default.calendar2</code>.</span>
+        <div class="itemgroup info">The <code class="ph codeph">default.calendar2</code> is optional.</div>
+        <div class="itemgroup stepxmp">For example:<p class="p">By using the following keys, you can set your default calendar format as Islamic, the first alternate calendar displayed as Gregorian, and the second alternate calendar as Arabic:</p>
+<ul class="ul"> <li class="li"><code class="ph codeph">default.calendar=islamic</code></li>
+ <li class="li"><code class="ph codeph">default.calendar1=gregorian</code></li>
+ <li class="li"><code class="ph codeph">default.calendar2=arabic</code></li>
+ </ul>
+</div>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd"> After modifying the messages_ar.properties, bundle the contents to create jar file using command <code class="ph codeph">jar cf i18n-core-11.3.jar *</code>.</span>
+      </li>
+</ol>
+
+  </div>
+
+</div></div></section>
+<section id="t-640"><h5>Set first day of the week</h5><div class="content-locale-en-US content-locale-en"><div id="c_default_first_day_week"><div class="body conbody"><p class="shortdesc">The <code class="ph codeph">default.firstDayOfTheWeek </code>parameter can be used to configure the start of the week for specific locales. It is indexed based, meaning Sunday is 0 and Monday is 1.</p>
+
+    <div class="example">For example, if you wanted the first day of the week to start on Sunday, you would enter the following.<pre class="pre codeblock"><code>$.multicalendar.setDefaults({firstDayOfTheWeek: 0});
+ //Sunday would be first day of the week for all calendar instances.</code></pre>If you wanted Saturday to be the first day of the week, you would enter the following.<pre class="pre codeblock"><code>$('#dateInputField').multiCalendarPicker({firstDayOfTheWeek: 6});
+ //Saturday would be first day of the week for the specific instance</code></pre></div>
+
+  </div>
+
+</div></div></section>
+<section id="t-650"><h5>Customize CSS</h5><div class="content-locale-en-US content-locale-en"><div id="t_customize_css"><div class="body taskbody"><p class="shortdesc">To customize the appearance of the <span class="keyword">Self-Service</span> application, you can provide custom CSS and image files.</p>
+
+    <div class="tasklabel"><h2 class="sectiontitle tasklabel">Procedure</h2></div><ol class="ol steps"><li class="li step stepexpand">
+        <span class="ph cmd">Create a CSS file <span class="ph filepath"><span class="keyword">FacultySelfService</span>/current/instance/css/bannerSelfService-custom.css</span> containing the custom CSS directives.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">If the <span class="ph filepath"><span class="keyword">FacultySelfService</span>/current/instance/css/images</span> directory structure does not exist, create the directory structure.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">If you want to provide custom images, save the images in the <span class="ph filepath"><span class="keyword">FacultySelfService</span>/current/instance/css/images</span> directory, and in the CSS, specify their paths as a relative URL from the CSS directory.</span>
+        <div class="itemgroup stepxmp">For example:<p class="p">An image in <span class="ph filepath">css/images/institution-logo.svg</span> can have the following CSS rule: <code class="ph codeph">background-image: url(images/institution-logo.svg);</code>.</p>
+</div>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd"> If you want to provide custom actions for any specific pages, create CSS and JS files with customized action changes in the following folder structure:</span>
+        <div class="itemgroup info"><span class="ph filepath"><span class="keyword">FacultySelfService</span>/current/instance/css/&lt;controlName&gt;/&lt;actionName&gt;-custom.css</span> and <span class="ph filepath"><span class="keyword">FacultySelfService</span>/current/instance/js/&lt;controlName&gt;/&lt;actionName&gt;-custom.js</span></div>
+      </li>
+</ol>
+
+  </div>
+
+</div></div></section>
+<section id="t-660"><h5>Change the institution logo</h5><div class="content-locale-en-US content-locale-en"><div id="t_change_institution_name"><div class="body taskbody"><p class="shortdesc">The default layout includes an institution branding area that displays the institution logo. To customize the system or university name, you must provide a custom CSS file to override the default styling with a replacement logo image.</p>
+
+    <div class="section context"><div class="tasklabel"><h2 class="sectiontitle tasklabel">About this task</h2></div>The default layout styles the institutional branding area as follows: <pre class="pre codeblock"><code>
+.institutionalBranding {
+position:relative;
+float:left;
+left:10px;
+top:11px;
+height:78px;
+width:54px;
+background:url("images/ellucian-university-logo-sm.png") no-repeat;}
+</code></pre></div>
+
+    <div class="tasklabel"><h2 class="sectiontitle tasklabel">Procedure</h2></div><ol class="ol steps"><li class="li step">
+        <span class="ph cmd">To override the default image, follow the steps mentioned under <cite class="cite">Customize CSS</cite>.</span>
+      </li>
+<li class="li step">
+        <span class="ph cmd">In the CSS file you have created, enter <kbd class="ph userinput">.institutionalBranding {background-image: url("./images/institutionLogo.png");}</kbd>.</span>
+      </li>
+<li class="li step">
+        <span class="ph cmd">Replace the logo image in the following directory: <span class="ph filepath"><span class="keyword">FacultySelfService</span>/current/instance/css/images/institutionLogo.png</span>.</span>
+      </li>
+<li class="li step">
+        <span class="ph cmd">To deploy your updates, you must rebuild and redeploy the WAR file.</span>
+      </li>
+</ol>
+
+  </div>
+
+</div></div></section>
+<section id="t-670"><h5>Customize JavaScript</h5><div class="content-locale-en-US content-locale-en"><div id="t_customize_javascript"><div class="body taskbody"><p class="shortdesc">You can customize the java script to modify the behavior of the web pages of your application by placing your JavaScript file named bannerSelfService-custom.js in the following location: <span class="keyword">FacultySelfService</span>/current/instance/js/bannerSelfService-custom.js.</p>
+
+    <div class="tasklabel"><h2 class="sectiontitle tasklabel">Procedure</h2></div><ol class="ol steps"><li class="li step">
+        <span class="ph cmd">Create a JavaScript file, <span class="ph filepath">current/instance/css/bannerSelfService-custom.js</span>.</span>
+      </li>
+<li class="li step">
+        <span class="ph cmd">In the JavaScript file you have created, enter the custom JavaScript code.</span>
+      </li>
+<li class="li step">
+        <span class="ph cmd">To deploy your updates, you must rebuild and redeploy the WAR file.</span>
+      </li>
+</ol>
+
+  </div>
+
+</div></div></section>
+<section id="t-680"><h3>Configure the web application server</h3><div class="content-locale-en-US content-locale-en"><div id="c_config_deploy_war_file"><div class="body conbody"><p class="shortdesc">You can configure a  Tomcat web application server and deploy the WAR file on the web application server. <span class="keyword">Ellucian</span> recommends that you secure the web application traffic by using the standard TLS encryption, which is supported by the application server software.</p>
+
+    <p class="p">For more information about enabling HTTPS support for web applications, see your application server documentation.</p>
+
+    <div class="note"><span class="notetitle">Note:</span> You must configure the Target Server in the <span class="ph filepath"><span class="keyword">FacultySelfService</span>_configuration.groovy</span> file. See <cite class="cite">Target Server</cite> for more information.</div>
+
+  </div>
+
+</div></div></section>
+<section id="t-690"><h4>Configure the Tomcat server</h4><div class="content-locale-en-US content-locale-en"><div id="t_config_tomcat_serv"><div class="body taskbody"><p class="shortdesc">You can configure the Tomcat server.</p>
+
+    <div class="section prereq p"><div class="tasklabel"><h2 class="sectiontitle tasklabel">Before you begin</h2></div>Ensure that you download and install Tomcat 9.0.x.</div>
+
+    <div class="tasklabel"><h2 class="sectiontitle tasklabel">Procedure</h2></div><ol class="ol steps"><li class="li step stepexpand">
+        <span class="ph cmd">Download the Oracle JDBC jar file <span class="ph filepath">ojdbc11.jar</span> from Oracle 21c 2116 version (<a class="xref ft-external-link" href="https://download.oracle.com/otn-pub/otn_software/jdbc/2116/ojdbc11.jar" target="_blank" rel="noopener">https://download.oracle.com/otn-pub/otn_software/jdbc/2116/ojdbc11.jar</a>) if you are upgrading to JDK 17/21.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">On a Linux system, ensure that <code class="ph codeph">CATALINA_HOME</code> is defined to reference your Tomcat software installation location.</span>
+        <div class="itemgroup info">
+          <div class="note attention"><span class="attentiontitle">Attention:</span> This step must be executed on a Linux system only.</div>
+
+        </div>
+        <div class="itemgroup stepxmp">For example, in the <span class="ph filepath">CATALINA_HOME=/opt/apache-tomcat-9.0.xx</span>, <code class="ph codeph">xx</code> indicates the point version of Tomcat you have installed.</div>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Define <code class="ph codeph">CATALINA_OPTS</code> to configure the following JVM settings: <code class="ph codeph">CATALINA_OPTS=-server -Xms2048m -Xmx4g -XX:MaxMetaspaceSize=512m</code></span>
+        <div class="itemgroup info">
+          <div class="note"><span class="notetitle">Note:</span> If you are deploying multiple <span class="keyword">Banner</span> 9.x applications to the same Tomcat server, <code class="ph codeph">-Xmx</code> must be increased by <code class="ph codeph">2g</code> and <code class="ph codeph">-XX:MaxMetaspaceSize</code> must be increased by <code class="ph codeph">128m</code>. You should deploy <span class="keyword">Banner</span> 9.x administrative applications to one Tomcat server instance and <span class="keyword">Faculty and Advisor Self-Service</span> application to a separate Tomcat server instance.</div>
+
+          <p class="p">You can define this variable in the account's profile startup script or you can add this definition in <span class="ph filepath">$CATALINA_HOME/bin/catalina.sh</span> for Linux or <span class="ph filepath">catalina.bat</span> for Windows.</p>
+
+        </div>
+      </li>
+<li class="li step stepexpand"><strong>Optional: </strong>
+        <span class="ph cmd">If you install Tomcat as a Windows service, few JVM arguments must be specified.</span>
+        <ol type="a" class="ol substeps">
+          <li class="li substep">
+            <span class="ph cmd">From the Windows <span class="ph uicontrol">Start</span> menu, select <span class="ph uicontrol">Configure Tomcat</span> application.</span>
+          </li>
+
+          <li class="li substep">
+            <span class="ph cmd">Select the <span class="ph uicontrol">Java</span> tab.</span>
+          </li>
+
+          <li class="li substep">
+            <span class="ph cmd">In the <span class="ph uicontrol">Java Options</span> field, add <code class="ph codeph">-XX:MaxMetaspaceSize=384m</code>.</span>
+          </li>
+
+          <li class="li substep">
+            <span class="ph cmd">Set the initial memory pool to 2048.</span>
+          </li>
+
+          <li class="li substep">
+            <span class="ph cmd">Set the maximum memory pool to 4096.</span>
+          </li>
+
+          <li class="li substep">
+            <span class="ph cmd">Save the settings.</span>
+          </li>
+
+          <li class="li substep">
+            <span class="ph cmd">Restart the Tomcat Windows service.</span>
+          </li>
+
+        </ol>
+
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Define the JNDI datasource resource name for the application.</span>
+        <ol type="a" class="ol substeps">
+          <li class="li substep substepexpand">
+            <span class="ph cmd">Edit <span class="ph filepath">$CATALINA_HOME/conf/context.xml</span>.</span>
+          </li>
+
+          <li class="li substep substepexpand">
+            <span class="ph cmd">Uncomment <code class="ph codeph">&lt;Manager pathname="" /&gt;</code> to disable Tomcat session persistence.</span>
+            <div class="itemgroup stepxmp">For example, change the following:<pre class="pre codeblock"><code>
+&lt;!-- Uncomment this to disable session persistence
+across Tomcat restarts --&gt;
+&lt;!--&lt;Manager pathname="" /&gt;--&gt;</code></pre>to<pre class="pre codeblock"><code>
+&lt;!-- Uncomment this to disable session persistence
+across Tomcat restarts --&gt;
+&lt;Manager pathname="" /&gt;</code></pre></div>
+          </li>
+
+          <li class="li substep substepexpand">
+            <span class="ph cmd">Add the ResourceLink definitions inside the <code class="ph codeph">&lt;Context&gt;</code> element.</span>
+            <div class="itemgroup info">
+              <pre class="pre codeblock"><code>
+&lt;ResourceLink global="jdbc/bannerDataSource"
+name="jdbc/bannerDataSource"
+type="javax.sql.DataSource"/&gt;
+
+&lt;ResourceLink global="jdbc/bannerSsbDataSource"
+name="jdbc/bannerSsbDataSource"
+type="javax.sql.DataSource"/&gt;
+
+&lt;ResourceLink global="jdbc/bannerCommmgrDataSource"
+name="jdbc/bannerCommmgrDataSource"
+type="javax.sql.DataSource"/&gt;</code></pre>
+            </div>
+          </li>
+
+          <li class="li substep substepexpand">
+            <span class="ph cmd">Save your changes in <code class="ph codeph">context.xml</code>.</span>
+          </li>
+
+          <li class="li substep substepexpand">
+            <span class="ph cmd">Edit <span class="ph filepath">$CATALINA_HOME/conf/server.xml</span> to configure the database JNDI resource name and connection pool configuration.</span>
+          </li>
+
+          <li class="li substep substepexpand">
+            <span class="ph cmd">Add the Resource definitions inside the <code class="ph codeph">&lt;GlobalNamingResources&gt;</code> element.</span>
+            <div class="itemgroup info">
+              <pre class="pre codeblock"><code>
+&lt;Resource name="jdbc/bannerDataSource"
+auth="Container"
+type="javax.sql.DataSource"
+driverClassName="oracle.jdbc.OracleDriver"
+url="jdbc:oracle:thin:@//hostname:port/service_name"
+username="banproxy" password="the_banproxy_password"
+initialSize="5" maxTotal="100" maxIdle="-1" maxWaitMillis="30000"
+validationQuery="select 1 from dual"
+accessToUnderlyingConnectionAllowed = "true"
+testOnBorrow="true"/&gt;
+
+&lt;Resource name="jdbc/bannerSsbDataSource"
+auth="Container"
+type="javax.sql.DataSource"
+driverClassName="oracle.jdbc.OracleDriver"
+url="jdbc:oracle:thin:@//hostname:port/service_name"
+username="ban_ss_user" password="ban_ss_user_pasword"
+initialSize="5" maxTotal="100" maxIdle="-1" maxWaitMillis="30000"
+validationQuery="select 1 from dual"
+accessToUnderlyingConnectionAllowed = "true"
+testOnBorrow="true"/&gt;
+
+&lt;Resource name="jdbc/bannerCommmgrDataSource"
+auth="Container"
+type="javax.sql.DataSource"
+driverClassName="oracle.jdbc.OracleDriver"
+url="jdbc:oracle:thin:@//hostname:port/service_name"
+username="commmgr" password="commmgr_pasword"
+initialSize="5" maxTotal="100" maxIdle="-1" maxWaitMillis="30000"
+validationQuery="select 1 from dual"
+accessToUnderlyingConnectionAllowed = "true"
+testOnBorrow="true"/&gt;
+
+</code></pre>
+            </div>
+            <div class="itemgroup stepxmp">For example, if your database server's name is <code class="ph codeph">myserver.university.edu</code> and the Oracle TNS Listener is accepting connections on port 1521 and your database service's name is <code class="ph codeph">SEED</code>, then the URL is <span class="ph filepath">jdbc:oracle:thin:@// myserver.university.edu:1521/SEED</span>.</div>
+          </li>
+
+          <li class="li substep substepexpand">
+            <span class="ph cmd">Save your changes in <code class="ph codeph">server.xml</code>.</span>
+          </li>
+
+          <li class="li substep substepexpand">
+            <span class="ph cmd">Copy <code class="ph codeph">ojdbc11.jar</code> to the <span class="ph filepath">$CATALINA_HOME/lib</span> directory.</span>
+          </li>
+
+          <li class="li substep substepexpand">
+            <span class="ph cmd">Start the application server, <span class="ph filepath">$CATALINA_HOME/bin/startup</span> to validate the configuration of the Tomcat server.</span>
+            <div class="itemgroup stepxmp">Example: For Linux:<pre class="pre codeblock"><code>
+cd $CATALINA_HOME
+$ bin/startup.sh</code></pre>For Windows:<pre class="pre codeblock"><code>
+cd %CATALINA_HOME%
+&gt; bin\startup.bat</code></pre></div>
+          </li>
+
+          <li class="li substep substepexpand">
+            <span class="ph cmd">Browse <span class="ph filepath">http://servername:&lt;port&gt;</span>.</span>
+          </li>
+
+        </ol>
+
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">To override the <span class="ph filepath"><span class="keyword">FacultySelfService</span>_configuration.groovy</span> that was added to the WAR file, you must set system properties to point to external configuration files. It is mandatory to externalize the <span class="ph filepath">banner_configuration.groovy</span> file by setting the system property -DBANNER_APP_CONFIG. This was necessitated as part of the effort involved in improving the <span class="keyword">Banner</span> Security model. For example, to point to a configuration file residing in the <code class="ph codeph">PRODUCT_HOME</code> directory, export the following:</span>
+        <div class="itemgroup info">
+          <pre class="pre codeblock"><code><span class="ph filepath">JAVA_OPTS="-DBANNER_APP_CONFIG=/PRODUCT_HOME/shared_configuration/banner_configuration.groovy -DFACULTY_SELF_SERVICE_SSB_CONFIG=/PRODUCT_HOME/<span class="keyword">FacultySelfService</span>/current/instance/config/<span class="keyword">FacultySelfService</span>_configuration.groovy -Dbanner.logging.dir=&lt;full file path to the directory where logs have to get generated&gt;"</span></code></pre>
+          <p class="p">If a different logging directory is not configured, the log files will be generated in a build folder on the Tomcat application server. For more information, see the <span class="xref ft-internal-link" title="Logging configurations are available in logback.xml file. In a PRODUCTION environment, this file resides in the Banner application's classpath. You can externalize the logback configuration as specified in the Externalize logback configuration topic." data-ft-warning="excluded-from-rendering" data-mapid="crKmbZlu8DMOOuGFGreWMQ" data-tocid="lXfORfoqUhUySc~kPRXaJA">Logback logging</span> section.</p>
+
+        </div>
+      </li>
+</ol>
+
+  </div>
+
+<div class="related-links">
+<div class="linklist relinfo relconcepts" xml:lang="en-US" lang="en-US"><strong>Related concepts</strong><br>
+<ul class="linklist">
+<li class="linklist"><span class="link ft-internal-link" title="Logging configurations are available in logback.xml file. In a PRODUCTION environment, this file resides in the Banner application's classpath. You can externalize the logback configuration as specified in the Externalize logback configuration topic." data-ft-warning="excluded-from-rendering" data-mapid="crKmbZlu8DMOOuGFGreWMQ" data-tocid="lXfORfoqUhUySc~kPRXaJA">Logback logging</span></li></ul></div>
+</div></div></div></section>
+<section id="t-700"><h4>Configure Java management extension</h4><div class="content-locale-en-US content-locale-en"><div id="t_config_java_ext"><div class="body taskbody"><p class="shortdesc">This is an optional step that enables you to monitor or debug the application.</p>
+
+    <div class="section context"><div class="tasklabel"><h2 class="sectiontitle tasklabel">About this task</h2></div>Java Management Extensions (JMX) is a Java technology that supplies tools for managing and monitoring applications, system objects, devices, and service oriented networks. Enabling JMX connections allows you to remotely monitor and debug the application server.</div>
+
+    <div class="tasklabel"><h2 class="sectiontitle tasklabel">Procedure</h2></div><ol class="ol steps"><li class="li step stepexpand">
+        <span class="ph cmd">Add the following options to the <code class="ph codeph">catalina.sh</code> file and restart the Tomcat server.</span>
+        <div class="itemgroup info">
+          <pre class="pre codeblock"><code>set CATALINA_OPTS=-Dcom.sun.management.jmxremote
+-Dcom.sun.management.jmxremote.port=8999
+-Dcom.sun.management.jmxremote.ssl=false
+-Dcom.sun.management.jmxremote.authenticate=false
+-Djava.rmi.server.hostname=your.hostname.com</code></pre>
+        </div>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Change the <code class="ph codeph">java.rmi.server.hostname </code>value to the hostname or IP address of the machine where Tomcat is installed.</span>
+        <div class="itemgroup stepxmp">For example:<pre class="pre codeblock"><code>-Djava.rmi.server.hostname=prod.appserver1.com
+or
+-Djava.rmi.server.hostname=149.24.3.178</code></pre></div>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">JMX does not define a default port number to use. If necessary, change <code class="ph codeph">com.sun.management.jmxremote.port</code> to use port 8999. </span>
+        <div class="itemgroup info"><span class="keyword">Ellucian</span> recommends that you connect remotely to the Tomcat server using JMX. <div class="note warning"><span class="warningtitle">Warning:</span> Ensure that the <span class="ph uicontrol">jmxremote.authenticate</span> parameter is not set to <var class="keyword varname">False</var> in a production environment. If it is set to <var class="keyword varname">False</var>, it does not require connections to be authenticated and will create a security threat. For more information, see <cite class="cite">Apache Tomcat documentation for Enabling JMX Remote</cite>.</div>
+</div>
+      </li>
+</ol>
+
+  </div>
+
+</div></div></section>
+<section id="t-710"><h3>Configure language preferences</h3><div class="content-locale-en-US content-locale-en"><div id="c_config_lang_preferences"><p class="shortdesc">As an admin user, you can configure the <span class="ph uicontrol">Language Setting</span> option to be enabled (or disabled) for end users to allow them to choose a preferred language for their login sessions.</p>
+
+</div></div></section>
+<section id="t-720"><h4>Set an institution level locale</h4><div class="content-locale-en-US content-locale-en"><div id="t_set_institut_level_locale"><div class="body taskbody"><p class="shortdesc">You can set a locale at the institution level in addition to setting a preferred language for your user login.</p>
+
+    <div class="tasklabel"><h2 class="sectiontitle tasklabel">Procedure</h2></div><ol class="ol steps"><li class="li step stepexpand">
+        <span class="ph cmd">Login to the <span class="keyword">Banner</span> Admin application.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Access the <span class="keyword wintitle">Banner Applications Configurations (GUACONF) page</span>.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">In the <span class="ph uicontrol">Application ID</span> field, enter <kbd class="ph userinput">GLOBAL</kbd>, and click <span class="ph uicontrol">Go</span>.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Go to the <span class="ph uicontrol">Configurations</span> tab.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Under <span class="ph uicontrol">Configuration Name</span>, on the Locale attribute row, in the <span class="ph uicontrol">Configuration Value</span> column field, enter a locale value.</span>
+        <div class="itemgroup stepresult">The institution level locale takes effect.</div>
+      </li>
+</ol>
+
+  </div>
+
+</div></div></section>
+<section id="t-730"><h4>Configure the Language Setting option</h4><div class="content-locale-en-US content-locale-en"><div id="t_enable_disable_lang_setting_option"><div class="body taskbody"><p class="shortdesc">Use the following steps to disable (or enable) the <span class="ph uicontrol">Language Setting</span> option for end users.</p>
+
+    <div class="section context"><div class="tasklabel"><h2 class="sectiontitle tasklabel">About this task</h2></div>When you start the self-service application, an internal process inserts an entry for the 'Locale' configuration in the self-service configuration table (if the record does not exist). The default value for the <span class="ph uicontrol">User Preference Indicator</span> setting is <code class="ph codeph">Yes</code> and the <span class="ph uicontrol">Configuration Value</span> is empty.<p class="p"> </p>
+<p class="p">Perform these steps to disable the preferred language setting:</p>
+</div>
+
+    <div class="tasklabel"><h2 class="sectiontitle tasklabel">Procedure</h2></div><ol class="ol steps"><li class="li step stepexpand">
+        <span class="ph cmd">Login to the <span class="keyword">Banner</span> Admin application.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Access the <span class="keyword wintitle">Banner Applications Configurations (GUACONF) page</span>.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">In the <span class="ph uicontrol">Application ID</span> field, enter <kbd class="ph userinput">GLOBAL</kbd>, and click <span class="ph uicontrol">Go</span>.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Go to the <span class="ph uicontrol">Configurations</span> tab.</span>
+      </li>
+<li class="li step stepexpand">
+        <span class="ph cmd">Under <span class="ph uicontrol">Configuration Name</span>, on the Locale attribute row, clear the <span class="ph uicontrol">User Preference Indicator</span> check box.</span>
+        <div class="itemgroup stepresult">This disables the <span class="ph uicontrol">Language Setting</span> option ignoring the user preference setting, and lets the browser locale take effect.<div class="note"><span class="notetitle">Note:</span> You can set the <span class="ph uicontrol">User Preference Indicator</span> to <kbd class="ph userinput">Yes</kbd> to enable the <span class="ph uicontrol">Language Setting</span> option.</div>
+</div>
+      </li>
+</ol>
+
+  </div>
+
+</div></div></section>
+<section id="t-740"><h3>Configure email</h3><div class="content-locale-en-US content-locale-en"><div id="c_configure_email"><p class="shortdesc">Define the database parameter  SMTP_OUT_SERVER to configure the email.</p>
+
+</div></div></section>
+<section id="t-750"><h4>Cancel/Uncancel class email setup</h4><div class="content-locale-en-US content-locale-en"><div id="c_cancel_uncancel_class_email_setup"><div class="body conbody"><p class="shortdesc">Define the database parameter  SMTP_OUT_SERVER in order for the emails to be sent that are configured for the Cancel/Uncancel Class function.</p>
+
+    <div class="section"><h2 class="title sectiontitle">sqlplus system/manager</h2>
+      
+      <pre class="pre codeblock"><code>SQL&gt; show parameter SMTP_OUT_SERVER
+
+NAME TYPE VALUE</code></pre>
+    </div>
+
+    <div class="section"><h2 class="title sectiontitle">smtp_out_server string</h2>One can set the parameter with the following:
+<pre class="pre codeblock"><code>SQL&gt;
+
+ALTER SYSTEM SET SMTP_OUT_SERVER='mailhost.school.edu:25' SCOPE=BOTH;</code></pre></div>
+
+  </div>
+
+</div></div></section></main></body></html>
