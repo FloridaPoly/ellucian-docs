@@ -356,9 +356,6 @@ segments:
         - inputParameterName: regOutcomeBoth
           mapType: processVariable
           processVariableName: __approval_task_3cc698ea_a8bc_4083_b2a4_407ee59d6bbc_outcome
-        - inputParameterName: sbsOutcomeBoth
-          mapType: processVariable
-          processVariableName: __approval_task_06842800_1847_4984_94da_554eaa326bc2_outcome
         - inputParameterName: preferredNameChanged
           mapType: processVariable
           processVariableName: __action_34a400d6_74c1_4528_a1ca_dbfe4d66c5f7_preferredNameChanged
@@ -380,12 +377,6 @@ segments:
         - inputParameterName: phoneType
           mapType: staticValue
           staticValue: CELL
-        - inputParameterName: regOutcomeOnly
-          mapType: processVariable
-          processVariableName: __approval_task_3cc698ea_a8bc_4083_b2a4_407ee59d6bbc_outcome
-        - inputParameterName: sbsOutcomeOnly
-          mapType: processVariable
-          processVariableName: __approval_task_06842800_1847_4984_94da_554eaa326bc2_outcome
       inputs: []
     in:
       - approval-task_06842800-1847-4984-94da-554eaa326bc2
@@ -401,14 +392,6 @@ segments:
         from: noreply@floridapoly.edu
         subject: Your contact information update
         emailContentSelectedData:
-          - name: __action_a3a24327_3fbe_49fa_a226_cbb15a364ed8_appliedSummary
-            type: string
-            displayName: appliedSummary
-            isRequired: false
-          - name: __action_a3a24327_3fbe_49fa_a226_cbb15a364ed8_skippedSummary
-            type: string
-            displayName: skippedSummary
-            isRequired: false
           - name: __approval_task_3cc698ea_a8bc_4083_b2a4_407ee59d6bbc_outcome
             type: string
             displayName: Registrar Approval Outcome
@@ -434,7 +417,7 @@ segments:
             value: __requestedFor
         otherRecipients: []
         subjectSelectedData: []
-        emailContent: "<p>Hello,</p><p>We processed your contact information update request. Here is the outcome:</p><p><br></p><p><strong>Applied</strong>: <variable contenteditable=\"false\" data-variable=\"appliedSummary\">﻿<span contenteditable=\"false\">{{appliedSummary}}</span>﻿</variable></p><p><strong>Skipped</strong>: <variable contenteditable=\"false\" data-variable=\"skippedSummary\">﻿<span contenteditable=\"false\">{{skippedSummary}}</span>﻿</variable></p><p><strong>Registrar decision:</strong> <variable contenteditable=\"false\" data-variable=\"Registrar Approval Outcome\">﻿<span contenteditable=\"false\">{{Registrar Approval Outcome}}</span>﻿</variable></p><p><strong>Registrar note:</strong> <variable contenteditable=\"false\" data-variable=\"Registrar Approval Comment\">﻿<span contenteditable=\"false\">{{Registrar Approval Comment}}</span>﻿</variable></p><p><strong>Student Business Services decision:</strong> <variable contenteditable=\"false\" data-variable=\"SBS Approval Outcome\">﻿<span contenteditable=\"false\">{{SBS Approval Outcome}}</span>﻿</variable></p><p><strong>Student Business Services note:</strong> <variable contenteditable=\"false\" data-variable=\"SBS Approval Comment\">﻿<span contenteditable=\"false\">{{SBS Approval Comment}}</span>﻿</variable></p><p>If something you requested does not appear in your records within 2 business days, please contact the Registrar’s Office (name changes) or Student Business Services (addresses).</p>"
+        emailContent: "<p>Hello,</p><p>We processed your contact information update request. Here is the outcome:</p><p><br></p><p><strong>Registrar decision:</strong> <variable contenteditable=\"false\" data-variable=\"Registrar Approval Outcome\">﻿<span contenteditable=\"false\">{{Registrar Approval Outcome}}</span>﻿</variable></p><p><strong>Registrar note:</strong> <variable contenteditable=\"false\" data-variable=\"Registrar Approval Comment\">﻿<span contenteditable=\"false\">{{Registrar Approval Comment}}</span>﻿</variable></p><p><strong>Student Business Services decision:</strong> <variable contenteditable=\"false\" data-variable=\"SBS Approval Outcome\">﻿<span contenteditable=\"false\">{{SBS Approval Outcome}}</span>﻿</variable></p><p><strong>Student Business Services note:</strong> <variable contenteditable=\"false\" data-variable=\"SBS Approval Comment\">﻿<span contenteditable=\"false\">{{SBS Approval Comment}}</span>﻿</variable></p><p>If something you requested does not appear in your records within 2 business days, please contact the Registrar’s Office (name changes) or Student Business Services (addresses).</p>"
     in:
       - action_a3a24327-3fbe-49fa-a226-cbb15a364ed8
     out:
@@ -603,7 +586,7 @@ segments:
         - inputParameterName: billingCountry
           mapType: processVariable
           processVariableName: __input_Billing_Country
-        - inputParameterName: regOutcomeOnly
+        - inputParameterName: regOutcomeBoth
           mapType: processVariable
           processVariableName: __approval_task_1feec2d6_0a78_4b9f_9043_2da8b0928bb3_outcome
         - inputParameterName: preferredNameChanged
@@ -642,14 +625,6 @@ segments:
         from: noreply@floridapoly.edu
         subject: Your contact information update
         emailContentSelectedData:
-          - name: __action_d2049578_de77_4f03_a0e5_49d0d94f1989_appliedSummary
-            type: string
-            displayName: appliedSummary
-            isRequired: true
-          - name: __action_d2049578_de77_4f03_a0e5_49d0d94f1989_skippedSummary
-            type: string
-            displayName: skippedSummary
-            isRequired: true
           - name: __approval_task_1feec2d6_0a78_4b9f_9043_2da8b0928bb3_outcome
             type: string
             displayName: Registrar Approval (Only) Outcome
@@ -665,7 +640,7 @@ segments:
             value: __requestedFor
         otherRecipients: []
         subjectSelectedData: []
-        emailContent: "<p>Hello,</p><p>We processed your contact information update request. Here is the outcome:</p><p><br></p><p><strong>Applied Summary</strong>: <variable contenteditable=\"false\" data-variable=\"appliedSummary\">﻿<span contenteditable=\"false\">{{appliedSummary}}</span>﻿</variable></p><p><strong>Skipped Summary</strong>: <variable contenteditable=\"false\" data-variable=\"skippedSummary\">﻿<span contenteditable=\"false\">{{skippedSummary}}</span>﻿</variable></p><p><strong>Registrar decision:</strong> <variable contenteditable=\"false\" data-variable=\"Registrar Approval (Only) Outcome\">﻿<span contenteditable=\"false\">{{Registrar Approval (Only) Outcome}}</span>﻿</variable></p><p><strong>Registrar note:</strong> <variable contenteditable=\"false\" data-variable=\"Registrar Approval (Only) Comment\">﻿<span contenteditable=\"false\">{{Registrar Approval (Only) Comment}}</span>﻿</variable></p><p>If something you requested does not appear in your records within 2 business days, please contact the Registrar’s Office (name changes) or Student Business Services (addresses).</p>"
+        emailContent: "<p>Hello,</p><p>We processed your contact information update request. Here is the outcome:</p><p><br></p><p><strong>Registrar decision:</strong> <variable contenteditable=\"false\" data-variable=\"Registrar Approval (Only) Outcome\">﻿<span contenteditable=\"false\">{{Registrar Approval (Only) Outcome}}</span>﻿</variable></p><p><strong>Registrar note:</strong> <variable contenteditable=\"false\" data-variable=\"Registrar Approval (Only) Comment\">﻿<span contenteditable=\"false\">{{Registrar Approval (Only) Comment}}</span>﻿</variable></p><p>If something you requested does not appear in your records within 2 business days, please contact the Registrar’s Office (name changes) or Student Business Services (addresses).</p>"
     in:
       - action_d2049578-de77-4f03-a0e5-49d0d94f1989
     out:
@@ -859,7 +834,7 @@ segments:
         - inputParameterName: billingCountry
           mapType: processVariable
           processVariableName: __input_Billing_Country
-        - inputParameterName: sbsOutcomeOnly
+        - inputParameterName: regOutcomeBoth
           mapType: processVariable
           processVariableName: __approval_task_0e3591ae_70e7_4b81_b071_2fc12a711595_outcome
         - inputParameterName: preferredNameChanged
@@ -898,14 +873,6 @@ segments:
         from: noreply@floridapoly.edu
         subject: Your contact information update
         emailContentSelectedData:
-          - name: __action_e7035ca1_2082_4d12_9bad_4dbcfd9374bc_appliedSummary
-            type: string
-            displayName: appliedSummary
-            isRequired: true
-          - name: __action_e7035ca1_2082_4d12_9bad_4dbcfd9374bc_skippedSummary
-            type: string
-            displayName: skippedSummary
-            isRequired: true
           - name: __approval_task_0e3591ae_70e7_4b81_b071_2fc12a711595_outcome
             type: string
             displayName: SBS Approval (Only) Outcome
@@ -921,7 +888,7 @@ segments:
             value: __requestedFor
         otherRecipients: []
         subjectSelectedData: []
-        emailContent: "<p>Hello,</p><p>We processed your contact information update request. Here is the outcome:</p><p><br></p><p><strong>Applied Summary</strong>: <variable contenteditable=\"false\" data-variable=\"appliedSummary\">﻿<span contenteditable=\"false\">{{appliedSummary}}</span>﻿</variable></p><p><strong>Skipped Summary</strong>: <variable contenteditable=\"false\" data-variable=\"skippedSummary\">﻿<span contenteditable=\"false\">{{skippedSummary}}</span>﻿</variable></p><p><strong>Student Business Services decision:</strong> <variable contenteditable=\"false\" data-variable=\"SBS Approval (Only) Outcome\">﻿<span contenteditable=\"false\">{{SBS Approval (Only) Outcome}}</span>﻿</variable></p><p><strong>Student Business Services note:</strong> <variable contenteditable=\"false\" data-variable=\"SBS Approval (Only) Comment\">﻿<span contenteditable=\"false\">{{SBS Approval (Only) Comment}}</span>﻿</variable></p><p>If something you requested does not appear in your records within 2 business days, please contact the Registrar’s Office (name changes) or Student Business Services (addresses).</p>"
+        emailContent: "<p>Hello,</p><p>We processed your contact information update request. Here is the outcome:</p><p><br></p><p><strong>Student Business Services decision:</strong> <variable contenteditable=\"false\" data-variable=\"SBS Approval (Only) Outcome\">﻿<span contenteditable=\"false\">{{SBS Approval (Only) Outcome}}</span>﻿</variable></p><p><strong>Student Business Services note:</strong> <variable contenteditable=\"false\" data-variable=\"SBS Approval (Only) Comment\">﻿<span contenteditable=\"false\">{{SBS Approval (Only) Comment}}</span>﻿</variable></p><p>If something you requested does not appear in your records within 2 business days, please contact the Registrar’s Office (name changes) or Student Business Services (addresses).</p>"
     in:
       - action_e7035ca1-2082-4d12-9bad-4dbcfd9374bc
     out:
@@ -1040,21 +1007,13 @@ segments:
       emailConfig:
         from: noreply@floridapoly.edu
         subject: Your contact information update
-        emailContentSelectedData:
-          - name: __action_49e729ec_f300_45dd_a8a5_e473ca215c61_appliedSummary
-            type: string
-            displayName: appliedSummary
-            isRequired: true
-          - name: __action_49e729ec_f300_45dd_a8a5_e473ca215c61_skippedSummary
-            type: string
-            displayName: skippedSummary
-            isRequired: true
+        emailContentSelectedData: []
         participantRecipients:
           - recipientType: process-variable
             value: __requestedFor
         otherRecipients: []
         subjectSelectedData: []
-        emailContent: "<p>Hello,</p><p>We processed your contact information update request. Here is the outcome:</p><p><br></p><p><strong>Applied Summary</strong>: <variable contenteditable=\"false\" data-variable=\"appliedSummary\">﻿<span contenteditable=\"false\">{{appliedSummary}}</span>﻿</variable></p><p><strong>Skipped Summary</strong>: <variable contenteditable=\"false\" data-variable=\"skippedSummary\">﻿<span contenteditable=\"false\">{{skippedSummary}}</span>﻿</variable></p><p>If something you requested does not appear in your records within 2 business days, please contact the Registrar’s Office (name changes) or Student Business Services (addresses).</p>"
+        emailContent: "<p>Hello,</p><p>We processed your contact information update request. Here is the outcome:</p><p><br></p><p>If something you requested does not appear in your records within 2 business days, please contact the Registrar’s Office (name changes) or Student Business Services (addresses).</p>"
     in:
       - action_49e729ec-f300-45dd-a8a5-e473ca215c61
     out:

@@ -1,75 +1,48 @@
 # Ellucian EIP / Maestro workflow — Update Contact Information
 
-`update-contact-information.yaml` is the **prod-ready** version of the
-"Update Contact Information" form-trigger workflow, migrated from TEST.
+`update-contact-information.yaml` is the TEST "Update Contact Information"
+workflow with every prod value swapped in, ready to import into prod.
 
-## What was fixed vs. the raw TEST export
+## TEST → PROD changes applied
 
-1. **Duplicate `formId` key** in the Form Start segment — caused the import
-   parse error `duplicated mapping key`. Removed the duplicate line.
-2. **Dangling incoming reference** — the `evaluateContactChanges` action's
-   `in:` pointed at a stale form-trigger id (`…41e8acc9…`). Repointed to the
-   real Form Start (`…d8d3f509…`). This was the "does not have an incoming
-   path" import error.
-3. **Production identity** — `name`/`code`/`description` set to the prod values.
-4. **Action extension versions** aligned to PROD (extensions are versioned
-   independently per environment, so TEST's numbers don't exist in PROD):
-   - `EVALUATECONTACTCHANGES`: `4.0.0` (TEST) → **`1.0.0`** (PROD)
-   - `UPDATESTUDENTCONTACTINFORMATION`: `32.0.0` (TEST) → **`2.0.0`** (PROD, on all 4 update actions)
-5. **Approval group** repointed to the PROD group GUID (see caveat below).
-
-## ⚠️ Approval group assignees — ACTION REQUIRED before go-live
-
-The TEST group GUIDs don't exist in PROD. Only one PROD group GUID was
-available (`b9bc1374-d9f9-4708-93b3-070c9b719e9b`), so all four approval tasks
-temporarily point at it:
-
-| Approval task | Current assignee | To do |
+| Item | TEST | PROD (this file) |
 | --- | --- | --- |
-| Registrar Approval (Both path) | `b9bc1374…` | Verify this is the PROD **Registrar** group |
-| Registrar Approval (Only path) | `b9bc1374…` | Verify this is the PROD **Registrar** group |
-| SBS Approval (Both path) | `b9bc1374…` | ❗ PLACEHOLDER — reassign to the PROD **SBS** group |
-| SBS Approval (Only path) | `b9bc1374…` | ❗ PLACEHOLDER — reassign to the PROD **SBS** group |
+| Workflow name | `Update Contact Information - TEST with approvals` | `Update Contact Information` |
+| Workflow code | `UPDATE_CONTACT_INFORMATION__TEST_WITH_APPROVALS` | `UPDATE_CONTACT_INFORMATION` |
+| `evaluateContactChanges` action | `EVALUATECONTACTCHANGES` v4.0.0 | **v1.0.0** |
+| `updateStudentContactInformation` action | `UPDATESTUDENTCONTACTINFORMATION` v32.0.0 | **v2.0.0** (all 4) |
+| Approval group | `046f977b…` (Reg), `d51c0ec7…` (SBS) | `b9bc1374…` (all — see note) |
 
-**Reassign both SBS tasks to the real PROD SBS group** (in the designer, or
-provide the GUID to swap in). Otherwise SBS address approvals route to the
-Registrar group.
+## Bug fixes carried over
 
-## ⚠️ One unverified action-input contract
+- Removed a **duplicate `formId`** key in Form Start (YAML parse error).
+- Repointed `evaluateContactChanges` `in:` from a stale form-trigger id
+  (`…41e8acc9…`) to the real Form Start (`…d8d3f509…`).
 
-Your PROD skeleton only exercised the "Both → Registrar" path, so it confirms
-`UPDATESTUDENTCONTACTINFORMATION` v2.0.0 accepts most inputs but does **not**
-evidence these three (used by the Registrar-only / SBS partial-apply paths):
-`regOutcomeOnly`, `sbsOutcomeBoth`, `sbsOutcomeOnly`.
+## Prod v2.0.0 contract adjustments (this is what fixed the render crash)
 
-They are siblings of the confirmed `regOutcomeBoth`, so they almost certainly
-exist in v2.0.0. If the import rejects one as an unknown input parameter,
-PROD's v2.0.0 has a narrower contract than TEST's v32.0.0 and those mappings
-need reconciling.
+Prod's `UPDATESTUDENTCONTACTINFORMATION` v2.0.0 exposes fewer inputs/outputs
+than test's v32.0.0. Referencing the missing ones crashed the designer with
+`Cannot read properties of undefined (reading 'children')`. Removed:
 
-## Confirmed matching PROD ✅
+- **Outputs** `appliedSummary` / `skippedSummary` — dropped from the four
+  "Email update summary" blocks (emails keep the approval decisions/comments
+  and static guidance text).
+- **Inputs** `sbsOutcomeBoth` / `regOutcomeOnly` / `sbsOutcomeOnly` — collapsed
+  to the one input prod v2.0.0 uses, `regOutcomeBoth`, mapped to each path's
+  approval outcome (matching your prod build).
 
-- Form `formId` `20f34602-c49a-4256-8f35-f1d291fcc8f7`.
-- Every `evaluateContactChanges` output this workflow reads (`routeCode`,
-  `preferredNameChanged`, `legalNameChanged`, `phoneChanged`, `emailChanged`,
-  `mailingChanged`, `billingChanged`, `preferredWithinYear`) exists in PROD
-  v1.0.0.
+## Verify before go-live
 
-## Note on the workflow `code`
-
-Uses `code: UPDATE_CONTACT_INFORMATION`, matching the existing PROD workflow.
-If the importer rejects it as a duplicate code, delete/rename that PROD
-workflow first, then re-import.
-
-## Note on segment IDs
-
-This file keeps its own segment IDs (e.g. `action_34a400d6…`), which differ
-from the PROD skeleton's (`action_f816960c…`). That is fine and intentional:
-an imported workflow uses the IDs contained in the file, and every internal
-process-variable reference (`__action_34a400d6…_routeCode`, etc.) is
-self-consistent. They do **not** need to match the skeleton's IDs.
+1. **SBS approval group** — all four approval tasks currently use
+   `b9bc1374…`. Reassign the two **SBS** tasks (`SBS Approval`,
+   `SBS Approval (Only)`) to the real prod SBS group.
+2. **Apply/skip behavior** — run one test submission per route (Both /
+   Registrar only / SBS only / Auto) and confirm the right fields are written
+   to Banner, since v2.0.0's outcome contract is narrower than test's.
 
 ## Validation
 
-Passes a strict check: no duplicate keys, all 23 segments reachable from Form
-Start, and every `in`/`out`/`node`/`pathId` link resolves and is symmetric.
+Strict-parses with no duplicate keys; all 23 segments reachable from Form
+Start; every `in`/`out`/`node`/`pathId` link resolves and is symmetric; no
+variable references an action output prod doesn't expose.
