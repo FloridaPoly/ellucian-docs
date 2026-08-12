@@ -1,0 +1,1235 @@
+name: Update Contact Information
+code: UPDATE_CONTACT_INFORMATION
+description: >-
+  Allows students to update their preferred name & legal name (Registrar
+  approves), types of mailing addresses (SBS approves), and phone number &
+  email
+maestroYamlVersion: 1.0.0
+type: form-trigger
+segments:
+  form-trigger_d8d3f509-b042-4598-a54c-89cba8b62b41:
+    class: form-trigger
+    classDisplayName: Form Start
+    segmentDescription: ''
+    name: Update Contact Information
+    config:
+      formId: 20f34602-c49a-4256-8f35-f1d291fcc8f7
+      version: '14.00'
+      expirationDate: P120D
+      allowRequestorsCancel: false
+      sendExperienceNotification: false
+    out:
+      - action_34a400d6-74c1-4528-a1ca-dbfe4d66c5f7
+  action_34a400d6-74c1-4528-a1ca-dbfe4d66c5f7:
+    class: action
+    classDisplayName: Action
+    segmentDescription: ''
+    name: evaluateContactChanges
+    config:
+      code: EVALUATECONTACTCHANGES
+      version: 4.0.0
+      isBaseline: false
+      parameters:
+        - inputParameterName: bannerId
+          mapType: processVariable
+          processVariableName: __input_BannerId
+        - inputParameterName: preferredFirstName
+          mapType: processVariable
+          processVariableName: __input_Preferred_First_Name
+        - inputParameterName: firstName
+          mapType: processVariable
+          processVariableName: __input_Legal_First_Name
+        - inputParameterName: lastName
+          mapType: processVariable
+          processVariableName: __input_Legal_Last_Name
+        - inputParameterName: phoneCountryCode
+          mapType: processVariable
+          processVariableName: __input_Country_Code
+        - inputParameterName: phoneNumber
+          mapType: processVariable
+          processVariableName: __input_Phone_Number
+        - inputParameterName: personalEmail
+          mapType: processVariable
+          processVariableName: __input_personal_email
+        - inputParameterName: mailingStreet
+          mapType: processVariable
+          processVariableName: __input_Street_Address
+        - inputParameterName: mailingCity
+          mapType: processVariable
+          processVariableName: __input_City
+        - inputParameterName: mailingState
+          mapType: processVariable
+          processVariableName: __input_State
+        - inputParameterName: mailingZip
+          mapType: processVariable
+          processVariableName: __input_ZIP_Code
+        - inputParameterName: mailingCountry
+          mapType: processVariable
+          processVariableName: __input_Country
+        - inputParameterName: billingSameAsMailing
+          mapType: processVariable
+          processVariableName: __input_Billing_same_as_Mailing_yes_no
+        - inputParameterName: billingStreet
+          mapType: processVariable
+          processVariableName: __input_Billing_Street_Address
+        - inputParameterName: billingCity
+          mapType: processVariable
+          processVariableName: __input_Billing_City
+        - inputParameterName: billingState
+          mapType: processVariable
+          processVariableName: __input_Billing_State
+        - inputParameterName: billingZip
+          mapType: processVariable
+          processVariableName: __input_Billing_ZIP_Code
+        - inputParameterName: billingCountry
+          mapType: processVariable
+          processVariableName: __input_Billing_Country
+        - inputParameterName: phoneType
+          mapType: staticValue
+          staticValue: CELL
+      inputs: []
+    in:
+      - form-trigger_d8d3f509-b042-4598-a54c-89cba8b62b41
+    out:
+      - split_b11bc5e1-e59c-4926-867b-d72d7f723746
+  approval-task_3cc698ea-a8bc-4083-b2a4-407ee59d6bbc:
+    class: approval-task
+    classDisplayName: Approval Task
+    segmentDescription: ''
+    name: Registrar Approval
+    config:
+      taskDisplayName: Contact info change approval - Registrar
+      taskDisplayNameSelectedData: []
+      approvalView:
+        approvalSelectedData:
+          - name: __requestedFor
+            type: person
+            displayName: Started For
+            isRequired: true
+          - name: __expirationDate
+            type: date-time
+            displayName: Expiration Date
+            isRequired: true
+          - name: __requestId
+            type: string
+            displayName: Request ID
+            isRequired: true
+          - name: __startedOn
+            type: date-time
+            displayName: Started On
+            isRequired: true
+          - name: __formSubmissionResponseLink
+            type: string
+            displayName: Form Submission Response Link
+            isRequired: true
+          - name: __input_Preferred_First_Name
+            type: string
+            displayName: Preferred_First_Name
+            isRequired: true
+          - name: __input_Legal_First_Name
+            type: string
+            displayName: Legal_First_Name
+            isRequired: true
+          - name: __input_Legal_Last_Name
+            type: string
+            displayName: Legal_Last_Name
+            isRequired: true
+          - name: __action_34a400d6_74c1_4528_a1ca_dbfe4d66c5f7_preferredWithinYear
+            type: string
+            displayName: Preferred Changed Within Year
+            isRequired: false
+          - name: __approval_task_3cc698ea_a8bc_4083_b2a4_407ee59d6bbc_comment
+            type: string
+            displayName: Registrar Approval Comment
+            isRequired: false
+        approvalDetailsSelectedData: []
+        isCommentEnabled: true
+        approvalDetails: >-
+          <p>Review the <strong>name</strong> change requested below and approve
+          or deny. Your decision affects ONLY the name fields. Addresses are
+          decided separately by Student Business Services, and phone/email are
+          applied automatically — a denial here does not block any of
+          those.</p><p><strong>Once-per-year limit:</strong> if "Preferred
+          Changed Within Year" = Y, this student already changed their preferred
+          name within the past year. Preferred-name changes are limited to once
+          per year — approve only if you intend to override the limit.</p>
+      userTaskActions:
+        - label: Approve
+          value: Approve
+        - label: Deny
+          value: Deny
+      assigneeType: group
+      assignee: 046f977b-f46a-44b0-b264-32d2be7c79da
+      dueDate: P14D
+      sendExperienceNotification: true
+      sendEmailNotifications:
+        fromEmail: noreply@floridapoly.edu
+        assigneeNotification: true
+        participantNotification: false
+        otherNotification: false
+        participantRecipients: []
+        otherRecipients: []
+        enabled: true
+    in:
+      - split_b11bc5e1-e59c-4926-867b-d72d7f723746
+    out:
+      - approval-task_06842800-1847-4984-94da-554eaa326bc2
+  approval-task_06842800-1847-4984-94da-554eaa326bc2:
+    class: approval-task
+    classDisplayName: Approval Task
+    segmentDescription: ''
+    name: SBS Approval
+    config:
+      taskDisplayName: Contact info change approval - SBS
+      taskDisplayNameSelectedData: []
+      approvalView:
+        approvalSelectedData:
+          - name: __requestedFor
+            type: person
+            displayName: Started For
+            isRequired: true
+          - name: __expirationDate
+            type: date-time
+            displayName: Expiration Date
+            isRequired: true
+          - name: __requestId
+            type: string
+            displayName: Request ID
+            isRequired: true
+          - name: __startedOn
+            type: date-time
+            displayName: Started On
+            isRequired: true
+          - name: __formSubmissionResponseLink
+            type: string
+            displayName: Form Submission Response Link
+            isRequired: true
+          - name: __input_Street_Address
+            type: string
+            displayName: Street_Address
+            isRequired: true
+          - name: __input_City
+            type: string
+            displayName: City
+            isRequired: true
+          - name: __input_State
+            type: string
+            displayName: State
+            isRequired: true
+          - name: __input_ZIP_Code
+            type: string
+            displayName: ZIP_Code
+            isRequired: true
+          - name: __input_Country
+            type: string
+            displayName: Country
+            isRequired: true
+          - name: __input_Billing_same_as_Mailing_yes_no
+            type: string
+            displayName: Billing_same_as_Mailing_yes_no
+            isRequired: true
+          - name: __input_Billing_Street_Address
+            type: string
+            displayName: Billing_Street_Address
+            isRequired: true
+          - name: __input_Billing_City
+            type: string
+            displayName: Billing_City
+            isRequired: true
+          - name: __input_Billing_State
+            type: string
+            displayName: Billing_State
+            isRequired: true
+          - name: __input_Billing_ZIP_Code
+            type: string
+            displayName: Billing_ZIP_Code
+            isRequired: true
+          - name: __input_Billing_Country
+            type: string
+            displayName: Billing_Country
+            isRequired: true
+          - name: __approval_task_3cc698ea_a8bc_4083_b2a4_407ee59d6bbc_outcome
+            type: string
+            displayName: Registrar Decision
+            isRequired: true
+          - name: __approval_task_3cc698ea_a8bc_4083_b2a4_407ee59d6bbc_comment
+            type: string
+            displayName: Registrar Approval (Both) Comment
+            isRequired: false
+          - name: __approval_task_06842800_1847_4984_94da_554eaa326bc2_comment
+            type: string
+            displayName: SBS Approval Comment
+            isRequired: false
+        approvalDetailsSelectedData: []
+        isCommentEnabled: true
+        approvalDetails: >-
+          <p>Review the <strong>address</strong> change requested below and
+          approve or deny. Your decision affects ONLY the address fields. The
+          Registrar handles name changes (their decision is shown above when
+          applicable); approve or deny the address on its own merits — this
+          request is not dead if the Registrar denied.</p>
+      userTaskActions:
+        - label: Approve
+          value: Approve
+        - label: Deny
+          value: Deny
+      assigneeType: group
+      assignee: d51c0ec7-6cba-492c-a662-e333c82d2989
+      dueDate: P14D
+      sendExperienceNotification: true
+      sendEmailNotifications:
+        fromEmail: noreply@floridapoly.edu
+        assigneeNotification: true
+        participantNotification: false
+        otherNotification: false
+        participantRecipients: []
+        otherRecipients: []
+        enabled: true
+    in:
+      - approval-task_3cc698ea-a8bc-4083-b2a4-407ee59d6bbc
+    out:
+      - action_a3a24327-3fbe-49fa-a226-cbb15a364ed8
+  action_a3a24327-3fbe-49fa-a226-cbb15a364ed8:
+    class: action
+    classDisplayName: Action
+    segmentDescription: Write approved + changed contact info to Banner (partial apply)
+    name: updateBannerContactInfo (Both)
+    config:
+      code: UPDATESTUDENTCONTACTINFORMATION
+      version: 32.0.0
+      isBaseline: false
+      parameters:
+        - inputParameterName: BannerID
+          mapType: processVariable
+          processVariableName: __input_BannerId
+        - inputParameterName: preferredFirstName
+          mapType: processVariable
+          processVariableName: __input_Preferred_First_Name
+        - inputParameterName: firstName
+          mapType: processVariable
+          processVariableName: __input_Legal_First_Name
+        - inputParameterName: lastName
+          mapType: processVariable
+          processVariableName: __input_Legal_Last_Name
+        - inputParameterName: phoneCountryCode
+          mapType: processVariable
+          processVariableName: __input_Country_Code
+        - inputParameterName: phoneNumber
+          mapType: processVariable
+          processVariableName: __input_Phone_Number
+        - inputParameterName: personalEmail
+          mapType: processVariable
+          processVariableName: __input_personal_email
+        - inputParameterName: mailingStreet
+          mapType: processVariable
+          processVariableName: __input_Street_Address
+        - inputParameterName: mailingCity
+          mapType: processVariable
+          processVariableName: __input_City
+        - inputParameterName: mailingState
+          mapType: processVariable
+          processVariableName: __input_State
+        - inputParameterName: mailingZip
+          mapType: processVariable
+          processVariableName: __input_ZIP_Code
+        - inputParameterName: mailingCountry
+          mapType: processVariable
+          processVariableName: __input_Country
+        - inputParameterName: billingSameAsMailing
+          mapType: processVariable
+          processVariableName: __input_Billing_same_as_Mailing_yes_no
+        - inputParameterName: billingStreet
+          mapType: processVariable
+          processVariableName: __input_Billing_Street_Address
+        - inputParameterName: billingCity
+          mapType: processVariable
+          processVariableName: __input_Billing_City
+        - inputParameterName: billingState
+          mapType: processVariable
+          processVariableName: __input_Billing_State
+        - inputParameterName: billingZip
+          mapType: processVariable
+          processVariableName: __input_Billing_ZIP_Code
+        - inputParameterName: billingCountry
+          mapType: processVariable
+          processVariableName: __input_Billing_Country
+        - inputParameterName: regOutcomeBoth
+          mapType: processVariable
+          processVariableName: __approval_task_3cc698ea_a8bc_4083_b2a4_407ee59d6bbc_outcome
+        - inputParameterName: sbsOutcomeBoth
+          mapType: processVariable
+          processVariableName: __approval_task_06842800_1847_4984_94da_554eaa326bc2_outcome
+        - inputParameterName: preferredNameChanged
+          mapType: processVariable
+          processVariableName: __action_34a400d6_74c1_4528_a1ca_dbfe4d66c5f7_preferredNameChanged
+        - inputParameterName: legalNameChanged
+          mapType: processVariable
+          processVariableName: __action_34a400d6_74c1_4528_a1ca_dbfe4d66c5f7_legalNameChanged
+        - inputParameterName: phoneChanged
+          mapType: processVariable
+          processVariableName: __action_34a400d6_74c1_4528_a1ca_dbfe4d66c5f7_phoneChanged
+        - inputParameterName: emailChanged
+          mapType: processVariable
+          processVariableName: __action_34a400d6_74c1_4528_a1ca_dbfe4d66c5f7_emailChanged
+        - inputParameterName: mailingChanged
+          mapType: processVariable
+          processVariableName: __action_34a400d6_74c1_4528_a1ca_dbfe4d66c5f7_mailingChanged
+        - inputParameterName: billingChanged
+          mapType: processVariable
+          processVariableName: __action_34a400d6_74c1_4528_a1ca_dbfe4d66c5f7_billingChanged
+        - inputParameterName: phoneType
+          mapType: staticValue
+          staticValue: CELL
+        - inputParameterName: regOutcomeOnly
+          mapType: processVariable
+          processVariableName: __approval_task_3cc698ea_a8bc_4083_b2a4_407ee59d6bbc_outcome
+        - inputParameterName: sbsOutcomeOnly
+          mapType: processVariable
+          processVariableName: __approval_task_06842800_1847_4984_94da_554eaa326bc2_outcome
+      inputs: []
+    in:
+      - approval-task_06842800-1847-4984-94da-554eaa326bc2
+    out:
+      - notification-block_09112677-1073-4985-b6c6-5f7b33a1cbb5
+  notification-block_09112677-1073-4985-b6c6-5f7b33a1cbb5:
+    class: notification-block
+    classDisplayName: Email Notification
+    segmentDescription: ''
+    name: Email update summary (Both)
+    config:
+      emailConfig:
+        from: noreply@floridapoly.edu
+        subject: Your contact information update
+        emailContentSelectedData:
+          - name: __action_a3a24327_3fbe_49fa_a226_cbb15a364ed8_appliedSummary
+            type: string
+            displayName: appliedSummary
+            isRequired: false
+          - name: __action_a3a24327_3fbe_49fa_a226_cbb15a364ed8_skippedSummary
+            type: string
+            displayName: skippedSummary
+            isRequired: false
+          - name: __approval_task_3cc698ea_a8bc_4083_b2a4_407ee59d6bbc_outcome
+            type: string
+            displayName: Registrar Approval Outcome
+            isRequired: true
+            isSelected: true
+          - name: __approval_task_3cc698ea_a8bc_4083_b2a4_407ee59d6bbc_comment
+            type: string
+            displayName: Registrar Approval Comment
+            isRequired: true
+            isSelected: true
+          - name: __approval_task_06842800_1847_4984_94da_554eaa326bc2_outcome
+            type: string
+            displayName: SBS Approval Outcome
+            isRequired: true
+            isSelected: true
+          - name: __approval_task_06842800_1847_4984_94da_554eaa326bc2_comment
+            type: string
+            displayName: SBS Approval Comment
+            isRequired: true
+            isSelected: true
+        participantRecipients:
+          - recipientType: process-variable
+            value: __requestedFor
+        otherRecipients: []
+        subjectSelectedData: []
+        emailContent: "<p>Hello,</p><p>We processed your contact information update request. Here is the outcome:</p><p><br></p><p><strong>Applied</strong>: <variable contenteditable=\"false\" data-variable=\"appliedSummary\">﻿<span contenteditable=\"false\">{{appliedSummary}}</span>﻿</variable></p><p><strong>Skipped</strong>: <variable contenteditable=\"false\" data-variable=\"skippedSummary\">﻿<span contenteditable=\"false\">{{skippedSummary}}</span>﻿</variable></p><p><strong>Registrar decision:</strong> <variable contenteditable=\"false\" data-variable=\"Registrar Approval Outcome\">﻿<span contenteditable=\"false\">{{Registrar Approval Outcome}}</span>﻿</variable></p><p><strong>Registrar note:</strong> <variable contenteditable=\"false\" data-variable=\"Registrar Approval Comment\">﻿<span contenteditable=\"false\">{{Registrar Approval Comment}}</span>﻿</variable></p><p><strong>Student Business Services decision:</strong> <variable contenteditable=\"false\" data-variable=\"SBS Approval Outcome\">﻿<span contenteditable=\"false\">{{SBS Approval Outcome}}</span>﻿</variable></p><p><strong>Student Business Services note:</strong> <variable contenteditable=\"false\" data-variable=\"SBS Approval Comment\">﻿<span contenteditable=\"false\">{{SBS Approval Comment}}</span>﻿</variable></p><p>If something you requested does not appear in your records within 2 business days, please contact the Registrar’s Office (name changes) or Student Business Services (addresses).</p>"
+    in:
+      - action_a3a24327-3fbe-49fa-a226-cbb15a364ed8
+    out:
+      - end_1b6403d8-854b-4e75-8156-885f12c202d0
+  end_1b6403d8-854b-4e75-8156-885f12c202d0:
+    class: end
+    classDisplayName: End
+    segmentDescription: ''
+    name: End Both
+    config:
+      workflowOutcome: Completed
+      sendExperienceNotification: true
+      sendEmailNotifications:
+        fromEmail: noreply@floridapoly.edu
+        assigneeNotification: false
+        participantNotification: false
+        otherNotification: false
+        participantRecipients: []
+        otherRecipients: []
+        enabled: false
+    in:
+      - notification-block_09112677-1073-4985-b6c6-5f7b33a1cbb5
+  approval-task_1feec2d6-0a78-4b9f-9043-2da8b0928bb3:
+    class: approval-task
+    classDisplayName: Approval Task
+    segmentDescription: ''
+    name: Registrar Approval (Only)
+    config:
+      taskDisplayName: Contact info change approval - Registrar
+      taskDisplayNameSelectedData: []
+      approvalView:
+        approvalSelectedData:
+          - name: __requestedFor
+            type: person
+            displayName: Started For
+            isRequired: true
+          - name: __expirationDate
+            type: date-time
+            displayName: Expiration Date
+            isRequired: true
+          - name: __requestId
+            type: string
+            displayName: Request ID
+            isRequired: true
+          - name: __startedOn
+            type: date-time
+            displayName: Started On
+            isRequired: true
+          - name: __formSubmissionResponseLink
+            type: string
+            displayName: Form Submission Response Link
+            isRequired: true
+          - name: __input_Preferred_First_Name
+            type: string
+            displayName: Preferred_First_Name
+            isRequired: true
+          - name: __input_Legal_First_Name
+            type: string
+            displayName: Legal_First_Name
+            isRequired: true
+          - name: __input_Legal_Last_Name
+            type: string
+            displayName: Legal_Last_Name
+            isRequired: true
+          - name: __action_34a400d6_74c1_4528_a1ca_dbfe4d66c5f7_preferredWithinYear
+            type: string
+            displayName: Preferred Changed Within Year
+            isRequired: false
+          - name: __approval_task_1feec2d6_0a78_4b9f_9043_2da8b0928bb3_comment
+            type: string
+            displayName: Registrar Approval (Only) Comment
+            isRequired: false
+        approvalDetailsSelectedData: []
+        isCommentEnabled: true
+        approvalDetails: >-
+          <p>Review the <strong>name</strong> change requested below and approve
+          or deny. Your decision affects ONLY the name fields. Addresses are
+          decided separately by Student Business Services, and phone/email are
+          applied automatically — a denial here does not block any of
+          those.</p><p><strong>Once-per-year limit:</strong> if "Preferred
+          Changed Within Year" = Y, this student already changed their preferred
+          name within the past year. Preferred-name changes are limited to once
+          per year — approve only if you intend to override the limit.</p>
+      userTaskActions:
+        - label: Approve
+          value: Approve
+        - label: Deny
+          value: Deny
+      assigneeType: group
+      assignee: 046f977b-f46a-44b0-b264-32d2be7c79da
+      dueDate: P14D
+      sendExperienceNotification: true
+      sendEmailNotifications:
+        fromEmail: noreply@floridapoly.edu
+        assigneeNotification: true
+        participantNotification: false
+        otherNotification: false
+        participantRecipients: []
+        otherRecipients: []
+        enabled: true
+    in:
+      - split_b11bc5e1-e59c-4926-867b-d72d7f723746
+    out:
+      - action_d2049578-de77-4f03-a0e5-49d0d94f1989
+  action_d2049578-de77-4f03-a0e5-49d0d94f1989:
+    class: action
+    classDisplayName: Action
+    segmentDescription: Write approved + changed contact info to Banner (partial apply)
+    name: updateBannerContactInfo (Registrar)
+    config:
+      code: UPDATESTUDENTCONTACTINFORMATION
+      version: 32.0.0
+      isBaseline: false
+      parameters:
+        - inputParameterName: BannerID
+          mapType: processVariable
+          processVariableName: __input_BannerId
+        - inputParameterName: preferredFirstName
+          mapType: processVariable
+          processVariableName: __input_Preferred_First_Name
+        - inputParameterName: firstName
+          mapType: processVariable
+          processVariableName: __input_Legal_First_Name
+        - inputParameterName: lastName
+          mapType: processVariable
+          processVariableName: __input_Legal_Last_Name
+        - inputParameterName: phoneCountryCode
+          mapType: processVariable
+          processVariableName: __input_Country_Code
+        - inputParameterName: phoneNumber
+          mapType: processVariable
+          processVariableName: __input_Phone_Number
+        - inputParameterName: personalEmail
+          mapType: processVariable
+          processVariableName: __input_personal_email
+        - inputParameterName: mailingStreet
+          mapType: processVariable
+          processVariableName: __input_Street_Address
+        - inputParameterName: mailingCity
+          mapType: processVariable
+          processVariableName: __input_City
+        - inputParameterName: mailingState
+          mapType: processVariable
+          processVariableName: __input_State
+        - inputParameterName: mailingZip
+          mapType: processVariable
+          processVariableName: __input_ZIP_Code
+        - inputParameterName: mailingCountry
+          mapType: processVariable
+          processVariableName: __input_Country
+        - inputParameterName: billingSameAsMailing
+          mapType: processVariable
+          processVariableName: __input_Billing_same_as_Mailing_yes_no
+        - inputParameterName: billingStreet
+          mapType: processVariable
+          processVariableName: __input_Billing_Street_Address
+        - inputParameterName: billingCity
+          mapType: processVariable
+          processVariableName: __input_Billing_City
+        - inputParameterName: billingState
+          mapType: processVariable
+          processVariableName: __input_Billing_State
+        - inputParameterName: billingZip
+          mapType: processVariable
+          processVariableName: __input_Billing_ZIP_Code
+        - inputParameterName: billingCountry
+          mapType: processVariable
+          processVariableName: __input_Billing_Country
+        - inputParameterName: regOutcomeOnly
+          mapType: processVariable
+          processVariableName: __approval_task_1feec2d6_0a78_4b9f_9043_2da8b0928bb3_outcome
+        - inputParameterName: preferredNameChanged
+          mapType: processVariable
+          processVariableName: __action_34a400d6_74c1_4528_a1ca_dbfe4d66c5f7_preferredNameChanged
+        - inputParameterName: legalNameChanged
+          mapType: processVariable
+          processVariableName: __action_34a400d6_74c1_4528_a1ca_dbfe4d66c5f7_legalNameChanged
+        - inputParameterName: phoneChanged
+          mapType: processVariable
+          processVariableName: __action_34a400d6_74c1_4528_a1ca_dbfe4d66c5f7_phoneChanged
+        - inputParameterName: emailChanged
+          mapType: processVariable
+          processVariableName: __action_34a400d6_74c1_4528_a1ca_dbfe4d66c5f7_emailChanged
+        - inputParameterName: mailingChanged
+          mapType: processVariable
+          processVariableName: __action_34a400d6_74c1_4528_a1ca_dbfe4d66c5f7_mailingChanged
+        - inputParameterName: billingChanged
+          mapType: processVariable
+          processVariableName: __action_34a400d6_74c1_4528_a1ca_dbfe4d66c5f7_billingChanged
+        - inputParameterName: phoneType
+          mapType: staticValue
+          staticValue: CELL
+      inputs: []
+    in:
+      - approval-task_1feec2d6-0a78-4b9f-9043-2da8b0928bb3
+    out:
+      - notification-block_5ed3eca1-0479-4915-84e1-9b3aefe5e846
+  notification-block_5ed3eca1-0479-4915-84e1-9b3aefe5e846:
+    class: notification-block
+    classDisplayName: Email Notification
+    segmentDescription: ''
+    name: Email update summary (Registrar)
+    config:
+      emailConfig:
+        from: noreply@floridapoly.edu
+        subject: Your contact information update
+        emailContentSelectedData:
+          - name: __action_d2049578_de77_4f03_a0e5_49d0d94f1989_appliedSummary
+            type: string
+            displayName: appliedSummary
+            isRequired: true
+          - name: __action_d2049578_de77_4f03_a0e5_49d0d94f1989_skippedSummary
+            type: string
+            displayName: skippedSummary
+            isRequired: true
+          - name: __approval_task_1feec2d6_0a78_4b9f_9043_2da8b0928bb3_outcome
+            type: string
+            displayName: Registrar Approval (Only) Outcome
+            isRequired: true
+            isSelected: true
+          - name: __approval_task_1feec2d6_0a78_4b9f_9043_2da8b0928bb3_comment
+            type: string
+            displayName: Registrar Approval (Only) Comment
+            isRequired: true
+            isSelected: true
+        participantRecipients:
+          - recipientType: process-variable
+            value: __requestedFor
+        otherRecipients: []
+        subjectSelectedData: []
+        emailContent: "<p>Hello,</p><p>We processed your contact information update request. Here is the outcome:</p><p><br></p><p><strong>Applied Summary</strong>: <variable contenteditable=\"false\" data-variable=\"appliedSummary\">﻿<span contenteditable=\"false\">{{appliedSummary}}</span>﻿</variable></p><p><strong>Skipped Summary</strong>: <variable contenteditable=\"false\" data-variable=\"skippedSummary\">﻿<span contenteditable=\"false\">{{skippedSummary}}</span>﻿</variable></p><p><strong>Registrar decision:</strong> <variable contenteditable=\"false\" data-variable=\"Registrar Approval (Only) Outcome\">﻿<span contenteditable=\"false\">{{Registrar Approval (Only) Outcome}}</span>﻿</variable></p><p><strong>Registrar note:</strong> <variable contenteditable=\"false\" data-variable=\"Registrar Approval (Only) Comment\">﻿<span contenteditable=\"false\">{{Registrar Approval (Only) Comment}}</span>﻿</variable></p><p>If something you requested does not appear in your records within 2 business days, please contact the Registrar’s Office (name changes) or Student Business Services (addresses).</p>"
+    in:
+      - action_d2049578-de77-4f03-a0e5-49d0d94f1989
+    out:
+      - end_19bbff6e-1679-4a57-8c35-74fb2ec3c82e
+  end_19bbff6e-1679-4a57-8c35-74fb2ec3c82e:
+    class: end
+    classDisplayName: End
+    segmentDescription: ''
+    name: End Registrar
+    config:
+      workflowOutcome: Completed
+      sendExperienceNotification: true
+      sendEmailNotifications:
+        fromEmail: ''
+        assigneeNotification: false
+        participantNotification: false
+        otherNotification: false
+        participantRecipients: []
+        otherRecipients: []
+        enabled: false
+    in:
+      - notification-block_5ed3eca1-0479-4915-84e1-9b3aefe5e846
+  approval-task_0e3591ae-70e7-4b81-b071-2fc12a711595:
+    class: approval-task
+    classDisplayName: Approval Task
+    segmentDescription: ''
+    name: SBS Approval (Only)
+    config:
+      taskDisplayName: Contact info change approval - SBS
+      taskDisplayNameSelectedData: []
+      approvalView:
+        approvalSelectedData:
+          - name: __requestedFor
+            type: person
+            displayName: Started For
+            isRequired: true
+          - name: __expirationDate
+            type: date-time
+            displayName: Expiration Date
+            isRequired: true
+          - name: __requestId
+            type: string
+            displayName: Request ID
+            isRequired: true
+          - name: __startedOn
+            type: date-time
+            displayName: Started On
+            isRequired: true
+          - name: __formSubmissionResponseLink
+            type: string
+            displayName: Form Submission Response Link
+            isRequired: true
+          - name: __input_Street_Address
+            type: string
+            displayName: Street_Address
+            isRequired: true
+          - name: __input_City
+            type: string
+            displayName: City
+            isRequired: true
+          - name: __input_State
+            type: string
+            displayName: State
+            isRequired: true
+          - name: __input_ZIP_Code
+            type: string
+            displayName: ZIP_Code
+            isRequired: true
+          - name: __input_Country
+            type: string
+            displayName: Country
+            isRequired: true
+          - name: __input_Billing_same_as_Mailing_yes_no
+            type: string
+            displayName: Billing_same_as_Mailing_yes_no
+            isRequired: true
+          - name: __input_Billing_Street_Address
+            type: string
+            displayName: Billing_Street_Address
+            isRequired: true
+          - name: __input_Billing_City
+            type: string
+            displayName: Billing_City
+            isRequired: true
+          - name: __input_Billing_State
+            type: string
+            displayName: Billing_State
+            isRequired: true
+          - name: __input_Billing_ZIP_Code
+            type: string
+            displayName: Billing_ZIP_Code
+            isRequired: true
+          - name: __input_Billing_Country
+            type: string
+            displayName: Billing_Country
+            isRequired: true
+          - name: __approval_task_0e3591ae_70e7_4b81_b071_2fc12a711595_comment
+            type: string
+            displayName: SBS Approval (Only) Comment
+            isRequired: false
+        approvalDetailsSelectedData: []
+        isCommentEnabled: true
+        approvalDetails: >-
+          <p>Review the <strong>address</strong> change requested below and
+          approve or deny. Your decision affects ONLY the address fields. The
+          Registrar handles name changes (their decision is shown above when
+          applicable); approve or deny the address on its own merits — this
+          request is not dead if the Registrar denied.</p>
+      userTaskActions:
+        - label: Approve
+          value: Approve
+        - label: Deny
+          value: Deny
+      assigneeType: group
+      assignee: d51c0ec7-6cba-492c-a662-e333c82d2989
+      dueDate: P14D
+      sendExperienceNotification: true
+      sendEmailNotifications:
+        fromEmail: noreply@floridapoly.edu
+        assigneeNotification: true
+        participantNotification: false
+        otherNotification: false
+        participantRecipients: []
+        otherRecipients: []
+        enabled: true
+    in:
+      - split_b11bc5e1-e59c-4926-867b-d72d7f723746
+    out:
+      - action_e7035ca1-2082-4d12-9bad-4dbcfd9374bc
+  action_e7035ca1-2082-4d12-9bad-4dbcfd9374bc:
+    class: action
+    classDisplayName: Action
+    segmentDescription: Write approved + changed contact info to Banner (partial apply)
+    name: updateBannerContactInfo (SBS)
+    config:
+      code: UPDATESTUDENTCONTACTINFORMATION
+      version: 32.0.0
+      isBaseline: false
+      parameters:
+        - inputParameterName: BannerID
+          mapType: processVariable
+          processVariableName: __input_BannerId
+        - inputParameterName: preferredFirstName
+          mapType: processVariable
+          processVariableName: __input_Preferred_First_Name
+        - inputParameterName: firstName
+          mapType: processVariable
+          processVariableName: __input_Legal_First_Name
+        - inputParameterName: lastName
+          mapType: processVariable
+          processVariableName: __input_Legal_Last_Name
+        - inputParameterName: phoneCountryCode
+          mapType: processVariable
+          processVariableName: __input_Country_Code
+        - inputParameterName: phoneNumber
+          mapType: processVariable
+          processVariableName: __input_Phone_Number
+        - inputParameterName: personalEmail
+          mapType: processVariable
+          processVariableName: __input_personal_email
+        - inputParameterName: mailingStreet
+          mapType: processVariable
+          processVariableName: __input_Street_Address
+        - inputParameterName: mailingCity
+          mapType: processVariable
+          processVariableName: __input_City
+        - inputParameterName: mailingState
+          mapType: processVariable
+          processVariableName: __input_State
+        - inputParameterName: mailingZip
+          mapType: processVariable
+          processVariableName: __input_ZIP_Code
+        - inputParameterName: mailingCountry
+          mapType: processVariable
+          processVariableName: __input_Country
+        - inputParameterName: billingSameAsMailing
+          mapType: processVariable
+          processVariableName: __input_Billing_same_as_Mailing_yes_no
+        - inputParameterName: billingStreet
+          mapType: processVariable
+          processVariableName: __input_Billing_Street_Address
+        - inputParameterName: billingCity
+          mapType: processVariable
+          processVariableName: __input_Billing_City
+        - inputParameterName: billingState
+          mapType: processVariable
+          processVariableName: __input_Billing_State
+        - inputParameterName: billingZip
+          mapType: processVariable
+          processVariableName: __input_Billing_ZIP_Code
+        - inputParameterName: billingCountry
+          mapType: processVariable
+          processVariableName: __input_Billing_Country
+        - inputParameterName: sbsOutcomeOnly
+          mapType: processVariable
+          processVariableName: __approval_task_0e3591ae_70e7_4b81_b071_2fc12a711595_outcome
+        - inputParameterName: preferredNameChanged
+          mapType: processVariable
+          processVariableName: __action_34a400d6_74c1_4528_a1ca_dbfe4d66c5f7_preferredNameChanged
+        - inputParameterName: legalNameChanged
+          mapType: processVariable
+          processVariableName: __action_34a400d6_74c1_4528_a1ca_dbfe4d66c5f7_legalNameChanged
+        - inputParameterName: phoneChanged
+          mapType: processVariable
+          processVariableName: __action_34a400d6_74c1_4528_a1ca_dbfe4d66c5f7_phoneChanged
+        - inputParameterName: emailChanged
+          mapType: processVariable
+          processVariableName: __action_34a400d6_74c1_4528_a1ca_dbfe4d66c5f7_emailChanged
+        - inputParameterName: mailingChanged
+          mapType: processVariable
+          processVariableName: __action_34a400d6_74c1_4528_a1ca_dbfe4d66c5f7_mailingChanged
+        - inputParameterName: billingChanged
+          mapType: processVariable
+          processVariableName: __action_34a400d6_74c1_4528_a1ca_dbfe4d66c5f7_billingChanged
+        - inputParameterName: phoneType
+          mapType: staticValue
+          staticValue: CELL
+      inputs: []
+    in:
+      - approval-task_0e3591ae-70e7-4b81-b071-2fc12a711595
+    out:
+      - notification-block_318431c1-8a05-4088-843a-34df17c7e4e4
+  notification-block_318431c1-8a05-4088-843a-34df17c7e4e4:
+    class: notification-block
+    classDisplayName: Email Notification
+    segmentDescription: ''
+    name: Email update summary (SBS)
+    config:
+      emailConfig:
+        from: noreply@floridapoly.edu
+        subject: Your contact information update
+        emailContentSelectedData:
+          - name: __action_e7035ca1_2082_4d12_9bad_4dbcfd9374bc_appliedSummary
+            type: string
+            displayName: appliedSummary
+            isRequired: true
+          - name: __action_e7035ca1_2082_4d12_9bad_4dbcfd9374bc_skippedSummary
+            type: string
+            displayName: skippedSummary
+            isRequired: true
+          - name: __approval_task_0e3591ae_70e7_4b81_b071_2fc12a711595_outcome
+            type: string
+            displayName: SBS Approval (Only) Outcome
+            isRequired: true
+            isSelected: true
+          - name: __approval_task_0e3591ae_70e7_4b81_b071_2fc12a711595_comment
+            type: string
+            displayName: SBS Approval (Only) Comment
+            isRequired: true
+            isSelected: true
+        participantRecipients:
+          - recipientType: process-variable
+            value: __requestedFor
+        otherRecipients: []
+        subjectSelectedData: []
+        emailContent: "<p>Hello,</p><p>We processed your contact information update request. Here is the outcome:</p><p><br></p><p><strong>Applied Summary</strong>: <variable contenteditable=\"false\" data-variable=\"appliedSummary\">﻿<span contenteditable=\"false\">{{appliedSummary}}</span>﻿</variable></p><p><strong>Skipped Summary</strong>: <variable contenteditable=\"false\" data-variable=\"skippedSummary\">﻿<span contenteditable=\"false\">{{skippedSummary}}</span>﻿</variable></p><p><strong>Student Business Services decision:</strong> <variable contenteditable=\"false\" data-variable=\"SBS Approval (Only) Outcome\">﻿<span contenteditable=\"false\">{{SBS Approval (Only) Outcome}}</span>﻿</variable></p><p><strong>Student Business Services note:</strong> <variable contenteditable=\"false\" data-variable=\"SBS Approval (Only) Comment\">﻿<span contenteditable=\"false\">{{SBS Approval (Only) Comment}}</span>﻿</variable></p><p>If something you requested does not appear in your records within 2 business days, please contact the Registrar’s Office (name changes) or Student Business Services (addresses).</p>"
+    in:
+      - action_e7035ca1-2082-4d12-9bad-4dbcfd9374bc
+    out:
+      - end_cff1ee93-a8fd-46b6-aa75-99b5e97a9f42
+  end_cff1ee93-a8fd-46b6-aa75-99b5e97a9f42:
+    class: end
+    classDisplayName: End
+    segmentDescription: ''
+    name: End SBS
+    config:
+      workflowOutcome: Completed
+      sendExperienceNotification: true
+      sendEmailNotifications:
+        fromEmail: ''
+        assigneeNotification: false
+        participantNotification: false
+        otherNotification: false
+        participantRecipients: []
+        otherRecipients: []
+        enabled: false
+    in:
+      - notification-block_318431c1-8a05-4088-843a-34df17c7e4e4
+  action_49e729ec-f300-45dd-a8a5-e473ca215c61:
+    class: action
+    classDisplayName: Action
+    segmentDescription: Write approved + changed contact info to Banner (partial apply)
+    name: updateBannerContactInfo (Auto)
+    config:
+      code: UPDATESTUDENTCONTACTINFORMATION
+      version: 32.0.0
+      isBaseline: false
+      parameters:
+        - inputParameterName: BannerID
+          mapType: processVariable
+          processVariableName: __input_BannerId
+        - inputParameterName: preferredFirstName
+          mapType: processVariable
+          processVariableName: __input_Preferred_First_Name
+        - inputParameterName: firstName
+          mapType: processVariable
+          processVariableName: __input_Legal_First_Name
+        - inputParameterName: lastName
+          mapType: processVariable
+          processVariableName: __input_Legal_Last_Name
+        - inputParameterName: phoneCountryCode
+          mapType: processVariable
+          processVariableName: __input_Country_Code
+        - inputParameterName: phoneNumber
+          mapType: processVariable
+          processVariableName: __input_Phone_Number
+        - inputParameterName: personalEmail
+          mapType: processVariable
+          processVariableName: __input_personal_email
+        - inputParameterName: mailingStreet
+          mapType: processVariable
+          processVariableName: __input_Street_Address
+        - inputParameterName: mailingCity
+          mapType: processVariable
+          processVariableName: __input_City
+        - inputParameterName: mailingState
+          mapType: processVariable
+          processVariableName: __input_State
+        - inputParameterName: mailingZip
+          mapType: processVariable
+          processVariableName: __input_ZIP_Code
+        - inputParameterName: mailingCountry
+          mapType: processVariable
+          processVariableName: __input_Country
+        - inputParameterName: billingSameAsMailing
+          mapType: processVariable
+          processVariableName: __input_Billing_same_as_Mailing_yes_no
+        - inputParameterName: billingStreet
+          mapType: processVariable
+          processVariableName: __input_Billing_Street_Address
+        - inputParameterName: billingCity
+          mapType: processVariable
+          processVariableName: __input_Billing_City
+        - inputParameterName: billingState
+          mapType: processVariable
+          processVariableName: __input_Billing_State
+        - inputParameterName: billingZip
+          mapType: processVariable
+          processVariableName: __input_Billing_ZIP_Code
+        - inputParameterName: billingCountry
+          mapType: processVariable
+          processVariableName: __input_Billing_Country
+        - inputParameterName: preferredNameChanged
+          mapType: processVariable
+          processVariableName: __action_34a400d6_74c1_4528_a1ca_dbfe4d66c5f7_preferredNameChanged
+        - inputParameterName: legalNameChanged
+          mapType: processVariable
+          processVariableName: __action_34a400d6_74c1_4528_a1ca_dbfe4d66c5f7_legalNameChanged
+        - inputParameterName: phoneChanged
+          mapType: processVariable
+          processVariableName: __action_34a400d6_74c1_4528_a1ca_dbfe4d66c5f7_phoneChanged
+        - inputParameterName: emailChanged
+          mapType: processVariable
+          processVariableName: __action_34a400d6_74c1_4528_a1ca_dbfe4d66c5f7_emailChanged
+        - inputParameterName: mailingChanged
+          mapType: processVariable
+          processVariableName: __action_34a400d6_74c1_4528_a1ca_dbfe4d66c5f7_mailingChanged
+        - inputParameterName: billingChanged
+          mapType: processVariable
+          processVariableName: __action_34a400d6_74c1_4528_a1ca_dbfe4d66c5f7_billingChanged
+      inputs: []
+    in:
+      - split_b11bc5e1-e59c-4926-867b-d72d7f723746
+    out:
+      - notification-block_aefc282c-3d08-4cec-b78b-2694982d6c85
+  notification-block_aefc282c-3d08-4cec-b78b-2694982d6c85:
+    class: notification-block
+    classDisplayName: Email Notification
+    segmentDescription: ''
+    name: Email update summary (Auto)
+    config:
+      emailConfig:
+        from: noreply@floridapoly.edu
+        subject: Your contact information update
+        emailContentSelectedData:
+          - name: __action_49e729ec_f300_45dd_a8a5_e473ca215c61_appliedSummary
+            type: string
+            displayName: appliedSummary
+            isRequired: true
+          - name: __action_49e729ec_f300_45dd_a8a5_e473ca215c61_skippedSummary
+            type: string
+            displayName: skippedSummary
+            isRequired: true
+        participantRecipients:
+          - recipientType: process-variable
+            value: __requestedFor
+        otherRecipients: []
+        subjectSelectedData: []
+        emailContent: "<p>Hello,</p><p>We processed your contact information update request. Here is the outcome:</p><p><br></p><p><strong>Applied Summary</strong>: <variable contenteditable=\"false\" data-variable=\"appliedSummary\">﻿<span contenteditable=\"false\">{{appliedSummary}}</span>﻿</variable></p><p><strong>Skipped Summary</strong>: <variable contenteditable=\"false\" data-variable=\"skippedSummary\">﻿<span contenteditable=\"false\">{{skippedSummary}}</span>﻿</variable></p><p>If something you requested does not appear in your records within 2 business days, please contact the Registrar’s Office (name changes) or Student Business Services (addresses).</p>"
+    in:
+      - action_49e729ec-f300-45dd-a8a5-e473ca215c61
+    out:
+      - end_6c032a99-b454-4fe5-8951-6a98a2f16364
+  end_6c032a99-b454-4fe5-8951-6a98a2f16364:
+    class: end
+    classDisplayName: End
+    segmentDescription: ''
+    name: End Auto
+    config:
+      workflowOutcome: Completed
+      sendExperienceNotification: true
+      sendEmailNotifications:
+        fromEmail: ''
+        assigneeNotification: false
+        participantNotification: false
+        otherNotification: false
+        participantRecipients: []
+        otherRecipients: []
+        enabled: false
+    in:
+      - notification-block_aefc282c-3d08-4cec-b78b-2694982d6c85
+  notification-block_78d9b828-ec5f-49d6-8767-3f5cd348f4d2:
+    class: notification-block
+    classDisplayName: Email Notification
+    segmentDescription: ''
+    name: Email no changes detected
+    config:
+      emailConfig:
+        from: noreply@floridapoly.edu
+        subject: No changes detected
+        emailContentSelectedData: []
+        participantRecipients:
+          - recipientType: process-variable
+            value: __requestedFor
+        otherRecipients: []
+        subjectSelectedData: []
+        emailContent: >-
+          <p>Hello,</p><p>We did not detect any changes in your contact
+          information submission, so nothing was updated. If you believe this is
+          an error, please resubmit the form.</p>
+    in:
+      - split_b11bc5e1-e59c-4926-867b-d72d7f723746
+    out:
+      - end_86d3256a-3908-4fde-ad4b-fde49d08a846
+  end_86d3256a-3908-4fde-ad4b-fde49d08a846:
+    class: end
+    classDisplayName: End
+    segmentDescription: ''
+    name: End No Changes
+    config:
+      workflowOutcome: Completed
+      sendExperienceNotification: true
+      sendEmailNotifications:
+        fromEmail: ''
+        assigneeNotification: false
+        participantNotification: false
+        otherNotification: false
+        participantRecipients: []
+        otherRecipients: []
+        enabled: false
+    in:
+      - notification-block_78d9b828-ec5f-49d6-8767-3f5cd348f4d2
+  notification-block_2fbe0a7e-c14f-4b19-8e9c-e686dbe357d0:
+    class: notification-block
+    classDisplayName: Email Notification
+    segmentDescription: ''
+    name: Email processing error
+    config:
+      emailConfig:
+        from: noreply@floridapoly.edu
+        subject: We could not process your request
+        emailContentSelectedData: []
+        participantRecipients:
+          - recipientType: process-variable
+            value: __requestedFor
+        otherRecipients: []
+        subjectSelectedData: []
+        emailContent: >-
+          <p>Hello,</p><p>We could not process your contact information request
+          due to a system error, and nothing was changed. Please resubmit the
+          form, or contact the Registrar’s Office for assistance.</p>
+    in:
+      - split_b11bc5e1-e59c-4926-867b-d72d7f723746
+    out:
+      - end_65e058f5-b513-4b07-b5de-603b3bf44f05
+  end_65e058f5-b513-4b07-b5de-603b3bf44f05:
+    class: end
+    classDisplayName: End
+    segmentDescription: ''
+    name: End Error
+    config:
+      workflowOutcome: Completed
+      sendExperienceNotification: false
+      sendEmailNotifications:
+        fromEmail: ''
+        assigneeNotification: false
+        participantNotification: false
+        otherNotification: false
+        participantRecipients: []
+        otherRecipients: []
+        enabled: false
+    in:
+      - notification-block_2fbe0a7e-c14f-4b19-8e9c-e686dbe357d0
+  split_b11bc5e1-e59c-4926-867b-d72d7f723746:
+    class: split
+    classDisplayName: Split
+    segmentDescription: ''
+    name: Route Approvals
+    config:
+      paths:
+        - id: 33f88848-0182-406f-92e6-4fdb2063b8bf
+          label: Both offices
+          separator: and
+          conditions:
+            - processData: __action_34a400d6_74c1_4528_a1ca_dbfe4d66c5f7_routeCode
+              dataType: string
+              operator: condition-operator-equals
+              values:
+                - value: BOTH
+                  valueType: staticValue
+        - id: 9feec7e1-e009-4b34-b013-13a337577eea
+          label: Registrar only
+          separator: and
+          conditions:
+            - processData: __action_34a400d6_74c1_4528_a1ca_dbfe4d66c5f7_routeCode
+              dataType: string
+              operator: condition-operator-equals
+              values:
+                - value: REG
+                  valueType: staticValue
+        - id: 3c711945-5d8c-4435-866e-46b60b894e87
+          label: SBS only
+          separator: and
+          conditions:
+            - processData: __action_34a400d6_74c1_4528_a1ca_dbfe4d66c5f7_routeCode
+              dataType: string
+              operator: condition-operator-equals
+              values:
+                - value: SBS
+                  valueType: staticValue
+        - id: 2276347a-2718-4b02-ad15-57720a26e5b3
+          label: Auto apply
+          separator: and
+          conditions:
+            - processData: __action_34a400d6_74c1_4528_a1ca_dbfe4d66c5f7_routeCode
+              dataType: string
+              operator: condition-operator-equals
+              values:
+                - value: AUTO
+                  valueType: staticValue
+        - id: a4d1a487-f742-4bdf-a929-e945dae159d0
+          label: No changes
+          separator: and
+          conditions:
+            - processData: __action_34a400d6_74c1_4528_a1ca_dbfe4d66c5f7_routeCode
+              dataType: string
+              operator: condition-operator-equals
+              values:
+                - value: NONE
+                  valueType: staticValue
+        - id: Default
+          label: Routing error
+    in:
+      - action_34a400d6-74c1-4528-a1ca-dbfe4d66c5f7
+    out:
+      - node: approval-task_3cc698ea-a8bc-4083-b2a4-407ee59d6bbc
+        pathId: 33f88848-0182-406f-92e6-4fdb2063b8bf
+      - node: approval-task_1feec2d6-0a78-4b9f-9043-2da8b0928bb3
+        pathId: 9feec7e1-e009-4b34-b013-13a337577eea
+      - node: approval-task_0e3591ae-70e7-4b81-b071-2fc12a711595
+        pathId: 3c711945-5d8c-4435-866e-46b60b894e87
+      - node: action_49e729ec-f300-45dd-a8a5-e473ca215c61
+        pathId: 2276347a-2718-4b02-ad15-57720a26e5b3
+      - node: notification-block_78d9b828-ec5f-49d6-8767-3f5cd348f4d2
+        pathId: a4d1a487-f742-4bdf-a929-e945dae159d0
+      - node: notification-block_2fbe0a7e-c14f-4b19-8e9c-e686dbe357d0
+        pathId: Default
